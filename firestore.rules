@@ -1,0 +1,186 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 1. Global Safety Net - Default Deny Catch-All
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // 2. Global Helper Functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isEmailVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // 3. Entity-Specific Validation Helpers
+    function isValidBlog(blog) {
+      return blog.keys().hasAll(['title', 'slug', 'content', 'status', 'createdAt', 'updatedAt'])
+        && blog.title is string && blog.title.size() >= 1 && blog.title.size() <= 300
+        && blog.slug is string && blog.slug.size() >= 3 && blog.slug.size() <= 150
+        && blog.content is string && blog.content.size() <= 200000
+        && (blog.status == 'draft' || blog.status == 'published')
+        && (!blog.keys().hasAny(['excerpt']) || blog.excerpt is string && blog.excerpt.size() <= 1000)
+        && (!blog.keys().hasAny(['category']) || blog.category is string && blog.category.size() <= 100)
+        && (!blog.keys().hasAny(['featuredImage']) || blog.featuredImage is string && blog.featuredImage.size() <= 2000)
+        && (!blog.keys().hasAny(['readingTime']) || blog.readingTime is string && blog.readingTime.size() <= 50)
+        && (!blog.keys().hasAny(['seoTitle']) || blog.seoTitle is string && blog.seoTitle.size() <= 300)
+        && (!blog.keys().hasAny(['seoDescription']) || blog.seoDescription is string && blog.seoDescription.size() <= 500)
+        && (!blog.keys().hasAny(['seoKeywords']) || blog.seoKeywords is string && blog.seoKeywords.size() <= 500)
+        && (!blog.keys().hasAny(['tags']) || blog.tags is list && blog.tags.size() <= 20);
+    }
+
+    function isValidCategory(cat) {
+      return cat.keys().hasAll(['name', 'slug'])
+        && cat.name is string && cat.name.size() >= 1 && cat.name.size() <= 100
+        && cat.slug is string && cat.slug.size() >= 1 && cat.slug.size() <= 100;
+    }
+
+    function isValidTag(tag) {
+      return tag.keys().hasAll(['name', 'slug'])
+        && tag.name is string && tag.name.size() >= 1 && tag.name.size() <= 100
+        && tag.slug is string && tag.slug.size() >= 1 && tag.slug.size() <= 100;
+    }
+
+    function isValidPdfToolSetting(setting) {
+      return setting.keys().hasAll(['toolId', 'enabled', 'updatedAt'])
+        && setting.keys().size() == 3
+        && setting.toolId is string && setting.toolId.size() >= 1 && setting.toolId.size() <= 100
+        && setting.enabled is bool
+        && setting.updatedAt == request.time;
+    }
+
+    function isValidPdfToolAnalytic(analytic) {
+      return analytic.keys().hasAll(['toolId', 'timestamp', 'fileName', 'fileSize', 'success'])
+        && (analytic.keys().size() == 5 || (analytic.keys().size() == 6 && analytic.keys().hasAny(['errorMessage'])))
+        && analytic.toolId is string && analytic.toolId.size() >= 1 && analytic.toolId.size() <= 100
+        && analytic.timestamp == request.time
+        && analytic.fileName is string && analytic.fileName.size() <= 500
+        && (analytic.fileSize is int || analytic.fileSize is float) && analytic.fileSize >= 0
+        && analytic.success is bool
+        && (!analytic.keys().hasAny(['errorMessage']) || (analytic.errorMessage == null || analytic.errorMessage is string && analytic.errorMessage.size() <= 1000));
+    }
+
+    function isValidImageToolSetting(setting) {
+      return setting.keys().hasAll(['toolId', 'enabled', 'updatedAt'])
+        && setting.keys().size() == 3
+        && setting.toolId is string && setting.toolId.size() >= 1 && setting.toolId.size() <= 100
+        && setting.enabled is bool
+        && setting.updatedAt == request.time;
+    }
+
+    function isValidImageToolAnalytic(analytic) {
+      return analytic.keys().hasAll(['toolId', 'timestamp', 'fileName', 'fileSize', 'success'])
+        && (analytic.keys().size() == 5 || (analytic.keys().size() == 6 && analytic.keys().hasAny(['errorMessage'])))
+        && analytic.toolId is string && analytic.toolId.size() >= 1 && analytic.toolId.size() <= 100
+        && analytic.timestamp == request.time
+        && analytic.fileName is string && analytic.fileName.size() <= 500
+        && (analytic.fileSize is int || analytic.fileSize is float) && analytic.fileSize >= 0
+        && analytic.success is bool
+        && (!analytic.keys().hasAny(['errorMessage']) || (analytic.errorMessage == null || analytic.errorMessage is string && analytic.errorMessage.size() <= 1000));
+    }
+
+    // 4. Admins Collection - Secure Bootstrapping Routing
+    match /admins/{adminId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn()
+        && request.auth.uid == adminId
+        && request.auth.token.email == "webdevsoftwareengineer@gmail.com";
+      allow update, delete: if false;
+    }
+
+    // 5. Blogs Collection Rules
+    match /blogs/{blogId} {
+      // Allow public get if the post is published
+      allow get: if isValidId(blogId) && (
+        resource == null ||
+        resource.data.status == 'published' ||
+        isAdmin()
+      );
+
+      // Secure listing queries - enforces checking status in the query
+      allow list: if (
+        resource.data.status == 'published' ||
+        isAdmin()
+      );
+
+      // Create rule with strict timestamping validation
+      allow create: if isValidId(blogId)
+        && isAdmin()
+        && isValidBlog(incoming())
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+
+      // Update rule with strict field immutability guard
+      allow update: if isValidId(blogId)
+        && isAdmin()
+        && isValidBlog(incoming())
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time;
+
+      // Delete rule
+      allow delete: if isValidId(blogId) && isAdmin();
+    }
+
+    // 6. Categories Collection Rules
+    match /categories/{categoryId} {
+      allow read: if isValidId(categoryId);
+      allow create, update: if isValidId(categoryId) && isAdmin() && isValidCategory(incoming());
+      allow delete: if isValidId(categoryId) && isAdmin();
+    }
+
+    // 7. Tags Collection Rules
+    match /tags/{tagId} {
+      allow read: if isValidId(tagId);
+      allow create, update: if isValidId(tagId) && isAdmin() && isValidTag(incoming());
+      allow delete: if isValidId(tagId) && isAdmin();
+    }
+
+    // 8. PDF Tools Settings Rules
+    match /pdf_tools_settings/{settingId} {
+      allow read: if isValidId(settingId);
+      allow create, update: if isValidId(settingId) && isAdmin() && isValidPdfToolSetting(incoming());
+      allow delete: if isValidId(settingId) && isAdmin();
+    }
+
+    // 9. PDF Tool Analytics Rules
+    match /pdf_tool_analytics/{analyticId} {
+      allow create: if isValidId(analyticId) && isValidPdfToolAnalytic(incoming());
+      allow read: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    // 10. Image Tools Settings Rules
+    match /image_tools_settings/{settingId} {
+      allow read: if isValidId(settingId);
+      allow create, update: if isValidId(settingId) && isAdmin() && isValidImageToolSetting(incoming());
+      allow delete: if isValidId(settingId) && isAdmin();
+    }
+
+    // 11. Image Tool Analytics Rules
+    match /image_tool_analytics/{analyticId} {
+      allow create: if isValidId(analyticId) && isValidImageToolAnalytic(incoming());
+      allow read: if isAdmin();
+      allow update, delete: if false;
+    }
+  }
+}

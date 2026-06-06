@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 224 71% 4%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+    --primary: 245 58% 51%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14.3% 92%;
+    --secondary-foreground: 220.9 39.3% 11%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 40%;
+    --accent: 245 58% 95%;
+    --accent-foreground: 245 35% 25%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 13% 85%;
+    --input: 220 13% 85%;
+    --ring: 245 58% 51%;
+    --radius: 0.75rem;
+
+    /* Semantic Design Gradients & Layout colors */
+    --glass-bg: rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --card-bg: rgba(255, 255, 255, 0.65);
+    --card-border: rgba(0, 0, 0, 0.06);
+    --scrollbar-bg: rgba(220, 220, 230, 0.5);
+    --scrollbar-thumb: rgba(99, 102, 241, 0.25);
+    --text-muted: #5e6c84;
+    --text-primary: #1E293B;
+  }
+
+  .dark {
+    --background: 225 59% 11%;
+    --foreground: 210 40% 98%;
+    --card: 225 31% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 225 31% 14%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 245 58% 51%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 47% 12%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 223 47% 12%;
+    --muted-foreground: 215.4 16.3% 65%;
+    --accent: 245 58% 18%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 225 25% 18%;
+    --input: 225 25% 18%;
+    --ring: 245 58% 51%;
+    --radius: 0.75rem;
+
+    /* Semantic Design Gradients & Layout colors */
+    --glass-bg: rgba(13, 20, 38, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.06);
+    --card-bg: rgba(20, 27, 49, 0.6);
+    --card-border: rgba(255, 255, 255, 0.05);
+    --scrollbar-bg: rgba(11, 19, 43, 0.5);
+    --scrollbar-thumb: rgba(99, 102, 241, 0.3);
+    --text-muted: #C7C4D8;
+    --text-primary: #E2DFFF;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(79, 70, 229, 0.12) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(124, 58, 237, 0.08) 0px, transparent 50%),
+      radial-gradient(at 50% 50%, hsl(var(--background)) 0px, transparent 100%);
+    background-attachment: fixed;
+    transition: background-color 0.25s ease, color 0.15s ease;
+  }
+}
+
+/* Glass navigation custom classes referenced by Navbar */
+.glass-nav {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+/* Custom premium styling features */
+.premium-card, .glass-card, .glass-card-dark {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--radius);
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.premium-card:hover, .glass-card:hover, .glass-card-dark:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Custom scrollbars for a clean editorial design */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 9999px;
+  transition: background-color 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.5);
+}
+
+/* Prose customization for blog rendering */
+.prose {
+  color: hsl(var(--foreground));
+  max-width: 65ch;
+  line-height: 1.75;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  color: hsl(var(--foreground));
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-top: 1.75em;
+  margin-bottom: 0.5em;
+  opacity: 0.95;
+}
+
+.prose p {
+  margin-top: 0px;
+  margin-bottom: 1.25em;
+  opacity: 0.85;
+}
+
+.prose strong {
+  color: hsl(var(--foreground));
+  font-weight: 600;
+}
+
+.prose a {
+  color: rgb(99, 102, 241);
+  text-decoration: underline;
+  transition: color 0.15s ease-in-out;
+}
+
+.prose a:hover {
+  color: rgb(129, 140, 248);
+}
+
+.prose code {
+  color: #F43F5E;
+  background-color: rgba(244, 63, 94, 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.875em;
+}
+
+.prose pre {
+  background-color: hsl(var(--card));
+  padding: 1.25em;
+  border-radius: var(--radius);
+  overflow-x: auto;
+  border: 1px solid var(--card-border);
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.prose pre code {
+  color: inherit;
+  background-color: transparent;
+  padding: 0px;
+  border-radius: 0px;
+  font-size: 0.875em;
+  font-family: inherit;
+}
+
+.prose blockquote {
+  border-left: 4px solid hsl(var(--primary));
+  padding-left: 1em;
+  color: hsl(var(--muted-foreground));
+  font-style: italic;
+  margin: 1.5em 0;
+}
