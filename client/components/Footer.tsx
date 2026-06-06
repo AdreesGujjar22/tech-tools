@@ -1,5 +1,6 @@
 import { Link } from "@/lib/router-compat";
 import { Github, Twitter, Globe, Heart } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -16,8 +17,7 @@ export default function Footer() {
               to="/"
               className="text-white hover:text-[#4CD7F6] font-bold text-2xl tracking-tight shrink-0 flex items-center gap-2 transition-colors"
             >
-              <span className="px-2.5 py-1.5 rounded-xl bg-gradient-to-r from-red-500 to-rose-600 text-white font-mono text-base font-black shadow-lg shadow-red-950/20">TT</span>
-              <span className="text-xl font-extrabold tracking-tight">TechTools</span>
+            <Image src="/images/web-logo.png" alt="Tech tool logo" className="h-12" width="140" height="100" />
             </Link>
             <p className="text-[#C7C4D8]/80 text-sm max-w-sm leading-relaxed">
               Fast, secure, and modern online tools for developers, creators, and daily digital workloads. Sandboxed entirely inside your browser context for ultimate privacy configuration.
