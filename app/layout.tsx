@@ -93,7 +93,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>
+      <body className="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-300 min-h-screen">
         <Providers>{children}</Providers>
       </body>
     </html>

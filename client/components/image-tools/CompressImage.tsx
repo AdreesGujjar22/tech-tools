@@ -4,7 +4,17 @@ import React from "react";
 import ToolShell from "./ToolShell";
 
 export default function CompressImage() {
-  const allowedExtensions = [".png", ".jpg", ".jpeg", ".webp", ".svg", ".gif", ".bmp", ".tiff"];
+  const allowedExtensions = [
+    ".png", 
+    ".jpg", 
+    ".jpeg", 
+    ".webp", 
+    ".svg", 
+    ".gif", 
+    ".bmp", 
+    ".tiff", 
+    ".avif"
+  ];
 
   const renderConfig = (files: any[], config: any, setConfig: any) => {
     return (
@@ -24,10 +34,10 @@ export default function CompressImage() {
                 <button
                   key={level.id}
                   onClick={() => setConfig({ ...config, level: level.id })}
-                  className={`p-3 rounded-xl border text-center transition duration-150 flex flex-col items-center justify-center ${
+                  className={`p-3 rounded-xl border text-center transition duration-150 flex flex-col items-center justify-center cursor-pointer ${
                     active
-                      ? "bg-teal-950/40 border-teal-500 text-teal-400 font-bold"
-                      : "bg-neutral-900/60 border-neutral-850 hover:border-neutral-750 text-neutral-400 hover:text-white"
+                      ? "bg-indigo-950/40 border-indigo-500 text-indigo-400 font-bold"
+                      : "bg-neutral-900/60 border-neutral-850 hover:border-indigo-900/40 text-neutral-400 hover:text-white"
                   }`}
                 >
                   <span className="text-xs">{level.label}</span>
@@ -44,7 +54,7 @@ export default function CompressImage() {
               type="checkbox"
               checked={config.reduceDimensions}
               onChange={(e) => setConfig({ ...config, reduceDimensions: e.target.checked })}
-              className="accent-teal-500 rounded border-neutral-800"
+              className="accent-indigo-505 rounded border-neutral-800"
             />
             Downsample massive resolution (max 2000px)
           </label>
@@ -63,27 +73,45 @@ export default function CompressImage() {
     index: number,
     updateProgress: (percentage: number, msg?: string) => void
   ) => {
-    updateProgress(15, `Decoding image header data...`);
+    updateProgress(15, `Decoding image header data for ${file.name}...`);
     
+    if (!file || !file.size) {
+      throw new Error(`The file "${file?.name || "unknown"}" appears to be empty or invalid.`);
+    }
+
+    if (file.size > 50 * 1024 * 1024) {
+      throw new Error(`The file "${file.name}" exceeds the maximum supported processing size of 50MB.`);
+    }
+
     // Read clean image elements
     const url = URL.createObjectURL(file);
     const img = new Image();
     
-    await new Promise((resolve, reject) => {
-      img.onload = resolve;
-      img.onerror = () => {
-        URL.revokeObjectURL(url);
-        reject(new Error("Failed to decode image data. Format is unsupported or corrupt."));
-      };
-      img.src = url;
-    });
+    try {
+      await new Promise((resolve, reject) => {
+        img.onload = () => {
+          if (img.width <= 0 || img.height <= 0 || isNaN(img.width) || isNaN(img.height)) {
+            reject(new Error("Image metadata has non-positive or invalid layout dimensions."));
+          } else {
+            resolve(null);
+          }
+        };
+        img.onerror = () => {
+          reject(new Error("The image file is corrupted, unsupported, or failed to decode."));
+        };
+        img.src = url;
+      });
+    } catch (err: any) {
+      URL.revokeObjectURL(url);
+      throw new Error(`[${file.name}] Decode failure: ${err.message || "Unknown image error"}`);
+    }
 
     updateProgress(50, `Image dimensions mapped: ${img.width}x${img.height}. Compressing raster matrices...`);
 
     // Setup canvas
     const canvas = document.createElement("canvas");
-    let width = img.width;
-    let height = img.height;
+    let width = img.width || 100;
+    let height = img.height || 100;
 
     // Optional resize downsampling
     if (config.reduceDimensions && (width > 2000 || height > 2000)) {
@@ -97,18 +125,18 @@ export default function CompressImage() {
       }
     }
 
+    // Safe boundaries checks
+    width = Math.min(16384, Math.max(1, width));
+    height = Math.min(16384, Math.max(1, height));
+
     canvas.width = width;
     canvas.height = height;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) {
       URL.revokeObjectURL(url);
-      throw new Error("Unable to initialize canvas memory context.");
+      throw new Error("Unable to initialize browser canvas buffer stream.");
     }
-
-    // Draw image to target canvas context
-    ctx.drawImage(img, 0, 0, width, height);
-    URL.revokeObjectURL(url);
 
     // Set compression qualities
     let exportQuality = 0.75; // Recommended
@@ -122,25 +150,48 @@ export default function CompressImage() {
     let targetMimeType = file.type || "image/jpeg";
     if (targetMimeType === "image/png" && config.level === "high") {
       // PNGs don't shrink losslessly very easily. For high compression, let's offer exporting to highly compressed WebP!
-      // This is a master stroke of engineering.
       targetMimeType = "image/webp";
     }
 
+    try {
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
+
+      // Paint a solid white canvas background for JPEG targeting to preserve transparency correctly
+      if (targetMimeType === "image/jpeg" || targetMimeType === "image/jpg") {
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, width, height);
+      }
+
+      // Draw image to target canvas context
+      ctx.drawImage(img, 0, 0, width, height);
+    } catch (err: any) {
+      URL.revokeObjectURL(url);
+      throw new Error(`Failed to draw image data into compressing canvas buffer: ${err.message}`);
+    }
+
+    URL.revokeObjectURL(url);
+
     updateProgress(85, `Encoding final image payload...`);
 
-    const finalBlob = await new Promise<Blob>((resolve, reject) => {
-      canvas.toBlob(
-        (blob) => {
-          if (blob) {
-            resolve(blob);
-          } else {
-            reject(new Error("Failed to save scaled context to file."));
-          }
-        },
-        targetMimeType,
-        exportQuality
-      );
-    });
+    let finalBlob: Blob;
+    try {
+      finalBlob = await new Promise<Blob>((resolve, reject) => {
+        canvas.toBlob(
+          (blob) => {
+            if (blob) {
+              resolve(blob);
+            } else {
+              reject(new Error("Output binary blob is empty."));
+            }
+          },
+          targetMimeType,
+          exportQuality
+        );
+      });
+    } catch (err: any) {
+      throw new Error(`Failed to serialize compressed image back to file format: ${err.message}`);
+    }
 
     // Handle output name
     let outName = file.name;

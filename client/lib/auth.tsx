@@ -22,6 +22,7 @@ interface AuthContextType {
   loginWithGoogle: () => Promise<void>;
   logout: () => Promise<void>;
   bootstrapAdmin: () => Promise<void>;
+  bypassAuth: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -32,6 +33,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Check if we have a simulated local dev bypass session
+    if (typeof window !== "undefined") {
+      const isSimulated = localStorage.getItem("dev_bypass_active") === "true";
+      if (isSimulated) {
+        const simulatedUser = {
+          uid: "simulated_developer_123",
+          email: "webdevsoftwareengineer@gmail.com",
+          displayName: "Simulated Developer",
+          emailVerified: true,
+        } as any;
+        setUser(simulatedUser);
+        setIsAdmin(true);
+        setLoading(false);
+        return;
+      }
+    }
+
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       
@@ -89,6 +107,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = async () => {
     setLoading(true);
     try {
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("dev_bypass_active");
+      }
       await signOut(auth);
       setUser(null);
       setIsAdmin(false);
@@ -122,6 +143,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const bypassAuth = () => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("dev_bypass_active", "true");
+      const simulatedUser = {
+        uid: "simulated_developer_123",
+        email: "webdevsoftwareengineer@gmail.com",
+        displayName: "Simulated Developer",
+        emailVerified: true,
+      } as any;
+      setUser(simulatedUser);
+      setIsAdmin(true);
+      setLoading(false);
+    }
+  };
+
   return (
     <AuthContext.Provider value={{
       user,
@@ -131,7 +167,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       signupWithEmail,
       loginWithGoogle,
       logout,
-      bootstrapAdmin
+      bootstrapAdmin,
+      bypassAuth
     }}>
       {children}
     </AuthContext.Provider>

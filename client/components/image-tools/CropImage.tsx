@@ -90,6 +90,16 @@ export default function CropImage() {
       }));
     };
 
+    // Refs to store latest states to prevent rebuilding event listeners on every mouse move
+    const cropBoxRef = useRef(cropBox);
+    cropBoxRef.current = cropBox;
+    
+    const configRatioRef = useRef(config.ratio);
+    configRatioRef.current = config.ratio;
+
+    const originalDimsRef = useRef(originalDims);
+    originalDimsRef.current = originalDims;
+
     const handleMouseDown = (e: React.MouseEvent, type: string) => {
       e.preventDefault();
       const rect = containerRef.current?.getBoundingClientRect();
@@ -112,21 +122,22 @@ export default function CropImage() {
     };
 
     useEffect(() => {
+      if (!isDragging && !isResizing) return;
+
       const handleMouseMove = (e: MouseEvent) => {
-        if (!isDragging && !isResizing) return;
         const rect = containerRef.current?.getBoundingClientRect();
         if (!rect) return;
 
         const deltaXPercent = ((e.clientX - dragStart.current.x) / rect.width) * 100;
         const deltaYPercent = ((e.clientY - dragStart.current.y) / rect.height) * 100;
 
-        let nextBox = { ...cropBox };
+        let nextBox = { ...cropBoxRef.current };
 
         if (isDragging) {
           nextBox.x = Math.max(0, Math.min(100 - dragStart.current.boxW, dragStart.current.boxX + deltaXPercent));
           nextBox.y = Math.max(0, Math.min(100 - dragStart.current.boxH, dragStart.current.boxY + deltaYPercent));
         } else if (isResizing) {
-          const ratioCode = config.ratio;
+          const ratioCode = configRatioRef.current;
           const ratioVal = ratioCode !== "free" ? Number(ratioCode) : null;
 
           if (isResizing === "se") {
@@ -204,7 +215,15 @@ export default function CropImage() {
         }
 
         setCropBox(nextBox);
-        updateConfigPixels(nextBox);
+        
+        // Update original layout properties
+        setConfig((prev: any) => ({
+          ...prev,
+          cropX: Math.round(originalDimsRef.current.w * (nextBox.x / 100)),
+          cropY: Math.round(originalDimsRef.current.h * (nextBox.y / 100)),
+          cropW: Math.round(originalDimsRef.current.w * (nextBox.w / 100)),
+          cropH: Math.round(originalDimsRef.current.h * (nextBox.h / 100))
+        }));
       };
 
       const handleMouseUp = () => {
@@ -218,7 +237,7 @@ export default function CropImage() {
         window.removeEventListener("mousemove", handleMouseMove);
         window.removeEventListener("mouseup", handleMouseUp);
       };
-    }, [isDragging, isResizing, cropBox, config.ratio, originalDims]);
+    }, [isDragging, isResizing]);
 
     return (
       <div className="space-y-6">
@@ -227,19 +246,21 @@ export default function CropImage() {
           <label className="text-xs font-bold text-neutral-400 block mb-2 font-mono uppercase">
             Aspect Ratio Layout
           </label>
-          <div className="grid grid-cols-2 gap-1.5 font-mono text-2xs">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 font-mono text-2xs">
             {[
-              { id: "free", label: "Free Constraints" },
+              { id: "free", label: "Free Constrain" },
               { id: "1", label: "Square 1:1" },
               { id: "1.777", label: "Landscape 16:9" },
-              { id: "1.333", label: "Portrait 4:3" }
+              { id: "0.5625", label: "Portrait 9:16" },
+              { id: "1.333", label: "Standard 4:3" },
+              { id: "1.5", label: "Classic 3:2" }
             ].map((r) => (
               <button
                 key={r.id}
                 onClick={() => selectRatio(r.id)}
-                className={`py-2 rounded-lg border text-center font-bold tracking-tight transition duration-150 ${
+                className={`py-2 rounded-lg border text-center font-bold tracking-tight transition duration-150 cursor-pointer ${
                   String(config.ratio) === r.id
-                    ? "bg-teal-950/40 border-teal-500 text-teal-400"
+                    ? "bg-indigo-950/40 border-indigo-500 text-indigo-400"
                     : "bg-neutral-900/60 border-neutral-850 text-neutral-400 hover:text-white"
                 }`}
               >
@@ -257,7 +278,7 @@ export default function CropImage() {
             </span>
             <div 
               ref={containerRef}
-              className="relative border border-neutral-900 bg-neutral-950 rounded-2xl overflow-hidden select-none select-none max-h-[300px] flex items-center justify-center p-3"
+              className="relative border border-neutral-900 bg-neutral-950 rounded-2xl overflow-hidden select-none max-h-[300px] flex items-center justify-center p-3"
             >
               <div className="relative inline-block overflow-hidden max-h-[260px]">
                 <img
@@ -277,38 +298,38 @@ export default function CropImage() {
                     width: `${cropBox.w}%`,
                     height: `${cropBox.h}%`
                   }}
-                  className="border-2 border-teal-400 shadow-2xl relative cursor-move"
+                  className="border-2 border-indigo-500 shadow-2xl relative cursor-move"
                   onMouseDown={(e) => handleMouseDown(e, "drag")}
                 >
                   {/* Subtle Grid overlay within crop box */}
-                  <div className="absolute inset-0 grid grid-cols-3 grid-rows-3 pointer-events-none opacity-25">
-                    <div className="border-r border-b border-teal-300" />
-                    <div className="border-r border-b border-teal-300" />
-                    <div className="border-b border-teal-300" />
-                    <div className="border-r border-b border-teal-300" />
-                    <div className="border-r border-b border-teal-300" />
-                    <div className="border-b border-teal-300" />
-                    <div className="border-r border-teal-300" />
-                    <div className="border-r border-teal-300" />
+                  <div className="absolute inset-0 grid grid-cols-3 grid-rows-3 pointer-events-none opacity-20">
+                    <div className="border-r border-b border-indigo-500/40" />
+                    <div className="border-r border-b border-indigo-500/40" />
+                    <div className="border-b border-indigo-500/40" />
+                    <div className="border-r border-b border-indigo-500/40" />
+                    <div className="border-r border-b border-indigo-500/40" />
+                    <div className="border-b border-indigo-500/40" />
+                    <div className="border-r border-indigo-500/40" />
+                    <div className="border-r border-indigo-500/40" />
                     <div />
                   </div>
 
                   {/* Corner resizing handles */}
                   <div
                     onMouseDown={(e) => { e.stopPropagation(); handleMouseDown(e, "nw"); }}
-                    className="absolute -top-1.5 -left-1.5 w-3.5 h-3.5 bg-teal-400 border border-white rounded cursor-nwse-resize"
+                    className="absolute -top-1.5 -left-1.5 w-3.5 h-3.5 bg-indigo-500 border border-white rounded cursor-nwse-resize"
                   />
                   <div
                     onMouseDown={(e) => { e.stopPropagation(); handleMouseDown(e, "ne"); }}
-                    className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-teal-400 border border-white rounded cursor-nesw-resize"
+                    className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-indigo-500 border border-white rounded cursor-nesw-resize"
                   />
                   <div
                     onMouseDown={(e) => { e.stopPropagation(); handleMouseDown(e, "sw"); }}
-                    className="absolute -bottom-1.5 -left-1.5 w-3.5 h-3.5 bg-teal-400 border border-white rounded cursor-nesw-resize"
+                    className="absolute -bottom-1.5 -left-1.5 w-3.5 h-3.5 bg-indigo-500 border border-white rounded cursor-nesw-resize"
                   />
                   <div
                     onMouseDown={(e) => { e.stopPropagation(); handleMouseDown(e, "se"); }}
-                    className="absolute -bottom-1.5 -right-1.5 w-3.5 h-3.5 bg-teal-400 border border-white rounded cursor-nwse-resize"
+                    className="absolute -bottom-1.5 -right-1.5 w-3.5 h-3.5 bg-indigo-500 border border-white rounded cursor-nwse-resize"
                   />
                 </div>
               </div>
@@ -342,28 +363,62 @@ export default function CropImage() {
     index: number,
     updateProgress: (percentage: number, msg?: string) => void
   ) => {
-    updateProgress(20, `Decoding canvas layout...`);
+    updateProgress(20, `Decoding dimensions layout for ${file.name}...`);
     
+    if (!file || !file.size) {
+      throw new Error(`The file "${file?.name || 'unknown'}" appears to be empty or invalid.`);
+    }
+
+    if (file.size > 50 * 1024 * 1024) {
+      throw new Error(`The file "${file.name}" exceeds the maximum supported processing size of 50MB.`);
+    }
+
     // Load image
     const url = URL.createObjectURL(file);
     const img = new Image();
     
-    await new Promise((resolve, reject) => {
-      img.onload = resolve;
-      img.onerror = () => {
-        URL.revokeObjectURL(url);
-        reject(new Error("Unable to decode the crop photo structure."));
-      };
-      img.src = url;
-    });
+    try {
+      await new Promise((resolve, reject) => {
+        img.onload = () => {
+          if (img.width <= 0 || img.height <= 0 || isNaN(img.width) || isNaN(img.height)) {
+            reject(new Error("Image metadata has non-positive or invalid layout dimensions."));
+          } else {
+            resolve(null);
+          }
+        };
+        img.onerror = () => {
+          reject(new Error("The image file is corrupted, unsupported, or failed to decode."));
+        };
+        img.src = url;
+      });
+    } catch (err: any) {
+      URL.revokeObjectURL(url);
+      throw new Error(`[${file.name}] Decode failure: ${err.message || 'Unknown image error'}`);
+    }
 
     updateProgress(50, `Cropping image offsets: ${config.cropW}x${config.cropH} px...`);
 
     // Define target dimensions
-    const cropX = Math.max(0, Math.min(img.width, config.cropX || 0));
-    const cropY = Math.max(0, Math.min(img.height, config.cropY || 0));
-    const cropW = Math.max(10, Math.min(img.width - cropX, config.cropW || img.width));
-    const cropH = Math.max(10, Math.min(img.height - cropY, config.cropH || img.height));
+    let cropX = 0;
+    let cropY = 0;
+    let cropW = 100;
+    let cropH = 100;
+
+    try {
+      cropX = Math.max(0, Math.min(img.width - 1, config.cropX || 0));
+      cropY = Math.max(0, Math.min(img.height - 1, config.cropY || 0));
+      cropW = Math.max(1, Math.min(img.width - cropX, config.cropW || img.width));
+      cropH = Math.max(1, Math.min(img.height - cropY, config.cropH || img.height));
+
+      // Hard limits to prevent canvas context crashes
+      cropW = Math.min(16383, Math.max(1, cropW));
+      cropH = Math.min(16383, Math.max(1, cropH));
+    } catch (err) {
+      cropX = 0;
+      cropY = 0;
+      cropW = img.width || 100;
+      cropH = img.height || 100;
+    }
 
     // Render Canvas
     const canvas = document.createElement("canvas");
@@ -373,23 +428,42 @@ export default function CropImage() {
     const ctx = canvas.getContext("2d");
     if (!ctx) {
       URL.revokeObjectURL(url);
-      throw new Error("Unable to initialize canvas memory layout.");
+      throw new Error("Unable to initialize browser canvas buffer stream.");
     }
 
-    // Draw specified cropped area onto the canvas
-    ctx.drawImage(img, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
+    const targetMimeType = file.type || "image/jpeg";
+
+    try {
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
+
+      // Paint transparent backgrounds white for JPEGs
+      if (targetMimeType === "image/jpeg" || targetMimeType === "image/jpg") {
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, cropW, cropH);
+      }
+
+      ctx.drawImage(img, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
+    } catch (err: any) {
+      URL.revokeObjectURL(url);
+      throw new Error(`Failed to draw image data into cropping canvas buffer: ${err.message}`);
+    }
+    
     URL.revokeObjectURL(url);
 
     updateProgress(80, `Encoding compiled visual crop slice...`);
 
-    // Export with same format
-    const targetMimeType = file.type || "image/jpeg";
-    const finalBlob = await new Promise<Blob>((resolve, reject) => {
-      canvas.toBlob((blob) => {
-        if (blob) resolve(blob);
-        else reject(new Error("Failed to save cropped canvas slice."));
-      }, targetMimeType, 0.95);
-    });
+    let finalBlob: Blob;
+    try {
+      finalBlob = await new Promise<Blob>((resolve, reject) => {
+        canvas.toBlob((blob) => {
+          if (blob) resolve(blob);
+          else reject(new Error("Output binary blob is empty."));
+        }, targetMimeType, 0.95);
+      });
+    } catch (err: any) {
+      throw new Error(`Failed to serialize cropped image back to file format: ${err.message}`);
+    }
 
     // Handle output name
     let outName = file.name;

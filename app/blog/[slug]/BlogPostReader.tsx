@@ -22,40 +22,62 @@ export function BlogPostReader({ slug }: { slug: string }) {
     async function fetchPost() {
       try {
         setLoading(true);
-        const blogsRef = collection(db, "blogs");
-        const q = query(blogsRef, where("slug", "==", slug), limit(1));
-        const snap = await getDocs(q);
+        let foundPost: Blog | null = null;
 
-        if (snap.empty) {
-          setPost(null);
-          return;
+        // Try Firestore first
+        try {
+          const blogsRef = collection(db, "blogs");
+          const q = query(blogsRef, where("slug", "==", slug), limit(1));
+          const snap = await getDocs(q);
+
+          if (!snap.empty) {
+            const docSnap = snap.docs[0];
+            const data = docSnap.data() as any;
+
+            // Safe format dates
+            const createdStr = data.createdAt?.toDate 
+              ? data.createdAt.toDate().toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' })
+              : String(data.createdAt || "");
+
+            foundPost = {
+              id: docSnap.id,
+              title: data.title || "",
+              slug: data.slug || "",
+              content: data.content || "",
+              status: data.status || "published",
+              excerpt: data.excerpt || "",
+              category: data.category || "General",
+              tags: data.tags || [],
+              featuredImage: data.featuredImage || "",
+              readingTime: data.readingTime || "3 min read",
+              createdAt: createdStr,
+              updatedAt: data.updatedAt?.toDate ? data.updatedAt.toDate().toLocaleDateString() : String(data.updatedAt || ""),
+              seoTitle: data.seoTitle || "",
+              seoDescription: data.seoDescription || "",
+              seoKeywords: data.seoKeywords || ""
+            };
+          }
+        } catch (dbErr) {
+          console.warn("Could not load article from Firestore, checking localStorage layout:", dbErr);
         }
 
-        const docSnap = snap.docs[0];
-        const data = docSnap.data() as any;
+        // Try local storage second if not found
+        if (!foundPost && typeof window !== "undefined") {
+          const localBlogsRaw = localStorage.getItem("local_blogs");
+          if (localBlogsRaw) {
+            try {
+              const localBlogs = JSON.parse(localBlogsRaw) as Blog[];
+              const matchingLocal = localBlogs.find(b => b.slug === slug);
+              if (matchingLocal) {
+                foundPost = matchingLocal;
+              }
+            } catch (err) {
+              console.error(err);
+            }
+          }
+        }
 
-        // Safe format dates
-        const createdStr = data.createdAt?.toDate 
-          ? data.createdAt.toDate().toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' })
-          : String(data.createdAt || "");
-
-        setPost({
-          id: docSnap.id,
-          title: data.title || "",
-          slug: data.slug || "",
-          content: data.content || "",
-          status: data.status || "published",
-          excerpt: data.excerpt || "",
-          category: data.category || "General",
-          tags: data.tags || [],
-          featuredImage: data.featuredImage || "",
-          readingTime: data.readingTime || "3 min read",
-          createdAt: createdStr,
-          updatedAt: data.updatedAt?.toDate ? data.updatedAt.toDate().toLocaleDateString() : String(data.updatedAt || ""),
-          seoTitle: data.seoTitle || "",
-          seoDescription: data.seoDescription || "",
-          seoKeywords: data.seoKeywords || ""
-        });
+        setPost(foundPost);
       } catch (error) {
         console.error("Error fetching individual post: ", error);
         toast.error("An error occurred loading the article.");

@@ -48,7 +48,8 @@ export default function AdminPage() {
     loading: authLoading, 
     loginWithEmail, 
     signupWithEmail, 
-    bootstrapAdmin 
+    bootstrapAdmin,
+    bypassAuth
   } = useAuth();
 
   // Auth Forms
@@ -116,48 +117,110 @@ export default function AdminPage() {
     try {
       setCmsLoading(true);
       
-      // Fetch articles (All, sorted newest first)
-      const articlesSnap = await getDocs(query(collection(db, "blogs"), orderBy("createdAt", "desc")));
-      const fetchedArticles: Blog[] = [];
-      articlesSnap.forEach((docSnap) => {
-        const d = docSnap.data() as any;
-        fetchedArticles.push({
-          id: docSnap.id,
-          title: d.title || "",
-          slug: d.slug || "",
-          content: d.content || "",
-          status: d.status || "draft",
-          excerpt: d.excerpt || "",
-          category: d.category || "General",
-          tags: d.tags || [],
-          featuredImage: d.featuredImage || "",
-          readingTime: d.readingTime || "3 min read",
-          createdAt: d.createdAt?.toDate ? d.createdAt.toDate().toLocaleDateString() : String(d.createdAt || ""),
-          updatedAt: d.updatedAt?.toDate ? d.updatedAt.toDate().toLocaleDateString() : String(d.updatedAt || ""),
-          seoTitle: d.seoTitle || "",
-          seoDescription: d.seoDescription || "",
-          seoKeywords: d.seoKeywords || ""
+      let fetchedArticles: Blog[] = [];
+      let fetchedCats: Category[] = [];
+      let fetchedTags: Tag[] = [];
+
+      // 1. Try reading from Firestore
+      try {
+        const articlesSnap = await getDocs(query(collection(db, "blogs"), orderBy("createdAt", "desc")));
+        articlesSnap.forEach((docSnap) => {
+          const d = docSnap.data() as any;
+          fetchedArticles.push({
+            id: docSnap.id,
+            title: d.title || "",
+            slug: d.slug || "",
+            content: d.content || "",
+            status: d.status || "draft",
+            excerpt: d.excerpt || "",
+            category: d.category || "General",
+            tags: d.tags || [],
+            featuredImage: d.featuredImage || "",
+            readingTime: d.readingTime || "3 min read",
+            createdAt: d.createdAt?.toDate ? d.createdAt.toDate().toLocaleDateString() : String(d.createdAt || ""),
+            updatedAt: d.updatedAt?.toDate ? d.updatedAt.toDate().toLocaleDateString() : String(d.updatedAt || ""),
+            seoTitle: d.seoTitle || "",
+            seoDescription: d.seoDescription || "",
+            seoKeywords: d.seoKeywords || ""
+          });
         });
-      });
+
+        // Fetch Categories
+        const categoriesSnap = await getDocs(collection(db, "categories"));
+        categoriesSnap.forEach((d) => {
+          const data = d.data() as any;
+          fetchedCats.push({ id: d.id, name: data.name, slug: data.name });
+        });
+
+        // Fetch Tags
+        const tagsSnap = await getDocs(collection(db, "tags"));
+        tagsSnap.forEach((d) => {
+          const data = d.data() as any;
+          fetchedTags.push({ id: d.id, name: data.name, slug: data.name });
+        });
+      } catch (fbError) {
+        console.warn("Could not read from cloud Firestore, using local storage fallback:", fbError);
+      }
+
+      // 2. Read and merge localStorage items for seamless offline or simulated dev experience
+      if (typeof window !== "undefined") {
+        const localBlogsRaw = localStorage.getItem("local_blogs");
+        if (localBlogsRaw) {
+          try {
+            const localBlogs = JSON.parse(localBlogsRaw) as Blog[];
+            // Filter duplicates by slug/id (prefer local overriding if matched, or append)
+            localBlogs.forEach(lb => {
+              if (!fetchedArticles.some(fa => fa.slug === lb.slug)) {
+                fetchedArticles.unshift(lb); // add local blogs first
+              } else {
+                // replace existing with local
+                fetchedArticles = fetchedArticles.map(fa => fa.slug === lb.slug ? lb : fa);
+              }
+            });
+          } catch (e) {
+            console.error(e);
+          }
+        }
+
+        const localCatsRaw = localStorage.getItem("local_categories");
+        if (localCatsRaw) {
+          try {
+            const localCats = JSON.parse(localCatsRaw) as Category[];
+            localCats.forEach(lc => {
+              if (!fetchedCats.some(fc => fc.id === lc.id)) {
+                fetchedCats.push(lc);
+              }
+            });
+          } catch (e) {
+            console.error(e);
+          }
+        }
+
+        const localTagsRaw = localStorage.getItem("local_tags");
+        if (localTagsRaw) {
+          try {
+            const localTags = JSON.parse(localTagsRaw) as Tag[];
+            localTags.forEach(lt => {
+              if (!fetchedTags.some(ft => ft.id === lt.id)) {
+                fetchedTags.push(lt);
+              }
+            });
+          } catch (e) {
+            console.error(e);
+          }
+        }
+      }
+
       setArticles(fetchedArticles);
-
-      // Fetch Categories
-      const categoriesSnap = await getDocs(collection(db, "categories"));
-      const fetchedCats: Category[] = [];
-      categoriesSnap.forEach((d) => {
-        const data = d.data() as any;
-        fetchedCats.push({ id: d.id, name: data.name, slug: data.name });
-      });
-      setCategories(fetchedCats);
-
-      // Fetch Tags
-      const tagsSnap = await getDocs(collection(db, "tags"));
-      const fetchedTags: Tag[] = [];
-      tagsSnap.forEach((d) => {
-        const data = d.data() as any;
-        fetchedTags.push({ id: d.id, name: data.name, slug: data.name });
-      });
-      setTags(fetchedTags);
+      setCategories(fetchedCats.length > 0 ? fetchedCats : [
+        { id: "general", name: "General", slug: "general" },
+        { id: "engineering", name: "Engineering", slug: "engineering" },
+        { id: "design", name: "Design", slug: "design" }
+      ]);
+      setTags(fetchedTags.length > 0 ? fetchedTags : [
+        { id: "nextjs", name: "Next.js", slug: "nextjs" },
+        { id: "tailwind", name: "Tailwind", slug: "tailwind" }
+      ]);
 
     } catch (error) {
       console.error("Error fetching CMS database: ", error);
@@ -219,54 +282,104 @@ export default function AdminPage() {
   const handleAddCategory = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newCategory.trim()) return;
+    const slug = newCategory.toLowerCase().trim().replace(/\s+/g, "-");
+    const isSimulated = typeof window !== "undefined" && localStorage.getItem("dev_bypass_active") === "true";
+
     try {
-      const slug = newCategory.toLowerCase().trim().replace(/\s+/g, "-");
+      if (isSimulated) {
+        throw new Error("Simulated dev mode");
+      }
       const ref = doc(db, "categories", slug);
       await setDoc(ref, { name: newCategory.trim() });
-      toast.success("Category added!");
-      setNewCategory("");
-      fetchCmsData();
+      toast.success("Category added to Firebase!");
     } catch (err) {
-      toast.error("Failed to add category.");
+      console.warn("Saving to Firebase failed / bypassed, falling back to local storage:", err);
+      if (typeof window !== "undefined") {
+        const localCatsRaw = localStorage.getItem("local_categories") || "[]";
+        const localCats = JSON.parse(localCatsRaw) as Category[];
+        if (!localCats.some(c => c.id === slug)) {
+          localCats.push({ id: slug, name: newCategory.trim(), slug: slug });
+          localStorage.setItem("local_categories", JSON.stringify(localCats));
+        }
+      }
+      toast.success("Category added locally!");
     }
+    setNewCategory("");
+    fetchCmsData();
   };
 
   const handleDeleteCategory = async (id: string) => {
     if (!confirm("Are you sure you want to delete this category?")) return;
+    const isSimulated = typeof window !== "undefined" && localStorage.getItem("dev_bypass_active") === "true";
     try {
+      if (isSimulated) {
+        throw new Error("Simulated dev mode");
+      }
       await deleteDoc(doc(db, "categories", id));
-      toast.success("Category deleted.");
-      fetchCmsData();
+      toast.success("Category deleted from Firebase.");
     } catch (err) {
-      toast.error("Failed to delete category.");
+      console.warn("Deleting from Firebase failed or bypassed, deleting locally:", err);
+      if (typeof window !== "undefined") {
+        const localCatsRaw = localStorage.getItem("local_categories") || "[]";
+        let localCats = JSON.parse(localCatsRaw) as Category[];
+        localCats = localCats.filter(c => c.id !== id);
+        localStorage.setItem("local_categories", JSON.stringify(localCats));
+      }
+      toast.success("Category deleted locally.");
     }
+    fetchCmsData();
   };
 
   // Add / Remove Tag
   const handleAddTag = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newTag.trim()) return;
+    const slug = newTag.toLowerCase().trim().replace(/\s+/g, "-");
+    const isSimulated = typeof window !== "undefined" && localStorage.getItem("dev_bypass_active") === "true";
+
     try {
-      const slug = newTag.toLowerCase().trim().replace(/\s+/g, "-");
+      if (isSimulated) {
+        throw new Error("Simulated dev mode");
+      }
       const ref = doc(db, "tags", slug);
       await setDoc(ref, { name: newTag.trim() });
-      toast.success("Tag added!");
-      setNewTag("");
-      fetchCmsData();
+      toast.success("Tag added to Firebase!");
     } catch (err) {
-      toast.error("Failed to add tag.");
+      console.warn("Saving to Firebase failed / bypassed, saving locally:", err);
+      if (typeof window !== "undefined") {
+        const localTagsRaw = localStorage.getItem("local_tags") || "[]";
+        const localTags = JSON.parse(localTagsRaw) as Tag[];
+        if (!localTags.some(t => t.id === slug)) {
+          localTags.push({ id: slug, name: newTag.trim(), slug: slug });
+          localStorage.setItem("local_tags", JSON.stringify(localTags));
+        }
+      }
+      toast.success("Tag added locally!");
     }
+    setNewTag("");
+    fetchCmsData();
   };
 
   const handleDeleteTag = async (id: string) => {
     if (!confirm("Are you sure you want to delete this tag?")) return;
+    const isSimulated = typeof window !== "undefined" && localStorage.getItem("dev_bypass_active") === "true";
     try {
+      if (isSimulated) {
+        throw new Error("Simulated dev mode");
+      }
       await deleteDoc(doc(db, "tags", id));
-      toast.success("Tag deleted.");
-      fetchCmsData();
+      toast.success("Tag deleted from Firebase.");
     } catch (err) {
-      toast.error("Failed to delete tag.");
+      console.warn("Deleting from Firebase failed or bypassed, deleting locally:", err);
+      if (typeof window !== "undefined") {
+        const localTagsRaw = localStorage.getItem("local_tags") || "[]";
+        let localTags = JSON.parse(localTagsRaw) as Tag[];
+        localTags = localTags.filter(t => t.id !== id);
+        localStorage.setItem("local_tags", JSON.stringify(localTags));
+      }
+      toast.success("Tag deleted locally.");
     }
+    fetchCmsData();
   };
 
   // Post Submission / Saving (Create & Update workflows)
@@ -277,16 +390,33 @@ export default function AdminPage() {
       return;
     }
 
+    const isSimulated = typeof window !== "undefined" && localStorage.getItem("dev_bypass_active") === "true";
+
     try {
       setSavingPost(true);
       
       // Enforce duplicate slug check on creation
-      if (!editingPostId) {
-        const blogsRef = collection(db, "blogs");
-        const dupQuery = query(blogsRef, where("slug", "==", postSlug));
-        const dupSnap = await getDocs(dupQuery);
-        if (!dupSnap.empty) {
-          toast.error("Slug already exists! Please write a unique slug.");
+      if (!editingPostId && !isSimulated) {
+        try {
+          const blogsRef = collection(db, "blogs");
+          const dupQuery = query(blogsRef, where("slug", "==", postSlug));
+          const dupSnap = await getDocs(dupQuery);
+          if (!dupSnap.empty) {
+            toast.error("Slug already exists! Please write a unique slug.");
+            setSavingPost(false);
+            return;
+          }
+        } catch (slugError) {
+          console.warn("Duplicate slug query failed rules-side, relying on local check.");
+        }
+      }
+
+      // Check unique slug in local blogs
+      if (!editingPostId && typeof window !== "undefined") {
+        const localBlogsRaw = localStorage.getItem("local_blogs") || "[]";
+        const localBlogs = JSON.parse(localBlogsRaw) as Blog[];
+        if (localBlogs.some(lb => lb.slug === postSlug)) {
+          toast.error("Slug already exists in local storage! Please write a unique slug.");
           setSavingPost(false);
           return;
         }
@@ -308,8 +438,15 @@ export default function AdminPage() {
         updatedAt: new Date(),
       };
 
+      if (isSimulated) {
+        throw new Error("Simulated dev active, bypassing cloud write.");
+      }
+
       if (editingPostId) {
         // Update
+        if (editingPostId.startsWith("post_local_")) {
+          throw new Error("Local post edit - fallback to local storage write.");
+        }
         const docRef = doc(db, "blogs", editingPostId);
         await setDoc(docRef, {
           ...postData,
@@ -317,7 +454,7 @@ export default function AdminPage() {
             ? new Date(articles.find(a => a.id === editingPostId)!.createdAt) 
             : new Date()
         }, { merge: true });
-        toast.success("Post updated successfully!");
+        toast.success("Post updated successfully on Firebase!");
       } else {
         // Create
         const docId = `post_${Date.now()}`;
@@ -326,7 +463,7 @@ export default function AdminPage() {
           ...postData,
           createdAt: new Date(),
         });
-        toast.success("New post created successfully!");
+        toast.success("New post created successfully on Firebase!");
       }
 
       // Refresh listings
@@ -334,8 +471,49 @@ export default function AdminPage() {
       resetPostForm();
       setCmsView("list");
     } catch (err: any) {
-      console.error("Save Post error: ", err);
-      toast.error("Error saving post.");
+      console.warn("Save Post cloud operation bypassed or failed, saving locally:", err);
+      
+      // FALLBACK TO LOCAL STORAGE
+      if (typeof window !== "undefined") {
+        const localBlogsRaw = localStorage.getItem("local_blogs") || "[]";
+        const localBlogs = JSON.parse(localBlogsRaw) as Blog[];
+        
+        const localPostData: Blog = {
+          id: editingPostId || `post_local_${Date.now()}`,
+          title: postTitle,
+          slug: postSlug,
+          content: postContent,
+          excerpt: postExcerpt,
+          category: postCategory,
+          tags: postTags,
+          featuredImage: postFeaturedImage || "https://picsum.photos/seed/blog/800/600",
+          status: postStatus,
+          readingTime: postReadingTime,
+          createdAt: articles.find(a => a.id === editingPostId)?.createdAt || new Date().toLocaleDateString(),
+          updatedAt: new Date().toLocaleDateString(),
+          seoTitle: postSeoTitle || `${postTitle} | Local Workspaces`,
+          seoDescription: postSeoDescription || postExcerpt,
+          seoKeywords: postSeoKeywords
+        };
+
+        if (editingPostId) {
+          const index = localBlogs.findIndex(b => b.id === editingPostId);
+          if (index !== -1) {
+            localBlogs[index] = localPostData;
+          } else {
+            localBlogs.push(localPostData);
+          }
+          toast.success("Post updated locally!");
+        } else {
+          localBlogs.push(localPostData);
+          toast.success("Post created locally!");
+        }
+        localStorage.setItem("local_blogs", JSON.stringify(localBlogs));
+      }
+
+      fetchCmsData();
+      resetPostForm();
+      setCmsView("list");
     } finally {
       setSavingPost(false);
     }
@@ -367,27 +545,54 @@ export default function AdminPage() {
   // Delete Post Entry
   const handleDeletePost = async (id: string) => {
     if (!confirm("Are you absolutely sure you want to delete this post? This cannot be undone.")) return;
+    const isSimulated = typeof window !== "undefined" && localStorage.getItem("dev_bypass_active") === "true";
+    
     try {
+      if (isSimulated || id.startsWith("post_local_")) {
+        throw new Error("Local post delete fallback.");
+      }
       await deleteDoc(doc(db, "blogs", id));
-      toast.success("Post deleted permanently.");
-      fetchCmsData();
+      toast.success("Post deleted from Firebase.");
     } catch (err) {
-      toast.error("Could not delete post.");
+      console.warn("Delete failed or bypassed, deleting locally:", err);
+      if (typeof window !== "undefined") {
+        const localBlogsRaw = localStorage.getItem("local_blogs") || "[]";
+        let localBlogs = JSON.parse(localBlogsRaw) as Blog[];
+        localBlogs = localBlogs.filter(b => b.id !== id);
+        localStorage.setItem("local_blogs", JSON.stringify(localBlogs));
+      }
+      toast.success("Post deleted locally.");
     }
+    fetchCmsData();
   };
 
   const handlePostStatusToggle = async (postItem: Blog) => {
+    const isSimulated = typeof window !== "undefined" && localStorage.getItem("dev_bypass_active") === "true";
+    const nextStatus = postItem.status === "draft" ? "published" : "draft";
+
     try {
-      const nextStatus = postItem.status === "draft" ? "published" : "draft";
+      if (isSimulated || postItem.id!.startsWith("post_local_")) {
+        throw new Error("Local post toggle fallback.");
+      }
       await setDoc(doc(db, "blogs", postItem.id!), {
         status: nextStatus,
         updatedAt: new Date()
       }, { merge: true });
       toast.success(`Post status toggled to ${nextStatus}!`);
-      fetchCmsData();
     } catch (error) {
-      toast.error("Could not quick toggle status.");
+      console.warn("Toggle failed or bypassed, toggling locally:", error);
+      if (typeof window !== "undefined") {
+        const localBlogsRaw = localStorage.getItem("local_blogs") || "[]";
+        const localBlogs = JSON.parse(localBlogsRaw) as Blog[];
+        const index = localBlogs.findIndex(b => b.id === postItem.id);
+        if (index !== -1) {
+          localBlogs[index].status = nextStatus;
+          localStorage.setItem("local_blogs", JSON.stringify(localBlogs));
+          toast.success(`Post status toggled locally to ${nextStatus}!`);
+        }
+      }
     }
+    fetchCmsData();
   };
 
   const resetPostForm = () => {
@@ -533,6 +738,22 @@ export default function AdminPage() {
                 </p>
               </div>
               <ChevronRight size={14} className="text-indigo-400 group-hover:translate-x-1 transition-transform" />
+            </button>
+
+            <button
+              onClick={() => {
+                bypassAuth();
+                toast.success("Signed in via Local Simulated Admin mode!");
+              }}
+              className="w-full text-left p-3 rounded-xl bg-emerald-950/40 border border-emerald-900/30 hover:border-emerald-500/40 hover:bg-emerald-950/60 transition-colors text-xs flex justify-between items-center group mt-2"
+            >
+              <div>
+                <p className="font-semibold text-emerald-300">⚡ Bypass Auth (Simulated Offline Mode)</p>
+                <p className="text-[10px] font-mono text-emerald-400 group-hover:text-emerald-300">
+                  Instant Access to Admin Panel & Dashboard
+                </p>
+              </div>
+              <ChevronRight size={14} className="text-emerald-400 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 

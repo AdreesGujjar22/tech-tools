@@ -479,7 +479,7 @@ export default function ToolShell({
                   href={downloadUrl}
                   download={downloadName}
                   id="download-link"
-                  className="w-full inline-flex items-center justify-center gap-2.5 py-6 bg-gradient-to-r from-indigo-500 to-indigo-600 font-bold text-white rounded-2xl hover:from-indigo-600 hover:to-indigo-700 transition duration-250 shadow-xl shadow-indigo-950/40 text-md active:scale-98 mb-6"
+                  className="w-full inline-flex items-center justify-center gap-2.5 py-4.5 bg-gradient-to-r from-indigo-500 to-indigo-600 font-bold text-white rounded-2xl hover:from-indigo-600 hover:to-indigo-700 transition duration-250 shadow-xl shadow-indigo-950/40 text-md active:scale-98 mb-6"
                 >
                   <Download className="w-5 h-5" />
                   Download File
