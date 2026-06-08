@@ -2,7 +2,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "outline" | "ghost" | "link" | "destructive";
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "link" | "destructive" | "glass";
   size?: "xs" | "sm" | "md" | "lg";
   isLoading?: boolean;
 }
@@ -14,14 +14,21 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || isLoading}
         className={cn(
-          "inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-200 outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98] cursor-pointer",
+          "inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98] cursor-pointer",
           // Variants
-          variant === "primary" && "bg-primary text-primary-foreground hover:bg-opacity-90 shadow-md",
-          variant === "secondary" && "bg-secondary text-secondary-foreground hover:bg-opacity-80 border border-border",
-          variant === "outline" && "bg-transparent border border-border text-foreground hover:bg-accent hover:text-accent-foreground",
+          variant === "primary" &&
+            "brand-gradient text-white shadow-[0_10px_24px_-10px_hsla(var(--brand-to),0.7)] hover:shadow-[0_14px_30px_-10px_hsla(var(--brand-to),0.8)] hover:brightness-110",
+          variant === "secondary" &&
+            "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border",
+          variant === "outline" &&
+            "bg-transparent border border-border text-foreground hover:bg-accent hover:text-accent-foreground hover:border-primary/40",
           variant === "ghost" && "bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground",
-          variant === "link" && "bg-transparent text-primary hover:underline underline-offset-4 !p-0 !h-auto active:scale-100",
-          variant === "destructive" && "bg-destructive text-destructive-foreground hover:bg-opacity-90 shadow-md",
+          variant === "link" &&
+            "bg-transparent text-primary hover:underline underline-offset-4 !p-0 !h-auto active:scale-100",
+          variant === "destructive" &&
+            "bg-destructive text-destructive-foreground hover:brightness-110 shadow-md",
+          variant === "glass" &&
+            "glass-card text-foreground hover:text-foreground border border-border/60 hover:border-primary/40 !shadow-none backdrop-blur-md",
           // Sizes
           size === "xs" && "h-8 px-3 text-xs rounded-lg",
           size === "sm" && "h-9 px-4 text-xs sm:text-sm rounded-lg",

@@ -18,7 +18,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["'Plus Jakarta Sans'", "-apple-system", "Roboto", "Helvetica", "sans-serif"],
+        sans: ["var(--font-jakarta)", "'Plus Jakarta Sans'", "-apple-system", "Roboto", "Helvetica", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -107,15 +107,15 @@ export default {
       },
       backgroundImage: {
         "hero-radial":
-          "radial-gradient(167.63% 52.38% at 50% 50%, rgba(195, 192, 255, 0.15) 0%, rgba(195, 192, 255, 0.00) 70%)",
+          "radial-gradient(167.63% 52.38% at 50% 50%, rgba(99, 130, 246, 0.18) 0%, rgba(99, 130, 246, 0.00) 70%)",
         "gradient-cta":
-          "linear-gradient(135deg, rgba(195, 192, 255, 0.10) 0%, rgba(195, 192, 255, 0.00) 100%)",
+          "linear-gradient(135deg, rgba(99, 130, 246, 0.12) 0%, rgba(129, 110, 247, 0.04) 100%)",
         "gradient-indigo-cyan":
-          "linear-gradient(90deg, #4F46E5 0%, #03B5D3 100%)",
+          "linear-gradient(115deg, #3b82f6 0%, #6366f1 55%, #818cf8 100%)",
         "gradient-card":
-          "linear-gradient(135deg, #171F33 0%, #0B1326 100%)",
+          "linear-gradient(135deg, #141d36 0%, #0a1021 100%)",
         "connector-line":
-          "linear-gradient(90deg, rgba(70,69,85,0) 0%, rgba(70,69,85,0.3) 50%, rgba(70,69,85,0) 100%)",
+          "linear-gradient(90deg, rgba(99,124,241,0) 0%, rgba(99,124,241,0.4) 50%, rgba(99,124,241,0) 100%)",
       },
     },
   },
