@@ -11,9 +11,9 @@ export const Alert = React.forwardRef<
     className={cn(
       "relative w-full rounded-xl border p-4 flex gap-3 text-left [&>svg]:text-current",
       variant === "default" && "bg-secondary text-foreground border-border",
-      variant === "destructive" && "border-destructive/30 bg-destructive/5 text-destructive dark:text-rose-405",
-      variant === "success" && "border-emerald-500/20 bg-emerald-500/5 text-emerald-600 dark:text-emerald-430",
-      variant === "warning" && "border-amber-500/20 bg-amber-500/5 text-amber-600 dark:text-amber-440",
+      variant === "destructive" && "border-destructive/30 bg-destructive/5 text-destructive dark:text-rose-400",
+      variant === "success" && "border-emerald-500/20 bg-emerald-500/5 text-emerald-600 dark:text-emerald-400",
+      variant === "warning" && "border-amber-500/20 bg-amber-500/5 text-amber-600 dark:text-amber-400",
       className
     )}
     {...props}

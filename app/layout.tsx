@@ -1,7 +1,14 @@
 import React from "react";
 import type { Metadata } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "@/global.css";
 import Providers from "@/components/Providers";
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-jakarta",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://techtools.com"),
@@ -74,7 +81,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${jakarta.variable} bg-background`}>
       <head>
         <link rel="icon" type="image/png" href="/images/fav-icon.png" />
         <script
@@ -93,7 +100,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-300 min-h-screen">
+      <body className="bg-background text-foreground min-h-screen font-sans">
         <Providers>{children}</Providers>
       </body>
     </html>
