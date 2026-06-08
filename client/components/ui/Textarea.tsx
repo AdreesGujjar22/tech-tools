@@ -20,7 +20,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={ref}
           rows={rows}
           className={cn(
-            "flex w-full min-h-[80px] px-4 py-3 bg-card text-foreground border border-input rounded-xl text-sm placeholder-muted-foreground outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-150 resize-y",
+            "flex w-full min-h-[80px] px-4 py-3 bg-card text-foreground border border-input rounded-xl text-sm placeholder-muted-foreground outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background focus:border-primary/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-150 resize-y",
             error && "border-destructive focus:ring-destructive",
             className
           )}
