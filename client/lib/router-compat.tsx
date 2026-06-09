@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import NextLink from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
@@ -25,7 +25,7 @@ export function useNavigate() {
   };
 }
 
-export function useLocation() {
+function UseLocationContent() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   return {
@@ -35,4 +35,18 @@ export function useLocation() {
     state: null,
     key: "",
   };
+}
+
+export function useLocation() {
+  try {
+    return UseLocationContent();
+  } catch (e) {
+    return {
+      pathname: "/",
+      search: "",
+      hash: "",
+      state: null,
+      key: "",
+    };
+  }
 }

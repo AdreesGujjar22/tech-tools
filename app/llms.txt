@@ -1,0 +1,48 @@
+# LLM Crawler Configuration
+# This file defines permissions for AI/LLM crawlers to index this site
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Googlebot-Extended
+Allow: /
+
+User-agent: Bard
+Allow: /
+
+User-agent: Perplexity
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+# Disallow crawling of sensitive areas
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /.well-known/
+
+# Crawl delay (in seconds)
+Crawl-delay: 1
+
+# Request rate (pages per second)
+Request-rate: 1/5
+
+# Information about this site
+Site: https://techtools.example.com
+Sitemap: https://techtools.example.com/sitemap.xml
+
+# Tool Information
+About: Tech Tools - A comprehensive suite of browser-based utilities including image tools, PDF tools, QR code generator, color picker, and more.

@@ -33,8 +33,8 @@ export default function ToolPage({ params }: ToolPageProps) {
   }
 
   return (
-    <main id="image-tool-workspace" className="min-h-screen bg-[#0d0d0f] text-white">
-      <div className="py-12">
+    <main id="image-tool-workspace" className="min-h-screen bg-gradient-to-b from-[#0A0F1D] via-[#0E1528] to-[#0B1326] text-white">
+      <div className="py-8 lg:py-12">
         {toolId === "compress-image" && <CompressImage />}
         {toolId === "resize-image" && <ResizeImage />}
         {toolId === "crop-image" && <CropImage />}
