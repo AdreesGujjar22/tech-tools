@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useAuth } from "@/lib/auth";
-import { Blog, Category } from "@shared/api";
+import { Blog, Category , Tag } from "@shared/api";
 import { 
   collection, 
   getDocs, 
@@ -43,7 +43,6 @@ import {
   Clock,
   PenTool,
   Search,
-  Tag,
   Sparkles as Rainbow
 } from "lucide-react";
 import { Link } from "@/lib/router-compat";
@@ -1292,7 +1291,7 @@ export default function AdminPage() {
                   {/* Tag Multi-Selector Selection library */}
                   <div>
                     <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
-                      <Tag size={16} className="text-indigo-400" />
+                      <Pin size={16} className="text-indigo-400" />
                       Tags (Click to add)
                     </label>
                     <div className="flex flex-wrap gap-2 p-4 bg-[#0F1729] border border-indigo-500/30 rounded-lg max-h-24 overflow-y-auto">
