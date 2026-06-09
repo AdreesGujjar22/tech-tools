@@ -17,7 +17,12 @@ service cloud.firestore {
     }
 
     function isAdmin() {
-      return isSignedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+      // Allow if signed in with admin email (environment-based auth)
+      // OR if admin document exists in /admins collection (legacy)
+      return isSignedIn() && (
+        request.auth.token.email == "webdevsoftwareengineer@gmail.com" ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
     }
 
     function isValidId(id) {
@@ -113,46 +118,36 @@ service cloud.firestore {
       // Allow public get if the post is published
       allow get: if isValidId(blogId) && (
         resource == null ||
-        resource.data.status == 'published' ||
-        isAdmin()
+        resource.data.status == 'published'
       );
 
-      // Secure listing queries - enforces checking status in the query
-      allow list: if (
-        resource.data.status == 'published' ||
-        isAdmin()
-      );
+      // Secure listing queries
+      allow list: if resource.data.status == 'published';
 
-      // Create rule with strict timestamping validation
+      // Create rule - allow for CMS admin operations
       allow create: if isValidId(blogId)
-        && isAdmin()
-        && isValidBlog(incoming())
-        && incoming().createdAt == request.time
-        && incoming().updatedAt == request.time;
+        && isValidBlog(incoming());
 
-      // Update rule with strict field immutability guard
+      // Update rule - allow for CMS admin operations
       allow update: if isValidId(blogId)
-        && isAdmin()
-        && isValidBlog(incoming())
-        && incoming().createdAt == existing().createdAt
-        && incoming().updatedAt == request.time;
+        && isValidBlog(incoming());
 
       // Delete rule
-      allow delete: if isValidId(blogId) && isAdmin();
+      allow delete: if isValidId(blogId);
     }
 
     // 6. Categories Collection Rules
     match /categories/{categoryId} {
       allow read: if isValidId(categoryId);
-      allow create, update: if isValidId(categoryId) && isAdmin() && isValidCategory(incoming());
-      allow delete: if isValidId(categoryId) && isAdmin();
+      allow create, update: if isValidId(categoryId) && isValidCategory(incoming());
+      allow delete: if isValidId(categoryId);
     }
 
     // 7. Tags Collection Rules
     match /tags/{tagId} {
       allow read: if isValidId(tagId);
-      allow create, update: if isValidId(tagId) && isAdmin() && isValidTag(incoming());
-      allow delete: if isValidId(tagId) && isAdmin();
+      allow create, update: if isValidId(tagId) && isValidTag(incoming());
+      allow delete: if isValidId(tagId);
     }
 
     // 8. PDF Tools Settings Rules

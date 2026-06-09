@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useAuth } from "@/lib/auth";
-import { Blog, Category, Tag } from "@shared/api";
+import { Blog, Category } from "@shared/api";
 import { 
   collection, 
   getDocs, 
@@ -16,30 +16,41 @@ import {
   getDoc
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { 
-  Key, 
-  User as UserIcon, 
-  FileText, 
-  Plus, 
-  Edit3, 
-  Trash2, 
-  UploadCloud, 
-  Eye, 
-  EyeOff, 
-  Settings, 
-  RefreshCw, 
-  ShieldAlert, 
-  Sparkles, 
-  Layers, 
-  BookOpen, 
+import {
+  Key,
+  User as UserIcon,
+  FileText,
+  Plus,
+  Edit3,
+  Trash2,
+  UploadCloud,
+  Eye,
+  EyeOff,
+  Settings,
+  RefreshCw,
+  ShieldAlert,
+  Sparkles,
+  Layers,
+  BookOpen,
   ArrowLeft,
   ChevronRight,
-  Globe
+  Globe,
+  Heading2,
+  Link as LinkIcon,
+  Zap,
+  Folder,
+  Pin,
+  Clock,
+  PenTool,
+  Search,
+  Tag,
+  Sparkles as Rainbow
 } from "lucide-react";
 import { Link } from "@/lib/router-compat";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "motion/react";
 import BlogEditor from "@/components/admin/BlogEditor";
+import ImageUploader from "@/components/admin/ImageUploader";
 
 export default function AdminPage() {
   const {
@@ -222,19 +233,46 @@ export default function AdminPage() {
   // Handle Login
   const handleAuthSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validation
     if (!email || !password) {
-      toast.error("Please enter admin email and password.");
+      toast.error("Please enter both email and password.");
       return;
     }
+
+    if (!email.includes("@")) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+
+    if (password.length < 1) {
+      toast.error("Password cannot be empty.");
+      return;
+    }
+
     try {
       setSigningIn(true);
       await loginWithEmail(email, password);
-      toast.success("Admin logged in successfully!");
+      toast.success("✓ Admin logged in successfully! Welcome back.");
       setEmail("");
       setPassword("");
     } catch (error: any) {
       console.error("Authentication Error:", error);
-      toast.error(error.message || "Authentication failed - invalid credentials.");
+
+      // Provide specific error messages
+      let errorMessage = "Authentication failed. Please try again.";
+
+      if (error.message?.includes("Admin credentials not configured")) {
+        errorMessage = "❌ Server error: Admin credentials not configured.";
+      } else if (error.message?.includes("Invalid admin credentials")) {
+        errorMessage = "❌ Invalid email or password. Please check and try again.";
+      } else if (error.message?.includes("Admin email and password must be set")) {
+        errorMessage = "❌ Admin credentials are not properly configured.";
+      } else if (error.message) {
+        errorMessage = `❌ ${error.message}`;
+      }
+
+      toast.error(errorMessage);
     } finally {
       setSigningIn(false);
     }
@@ -1050,48 +1088,50 @@ export default function AdminPage() {
                   
                   {/* Post Title & auto generating Slug */}
                   <div>
-                    <label className="text-xs font-semibold text-[#DAD7FF]/80 uppercase font-mono tracking-wider mb-1.5 block">
-                      Blog Title *
+                    <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
+                      <Heading2 size={16} className="text-indigo-400" />
+                      Post Title *
                     </label>
                     <input
                       type="text"
-                      placeholder="E.g. Designing High-Contrast Interfaces"
+                      placeholder="Enter your blog post title here"
                       value={postTitle}
                       onChange={(e) => setPostTitle(e.target.value)}
-                      className="w-full px-4 py-3 bg-slate-950 border border-slate-800 focus:border-indigo-500 rounded-xl focus:outline-none placeholder-slate-700 text-white font-bold"
+                      className="w-full px-4 py-3 bg-[#0F1729] border border-indigo-500/30 hover:border-indigo-500/50 focus:border-indigo-500 rounded-xl focus:outline-none placeholder-slate-500 text-white font-semibold transition"
                       required
                     />
                   </div>
 
                   {/* Slug field with Manual Override control */}
                   <div>
-                    <div className="flex items-center justify-between mb-1.5">
-                      <label className="text-xs font-semibold text-[#DAD7FF]/80 uppercase font-mono tracking-wider block">
-                        URL Slug (SEO friendly) *
+                    <div className="flex items-center justify-between mb-2">
+                      <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider block flex items-center gap-2">
+                        <LinkIcon size={16} className="text-indigo-400" />
+                        URL Address *
                       </label>
                       <button
                         type="button"
                         onClick={() => setAutoSlug(!autoSlug)}
-                        className={`text-[10px] font-mono px-2 py-0.5 rounded cursor-pointer transition-colors ${
-                          autoSlug ? "bg-indigo-950 text-indigo-400 border border-indigo-900/30" : "bg-slate-900 text-slate-400 border border-white/5"
+                        className={`text-[10px] font-mono px-3 py-1 rounded-lg cursor-pointer transition-all ${
+                          autoSlug ? "bg-emerald-950/40 text-emerald-400 border border-emerald-900/50" : "bg-amber-950/40 text-amber-400 border border-amber-900/50"
                         }`}
                       >
-                        {autoSlug ? "✓ Auto generation active" : "✎ Manual override active"}
+                        {autoSlug ? "✓ Auto" : "✎ Manual"}
                       </button>
                     </div>
                     <div className="relative">
-                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-mono text-[#C7C4D8]/50">
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-mono text-indigo-400/60">
                         /blog/
                       </span>
                       <input
                         type="text"
-                        placeholder="e.g. designing-high-contrast-interfaces"
+                        placeholder="my-awesome-post-title"
                         value={postSlug}
                         onChange={(e) => {
                           setPostSlug(e.target.value.toLowerCase().replace(/\s+/g, "-"));
                           setAutoSlug(false);
                         }}
-                        className="w-full pl-[52px] pr-4 py-2.5 bg-slate-950 border border-slate-800 focus:border-indigo-500 rounded-xl focus:outline-none font-mono text-xs text-white"
+                        className="w-full pl-[70px] pr-4 py-3 bg-[#0F1729] border border-indigo-500/30 hover:border-indigo-500/50 focus:border-indigo-500 rounded-xl focus:outline-none font-mono text-sm text-white transition"
                         required
                       />
                     </div>
@@ -1099,14 +1139,15 @@ export default function AdminPage() {
 
                   {/* Excerpt */}
                   <div>
-                    <label className="text-xs font-semibold text-[#DAD7FF]/80 uppercase font-mono tracking-wider mb-1.5 block">
-                      Short Excerpt * (Summarize in 1-2 editorial lines)
+                    <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
+                      <Zap size={16} className="text-indigo-400" />
+                      Short Summary *
                     </label>
                     <textarea
-                      placeholder="E.g. A tactical deep-dive into establishing structural color contrast..."
+                      placeholder="Write a brief 1-2 sentence summary of what this post is about"
                       value={postExcerpt}
                       onChange={(e) => setPostExcerpt(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 focus:border-indigo-500 rounded-xl focus:outline-none placeholder-slate-700 text-xs text-[#DAD7FF]"
+                      className="w-full px-4 py-3 bg-[#0F1729] border border-indigo-500/30 hover:border-indigo-500/50 focus:border-indigo-500 rounded-xl focus:outline-none placeholder-slate-500 text-sm text-white resize-none transition"
                       rows={2}
                       maxLength={1000}
                     />
@@ -1119,13 +1160,14 @@ export default function AdminPage() {
                   
                   {/* Category dropdown */}
                   <div>
-                    <label className="text-xs font-semibold text-[#DAD7FF]/80 uppercase font-mono tracking-wider mb-1.5 block">
-                      Category Selection
+                    <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
+                      <Folder size={16} className="text-indigo-400" />
+                      Category
                     </label>
                     <select
                       value={postCategory}
                       onChange={(e) => setPostCategory(e.target.value)}
-                      className="w-full px-3 py-2.5 bg-slate-950 border border-slate-800 focus:border-indigo-500 rounded-lg focus:outline-none text-xs text-white cursor-pointer"
+                      className="w-full px-4 py-3 bg-[#0F1729] border border-indigo-500/30 hover:border-indigo-500/50 focus:border-indigo-500 rounded-xl focus:outline-none text-sm text-white cursor-pointer transition"
                     >
                       <option value="General">General</option>
                       {categories.map((c) => (
@@ -1135,54 +1177,44 @@ export default function AdminPage() {
                   </div>
 
                   {/* Status drafting toggle */}
-                  <div className="grid grid-cols-2 gap-3 pt-2">
+                  <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="text-[10px] font-mono tracking-wider text-[#C7C4D8] uppercase block mb-1">
-                        State Mode
+                      <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
+                        <Pin size={16} className="text-indigo-400" />
+                        Status
                       </label>
                       <select
                         value={postStatus}
                         onChange={(e) => setPostStatus(e.target.value as any)}
-                        className="w-full px-2.5 py-2 bg-slate-950 border border-slate-850 rounded text-xs select-none cursor-pointer text-white font-semibold"
+                        className="w-full px-3 py-2.5 bg-[#0F1729] border border-indigo-500/30 hover:border-indigo-500/50 focus:border-indigo-500 rounded-lg text-sm text-white font-semibold cursor-pointer transition"
                       >
-                        <option value="draft">Draft Save</option>
-                        <option value="published">Publish Live</option>
+                        <option value="draft">Draft (Hidden)</option>
+                        <option value="published">Published (Public)</option>
                       </select>
                     </div>
 
                     <div>
-                      <label className="text-[10px] font-mono tracking-wider text-[#C7C4D8] uppercase block mb-1">
-                        Reading Time
+                      <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
+                        <Clock size={16} className="text-indigo-400" />
+                        Read Time
                       </label>
                       <input
                         type="text"
                         value={postReadingTime}
                         onChange={(e) => setPostReadingTime(e.target.value)}
-                        className="w-full px-2.5 py-2 bg-slate-950 border border-slate-850 rounded text-xs text-white text-center font-mono"
-                        placeholder="E.g. 5 min read"
+                        className="w-full px-3 py-2.5 bg-[#0F1729] border border-indigo-500/30 hover:border-indigo-500/50 focus:border-indigo-500 rounded-lg text-sm text-white text-center font-mono transition"
+                        placeholder="5 min"
                       />
                     </div>
                   </div>
 
-                  {/* Featured Header Image URL */}
-                  <div>
-                    <label className="text-xs font-semibold text-[#DAD7FF]/80 uppercase font-mono tracking-wider mb-1.5 block">
-                      Featured Cover Image (Full HTTPS URL)
-                    </label>
-                    <div className="relative">
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
-                        <UploadCloud size={14} />
-                      </span>
-                      <input
-                        type="url"
-                        placeholder="https://picsum.photos/seed/vibrant/1200/600"
-                        value={postFeaturedImage}
-                        onChange={(e) => setPostFeaturedImage(e.target.value)}
-                        className="w-full pl-[36px] pr-4 py-2.5 bg-slate-950 border border-slate-800 focus:border-indigo-500 rounded-xl focus:outline-none text-xs text-white"
-                        pattern="https://.*"
-                      />
-                    </div>
-                  </div>
+                  {/* Featured Header Image Upload */}
+                  <ImageUploader
+                    value={postFeaturedImage}
+                    onChange={setPostFeaturedImage}
+                    label="Featured Cover Image"
+                    placeholder="Upload a cover image for your blog post"
+                  />
 
                 </div>
               </div>
@@ -1191,15 +1223,16 @@ export default function AdminPage() {
               <div className="lg:col-span-12 flex flex-col space-y-3">
                 <div className="flex items-center justify-between">
                   <div>
-                    <label className="text-xs font-semibold text-[#DAD7FF]/80 uppercase font-mono tracking-wider block">
-                      Blog Post Content (Rich Text Editor) *
+                    <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider block flex items-center gap-2">
+                      <PenTool size={16} className="text-indigo-400" />
+                      Write Your Content *
                     </label>
-                    <p className="text-[10px] font-mono text-[#C7C4D8]/70 mt-1">
-                      Format your content with headings, lists, links, images, tables, code blocks, quotes, and more.
+                    <p className="text-sm text-slate-400 mt-2">
+                      Use the editor below to write your post. Add bold text, lists, images, links, and more.
                     </p>
                   </div>
-                  <span className="text-[10px] font-mono text-green-400 whitespace-nowrap">
-                    ● Live Editor
+                  <span className="text-xs font-mono text-emerald-400 whitespace-nowrap px-3 py-1 bg-emerald-950/30 border border-emerald-900/30 rounded-lg">
+                    ✓ Ready
                   </span>
                 </div>
 
@@ -1207,64 +1240,64 @@ export default function AdminPage() {
                 <BlogEditor
                   value={postContent}
                   onChange={setPostContent}
-                  placeholder="Write your blog post content here. Use the rich formatting toolbar to add structure, emphasis, links, and media to your content..."
+                  placeholder="Start writing your post here. Use the toolbar to add formatting, images, links, and more..."
                 />
               </div>
 
               {/* SEO METADATA PANEL COMPILER CARD */}
               <div className="lg:col-span-12 premium-card p-6 rounded-2xl border border-white/5 space-y-6">
                 
-                <div className="flex items-center gap-1.5 text-xs font-mono text-[#C7C4D8] uppercase tracking-wider border-b border-white/5 pb-3">
-                  <Globe size={14} className="text-indigo-400" />
-                  <span>SEO METADATA COMPILER (DYNAMIC PREVIEW GOOGLE, CANVAS & TWITTER CARDS)</span>
+                <div className="flex items-center gap-2 text-sm font-semibold text-white uppercase tracking-wider border-b border-indigo-500/20 pb-4">
+                  <Globe size={16} className="text-indigo-400" />
+                  <span>Search & Social Media Info (Optional)</span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   
                   {/* SEO Title Tag */}
                   <div>
-                    <label className="text-xs font-semibold text-[#DAD7FF]/80 uppercase font-mono tracking-wider mb-1.5 block">
-                      Search SEO Title (Limit: 70 chars)
+                    <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
+                      <Search size={16} className="text-indigo-400" />
+                      Search Title (What Google shows)
                     </label>
                     <input
                       type="text"
-                      placeholder="Designing High-Contrast Interfaces - Craft"
+                      placeholder="My Post Title - Website Name"
                       value={postSeoTitle}
                       onChange={(e) => setPostSeoTitle(e.target.value)}
-                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 focus:border-indigo-500 rounded-lg focus:outline-none text-xs text-white"
+                      className="w-full px-4 py-2.5 bg-[#0F1729] border border-indigo-500/30 hover:border-indigo-500/50 focus:border-indigo-500 rounded-lg focus:outline-none text-sm text-white transition"
                       maxLength={120}
                     />
-                    <p className="text-[10px] text-slate-500 mt-1 font-mono">
-                      Fallback: Post Title | The Craft Blog
+                    <p className="text-xs text-slate-500 mt-2">
+                      Leave empty to use your post title
                     </p>
                   </div>
 
                   {/* SEO Description Tag */}
                   <div>
-                    <label className="text-xs font-semibold text-[#DAD7FF]/80 uppercase font-mono tracking-wider mb-1.5 block">
-                      Search SEO Description (Limit: 160 chars)
+                    <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
+                      <FileText size={16} className="text-indigo-400" />
+                      Description (What shows in search)
                     </label>
                     <textarea
-                      placeholder="Our structural guide investigating relative luminance..."
+                      placeholder="Write a 2-3 sentence summary of what this post is about"
                       value={postSeoDescription}
                       onChange={(e) => setPostSeoDescription(e.target.value)}
-                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 focus:border-indigo-500 rounded-lg focus:outline-none text-xs text-slate-300"
+                      className="w-full px-4 py-2.5 bg-[#0F1729] border border-indigo-500/30 hover:border-indigo-500/50 focus:border-indigo-500 rounded-lg focus:outline-none text-sm text-white resize-none transition"
                       rows={2}
                       maxLength={200}
                     />
-                    <p className="text-[10px] text-slate-500 mt-1 font-mono">
-                      Fallback: Excerpt
-                    </p>
                   </div>
 
                   {/* Tag Multi-Selector Selection library */}
                   <div>
-                    <label className="text-xs font-semibold text-[#DAD7FF]/80 uppercase font-mono tracking-wider mb-1.5 block">
-                      Associated Tags
+                    <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
+                      <Tag size={16} className="text-indigo-400" />
+                      Tags (Click to add)
                     </label>
-                    <div className="flex flex-wrap gap-1.5 p-2.5 bg-slate-950 border border-slate-800 rounded-lg max-h-24 overflow-y-auto">
+                    <div className="flex flex-wrap gap-2 p-4 bg-[#0F1729] border border-indigo-500/30 rounded-lg max-h-24 overflow-y-auto">
                       {tags.length === 0 ? (
-                        <p className="text-[10px] italic text-[#C7C4D8]/55">First index tags in the parameters tab.</p>
+                        <p className="text-sm text-slate-400 italic">No tags yet. Create tags in the sidebar.</p>
                       ) : (
                         tags.map((tg) => {
                           const isSelected = postTags.includes(tg.name);
@@ -1273,13 +1306,13 @@ export default function AdminPage() {
                               key={tg.id}
                               type="button"
                               onClick={() => toggleTagSelection(tg.name)}
-                              className={`px-2 py-0.5 rounded text-[10px] font-mono cursor-pointer transition-all ${
-                                isSelected 
-                                  ? "bg-indigo-600 text-white font-bold" 
-                                  : "bg-slate-900 text-slate-400 hover:text-white"
+                              className={`px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition-all ${
+                                isSelected
+                                  ? "bg-indigo-600 text-white"
+                                  : "bg-slate-900/60 text-slate-400 hover:text-white hover:bg-slate-800"
                               }`}
                             >
-                              #{tg.name}
+                              {tg.name}
                             </button>
                           );
                         })
@@ -1289,28 +1322,29 @@ export default function AdminPage() {
 
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-white/5 bg-slate-950/30 p-4 rounded-xl">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-indigo-500/20 bg-indigo-950/10 p-5 rounded-xl">
                   {/* Google Preview mock */}
                   <div>
-                    <p className="text-[10px] font-mono text-slate-500 uppercase tracking-wider mb-2">Search results snapshot (Dynamic google render):</p>
-                    <div className="bg-slate-900 border border-slate-850 p-4 rounded-lg flex flex-col">
-                      <span className="text-slate-400 font-mono text-[10px]">https://ai.studio/build/blog/{postSlug || "your-slug"}</span>
-                      <span className="text-indigo-400 font-bold text-sm leading-tight mt-0.5 truncate">{postSeoTitle || postTitle || "Your Blog Title | The Craft Blog"}</span>
-                      <p className="text-slate-300 text-xs mt-1 line-clamp-2 leading-relaxed">{postSeoDescription || postExcerpt || "Blogging text markdown excerpt from writing canvas rendering description."}</p>
+                    <p className="text-xs font-semibold text-indigo-400 uppercase tracking-wider mb-3">How it looks in Google Search</p>
+                    <div className="bg-slate-900 border border-slate-800 p-4 rounded-lg flex flex-col">
+                      <span className="text-slate-500 font-mono text-xs">blog.website.com/{postSlug || "your-slug"}</span>
+                      <span className="text-indigo-400 font-bold text-base leading-tight mt-1.5 truncate">{postSeoTitle || postTitle || "Your Blog Title"}</span>
+                      <p className="text-slate-300 text-sm mt-1.5 line-clamp-2 leading-relaxed">{postSeoDescription || postExcerpt || "Your post description will show here"}</p>
                     </div>
                   </div>
 
                   {/* Keywords Tag block metadata */}
                   <div>
-                    <label className="text-xs font-semibold text-[#DAD7FF]/80 uppercase font-mono tracking-wider mb-1.5 block">
-                      Search SEO Keywords (Comma separated)
+                    <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
+                      <Search size={16} className="text-indigo-400" />
+                      Keywords (comma separated)
                     </label>
                     <input
                       type="text"
-                      placeholder="design, coding, performance, react"
+                      placeholder="web design, coding tips, javascript, react"
                       value={postSeoKeywords}
                       onChange={(e) => setPostSeoKeywords(e.target.value)}
-                      className="w-full px-3 py-2 bg-slate-950 border border-slate-800 focus:border-indigo-500 rounded-lg focus:outline-none text-xs text-white"
+                      className="w-full px-4 py-2.5 bg-[#0F1729] border border-indigo-500/30 hover:border-indigo-500/50 focus:border-indigo-500 rounded-lg focus:outline-none text-sm text-white transition"
                     />
                   </div>
                 </div>

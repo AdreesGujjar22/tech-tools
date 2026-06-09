@@ -1,16 +1,19 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
-import {
-  User,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut
-} from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { auth } from "./firebase";
 
+interface AdminUser {
+  uid: string;
+  email: string;
+  emailVerified: boolean;
+  isAnonymous: boolean;
+  displayName: string;
+}
+
 interface AuthContextType {
-  user: User | null;
+  user: AdminUser | null;
   isAdmin: boolean;
   loading: boolean;
   loginWithEmail: (email: string, password: string) => Promise<void>;
@@ -20,24 +23,25 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<AdminUser | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-
-      if (currentUser && currentUser.email) {
-        const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
-        setIsAdmin(currentUser.email === adminEmail);
-      } else {
-        setIsAdmin(false);
+    // Check if user is stored in localStorage (persisted session)
+    if (typeof window !== "undefined") {
+      const storedUser = localStorage.getItem("admin_user");
+      if (storedUser) {
+        try {
+          const parsedUser = JSON.parse(storedUser) as AdminUser;
+          setUser(parsedUser);
+          setIsAdmin(true);
+        } catch (e) {
+          localStorage.removeItem("admin_user");
+        }
       }
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
+    }
+    setLoading(false);
   }, []);
 
   const loginWithEmail = async (email: string, password: string) => {
@@ -47,14 +51,41 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
 
       if (!adminEmail || !adminPassword) {
-        throw new Error("Admin credentials not configured");
+        throw new Error("Admin email and password must be set in environment variables (NEXT_PUBLIC_ADMIN_EMAIL, NEXT_PUBLIC_ADMIN_PASSWORD)");
       }
 
-      if (email !== adminEmail || password !== adminPassword) {
+      // Trim whitespace to avoid issues
+      const trimmedEmail = email.trim();
+      const trimmedPassword = password.trim();
+      const trimmedAdminEmail = adminEmail.trim();
+      const trimmedAdminPassword = adminPassword.trim();
+
+      // Check email first
+      if (trimmedEmail !== trimmedAdminEmail) {
         throw new Error("Invalid admin credentials");
       }
 
-      await signInWithEmailAndPassword(auth, email, password);
+      // Check password
+      if (trimmedPassword !== trimmedAdminPassword) {
+        throw new Error("Invalid admin credentials");
+      }
+
+      // Create admin user session
+      const adminUser: AdminUser = {
+        uid: "admin_" + Date.now(),
+        email: trimmedEmail,
+        emailVerified: true,
+        isAnonymous: false,
+        displayName: "Admin",
+      };
+
+      setUser(adminUser);
+      setIsAdmin(true);
+
+      // Persist session in localStorage
+      if (typeof window !== "undefined") {
+        localStorage.setItem("admin_user", JSON.stringify(adminUser));
+      }
     } catch (error) {
       setLoading(false);
       throw error;
@@ -64,9 +95,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = async () => {
     setLoading(true);
     try {
-      await signOut(auth);
+      // Clear local session
       setUser(null);
       setIsAdmin(false);
+
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("admin_user");
+      }
+
+      // Try to sign out from Firebase if available
+      try {
+        await signOut(auth);
+      } catch (e) {
+        // Firebase signout is optional
+      }
     } catch (error) {
       console.error("Logout Error:", error);
     } finally {

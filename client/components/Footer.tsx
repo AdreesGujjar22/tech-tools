@@ -77,11 +77,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/customization" className="text-muted-foreground hover:text-foreground text-sm transition-colors duration-200">
-                  System Settings
-                </Link>
-              </li>
-              <li>
                 <Link to="/pricing" className="text-muted-foreground hover:text-foreground text-sm transition-colors duration-200">
                   Pricing Plans
                 </Link>
