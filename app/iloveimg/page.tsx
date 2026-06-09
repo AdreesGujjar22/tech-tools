@@ -4,10 +4,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "@/lib/router-compat";
 import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { 
-  Search, 
-  Settings, 
-  Lock, 
+import {
+  Search,
+  Settings,
+  Lock,
   ShieldCheck,
   RefreshCw,
   Power,
@@ -18,6 +18,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { toast } from "sonner";
 import { IMAGE_TOOLS, IMAGE_CATEGORY_LABELS, IMAGE_CATEGORY_COLORS, getImageToolIcon } from "@/components/image-tools/toolsData";
 import { checkImageToolEnabled, setImageToolEnabled } from "@/components/image-tools/utils";
+import { FeatureCard } from "@/components/ui/FeatureCard";
 
 export default function LoveImgDashboard() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,7 +26,7 @@ export default function LoveImgDashboard() {
   const [isAdminMode, setIsAdminMode] = useState(false);
   const [adminAuthPassword, setAdminAuthPassword] = useState("");
   const [isAdminAuthorized, setIsAdminAuthorized] = useState(false);
-  
+
   // Real-time admin settings & analytics caches
   const [toolsStatus, setToolsStatus] = useState<{ [toolId: string]: boolean }>({});
   const [telemetryLogs, setTelemetryLogs] = useState<any[]>([]);
@@ -91,7 +92,7 @@ export default function LoveImgDashboard() {
 
   // Filter criteria
   const filteredTools = IMAGE_TOOLS.filter((tool) => {
-    const matchesSearch = 
+    const matchesSearch =
       tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       tool.shortDesc.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === "all" || tool.category === selectedCategory;
@@ -156,7 +157,7 @@ export default function LoveImgDashboard() {
               className="w-full bg-transparent border-0 ring-0 focus:outline-none focus:ring-0 p-3 text-sm text-white placeholder-[#6B7280] font-medium"
             />
             {searchQuery && (
-              <button 
+              <button
                 onClick={() => setSearchQuery("")}
                 className="p-1 px-2.5 text-xs text-[#C7C4D8] bg-neutral-800 hover:bg-neutral-750 border border-neutral-700/65 rounded-xl transition cursor-pointer"
               >
@@ -173,11 +174,10 @@ export default function LoveImgDashboard() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setSelectedCategory("all")}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-tight transition duration-150 cursor-pointer ${
-                selectedCategory === "all"
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-tight transition duration-150 cursor-pointer ${selectedCategory === "all"
                   ? "bg-gradient-to-r from-indigo-500 to-indigo-600 text-white shadow-lg shadow-indigo-950/20"
                   : "bg-neutral-900 border border-neutral-800 text-[#C7C4D8]/80 hover:text-white"
-              }`}
+                }`}
             >
               All Tools
             </button>
@@ -185,11 +185,10 @@ export default function LoveImgDashboard() {
               <button
                 key={key}
                 onClick={() => setSelectedCategory(key)}
-                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-tight transition duration-150 cursor-pointer ${
-                  selectedCategory === key
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-tight transition duration-150 cursor-pointer ${selectedCategory === key
                     ? "bg-gradient-to-r from-indigo-500 to-indigo-600 text-white shadow-lg shadow-indigo-950/20"
                     : "bg-neutral-900 border border-neutral-800 text-[#C7C4D8]/80 hover:text-white"
-                }`}
+                  }`}
               >
                 {label}
               </button>
@@ -198,11 +197,10 @@ export default function LoveImgDashboard() {
 
           <button
             onClick={() => setIsAdminMode(!isAdminMode)}
-            className={`p-2.5 rounded-xl border transition duration-150 relative cursor-pointer ${
-              isAdminMode 
-                ? "bg-indigo-950/50 border-indigo-800 text-indigo-400 shadow-xl" 
+            className={`p-2.5 rounded-xl border transition duration-150 relative cursor-pointer ${isAdminMode
+                ? "bg-indigo-950/50 border-indigo-800 text-indigo-400 shadow-xl"
                 : "bg-neutral-900 border border-neutral-800 text-[#C7C4D8]/80 hover:text-white"
-            }`}
+              }`}
             title="System Settings"
           >
             <Settings className="w-5 h-5" />
@@ -223,7 +221,7 @@ export default function LoveImgDashboard() {
               className="bg-[#0A0F1D] border border-neutral-800 rounded-3xl p-6 mb-12 shadow-2xl relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/[0.02] blur-[80px] rounded-full pointer-events-none" />
-              
+
               <div className="flex items-center justify-between border-b border-indigo-950/45 pb-4 mb-6">
                 <div className="flex items-center gap-3">
                   <ShieldCheck className="w-6 h-6 text-indigo-400" />
@@ -232,7 +230,7 @@ export default function LoveImgDashboard() {
                     <p className="text-2xs text-indigo-350 font-mono">Status: {isAdminAuthorized ? "Clearance Active" : "Authorization Required"}</p>
                   </div>
                 </div>
-                <button 
+                <button
                   onClick={() => setIsAdminMode(false)}
                   className="p-1 px-2.5 bg-neutral-900 border border-neutral-800 hover:bg-neutral-850 text-neutral-400 hover:text-white text-[10px] rounded-lg transition font-bold cursor-pointer"
                 >
@@ -280,11 +278,10 @@ export default function LoveImgDashboard() {
                             <span className="truncate max-w-[140px] text-neutral-300 font-semibold">{tool.name}</span>
                             <button
                               onClick={() => handleToggleTool(tool.id, !isOffline)}
-                              className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 font-bold font-mono transition text-3xs cursor-pointer ${
-                                isOffline 
-                                  ? "bg-rose-950/60 border border-rose-905/60 text-rose-400" 
+                              className={`px-3 py-1.5 rounded-lg flex items-center gap-1.5 font-bold font-mono transition text-3xs cursor-pointer ${isOffline
+                                  ? "bg-rose-950/60 border border-rose-905/60 text-rose-400"
                                   : "bg-emerald-950/60 border border-emerald-905/60 text-emerald-400"
-                              }`}
+                                }`}
                             >
                               <Power className="w-3 h-3" />
                               {isOffline ? "DISBLD" : "ACTIVE"}
@@ -299,7 +296,7 @@ export default function LoveImgDashboard() {
                   <div className="lg:col-span-2 space-y-4">
                     <div className="flex items-center justify-between">
                       <h4 className="text-xs font-bold font-mono uppercase tracking-wider text-neutral-500">Image Operations Telemetry Logs (Firestore)</h4>
-                      <button 
+                      <button
                         onClick={loadTelemetryLogs}
                         disabled={isLoadingLogs}
                         className="text-xs text-indigo-400 hover:text-indigo-300 flex items-center gap-1 font-mono hover:underline disabled:opacity-50 cursor-pointer"
@@ -358,44 +355,14 @@ export default function LoveImgDashboard() {
             const isOffline = toolsStatus[tool.id] === false;
 
             return (
-              <Link
-                key={tool.id}
-                to={isOffline ? "#" : tool.route}
-                className={`group border border-neutral-800 hover:border-indigo-500/50 rounded-2xl p-6 bg-[#0E1528]/80 relative overflow-hidden transition-all duration-300 ${
-                  isOffline 
-                    ? "opacity-60 cursor-not-allowed border-rose-950/40 hover:border-rose-950/40 bg-neutral-950/20" 
-                    : "hover:bg-[#121A33] hover:-translate-y-1 shadow-xl hover:shadow-indigo-950/10"
-                }`}
-              >
-                {/* Visual hover background accent glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.035] to-transparent opacity-0 group-hover:opacity-100 transition duration-300" />
-
-                {/* Card Header Header Visual Icon */}
-                <div className={`p-3 font-semibold rounded-xl text-[#C7C4D8] group-hover:text-indigo-400 transition duration-300 inline-block bg-neutral-900 relative z-10 ${
-                  isOffline ? "border border-rose-950 text-rose-500" : "border border-neutral-850"
-                }`}>
-                  <ToolIcon className="w-5 h-5" />
-                </div>
-                
-                {/* Offline Badge Overlay */}
-                {isOffline && (
-                  <span className="absolute top-4 right-4 text-3xs font-bold font-mono px-2 py-1 bg-rose-950 border border-rose-900 text-rose-400 rounded-lg">
-                    OFFLINE
-                  </span>
-                )}
-
-                <div className="mt-5 relative z-10 text-left">
-                  <h3 className="font-bold text-white text-md tracking-tight group-hover:text-indigo-400 transition duration-200 mb-2">
-                    {tool.name}
-                  </h3>
-                  <p className="text-[#C7C4D8]/80 text-xs leading-relaxed max-w-[220px]">
-                    {tool.shortDesc}
-                  </p>
-                </div>
-
-                <div className="absolute right-4 bottom-4 text-neutral-600 group-hover:text-indigo-400 transition-colors duration-250 pointer-events-none">
-                  <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                </div>
+              <Link to={tool.route} className={`block ${isOffline ? "pointer-events-none opacity-50" : "hover:scale-[1.02]"} transition-transform min-h-[150px]`}
+                key={tool.id}>
+                <FeatureCard
+                  key={tool.id}
+                  title={tool.name}
+                  description={tool.shortDesc}
+                  icon={tool.iconName ? ToolIcon : ChevronRight}
+                />
               </Link>
             );
           })}

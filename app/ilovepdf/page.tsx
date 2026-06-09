@@ -29,6 +29,7 @@ import { checkPdfToolEnabled, setPdfToolEnabled } from "@/components/pdf-tools/u
 
 // Icon components resolver
 import { getToolIcon } from "@/components/pdf-tools/toolsData";
+import { FeatureCard } from "@/components/ui/FeatureCard";
 
 export default function LovePdfDashboard() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -218,44 +219,14 @@ export default function LovePdfDashboard() {
             const isOffline = toolsStatus[tool.id] === false;
 
             return (
-              <Link
-                key={tool.id}
-                to={isOffline ? "#" : tool.route}
-                className={`group border border-neutral-800 hover:border-indigo-500/50 rounded-2xl p-6 bg-[#0E1528]/80 relative overflow-hidden transition-all duration-300 ${
-                  isOffline 
-                    ? "opacity-60 cursor-not-allowed border-rose-950/40 hover:border-rose-950/40 bg-neutral-950/20" 
-                    : "hover:bg-[#121A33] hover:-translate-y-1 shadow-xl hover:shadow-indigo-950/10"
-                }`}
-              >
-                {/* Visual hover background accent glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.035] to-transparent opacity-0 group-hover:opacity-100 transition duration-300" />
-
-                {/* Card Header Header Visual Icon */}
-                <div className={`p-3 font-semibold rounded-xl text-[#C7C4D8] group-hover:text-indigo-400 transition duration-300 inline-block bg-neutral-900 relative z-10 ${
-                  isOffline ? "border border-rose-950 text-rose-500" : "border border-neutral-800"
-                }`}>
-                  <ToolIcon className="w-5 h-5" />
-                </div>
-                
-                {/* Offline Badge Overlay */}
-                {isOffline && (
-                  <span className="absolute top-4 right-4 text-3xs font-bold font-mono px-2 py-1 bg-rose-950 border border-rose-900 text-rose-400 rounded-lg">
-                    OFFLINE
-                  </span>
-                )}
-
-                <div className="mt-5 relative z-10">
-                  <h3 className="font-bold text-white text-md tracking-tight group-hover:text-indigo-400 transition duration-200 mb-2">
-                    {tool.name}
-                  </h3>
-                  <p className="text-[#C7C4D8]/80 text-xs leading-relaxed max-w-[220px]">
-                    {tool.shortDesc}
-                  </p>
-                </div>
-
-                <div className="absolute right-4 bottom-4 text-neutral-600 group-hover:text-indigo-400 transition-colors duration-250 pointer-events-none">
-                  <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                </div>
+              <Link to={tool.route} className={`block ${isOffline ? "pointer-events-none opacity-50" : "hover:scale-[1.02]"} transition-transform min-h-[150px]`}
+                key={tool.id}>
+                <FeatureCard
+                  key={tool.id}
+                  title={tool.name}
+                  description={tool.shortDesc}
+                  icon={tool.iconName ? ToolIcon : ChevronRight}
+                />
               </Link>
             );
           })}
