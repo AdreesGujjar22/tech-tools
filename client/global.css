@@ -29,6 +29,18 @@
     --brand-from: 217 91% 60%;
     --brand-to: 245 70% 60%;
 
+    /* Modern color palette */
+    --slate-50: 210 40% 98%;
+    --slate-100: 210 40% 96%;
+    --slate-200: 214 32% 91%;
+    --slate-300: 213 27% 84%;
+    --slate-400: 215 20% 65%;
+    --slate-500: 215 16% 47%;
+    --slate-600: 215 19% 35%;
+    --slate-700: 215 25% 27%;
+    --slate-800: 217 33% 17%;
+    --slate-900: 222 47% 11%;
+
     /* Glass + layout colors */
     --glass-bg: rgba(255, 255, 255, 0.7);
     --glass-border: rgba(15, 23, 42, 0.08);
@@ -93,9 +105,21 @@
   * {
     border-color: hsl(var(--border));
   }
+
+  /* Typography improvements */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
 }
 
-/* Brand gradient text utility (referenced by hero + page headings) */
+/* ==================== UTILITIES ==================== */
+
+/* Brand gradient text utility */
 .gradient-text {
   background-image: linear-gradient(
     115deg,
@@ -108,6 +132,15 @@
   color: transparent;
 }
 
+/* Reusable solid brand gradient surface */
+.brand-gradient {
+  background-image: linear-gradient(
+    115deg,
+    hsl(var(--brand-from)) 0%,
+    hsl(var(--brand-to)) 100%
+  );
+}
+
 /* Alternating section background band */
 .section-bg-alt {
   position: relative;
@@ -118,14 +151,7 @@
   border-bottom: 1px solid var(--card-border);
 }
 
-/* Reusable solid brand gradient surface */
-.brand-gradient {
-  background-image: linear-gradient(
-    115deg,
-    hsl(var(--brand-from)) 0%,
-    hsl(var(--brand-to)) 100%
-  );
-}
+/* ==================== GLASS & CARD EFFECTS ==================== */
 
 /* Glass navigation */
 .glass-nav {
@@ -134,6 +160,19 @@
   -webkit-backdrop-filter: blur(16px) saturate(160%);
   border-bottom: 1px solid var(--glass-border);
   transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Modern card styles */
+.card-base {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.card-base:hover {
+  border-color: hsl(var(--primary));
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 /* Premium glass surfaces */
@@ -159,11 +198,69 @@
   transform: translateY(-3px);
 }
 
+/* ==================== FORMS & INPUTS ==================== */
+
 /* Subtle focus glow for inputs */
 .input-glow:focus {
   border-color: hsl(var(--ring));
   box-shadow: 0 0 0 3px hsla(var(--brand-from), 0.25);
 }
+
+/* Modern input styling */
+.input-modern {
+  @apply rounded-lg border border-border bg-white px-4 py-2.5 text-sm 
+    text-foreground placeholder-muted-foreground outline-none 
+    transition-all duration-200;
+}
+
+.input-modern:focus {
+  @apply border-primary ring-2 ring-primary/10;
+}
+
+.input-modern:disabled {
+  @apply bg-muted text-muted-foreground cursor-not-allowed;
+}
+
+.dark .input-modern {
+  @apply bg-slate-900 border-slate-700;
+}
+
+.dark .input-modern:focus {
+  @apply border-primary ring-primary/20;
+}
+
+/* ==================== BUTTONS ==================== */
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg
+    font-semibold text-sm transition-all duration-200;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.btn-primary:hover {
+  @apply shadow-lg scale-105;
+  filter: brightness(1.1);
+}
+
+.btn-primary:active {
+  @apply scale-95;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg
+    font-semibold text-sm transition-all duration-200 border border-border
+    bg-card hover:bg-secondary;
+  color: hsl(var(--foreground));
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg
+    font-medium text-sm transition-colors duration-200 
+    hover:bg-muted text-foreground;
+}
+
+/* ==================== SCROLLBARS ==================== */
 
 /* Custom scrollbars */
 ::-webkit-scrollbar {
@@ -185,6 +282,8 @@
   background: hsla(var(--brand-to), 0.55);
 }
 
+/* ==================== ANIMATIONS ==================== */
+
 /* Entrance animations */
 @keyframes fade-in-up {
   from {
@@ -197,9 +296,39 @@
   }
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 .animate-fade-in-up {
   animation: fade-in-up 0.3s ease-out;
 }
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+/* ==================== PROSE & CONTENT ==================== */
 
 /* Prose customization for blog rendering */
 .prose {
@@ -275,4 +404,45 @@
   color: hsl(var(--muted-foreground));
   font-style: italic;
   margin: 1.5em 0;
+}
+
+/* ==================== LAYOUT ==================== */
+
+/* Container utilities for consistent spacing */
+.container-narrow {
+  @apply max-w-2xl mx-auto;
+}
+
+.container-default {
+  @apply max-w-4xl mx-auto;
+}
+
+.container-wide {
+  @apply max-w-6xl mx-auto;
+}
+
+.container-full {
+  @apply max-w-7xl mx-auto;
+}
+
+/* Section spacing */
+.section-py {
+  @apply py-16 sm:py-20 lg:py-24;
+}
+
+.section-px {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+/* Grid utilities */
+.grid-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.grid-auto-fill {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
