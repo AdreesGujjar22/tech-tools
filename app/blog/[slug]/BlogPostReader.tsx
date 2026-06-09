@@ -7,7 +7,6 @@ import { useAuth } from "@/lib/auth";
 import { Blog } from "@shared/api";
 import { ArrowLeft, Calendar, Clock, Share2, Check, ShieldAlert, BookOpen } from "lucide-react";
 import { Link, useNavigate } from "@/lib/router-compat";
-import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
 import { motion } from "motion/react";
 
@@ -216,10 +215,11 @@ export function BlogPostReader({ slug }: { slug: string }) {
             </div>
           )}
 
-          {/* Body Content parsed cleanly through customized markdown-body styling */}
-          <div className="markdown-body prose max-w-none text-[#DAD7FF]/90 font-sans tracking-wide leading-relaxed text-base md:text-lg">
-            <ReactMarkdown>{post.content}</ReactMarkdown>
-          </div>
+          {/* Body Content rendered from Jodit HTML editor */}
+          <div
+            className="prose max-w-none text-[#DAD7FF]/90 font-sans tracking-wide leading-relaxed text-base md:text-lg"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
 
           {/* Tags list footer */}
           {post.tags && post.tags.length > 0 && (

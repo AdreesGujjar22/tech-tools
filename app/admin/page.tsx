@@ -37,25 +37,21 @@ import {
   Globe
 } from "lucide-react";
 import { Link } from "@/lib/router-compat";
-import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "motion/react";
+import BlogEditor from "@/components/admin/BlogEditor";
 
 export default function AdminPage() {
-  const { 
-    user, 
-    isAdmin, 
-    loading: authLoading, 
-    loginWithEmail, 
-    signupWithEmail, 
-    bootstrapAdmin,
-    bypassAuth
+  const {
+    user,
+    isAdmin,
+    loading: authLoading,
+    loginWithEmail
   } = useAuth();
 
   // Auth Forms
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isSignUp, setIsSignUp] = useState(false);
   const [signingIn, setSigningIn] = useState(false);
 
   // Core CMS state
@@ -212,15 +208,8 @@ export default function AdminPage() {
       }
 
       setArticles(fetchedArticles);
-      setCategories(fetchedCats.length > 0 ? fetchedCats : [
-        { id: "general", name: "General", slug: "general" },
-        { id: "engineering", name: "Engineering", slug: "engineering" },
-        { id: "design", name: "Design", slug: "design" }
-      ]);
-      setTags(fetchedTags.length > 0 ? fetchedTags : [
-        { id: "nextjs", name: "Next.js", slug: "nextjs" },
-        { id: "tailwind", name: "Tailwind", slug: "tailwind" }
-      ]);
+      setCategories(fetchedCats);
+      setTags(fetchedTags);
 
     } catch (error) {
       console.error("Error fetching CMS database: ", error);
@@ -234,47 +223,20 @@ export default function AdminPage() {
   const handleAuthSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
-      toast.error("Please fill in email and password.");
+      toast.error("Please enter admin email and password.");
       return;
     }
     try {
       setSigningIn(true);
-      if (isSignUp) {
-        await signupWithEmail(email, password);
-        toast.success("Account created successfully!");
-      } else {
-        await loginWithEmail(email, password);
-        toast.success("Logged in successfully!");
-      }
+      await loginWithEmail(email, password);
+      toast.success("Admin logged in successfully!");
+      setEmail("");
+      setPassword("");
     } catch (error: any) {
-      console.error("Authentication Error: ", error);
-      toast.error(error.message || "Authentication failed.");
+      console.error("Authentication Error:", error);
+      toast.error(error.message || "Authentication failed - invalid credentials.");
     } finally {
       setSigningIn(false);
-    }
-  };
-
-  // Developer Quick Sign-In Helpers
-  const fillDeveloperCreds = (option: "engineer" | "guest") => {
-    if (option === "engineer") {
-      setEmail("webdevsoftwareengineer@gmail.com");
-      setPassword("developer123");
-    } else {
-      setEmail("editor@thecraftblog.com");
-      setPassword("editor123");
-    }
-  };
-
-  // Onboard Bootstrapper Action
-  const handleBootstrap = async () => {
-    try {
-      toast.loading("Bootstrapping permissions...");
-      await bootstrapAdmin();
-      toast.dismiss();
-      toast.success("Administrator privileges activated! Welcome onboard.");
-    } catch (error: any) {
-      toast.dismiss();
-      toast.error(error.message || "Failed to bootstrap.");
     }
   };
 
@@ -698,114 +660,30 @@ export default function AdminPage() {
               {signingIn ? (
                 <>
                   <RefreshCw className="animate-spin" size={16} />
-                  <span>Syncing Auth Credentials...</span>
+                  <span>Verifying Credentials...</span>
                 </>
               ) : (
-                <span>{isSignUp ? "Create Admin Credentials" : "Authorize Session"}</span>
+                <span>Sign In to Admin Panel</span>
               )}
             </button>
           </form>
-
-          {/* Toggle buttons */}
-          <div className="mt-5 text-center">
-            <button
-              onClick={() => setIsSignUp(!isSignUp)}
-              className="text-xs text-indigo-400 hover:text-indigo-300 underline underline-offset-4 cursor-pointer"
-            >
-              {isSignUp ? "Already have an account? Log in" : "Register a new writer account"}
-            </button>
-          </div>
-
-          {/* Developer Quick-Bootstrap Box - Crucial for visual validation of user setup */}
-          <div className="mt-8 pt-6 border-t border-white/5 space-y-3">
-            <div className="flex items-center gap-1.5 font-mono text-[10px] text-indigo-400 font-semibold tracking-wider">
-              <Sparkles size={12} className="animate-bounce" />
-              <span>DEVELOPER PORTAL ASSISTANT</span>
-            </div>
-            
-            <p className="text-[11px] text-[#C7C4D8]/80 leading-relaxed">
-              Log in directly using the pre-authorized developer address to self-bootstrap full database admin privilege instantly:
-            </p>
-
-            <button
-              onClick={() => fillDeveloperCreds("engineer")}
-              className="w-full text-left p-3 rounded-xl bg-indigo-950/40 border border-indigo-900/30 hover:border-indigo-500/40 hover:bg-indigo-950/60 transition-colors text-xs flex justify-between items-center group"
-            >
-              <div>
-                <p className="font-semibold text-indigo-300">Auth Developer credentials</p>
-                <p className="text-[10px] font-mono text-indigo-400 group-hover:text-indigo-300">
-                  webdevsoftwareengineer@gmail.com
-                </p>
-              </div>
-              <ChevronRight size={14} className="text-indigo-400 group-hover:translate-x-1 transition-transform" />
-            </button>
-
-            <button
-              onClick={() => {
-                bypassAuth();
-                toast.success("Signed in via Local Simulated Admin mode!");
-              }}
-              className="w-full text-left p-3 rounded-xl bg-emerald-950/40 border border-emerald-900/30 hover:border-emerald-500/40 hover:bg-emerald-950/60 transition-colors text-xs flex justify-between items-center group mt-2"
-            >
-              <div>
-                <p className="font-semibold text-emerald-300">⚡ Bypass Auth (Simulated Offline Mode)</p>
-                <p className="text-[10px] font-mono text-emerald-400 group-hover:text-emerald-300">
-                  Instant Access to Admin Panel & Dashboard
-                </p>
-              </div>
-              <ChevronRight size={14} className="text-emerald-400 group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
 
         </div>
       </div>
     );
   }
 
-  // View Gate 2: Logged In, but has no admin credentials doc in collection '/admins'
+  // View Gate 2: Not authorized as admin
   if (!isAdmin) {
     return (
       <div className="min-h-screen bg-[#0C142B] text-slate-300 pt-36 pb-24 px-6 flex items-center justify-center">
         <div className="w-full max-w-lg premium-card p-8 rounded-2xl border border-white/5 text-center relative overflow-hidden">
-          
-          <div className="absolute top-0 left-0 right-0 h-1 bg-amber-500" />
-
-          <ShieldAlert className="mx-auto text-amber-500 mb-4 animate-pulse" size={48} />
-          <h2 className="text-2xl font-bold text-white mb-2">
-            Elevated Privileges Required
-          </h2>
+          <div className="absolute top-0 left-0 right-0 h-1 bg-red-500" />
+          <ShieldAlert className="mx-auto text-red-500 mb-4 animate-pulse" size={48} />
+          <h2 className="text-2xl font-bold text-white mb-2">Access Denied</h2>
           <p className="text-[#C7C4D8] text-sm leading-relaxed max-w-sm mx-auto mb-6">
-            You have authenticated as <span className="text-indigo-300 font-semibold">{user.email}</span>, which currently lacks blogging administrative clearance.
+            Your credentials do not have admin access. Please contact the site administrator.
           </p>
-
-          <AnimatePresence mode="wait">
-            {user.email === "webdevsoftwareengineer@gmail.com" ? (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="space-y-4"
-              >
-                <div className="rounded-xl bg-orange-950/20 border border-orange-700/20 p-4 text-xs text-[#E2DFFF]/90 text-left leading-relaxed">
-                  <p className="font-mono font-bold text-orange-400 mb-1">BOOTSTRAP RULE SYSTEM DETECTED</p>
-                  Our security system pre-authorized <span className="font-semibold text-indigo-300">webdevsoftwareengineer@gmail.com</span> to automatically provision and bootstrap its own administration file directly in Firestore. Check the action below to finalize your onboarding.
-                </div>
-
-                <button
-                  onClick={handleBootstrap}
-                  className="w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg hover:shadow-amber-500/20"
-                >
-                  <Sparkles size={16} />
-                  Bootstrap Admin Privileges
-                </button>
-              </motion.div>
-            ) : (
-              <div className="rounded-xl bg-slate-950/50 p-4 text-xs text-[#C7C4D8] leading-relaxed max-w-md mx-auto">
-                <p className="font-semibold text-white mb-1">Onboarding Requests Details:</p>
-                To test the administration panels, please sign out and login using the developer quick installer: <span className="text-indigo-400 font-mono">webdevsoftwareengineer@gmail.com</span> which utilizes our custom Fortress Security Rules bootstrap guard.
-              </div>
-            )}
-          </AnimatePresence>
-
         </div>
       </div>
     );
@@ -1309,51 +1187,28 @@ export default function AdminPage() {
                 </div>
               </div>
 
-              {/* Side-by-Side Content Editor Workstation */}
-              <div className="lg:col-span-7 flex flex-col space-y-2">
+              {/* Jodit Rich Text Editor Content Workstation */}
+              <div className="lg:col-span-12 flex flex-col space-y-3">
                 <div className="flex items-center justify-between">
-                  <label className="text-xs font-semibold text-[#DAD7FF]/80 uppercase font-mono tracking-wider block">
-                    Blogging Text Body (Full Markdown Syntax Supported) *
-                  </label>
-                  <span className="text-[10px] font-mono text-[#C7C4D8]/80">
-                    Characters: {postContent.length}
+                  <div>
+                    <label className="text-xs font-semibold text-[#DAD7FF]/80 uppercase font-mono tracking-wider block">
+                      Blog Post Content (Rich Text Editor) *
+                    </label>
+                    <p className="text-[10px] font-mono text-[#C7C4D8]/70 mt-1">
+                      Format your content with headings, lists, links, images, tables, code blocks, quotes, and more.
+                    </p>
+                  </div>
+                  <span className="text-[10px] font-mono text-green-400 whitespace-nowrap">
+                    ● Live Editor
                   </span>
                 </div>
-                
-                {/* Advanced editor workspace with a rich header banner */}
-                <div className="relative w-full border border-slate-800 bg-slate-950 rounded-2xl overflow-hidden shadow-inner">
-                  
-                  {/* Textarea drafting pane */}
-                  <textarea
-                    placeholder="## Introduction&#10;&#10;Write clean, powerful markdown content here..."
-                    value={postContent}
-                    onChange={(e) => setPostContent(e.target.value)}
-                    className="w-full h-[450px] p-5 bg-transparent border-none focus:outline-none font-mono text-sm leading-relaxed text-[#DAD7FF] resize-none"
-                    required
-                  />
-                </div>
-              </div>
 
-              {/* LIVE MARKDOWN PREVIEW DISPLAY */}
-              <div className="lg:col-span-5 flex flex-col space-y-2">
-                <div className="flex items-center justify-between">
-                  <label className="text-xs font-semibold text-indigo-400 uppercase font-mono tracking-wider block">
-                    Live HTML / Markdown Preview
-                  </label>
-                  <span className="text-[10px] font-mono text-green-400">
-                    ● Real-time
-                  </span>
-                </div>
-                
-                <div className="w-full h-[450px] overflow-y-auto p-5 border border-dashed border-[#DAD7FF]/10 bg-slate-900/25 rounded-2xl markdown-body prose text-xs text-slate-300">
-                  {postContent.trim() === "" ? (
-                    <div className="text-center italic text-slate-500 pt-36">
-                      Live markdown body output rendering as you type...
-                    </div>
-                  ) : (
-                    <ReactMarkdown>{postContent}</ReactMarkdown>
-                  )}
-                </div>
+                {/* Jodit Editor Component */}
+                <BlogEditor
+                  value={postContent}
+                  onChange={setPostContent}
+                  placeholder="Write your blog post content here. Use the rich formatting toolbar to add structure, emphasis, links, and media to your content..."
+                />
               </div>
 
               {/* SEO METADATA PANEL COMPILER CARD */}
