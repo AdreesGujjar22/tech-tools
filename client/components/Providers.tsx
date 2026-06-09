@@ -11,14 +11,24 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
-    <QueryClientProvider client={queryClient}>
+     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <AuthProvider>
-          <Suspense fallback={<div className="min-h-screen bg-background" />}>
+          <div className="flex min-h-screen flex-col">
             <Navbar />
-            {children}
+
+            <main className="flex-1 my-16">
+              <Suspense
+                fallback={
+                  <div className="h-[80vh] bg-background" />
+                }
+              >
+                {children}
+              </Suspense>
+            </main>
+
             <Footer />
-          </Suspense>
+          </div>
         </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>

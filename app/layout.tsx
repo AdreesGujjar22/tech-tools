@@ -100,7 +100,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-background text-foreground min-h-screen font-sans">
+      <body className="bg-background text-foreground font-sans">
         <Providers>{children}</Providers>
       </body>
     </html>

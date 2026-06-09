@@ -1,8 +1,25 @@
 import { useNavigate } from "@/lib/router-compat";
 import { useState } from "react";
 import { Search, Clock, Eye, Share2, Sparkles } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 
 const qrItems = [
+  {
+    id: 5,
+    title: "PDF Tools Dashboard",
+    url: "/ilovepdf",
+    type: "URL",
+    date: "Oct 18, 2024",
+    preview: "/images/pdf.png",
+  },
+  {
+    id: 6,
+    title: "Image Tools Dashboard",
+    url: "/iloveimg",
+    type: "URL",
+    date: "Oct 18, 2024",
+    preview: "/images/image.png",
+  },
   {
     id: 1,
     title: "Internet Speed Testing",
@@ -75,11 +92,75 @@ export default function History() {
   );
 
   return (
-    <div className="min-h-screen bg-transparent text-foreground">
+    <div className="bg-transparent text-foreground">
       <main className="section-py section-px">
         <div className="container-full">
           {/* Header */}
-          <div className="mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+          <section className="relative overflow-hidden border-b border-[rgba(255,255,255,0.06)] bg-gradient-to-at-t from-[#141B31]/40 via-[#060E20]/50 to-transparent pb-24">
+            <div className="absolute inset-0 bg-radial-at-t from-indigo-950/20 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute top-20 right-10 w-96 h-96 bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none" />
+
+            <div className="max-w-6xl mx-auto px-4 relative z-10 text-center">
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="inline-flex items-center gap-2 px-3 py-1 pb-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/15 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-6 animate-pulse"
+              >
+                <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full" />
+                All Utilities
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.4 }}
+                className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tighter text-white mb-6"
+              >
+                Every tool you need to <br className="hidden sm:inline" />
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#4F46E5] to-[#4CD7F6]">
+                  optimize and master
+                </span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15, duration: 0.4 }}
+                className="text-[#C7C4D8]/80 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed mb-10"
+              >
+                These are the following Tech tools we have. Click on any item to view details or export options.
+              </motion.p>
+
+              {/* Interactive Search Grid Controls */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.3 }}
+                className="max-w-xl mx-auto flex items-center bg-[#141B31]/60 border border-neutral-800 rounded-2xl p-1.5 shadow-2xl focus-within:border-indigo-500/40 transition"
+              >
+                <div className="flex items-center pl-3 text-neutral-500">
+                  <Search className="w-5 h-5" />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search tools (e.g., QR code, color picker)..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-transparent border-0 ring-0 focus:outline-none focus:ring-0 p-3 text-sm text-white placeholder-[#6B7280] font-medium"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="p-1 px-2.5 text-xs text-[#C7C4D8] bg-neutral-800 hover:bg-neutral-750 border border-neutral-700/65 rounded-xl transition cursor-pointer"
+                  >
+                    Clear
+                  </button>
+                )}
+              </motion.div>
+            </div>
+          </section>
+          {/* <div className="mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
             <div className="space-y-3">
               <div className="inline-flex items-center gap-2 w-fit px-4 py-2 rounded-full border border-border bg-secondary/50 backdrop-blur-sm">
                 <Sparkles className="w-3.5 h-3.5 text-primary" />
@@ -91,7 +172,6 @@ export default function History() {
               </p>
             </div>
 
-            {/* Search */}
             <div className="relative min-w-[280px]">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
@@ -102,7 +182,7 @@ export default function History() {
                 className="input-modern w-full pl-11"
               />
             </div>
-          </div>
+          </div> */}
 
           {/* Items Grid */}
           {filteredItems.length === 0 ? (
