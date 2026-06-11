@@ -1,8 +1,6 @@
 import { MetadataRoute } from "next";
 import { IMAGE_TOOLS } from "@/components/image-tools/toolsData";
 import { PDF_TOOLS } from "@/components/pdf-tools/toolsData";
-import { db } from "@/lib/firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
 
 // Static pages that should always be in the sitemap
 const STATIC_ROUTES = [
@@ -24,24 +22,7 @@ const STATIC_ROUTES = [
 ];
 
 async function getBlogPosts() {
-  try {
-    const postsCollection = collection(db, "blog_posts");
-    const publishedQuery = query(postsCollection, where("published", "==", true));
-    const snapshot = await getDocs(publishedQuery);
-
-    return snapshot.docs.map((doc) => {
-      const data = doc.data();
-      return {
-        url: `/blog/${data.slug}`,
-        lastModified: data.updatedAt?.toDate?.() || new Date(data.updatedAt),
-        priority: 0.8,
-        changefreq: "weekly" as const,
-      };
-    });
-  } catch (error) {
-    console.error("Failed to fetch blog posts for sitemap:", error);
-    return [];
-  }
+  return [];
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

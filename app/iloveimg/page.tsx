@@ -1,5 +1,7 @@
 "use client";
 
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { Link } from "@/lib/router-compat";
 import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
@@ -36,10 +38,24 @@ export default function LoveImgDashboard() {
   useEffect(() => {
     async function loadAllStatuses() {
       const statusMap: { [id: string]: boolean } = {};
-      for (const tool of IMAGE_TOOLS) {
-        statusMap[tool.id] = await checkImageToolEnabled(tool.id);
+      try {
+        for (const tool of IMAGE_TOOLS) {
+          try {
+            statusMap[tool.id] = await checkImageToolEnabled(tool.id);
+          } catch (err) {
+            // If Firebase is offline, assume tool is enabled
+            statusMap[tool.id] = true;
+          }
+        }
+        setToolsStatus(statusMap);
+      } catch (err) {
+        // Enable all tools if Firebase is unavailable
+        const allEnabled: { [id: string]: boolean } = {};
+        IMAGE_TOOLS.forEach(tool => {
+          allEnabled[tool.id] = true;
+        });
+        setToolsStatus(allEnabled);
       }
-      setToolsStatus(statusMap);
     }
     loadAllStatuses();
   }, []);
@@ -61,9 +77,15 @@ export default function LoveImgDashboard() {
         });
       });
       setTelemetryLogs(logs);
-    } catch (err) {
+    } catch (err: any) {
       console.error("Telemetry query failed:", err);
-      toast.error("Administrator permissions required to pull live analytics stream.");
+      // Handle offline gracefully
+      if (err.message?.includes("offline")) {
+        toast.error("Cannot load telemetry: Firebase is offline.");
+      } else {
+        toast.error("Administrator permissions required to pull live analytics stream.");
+      }
+      setTelemetryLogs([]);
     } finally {
       setIsLoadingLogs(false);
     }

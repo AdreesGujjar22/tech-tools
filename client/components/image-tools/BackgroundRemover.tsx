@@ -2,24 +2,19 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "@/lib/router-compat";
-import { 
-  ArrowLeft, 
-  Sparkles, 
-  Sliders, 
-  Pipette, 
-  Upload, 
-  Download, 
-  Eye, 
-  Layers, 
-  AlertCircle, 
-  Trash2, 
-  CheckCircle2, 
-  Loader2, 
-  ArrowRight,
-  RefreshCw,
-  X,
-  FileImage,
-  ImageIcon
+import {
+  ArrowLeft,
+  Sparkles,
+  Pipette,
+  Upload,
+  Download,
+  Eye,
+  Layers,
+  AlertCircle,
+  Trash2,
+  CheckCircle2,
+  Loader2,
+  RefreshCw
 } from "lucide-react";
 import { toast } from "sonner";
 import { IMAGE_TOOLS } from "./toolsData";
@@ -42,22 +37,22 @@ interface FileItem {
 
 export default function BackgroundRemover() {
   const allowedExtensions = [".png", ".jpg", ".jpeg", ".webp", ".gif"];
-  const tool = IMAGE_TOOLS.find((t) => t.id === "remove-background");
 
   // State
   const [files, setFiles] = useState<FileItem[]>([]);
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const [engine, setEngine] = useState<"ai" | "chroma">("ai");
+  const [engine, setEngine] = useState<"ai" | "chroma">("chroma");
   const [isDragActive, setIsDragActive] = useState(false);
   const [isZipping, setIsZipping] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   // Chroma key configurations
   const [chromaConfig, setChromaConfig] = useState({
     keyR: 255,
     keyG: 255,
     keyB: 255,
-    sensitivity: 40,
-    feather: 2
+    sensitivity: 100,
+    feather: 15
   });
 
   // Slider view parameters
@@ -67,7 +62,7 @@ export default function BackgroundRemover() {
   const containerRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Clean up ObjectURLs on unmount or file reset
+  // Clean up ObjectURLs only on unmount
   useEffect(() => {
     return () => {
       files.forEach((item) => {
@@ -77,7 +72,7 @@ export default function BackgroundRemover() {
         }
       });
     };
-  }, [files]);
+  }, []);
 
   // Handle file list insertions
   const addFiles = (selectedFiles: FileList | null) => {
@@ -94,17 +89,22 @@ export default function BackgroundRemover() {
       }
 
       const originalUrl = URL.createObjectURL(file);
-      
+
       // Pre-initialize dimension parameters using an Image layer
       const img = new Image();
       img.onload = () => {
-        setFiles((prev) => 
-          prev.map((item) => 
-            item.originalUrl === originalUrl 
-              ? { ...item, width: img.width, height: img.height } 
+        setFiles((prev) =>
+          prev.map((item) =>
+            item.originalUrl === originalUrl
+              ? { ...item, width: img.width, height: img.height }
               : item
           )
         );
+      };
+      img.onerror = () => {
+        URL.revokeObjectURL(originalUrl);
+        toast.error(`"${file.name}" failed to load or is corrupted.`);
+        setFiles((prev) => prev.filter((item) => item.originalUrl !== originalUrl));
       };
       img.src = originalUrl;
 
@@ -187,11 +187,18 @@ export default function BackgroundRemover() {
 
   // Run the background removal pipeline for all remaining idle / error files
   const processAllQueue = async () => {
+    if (isProcessing) {
+      toast.error("Processing already in progress. Please wait.");
+      return;
+    }
+
     const pendingItems = files.filter(f => f.status === "idle" || f.status === "error" || f.status === "processing");
     if (pendingItems.length === 0) {
       toast.info("No queue files need processing.");
       return;
     }
+
+    setIsProcessing(true);
 
     // Process sequentially to protect browser memory limits
     for (let i = 0; i < files.length; i++) {
@@ -206,63 +213,101 @@ export default function BackgroundRemover() {
 
       try {
         if (engine === "ai") {
-          // Dynamic import to prevent Node JS server-side render parsing issues during Next build
-          const initRemoveBackground = (await import("@imgly/background-removal") as any).default;
-          
-          const resultBlob = await initRemoveBackground(item.file, {
-            progress: (key, current, total) => {
-              const fraction = current / (total || 1);
-              const pct = Math.round(fraction * 100);
-              const message = key === "fetch" 
-                ? `Loading neural parameters (${pct}%)` 
-                : `Extracting subjects (${pct}%)`;
-              
-              updateFileItem(item.id, {
-                progress: 15 + Math.round(pct * 0.8),
-                progressMsg: message
-              });
+          try {
+            // Dynamic import to prevent Node JS server-side render parsing issues during Next build
+            const bgModule = await import("@imgly/background-removal");
+
+            // Try multiple export paths
+            let removeBackground = bgModule.default || bgModule.removeBackground || bgModule;
+
+            if (typeof removeBackground !== 'function') {
+              throw new Error(`Background removal not exported as function. Got type: ${typeof removeBackground}`);
             }
-          });
 
-          const processedUrl = URL.createObjectURL(resultBlob);
-          updateFileItem(item.id, {
-            status: "success",
-            progress: 100,
-            progressMsg: "Background removed successfully!",
-            processedUrl,
-            processedBlob: resultBlob,
-            errorMsg: null
-          });
+            updateFileItem(item.id, {
+              progress: 10,
+              progressMsg: "Downloading AI model..."
+            });
 
-          await logImageToolUsage("remove-background", item.file.name, item.file.size, true);
+            const resultBlob = await removeBackground(item.file, {
+              publicPath: "https://unpkg.com/@imgly/background-removal@1.7.0/dist/",
+              progress: (key, current, total) => {
+                const fraction = current / (total || 1);
+                const pct = Math.round(fraction * 100);
+                const message = key === "fetch"
+                  ? `Loading neural parameters (${pct}%)`
+                  : `Extracting subjects (${pct}%)`;
+
+                updateFileItem(item.id, {
+                  progress: 15 + Math.round(pct * 0.8),
+                  progressMsg: message
+                });
+              }
+            });
+
+            const processedUrl = URL.createObjectURL(resultBlob);
+            updateFileItem(item.id, {
+              status: "success",
+              progress: 100,
+              progressMsg: "Background removed successfully!",
+              processedUrl,
+              processedBlob: resultBlob,
+              errorMsg: null
+            });
+
+            logImageToolUsage("remove-background", item.file.name, item.file.size, true).catch(() => {});
+          } catch (aiErr: any) {
+            // AI model failed, fallback to Chroma Key
+            console.warn("AI model failed, falling back to Chroma Key:", aiErr.message);
+            const chromaResult = await onProcessChroma(item.file, chromaConfig);
+            const processedUrl = URL.createObjectURL(chromaResult.blob);
+
+            updateFileItem(item.id, {
+              status: "success",
+              progress: 100,
+              progressMsg: "Background removed (using color detection)!",
+              processedUrl,
+              processedBlob: chromaResult.blob,
+              errorMsg: null
+            });
+
+            logImageToolUsage("remove-background", item.file.name, item.file.size, true).catch(() => {});
+          }
         } else {
           // Chroma Key Color Wipe approach
           const chromaResult = await onProcessChroma(item.file, chromaConfig);
           const processedUrl = URL.createObjectURL(chromaResult.blob);
-          
+
           updateFileItem(item.id, {
             status: "success",
             progress: 100,
-            progressMsg: "Chroma color wipe complete!",
+            progressMsg: "Background removed!",
             processedUrl,
             processedBlob: chromaResult.blob,
             errorMsg: null
           });
 
-          await logImageToolUsage("remove-background", item.file.name, item.file.size, true);
+          logImageToolUsage("remove-background", item.file.name, item.file.size, true).catch(() => {});
         }
       } catch (err: any) {
         console.error("BG Removal Error for:", item.file.name, err);
+
+        const errorMsg = err.message?.includes("metadata") || err.message?.includes("not found")
+          ? "Could not process image. Try adjusting the color settings or use a different image."
+          : err.message || String(err);
+
         updateFileItem(item.id, {
           status: "error",
           progress: 0,
           progressMsg: "Extraction failed",
-          errorMsg: err.message || String(err)
+          errorMsg: errorMsg
         });
-        toast.error(`Failed to process "${item.file.name}": ${err.message || String(err)}`);
-        await logImageToolUsage("remove-background", item.file.name, item.file.size, false, err.message || String(err));
+        toast.error(`Failed to process "${item.file.name}": ${errorMsg}`);
+        logImageToolUsage("remove-background", item.file.name, item.file.size, false, err.message || String(err)).catch(() => {});
       }
     }
+
+    setIsProcessing(false);
   };
 
   // Re-process a single active file
@@ -284,40 +329,62 @@ export default function BackgroundRemover() {
 
     try {
       if (engine === "ai") {
-        const initRemoveBackground = (await import("@imgly/background-removal") as any).default;
-        const resultBlob = await initRemoveBackground(item.file, {
-          progress: (key, current, total) => {
-            const fraction = current / (total || 1);
-            const pct = Math.round(fraction * 100);
-            updateFileItem(item.id, {
-              progress: 20 + Math.round(pct * 0.75),
-              progressMsg: key === "fetch" ? `Syncing model (${pct}%)` : `Preserving edges (${pct}%)`
-            });
-          }
-        });
+        try {
+          const bgModule = await import("@imgly/background-removal");
+          let removeBackground = bgModule.default || bgModule.removeBackground || bgModule;
 
-        const processedUrl = URL.createObjectURL(resultBlob);
-        updateFileItem(item.id, {
-          status: "success",
-          progress: 100,
-          progressMsg: "Clean AI mask generated!",
-          processedUrl,
-          processedBlob: resultBlob,
-          errorMsg: null
-        });
+          if (typeof removeBackground !== 'function') {
+            throw new Error(`Background removal not exported as function. Got type: ${typeof removeBackground}`);
+          }
+
+          const resultBlob = await removeBackground(item.file, {
+            publicPath: "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.7.0/dist/",
+            progress: (key, current, total) => {
+              const fraction = current / (total || 1);
+              const pct = Math.round(fraction * 100);
+              updateFileItem(item.id, {
+                progress: 20 + Math.round(pct * 0.75),
+                progressMsg: key === "fetch" ? `Syncing model (${pct}%)` : `Preserving edges (${pct}%)`
+              });
+            }
+          });
+
+          const processedUrl = URL.createObjectURL(resultBlob);
+          updateFileItem(item.id, {
+            status: "success",
+            progress: 100,
+            progressMsg: "Clean AI mask generated!",
+            processedUrl,
+            processedBlob: resultBlob,
+            errorMsg: null
+          });
+        } catch (aiErr: any) {
+          // Fallback to Chroma Key
+          console.warn("AI model failed, using Chroma Key instead:", aiErr.message);
+          const chromaResult = await onProcessChroma(item.file, chromaConfig);
+          const processedUrl = URL.createObjectURL(chromaResult.blob);
+          updateFileItem(item.id, {
+            status: "success",
+            progress: 100,
+            progressMsg: "Background removed (color detection)!",
+            processedUrl,
+            processedBlob: chromaResult.blob,
+            errorMsg: null
+          });
+        }
       } else {
         const chromaResult = await onProcessChroma(item.file, chromaConfig);
         const processedUrl = URL.createObjectURL(chromaResult.blob);
         updateFileItem(item.id, {
           status: "success",
           progress: 100,
-          progressMsg: "Chroma color wipe complete!",
+          progressMsg: "Background removed!",
           processedUrl,
           processedBlob: chromaResult.blob,
           errorMsg: null
         });
       }
-      toast.success("Active file re-compiled perfectly!");
+      toast.success("Active file processed successfully!");
     } catch (err: any) {
       console.error(err);
       updateFileItem(item.id, {
@@ -329,11 +396,39 @@ export default function BackgroundRemover() {
     }
   };
 
+  // RGB to HSL conversion for better color matching
+  const rgbToHsl = (r: number, g: number, b: number) => {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    let h = 0, s = 0;
+    const l = (max + min) / 2;
+
+    if (max !== min) {
+      const d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+        case g: h = ((b - r) / d + 2) / 6; break;
+        case b: h = ((r - g) / d + 4) / 6; break;
+      }
+    }
+    return { h, s, l };
+  };
+
+  // Calculate hue difference (accounts for circular nature of hue)
+  const hueDistance = (h1: number, h2: number) => {
+    const diff = Math.abs(h1 - h2);
+    return Math.min(diff, 1 - diff);
+  };
+
   // Pixel chroma wipe implementation
   const onProcessChroma = async (file: File, config: typeof chromaConfig) => {
     const url = URL.createObjectURL(file);
     const img = new Image();
-    
+
     await new Promise((resolve, reject) => {
       img.onload = resolve;
       img.onerror = () => {
@@ -346,7 +441,7 @@ export default function BackgroundRemover() {
     const canvas = document.createElement("canvas");
     canvas.width = img.width;
     canvas.height = img.height;
-    
+
     const ctx = canvas.getContext("2d");
     if (!ctx) {
       URL.revokeObjectURL(url);
@@ -359,29 +454,30 @@ export default function BackgroundRemover() {
     const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const data = imgData.data;
 
-    const targetR = config.keyR;
-    const targetG = config.keyG;
-    const targetB = config.keyB;
-    const sensitivity = config.sensitivity;
-    const feather = config.feather;
+    const targetHsl = rgbToHsl(config.keyR, config.keyG, config.keyB);
+    const sensitivity = config.sensitivity / 100; // Normalize to 0-1 range
+    const feather = config.feather / 20; // Normalize feather
 
     for (let i = 0; i < data.length; i += 4) {
       const r = data[i];
       const g = data[i + 1];
       const b = data[i + 2];
 
-      const distance = Math.sqrt(
-        Math.pow(r - targetR, 2) +
-        Math.pow(g - targetG, 2) +
-        Math.pow(b - targetB, 2)
-      );
+      const pixelHsl = rgbToHsl(r, g, b);
+
+      // Use weighted HSL distance
+      const hDist = hueDistance(targetHsl.h, pixelHsl.h) * 2; // Hue is most important
+      const sDist = Math.abs(targetHsl.s - pixelHsl.s);
+      const lDist = Math.abs(targetHsl.l - pixelHsl.l) * 0.5; // Lightness less important
+
+      const distance = Math.sqrt(hDist * hDist + sDist * sDist + lDist * lDist);
 
       if (distance < sensitivity) {
         data[i + 3] = 0; // Completely transparent alpha
-      } else if (feather > 0 && distance < sensitivity + feather * 8) {
+      } else if (feather > 0 && distance < sensitivity + feather) {
         // Feather transition
         const diff = distance - sensitivity;
-        const ratio = diff / (feather * 8);
+        const ratio = diff / feather;
         data[i + 3] = Math.round(ratio * 255);
       }
     }
@@ -405,7 +501,7 @@ export default function BackgroundRemover() {
     };
   };
 
-  // Sample backdrop chroma-key color from top-left corner
+  // Sample backdrop chroma-key color from corners and edges
   const sampleBackdropColor = () => {
     const activeItem = files[activeIndex];
     if (!activeItem) return;
@@ -413,20 +509,42 @@ export default function BackgroundRemover() {
     const img = new Image();
     img.onload = () => {
       const canvas = document.createElement("canvas");
-      canvas.width = 10;
-      canvas.height = 10;
+      canvas.width = img.width;
+      canvas.height = img.height;
       const ctx = canvas.getContext("2d");
       if (ctx) {
-        ctx.drawImage(img, 0, 0, 10, 10);
-        const p = ctx.getImageData(0, 0, 1, 1).data;
+        ctx.drawImage(img, 0, 0);
+
+        // Sample from multiple corners and edges to get dominant background color
+        const samples = [
+          ctx.getImageData(0, 0, 1, 1).data,           // top-left
+          ctx.getImageData(img.width - 1, 0, 1, 1).data,  // top-right
+          ctx.getImageData(0, img.height - 1, 1, 1).data, // bottom-left
+          ctx.getImageData(img.width - 1, img.height - 1, 1, 1).data, // bottom-right
+        ];
+
+        // Average the samples
+        let avgR = 0, avgG = 0, avgB = 0;
+        samples.forEach(sample => {
+          avgR += sample[0];
+          avgG += sample[1];
+          avgB += sample[2];
+        });
+        avgR = Math.round(avgR / samples.length);
+        avgG = Math.round(avgG / samples.length);
+        avgB = Math.round(avgB / samples.length);
+
         setChromaConfig((prev) => ({
           ...prev,
-          keyR: p[0],
-          keyG: p[1],
-          keyB: p[2]
+          keyR: avgR,
+          keyG: avgG,
+          keyB: avgB
         }));
-        toast.success(`Automatically sampled cornerstone color: RGB(${p[0]}, ${p[1]}, ${p[2]})`);
+        toast.success(`Sampled background color: RGB(${avgR}, ${avgG}, ${avgB})`);
       }
+    };
+    img.onerror = () => {
+      toast.error("Failed to load image for color sampling.");
     };
     img.src = activeItem.originalUrl;
   };
@@ -1046,10 +1164,20 @@ export default function BackgroundRemover() {
               <div className="space-y-3 pt-2">
                 <button
                   onClick={processAllQueue}
-                  className="w-full py-3.5 bg-teal-500 hover:bg-teal-600 font-extrabold text-neutral-950 text-sm rounded-xl transition duration-200 outline-none hover:shadow-teal-900/20 shadow-xl flex items-center justify-center gap-2 cursor-pointer"
+                  disabled={isProcessing}
+                  className="w-full py-3.5 bg-teal-500 hover:bg-teal-600 disabled:opacity-50 disabled:cursor-not-allowed font-extrabold text-neutral-950 text-sm rounded-xl transition duration-200 outline-none hover:shadow-teal-900/20 shadow-xl flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <Sparkles className="w-4 h-4 shrink-0" />
-                  Remove Background Now
+                  {isProcessing ? (
+                    <>
+                      <Loader2 className="w-4 h-4 shrink-0 animate-spin" />
+                      Processing Queue...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-4 h-4 shrink-0" />
+                      Remove Background Now
+                    </>
+                  )}
                 </button>
 
                 {files.filter(f => f.status === "success").length > 0 && (

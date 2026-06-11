@@ -96,7 +96,7 @@ export default function UpscaleImage() {
     };
   }, []);
 
-  // Clean up ObjectURLs on unmount or file reset
+  // Clean up ObjectURLs on unmount
   useEffect(() => {
     return () => {
       files.forEach((item) => {
@@ -106,7 +106,7 @@ export default function UpscaleImage() {
         }
       });
     };
-  }, [files]);
+  }, []);
 
   // Handle file insertions
   const addFiles = (selectedFiles: FileList | null) => {

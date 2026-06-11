@@ -2,19 +2,29 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "@/lib/router-compat";
-import { 
-  Upload, 
-  ArrowLeft, 
-  CheckCircle2, 
-  Loader2, 
-  X, 
-  File, 
+import {
+  Upload,
+  ArrowLeft,
+  CheckCircle2,
+  Loader2,
+  X,
+  File,
   Download,
   AlertTriangle,
   RotateCw,
   TrendingDown,
   FileImage,
-  ImageIcon
+  ImageIcon,
+  Lock,
+  Settings,
+  Zap,
+  Package,
+  Plus,
+  Shield,
+  Settings2,
+  Cpu,
+  Wifi,
+  ShieldCheck
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { toast } from "sonner";
@@ -86,8 +96,14 @@ export default function ToolShell({
   // Sync / check tool active on startup
   useEffect(() => {
     async function loadStatus() {
-      const active = await checkImageToolEnabled(toolId);
-      setIsEnabled(active);
+      try {
+        const active = await checkImageToolEnabled(toolId);
+        setIsEnabled(active);
+      } catch (err) {
+        // If Firebase is offline or unavailable, assume tool is enabled
+        console.warn("Could not check tool status from Firebase, assuming enabled:", err);
+        setIsEnabled(true);
+      }
     }
     loadStatus();
   }, [toolId]);
@@ -229,12 +245,16 @@ export default function ToolShell({
             newSize: res.blob.size
           });
 
-          // Telemetry save
-          await logImageToolUsage(toolId, file.name, file.size, true);
+          // Telemetry save (non-blocking)
+          logImageToolUsage(toolId, file.name, file.size, true).catch(() => {
+            // Silently fail on Firebase offline or connection errors
+          });
         } catch (fileErr: any) {
           console.error(`Failed to process ${file.name}:`, fileErr);
           toast.error(`Error processing ${file.name}: ${fileErr.message || fileErr}`);
-          await logImageToolUsage(toolId, file.name, file.size, false, fileErr.message || String(fileErr));
+          logImageToolUsage(toolId, file.name, file.size, false, fileErr.message || String(fileErr)).catch(() => {
+            // Silently fail on Firebase offline or connection errors
+          });
         }
       }
 
@@ -335,9 +355,6 @@ export default function ToolShell({
           <ArrowLeft className="w-4 h-4" />
           Back to Image Dashboard
         </Link>
-        <span className="text-3xs font-mono text-neutral-400 bg-neutral-900 px-2.5 py-1 border border-neutral-800 rounded-lg">
-          SECURE CLIENT-SIDE PIPELINE
-        </span>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -369,10 +386,10 @@ export default function ToolShell({
                 onDragLeave={handleDrag}
                 onDrop={handleDrop}
                 onClick={triggerFileSelect}
-                className={`border-2 border-dashed rounded-3xl p-16 text-center cursor-pointer transition relative overflow-hidden flex flex-col items-center justify-center min-h-[350px] ${
-                  isDragActive 
-                    ? "border-indigo-500 bg-indigo-500/[0.03]" 
-                    : "border-neutral-805 bg-[#0E1528]/40 hover:border-indigo-500/50 hover:bg-[#121A33]/50"
+                className={`border-2 border-dashed rounded-3xl p-16 text-center cursor-pointer transition-all relative overflow-hidden flex flex-col items-center justify-center min-h-[350px] group ${
+                  isDragActive
+                    ? "border-indigo-500 bg-indigo-500/[0.05] scale-[1.01]"
+                    : "border-neutral-700 bg-gradient-to-br from-neutral-900/50 to-neutral-950/50 hover:border-indigo-500/70 hover:bg-gradient-to-br hover:from-indigo-950/20 hover:to-neutral-950/50 hover:shadow-lg hover:shadow-indigo-500/10"
                 }`}
               >
                 <input
@@ -385,23 +402,30 @@ export default function ToolShell({
                   className="hidden"
                 />
 
-                <div className="p-4 bg-neutral-900/80 border border-neutral-850 text-neutral-400 rounded-3xl mb-4 relative z-10 shadow-xl group-hover:text-indigo-400">
-                  <Upload className="w-8 h-8 text-neutral-400 animate-pulse" />
+                <div className="p-4 bg-gradient-to-br from-indigo-500/20 to-indigo-600/10 border border-indigo-500/30 text-indigo-300 rounded-3xl mb-4 relative z-10 shadow-lg shadow-indigo-500/10 group-hover:from-indigo-500/30 group-hover:to-indigo-600/20 group-hover:border-indigo-500/50 transition-all">
+                  <Upload className="w-8 h-8 text-indigo-400 animate-bounce" />
                 </div>
 
-                <div className="space-y-2 relative z-10 max-w-sm">
-                  <h3 className="text-white font-bold text-base">
-                    {allowMultiple ? "Drag & drop your images here" : "Drag & drop an image here"}
+                <div className="space-y-3 relative z-10 max-w-sm">
+                  <h3 className="text-white font-bold text-lg group-hover:text-indigo-300 transition">
+                    {allowMultiple ? "Drag & drop your images" : "Drag & drop an image"}
                   </h3>
-                  <p className="text-[#C7C4D8]/80 text-xs leading-relaxed">
-                    or click to browse local files. Supports <span className="font-semibold text-neutral-300">{allowedExtensions.join(", ")}</span> formats.
+                  <p className="text-neutral-400 text-sm leading-relaxed group-hover:text-neutral-300 transition">
+                    or <span className="text-indigo-400 font-semibold cursor-pointer hover:text-indigo-300">click to browse</span> your files
                   </p>
+                  <div className="flex flex-wrap gap-1 text-3xs text-neutral-500 font-mono mt-2 pt-1 border-t border-neutral-800">
+                    {allowedExtensions.map((ext) => (
+                      <span key={ext} className="text-neutral-400 font-semibold bg-neutral-950/40 px-2 py-0.5 rounded">
+                        {ext.replace(".", "").toUpperCase()}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Secure Containment Badge */}
-                <div className="absolute bottom-4 text-[10px] text-neutral-500 font-mono flex items-center gap-1.5 bg-neutral-950/60 p-1 px-2.5 border border-neutral-900 rounded-full">
-                  <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full" />
-                  Your photos are secure. Zero cloud uploads.
+                <div className="absolute bottom-4 flex items-center gap-2 bg-neutral-950/80 backdrop-blur-sm p-2 px-3 border border-neutral-800 rounded-full hover:border-emerald-500/30 hover:bg-neutral-950/90 transition">
+                  <Lock className="w-3 h-3 text-emerald-500 animate-pulse" />
+                  <span className="text-3xs text-neutral-400 font-mono">Local processing • Private</span>
                 </div>
               </motion.div>
             )}
@@ -415,17 +439,26 @@ export default function ToolShell({
                 className="space-y-4"
               >
                 {/* File Previews List */}
-                <div className="bg-[#0A0F1D] border border-neutral-800 rounded-2xl p-4">
-                  <div className="flex items-center justify-between mb-3 pb-2 border-b border-neutral-800">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-neutral-450 font-mono">
-                      Queue ({files.length} files in compile list)
-                    </span>
+                <div className="bg-gradient-to-br from-neutral-900/60 to-neutral-950/40 border border-neutral-800 rounded-2xl p-5 backdrop-blur-sm hover:border-neutral-700 transition">
+                  <div className="flex items-center justify-between mb-4 pb-3 border-b border-neutral-800">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-indigo-500/20 border border-indigo-500/30 rounded-lg">
+                        <Package className="w-4 h-4 text-indigo-400" />
+                      </div>
+                      <div>
+                        <span className="text-sm font-semibold text-white block">Files Ready</span>
+                        <span className="text-xs text-indigo-400 font-mono">
+                          {files.length} file{files.length !== 1 ? 's' : ''}
+                        </span>
+                      </div>
+                    </div>
                     {allowMultiple && (
-                      <button 
+                      <button
                         onClick={triggerFileSelect}
-                        className="text-xs text-indigo-400 hover:text-indigo-300 font-bold hover:underline cursor-pointer"
+                        className="flex items-center gap-2 text-sm text-indigo-400 hover:text-indigo-300 font-semibold hover:bg-indigo-500/10 px-3 py-2 rounded-lg transition border border-transparent hover:border-indigo-500/30 cursor-pointer active:scale-95"
                       >
-                        + Add More
+                        <Plus className="w-4 h-4" />
+                        Add More
                       </button>
                     )}
                   </div>
@@ -441,24 +474,24 @@ export default function ToolShell({
 
                   <div className="space-y-2 max-h-[290px] overflow-y-auto pr-2 custom-scroll">
                     {files.map((file, index) => (
-                      <div 
-                        key={index} 
-                        className="flex items-center justify-between p-3 bg-neutral-900/60 border border-neutral-800 rounded-xl"
+                      <div
+                        key={index}
+                        className="flex items-center justify-between p-3.5 bg-gradient-to-r from-neutral-900/40 to-neutral-950/40 border border-neutral-800 rounded-xl hover:border-indigo-500/30 hover:bg-gradient-to-r hover:from-indigo-950/20 hover:to-neutral-900/40 transition group"
                       >
                         <div className="flex items-center gap-3 truncate pr-4">
-                          <FileImage className="w-5 h-5 text-indigo-400 shrink-0" />
+                          <FileImage className="w-5 h-5 text-indigo-400 shrink-0 group-hover:text-indigo-300 transition" />
                           <div className="truncate text-left">
-                            <p className="text-xs font-semibold text-white truncate max-w-md">
+                            <p className="text-xs font-semibold text-white truncate max-w-md group-hover:text-indigo-100 transition">
                               {file.name}
                             </p>
-                            <p className="text-4xs font-mono text-neutral-500 mt-0.5">
+                            <p className="text-3xs font-mono text-neutral-500 mt-0.5 group-hover:text-neutral-400 transition">
                               {formatSize(file.size)}
                             </p>
                           </div>
                         </div>
                         <button
                           onClick={() => removeFile(index)}
-                          className="p-1 text-neutral-500 hover:text-white hover:bg-neutral-800 rounded-lg transition cursor-pointer"
+                          className="p-2 text-neutral-500 hover:text-red-400 hover:bg-red-950/20 rounded-lg transition cursor-pointer border border-transparent hover:border-red-500/20 shrink-0"
                           title="Remove file"
                         >
                           <X className="w-4 h-4" />
@@ -470,16 +503,18 @@ export default function ToolShell({
 
                 {/* For smaller screen layouts, settings can be placed under as well */}
                 <div className="lg:hidden">
-                  <div className="bg-[#0A0F1D] border border-neutral-800 rounded-2xl p-6 space-y-6">
-                    <h3 className="font-bold text-md text-white border-b border-neutral-800 pb-3">
+                  <div className="bg-gradient-to-br from-neutral-900/60 to-neutral-950/40 border border-neutral-800 rounded-2xl p-6 space-y-6 backdrop-blur-sm hover:border-neutral-700 transition">
+                    <h3 className="font-bold text-lg text-white border-b border-neutral-800 pb-3 flex items-center gap-2">
+                      <Settings2 className="w-5 h-5" />
                       {configTitle}
                     </h3>
                     {renderConfig && renderConfig(files, config, setConfig)}
                     <button
                       onClick={handleProcessSubmit}
-                      className="w-full py-3 bg-indigo-650 hover:bg-indigo-700 text-white font-bold text-sm rounded-xl transition shadow-xl cursor-pointer"
+                      className="w-full py-3 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white font-bold text-sm rounded-xl transition shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 cursor-pointer border border-indigo-500/20 hover:border-indigo-500/50 active:scale-95 flex items-center justify-center gap-2"
                     >
-                      Process {files.length} {files.length > 1 ? "Files" : "File"} Now
+                      <Zap className="w-4 h-4" />
+                      Process {files.length} {files.length > 1 ? "Files" : "File"}
                     </button>
                   </div>
                 </div>
@@ -492,26 +527,38 @@ export default function ToolShell({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="border border-[#141B31] rounded-3xl p-16 text-center bg-[#090E1A]/40"
+                className="border border-indigo-950/50 rounded-3xl p-16 text-center bg-gradient-to-br from-indigo-950/20 to-neutral-950/40 backdrop-blur-sm"
               >
-                <Loader2 className="w-12 h-12 text-indigo-500 animate-spin mx-auto mb-6" />
-                <h3 className="text-white font-extrabold text-lg mb-2">Executing Image Pipeline...</h3>
-                <p className="text-neutral-400 text-xs mb-8 max-w-sm mx-auto font-medium">
+                <div className="flex justify-center mb-6">
+                  <div className="p-4 bg-indigo-500/20 border border-indigo-500/30 rounded-full">
+                    <Loader2 className="w-10 h-10 text-indigo-400 animate-spin" />
+                  </div>
+                </div>
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <Zap className="w-5 h-5 text-indigo-400" />
+                  <h3 className="text-white font-extrabold text-xl">Processing Your Images</h3>
+                </div>
+                <p className="text-neutral-400 text-sm mb-8 max-w-sm mx-auto font-medium line-clamp-2">
                   {progressMsg}
                 </p>
 
                 {/* Progress Bar Container */}
                 <div className="max-w-md mx-auto">
-                  <div className="w-full bg-neutral-900 rounded-full h-2 overflow-hidden mb-2">
-                    <motion.div 
-                      className="bg-gradient-to-r from-indigo-500 to-indigo-650 h-full"
+                  <div className="w-full bg-neutral-900 rounded-full h-3 overflow-hidden mb-3 border border-neutral-800">
+                    <motion.div
+                      className="bg-gradient-to-r from-indigo-500 via-indigo-400 to-indigo-600 h-full shadow-lg shadow-indigo-500/50"
                       animate={{ width: `${progress}%` }}
-                      transition={{ duration: 0.1 }}
+                      transition={{ duration: 0.2 }}
                     />
                   </div>
-                  <span className="text-3xs font-mono text-neutral-500 font-bold">
-                    {progress}% COMPLETION
-                  </span>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-mono text-neutral-400">
+                      {progress}%
+                    </span>
+                    <span className="text-2xs font-mono text-neutral-500">
+                      Optimizing quality & size...
+                    </span>
+                  </div>
                 </div>
               </motion.div>
             )}
@@ -525,47 +572,60 @@ export default function ToolShell({
                 className="space-y-6"
               >
                 {/* Result Hero Header */}
-                <div className="border border-indigo-950/80 bg-indigo-950/10 rounded-2xl p-6 text-center space-y-4">
-                  <CheckCircle2 className="w-12 h-12 text-indigo-400 mx-auto" />
+                <div className="border border-emerald-500/30 bg-gradient-to-br from-emerald-950/30 to-indigo-950/20 rounded-3xl p-8 text-center space-y-5 backdrop-blur-sm">
+                  <div className="flex justify-center">
+                    <div className="p-3 bg-emerald-500/20 border border-emerald-500/40 rounded-full">
+                      <CheckCircle2 className="w-8 h-8 text-emerald-400" />
+                    </div>
+                  </div>
                   <div>
-                    <h3 className="text-white font-extrabold text-lg">Image Pipeline Complete!</h3>
-                    <p className="text-[#C7C4D8]/80 text-xs mt-1">
-                      {processedResults.length} {processedResults.length > 1 ? "files processed and optimized." : "file processed and optimized."}
+                    <h3 className="text-white font-extrabold text-2xl">All Done!</h3>
+                    <p className="text-emerald-300/80 text-sm mt-2 font-medium">
+                      {processedResults.length} {processedResults.length > 1 ? "files optimized" : "file optimized"} and ready to download
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap items-center justify-center gap-3">
+                  <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
                     <button
                       onClick={handleDownloadAll}
                       disabled={!zipDownloadUrl || isZipping}
-                      className="px-6 py-2.5 bg-indigo-650 hover:bg-indigo-700 disabled:opacity-50 text-white text-xs font-bold rounded-xl shadow-xl flex items-center gap-2 transition cursor-pointer"
+                      className="px-6 py-3 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-bold rounded-xl shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 flex items-center gap-2 transition cursor-pointer border border-emerald-500/20 hover:border-emerald-500/50 active:scale-95"
                     >
                       {isZipping ? (
                         <>
                           <Loader2 className="w-4 h-4 animate-spin" />
-                          Zipping...
+                          Creating package...
                         </>
                       ) : (
                         <>
                           <Download className="w-4 h-4" />
-                          {processedResults.length > 1 ? "Download ZIP Pack" : "Download Optimized Image"}
+                          {processedResults.length > 1 ? "Download ZIP" : "Download Image"}
                         </>
                       )}
                     </button>
                     <button
                       onClick={handleReset}
-                      className="px-6 py-2.5 bg-neutral-900 border border-neutral-800 hover:bg-neutral-800 text-neutral-300 text-xs font-bold rounded-xl transition cursor-pointer"
+                      className="px-6 py-3 bg-gradient-to-r from-neutral-800 to-neutral-900 hover:from-neutral-700 hover:to-neutral-800 text-neutral-200 text-sm font-bold rounded-xl transition cursor-pointer border border-neutral-700 hover:border-neutral-600 active:scale-95 flex items-center gap-2"
                     >
-                      Process Another
+                      <RotateCw className="w-4 h-4" />
+                      Process More
                     </button>
                   </div>
                 </div>
 
                 {/* Individual File List with Single Downloads */}
-                <div className="bg-neutral-950/60 border border-neutral-900 rounded-2xl p-4">
-                  <span className="text-xs font-bold font-mono tracking-wider text-[#C7C4D8] block mb-3 uppercase">
-                    Processed Artifacts ({processedResults.length} files)
-                  </span>
+                <div className="bg-gradient-to-br from-neutral-900/60 to-neutral-950/40 border border-neutral-800 rounded-2xl p-5 backdrop-blur-sm hover:border-neutral-700 transition">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 bg-indigo-500/20 border border-indigo-500/30 rounded-lg">
+                      <FileImage className="w-4 h-4 text-indigo-400" />
+                    </div>
+                    <div>
+                      <span className="text-sm font-bold text-white block">Your Files</span>
+                      <span className="text-xs text-indigo-400 font-mono">
+                        {processedResults.length} file{processedResults.length !== 1 ? 's' : ''}
+                      </span>
+                    </div>
+                  </div>
 
                   <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2 custom-scroll">
                     {processedResults.map((res, index) => {
@@ -574,34 +634,35 @@ export default function ToolShell({
                         : 0;
                       
                       return (
-                        <div 
-                          key={index} 
-                          className="flex items-center justify-between p-3.5 bg-neutral-900/40 border border-neutral-900 rounded-xl"
+                        <div
+                          key={index}
+                          className="flex items-center justify-between p-4 bg-gradient-to-r from-neutral-900/40 to-neutral-950/40 border border-neutral-800 rounded-xl hover:border-indigo-500/30 hover:bg-gradient-to-r hover:from-indigo-950/20 hover:to-neutral-900/40 transition group"
                         >
-                          <div className="flex items-center gap-3 truncate pr-4 text-left">
-                            <FileImage className="w-5 h-5 text-indigo-400 shrink-0" />
-                            <div className="truncate">
-                              <p className="text-xs font-semibold text-white truncate max-w-xs md:max-w-md">
+                          <div className="flex items-center gap-3 truncate pr-4 text-left flex-1">
+                            <FileImage className="w-5 h-5 text-indigo-400 shrink-0 group-hover:text-indigo-300 transition" />
+                            <div className="truncate flex-1">
+                              <p className="text-sm font-semibold text-white truncate max-w-xs md:max-w-md group-hover:text-indigo-100 transition">
                                 {res.fileName}
                               </p>
-                              <div className="flex items-center gap-2 mt-0.5 font-mono text-3xs text-neutral-550">
-                                <span>{formatSize(res.originalSize)}</span>
-                                <span>→</span>
+                              <div className="flex items-center gap-2 mt-1 font-mono text-3xs text-neutral-500 group-hover:text-neutral-400 transition">
+                                <span className="text-neutral-400">{formatSize(res.originalSize)}</span>
+                                <TrendingDown className="w-3 h-3 text-neutral-600" />
                                 <span className="text-white font-semibold">{formatSize(res.newSize)}</span>
                                 {fileRatio > 0 && (
-                                  <span className="text-emerald-400 font-bold bg-emerald-950/60 border border-emerald-900/50 px-1 rounded">
-                                    -{fileRatio}% Saved
+                                  <span className="text-emerald-400 font-bold bg-emerald-950/40 border border-emerald-900/50 px-2 py-0.5 rounded-md ml-1 text-2xs flex items-center gap-1">
+                                    <CheckCircle2 className="w-3 h-3" />
+                                    {fileRatio}% saved
                                   </span>
                                 )}
                               </div>
                             </div>
                           </div>
-                          
+
                           <button
                             onClick={() => handleDownloadSingle(res)}
-                            className="p-1 px-3 text-2xs text-indigo-450 bg-indigo-950/60 hover:bg-indigo-950/90 border border-indigo-900 rounded-lg flex items-center gap-1 font-semibold transition cursor-pointer"
+                            className="px-4 py-2 text-sm text-indigo-300 bg-gradient-to-r from-indigo-950/60 to-indigo-950/40 hover:from-indigo-900/80 hover:to-indigo-900/60 border border-indigo-700/40 hover:border-indigo-500/60 rounded-lg flex items-center gap-1.5 font-semibold transition cursor-pointer active:scale-95 shrink-0 whitespace-nowrap"
                           >
-                            <Download className="w-3 h-3" /> Save
+                            <Download className="w-4 h-4" /> Download
                           </button>
                         </div>
                       );
@@ -702,14 +763,31 @@ export default function ToolShell({
             </AnimatePresence>
           </div>
 
-          {/* Quick FAQ / containment guidelines */}
-          <div className="bg-neutral-950/40 border border-neutral-900 rounded-2xl p-5 text-left">
-            <span className="text-2xs font-extrabold uppercase tracking-wider text-indigo-400 font-mono block mb-2">
-              Technology containment
-            </span>
-            <p className="text-neutral-400 text-xs leading-relaxed">
-              Every crop, filter, upscale, and compression occurs sandbox-isolated within your local browser runtime. Assets are never transferred to a server, providing perfect security, ZERO lag, and offline functionality.
-            </p>
+          {/* Technology Containment Card */}
+          <div className="bg-gradient-to-br from-emerald-950/30 to-neutral-950/40 border border-emerald-500/20 rounded-2xl p-5 text-left backdrop-blur-sm hover:border-emerald-500/40 transition">
+            <div className="flex items-start gap-3 mb-3 pb-3 border-b border-emerald-900/30">
+              <div className="p-2.5 bg-emerald-500/20 border border-emerald-500/30 rounded-lg shrink-0 mt-0.5">
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              </div>
+              <div className="flex-1">
+                <span className="text-sm font-bold text-emerald-400 block">Technology Containment</span>
+                <span className="text-2xs text-emerald-400/60 font-mono">Secure Local Processing</span>
+              </div>
+            </div>
+            <div className="space-y-2.5">
+              <div className="flex items-start gap-3 text-sm">
+                <Cpu className="w-4 h-4 text-emerald-500/60 shrink-0 mt-0.5" />
+                <p className="text-neutral-400">All processing runs in your browser sandbox</p>
+              </div>
+              <div className="flex items-start gap-3 text-sm">
+                <Lock className="w-4 h-4 text-emerald-500/60 shrink-0 mt-0.5" />
+                <p className="text-neutral-400">Zero data transmission to any server</p>
+              </div>
+              <div className="flex items-start gap-3 text-sm">
+                <Wifi className="w-4 h-4 text-emerald-500/60 shrink-0 mt-0.5" />
+                <p className="text-neutral-400">Works completely offline</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

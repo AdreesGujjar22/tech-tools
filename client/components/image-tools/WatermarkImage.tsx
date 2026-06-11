@@ -7,18 +7,9 @@ import { Type, Image as ImageIcon, Sliders, LayoutGrid } from "lucide-react";
 export default function WatermarkImage() {
   const allowedExtensions = [".png", ".jpg", ".jpeg", ".webp", ".svg"];
 
-  const renderConfig = (files: any[], config: any, setConfig: any) => {
-    const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-
-    useEffect(() => {
-      if (files.length > 0) {
-        const url = URL.createObjectURL(files[0]);
-        setPreviewUrl(url);
-        return () => {
-          URL.revokeObjectURL(url);
-        };
-      }
-    }, [files]);
+  const renderConfig = (filesParam: any[], config: any, setConfig: any) => {
+    // Simple preview handling without hooks - just show if files exist
+    const hasFiles = filesParam && filesParam.length > 0;
 
     const handleTextChange = (text: string) => {
       setConfig({ ...config, type: "text", text });
@@ -128,7 +119,7 @@ export default function WatermarkImage() {
         </div>
 
         {/* Live preview outline box */}
-        {previewUrl && (
+        {hasFiles && (
           <div className="p-3 bg-neutral-950 rounded-xl space-y-1 text-left font-mono border border-neutral-900 text-2xs">
             <span className="text-[10px] font-bold text-neutral-500 block uppercase mb-1">
               Properties Overview
@@ -184,71 +175,83 @@ export default function WatermarkImage() {
       // Calculate font sizing dynamically relative to canvas width
       const sizeMultiplier = (config.fontSizePercent || 5) / 100;
       const calculatedFontSize = Math.max(16, Math.round(img.width * sizeMultiplier));
-      
-      ctx.font = `bold ${calculatedFontSize}px Inter, system-ui, -apple-system, sans-serif`;
-      ctx.fillStyle = config.color || "#ffffff";
-      ctx.globalAlpha = config.opacity || 0.5;
-      
+
+      ctx.font = `bold ${calculatedFontSize}px Arial, sans-serif`;
+      ctx.textBaseline = "top";
+      ctx.textAlign = "left";
+
       // Measure text spacing details
       const textMetrics = ctx.measureText(config.text);
       const textWidth = textMetrics.width;
-      const textHeight = calculatedFontSize; // Estimation
+      const textHeight = calculatedFontSize;
       const padding = calculatedFontSize * 0.75; // Adaptive margin padding
 
       let startX = padding;
-      let startY = textHeight + padding;
+      let startY = padding;
 
       // Position logic resolver (9-point coordinate bounds)
       switch (config.position) {
         case "top-left":
+          ctx.textAlign = "left";
           startX = padding;
-          startY = textHeight + padding;
+          startY = padding;
           break;
         case "top-center":
-          startX = (img.width - textWidth) / 2;
-          startY = textHeight + padding;
+          ctx.textAlign = "center";
+          startX = img.width / 2;
+          startY = padding;
           break;
         case "top-right":
-          startX = img.width - textWidth - padding;
-          startY = textHeight + padding;
+          ctx.textAlign = "right";
+          startX = img.width - padding;
+          startY = padding;
           break;
         case "middle-left":
+          ctx.textAlign = "left";
           startX = padding;
-          startY = (img.height + textHeight) / 2;
+          startY = (img.height - textHeight) / 2;
           break;
         case "center":
-          startX = (img.width - textWidth) / 2;
-          startY = (img.height + textHeight) / 2;
+          ctx.textAlign = "center";
+          startX = img.width / 2;
+          startY = (img.height - textHeight) / 2;
           break;
         case "middle-right":
-          startX = img.width - textWidth - padding;
-          startY = (img.height + textHeight) / 2;
+          ctx.textAlign = "right";
+          startX = img.width - padding;
+          startY = (img.height - textHeight) / 2;
           break;
         case "bottom-left":
+          ctx.textAlign = "left";
           startX = padding;
-          startY = img.height - padding;
+          startY = img.height - textHeight - padding;
           break;
         case "bottom-center":
-          startX = (img.width - textWidth) / 2;
-          startY = img.height - padding;
+          ctx.textAlign = "center";
+          startX = img.width / 2;
+          startY = img.height - textHeight - padding;
           break;
         case "bottom-right":
-          startX = img.width - textWidth - padding;
-          startY = img.height - padding;
+          ctx.textAlign = "right";
+          startX = img.width - padding;
+          startY = img.height - textHeight - padding;
           break;
         default:
           break;
       }
 
-      // Draw shadow behind for contrast readability
+      // Reset alpha and draw shadow behind for contrast readability
+      ctx.globalAlpha = Math.min(1, (config.opacity || 0.5) * 0.7);
       ctx.fillStyle = "#000000";
-      ctx.globalAlpha = (config.opacity || 0.5) * 0.6;
       ctx.fillText(config.text, startX + 2, startY + 2);
 
       // Draw real face text color
+      ctx.globalAlpha = Math.min(1, config.opacity || 0.5);
       ctx.fillStyle = config.color || "#ffffff";
-      ctx.globalAlpha = config.opacity || 0.5;
       ctx.fillText(config.text, startX, startY);
+
+      // Reset globalAlpha
+      ctx.globalAlpha = 1.0;
     }
 
     updateProgress(80, `Encoding watermarked image data...`);

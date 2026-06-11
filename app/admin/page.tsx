@@ -1,5 +1,7 @@
 "use client";
 
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { useAuth } from "@/lib/auth";
 import { Blog, Category , Tag } from "@shared/api";

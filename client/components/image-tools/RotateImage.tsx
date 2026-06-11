@@ -2,13 +2,16 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import ToolShell from "./ToolShell";
-import { 
-  RotateCw, 
-  RotateCcw, 
-  Columns, 
-  Rows, 
-  Undo2, 
-  RefreshCw 
+import {
+  RotateCw,
+  RotateCcw,
+  Columns,
+  Rows,
+  Undo2,
+  RefreshCw,
+  Settings,
+  Repeat2,
+  Eye
 } from "lucide-react";
 
 interface RotateConfigInnerProps {
@@ -154,104 +157,148 @@ function RotateConfigInner({ files, config, setConfig }: RotateConfigInnerProps)
 
   return (
     <div className="space-y-6">
-      {/* Interactive actions for orientation */}
-      <div>
-        <div className="flex justify-between items-center mb-2">
-          <label className="text-xs font-bold text-neutral-400 font-mono uppercase">
-            Rotation Controls
-          </label>
+      {/* Rotation Controls Section */}
+      <div className="bg-gradient-to-br from-neutral-900/60 to-neutral-950/40 border border-neutral-800 rounded-2xl p-5 backdrop-blur-sm hover:border-neutral-700 transition">
+        <div className="flex items-center justify-between mb-4 pb-3 border-b border-neutral-800">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-indigo-500/20 border border-indigo-500/30 rounded-lg">
+              <RotateCw className="w-4 h-4 text-indigo-400" />
+            </div>
+            <div>
+              <span className="text-sm font-semibold text-white block">Rotation</span>
+              <span className="text-xs text-indigo-400 font-mono">{config.rotation}°</span>
+            </div>
+          </div>
           {history.length > 0 && (
             <button
               onClick={handleUndo}
-              className="text-4xs text-indigo-400 hover:text-indigo-300 font-bold font-mono tracking-normal uppercase bg-[#141B31] border border-neutral-800 rounded px-2 py-1 flex items-center gap-1 transition cursor-pointer"
+              className="flex items-center gap-1.5 text-sm text-indigo-400 hover:text-indigo-300 font-semibold hover:bg-indigo-500/10 px-3 py-1.5 rounded-lg transition border border-transparent hover:border-indigo-500/30 cursor-pointer active:scale-95"
             >
-              <Undo2 className="w-2.5 h-2.5" />
-              Undo Last
+              <Undo2 className="w-4 h-4" />
+              Undo
             </button>
           )}
         </div>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-3">
           <button
             onClick={handleRotateLeft}
-            className="p-3 bg-neutral-900 border border-neutral-800 hover:border-indigo-900/50 text-neutral-300 hover:text-white rounded-xl text-xs flex items-center justify-center gap-2 font-medium transition cursor-pointer"
+            className="p-4 bg-gradient-to-r from-neutral-900/40 to-neutral-950/40 border border-neutral-800 hover:border-indigo-500/30 hover:bg-gradient-to-r hover:from-indigo-950/20 hover:to-neutral-900/40 text-neutral-300 hover:text-white rounded-xl text-sm flex items-center justify-center gap-2.5 font-semibold transition cursor-pointer group active:scale-95"
           >
-            <RotateCcw className="w-4 h-4 text-indigo-400" />
-            Rotate Left
+            <RotateCcw className="w-5 h-5 text-indigo-400 group-hover:text-indigo-300 transition" />
+            <span>Left</span>
           </button>
           <button
             onClick={handleRotateRight}
-            className="p-3 bg-neutral-900 border border-neutral-800 hover:border-indigo-900/50 text-neutral-300 hover:text-white rounded-xl text-xs flex items-center justify-center gap-2 font-medium transition cursor-pointer"
+            className="p-4 bg-gradient-to-r from-neutral-900/40 to-neutral-950/40 border border-neutral-800 hover:border-indigo-500/30 hover:bg-gradient-to-r hover:from-indigo-950/20 hover:to-neutral-900/40 text-neutral-300 hover:text-white rounded-xl text-sm flex items-center justify-center gap-2.5 font-semibold transition cursor-pointer group active:scale-95"
           >
-            <RotateCw className="w-4 h-4 text-indigo-400" />
-            Rotate Right
+            <RotateCw className="w-5 h-5 text-indigo-400 group-hover:text-indigo-300 transition" />
+            <span>Right</span>
           </button>
         </div>
       </div>
 
-      <div>
-        <label className="text-xs font-bold text-neutral-400 block mb-2 font-mono uppercase">
-          Inversion Flips
-        </label>
-        <div className="grid grid-cols-2 gap-2">
+      {/* Flip Controls Section */}
+      <div className="bg-gradient-to-br from-neutral-900/60 to-neutral-950/40 border border-neutral-800 rounded-2xl p-5 backdrop-blur-sm hover:border-neutral-700 transition">
+        <div className="flex items-center gap-3 mb-4 pb-3 border-b border-neutral-800">
+          <div className="p-2 bg-purple-500/20 border border-purple-500/30 rounded-lg">
+            <Repeat2 className="w-4 h-4 text-purple-400" />
+          </div>
+          <div>
+            <span className="text-sm font-semibold text-white block">Flip Orientation</span>
+            <span className="text-xs text-purple-400 font-mono">Mirror & Invert</span>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-3">
           <button
             onClick={toggleFlipH}
-            className={`p-3 border rounded-xl text-xs flex items-center justify-center gap-2 font-medium transition cursor-pointer ${
+            className={`p-4 border rounded-xl text-sm flex items-center justify-center gap-2.5 font-semibold transition cursor-pointer group active:scale-95 ${
               config.flipH
-                ? "bg-indigo-950/40 border-indigo-500 text-indigo-400 font-bold"
-                : "bg-neutral-900 border border-neutral-800 hover:border-indigo-900/50 text-neutral-300 hover:text-white"
+                ? "bg-purple-950/40 border-purple-500/50 text-purple-300"
+                : "bg-gradient-to-r from-neutral-900/40 to-neutral-950/40 border-neutral-800 hover:border-purple-500/30 hover:bg-gradient-to-r hover:from-purple-950/20 hover:to-neutral-900/40 text-neutral-300 hover:text-white"
             }`}
           >
-            <Columns className="w-4 h-4 text-indigo-400" />
-            Flip Horizontal
+            <Columns className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition" />
+            <span>H-Flip</span>
           </button>
           <button
             onClick={toggleFlipV}
-            className={`p-3 border rounded-xl text-xs flex items-center justify-center gap-2 font-medium transition cursor-pointer ${
+            className={`p-4 border rounded-xl text-sm flex items-center justify-center gap-2.5 font-semibold transition cursor-pointer group active:scale-95 ${
               config.flipV
-                ? "bg-indigo-950/40 border-indigo-500 text-indigo-400 font-bold"
-                : "bg-neutral-900 border border-neutral-800 hover:border-indigo-900/50 text-neutral-300 hover:text-white"
+                ? "bg-purple-950/40 border-purple-500/50 text-purple-300"
+                : "bg-gradient-to-r from-neutral-900/40 to-neutral-950/40 border-neutral-800 hover:border-purple-500/30 hover:bg-gradient-to-r hover:from-purple-950/20 hover:to-neutral-900/40 text-neutral-300 hover:text-white"
             }`}
           >
-            <Rows className="w-4 h-4 text-indigo-400" />
-            Flip Vertical
+            <Rows className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition" />
+            <span>V-Flip</span>
           </button>
         </div>
       </div>
 
-      {/* Live dynamic styled preview overlay */}
+      {/* Live Preview Section */}
       {previewUrl && (
-        <div className="space-y-2">
-          <span className="text-[10px] font-bold text-neutral-400 block font-mono uppercase">
-            Transform Blueprint Preview
-          </span>
-          <div className="border border-neutral-900 bg-neutral-950 rounded-2xl p-6 flex items-center justify-center min-h-[220px] overflow-hidden relative">
+        <div className="bg-gradient-to-br from-neutral-900/60 to-neutral-950/40 border border-neutral-800 rounded-2xl p-5 backdrop-blur-sm hover:border-neutral-700 transition space-y-4">
+          <div className="flex items-center gap-3 pb-3 border-b border-neutral-800">
+            <div className="p-2 bg-cyan-500/20 border border-cyan-500/30 rounded-lg">
+              <Eye className="w-4 h-4 text-cyan-400" />
+            </div>
+            <span className="text-sm font-semibold text-white">Live Preview</span>
+          </div>
+          <div className="border border-neutral-800 bg-gradient-to-br from-neutral-950/40 to-neutral-900/20 rounded-2xl p-6 flex items-center justify-center min-h-[240px] overflow-hidden relative">
             <canvas
               ref={canvasRef}
-              className="rounded-lg shadow-2xl max-w-full max-h-[200px]"
+              className="rounded-lg shadow-2xl max-w-full max-h-[220px]"
             />
           </div>
         </div>
       )}
 
-      {/* Info list with dynamic reset fallback */}
-      <div className="p-3 bg-neutral-950 rounded-xl font-mono text-2xs space-y-1 text-left border border-neutral-900 flex justify-between items-start">
-        <div className="space-y-1">
-          <span className="text-[10px] font-bold text-neutral-500 block uppercase">
-            Active Parameters
-          </span>
-          <p className="text-neutral-400">Rotation Angle: <span className="text-white font-bold">{config.rotation}°</span></p>
-          <p className="text-neutral-400">Horizontal Flip: <span className="text-white font-bold">{config.flipH ? "ACTIVE" : "OFF"}</span></p>
-          <p className="text-neutral-400">Vertical Flip: <span className="text-white font-bold">{config.flipV ? "ACTIVE" : "OFF"}</span></p>
+      {/* Current Settings Info Card */}
+      <div className="bg-gradient-to-br from-neutral-900/60 to-neutral-950/40 border border-neutral-800 rounded-2xl p-5 backdrop-blur-sm hover:border-neutral-700 transition">
+        <div className="flex items-center justify-between mb-4 pb-3 border-b border-neutral-800">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-emerald-500/20 border border-emerald-500/30 rounded-lg">
+              <Settings className="w-4 h-4 text-emerald-400" />
+            </div>
+            <span className="text-sm font-semibold text-white">Applied Settings</span>
+          </div>
+          {(config.rotation !== 0 || config.flipH || config.flipV) && (
+            <button
+              onClick={handleReset}
+              className="flex items-center gap-1.5 text-sm text-emerald-400 hover:text-emerald-300 font-semibold hover:bg-emerald-500/10 px-3 py-1.5 rounded-lg transition border border-transparent hover:border-emerald-500/30 cursor-pointer active:scale-95"
+            >
+              <RefreshCw className="w-4 h-4" />
+              Reset
+            </button>
+          )}
         </div>
-        {(config.rotation !== 0 || config.flipH || config.flipV) && (
-          <button
-            onClick={handleReset}
-            className="px-2.5 py-1.5 bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-neutral-300 hover:text-white rounded-lg font-bold flex items-center gap-1 transition text-3xs uppercase cursor-pointer"
-          >
-            <RefreshCw className="w-3 h-3" />
-            Reset all
-          </button>
-        )}
+        <div className="space-y-2">
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-neutral-400">Rotation</span>
+            <span className="text-white font-semibold bg-neutral-900/60 px-3 py-1 rounded-lg font-mono">
+              {config.rotation}°
+            </span>
+          </div>
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-neutral-400">Horizontal Flip</span>
+            <span className={`font-semibold px-3 py-1 rounded-lg font-mono text-xs ${
+              config.flipH
+                ? "bg-purple-950/40 text-purple-400"
+                : "bg-neutral-900/60 text-neutral-400"
+            }`}>
+              {config.flipH ? "ON" : "OFF"}
+            </span>
+          </div>
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-neutral-400">Vertical Flip</span>
+            <span className={`font-semibold px-3 py-1 rounded-lg font-mono text-xs ${
+              config.flipV
+                ? "bg-purple-950/40 text-purple-400"
+                : "bg-neutral-900/60 text-neutral-400"
+            }`}>
+              {config.flipV ? "ON" : "OFF"}
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );
