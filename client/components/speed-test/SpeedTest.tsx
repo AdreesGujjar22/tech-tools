@@ -1,60 +1,19 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowUp, Moon, Sun } from "lucide-react";
+import { Download, Upload, Zap } from "lucide-react";
 import "../../styles/speed-test/styles.css";
+
 type Phase = "idle" | "download" | "upload" | "done";
-
-const TICKS = [0, 1, 5, 10, 20, 50, 100];
-// log scale 0..100+
-const toAngle = (mbps: number) => {
-  const v = Math.max(0.1, Math.min(mbps, 100));
-  const t = Math.log10(v + 1) / Math.log10(101); // 0..1
-  return -210 + t * 240; // arc from -210deg to 30deg (240deg sweep)
-};
-
-const ARC_START = -210;
-const ARC_SWEEP = 240;
-const R = 130;
-const CX = 160;
-const CY = 160;
-
-const polar = (angleDeg: number, radius = R) => {
-  const a = (angleDeg * Math.PI) / 180;
-  return { x: CX + radius * Math.cos(a), y: CY + radius * Math.sin(a) };
-};
-
-const arcPath = (startA: number, endA: number) => {
-  const s = polar(startA);
-  const e = polar(endA);
-  const large = Math.abs(endA - startA) > 180 ? 1 : 0;
-  return `M ${s.x} ${s.y} A ${R} ${R} 0 ${large} 1 ${e.x} ${e.y}`;
-};
 
 export function SpeedTest() {
   const [phase, setPhase] = useState<Phase>("idle");
-  const [speed, setSpeed] = useState(0); // displayed (smoothed)
+  const [speed, setSpeed] = useState(0);
   const [download, setDownload] = useState<number | null>(null);
   const [upload, setUpload] = useState<number | null>(null);
-  const targetRef = useRef(0);
-  const rafRef = useRef<number | null>(null);
+  const [progress, setProgress] = useState(0);
   const animatingRef = useRef(false);
-  const sweepRafRef = useRef<number | null>(null);
-  const sweepingRef = useRef(false);
 
-  const startAnimating = () => {
-    if (animatingRef.current) return;
-    animatingRef.current = true;
-    const tick = () => {
-      setSpeed((prev) => {
-        const next = prev + (targetRef.current - prev) * 0.18;
-        return Math.abs(next - targetRef.current) < 0.01 ? targetRef.current : next;
-      });
-      if (animatingRef.current) rafRef.current = requestAnimationFrame(tick);
-    };
-    rafRef.current = requestAnimationFrame(tick);
-  };
   const stopAnimating = () => {
     animatingRef.current = false;
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
   };
 
   useEffect(() => () => stopAnimating(), []);
@@ -75,6 +34,8 @@ export function SpeedTest() {
         const elapsed = (performance.now() - start) / 1000;
         if (elapsed > 0.05) {
           lastMbps = (received * 8) / 1_000_000 / elapsed;
+          setSpeed(lastMbps);
+          setProgress(Math.min(85, (elapsed / 10) * 100));
         }
       }
     }
@@ -82,7 +43,7 @@ export function SpeedTest() {
   };
 
   const measureUpload = async () => {
-    const chunkSize = 2_000_000; // 2MB
+    const chunkSize = 2_000_000;
     const raw = new Uint8Array(chunkSize);
     crypto.getRandomValues(raw.subarray(0, Math.min(65536, chunkSize)));
     const blob = new Blob([raw]);
@@ -108,6 +69,8 @@ export function SpeedTest() {
         totalBytes += chunkSize;
         const elapsed = (performance.now() - overallStart) / 1000;
         lastMbps = (totalBytes * 8) / 1_000_000 / elapsed;
+        setSpeed(lastMbps);
+        setProgress(Math.min(85, (elapsed / 6) * 100));
       } catch (err) {
         failures++;
         if (failures >= 2) throw err;
@@ -116,164 +79,152 @@ export function SpeedTest() {
     return lastMbps;
   };
 
-  const startSweep = () => {
-    const t0 = performance.now();
-    const loop = () => {
-      if (!sweepingRef.current) return;
-      const t = ((performance.now() - t0) % 2000) / 2000;
-      const v = t < 0.5 ? t * 2 * 50 : (1 - t) * 2 * 50;
-      targetRef.current = v;
-      sweepRafRef.current = requestAnimationFrame(loop);
-    };
-    sweepingRef.current = true;
-    sweepRafRef.current = requestAnimationFrame(loop);
-  };
-  const stopSweep = () => {
-    sweepingRef.current = false;
-    if (sweepRafRef.current) cancelAnimationFrame(sweepRafRef.current);
-  };
-
   const start = async () => {
     setDownload(null);
     setUpload(null);
-    targetRef.current = 0;
     setSpeed(0);
-    startAnimating();
-    startSweep();
+    setProgress(0);
+    animatingRef.current = true;
+
     try {
       setPhase("download");
       const dl = await measureDownload();
-      stopSweep();
-      targetRef.current = dl;
-      await new Promise((r) => setTimeout(r, 700));
       setDownload(dl);
-
+      setProgress(100);
+      
+      await new Promise((r) => setTimeout(r, 1000));
+      
       setPhase("upload");
-      targetRef.current = 0;
       setSpeed(0);
-      startSweep();
+      setProgress(0);
       const ul = await measureUpload();
-      stopSweep();
-      targetRef.current = ul;
-      await new Promise((r) => setTimeout(r, 700));
       setUpload(ul);
+      setProgress(100);
+      
       setPhase("done");
     } catch (e) {
       console.error(e);
-      stopSweep();
       setPhase("idle");
+      setProgress(0);
     } finally {
-      setTimeout(stopAnimating, 600);
+      stopAnimating();
     }
   };
 
-  const angle = toAngle(speed);
-  const knob = polar(angle);
-  const trackPath = arcPath(ARC_START, ARC_START + ARC_SWEEP);
-  const progressPath = arcPath(ARC_START, angle);
-
-  const status =
-    phase === "idle"
-      ? "Tap start to begin"
-      : phase === "download"
-        ? "Testing download…"
-        : phase === "upload"
-          ? "Testing upload…"
-          : "Test complete";
-
-  const Icon = phase === "upload" ? ArrowUp : ArrowDown;
+  const isLoading = phase === "download" || phase === "upload";
+  const displaySpeed = Math.max(0, Math.round(speed * 10) / 10);
 
   return (
-    <main className="relative min-h-screen bg-background text-foreground flex flex-col items-center justify-center px-6 py-[150px] font-sans">
-      <h1 className="text-sm uppercase tracking-[0.25em] text-muted-foreground mb-10">
-        Internet speed test
-      </h1>
-
-      <div className="relative w-full max-w-[360px] aspect-[1/1.2]">
-        <svg viewBox="0 0 320 320" className="w-full h-full -rotate-0">
-          <path
-            d={trackPath}
-            fill="none"
-            stroke="var(--speed-track)"
-            strokeWidth={14}
-            strokeLinecap="round"
-          />
-          <path
-            d={progressPath}
-            fill="none"
-            stroke="var(--speed-accent)"
-            strokeWidth={14}
-            strokeLinecap="round"
-            
-          />
-          <circle
-            cx={knob.x}
-            cy={knob.y}
-            r={10}
-            fill="var(--background)"
-            stroke="var(--speed-accent)"
-            strokeWidth={3}
-          />
-          {TICKS.map((t) => {
-            const a = toAngle(t === 0 ? 0.1 : t);
-            const p = polar(a, R + 28);
-            const px = Math.round(p.x * 100) / 100;
-            const py = Math.round(p.y * 100) / 100;
-            return (
-              <text
-                key={t}
-                x={px}
-                y={py}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                className="fill-muted-foreground"
-                fontSize={13}
-              >
-                {t === 100 ? "100+" : t}
-              </text>
-            );
-          })}
-        </svg>
-
-        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-          <div className="text-6xl font-light tabular-nums tracking-tight">
-            {speed.toFixed(0.1)}
+    <main className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center px-4 sm:px-6 py-8">
+      {/* Main Card */}
+      <div className="w-full max-w-2xl">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Zap className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
+              Speed Test
+            </h1>
           </div>
-          <div className="mt-1 text-xs text-muted-foreground tracking-wide">
-            Megabits per second
-          </div>
-          <Icon className="mt-6 h-5 w-5 text-muted-foreground" />
-          <div className="mt-2 text-sm text-muted-foreground">{status}</div>
+          <p className="text-sm sm:text-base text-muted-foreground">
+            Test your internet speed with Cloudflare's network
+          </p>
         </div>
-      </div>
 
-      <div className="mt-10 grid grid-cols-2 gap-10 text-center min-w-[260px]">
-        <div>
-          <div className="text-xs uppercase tracking-widest text-muted-foreground">
-            Mbps download
+        {/* Main Speed Display */}
+        <div className="bg-card border-2 border-border rounded-2xl p-8 sm:p-12 mb-8 shadow-sm">
+          {/* Current Speed */}
+          <div className="text-center mb-8">
+            <div className="text-6xl sm:text-7xl lg:text-8xl font-bold text-primary tabular-nums tracking-tight">
+              {displaySpeed}
+            </div>
+            <div className="text-base sm:text-lg text-muted-foreground mt-3 font-semibold">
+              {phase === "download" ? "Download Speed (Mbps)" : phase === "upload" ? "Upload Speed (Mbps)" : "Mbps"}
+            </div>
           </div>
-          <div className="mt-2 text-2xl font-light tabular-nums">
-            {download !== null ? download.toFixed(1) : "—"}
-          </div>
-        </div>
-        <div>
-          <div className="text-xs uppercase tracking-widest text-muted-foreground">
-            Mbps upload
-          </div>
-          <div className="mt-2 text-2xl font-light tabular-nums">
-            {upload !== null ? upload.toFixed(1) : "—"}
-          </div>
-        </div>
-      </div>
 
-      <div className="mt-10">
-        <button
-          onClick={start}
-          disabled={phase === "download" || phase === "upload"}
-          className="px-8 py-2.5 rounded-full border border-[var(--speed-accent)] text-[var(--speed-accent)] text-sm tracking-wide hover:bg-[var(--speed-accent)] hover:text-white transition disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          {phase === "idle" || phase === "done" ? "Start test" : "Testing…"}
-        </button>
+          {/* Progress Bar */}
+          {isLoading && (
+            <div className="mb-8">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="flex-1 h-3 bg-secondary rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-primary transition-all duration-300 ease-out rounded-full"
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+                <span className="text-sm font-bold text-muted-foreground min-w-[40px] text-right">
+                  {Math.round(progress)}%
+                </span>
+              </div>
+              <p className="text-center text-xs sm:text-sm text-muted-foreground font-semibold">
+                {phase === "download" ? "Testing Download…" : "Testing Upload…"}
+              </p>
+            </div>
+          )}
+
+          {/* Status Message */}
+          {!isLoading && (
+            <div className="text-center">
+              {phase === "idle" && (
+                <p className="text-base sm:text-lg text-foreground font-semibold">Ready to test your speed?</p>
+              )}
+              {phase === "done" && (
+                <p className="text-base sm:text-lg text-primary font-bold">✓ Test Complete!</p>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Results Grid */}
+        {(download !== null || upload !== null) && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+            {/* Download Result */}
+            <div className="bg-card border-2 border-border rounded-xl p-6 sm:p-8 text-center">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <Download className="w-6 h-6 text-primary" />
+                <h3 className="text-lg sm:text-xl font-bold text-foreground">Download</h3>
+              </div>
+              <div className="text-4xl sm:text-5xl font-bold text-primary tabular-nums tracking-tight">
+                {download !== null ? download.toFixed(1) : "—"}
+              </div>
+              <p className="text-sm text-muted-foreground mt-2 font-semibold">Mbps</p>
+            </div>
+
+            {/* Upload Result */}
+            <div className="bg-card border-2 border-border rounded-xl p-6 sm:p-8 text-center">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <Upload className="w-6 h-6 text-primary" />
+                <h3 className="text-lg sm:text-xl font-bold text-foreground">Upload</h3>
+              </div>
+              <div className="text-4xl sm:text-5xl font-bold text-primary tabular-nums tracking-tight">
+                {upload !== null ? upload.toFixed(1) : "—"}
+              </div>
+              <p className="text-sm text-muted-foreground mt-2 font-semibold">Mbps</p>
+            </div>
+          </div>
+        )}
+
+        {/* Start Button */}
+        <div className="text-center">
+          <button
+            onClick={start}
+            disabled={isLoading}
+            className={`px-8 sm:px-12 py-4 sm:py-5 text-base sm:text-lg font-bold rounded-xl transition-all transform ${
+              isLoading
+                ? "bg-muted text-muted-foreground cursor-not-allowed opacity-50"
+                : "bg-primary text-primary-foreground hover:shadow-lg hover:-translate-y-1 active:scale-95 shadow-md"
+            }`}
+          >
+            {isLoading ? "Testing…" : "Start Speed Test"}
+          </button>
+        </div>
+
+        {/* Info */}
+        <div className="text-center mt-8 text-xs sm:text-sm text-muted-foreground">
+          <p>Your results will appear here once testing is complete.</p>
+          <p className="mt-2">Powered by Cloudflare's global network</p>
+        </div>
       </div>
     </main>
   );

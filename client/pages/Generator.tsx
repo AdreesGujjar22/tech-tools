@@ -1,11 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import QRCode from "qrcode";
 import { Download, Share2, Copy, Sparkles, RefreshCw, Layers, Sliders, Check, ImageIcon } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 
 export default function Generator() {
   const [text, setText] = useState("https://ai.studio/build");

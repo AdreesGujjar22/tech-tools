@@ -9,13 +9,14 @@ export function Badge({ className, variant = "default", ...props }: BadgeProps) 
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-xl px-2.5 py-0.5 text-2xs sm:text-xs font-bold font-mono tracking-wider uppercase border transition-colors",
-        variant === "default" && "bg-primary/10 border-primary/20 text-primary",
-        variant === "secondary" && "bg-secondary border-border text-secondary-foreground",
-        variant === "outline" && "text-foreground border-border bg-transparent",
-        variant === "success" && "bg-emerald-500/10 border-emerald-500/20 text-emerald-500 dark:text-emerald-400",
-        variant === "warning" && "bg-amber-500/10 border-amber-500/20 text-amber-500 dark:text-amber-400",
-        variant === "destructive" && "bg-destructive/10 border-destructive/20 text-destructive dark:text-rose-400",
+        "inline-flex items-center rounded-full px-3 py-1 text-2xs sm:text-xs font-bold font-mono tracking-wider uppercase border transition-all duration-200 backdrop-blur-sm",
+        "hover:shadow-sm hover:-translate-y-0.5",
+        variant === "default" && "bg-primary/10 border-primary/20 text-primary hover:bg-primary/15 hover:border-primary/30",
+        variant === "secondary" && "bg-secondary/60 border-border/40 text-secondary-foreground hover:bg-secondary/70 hover:border-border/50",
+        variant === "outline" && "text-foreground border-border/40 bg-transparent hover:bg-accent/30 hover:border-border/60",
+        variant === "success" && "bg-emerald-500/15 border-emerald-500/30 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500/25 hover:border-emerald-500/40",
+        variant === "warning" && "bg-amber-500/15 border-amber-500/30 text-amber-600 dark:text-amber-400 hover:bg-amber-500/25 hover:border-amber-500/40",
+        variant === "destructive" && "bg-destructive/15 border-destructive/30 text-destructive dark:text-rose-400 hover:bg-destructive/25 hover:border-destructive/40",
         className
       )}
       {...props}

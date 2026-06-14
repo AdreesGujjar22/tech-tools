@@ -4,16 +4,17 @@
 
 import React, { useState, useEffect } from "react";
 import { useAuth } from "@/lib/auth";
+import { OfflineHelper } from "@/lib/offlineHelper";
 import { Blog, Category , Tag } from "@shared/api";
-import { 
-  collection, 
-  getDocs, 
-  addDoc, 
-  setDoc, 
-  doc, 
-  deleteDoc, 
-  query, 
-  orderBy, 
+import {
+  collection,
+  getDocs,
+  addDoc,
+  setDoc,
+  doc,
+  deleteDoc,
+  query,
+  orderBy,
   where,
   getDoc
 } from "firebase/firestore";
@@ -124,50 +125,65 @@ export default function AdminPage() {
   async function fetchCmsData() {
     try {
       setCmsLoading(true);
-      
+
       let fetchedArticles: Blog[] = [];
       let fetchedCats: Category[] = [];
       let fetchedTags: Tag[] = [];
 
-      // 1. Try reading from Firestore
-      try {
-        const articlesSnap = await getDocs(query(collection(db, "blogs"), orderBy("createdAt", "desc")));
-        articlesSnap.forEach((docSnap) => {
-          const d = docSnap.data() as any;
-          fetchedArticles.push({
-            id: docSnap.id,
-            title: d.title || "",
-            slug: d.slug || "",
-            content: d.content || "",
-            status: d.status || "draft",
-            excerpt: d.excerpt || "",
-            category: d.category || "General",
-            tags: d.tags || [],
-            featuredImage: d.featuredImage || "",
-            readingTime: d.readingTime || "3 min read",
-            createdAt: d.createdAt?.toDate ? d.createdAt.toDate().toLocaleDateString() : String(d.createdAt || ""),
-            updatedAt: d.updatedAt?.toDate ? d.updatedAt.toDate().toLocaleDateString() : String(d.updatedAt || ""),
-            seoTitle: d.seoTitle || "",
-            seoDescription: d.seoDescription || "",
-            seoKeywords: d.seoKeywords || ""
+      // Check connection status
+      OfflineHelper.logOfflineMode();
+
+      // 1. Try reading from Firestore (with offline fallback)
+      if (!OfflineHelper.shouldUseLocalStorage()) {
+        try {
+          const articlesSnap = await Promise.race([
+            getDocs(query(collection(db, "blogs"), orderBy("createdAt", "desc"))),
+            new Promise((_, reject) => setTimeout(() => reject(new Error("Firebase timeout")), 5000))
+          ]);
+
+          (articlesSnap as any).forEach((docSnap: any) => {
+            const d = docSnap.data() as any;
+            fetchedArticles.push({
+              id: docSnap.id,
+              title: d.title || "",
+              slug: d.slug || "",
+              content: d.content || "",
+              status: d.status || "draft",
+              excerpt: d.excerpt || "",
+              category: d.category || "General",
+              tags: d.tags || [],
+              featuredImage: d.featuredImage || "",
+              readingTime: d.readingTime || "3 min read",
+              createdAt: d.createdAt?.toDate ? d.createdAt.toDate().toLocaleDateString() : String(d.createdAt || ""),
+              updatedAt: d.updatedAt?.toDate ? d.updatedAt.toDate().toLocaleDateString() : String(d.updatedAt || ""),
+              seoTitle: d.seoTitle || "",
+              seoDescription: d.seoDescription || "",
+              seoKeywords: d.seoKeywords || ""
+            });
           });
-        });
 
-        // Fetch Categories
-        const categoriesSnap = await getDocs(collection(db, "categories"));
-        categoriesSnap.forEach((d) => {
-          const data = d.data() as any;
-          fetchedCats.push({ id: d.id, name: data.name, slug: data.name });
-        });
+          // Fetch Categories
+          const categoriesSnap = await Promise.race([
+            getDocs(collection(db, "categories")),
+            new Promise((_, reject) => setTimeout(() => reject(new Error("Firebase timeout")), 5000))
+          ]);
+          (categoriesSnap as any).forEach((d: any) => {
+            const data = d.data() as any;
+            fetchedCats.push({ id: d.id, name: data.name, slug: data.name });
+          });
 
-        // Fetch Tags
-        const tagsSnap = await getDocs(collection(db, "tags"));
-        tagsSnap.forEach((d) => {
-          const data = d.data() as any;
-          fetchedTags.push({ id: d.id, name: data.name, slug: data.name });
-        });
-      } catch (fbError) {
-        console.warn("Could not read from cloud Firestore, using local storage fallback:", fbError);
+          // Fetch Tags
+          const tagsSnap = await Promise.race([
+            getDocs(collection(db, "tags")),
+            new Promise((_, reject) => setTimeout(() => reject(new Error("Firebase timeout")), 5000))
+          ]);
+          (tagsSnap as any).forEach((d: any) => {
+            const data = d.data() as any;
+            fetchedTags.push({ id: d.id, name: data.name, slug: data.name });
+          });
+        } catch (fbError) {
+          console.warn("Could not read from cloud Firestore, using local storage fallback:", fbError);
+        }
       }
 
       // 2. Read and merge localStorage items for seamless offline or simulated dev experience

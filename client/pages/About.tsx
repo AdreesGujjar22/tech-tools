@@ -1,6 +1,5 @@
 import { Link } from "@/lib/router-compat";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { StaggerList } from "@/components/StaggerList";
 
 export default function About() {
   return (
@@ -38,9 +37,9 @@ export default function About() {
             </p>
           </div>
 
-          <div className="grid-auto-fit">
+          <StaggerList staggerDelay={0.1} className="grid-auto-fit">
             {/* Tool 1 */}
-            <div className="glass-card p-8 flex flex-col justify-between">
+            <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
                   <span className="text-2xl">🚀</span>
@@ -59,7 +58,7 @@ export default function About() {
             </div>
 
             {/* Tool 2 */}
-            <div className="glass-card p-8 flex flex-col justify-between">
+            <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
                   <span className="text-2xl">🎨</span>
@@ -78,7 +77,7 @@ export default function About() {
             </div>
 
             {/* Tool 3 */}
-            <div className="glass-card p-8 flex flex-col justify-between">
+            <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
                   <span className="text-2xl">⌨️</span>
@@ -97,7 +96,7 @@ export default function About() {
             </div>
 
             {/* Tool 4 */}
-            <div className="glass-card p-8 flex flex-col justify-between">
+            <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
                   <span className="text-2xl">📷</span>
@@ -116,7 +115,7 @@ export default function About() {
             </div>
 
             {/* Tool 5 */}
-            <div className="glass-card p-8 flex flex-col justify-between">
+            <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
                   <span className="text-2xl">🖼</span>
@@ -135,7 +134,7 @@ export default function About() {
             </div>
 
             {/* Tool 6 */}
-            <div className="glass-card p-8 flex flex-col justify-between">
+            <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
                   <span className="text-2xl">📏</span>
@@ -152,7 +151,7 @@ export default function About() {
                 Try Now →
               </Link>
             </div>
-          </div>
+          </StaggerList>
         </div>
       </section>
 

@@ -14,25 +14,25 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || isLoading}
         className={cn(
-          "inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98] cursor-pointer",
+          "inline-flex items-center justify-center font-semibold rounded-lg sm:rounded-xl transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98] cursor-pointer relative",
           // Variants
           variant === "primary" &&
-            "brand-gradient text-white shadow-[0_10px_24px_-10px_hsla(var(--brand-to),0.7)] hover:shadow-[0_14px_30px_-10px_hsla(var(--brand-to),0.8)] hover:brightness-110",
+            "brand-gradient text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:shadow-md",
           variant === "secondary" &&
-            "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border",
+            "bg-white/10 text-foreground hover:bg-white/20 border border-white/10 hover:border-white/20 hover:shadow-md hover:-translate-y-0.5",
           variant === "outline" &&
-            "bg-transparent border border-border text-foreground hover:bg-accent hover:text-accent-foreground hover:border-primary/40",
-          variant === "ghost" && "bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground",
+            "bg-transparent border border-white/20 text-foreground hover:bg-white/5 hover:border-white/40 hover:shadow-md hover:-translate-y-0.5",
+          variant === "ghost" && "bg-transparent text-foreground hover:bg-white/5 hover:-translate-y-0.5",
           variant === "link" &&
             "bg-transparent text-primary hover:underline underline-offset-4 !p-0 !h-auto active:scale-100",
           variant === "destructive" &&
-            "bg-destructive text-destructive-foreground hover:brightness-110 shadow-md",
+            "bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/30 hover:bg-red-500/30 hover:border-red-500/50 hover:shadow-md hover:-translate-y-0.5",
           variant === "glass" &&
-            "glass-card text-foreground hover:text-foreground border border-border/60 hover:border-primary/40 !shadow-none backdrop-blur-md",
+            "backdrop-blur-md bg-white/10 text-foreground border border-white/20 hover:bg-white/20 hover:border-white/40 hover:shadow-lg hover:-translate-y-0.5",
           // Sizes
           size === "xs" && "h-8 px-3 text-xs rounded-lg",
           size === "sm" && "h-9 px-4 text-xs sm:text-sm rounded-lg",
-          size === "md" && "h-11 px-6 text-sm sm:text-base",
+          size === "md" && "h-11 px-6 text-sm sm:text-base rounded-2xl",
           size === "lg" && "h-13 px-8 text-base sm:text-lg rounded-2xl",
           className
         )}

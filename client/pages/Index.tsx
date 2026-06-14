@@ -84,49 +84,49 @@ export default function Index() {
       />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-6 relative overflow-hidden">
+      <section className="pt-24 sm:pt-32 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         {/* Background Gradient */}
-        <div className="absolute inset-0 w-full h-[28rem] bg-hero-radial pointer-events-none" style={{ top: 0 }} />
+        <div className="absolute inset-0 w-full h-[20rem] sm:h-[28rem] bg-hero-radial pointer-events-none" style={{ top: 0 }} />
 
-        <div className="max-w-[1280px] mx-auto relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-7xl mx-auto relative z-10 grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           {/* Left Content */}
-          <div className="flex flex-col gap-8 animate-fade-in-up">
+          <div className="flex flex-col gap-6 sm:gap-8">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 w-fit px-4 py-2 rounded-full border border-border bg-secondary/50 backdrop-blur-sm">
-              <Sparkles className="w-3.5 h-3.5 text-primary" />
-              <span className="text-primary text-xs font-semibold tracking-[1.2px] uppercase">Next-Gen Encoding</span>
+            <div className="inline-flex items-center gap-2 w-fit px-3 sm:px-4 py-2 rounded-full border border-white/20 bg-white/5 dark:bg-white/[0.03] backdrop-blur-sm">
+              <Sparkles className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-primary" />
+              <span className="text-primary text-xs font-semibold tracking-wide uppercase">Next-Gen Tools</span>
             </div>
 
             {/* Main Heading */}
-            <div className="space-y-5">
-              <h1 className="text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight text-balance">
+            <div className="space-y-4 sm:space-y-5">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
                 All Your Essential <span className="gradient-text">Tech Tools</span> in One Place
               </h1>
-              <p className="text-lg text-muted-foreground max-w-[576px] leading-relaxed text-pretty">
-                Fast, free, and modern online tools for developers, students, creators, and everyday users. Boost productivity with smart utilities designed to simplify your digital life.
+              <p className="text-base sm:text-lg text-muted-foreground max-w-lg leading-relaxed">
+                Fast, free, and modern online tools for developers, students, creators. Everything designed for speed and simplicity.
               </p>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link
                 to="/tools"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl brand-gradient text-white font-semibold hover:brightness-110 transition-all shadow-[0_20px_40px_-16px_hsla(var(--brand-to),0.8)]"
+                className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-2xl brand-gradient text-white text-sm sm:text-base font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition-all"
               >
-                Start Using Tools
+                Start Tools
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/about-us"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-2xl border border-border bg-card/50 backdrop-blur-md text-foreground font-semibold hover:bg-accent/50 hover:border-primary/30 transition-all"
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-2xl border border-white/20 bg-white/5 dark:bg-white/[0.03] backdrop-blur-md text-foreground text-sm sm:text-base font-semibold hover:bg-white/10 hover:border-white/30 transition-all"
               >
                 Learn More
               </Link>
             </div>
 
             {/* Short Intro Paragraph */}
-            <p className="text-base text-muted-foreground max-w-[576px] leading-relaxed">
-              Welcome to TechTools, your all-in-one platform for powerful online utilities. From QR generators and internet speed tests to image converters, typing tests, color pickers, and developer tools — everything is designed for speed, simplicity, and accuracy.
+            <p className="text-xs sm:text-sm text-muted-foreground max-w-lg leading-relaxed">
+              QR generators, speed tests, image converters, color pickers, developer tools — all in your browser, securely.
             </p>
           </div>
 
@@ -134,8 +134,8 @@ export default function Index() {
           <div className="hidden lg:block">
             <div className="relative">
               {/* Glow */}
-              <div className="absolute -inset-6 bg-[hsla(var(--brand-to),0.18)] blur-3xl rounded-full pointer-events-none" />
-              <div className="relative rounded-[40px] glass-card p-10 shadow-[0_40px_80px_-24px_rgba(8,12,30,0.55)]">
+              <div className="absolute -inset-6 bg-blue-500/10 blur-3xl rounded-full pointer-events-none" />
+              <div className="relative rounded-2xl sm:rounded-3xl backdrop-blur-md bg-white/10 dark:bg-white/[0.05] border border-white/10 p-6 sm:p-10 shadow-2xl">
                 <div className="aspect-square rounded-2xl bg-white p-6 flex items-center justify-center">
                   <img
                     src="/images/hero-section.png"
@@ -161,25 +161,25 @@ export default function Index() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-[1280px] mx-auto">
-          <div className="text-center mb-16 space-y-4">
-            <h2 className="text-4xl font-bold tracking-tight">Why Choose TechTools?</h2>
-            <p className="text-base text-muted-foreground max-w-[672px] mx-auto text-pretty">
-              Discover why thousands of users trust TechTools for their daily productivity needs.
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16 space-y-3 sm:space-y-4">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Why Choose TechTools?</h2>
+            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
+              Trusted by thousands for fast, secure, and simple online utilities.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {features.map((feature) => {
               const Icon = feature.icon;
               return (
-                <div key={feature.title} className="glass-card p-8 flex flex-col gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/15 flex items-center justify-center">
-                    <Icon className="w-6 h-6 text-primary" />
+                <div key={feature.title} className="p-6 sm:p-8 rounded-lg sm:rounded-2xl backdrop-blur-md bg-white/[0.08] dark:bg-white/[0.05] border border-white/10 hover:border-white/20 hover:shadow-lg hover:-translate-y-0.5 transition-all">
+                  <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl bg-white/10 border border-white/20 flex items-center justify-center mb-4">
+                    <Icon className="w-5 sm:w-6 h-5 sm:h-6 text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold">{feature.title}</h3>
-                  <p className="text-base text-muted-foreground leading-relaxed">{feature.desc}</p>
+                  <h3 className="text-base sm:text-lg font-bold mb-2">{feature.title}</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{feature.desc}</p>
                 </div>
               );
             })}
@@ -188,33 +188,33 @@ export default function Index() {
       </section>
 
       {/* Integrations Section */}
-      <section className="section-bg-alt py-20 px-6">
-        <div className="max-w-[1280px] mx-auto">
-          <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 mb-12">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white/[0.02] dark:bg-white/[0.01] border-y border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8 mb-10 sm:mb-12">
             <div className="space-y-2">
-              <h2 className="text-4xl font-bold tracking-tight">Limitless Integration</h2>
-              <p className="text-base text-muted-foreground max-w-[576px] text-pretty">
-                Whatever your data source, Obsidian handles the translation into secure visual data packets.
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Flexible Tools</h2>
+              <p className="text-xs sm:text-sm text-muted-foreground max-w-sm">
+                All your favorite online utilities in one place.
               </p>
             </div>
             <Link
               to="/generator"
-              className="inline-flex items-center gap-1 text-primary font-medium text-sm border-b border-primary/30 pb-1 hover:border-primary transition-colors"
+              className="inline-flex items-center gap-1 text-primary font-medium text-xs sm:text-sm hover:text-primary/80 transition-colors"
             >
-              View All 40+ Types
+              View All Tools
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
             {integrations.map((item) => {
               const Icon = item.icon;
               return (
-                <div key={item.label} className="glass-card p-6 flex flex-col items-center gap-4 text-center">
-                  <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/15 flex items-center justify-center">
-                    <Icon className="w-6 h-6 text-primary" />
+                <div key={item.label} className="p-4 sm:p-6 rounded-lg sm:rounded-2xl backdrop-blur-md bg-white/[0.08] dark:bg-white/[0.05] border border-white/10 hover:border-white/20 hover:shadow-md hover:-translate-y-0.5 transition-all flex flex-col items-center gap-3 text-center group">
+                  <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl bg-white/10 border border-white/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Icon className="w-5 sm:w-6 h-5 sm:h-6 text-primary" />
                   </div>
-                  <span className="text-sm font-semibold">{item.label}</span>
+                  <span className="text-xs sm:text-sm font-semibold">{item.label}</span>
                 </div>
               );
             })}
@@ -223,21 +223,21 @@ export default function Index() {
       </section>
 
       {/* How It Works */}
-      <section className="py-20 px-6">
-        <div className="max-w-[1280px] mx-auto">
-          <h2 className="text-4xl font-bold tracking-tight text-center mb-16">Seamless Workflow</h2>
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-center mb-12 sm:mb-16">Simple Workflow</h2>
 
-          <div className="grid md:grid-cols-3 gap-12 lg:gap-16 relative">
+          <div className="grid md:grid-cols-3 gap-8 sm:gap-12 lg:gap-16 relative">
             {/* Connector Line */}
-            <div className="hidden md:block absolute top-8 left-0 right-0 h-px bg-connector-line" />
+            <div className="hidden md:block absolute top-8 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
             {steps.map((step) => (
               <div key={step.num} className="flex flex-col items-center relative z-10">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center font-bold text-2xl mb-5 brand-gradient text-white shadow-[0_16px_32px_-12px_hsla(var(--brand-to),0.7)]">
+                <div className="w-14 sm:w-16 h-14 sm:h-16 rounded-full flex items-center justify-center font-bold text-xl sm:text-2xl mb-4 sm:mb-5 brand-gradient text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all">
                   {step.num}
                 </div>
-                <h3 className="text-2xl font-semibold text-center mb-3">{step.title}</h3>
-                <p className="text-base text-muted-foreground text-center text-pretty">{step.desc}</p>
+                <h3 className="text-lg sm:text-2xl font-semibold text-center mb-2 sm:mb-3">{step.title}</h3>
+                <p className="text-xs sm:text-sm text-muted-foreground text-center leading-relaxed max-w-sm">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -245,23 +245,23 @@ export default function Index() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6">
-        <div className="max-w-[1232px] mx-auto glass-card p-12 sm:p-16 rounded-[40px] relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-cta pointer-events-none" />
-          <div className="relative flex flex-col items-center gap-6 text-center">
-            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-balance">Ready to Go Obsidian?</h2>
-            <p className="text-lg text-muted-foreground max-w-[672px] text-pretty">
-              Join the future of encoding. Start creating secure, beautiful QR codes in seconds.
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto p-8 sm:p-12 lg:p-16 rounded-2xl sm:rounded-3xl backdrop-blur-md bg-white/[0.08] dark:bg-white/[0.05] border border-white/10 hover:border-white/20 hover:shadow-2xl transition-all relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 pointer-events-none" />
+          <div className="relative flex flex-col items-center gap-4 sm:gap-6 text-center">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Ready to Get Started?</h2>
+            <p className="text-sm sm:text-lg text-muted-foreground max-w-2xl">
+              Join thousands of users with powerful tools in your browser.
             </p>
             <Link
               to="/tools"
-              className="inline-flex items-center gap-2 px-10 py-4 rounded-2xl brand-gradient text-white font-semibold text-lg hover:brightness-110 transition-all shadow-[0_20px_40px_-16px_hsla(var(--brand-to),0.8)]"
+              className="inline-flex items-center gap-2 px-6 sm:px-10 py-3 sm:py-4 rounded-lg sm:rounded-2xl brand-gradient text-white text-sm sm:text-lg font-semibold hover:shadow-xl hover:shadow-blue-500/30 hover:-translate-y-0.5 transition-all"
             >
-              Get Started for Free
-              <ArrowRight className="w-5 h-5" />
+              Get Started
+              <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5" />
             </Link>
-            <p className="text-xs font-semibold text-muted-foreground">
-              No credit card required. Enterprise plans available.
+            <p className="text-xs text-muted-foreground">
+              No credit card required.
             </p>
           </div>
         </div>

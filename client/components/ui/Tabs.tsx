@@ -37,7 +37,12 @@ export function Tabs({
 
 export function TabsList({ className, children }: { className?: string; children: React.ReactNode }) {
   return (
-    <div className={cn("inline-flex items-center justify-center p-1 bg-secondary rounded-xl border border-border/60", className)}>
+    <div className={cn(
+      "inline-flex items-center justify-center gap-1 p-1.5",
+      "glass-card rounded-2xl border border-border/40 backdrop-blur-sm",
+      "shadow-sm hover:shadow-md transition-all duration-300",
+      className
+    )}>
       {children}
     </div>
   );
@@ -61,11 +66,15 @@ export function TabsTrigger({
     <button
       onClick={() => context.setActiveTab(value)}
       className={cn(
-        "px-4 py-2 text-xs sm:text-sm font-semibold text-muted-foreground hover:text-foreground rounded-lg transition-all duration-155 cursor-pointer",
-        isSelected && "bg-card text-foreground shadow-sm border border-border/30",
+        "px-4 py-2.5 text-xs sm:text-sm font-semibold rounded-lg transition-all duration-300 cursor-pointer relative",
+        "text-muted-foreground hover:text-foreground hover:bg-accent/50",
+        isSelected && "text-foreground bg-card/80 shadow-sm border border-border/40 hover:shadow-md hover:-translate-y-0.5",
         className
       )}
     >
+      {isSelected && (
+        <span className="absolute -bottom-1.5 left-2 right-2 h-0.5 rounded-full brand-gradient" />
+      )}
       {children}
     </button>
   );
@@ -85,5 +94,5 @@ export function TabsContent({
 
   if (context.activeTab !== value) return null;
 
-  return <div className={cn("mt-4 select-none focus:outline-none animate-fade-in", className)}>{children}</div>;
+  return <div className={cn("mt-6 select-none focus:outline-none animate-fade-in-scale", className)}>{children}</div>;
 }

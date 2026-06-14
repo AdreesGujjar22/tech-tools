@@ -2,6 +2,8 @@ import { useNavigate } from "@/lib/router-compat";
 import { useState } from "react";
 import { Search, Clock, Eye, Share2, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { StaggerList } from "@/components/StaggerList";
+import { Badge } from "@/components/ui/Badge";
 
 const qrItems = [
   {
@@ -186,15 +188,15 @@ export default function History() {
 
           {/* Items Grid */}
           {filteredItems.length === 0 ? (
-            <div className="glass-card p-12 text-center text-muted-foreground mb-12 rounded-2xl">
+            <div className="premium-card p-12 text-center text-muted-foreground mb-12 rounded-2xl border border-border/40">
               No tools matching your search criteria were found.
             </div>
           ) : (
-            <div className="grid-auto-fit mb-12">
+            <StaggerList staggerDelay={0.08} className="grid-auto-fit mb-12">
               {filteredItems.map((item) => (
                 <div
                   key={item.id}
-                  className="glass-card p-5 flex flex-col gap-4 cursor-pointer group rounded-xl hover:scale-105 transition-transform"
+                  className="premium-card p-5 flex flex-col gap-4 cursor-pointer group rounded-xl border border-border/40 hover:shadow-lg hover:-translate-y-2 transition-all"
                   onClick={() => navigate(item.url)}
                 >
                   {/* Preview */}
@@ -217,14 +219,14 @@ export default function History() {
 
                   {/* Actions */}
                   <div className="flex gap-2 mt-auto">
-                    <button className="flex-1 py-2 rounded-lg bg-secondary/60 text-foreground font-semibold text-xs flex items-center justify-center gap-1.5 hover:bg-primary/20 transition-colors">
+                    <button className="flex-1 py-2 rounded-lg bg-accent/60 text-foreground font-semibold text-xs flex items-center justify-center gap-1.5 hover:bg-primary/20 transition-colors">
                       <Eye className="w-3.5 h-3.5" />
                       View
                     </button>
                     <div className="relative inline-block w-auto">
                       <button
                         onClick={(e) => handleShare(e, item.title, item.url)}
-                        className="py-2 px-3 rounded-lg bg-secondary/60 text-foreground font-semibold text-xs hover:bg-primary/20 transition-colors flex items-center justify-center"
+                        className="py-2 px-3 rounded-lg bg-accent/60 text-foreground font-semibold text-xs hover:bg-primary/20 transition-colors flex items-center justify-center"
                         aria-label="Share page"
                       >
                         <Share2 className="w-3.5 h-3.5" />
@@ -239,11 +241,11 @@ export default function History() {
                   </div>
                 </div>
               ))}
-            </div>
+            </StaggerList>
           )}
 
           {/* CTA */}
-          <div className="glass-card p-12 sm:p-16 text-center space-y-6 rounded-2xl">
+          <div className="premium-card p-12 sm:p-16 text-center space-y-6 rounded-2xl border border-border/40 animate-fade-in-scale">
             <div className="w-16 h-16 mx-auto flex items-center justify-center rounded-lg bg-primary/10 border border-primary/15">
               <Sparkles className="w-7 h-7 text-primary" />
             </div>

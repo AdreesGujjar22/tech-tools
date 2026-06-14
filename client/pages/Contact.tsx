@@ -1,7 +1,6 @@
 import { useState } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { Mail, Phone, Clock, Twitter, Linkedin, Github, Send, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 import { toast } from "sonner";
 import emailjs from "@emailjs/browser";
 
@@ -85,8 +84,8 @@ export default function Contact() {
         <div className="container-full">
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Contact Form */}
-            <div className="lg:col-span-2">
-              <div className="glass-card p-8 rounded-2xl">
+            <div className="lg:col-span-2 animate-slide-up">
+              <div className="premium-card p-8 rounded-3xl border border-border/40 hover:shadow-lg transition-all">
                 <h2 className="text-2xl font-bold mb-8">Send us a message</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
@@ -151,30 +150,23 @@ export default function Contact() {
                       placeholder="Tell us more about your inquiry..."
                     />
                   </div>
-                  <button
+                  <Button
                     type="submit"
                     disabled={isLoading}
-                    className="btn-primary w-full py-3 text-base gap-2"
+                    size="lg"
+                    className="w-full gap-2"
+                    isLoading={isLoading}
                   >
-                    {isLoading ? (
-                      <>
-                        <Loader2 className="w-5 h-5 animate-spin" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5" />
-                        Send Message
-                      </>
-                    )}
-                  </button>
+                    {!isLoading && <Send className="w-5 h-5" />}
+                    {isLoading ? "Sending..." : "Send Message"}
+                  </Button>
                 </form>
               </div>
             </div>
 
             {/* Contact Info */}
-            <div className="space-y-6">
-              <div className="glass-card p-6 rounded-2xl">
+            <div className="space-y-6 animate-slide-down">
+              <div className="premium-card p-6 rounded-2xl border border-border/40 hover:shadow-lg transition-all">
                 <h3 className="text-xl font-bold mb-6">Contact Information</h3>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
@@ -208,14 +200,14 @@ export default function Contact() {
               </div>
 
               {/* Social Media */}
-              <div className="glass-card p-6 rounded-2xl">
+              <div className="premium-card p-6 rounded-2xl border border-border/40 hover:shadow-lg transition-all">
                 <h3 className="text-xl font-bold mb-6">Follow Us</h3>
                 <div className="flex gap-4">
                   <a
                     href="https://twitter.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center hover:bg-primary/20 transition-colors"
+                    className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center hover:bg-primary/20 hover:shadow-md hover:scale-110 transition-all"
                   >
                     <Twitter className="w-5 h-5 text-primary" />
                   </a>
@@ -223,7 +215,7 @@ export default function Contact() {
                     href="https://linkedin.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center hover:bg-primary/20 transition-colors"
+                    className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center hover:bg-primary/20 hover:shadow-md hover:scale-110 transition-all"
                   >
                     <Linkedin className="w-5 h-5 text-primary" />
                   </a>
@@ -231,7 +223,7 @@ export default function Contact() {
                     href="https://github.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center hover:bg-primary/20 transition-colors"
+                    className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center hover:bg-primary/20 hover:shadow-md hover:scale-110 transition-all"
                   >
                     <Github className="w-5 h-5 text-primary" />
                   </a>
@@ -239,7 +231,7 @@ export default function Contact() {
               </div>
 
               {/* Quick Response */}
-              <div className="glass-card p-6 rounded-2xl bg-primary/5">
+              <div className="premium-card p-6 rounded-2xl border border-border/40 bg-gradient-indigo-soft hover:shadow-lg transition-all">
                 <h3 className="text-lg font-bold mb-3">Quick Response</h3>
                 <p className="text-sm text-muted-foreground">
                   We typically respond to all inquiries within 24 hours. For urgent matters, please include "URGENT" in your subject line.

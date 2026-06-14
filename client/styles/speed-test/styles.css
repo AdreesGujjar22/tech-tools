@@ -1,1 +1,11 @@
 /* SpeedTest custom styles */
+
+:root {
+  --speed-primary: hsl(var(--primary));
+  --speed-bg: hsl(var(--card));
+}
+
+.dark {
+  --speed-primary: hsl(var(--primary));
+  --speed-bg: hsl(var(--card));
+}
