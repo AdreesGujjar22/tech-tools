@@ -118,6 +118,25 @@ export default function About() {
             <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
+                  <span className="text-2xl">📊</span>
+                </div>
+                <h3 className="text-xl font-semibold">Barcode Generator</h3>
+                <p className="text-muted-foreground text-sm">
+                  Create barcodes in multiple formats for products, inventory, and logistics.
+                </p>
+              </div>
+              <Link
+                to="/barcode-generator"
+                className="mt-6 text-primary font-medium text-sm border-b border-primary/30 pb-1 hover:border-primary transition-colors w-fit"
+              >
+                Try Now →
+              </Link>
+            </div>
+
+            {/* Tool 6 */}
+            <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
+              <div className="space-y-4">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
                   <span className="text-2xl">🖼</span>
                 </div>
                 <h3 className="text-xl font-semibold">Image Converter</h3>

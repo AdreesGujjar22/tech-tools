@@ -14,6 +14,7 @@ const STATIC_ROUTES = [
   { url: "/iloveimg", priority: 0.9, changefreq: "weekly" as const },
   { url: "/ilovepdf", priority: 0.9, changefreq: "weekly" as const },
   { url: "/qr-generator", priority: 0.8, changefreq: "weekly" as const },
+  { url: "/barcode-generator", priority: 0.8, changefreq: "weekly" as const },
   { url: "/color-picker", priority: 0.8, changefreq: "weekly" as const },
   { url: "/speed-test", priority: 0.8, changefreq: "weekly" as const },
   { url: "/typing-speed", priority: 0.8, changefreq: "weekly" as const },

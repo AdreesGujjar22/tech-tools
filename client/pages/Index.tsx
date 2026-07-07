@@ -54,6 +54,14 @@ const qrItems = [
     date: "Oct 18, 2024",
     preview: "https://api.builder.io/api/v1/image/assets/TEMP/297ee64dc0e7bfca7c4b6bcf1bc6a0361a742a79?width=320",
   },
+  {
+    id: 7,
+    title: "Barcode Generator",
+    url: "/barcode-generator",
+    type: "URL",
+    date: "Oct 18, 2024",
+    preview: "/images/barcode.png",
+  },
 ];
 
 export default function Index() {
