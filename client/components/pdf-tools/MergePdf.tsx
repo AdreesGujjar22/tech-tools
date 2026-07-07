@@ -34,7 +34,7 @@ export default function MergePdf() {
 
     updateProgress(90, "Assembling and flushing stream dictionary...");
     const finalBytes = await mergedPdf.save();
-    const finalBlob = new Blob([finalBytes], { type: "application/pdf" });
+    const finalBlob = new Blob([new Uint8Array(finalBytes)], { type: "application/pdf" });
 
     return {
       blob: finalBlob,
