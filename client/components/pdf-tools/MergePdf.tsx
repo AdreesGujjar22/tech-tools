@@ -15,26 +15,38 @@ export default function MergePdf() {
   ) => {
     updateProgress(15, "Reading input bytes...");
     const mergedPdf = await PDFDocument.create();
-    
+
     // Sort files based on user selection or leave custom
     const len = files.length;
     for (let i = 0; i < len; i++) {
       const file = files[i];
       const stepMsg = `Merging: ${file.name} (${i + 1}/${len})`;
       updateProgress(Math.floor(15 + (i / len) * 70), stepMsg);
-      
-      const fileBytes = await file.arrayBuffer();
-      const document = await PDFDocument.load(fileBytes);
-      const copiedPages = await mergedPdf.copyPages(document, document.getPageIndices());
-      
-      copiedPages.forEach((page) => {
-        mergedPdf.addPage(page);
-      });
+
+      try {
+        const fileBytes = await file.arrayBuffer();
+
+        // Validate PDF header
+        const view = new Uint8Array(fileBytes);
+        const header = new TextDecoder().decode(view.slice(0, 5));
+        if (!header.startsWith("%PDF")) {
+          throw new Error(`"${file.name}" is not a valid PDF file. Please ensure all files are valid PDFs.`);
+        }
+
+        const document = await PDFDocument.load(fileBytes);
+        const copiedPages = await mergedPdf.copyPages(document, document.getPageIndices());
+
+        copiedPages.forEach((page) => {
+          mergedPdf.addPage(page);
+        });
+      } catch (err: any) {
+        throw new Error(`Failed to process "${file.name}": ${err.message || "Invalid PDF format"}`);
+      }
     }
 
     updateProgress(90, "Assembling and flushing stream dictionary...");
     const finalBytes = await mergedPdf.save();
-    const finalBlob = new Blob([new Uint8Array(finalBytes)], { type: "application/pdf" });
+    const finalBlob = new Blob([finalBytes as any], { type: "application/pdf" });
 
     return {
       blob: finalBlob,

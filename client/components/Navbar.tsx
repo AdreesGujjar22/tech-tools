@@ -41,7 +41,7 @@ export default function Navbar() {
             className="shrink-0 flex items-center gap-2 hover:opacity-70 transition-opacity duration-200"
             aria-label="Tech Tools home"
           >
-            <Image src="/images/web-logo.png" alt="Tech tool logo" className="h-10 sm:h-12 w-auto" width="140" height="100" />
+            <Image src="/images/web-logo.png" alt="Tech tool logo" className="h-16 sm:h-20 w-auto" width="140" height="100" />
           </Link>
           <nav className="hidden lg:flex items-center gap-0.5">
             {navLinks.map((link) => {

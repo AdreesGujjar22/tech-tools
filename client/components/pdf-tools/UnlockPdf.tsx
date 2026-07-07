@@ -45,7 +45,7 @@ export default function UnlockPdf() {
       const originalBytes = xorCipher(cipherBytes, password);
 
       updateProgress(95, "Reassembling clean output streams...");
-      const finalBlob = new Blob([new Uint8Array(originalBytes)], { type: "application/pdf" });
+      const finalBlob = new Blob([originalBytes as any], { type: "application/pdf" });
       
       return {
         blob: finalBlob,

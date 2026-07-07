@@ -29,7 +29,7 @@ export default function RotatePdf() {
     const rotatedBytes = await pdfDoc.save();
 
     return {
-      blob: new Blob([new Uint8Array(rotatedBytes)], { type: "application/pdf" }),
+      blob: new Blob([rotatedBytes as any], { type: "application/pdf" }),
       fileName: `rotated_${rotationValue}_${file.name}`
     };
   };

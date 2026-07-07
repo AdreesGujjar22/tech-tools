@@ -24,7 +24,7 @@ export default function RepairPdf() {
     updateProgress(75, `Successfully recovered ${pageCount} catalog index layers!`);
 
     const rebuiltBytes = await pdfDoc.save({ useObjectStreams: false });
-    const finalBlob = new Blob([new Uint8Array(rebuiltBytes)], { type: "application/pdf" });
+    const finalBlob = new Blob([rebuiltBytes as any], { type: "application/pdf" });
 
     return {
       blob: finalBlob,

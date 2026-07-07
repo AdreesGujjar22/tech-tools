@@ -32,7 +32,7 @@ export default function CompressPdf() {
       useObjectStreams: true
     });
 
-    const finalBlob = new Blob([new Uint8Array(compressedBytes)], { type: "application/pdf" });
+    const finalBlob = new Blob([compressedBytes as any], { type: "application/pdf" });
     const finalSize = compressedBytes.length;
 
     return {

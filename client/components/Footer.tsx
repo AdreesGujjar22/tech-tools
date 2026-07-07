@@ -18,7 +18,7 @@ export default function Footer() {
               className="shrink-0 flex items-center gap-2 transition-opacity hover:opacity-80"
               aria-label="Tech Tools home"
             >
-              <Image src="/images/web-logo.png" alt="Tech tool logo" className="h-12 w-auto" width="140" height="100" />
+              <Image src="/images/web-logo.png" alt="Tech tool logo" className="h-20 w-auto" width="140" height="100" />
             </Link>
             <p className="text-[#4A6857] text-sm max-w-sm leading-relaxed">
               Fast, secure, and modern online tools for developers, creators, and daily digital workloads. Sandboxed entirely inside your browser context for ultimate privacy configuration.
