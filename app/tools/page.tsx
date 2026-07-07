@@ -1,9 +1,14 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const Tools = dynamic(() => import("@/pages/History"), { ssr: false });
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
-  return <Tools />;
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push("/#tools");
+  }, [router]);
+
+  return null;
 }

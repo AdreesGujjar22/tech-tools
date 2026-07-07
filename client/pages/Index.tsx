@@ -1,80 +1,98 @@
-import { Link } from "@/lib/router-compat";
+import { useNavigate, Link } from "@/lib/router-compat";
 import SEO from "@/components/SEO";
-import {
-  Zap,
-  ShieldCheck,
-  Target,
-  Smartphone,
-  Wrench,
-  Moon,
-  Wifi,
-  Contact,
-  FileLock2,
-  Wallet,
-  Sparkles,
-  ShieldCheck as ShieldIcon,
-  ArrowRight,
-} from "lucide-react";
+import { useState } from "react";
+import { Search, Clock, Eye, Share2, Sparkles, ShieldCheck, ShieldCheck as ShieldIcon, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import { StaggerList } from "@/components/StaggerList";
 
-const features = [
+const qrItems = [
   {
-    icon: Zap,
-    title: "Fast & Lightweight",
-    desc: "Use tools instantly without heavy downloads or complicated setup.",
+    id: 5,
+    title: "PDF Tools Dashboard",
+    url: "/ilovepdf",
+    type: "URL",
+    date: "Oct 18, 2024",
+    preview: "/images/pdf.png",
   },
   {
-    icon: ShieldCheck,
-    title: "Secure & Private",
-    desc: "Your data stays safe. Most processing happens directly in your browser.",
+    id: 6,
+    title: "Image Tools Dashboard",
+    url: "/iloveimg",
+    type: "URL",
+    date: "Oct 18, 2024",
+    preview: "/images/image.png",
   },
   {
-    icon: Target,
-    title: "Easy to Use",
-    desc: "Clean and beginner-friendly interface built for everyone.",
+    id: 1,
+    title: "Internet Speed Testing",
+    url: "/speed-test",
+    type: "URL",
+    date: "Oct 24, 2024",
+    preview: "/images/speed-test.png",
   },
   {
-    icon: Smartphone,
-    title: "Fully Responsive",
-    desc: "Works smoothly on desktop, tablet, and mobile devices.",
+    id: 2,
+    title: "Typing Speed Results",
+    url: "/typing-speed",
+    type: "URL",
+    date: "Oct 22, 2024",
+    preview: "/images/typing-speed.png",
   },
   {
-    icon: Wrench,
-    title: "Multiple Utilities",
-    desc: "Access dozens of useful tools in one centralized platform.",
+    id: 3,
+    title: "Color Picker Palette",
+    url: "/color-picker",
+    type: "URL",
+    date: "Oct 20, 2024",
+    preview: "/images/color-picker.png",
   },
   {
-    icon: Moon,
-    title: "Modern Experience",
-    desc: "Beautiful dark/light mode with a sleek modern UI.",
-  },
-];
-
-const integrations = [
-  { label: "WiFi Hotspots", icon: Wifi },
-  { label: "Digital VCards", icon: Contact },
-  { label: "Encrypted Files", icon: FileLock2 },
-  { label: "Crypto Wallets", icon: Wallet },
-];
-
-const steps = [
-  {
-    num: "1",
-    title: "Inject Data",
-    desc: "Paste your URL, upload files, or link your social profiles into our obsidian console.",
-  },
-  {
-    num: "2",
-    title: "Stylize Frame",
-    desc: "Choose from our library of premium glass templates and adjust colors to match your brand.",
-  },
-  {
-    num: "3",
-    title: "Deploy Anywhere",
-    desc: "Download in vector (SVG/PDF) or raster formats ready for print and high-res digital display.",
+    id: 4,
+    title: "QR Code Generator",
+    url: "/qr-generator",
+    type: "URL",
+    date: "Oct 18, 2024",
+    preview: "https://api.builder.io/api/v1/image/assets/TEMP/297ee64dc0e7bfca7c4b6bcf1bc6a0361a742a79?width=320",
   },
 ];
 
 export default function Index() {
+  const [copied, setCopied] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleShare = async (e: React.MouseEvent<HTMLButtonElement>, title: string, url: string) => {
+    e.stopPropagation();
+    const shareData = {
+      title: title,
+      text: "Check out this tool!",
+      url: url,
+    };
+
+    if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+      try {
+        await navigator.share(shareData);
+        return;
+      } catch (error) {
+        if (error instanceof Error && error.name !== "AbortError") {
+          console.error("Error sharing:", error);
+        }
+      }
+    }
+
+    try {
+      await navigator.clipboard.writeText(shareData.url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy link: ", err);
+    }
+  };
+
+  const filteredItems = qrItems.filter((item) =>
+    item.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="min-h-screen bg-transparent text-foreground">
       <SEO
@@ -110,7 +128,7 @@ export default function Index() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link
-                to="/tools"
+                to="#tools"
                 className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-2xl brand-gradient text-white text-sm sm:text-base font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition-all"
               >
                 Start Tools
@@ -160,111 +178,152 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16 space-y-3 sm:space-y-4">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Why Choose TechTools?</h2>
-            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
-              Trusted by thousands for fast, secure, and simple online utilities.
-            </p>
-          </div>
+      {/* Tools Section */}
+      <section id="tools" className="bg-transparent text-foreground">
+        <main className="section-py section-px">
+          <div className="container-full">
+            {/* Header */}
+            <section className="relative overflow-hidden border-b border-[rgba(255,255,255,0.06)] bg-gradient-to-at-t from-[#141B31]/40 via-[#060E20]/50 to-transparent pb-24">
+              <div className="absolute inset-0 bg-radial-at-t from-indigo-950/20 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute top-20 right-10 w-96 h-96 bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none" />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {features.map((feature) => {
-              const Icon = feature.icon;
-              return (
-                <div key={feature.title} className="p-6 sm:p-8 rounded-lg sm:rounded-2xl backdrop-blur-md bg-white/[0.08] dark:bg-white/[0.05] border border-white/10 hover:border-white/20 hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                  <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl bg-white/10 border border-white/20 flex items-center justify-center mb-4">
-                    <Icon className="w-5 sm:w-6 h-5 sm:h-6 text-primary" />
+              <div className="max-w-6xl mx-auto px-4 relative z-10 text-center">
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="inline-flex items-center gap-2 px-3 py-1 pb-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/15 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-6 animate-pulse"
+                >
+                  <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full" />
+                  All Utilities
+                </motion.div>
+
+                <motion.h2
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1, duration: 0.4 }}
+                  className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tighter text-white mb-6"
+                >
+                  Every tool you need to <br className="hidden sm:inline" />
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#4F46E5] to-[#4CD7F6]">
+                    optimize and master
+                  </span>
+                </motion.h2>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15, duration: 0.4 }}
+                  className="text-[#C7C4D8]/80 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed mb-10"
+                >
+                  These are the following Tech tools we have. Click on any item to view details or export options.
+                </motion.p>
+
+                {/* Interactive Search Grid Controls */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2, duration: 0.3 }}
+                  className="max-w-xl mx-auto flex items-center bg-[#141B31]/60 border border-neutral-800 rounded-2xl p-1.5 shadow-2xl focus-within:border-indigo-500/40 transition"
+                >
+                  <div className="flex items-center pl-3 text-neutral-500">
+                    <Search className="w-5 h-5" />
                   </div>
-                  <h3 className="text-base sm:text-lg font-bold mb-2">{feature.title}</h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{feature.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Integrations Section */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white/[0.02] dark:bg-white/[0.01] border-y border-white/5">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8 mb-10 sm:mb-12">
-            <div className="space-y-2">
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Flexible Tools</h2>
-              <p className="text-xs sm:text-sm text-muted-foreground max-w-sm">
-                All your favorite online utilities in one place.
-              </p>
-            </div>
-            <Link
-              to="/generator"
-              className="inline-flex items-center gap-1 text-primary font-medium text-xs sm:text-sm hover:text-primary/80 transition-colors"
-            >
-              View All Tools
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-            {integrations.map((item) => {
-              const Icon = item.icon;
-              return (
-                <div key={item.label} className="p-4 sm:p-6 rounded-lg sm:rounded-2xl backdrop-blur-md bg-white/[0.08] dark:bg-white/[0.05] border border-white/10 hover:border-white/20 hover:shadow-md hover:-translate-y-0.5 transition-all flex flex-col items-center gap-3 text-center group">
-                  <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl bg-white/10 border border-white/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Icon className="w-5 sm:w-6 h-5 sm:h-6 text-primary" />
-                  </div>
-                  <span className="text-xs sm:text-sm font-semibold">{item.label}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-center mb-12 sm:mb-16">Simple Workflow</h2>
-
-          <div className="grid md:grid-cols-3 gap-8 sm:gap-12 lg:gap-16 relative">
-            {/* Connector Line */}
-            <div className="hidden md:block absolute top-8 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-
-            {steps.map((step) => (
-              <div key={step.num} className="flex flex-col items-center relative z-10">
-                <div className="w-14 sm:w-16 h-14 sm:h-16 rounded-full flex items-center justify-center font-bold text-xl sm:text-2xl mb-4 sm:mb-5 brand-gradient text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all">
-                  {step.num}
-                </div>
-                <h3 className="text-lg sm:text-2xl font-semibold text-center mb-2 sm:mb-3">{step.title}</h3>
-                <p className="text-xs sm:text-sm text-muted-foreground text-center leading-relaxed max-w-sm">{step.desc}</p>
+                  <input
+                    type="text"
+                    placeholder="Search tools (e.g., QR code, color picker)..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full bg-transparent border-0 ring-0 focus:outline-none focus:ring-0 p-3 text-sm text-white placeholder-[#6B7280] font-medium"
+                  />
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery("")}
+                      className="p-1 px-2.5 text-xs text-[#C7C4D8] bg-neutral-800 hover:bg-neutral-750 border border-neutral-700/65 rounded-xl transition cursor-pointer"
+                    >
+                      Clear
+                    </button>
+                  )}
+                </motion.div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </section>
 
-      {/* CTA Section */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto p-8 sm:p-12 lg:p-16 rounded-2xl sm:rounded-3xl backdrop-blur-md bg-white/[0.08] dark:bg-white/[0.05] border border-white/10 hover:border-white/20 hover:shadow-2xl transition-all relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 pointer-events-none" />
-          <div className="relative flex flex-col items-center gap-4 sm:gap-6 text-center">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Ready to Get Started?</h2>
-            <p className="text-sm sm:text-lg text-muted-foreground max-w-2xl">
-              Join thousands of users with powerful tools in your browser.
-            </p>
-            <Link
-              to="/tools"
-              className="inline-flex items-center gap-2 px-6 sm:px-10 py-3 sm:py-4 rounded-lg sm:rounded-2xl brand-gradient text-white text-sm sm:text-lg font-semibold hover:shadow-xl hover:shadow-blue-500/30 hover:-translate-y-0.5 transition-all"
-            >
-              Get Started
-              <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5" />
-            </Link>
-            <p className="text-xs text-muted-foreground">
-              No credit card required.
-            </p>
+            {/* Items Grid */}
+            {filteredItems.length === 0 ? (
+              <div className="premium-card p-12 text-center text-muted-foreground mb-12 rounded-2xl border border-border/40">
+                No tools matching your search criteria were found.
+              </div>
+            ) : (
+              <StaggerList staggerDelay={0.08} className="grid-auto-fit mb-12">
+                {filteredItems.map((item) => (
+                  <div
+                    key={item.id}
+                    className="premium-card p-5 flex flex-col gap-4 cursor-pointer group rounded-xl border border-border/40 hover:shadow-lg hover:-translate-y-2 transition-all"
+                    onClick={() => navigate(item.url)}
+                  >
+                    {/* Preview */}
+                    <div className="aspect-square rounded-lg bg-white p-4 flex items-center justify-center overflow-hidden">
+                      <img
+                        src={item.preview || "/placeholder.svg"}
+                        alt={item.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+
+                    {/* Info */}
+                    <div className="space-y-2">
+                      <h3 className="font-bold text-lg leading-tight">{item.title}</h3>
+                      <div className="flex items-center gap-1.5 text-muted-foreground">
+                        <Clock className="w-3.5 h-3.5" />
+                        <span className="text-xs font-semibold">{item.date}</span>
+                      </div>
+                    </div>
+
+                    {/* Actions */}
+                    <div className="flex gap-2 mt-auto">
+                      <button className="flex-1 py-2 rounded-lg bg-accent/60 text-foreground font-semibold text-xs flex items-center justify-center gap-1.5 hover:bg-primary/20 transition-colors">
+                        <Eye className="w-3.5 h-3.5" />
+                        View
+                      </button>
+                      <div className="relative inline-block w-auto">
+                        <button
+                          onClick={(e) => handleShare(e, item.title, item.url)}
+                          className="py-2 px-3 rounded-lg bg-accent/60 text-foreground font-semibold text-xs hover:bg-primary/20 transition-colors flex items-center justify-center"
+                          aria-label="Share page"
+                        >
+                          <Share2 className="w-3.5 h-3.5" />
+                        </button>
+
+                        {copied && (
+                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-[10px] font-medium text-white bg-emerald-600 rounded shadow-md pointer-events-none animate-fade-in whitespace-nowrap">
+                            Copied Link!
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </StaggerList>
+            )}
+
+            {/* CTA */}
+            <div className="premium-card p-12 sm:p-16 text-center space-y-6 rounded-2xl border border-border/40 animate-fade-in-scale">
+              <div className="w-16 h-16 mx-auto flex items-center justify-center rounded-lg bg-primary/10 border border-primary/15">
+                <Sparkles className="w-7 h-7 text-primary" />
+              </div>
+              <h3 className="text-2xl font-bold">Ready for more?</h3>
+              <p className="text-base text-muted-foreground max-w-md mx-auto">
+                Let us know what you're looking for, and we'll build it!
+              </p>
+              <button
+                className="btn-primary mx-auto px-8"
+                onClick={() => navigate("/contact-us")}
+              >
+                Contact us
+              </button>
+            </div>
           </div>
-        </div>
+        </main>
       </section>
     </div>
   );
