@@ -62,6 +62,30 @@ const qrItems = [
     date: "Oct 18, 2024",
     preview: "/images/barcode.png",
   },
+  {
+    id: 8,
+    title: "Password Generator",
+    url: "/password-generator",
+    type: "URL",
+    date: "Oct 18, 2024",
+    preview: "/images/password.png",
+  },
+  {
+    id: 9,
+    title: "Lorem Ipsum Generator",
+    url: "/lorem-ipsum-generator",
+    type: "URL",
+    date: "Oct 18, 2024",
+    preview: "/images/lorem-ipsum.png",
+  },
+  {
+    id: 10,
+    title: "Emoji Picker & Copier",
+    url: "/emoji-picker",
+    type: "URL",
+    date: "Oct 18, 2024",
+    preview: "/images/emoji-picker.png",
+  },
 ];
 
 export default function History() {
@@ -93,7 +117,11 @@ export default function History() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error("Failed to copy link: ", err);
+      if (err instanceof Error && err.name === "NotAllowedError") {
+        alert("Link: " + shareData.url);
+      } else {
+        console.error("Failed to copy link: ", err);
+      }
     }
   };
 

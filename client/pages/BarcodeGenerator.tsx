@@ -358,7 +358,11 @@ export default function BarcodeGenerator() {
                         await navigator.clipboard.writeText(window.location.href);
                         alert("Saved sharing link to your clipboard!");
                       } catch (err) {
-                        console.error(err);
+                        if (err instanceof Error && err.name === "NotAllowedError") {
+                          alert("Link: " + window.location.href);
+                        } else {
+                          console.error(err);
+                        }
                       }
                     }}
                     className="px-4 py-3 rounded-[12px] border border-[#464555] bg-[rgba(23,31,51,0.40)] hover:bg-[rgba(23,31,51,0.60)] text-[#DAE2FD] transition-colors"

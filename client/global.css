@@ -733,3 +733,34 @@
   color: inherit;
   font-size: inherit;
 }
+
+/* ==================== EMOJI RENDERING ==================== */
+
+/* Force emoji rendering as images instead of text */
+.font-emoji,
+[style*="fontVariantEmoji"],
+button[style*="fontVariantEmoji"] {
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif !important;
+  font-variant-emoji: emoji !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure flags display as emoji images */
+@supports (font-variant-emoji: emoji) {
+  .font-emoji,
+  [style*="fontVariantEmoji"],
+  button[style*="fontVariantEmoji"] {
+    font-variant-emoji: emoji;
+  }
+}
+
+/* Fallback for older browsers - use emoji-specific font */
+@supports not (font-variant-emoji: emoji) {
+  .font-emoji,
+  [style*="fontVariantEmoji"],
+  button[style*="fontVariantEmoji"] {
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif !important;
+  }
+}
