@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import SEO from "@/components/SEO";
 import JsBarcode from "jsbarcode";
-import { Download, Share2, Copy, Sparkles, RefreshCw, Layers, Sliders, Check, ImageIcon } from "lucide-react";
+import { Download, Share2, Copy, Sparkles, RefreshCw, Layers, Sliders, Check, ImageIcon, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 export default function BarcodeGenerator() {
@@ -16,21 +16,68 @@ export default function BarcodeGenerator() {
   const [bgColor, setBgColor] = useState("#ffffff");
   const [copied, setCopied] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [error, setError] = useState("");
   const svgRef = useRef<SVGSVGElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const barcodeFormats = [
-    { value: "CODE128", label: "CODE128" },
-    { value: "CODE39", label: "CODE39" },
-    { value: "EAN13", label: "EAN13" },
-    { value: "EAN8", label: "EAN8" },
-    { value: "UPC", label: "UPC" },
-    { value: "ITF14", label: "ITF14" },
+    { value: "CODE128", label: "CODE128", requirement: "Alphanumeric" },
+    { value: "CODE39", label: "CODE39", requirement: "Alphanumeric" },
+    { value: "EAN13", label: "EAN13", requirement: "Exactly 13 digits" },
+    { value: "EAN8", label: "EAN8", requirement: "Exactly 8 digits" },
+    { value: "UPC", label: "UPC", requirement: "11-12 digits" },
+    { value: "ITF14", label: "ITF14", requirement: "14 digits" },
   ];
+
+  const validateInput = (value: string, fmt: string): string => {
+    if (!value.trim()) {
+      return "Barcode content cannot be empty";
+    }
+
+    switch (fmt) {
+      case "EAN13":
+        if (!/^\d{13}$/.test(value)) {
+          return "EAN13 requires exactly 13 digits";
+        }
+        break;
+      case "EAN8":
+        if (!/^\d{8}$/.test(value)) {
+          return "EAN8 requires exactly 8 digits";
+        }
+        break;
+      case "UPC":
+        if (!/^\d{11,12}$/.test(value)) {
+          return "UPC requires 11-12 digits";
+        }
+        break;
+      case "ITF14":
+        if (!/^\d{14}$/.test(value)) {
+          return "ITF14 requires exactly 14 digits";
+        }
+        break;
+      case "CODE39":
+        if (!/^[A-Z0-9\s\-\.\/\+\$\%]+$/.test(value.toUpperCase())) {
+          return "CODE39 supports only alphanumeric characters and special characters (- . / + $ %)";
+        }
+        break;
+      case "CODE128":
+        // CODE128 supports most ASCII characters
+        break;
+    }
+    return "";
+  };
 
   const generateBarcode = async () => {
     setIsGenerating(true);
+    setError("");
     try {
+      const validationError = validateInput(text, format);
+      if (validationError) {
+        setError(validationError);
+        setIsGenerating(false);
+        return;
+      }
+
       if (svgRef.current) {
         JsBarcode(svgRef.current, text, {
           format: format,
@@ -43,7 +90,8 @@ export default function BarcodeGenerator() {
         });
       }
     } catch (err) {
-      console.error(err);
+      const errorMessage = err instanceof Error ? err.message : "Failed to generate barcode";
+      setError(errorMessage);
     } finally {
       setIsGenerating(false);
     }
@@ -167,10 +215,13 @@ export default function BarcodeGenerator() {
                   >
                     {barcodeFormats.map((fmt) => (
                       <option key={fmt.value} value={fmt.value}>
-                        {fmt.label}
+                        {fmt.label} ({fmt.requirement})
                       </option>
                     ))}
                   </select>
+                  <p className="text-xs text-[#C7C4D8] mt-2">
+                    Current format: <span className="text-[#4CD7F6] font-semibold">{barcodeFormats.find(f => f.value === format)?.requirement}</span>
+                  </p>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -266,12 +317,28 @@ export default function BarcodeGenerator() {
               <div className="glass-card-dark p-8 rounded-[24px] w-full flex flex-col items-center gap-6 text-center">
                 <span className="text-[#DAE2FD] text-sm font-semibold tracking-wider uppercase">Live Barcode Preview</span>
 
+                {/* Error message */}
+                {error && (
+                  <div className="w-full p-4 rounded-[12px] bg-red-500/20 border border-red-500/40 flex items-start gap-3">
+                    <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+                    <div className="text-left">
+                      <p className="text-red-400 text-sm font-medium">Invalid Input</p>
+                      <p className="text-red-300/80 text-xs mt-1">{error}</p>
+                    </div>
+                  </div>
+                )}
+
                 {/* Barcode output container */}
-                <div className="relative w-full rounded-[16px] bg-white p-4 flex items-center justify-center shadow-lg border border-[rgba(255,255,255,0.05)] overflow-auto">
+                <div className="relative w-full rounded-[16px] bg-white p-4 flex items-center justify-center shadow-lg border border-[rgba(255,255,255,0.05)] overflow-auto min-h-[200px]">
                   {isGenerating ? (
                     <div className="flex flex-col items-center gap-2 text-gray-400 py-8">
                       <ImageIcon className="w-12 h-12" />
                       <span>Generating Barcode...</span>
+                    </div>
+                  ) : error ? (
+                    <div className="flex flex-col items-center gap-2 text-gray-400 py-8">
+                      <AlertCircle className="w-12 h-12" />
+                      <span>Fix the input to generate</span>
                     </div>
                   ) : (
                     <svg ref={svgRef} />
