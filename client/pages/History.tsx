@@ -86,6 +86,14 @@ const qrItems = [
     date: "Oct 18, 2024",
     preview: "/images/emoji-picker.png",
   },
+  {
+    id: 11,
+    title: "Online NotePad",
+    url: "/notepad",
+    type: "URL",
+    date: "Oct 18, 2024",
+    preview: "/images/notepad.png",
+  },
 ];
 
 export default function History() {

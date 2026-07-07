@@ -18,6 +18,7 @@ const STATIC_ROUTES = [
   { url: "/password-generator", priority: 0.8, changefreq: "weekly" as const },
   { url: "/lorem-ipsum-generator", priority: 0.8, changefreq: "weekly" as const },
   { url: "/emoji-picker", priority: 0.8, changefreq: "weekly" as const },
+  { url: "/notepad", priority: 0.8, changefreq: "weekly" as const },
   { url: "/color-picker", priority: 0.8, changefreq: "weekly" as const },
   { url: "/speed-test", priority: 0.8, changefreq: "weekly" as const },
   { url: "/typing-speed", priority: 0.8, changefreq: "weekly" as const },
