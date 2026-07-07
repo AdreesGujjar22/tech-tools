@@ -1,3 +1,5 @@
+"use client";
+
 import { Link } from "@/lib/router-compat";
 import { ArrowLeft, Search, Home } from "lucide-react";
 
