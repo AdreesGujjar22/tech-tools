@@ -44,7 +44,7 @@ export default function EditPdf() {
     const finalBytes = await pdfDoc.save();
 
     return {
-      blob: new Blob([finalBytes.buffer as ArrayBuffer], { type: "application/pdf" }),
+      blob: new Blob([finalBytes], { type: "application/pdf" }),
       fileName: `edited_${file.name}`
     };
   };

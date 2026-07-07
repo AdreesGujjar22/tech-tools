@@ -25,13 +25,13 @@ export default function ProtectPdf() {
     updateProgress(20, "Loading document binary stream...");
     const file = files[0];
     const password = config.password || "";
-    
+
     if (!password) {
       throw new Error("Password must not be empty.");
     }
 
     const fileBytes = new Uint8Array(await file.arrayBuffer());
-    
+
     updateProgress(60, "Running high-velocity browser XOR ciphers...");
     const cipherBytes = xorCipher(fileBytes, password);
 
@@ -43,7 +43,7 @@ export default function ProtectPdf() {
     outputBuffer.set(cipherBytes, headerBytes.length);
 
     updateProgress(90, "Sealing secure payload...");
-    const finalBlob = new Blob([outputBuffer.buffer as ArrayBuffer], { type: "application/pdf" });
+    const finalBlob = new Blob([outputBuffer], { type: "application/pdf" });
 
     return {
       blob: finalBlob,

@@ -60,7 +60,7 @@ export default function SplitPdf() {
     const finalBytes = await splitDoc.save();
 
     return {
-      blob: new Blob([finalBytes.buffer as ArrayBuffer], { type: "application/pdf" }),
+      blob: new Blob([finalBytes], { type: "application/pdf" }),
       fileName: `split_${Date.now()}_pages_${indicesToExtract.map(i => i + 1).join("_")}.pdf`
     };
   };

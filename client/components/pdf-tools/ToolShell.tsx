@@ -479,9 +479,9 @@ export default function ToolShell({
                   href={downloadUrl}
                   download={downloadName}
                   id="download-link"
-                  className="w-full inline-flex items-center justify-center gap-2.5 py-4.5 brand-gradient font-bold text-white rounded-2xl hover:opacity-90 transition duration-250 shadow-lg shadow-[#10A968]/30 text-md active:scale-98 mb-6"
+                  className="w-full inline-flex items-center justify-center gap-2.5 py-3.5 px-6 brand-gradient font-bold text-white rounded-2xl hover:opacity-90 transition duration-250 shadow-lg shadow-[#10A968]/30 text-sm active:scale-98 mb-6 whitespace-nowrap"
                 >
-                  <Download className="w-5 h-5" />
+                  <Download className="w-5 h-5 flex-shrink-0" />
                   Download File
                 </a>
               )}

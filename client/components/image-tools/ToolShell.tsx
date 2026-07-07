@@ -476,22 +476,22 @@ export default function ToolShell({
                     {files.map((file, index) => (
                       <div
                         key={index}
-                        className="flex items-center justify-between p-3.5 bg-gradient-to-r from-neutral-900/40 to-neutral-950/40 border border-neutral-800 rounded-xl hover:border-indigo-500/30 hover:bg-gradient-to-r hover:from-indigo-950/20 hover:to-neutral-900/40 transition group"
+                        className="flex items-center justify-between p-3.5 bg-[#F0F7F0] border border-[#C5DCC9] rounded-xl hover:border-[#10A968]/50 hover:bg-[#E8F0E8] transition group"
                       >
-                        <div className="flex items-center gap-3 truncate pr-4">
-                          <FileImage className="w-5 h-5 text-indigo-400 shrink-0 group-hover:text-indigo-300 transition" />
-                          <div className="truncate text-left">
-                            <p className="text-xs font-semibold text-white truncate max-w-md group-hover:text-indigo-100 transition">
+                        <div className="flex items-center gap-3 truncate flex-1 min-w-0">
+                          <FileImage className="w-5 h-5 text-[#10A968] shrink-0 group-hover:text-[#0d8f56] transition" />
+                          <div className="truncate text-left min-w-0">
+                            <p className="text-xs font-semibold text-[#1F3A26] truncate group-hover:text-[#10A968] transition" title={file.name}>
                               {file.name}
                             </p>
-                            <p className="text-3xs font-mono text-neutral-500 mt-0.5 group-hover:text-neutral-400 transition">
+                            <p className="text-3xs font-mono text-[#4A6857] mt-0.5 group-hover:text-[#2D4D35] transition">
                               {formatSize(file.size)}
                             </p>
                           </div>
                         </div>
                         <button
                           onClick={() => removeFile(index)}
-                          className="p-2 text-neutral-500 hover:text-red-400 hover:bg-red-950/20 rounded-lg transition cursor-pointer border border-transparent hover:border-red-500/20 shrink-0"
+                          className="p-2 text-[#4A6857] hover:text-red-600 hover:bg-red-100 rounded-lg transition cursor-pointer border border-transparent hover:border-red-300 shrink-0 ml-2"
                           title="Remove file"
                         >
                           <X className="w-4 h-4" />
@@ -510,8 +510,8 @@ export default function ToolShell({
                     </h3>
                     {renderConfig && renderConfig(files, config, setConfig)}
                     <button
-                      onClick={handleProcessSubmit}
-                      className="w-full py-3 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white font-bold text-sm rounded-xl transition shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 cursor-pointer border border-indigo-500/20 hover:border-indigo-500/50 active:scale-95 flex items-center justify-center gap-2"
+                    onClick={handleProcessSubmit}
+                    className="w-full py-3 bg-[#10A968] hover:bg-[#0d8f56] text-white font-bold text-sm rounded-xl transition shadow-lg shadow-[#10A968]/20 hover:shadow-[#10A968]/40 cursor-pointer border border-[#10A968]/20 hover:border-[#10A968]/50 active:scale-95 flex items-center justify-center gap-2"
                     >
                       <Zap className="w-4 h-4" />
                       Process {files.length} {files.length > 1 ? "Files" : "File"}
@@ -589,7 +589,7 @@ export default function ToolShell({
                     <button
                       onClick={handleDownloadAll}
                       disabled={!zipDownloadUrl || isZipping}
-                      className="px-6 py-3 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-bold rounded-xl shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 flex items-center gap-2 transition cursor-pointer border border-emerald-500/20 hover:border-emerald-500/50 active:scale-95"
+                      className="px-6 py-3 bg-[#10A968] hover:bg-[#0d8f56] disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-bold rounded-xl shadow-lg shadow-[#10A968]/20 hover:shadow-[#10A968]/40 flex items-center gap-2 transition cursor-pointer border border-[#10A968]/20 hover:border-[#10A968]/50 active:scale-95"
                     >
                       {isZipping ? (
                         <>
@@ -660,7 +660,7 @@ export default function ToolShell({
 
                           <button
                             onClick={() => handleDownloadSingle(res)}
-                            className="px-4 py-2 text-sm text-indigo-300 bg-gradient-to-r from-indigo-950/60 to-indigo-950/40 hover:from-indigo-900/80 hover:to-indigo-900/60 border border-indigo-700/40 hover:border-indigo-500/60 rounded-lg flex items-center gap-1.5 font-semibold transition cursor-pointer active:scale-95 shrink-0 whitespace-nowrap"
+                            className="px-4 py-2 text-sm text-white bg-[#10A968] hover:bg-[#0d8f56] border border-[#10A968]/50 rounded-lg flex items-center gap-1.5 font-semibold transition cursor-pointer active:scale-95 shrink-0 whitespace-nowrap"
                           >
                             <Download className="w-4 h-4" /> Download
                           </button>
@@ -706,7 +706,7 @@ export default function ToolShell({
 
                   <button
                     onClick={handleProcessSubmit}
-                    className="w-full py-3 bg-indigo-650 hover:bg-indigo-700 hover:shadow-indigo-950/20 text-white font-bold text-sm rounded-xl transition shadow-xl mt-4 cursor-pointer"
+                    className="w-full py-3 bg-[#10A968] hover:bg-[#0d8f56] text-white font-bold text-sm rounded-xl transition shadow-lg shadow-[#10A968]/20 hover:shadow-[#10A968]/40 mt-4 cursor-pointer"
                   >
                     Process {files.length} {files.length > 1 ? "Files" : "File"} Now
                   </button>
@@ -764,28 +764,28 @@ export default function ToolShell({
           </div>
 
           {/* Technology Containment Card */}
-          <div className="bg-gradient-to-br from-emerald-950/30 to-neutral-950/40 border border-emerald-500/20 rounded-2xl p-5 text-left backdrop-blur-sm hover:border-emerald-500/40 transition">
-            <div className="flex items-start gap-3 mb-3 pb-3 border-b border-emerald-900/30">
-              <div className="p-2.5 bg-emerald-500/20 border border-emerald-500/30 rounded-lg shrink-0 mt-0.5">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+          <div className="bg-[#F0F7F0] border border-[#C5DCC9] rounded-2xl p-5 text-left backdrop-blur-sm hover:border-[#10A968]/50 transition">
+            <div className="flex items-start gap-3 mb-3 pb-3 border-b border-[#C5DCC9]">
+              <div className="p-2.5 bg-[#10A968]/20 border border-[#10A968]/30 rounded-lg shrink-0 mt-0.5">
+                <ShieldCheck className="w-4 h-4 text-[#10A968]" />
               </div>
               <div className="flex-1">
-                <span className="text-sm font-bold text-emerald-400 block">Technology Containment</span>
-                <span className="text-2xs text-emerald-400/60 font-mono">Secure Local Processing</span>
+                <span className="text-sm font-bold text-[#10A968] block">Technology Containment</span>
+                <span className="text-2xs text-[#4A6857] font-mono">Secure Local Processing</span>
               </div>
             </div>
             <div className="space-y-2.5">
               <div className="flex items-start gap-3 text-sm">
-                <Cpu className="w-4 h-4 text-[#10A968]/60 shrink-0 mt-0.5" />
-                <p className="text-neutral-400">All processing runs in your browser sandbox</p>
+                <Cpu className="w-4 h-4 text-[#10A968] shrink-0 mt-0.5" />
+                <p className="text-[#2D4D35] font-medium">All processing runs in your browser sandbox</p>
               </div>
               <div className="flex items-start gap-3 text-sm">
-                <Lock className="w-4 h-4 text-[#10A968]/60 shrink-0 mt-0.5" />
-                <p className="text-neutral-400">Zero data transmission to any server</p>
+                <Lock className="w-4 h-4 text-[#10A968] shrink-0 mt-0.5" />
+                <p className="text-[#2D4D35] font-medium">Zero data transmission to any server</p>
               </div>
               <div className="flex items-start gap-3 text-sm">
-                <Wifi className="w-4 h-4 text-[#10A968]/60 shrink-0 mt-0.5" />
-                <p className="text-neutral-400">Works completely offline</p>
+                <Wifi className="w-4 h-4 text-[#10A968] shrink-0 mt-0.5" />
+                <p className="text-[#2D4D35] font-medium">Works completely offline</p>
               </div>
             </div>
           </div>
