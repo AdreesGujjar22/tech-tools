@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { AtSign, Hash, Clock, Type, Quote2, RotateCcw } from "lucide-react";
+import { AtSign, Hash, Clock, Type, Quote, RotateCcw } from "lucide-react";
 
 export default function TypingSpeed() {
   useEffect(() => {
