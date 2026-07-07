@@ -97,18 +97,18 @@ export function ImageColorExtractor() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="glass-card-dark rounded-2xl p-6 border border-[rgba(195,192,255,0.10)]"
+      className="rounded-2xl p-6 border border-[#C5DCC9] bg-white"
     >
       <canvas ref={canvasRef} className="hidden" />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div>
-          <h3 className="text-xl font-semibold mb-4 text-[#DAE2FD]">Image Color Extractor</h3>
+          <h3 className="text-xl font-semibold mb-4 text-[#1F3A26]">Image Color Extractor</h3>
 
           {!image ? (
             <motion.div
               whileHover={{ scale: 1.01 }}
-              className="relative border-2 border-dashed border-[rgba(195,192,255,0.20)] bg-[rgba(195,192,255,0.05)] rounded-xl p-8 text-center cursor-pointer hover:border-[#4F46E5] transition-colors"
+              className="relative border-2 border-dashed border-[#C5DCC9] bg-[#F0F7F0] rounded-xl p-8 text-center cursor-pointer hover:border-[#10A968] transition-colors"
               onClick={() => fileInputRef.current?.click()}
             >
               <input
@@ -118,16 +118,16 @@ export function ImageColorExtractor() {
                 onChange={handleImageUpload}
                 className="hidden"
               />
-              <ImageIcon size={48} className="mx-auto mb-4 text-[#C7C4D8]" />
-              <p className="text-[#DAE2FD] font-semibold mb-2">
+              <ImageIcon size={48} className="mx-auto mb-4 text-[#4A6857]" />
+              <p className="text-[#1F3A26] font-semibold mb-2">
                 Upload an image
               </p>
-              <p className="text-sm text-[#C7C4D8]">
+              <p className="text-sm text-[#4A6857]">
                 Click to browse or drag and drop
               </p>
             </motion.div>
           ) : (
-            <div className="relative rounded-xl overflow-hidden border border-[rgba(195,192,255,0.1)]">
+            <div className="relative rounded-xl overflow-hidden border border-[#C5DCC9] bg-white">
               <img src={image} alt="Uploaded" className="w-full h-auto rounded-xl" />
               <motion.button
                 whileHover={{ scale: 1.1 }}
@@ -143,7 +143,7 @@ export function ImageColorExtractor() {
           {colors.length > 0 && (
             <div className="mt-8">
               <div className="flex items-center justify-between mb-3">
-                <h4 className="text-sm font-semibold text-[#C7C4D8] tracking-[1px] uppercase">
+                <h4 className="text-sm font-semibold text-[#2D4D35] tracking-[1px] uppercase">
                   Color Palette
                 </h4>
               </div>
@@ -156,7 +156,7 @@ export function ImageColorExtractor() {
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setSelectedColor(color.hex)}
                     className={`w-14 h-14 rounded-lg shadow-md transition-all cursor-pointer ${
-                      selectedColor === color.hex ? "ring-4 ring-[#4F46E5] ring-offset-2 ring-offset-[#0B1326]" : ""
+                      selectedColor === color.hex ? "ring-4 ring-[#10A968] ring-offset-2 ring-offset-white" : ""
                     }`}
                     style={{ backgroundColor: color.hex }}
                   />
@@ -164,24 +164,24 @@ export function ImageColorExtractor() {
               </div>
 
               <div className="flex gap-3 mt-6">
-                <button 
+                <button
                   onClick={() => {
                     const link = document.createElement("a");
                     link.href = image || "";
                     link.download = `extracted-palette-${Date.now()}.png`;
                     link.click();
                   }}
-                  className="flex-1 px-4 py-3 bg-[#31394D] hover:bg-[#3d4561] rounded-lg text-sm font-medium text-[#DAD7FF] transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                  className="flex-1 px-4 py-3 bg-[#E8F0E8] hover:bg-[#D4E8D8] rounded-lg text-sm font-medium text-[#2D4D35] transition-colors flex items-center justify-center gap-2 cursor-pointer font-semibold"
                 >
                   <Download size={16} />
                   Download
                 </button>
-                <button 
+                <button
                   onClick={() => {
                     navigator.clipboard.writeText(colors.map(c => c.hex).join(", "));
                     toast.success("All colors copied to clipboard!");
                   }}
-                  className="flex-1 px-4 py-3 bg-[#31394D] hover:bg-[#3d4561] rounded-lg text-sm font-medium text-[#DAD7FF] transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                  className="flex-1 px-4 py-3 bg-[#E8F0E8] hover:bg-[#D4E8D8] rounded-lg text-sm font-medium text-[#2D4D35] transition-colors flex items-center justify-center gap-2 cursor-pointer font-semibold"
                 >
                   <Copy size={16} />
                   Copy all
@@ -192,7 +192,7 @@ export function ImageColorExtractor() {
         </div>
 
         <div>
-          <h3 className="text-xl font-semibold mb-4 text-[#DAE2FD]">Extracted Color Details</h3>
+          <h3 className="text-xl font-semibold mb-4 text-[#1F3A26]">Extracted Color Details</h3>
 
           {selectedColor && formats ? (
             <motion.div
@@ -200,18 +200,18 @@ export function ImageColorExtractor() {
               animate={{ opacity: 1, scale: 1 }}
               className="space-y-4"
             >
-              <div className="flex items-center gap-4 p-4 bg-[#1D263B] border border-[rgba(195,192,255,0.05)] rounded-xl justify-center">
+              <div className="flex items-center gap-4 p-4 bg-[#F0F7F0] border border-[#C5DCC9] rounded-xl justify-center">
                 <div
-                  className="w-24 h-24 rounded-xl shadow-md border border-[rgba(195,192,255,0.1)]"
+                  className="w-24 h-24 rounded-xl shadow-md border border-[#C5DCC9]"
                   style={{ backgroundColor: selectedColor }}
                 />
               </div>
 
               <div className="space-y-3">
-                <div className="flex items-center justify-between p-4 bg-[#1D263B] border border-[rgba(195,192,255,0.05)] rounded-lg group">
+                <div className="flex items-center justify-between p-4 bg-[#F0F7F0] border border-[#C5DCC9] rounded-lg group">
                   <div>
-                    <div className="text-xs text-[#C7C4D8] mb-1 font-semibold">HEX</div>
-                    <div className="font-mono font-semibold text-[#DAE2FD] text-lg">
+                    <div className="text-xs text-[#2D4D35] mb-1 font-semibold">HEX</div>
+                    <div className="font-mono font-semibold text-[#1F3A26] text-lg">
                       {formats.hex.toUpperCase()}
                     </div>
                   </div>
@@ -219,20 +219,20 @@ export function ImageColorExtractor() {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => copyToClipboard(formats.hex.toUpperCase(), "HEX")}
-                    className="p-2.5 bg-[#31394D] hover:bg-[#3d4561] text-[#DAE2FD] rounded-lg transition-all cursor-pointer"
+                    className="p-2.5 bg-[#E8F0E8] hover:bg-[#D4E8D8] text-[#2D4D35] rounded-lg transition-all cursor-pointer"
                   >
                     {copiedFormat === "HEX" ? (
-                      <Check size={16} className="text-green-400" />
+                      <Check size={16} className="text-green-600" />
                     ) : (
-                      <Copy size={16} className="text-[#C7C4D8]" />
+                      <Copy size={16} className="text-[#4A6857]" />
                     )}
                   </motion.button>
                 </div>
 
-                <div className="flex items-center justify-between p-4 bg-[#1D263B] border border-[rgba(195,192,255,0.05)] rounded-lg group">
+                <div className="flex items-center justify-between p-4 bg-[#F0F7F0] border border-[#C5DCC9] rounded-lg group">
                   <div>
-                    <div className="text-xs text-[#C7C4D8] mb-1 font-semibold">RGB</div>
-                    <div className="font-mono text-sm text-[#DAE2FD] text-lg">
+                    <div className="text-xs text-[#2D4D35] mb-1 font-semibold">RGB</div>
+                    <div className="font-mono text-sm text-[#1F3A26] text-lg">
                       rgb({formats.rgb.r}, {formats.rgb.g}, {formats.rgb.b})
                     </div>
                   </div>
@@ -240,20 +240,20 @@ export function ImageColorExtractor() {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => copyToClipboard(`rgb(${formats.rgb.r}, ${formats.rgb.g}, ${formats.rgb.b})`, "RGB")}
-                    className="p-2.5 bg-[#31394D] hover:bg-[#3d4561] text-[#DAE2FD] rounded-lg transition-all cursor-pointer"
+                    className="p-2.5 bg-[#E8F0E8] hover:bg-[#D4E8D8] text-[#2D4D35] rounded-lg transition-all cursor-pointer"
                   >
                     {copiedFormat === "RGB" ? (
-                      <Check size={16} className="text-green-400" />
+                      <Check size={16} className="text-green-600" />
                     ) : (
-                      <Copy size={16} className="text-[#C7C4D8]" />
+                      <Copy size={16} className="text-[#4A6857]" />
                     )}
                   </motion.button>
                 </div>
 
-                <div className="flex items-center justify-between p-4 bg-[#1D263B] border border-[rgba(195,192,255,0.05)] rounded-lg group">
+                <div className="flex items-center justify-between p-4 bg-[#F0F7F0] border border-[#C5DCC9] rounded-lg group">
                   <div>
-                    <div className="text-xs text-[#C7C4D8] mb-1 font-semibold">HSL</div>
-                    <div className="font-mono text-sm text-[#DAE2FD] text-lg">
+                    <div className="text-xs text-[#2D4D35] mb-1 font-semibold">HSL</div>
+                    <div className="font-mono text-sm text-[#1F3A26] text-lg">
                       hsl({formats.hsl.h}, {formats.hsl.s}%, {formats.hsl.l}%)
                     </div>
                   </div>
@@ -261,21 +261,21 @@ export function ImageColorExtractor() {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => copyToClipboard(`hsl(${formats.hsl.h}, ${formats.hsl.s}%, ${formats.hsl.l}%)`, "HSL")}
-                    className="p-2.5 bg-[#31394D] hover:bg-[#3d4561] text-[#DAE2FD] rounded-lg transition-all cursor-pointer"
+                    className="p-2.5 bg-[#E8F0E8] hover:bg-[#D4E8D8] text-[#2D4D35] rounded-lg transition-all cursor-pointer"
                   >
                     {copiedFormat === "HSL" ? (
-                      <Check size={16} className="text-green-400" />
+                      <Check size={16} className="text-green-600" />
                     ) : (
-                      <Copy size={16} className="text-[#C7C4D8]" />
+                      <Copy size={16} className="text-[#4A6857]" />
                     )}
                   </motion.button>
                 </div>
               </div>
 
               <div className="space-y-2 pt-2">
-                <button 
+                <button
                   onClick={() => fileInputRef.current?.click()}
-                  className="w-full px-4 py-3 bg-gradient-indigo-cyan text-white rounded-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2 cursor-pointer shadow-lg"
+                  className="w-full px-4 py-3 bg-[#10A968] text-white rounded-lg font-semibold hover:bg-[#0d8a52] transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg"
                 >
                   <Upload size={18} />
                   Use another image
@@ -283,7 +283,7 @@ export function ImageColorExtractor() {
               </div>
             </motion.div>
           ) : (
-            <div className="h-[250px] flex flex-col items-center justify-center text-[#C7C4D8] border border-dashed border-[rgba(195,192,255,0.20)] bg-[rgba(195,192,255,0.02)] rounded-xl p-6">
+            <div className="h-[250px] flex flex-col items-center justify-center text-[#4A6857] border border-dashed border-[#C5DCC9] bg-[#F0F7F0] rounded-xl p-6">
               <p className="font-medium text-center">Upload an image of your choice to automatically extract its color palettes</p>
             </div>
           )}

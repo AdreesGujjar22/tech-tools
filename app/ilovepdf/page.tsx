@@ -114,20 +114,20 @@ export default function LovePdfDashboard() {
   });
 
   return (
-    <main className="min-h-screen bg-transparent text-foreground selection:bg-indigo-500/30">
+    <main className="min-h-screen bg-transparent text-foreground selection:bg-[#10A968]/30">
       {/* SaaS Premium Header Title Section */}
-      <section className="relative overflow-hidden border-b border-[rgba(255,255,255,0.06)] bg-gradient-to-at-t from-[#141B31]/40 via-[#060E20]/50 to-transparent py-20 pb-24">
-        <div className="absolute inset-0 bg-radial-at-t from-indigo-950/20 via-transparent to-transparent pointer-events-none" />
-        <div className="absolute top-20 right-10 w-96 h-96 bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none" />
+      <section className="relative overflow-hidden border-b border-[#C5DCC9] bg-gradient-to-b from-[#F0F7F0] via-white to-transparent py-20 pb-24">
+        <div className="absolute inset-0 bg-radial-at-t from-[#10A968]/10 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute top-20 right-10 w-96 h-96 bg-[#10A968]/5 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="max-w-6xl mx-auto px-4 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-3 py-1 pb-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/15 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-6 animate-pulse"
+            className="inline-flex items-center gap-2 px-3 py-1 pb-1.5 rounded-full bg-[#10A968]/10 border border-[#10A968]/20 text-[#10A968] text-xs font-semibold uppercase tracking-wider mb-6 animate-pulse"
           >
-            <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full" />
+            <span className="w-1.5 h-1.5 bg-[#10A968] rounded-full" />
             100% Client-Side Compiler Hub
           </motion.div>
 
@@ -135,10 +135,10 @@ export default function LovePdfDashboard() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.4 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tighter text-white mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tighter text-[#1F3A26] mb-6"
           >
             Every tool you need to <br className="hidden sm:inline" />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#4F46E5] to-[#4CD7F6]">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#10A968] to-[#10A968]">
               optimize and master PDFs
             </span>
           </motion.h1>
@@ -147,7 +147,7 @@ export default function LovePdfDashboard() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15, duration: 0.4 }}
-            className="text-[#C7C4D8]/80 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed mb-10"
+            className="text-[#4A6857] max-w-2xl mx-auto text-sm sm:text-base leading-relaxed mb-10"
           >
             Perform lightning-fast PDF actions inside your browser. Your sensitive files never leave your computer, ensuring total containment.
           </motion.p>
@@ -157,9 +157,9 @@ export default function LovePdfDashboard() {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.3 }}
-            className="max-w-xl mx-auto flex items-center bg-[#141B31]/60 border border-neutral-800 rounded-2xl p-1.5 shadow-2xl focus-within:border-indigo-500/40 transition"
+            className="max-w-xl mx-auto flex items-center bg-white border border-[#C5DCC9] rounded-2xl p-1.5 shadow-lg focus-within:border-[#10A968]/40 transition"
           >
-            <div className="flex items-center pl-3 text-neutral-500">
+            <div className="flex items-center pl-3 text-[#4A6857]">
               <Search className="w-5 h-5" />
             </div>
             <input
@@ -167,12 +167,12 @@ export default function LovePdfDashboard() {
               placeholder="Search PDF tools (e.g., merge, compress)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-transparent border-0 ring-0 focus:outline-none focus:ring-0 p-3 text-sm text-white placeholder-[#6B7280] font-medium"
+              className="w-full bg-transparent border-0 ring-0 focus:outline-none focus:ring-0 p-3 text-sm text-[#2D4D35] placeholder-[#999B99] font-medium"
             />
             {searchQuery && (
-              <button 
+              <button
                 onClick={() => setSearchQuery("")}
-                className="p-1 px-2.5 text-xs text-[#C7C4D8] bg-neutral-800 hover:bg-neutral-750 border border-neutral-700/65 rounded-xl transition cursor-pointer"
+                className="p-1 px-2.5 text-xs text-[#4A6857] bg-[#E8F0E8] hover:bg-[#D4E8D8] border border-[#C5DCC9] rounded-xl transition cursor-pointer"
               >
                 Clear
               </button>
@@ -182,15 +182,15 @@ export default function LovePdfDashboard() {
       </section>
 
       {/* Category Tabs Selection Grid */}
-      <section className="bg-[#060E20]/80 sticky top-0 z-40 border-b border-[rgba(255,255,255,0.06)] backdrop-blur-xl">
+      <section className="bg-white sticky top-0 z-40 border-b border-[#C5DCC9] backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between gap-4 overflow-x-auto whitespace-nowrap custom-scroll">
           <div className="flex items-center gap-2">
             <button
               onClick={() => setSelectedCategory("all")}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-tight transition duration-150 cursor-pointer ${
                 selectedCategory === "all"
-                  ? "bg-gradient-to-r from-indigo-500 to-indigo-600 text-white shadow-lg shadow-indigo-950/20"
-                  : "bg-neutral-900 border border-neutral-800 text-[#C7C4D8]/80 hover:text-white"
+                  ? "brand-gradient text-white shadow-lg shadow-[#10A968]/20"
+                  : "bg-[#E8F0E8] border border-[#C5DCC9] text-[#4A6857] hover:text-[#2D4D35]"
               }`}
             >
               All Tools
@@ -201,8 +201,8 @@ export default function LovePdfDashboard() {
                 onClick={() => setSelectedCategory(key)}
                 className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-tight transition duration-150 cursor-pointer ${
                   selectedCategory === key
-                    ? "bg-gradient-to-r from-indigo-500 to-indigo-600 text-white shadow-lg shadow-indigo-950/20"
-                    : "bg-neutral-900 border border-neutral-800 text-[#C7C4D8]/80 hover:text-white"
+                    ? "brand-gradient text-white shadow-lg shadow-[#10A968]/20"
+                    : "bg-[#E8F0E8] border border-[#C5DCC9] text-[#4A6857] hover:text-[#2D4D35]"
                 }`}
               >
                 {label}
@@ -236,10 +236,10 @@ export default function LovePdfDashboard() {
 
         {/* Empty Search Fallback */}
         {filteredTools.length === 0 && (
-          <div className="text-center py-20 border border-dashed border-neutral-900 rounded-3xl bg-neutral-950/20 max-w-md mx-auto">
-            <AlertCircle className="w-10 h-10 text-neutral-600 mx-auto mb-4" />
-            <h4 className="text-white font-semibold text-sm">No matched tools</h4>
-            <p className="text-xs text-neutral-500 max-w-xs mx-auto mt-1 leading-relaxed">
+          <div className="text-center py-20 border border-dashed border-[#C5DCC9] rounded-3xl bg-[#F0F7F0] max-w-md mx-auto">
+            <AlertCircle className="w-10 h-10 text-[#999B99] mx-auto mb-4" />
+            <h4 className="text-[#1F3A26] font-semibold text-sm">No matched tools</h4>
+            <p className="text-xs text-[#4A6857] max-w-xs mx-auto mt-1 leading-relaxed">
               We couldn't locate any converters or tools aligning with your parameters. Verify your searching terms.
             </p>
           </div>

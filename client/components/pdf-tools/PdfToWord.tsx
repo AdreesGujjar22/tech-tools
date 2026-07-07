@@ -140,7 +140,7 @@ export default function PdfToWord() {
       configTitle="Conversion Targets"
       renderConfig={() => (
         <div className="py-2 text-center">
-          <p className="text-xs text-neutral-400 font-mono leading-relaxed">
+          <p className="text-xs text-[#4A6857] font-mono leading-relaxed">
             Performs complete text extraction across all sections and outputs them natively inside standard Word `.docx` file blocks.
           </p>
         </div>

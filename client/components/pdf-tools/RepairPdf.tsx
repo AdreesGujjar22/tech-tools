@@ -40,7 +40,7 @@ export default function RepairPdf() {
       configTitle="Repair Options"
       renderConfig={() => (
         <div className="py-2 text-center">
-          <p className="text-xs text-neutral-400 font-mono leading-relaxed">
+          <p className="text-xs text-[#4A6857] font-mono leading-relaxed">
             The repair pipeline reconstructs broken catalog indices, stream lengths, and missing offset markers to satisfy Adobe & web standards.
           </p>
         </div>

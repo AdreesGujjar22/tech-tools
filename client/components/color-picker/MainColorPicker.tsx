@@ -16,11 +16,11 @@ export default function MainColorPicker() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0B1326] text-[#DAE2FD]">
+    <div className="min-h-screen bg-gradient-to-b from-[#F0F7F0] via-white to-transparent text-[#2D4D35]">
       <main className="pt-32 pb-20 px-6 max-w-[1280px] mx-auto">
         <div className="mb-12">
-          <h1 className="text-5xl lg:text-6xl font-bold mb-2">Color Picker</h1>
-          <p className="text-lg text-[#C7C4D8]">
+          <h1 className="text-5xl lg:text-6xl font-bold mb-2 text-[#1F3A26]">Color Picker</h1>
+          <p className="text-lg text-[#4A6857] font-medium">
             Extract beautiful color palettes from any image or fine-tune and copy individual colors with surgical precision.
           </p>
         </div>
@@ -30,7 +30,7 @@ export default function MainColorPicker() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <div className="inline-flex gap-2 p-1.5 bg-[rgba(23,31,51,0.40)] backdrop-blur-[20px] border border-[rgba(195,192,255,0.10)] rounded-xl shadow-lg">
+          <div className="inline-flex gap-2 p-1.5 bg-white backdrop-blur-[20px] border border-[#C5DCC9] rounded-xl shadow-lg">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
@@ -41,8 +41,8 @@ export default function MainColorPicker() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`px-6 py-2.5 rounded-lg font-semibold flex items-center gap-2 transition-all cursor-pointer ${
                     activeTab === tab.id
-                      ? "bg-[#4F46E5] text-[#DAD7FF] shadow-md"
-                      : "text-[#C7C4D8] hover:text-[#DAE2FD] hover:bg-[rgba(23,31,51,0.60)]"
+                      ? "bg-[#10A968] text-white shadow-md"
+                      : "text-[#4A6857] hover:text-[#2D4D35] hover:bg-[#F0F7F0]"
                   }`}
                 >
                   <Icon size={18} />
@@ -81,7 +81,7 @@ export default function MainColorPicker() {
         </AnimatePresence>
       </main>
 
-      <Toaster position="bottom-right" richColors theme="dark" />
+      <Toaster position="bottom-right" richColors theme="light" />
     </div>
   );
 }

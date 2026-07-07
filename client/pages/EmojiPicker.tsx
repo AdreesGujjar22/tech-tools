@@ -172,14 +172,14 @@ export default function EmojiPicker() {
         <div className="max-w-[1280px] mx-auto">
           {/* Header */}
           <div className="mb-12 text-center max-w-2xl mx-auto space-y-4">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(76,215,246,0.15)] bg-[#131B2E]">
-              <Sparkles className="w-4 h-4 text-[#4CD7F6]" />
-              <span className="text-[#4CD7F6] text-xs font-semibold tracking-wider uppercase">Premium Utility</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(76,215,246,0.15)] bg-white">
+              <Sparkles className="w-4 h-4 text-[#10A968]" />
+              <span className="text-[#10A968] text-xs font-semibold tracking-wider uppercase">Premium Utility</span>
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight gradient-text">
               Emoji Picker & Copier
             </h1>
-            <p className="text-base text-[#C7C4D8]">
+            <p className="text-base text-[#4A6857]">
               Browse and copy emojis instantly. Find the perfect emoji for any occasion.
             </p>
           </div>
@@ -193,7 +193,7 @@ export default function EmojiPicker() {
                 placeholder="Search emojis..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 rounded-[12px] border border-[rgba(70,69,85,0.30)] bg-[#131B2E] text-[#DAE2FD] placeholder-[#6B7280] focus:outline-none focus:border-[#4F46E5] text-sm"
+                className="w-full pl-12 pr-4 py-3 rounded-[12px] border border-[#C5DCC9] bg-white text-[#2D4D35] placeholder-[#999B99] focus:outline-none focus:border-[#10A968] text-sm"
               />
             </div>
           </div>
@@ -201,13 +201,13 @@ export default function EmojiPicker() {
           {/* Recent Emojis */}
           {recentEmojis.length > 0 && !searchQuery && (
             <div className="max-w-2xl mx-auto mb-8">
-              <h2 className="text-sm font-semibold text-[#DAE2FD] mb-3">Recently Copied</h2>
+              <h2 className="text-sm font-semibold text-[#2D4D35] mb-3">Recently Copied</h2>
               <div className="glass-card-dark p-4 rounded-[12px] flex gap-2 flex-wrap">
                 {recentEmojis.map((emoji) => (
                   <button
                     key={emoji}
                     onClick={() => copyEmoji(emoji)}
-                    className="w-12 h-12 rounded-lg bg-[rgba(45,52,73,0.50)] hover:bg-[rgba(45,52,73,0.80)] text-2xl flex items-center justify-center transition-colors"
+                    className="w-12 h-12 rounded-lg bg-[#E8F0E8] hover:bg-[#D4E8D8] text-2xl flex items-center justify-center transition-colors"
                     title="Click to copy"
                   >
                     {emoji}
@@ -229,8 +229,8 @@ export default function EmojiPicker() {
                       onClick={() => setSelectedCategory(key)}
                       className={`flex items-center gap-2 px-4 py-2 rounded-lg whitespace-nowrap text-sm font-semibold transition-colors ${
                         selectedCategory === key
-                          ? "bg-[#4F46E5] text-white"
-                          : "bg-[rgba(45,52,73,0.50)] text-[#DAE2FD] hover:bg-[rgba(45,52,73,0.80)]"
+                          ? "brand-gradient text-white"
+                          : "bg-[#E8F0E8] text-[#2D4D35] hover:bg-[#D4E8D8]"
                       }`}
                     >
                       <IconComponent className="w-4 h-4" />
@@ -253,7 +253,7 @@ export default function EmojiPicker() {
                     className={`aspect-square rounded-lg flex items-center justify-center transition-all relative group font-emoji ${
                       copied === emoji
                         ? "bg-green-500/30 scale-110 border border-green-500"
-                        : "bg-[rgba(45,52,73,0.50)] hover:bg-[rgba(45,52,73,0.80)] border border-transparent"
+                        : "bg-[#E8F0E8] hover:bg-[#D4E8D8] border border-transparent"
                     }`}
                     title="Click to copy"
                     style={{
@@ -281,14 +281,14 @@ export default function EmojiPicker() {
             ) : (
               <div className="text-center py-12">
                 <Sparkles className="w-16 h-16 text-[#6B7280] mx-auto mb-4 opacity-50" />
-                <p className="text-[#C7C4D8]">No emojis found</p>
+                <p className="text-[#4A6857]">No emojis found</p>
                 <p className="text-sm text-[#6B7280] mt-2">Try a different search term</p>
               </div>
             )}
           </div>
 
           {/* Info Footer */}
-          <div className="mt-12 text-center text-sm text-[#C7C4D8]">
+          <div className="mt-12 text-center text-sm text-[#4A6857]">
             <p>Click any emoji to copy it to your clipboard</p>
           </div>
         </div>
@@ -296,7 +296,7 @@ export default function EmojiPicker() {
 
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 rounded-lg bg-[#131B2E] border border-[#4F46E5] text-[#DAE2FD] font-semibold text-sm flex items-center gap-2 shadow-lg animate-fade-in-scale z-50">
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 rounded-lg bg-white border border-[#4F46E5] text-[#2D4D35] font-semibold text-sm flex items-center gap-2 shadow-lg animate-fade-in-scale z-50">
           <Check className="w-4 h-4 text-green-400" />
           {toastMessage}
         </div>

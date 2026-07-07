@@ -43,7 +43,7 @@ export default function RotatePdf() {
       defaultConfig={{ angle: "90" }}
       renderConfig={(files, config, setConfig) => (
         <div className="space-y-4">
-          <label className="text-xs font-semibold text-neutral-400 block pb-1 border-b border-neutral-800">
+          <label className="text-xs font-semibold text-[#4A6857] block pb-1 border-b border-[#C5DCC9]">
             Rotate Clockwise Angle
           </label>
           <div className="grid grid-cols-3 gap-2">
@@ -58,15 +58,15 @@ export default function RotatePdf() {
                 onClick={() => setConfig({ angle: option.id })}
                 className={`py-3.5 px-2 rounded-xl border text-center font-bold text-xs font-mono transition duration-150 ${
                   config.angle === option.id
-                    ? "border-red-600 bg-red-600/5 text-white animate-pulse"
-                    : "border-neutral-800 bg-neutral-950/40 hover:border-neutral-700 text-neutral-400"
+                    ? "border-[#10A968] bg-[#10A968]/10 text-[#1F3A26] animate-pulse"
+                    : "border-[#C5DCC9] bg-[#F0F7F0] hover:border-[#10A968]/50 text-[#4A6857]"
                 }`}
               >
                 {option.label}
               </button>
             ))}
           </div>
-          <p className="text-2xs text-neutral-500 leading-relaxed font-mono mt-1 text-center">
+          <p className="text-2xs text-[#4A6857] leading-relaxed font-mono mt-1 text-center">
             Applies clockwise rotation across all pages in the PDF document.
           </p>
         </div>

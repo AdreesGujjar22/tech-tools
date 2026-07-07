@@ -51,14 +51,14 @@ export default function MergePdf() {
       configTitle="Merge Controls"
       renderConfig={(files, config, setConfig) => (
         <div className="space-y-4">
-          <p className="text-xs text-neutral-400 leading-relaxed">
+          <p className="text-xs text-[#4A6857] leading-relaxed">
             Drag files to reorder or sort. They will be integrated from top to bottom into a single document.
           </p>
-          <div className="border border-neutral-800 rounded-xl divide-y divide-neutral-800 bg-neutral-950 max-h-[250px] overflow-y-auto custom-scroll">
+          <div className="border border-[#C5DCC9] rounded-xl divide-y divide-[#C5DCC9] bg-[#F0F7F0] max-h-[250px] overflow-y-auto custom-scroll">
             {files.map((file, idx) => (
-              <div key={`${file.name}-${idx}`} className="flex items-center justify-between p-3 text-xs bg-neutral-950/40 font-mono">
-                <span className="truncate max-w-[180px] text-neutral-300 font-semibold">{file.name}</span>
-                <span className="text-neutral-500 font-normal">Page Count: N/A</span>
+              <div key={`${file.name}-${idx}`} className="flex items-center justify-between p-3 text-xs bg-white/40 font-mono">
+                <span className="truncate max-w-[180px] text-[#1F3A26] font-semibold">{file.name}</span>
+                <span className="text-[#4A6857] font-normal">Page Count: N/A</span>
               </div>
             ))}
           </div>

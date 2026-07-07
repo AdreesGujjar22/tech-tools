@@ -18,6 +18,11 @@ export default function Generator() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const generateQRCode = async () => {
+    if (!text || text.trim() === "") {
+      setQrUrl("");
+      return;
+    }
+
     setIsGenerating(true);
     try {
       const url = await QRCode.toDataURL(text, {
@@ -76,14 +81,14 @@ export default function Generator() {
         <div className="max-w-[1280px] mx-auto">
           {/* Header */}
           <div className="mb-12 text-center max-w-2xl mx-auto space-y-4">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(76,215,246,0.15)] bg-[#131B2E]">
-              <Sparkles className="w-4 h-4 text-[#4CD7F6]" />
-              <span className="text-[#4CD7F6] text-xs font-semibold tracking-wider uppercase">Premium Utility</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(16,169,104,0.25)] bg-[#F0F7F0]">
+              <Sparkles className="w-4 h-4 text-[#10A968]" />
+              <span className="text-[#10A968] text-xs font-semibold tracking-wider uppercase">Premium Utility</span>
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight gradient-text">
               QR Code Generator
             </h1>
-            <p className="text-base text-[#C7C4D8]">
+            <p className="text-base text-[#4A6857]">
               Instantly create fully customized QR codes for websites, WiFi networks, digital business cards, or text payloads.
             </p>
           </div>
@@ -93,7 +98,7 @@ export default function Generator() {
             {/* Left controls panel */}
             <div className="lg:col-span-7 glass-card-dark p-8 rounded-[24px] space-y-6">
               <div>
-                <label className="block text-sm font-semibold text-[#DAE2FD] mb-2">
+                <label className="block text-sm font-semibold text-[#2D4D35] mb-2">
                   QR Code Content (URL, Text, or Node)
                 </label>
                 <div className="relative">
@@ -101,19 +106,19 @@ export default function Generator() {
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                     placeholder="Enter URL or text to encode..."
-                    className="w-full h-28 px-4 py-3 rounded-[12px] border border-[rgba(70,69,85,0.30)] bg-[#131B2E] text-[#DAE2FD] placeholder-[#6B7280] focus:outline-none focus:border-[#4F46E5] resize-none"
+                    className="w-full h-28 px-4 py-3 rounded-[12px] border border-[#E0E0E0] bg-white text-[#2D4D35] placeholder-[#999B99] focus:outline-none focus:border-[#10A968] resize-none"
                   />
                   <div className="absolute bottom-3 right-3 flex gap-2">
                     <button
                       onClick={copyToClipboard}
-                      className="p-2 rounded-lg bg-[rgba(45,52,73,0.50)] hover:bg-[rgba(45,52,73,0.80)] text-[#C7C4D8] transition-colors"
+                      className="p-2 rounded-lg bg-[#E8F0E8] hover:bg-[#D4E8D8] text-[#4A6857] transition-colors"
                       title="Copy content"
                     >
                       {copied ? <Check className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
                     </button>
                     <button
                       onClick={() => setText("")}
-                      className="p-2 rounded-lg bg-[rgba(45,52,73,0.50)] hover:bg-[rgba(45,52,73,0.80)] text-[#C7C4D8] transition-colors"
+                      className="p-2 rounded-lg bg-[#E8F0E8] hover:bg-[#D4E8D8] text-[#4A6857] transition-colors"
                       title="Clear content"
                     >
                       <RefreshCw className="w-4 h-4" />
@@ -123,15 +128,15 @@ export default function Generator() {
               </div>
 
               {/* Advanced Options Accordion/Drawer */}
-              <div className="border-t border-[rgba(195,192,255,0.10)] pt-6 space-y-4">
-                <h3 className="text-md font-bold text-[#E2DFFF] flex items-center gap-2">
-                  <Sliders className="w-4 h-4 text-[#C3C0FF]" /> Customize Design Settings
+              <div className="border-t border-[#E0E0E0] pt-6 space-y-4">
+                <h3 className="text-md font-bold text-[#1F3A26] flex items-center gap-2">
+                  <Sliders className="w-4 h-4 text-[#10A968]" /> Customize Design Settings
                 </h3>
 
                 <div className="grid sm:grid-cols-2 gap-4">
                   {/* Foreground Color */}
                   <div>
-                    <label className="block text-xs text-[#C7C4D8] mb-2">QR Code Color (Foreground)</label>
+                    <label className="block text-xs text-[#4A6857] mb-2">QR Code Color (Foreground)</label>
                     <div className="flex gap-2">
                       <input
                         type="color"
@@ -143,14 +148,14 @@ export default function Generator() {
                         type="text"
                         value={fgColor}
                         onChange={(e) => setFgColor(e.target.value)}
-                        className="flex-1 px-3 py-2 text-xs rounded-lg border border-[rgba(70,69,85,0.30)] bg-[#131B2E] text-[#DAE2FD] uppercase"
+                        className="flex-1 px-3 py-2 text-xs rounded-lg border border-[#E0E0E0] bg-white text-[#2D4D35] uppercase"
                       />
                     </div>
                   </div>
 
                   {/* Background Color */}
                   <div>
-                    <label className="block text-xs text-[#C7C4D8] mb-2">Background Color</label>
+                    <label className="block text-xs text-[#4A6857] mb-2">Background Color</label>
                     <div className="flex gap-2">
                       <input
                         type="color"
@@ -162,7 +167,7 @@ export default function Generator() {
                         type="text"
                         value={bgColor}
                         onChange={(e) => setBgColor(e.target.value)}
-                        className="flex-1 px-3 py-2 text-xs rounded-lg border border-[rgba(70,69,85,0.30)] bg-[#131B2E] text-[#DAE2FD] uppercase"
+                        className="flex-1 px-3 py-2 text-xs rounded-lg border border-[#E0E0E0] bg-white text-[#2D4D35] uppercase"
                       />
                     </div>
                   </div>
@@ -171,8 +176,8 @@ export default function Generator() {
                 <div className="grid sm:grid-cols-2 gap-4 pt-2">
                   {/* Size slider */}
                   <div>
-                    <label className="block text-xs text-[#C7C4D8] mb-2">
-                      Resolution Sizing: <span className="text-[#4CD7F6] font-semibold">{size} x {size}px</span>
+                    <label className="block text-xs text-[#4A6857] mb-2">
+                      Resolution Sizing: <span className="text-[#10A968] font-semibold">{size} x {size}px</span>
                     </label>
                     <input
                       type="range"
@@ -180,14 +185,14 @@ export default function Generator() {
                       max="800"
                       value={size}
                       onChange={(e) => setSize(Number(e.target.value))}
-                      className="w-full accent-[#4F46E5] bg-[#131B2E]"
+                      className="w-full accent-[#10A968] bg-white"
                     />
                   </div>
 
                   {/* Margin slider */}
                   <div>
-                    <label className="block text-xs text-[#C7C4D8] mb-2">
-                      Quiet Zone Margin: <span className="text-[#4CD7F6] font-semibold">{margin}px</span>
+                    <label className="block text-xs text-[#4A6857] mb-2">
+                      Quiet Zone Margin: <span className="text-[#10A968] font-semibold">{margin}px</span>
                     </label>
                     <input
                       type="range"
@@ -195,7 +200,7 @@ export default function Generator() {
                       max="10"
                       value={margin}
                       onChange={(e) => setMargin(Number(e.target.value))}
-                      className="w-full accent-[#4F46E5] bg-[#131B2E]"
+                      className="w-full accent-[#10A968] bg-white"
                     />
                   </div>
                 </div>
@@ -205,14 +210,14 @@ export default function Generator() {
             {/* Right output preview */}
             <div className="lg:col-span-5 flex flex-col items-center">
               <div className="glass-card-dark p-8 rounded-[24px] w-full flex flex-col items-center gap-6 text-center">
-                <span className="text-[#DAE2FD] text-sm font-semibold tracking-wider uppercase">Live QR Preview</span>
+                <span className="text-[#2D4D35] text-sm font-semibold tracking-wider uppercase">Live QR Preview</span>
 
                 {/* QR output image container */}
-                <div className="relative aspect-square w-72 h-72 rounded-[16px] bg-white p-4 flex items-center justify-center shadow-lg border border-[rgba(255,255,255,0.05)]">
+                <div className="relative aspect-square w-72 h-72 rounded-[16px] bg-white p-4 flex items-center justify-center shadow-lg border border-[#E0E0E0]">
                   {qrUrl ? (
                     <img src={qrUrl} alt="Generated QR code" className="max-w-full max-h-full object-contain" />
                   ) : (
-                    <div className="flex flex-col items-center gap-2 text-gray-400">
+                    <div className="flex flex-col items-center gap-2 text-gray-500">
                       <ImageIcon className="w-12 h-12" />
                       <span>Generating QR Code...</span>
                     </div>
@@ -220,7 +225,7 @@ export default function Generator() {
 
                   {isGenerating && (
                     <div className="absolute inset-0 bg-white/75 backdrop-blur-sm rounded-[16px] flex items-center justify-center">
-                      <RefreshCw className="w-8 h-8 text-[#4F46E5] animate-spin" />
+                      <RefreshCw className="w-8 h-8 text-[#10A968] animate-spin" />
                     </div>
                   )}
                 </div>
@@ -229,7 +234,7 @@ export default function Generator() {
                   <button
                     onClick={downloadQR}
                     disabled={!qrUrl}
-                    className="flex-1 py-3 px-4 rounded-[12px] bg-gradient-indigo-cyan text-white font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-95 transition-opacity disabled:opacity-50"
+                    className="flex-1 py-3 px-4 rounded-[12px] brand-gradient text-white font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-95 transition-opacity disabled:opacity-50"
                   >
                     <Download className="w-4 h-4" /> Download PNG
                   </button>
@@ -247,14 +252,14 @@ export default function Generator() {
                         }
                       }
                     }}
-                    className="px-4 py-3 rounded-[12px] border border-[#464555] bg-[rgba(23,31,51,0.40)] hover:bg-[rgba(23,31,51,0.60)] text-[#DAE2FD] transition-colors"
+                    className="px-4 py-3 rounded-[12px] border border-[#C5DCC9] bg-[#F0F7F0] hover:bg-[#E8F0E8] text-[#2D4D35] transition-colors"
                     title="Share QR Link"
                   >
                     <Share2 className="w-4 h-4" />
                   </button>
                 </div>
 
-                <span className="text-xs text-[#C7C4D8] max-w-[280px]">
+                <span className="text-xs text-[#4A6857] max-w-[280px]">
                   All processing is conducted safely in-browser. Your data never leaves your local system.
                 </span>
               </div>

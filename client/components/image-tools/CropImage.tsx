@@ -265,7 +265,7 @@ function CropConfigUI({ files, config, setConfig }: CropConfigUIProps) {
     <div className="space-y-6">
       {/* Aspect ratio controls */}
       <div>
-        <label className="text-xs font-bold text-neutral-400 block mb-2 font-mono uppercase">
+        <label className="text-xs font-bold text-[#4A6857] block mb-2 font-mono uppercase">
           Aspect Ratio
         </label>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 font-mono text-2xs">
@@ -282,8 +282,8 @@ function CropConfigUI({ files, config, setConfig }: CropConfigUIProps) {
               onClick={() => selectRatio(r.id)}
               className={`py-2 rounded-lg border text-center font-bold tracking-tight transition duration-150 cursor-pointer ${
                 String(config.ratio) === r.id
-                  ? "bg-indigo-950/40 border-indigo-500 text-indigo-400"
-                  : "bg-neutral-900/60 border-neutral-850 text-neutral-400 hover:text-white"
+                  ? "bg-[#10A968]/20 border-[#10A968] text-[#1F3A26]"
+                  : "bg-neutral-900/60 border-neutral-850 text-[#4A6857] hover:text-[#1F3A26]"
               }`}
             >
               {r.label}
@@ -295,12 +295,12 @@ function CropConfigUI({ files, config, setConfig }: CropConfigUIProps) {
       {/* Visual Crop Workspace */}
       {imgUrl && originalDims.w > 0 && (
         <div className="space-y-2">
-          <span className="text-[10px] font-bold text-neutral-400 block font-mono uppercase">
+          <span className="text-[10px] font-bold text-[#4A6857] block font-mono uppercase">
             Interactive Crop Area
           </span>
           <div
             ref={containerRef}
-            className="relative border border-neutral-900 bg-neutral-950 rounded-2xl overflow-hidden select-none w-full flex items-center justify-center p-3"
+            className="relative border border-[#C5DCC9] bg-[#F0F7F0] rounded-2xl overflow-hidden select-none w-full flex items-center justify-center p-3"
             style={{ aspectRatio: originalDims.w / originalDims.h, maxHeight: "400px" }}
           >
             <img
@@ -319,7 +319,7 @@ function CropConfigUI({ files, config, setConfig }: CropConfigUIProps) {
                 width: `${(cropBox.w / originalDims.w) * 100}%`,
                 height: `${(cropBox.h / originalDims.h) * 100}%`
               }}
-              className="border-2 border-indigo-500 shadow-2xl relative cursor-move"
+              className="border-2 border-[#10A968] shadow-2xl relative cursor-move"
               onMouseDown={(e) => {
                 e.stopPropagation();
                 handleMouseDown(e, "drag");
@@ -334,7 +334,7 @@ function CropConfigUI({ files, config, setConfig }: CropConfigUIProps) {
                 {Array.from({ length: 9 }).map((_, i) => (
                   <div
                     key={i}
-                    className={`${i % 3 !== 2 ? "border-r" : ""} ${i < 6 ? "border-b" : ""} border-indigo-500/40`}
+                    className={`${i % 3 !== 2 ? "border-r" : ""} ${i < 6 ? "border-b" : ""} border-[#10A968]/40`}
                   />
                 ))}
               </div>
@@ -377,20 +377,20 @@ function CropConfigUI({ files, config, setConfig }: CropConfigUIProps) {
       )}
 
       {/* Dimension info */}
-      <div className="p-4 bg-neutral-950 rounded-2xl space-y-3 font-mono text-2xs text-neutral-400 border border-neutral-900">
-        <span className="text-[10px] font-bold text-neutral-500 block uppercase mb-1">
+      <div className="p-4 bg-[#F0F7F0] rounded-2xl space-y-3 font-mono text-2xs text-[#4A6857] border border-[#C5DCC9]">
+        <span className="text-[10px] font-bold text-[#4A6857] block uppercase mb-1">
           Output Dimensions
         </span>
         <div className="grid grid-cols-2 gap-2 text-left">
           <div>
-            <span className="text-neutral-500 block">Start X, Y:</span>
-            <span className="text-white font-bold">
+            <span className="text-[#4A6857] block">Start X, Y:</span>
+            <span className="text-[#1F3A26] font-bold">
               {config.cropX}, {config.cropY} px
             </span>
           </div>
           <div>
-            <span className="text-neutral-500 block">Size W x H:</span>
-            <span className="text-white font-bold">
+            <span className="text-[#4A6857] block">Size W x H:</span>
+            <span className="text-[#1F3A26] font-bold">
               {config.cropW} x {config.cropH} px
             </span>
           </div>

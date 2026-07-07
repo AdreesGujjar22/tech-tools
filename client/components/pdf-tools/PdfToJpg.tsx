@@ -97,7 +97,7 @@ export default function PdfToJpg() {
       configTitle="Image Settings"
       renderConfig={() => (
         <div className="py-2 text-center">
-          <p className="text-xs text-neutral-400 font-mono leading-relaxed">
+          <p className="text-xs text-[#4A6857] font-mono leading-relaxed">
             All PDF pages will be converted to high-quality JPEG images loaded collectively in a ZIP folder.
           </p>
         </div>

@@ -96,7 +96,7 @@ export default function WordToPdf() {
       configTitle="Compile Standards"
       renderConfig={() => (
         <div className="py-2 text-center">
-          <p className="text-xs text-neutral-400 font-mono leading-relaxed">
+          <p className="text-xs text-[#4A6857] font-mono leading-relaxed">
             Parses Word sections and wraps structural content into a letter-format PDF.
           </p>
         </div>

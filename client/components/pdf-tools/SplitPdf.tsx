@@ -75,7 +75,7 @@ export default function SplitPdf() {
       renderConfig={(files, config, setConfig) => (
         <div className="space-y-4">
           <div>
-            <label className="text-xs font-semibold text-neutral-400 block mb-1">
+            <label className="text-xs font-semibold text-[#4A6857] block mb-1">
               Extract Page List / Range
             </label>
             <input
@@ -83,10 +83,10 @@ export default function SplitPdf() {
               placeholder="e.g. 1-3, 5, 7"
               value={config.range}
               onChange={(e) => setConfig({ ...config, range: e.target.value })}
-              className="w-full px-4 py-3 bg-neutral-950 border border-neutral-800 rounded-xl text-sm font-mono text-white focus:outline-none focus:border-red-600 transition"
+              className="w-full px-4 py-3 bg-[#F0F7F0] border border-[#C5DCC9] rounded-xl text-sm font-mono text-[#1F3A26] focus:outline-none focus:border-[#10A968] transition"
             />
           </div>
-          <p className="text-xs text-neutral-500 leading-relaxed font-mono">
+          <p className="text-xs text-[#4A6857] leading-relaxed font-mono">
             Tip: Specify page sequences like '1-3' for consecutive pages, or list distinct ones like '1,3,5' separated by commas.
           </p>
         </div>

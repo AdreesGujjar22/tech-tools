@@ -40,7 +40,7 @@ export default function ToolPage({ params }: ToolPageProps) {
   }
 
   return (
-    <main id="tool-workspace" className="min-h-screen text-white">
+    <main id="tool-workspace" className="min-h-screen bg-white text-[#2D4D35]">
       <div className="py-12">
         {toolId === "merge-pdf" && <MergePdf />}
         {toolId === "split-pdf" && <SplitPdf />}
