@@ -24,7 +24,7 @@ import {
   FileBadge,
   FileCheck2,
   Undo,
-  Image,
+  ImagePlus,
   Zap,
   Landmark,
   Pen
@@ -1085,7 +1085,7 @@ export default function UpscaleImage() {
               </label>
               <div className="grid grid-cols-1 gap-2">
                 {[
-                  { id: "photo", label: "AI Detail (Natural Photos)", icon: Image, desc: "Soft-balanced contours; ideal for portraits and landscapes." },
+                  { id: "photo", label: "AI Detail (Natural Photos)", icon: ImagePlus, desc: "Soft-balanced contours; ideal for portraits and landscapes." },
                   { id: "logo", label: "Digital Logos & Icons", icon: Zap, desc: "Geometric lines restoration + alpha transparency protection." },
                   { id: "document", label: "Document / Text OCR", icon: Landmark, desc: "Heavy contour highlight to make low-res scans legible." },
                   { id: "illustration", label: "Line Art / Anime", icon: Pen, desc: "Illustration color preserving with smoothed pixel edges." }
