@@ -175,7 +175,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4 className="font-semibold mb-1">Email</h4>
-                      <p className="text-sm text-muted-foreground">support@techtools.com</p>
+                      <p className="text-sm text-muted-foreground">support@ilovetechtools.com</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">

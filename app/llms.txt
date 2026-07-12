@@ -41,8 +41,8 @@ Crawl-delay: 1
 Request-rate: 1/5
 
 # Information about this site
-Site: https://techtools.example.com
-Sitemap: https://techtools.example.com/sitemap.xml
+Site: https://www.ilovetechtools.com
+Sitemap: https://www.ilovetechtools.com/sitemap.xml
 
 # Tool Information
 About: Tech Tools - A comprehensive suite of browser-based utilities including image tools, PDF tools, QR code generator, color picker, and more.

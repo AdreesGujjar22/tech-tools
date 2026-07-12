@@ -31,7 +31,7 @@ async function getBlogPosts() {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://techtools.example.com";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.ilovetechtools.com";
 
   // Image tools routes
   const imageToolRoutes = IMAGE_TOOLS.map((tool) => ({

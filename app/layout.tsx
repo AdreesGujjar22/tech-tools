@@ -11,7 +11,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://techtools.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://www.ilovetechtools.com"),
   
   title: {
     default: "Tech Tools - Free Online PDF, Image & AI Tools",
