@@ -5,13 +5,19 @@ import { motion, AnimatePresence } from "motion/react";
 import { StaggerList } from "@/components/StaggerList";
 import { Badge } from "@/components/ui/Badge";
 
+const currentDate = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+}).format(new Date());
+
 const qrItems = [
   {
     id: 5,
     title: "PDF Tools Dashboard",
     url: "/ilovepdf",
     type: "URL",
-    date: "Oct 18, 2024",
+    date: currentDate,
     preview: "/images/pdf.png",
   },
   {
@@ -19,7 +25,7 @@ const qrItems = [
     title: "Image Tools Dashboard",
     url: "/iloveimg",
     type: "URL",
-    date: "Oct 18, 2024",
+    date: currentDate,
     preview: "/images/image.png",
   },
   {
@@ -27,7 +33,7 @@ const qrItems = [
     title: "Internet Speed Testing",
     url: "/speed-test",
     type: "URL",
-    date: "Oct 24, 2024",
+    date: currentDate,
     preview: "/images/speed-test.png",
   },
   {
@@ -35,7 +41,7 @@ const qrItems = [
     title: "Typing Speed Results",
     url: "/typing-speed",
     type: "URL",
-    date: "Oct 22, 2024",
+    date: currentDate,
     preview: "/images/typing-speed.png",
   },
   {
@@ -43,7 +49,7 @@ const qrItems = [
     title: "Color Picker Palette",
     url: "/color-picker",
     type: "URL",
-    date: "Oct 20, 2024",
+    date: currentDate,
     preview: "/images/color-picker.png",
   },
   {
@@ -51,7 +57,7 @@ const qrItems = [
     title: "QR Code Generator",
     url: "/qr-generator",
     type: "URL",
-    date: "Oct 18, 2024",
+    date: currentDate,
     preview: "https://api.builder.io/api/v1/image/assets/TEMP/297ee64dc0e7bfca7c4b6bcf1bc6a0361a742a79?width=320",
   },
   {
@@ -59,7 +65,7 @@ const qrItems = [
     title: "Barcode Generator",
     url: "/barcode-generator",
     type: "URL",
-    date: "Oct 18, 2024",
+    date: currentDate,
     preview: "/images/barcode.png",
   },
   {
@@ -67,7 +73,7 @@ const qrItems = [
     title: "Password Generator",
     url: "/password-generator",
     type: "URL",
-    date: "Oct 18, 2024",
+    date: currentDate,
     preview: "/images/password.png",
   },
   {
@@ -75,7 +81,7 @@ const qrItems = [
     title: "Lorem Ipsum Generator",
     url: "/lorem-ipsum-generator",
     type: "URL",
-    date: "Oct 18, 2024",
+    date: currentDate,
     preview: "/images/lorem-ipsum.png",
   },
   {
@@ -83,7 +89,7 @@ const qrItems = [
     title: "Emoji Picker & Copier",
     url: "/emoji-picker",
     type: "URL",
-    date: "Oct 18, 2024",
+    date: currentDate,
     preview: "/images/emoji-picker.png",
   },
   {
@@ -91,7 +97,7 @@ const qrItems = [
     title: "Online NotePad",
     url: "/notepad",
     type: "URL",
-    date: "Oct 18, 2024",
+    date: currentDate,
     preview: "/images/notepad.png",
   },
 ];
