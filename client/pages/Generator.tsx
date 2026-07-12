@@ -7,7 +7,7 @@ import { Download, Share2, Copy, Sparkles, RefreshCw, Layers, Sliders, Check, Im
 import { Button } from "@/components/ui/Button";
 
 export default function Generator() {
-  const [text, setText] = useState("https://ai.studio/build");
+  const [text, setText] = useState("https://www.ilovetechtools.com");
   const [qrUrl, setQrUrl] = useState("");
   const [size, setSize] = useState(300);
   const [fgColor, setFgColor] = useState("#000000");
