@@ -32,7 +32,7 @@ export default function CompressPdf() {
       useObjectStreams: true
     });
 
-    const finalBlob = new Blob([compressedBytes.buffer as ArrayBuffer], { type: "application/pdf" });
+    const finalBlob = new Blob([compressedBytes as any], { type: "application/pdf" });
     const finalSize = compressedBytes.length;
 
     return {
@@ -54,7 +54,7 @@ export default function CompressPdf() {
       defaultConfig={{ level: "recommended" }}
       renderConfig={(files, config, setConfig) => (
         <div className="space-y-4">
-          <label className="text-xs font-semibold text-neutral-400 block pb-1 border-b border-neutral-800">
+          <label className="text-xs font-semibold text-[#4A6857] block pb-1 border-b border-[#C5DCC9]">
             Target Quality Level
           </label>
           <div className="grid grid-cols-1 gap-2.5">
@@ -69,12 +69,12 @@ export default function CompressPdf() {
                 onClick={() => setConfig({ level: option.id })}
                 className={`p-3.5 rounded-xl border text-left transition duration-150 ${
                   config.level === option.id
-                    ? "border-red-600 bg-red-600/5 text-white"
-                    : "border-neutral-800 bg-neutral-950/40 hover:border-neutral-700 text-neutral-400"
+                    ? "border-[#10A968] bg-[#10A968]/10 text-[#1F3A26]"
+                    : "border-[#C5DCC9] bg-[#F0F7F0] hover:border-[#10A968]/50 text-[#4A6857]"
                 }`}
               >
-                <div className="text-xs font-bold leading-none mb-1 text-white">{option.title}</div>
-                <div className="text-2xs text-neutral-500 font-mono leading-relaxed">{option.desc}</div>
+                <div className="text-xs font-bold leading-none mb-1 text-[#1F3A26]">{option.title}</div>
+                <div className="text-2xs text-[#4A6857] font-mono leading-relaxed">{option.desc}</div>
               </button>
             ))}
           </div>

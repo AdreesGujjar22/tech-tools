@@ -156,7 +156,7 @@ export default {
         "gradient-cta":
           "linear-gradient(135deg, rgba(99, 130, 246, 0.12) 0%, rgba(129, 110, 247, 0.04) 100%)",
         "gradient-indigo-cyan":
-          "linear-gradient(115deg, #3b82f6 0%, #6366f1 55%, #818cf8 100%)",
+          "linear-gradient(115deg, #60b044 0%, #4a8f3a 55%, #3d7a2e 100%)",
         "gradient-card":
           "linear-gradient(135deg, #141d36 0%, #0a1021 100%)",
         "connector-line":

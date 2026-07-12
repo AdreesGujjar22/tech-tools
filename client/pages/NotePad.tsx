@@ -105,7 +105,7 @@ export default function NotePad() {
   };
 
   return (
-    <div className="min-h-screen bg-[#2e2e2e] text-[#e0e0e0] flex flex-col">
+    <div className="min-h-screen bg-white text-[#2D4D35] flex flex-col">
       <SEO
         title="Online NotePad"
         description="Simple, fast online notepad with auto-save, file download/upload, and word counting. Write, edit, and save notes instantly."
@@ -113,10 +113,10 @@ export default function NotePad() {
       />
 
       {/* Toolbar */}
-      <div className="bg-[#3c3c3c] border-b border-[#1e1e1e] flex items-center h-12 px-2 gap-0.5">
+      <div className="bg-[#F0F7F0] border-b border-[#C5DCC9] flex items-center h-12 px-2 gap-0.5">
         <button
           onClick={newNote}
-          className="p-2 hover:bg-[#464646] rounded transition-colors"
+          className="p-2 hover:bg-[#E8F0E8] rounded transition-colors"
           title="New"
         >
           <Plus className="w-5 h-5" />
@@ -124,14 +124,14 @@ export default function NotePad() {
         <button
           onClick={downloadNote}
           disabled={!content}
-          className="p-2 hover:bg-[#464646] rounded transition-colors disabled:opacity-30"
+          className="p-2 hover:bg-[#E8F0E8] rounded transition-colors disabled:opacity-30"
           title="Download"
         >
           <Download className="w-5 h-5" />
         </button>
         <button
           onClick={() => fileInputRef.current?.click()}
-          className="p-2 hover:bg-[#464646] rounded transition-colors"
+          className="p-2 hover:bg-[#E8F0E8] rounded transition-colors"
           title="Open"
         >
           <Upload className="w-5 h-5" />
@@ -139,7 +139,7 @@ export default function NotePad() {
         <button
           onClick={copyToClipboard}
           disabled={!content}
-          className="p-2 hover:bg-[#464646] rounded transition-colors disabled:opacity-30"
+          className="p-2 hover:bg-[#E8F0E8] rounded transition-colors disabled:opacity-30"
           title="Copy"
         >
           <CopyIcon className="w-5 h-5" />
@@ -147,12 +147,12 @@ export default function NotePad() {
         <button
           onClick={clearNote}
           disabled={!content}
-          className="p-2 hover:bg-[#464646] rounded transition-colors disabled:opacity-30"
+          className="p-2 hover:bg-[#E8F0E8] rounded transition-colors disabled:opacity-30"
           title="Clear"
         >
           <Trash2 className="w-5 h-5" />
         </button>
-        <button className="p-2 hover:bg-[#464646] rounded transition-colors" title="Undo">
+        <button className="p-2 hover:bg-[#E8F0E8] rounded transition-colors" title="Undo">
           <RotateCcw className="w-5 h-5" />
         </button>
       </div>
@@ -160,7 +160,7 @@ export default function NotePad() {
       {/* Text Area with Lines */}
       <div className="flex-1 relative overflow-hidden flex">
         {/* Line Numbers */}
-        <div className="w-12 bg-[#3c3c3c] border-r border-[#464646] text-[#666666] text-xs font-mono select-none overflow-y-hidden flex-shrink-0">
+        <div className="w-12 bg-[#F0F7F0] border-r border-[#C5DCC9] text-[#999B99] text-xs font-mono select-none overflow-y-hidden flex-shrink-0">
           {content.split("\n").map((_, i) => (
             <div key={i} className="px-2 text-right" style={{ height: "24px", lineHeight: "24px" }}>
               {i + 1}
@@ -178,8 +178,8 @@ export default function NotePad() {
                 to bottom,
                 transparent,
                 transparent 23px,
-                #464646 23px,
-                #464646 24px
+                #C5DCC9 23px,
+                #C5DCC9 24px
               )`,
               backgroundPosition: "0 0",
             }}
@@ -191,18 +191,18 @@ export default function NotePad() {
             value={content}
             onChange={handleTextChange}
             placeholder="Start typing your notes here..."
-            className="relative w-full h-full px-4 py-4 bg-transparent text-[#e0e0e0] focus:outline-none resize-none font-mono text-sm border-0"
+            className="relative w-full h-full px-4 py-4 bg-transparent text-[#2D4D35] focus:outline-none resize-none font-mono text-sm border-0"
             spellCheck="false"
             style={{
               lineHeight: "24px",
-              color: "#e0e0e0",
+              color: "#2D4D35",
             }}
           />
 
           {/* Placeholder text overlay - shows only when empty */}
           {!content && (
             <div
-              className="absolute top-0 left-0 text-[#666666] font-mono text-sm pointer-events-none p-4"
+              className="absolute top-0 left-0 text-[#999B99] font-mono text-sm pointer-events-none p-4"
               style={{
                 lineHeight: "24px",
                 paddingTop: "16px",
@@ -215,14 +215,14 @@ export default function NotePad() {
       </div>
 
       {/* Status Bar */}
-      <div className="bg-[#3c3c3c] border-t border-[#1e1e1e] flex items-center h-8 px-4 gap-6 text-xs text-[#b0b0b0]">
+      <div className="bg-[#F0F7F0] border-t border-[#C5DCC9] flex items-center h-8 px-4 gap-6 text-xs text-[#4A6857]">
         <div className="flex gap-4">
           <span>Line {lineNumber}, Column {columnNumber}</span>
         </div>
         <div className="flex gap-4 ml-auto">
           <span>Chars {charCount}, Words {wordCount}</span>
           {autoSaveEnabled && lastSaved && (
-            <span className="text-[#4CD7F6]">Auto-saved {lastSaved.toLocaleTimeString()}</span>
+            <span className="text-[#10A968]">Auto-saved {lastSaved.toLocaleTimeString()}</span>
           )}
         </div>
       </div>

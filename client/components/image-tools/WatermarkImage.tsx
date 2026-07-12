@@ -23,7 +23,7 @@ export default function WatermarkImage() {
       <div className="space-y-6">
         {/* Placement Selector */}
         <div>
-          <label className="text-xs font-bold text-neutral-400 block mb-2.5 font-mono uppercase">
+          <label className="text-xs font-bold text-[#4A6857] block mb-2.5 font-mono uppercase">
             Watermark Position Grid
           </label>
           <div className="grid grid-cols-3 gap-1 max-w-[180px]">
@@ -45,8 +45,8 @@ export default function WatermarkImage() {
                   onClick={() => handlePositionChange(pos.id)}
                   className={`h-9 rounded-lg border flex items-center justify-center transition duration-150 ${
                     active
-                      ? "bg-teal-950/40 border-teal-500 text-teal-400"
-                      : "bg-neutral-900 border border-neutral-850 hover:border-neutral-750 text-neutral-500 hover:text-neutral-300"
+                      ? "bg-[#10A968]/20 border-[#10A968] text-[#1F3A26]"
+                      : "bg-[#F0F7F0] border border-neutral-850 hover:border-neutral-750 text-[#4A6857] hover:text-[#666666]"
                   }`}
                   title={pos.title}
                 >
@@ -60,7 +60,7 @@ export default function WatermarkImage() {
         {/* Text Input values */}
         <div className="space-y-3.5">
           <div>
-            <label className="text-xs font-bold text-neutral-400 block mb-1.5 font-mono uppercase">
+            <label className="text-xs font-bold text-[#4A6857] block mb-1.5 font-mono uppercase">
               Branding Stamp Label
             </label>
             <input
@@ -68,13 +68,13 @@ export default function WatermarkImage() {
               value={config.text}
               onChange={(e) => handleTextChange(e.target.value)}
               placeholder="e.g. © 2026 COPYRIGHT"
-              className="w-full px-3 py-2 bg-neutral-900 border border-neutral-800 focus:border-teal-500 focus:outline-none rounded-xl text-xs text-white placeholder-neutral-500 font-medium"
+              className="w-full px-3 py-2 bg-[#F0F7F0] border border-[#C5DCC9] focus:border-[#10A968] focus:outline-none rounded-xl text-xs text-[#1F3A26] placeholder-[#4A6857] font-medium"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-[10px] font-bold text-neutral-500 block mb-1 font-mono uppercase">
+              <label className="text-[10px] font-bold text-[#4A6857] block mb-1 font-mono uppercase">
                 Font Size (% of Canvas)
               </label>
               <input
@@ -83,18 +83,18 @@ export default function WatermarkImage() {
                 max="30"
                 value={config.fontSizePercent}
                 onChange={(e) => setConfig({ ...config, fontSizePercent: Math.max(1, parseInt(e.target.value) || 5) })}
-                className="w-full px-3 py-1.5 bg-neutral-900 border border-neutral-800 focus:border-teal-500 focus:outline-none rounded-xl text-xs font-mono text-white"
+                className="w-full px-3 py-1.5 bg-[#F0F7F0] border border-[#C5DCC9] focus:border-[#10A968] focus:outline-none rounded-xl text-xs font-mono text-[#1F3A26]"
               />
             </div>
             <div>
-              <label className="text-[10px] font-bold text-neutral-500 block mb-1 font-mono uppercase">
+              <label className="text-[10px] font-bold text-[#4A6857] block mb-1 font-mono uppercase">
                 Text Fill Color
               </label>
               <input
                 type="color"
                 value={config.color}
                 onChange={(e) => setConfig({ ...config, color: e.target.value })}
-                className="w-full h-[32px] bg-neutral-900 border border-neutral-800 rounded-xl cursor-pointer p-0.5"
+                className="w-full h-[32px] bg-[#F0F7F0] border border-[#C5DCC9] rounded-xl cursor-pointer p-0.5"
               />
             </div>
           </div>
@@ -102,7 +102,7 @@ export default function WatermarkImage() {
           {/* Opacity slider */}
           <div>
             <div className="flex justify-between items-center mb-1">
-              <label className="text-[10px] font-bold text-neutral-500 block font-mono uppercase">
+              <label className="text-[10px] font-bold text-[#4A6857] block font-mono uppercase">
                 Watermark Opacity ({Math.round(config.opacity * 100)}%)
               </label>
             </div>
@@ -113,19 +113,19 @@ export default function WatermarkImage() {
               step="0.05"
               value={config.opacity}
               onChange={(e) => setConfig({ ...config, opacity: parseFloat(e.target.value) })}
-              className="w-full accent-teal-500"
+              className="w-full accent-[#10A968]"
             />
           </div>
         </div>
 
         {/* Live preview outline box */}
         {hasFiles && (
-          <div className="p-3 bg-neutral-950 rounded-xl space-y-1 text-left font-mono border border-neutral-900 text-2xs">
-            <span className="text-[10px] font-bold text-neutral-500 block uppercase mb-1">
+          <div className="p-3 bg-[#F0F7F0] rounded-xl space-y-1 text-left font-mono border border-[#C5DCC9] text-2xs">
+            <span className="text-[10px] font-bold text-[#4A6857] block uppercase mb-1">
               Properties Overview
             </span>
-            <p className="text-neutral-400">Position Type: <span className="text-white font-semibold uppercase">{config.position}</span></p>
-            <p className="text-neutral-300 truncate">Stamp Text: <span className="text-teal-400 font-bold">"{config.text || "None"}"</span></p>
+            <p className="text-[#4A6857]">Position Type: <span className="text-[#1F3A26] font-semibold uppercase">{config.position}</span></p>
+            <p className="text-[#666666] truncate">Stamp Text: <span className="text-[#10A968] font-bold">"{config.text || "None"}"</span></p>
           </div>
         )}
       </div>

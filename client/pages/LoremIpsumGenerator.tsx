@@ -119,14 +119,14 @@ export default function LoremIpsumGenerator() {
         <div className="max-w-[1280px] mx-auto">
           {/* Header */}
           <div className="mb-12 text-center max-w-2xl mx-auto space-y-4">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(76,215,246,0.15)] bg-[#131B2E]">
-              <Sparkles className="w-4 h-4 text-[#4CD7F6]" />
-              <span className="text-[#4CD7F6] text-xs font-semibold tracking-wider uppercase">Premium Utility</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(76,215,246,0.15)] bg-white">
+              <Sparkles className="w-4 h-4 text-[#10A968]" />
+              <span className="text-[#10A968] text-xs font-semibold tracking-wider uppercase">Premium Utility</span>
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight gradient-text">
               Lorem Ipsum Generator
             </h1>
-            <p className="text-base text-[#C7C4D8]">
+            <p className="text-base text-[#4A6857]">
               Generate placeholder Lorem Ipsum text instantly for designs, mockups, and prototypes.
             </p>
           </div>
@@ -136,13 +136,13 @@ export default function LoremIpsumGenerator() {
             {/* Left controls panel */}
             <div className="lg:col-span-7 glass-card-dark p-8 rounded-[24px] space-y-6">
               <div className="space-y-4">
-                <h3 className="text-md font-bold text-[#E2DFFF] flex items-center gap-2">
-                  <Sliders className="w-4 h-4 text-[#C3C0FF]" /> Customize Lorem Text
+                <h3 className="text-md font-bold text-[#1F3A26] flex items-center gap-2">
+                  <Sliders className="w-4 h-4 text-[#10A968]" /> Customize Lorem Text
                 </h3>
 
                 {/* Type Selection */}
                 <div>
-                  <label className="block text-xs text-[#C7C4D8] font-semibold mb-3">Generate Type</label>
+                  <label className="block text-xs text-[#4A6857] font-semibold mb-3">Generate Type</label>
                   <div className="grid grid-cols-3 gap-3">
                     {[
                       { value: "paragraphs", label: "Paragraphs" },
@@ -154,8 +154,8 @@ export default function LoremIpsumGenerator() {
                         onClick={() => setType(opt.value)}
                         className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
                           type === opt.value
-                            ? "bg-[#4F46E5] text-white"
-                            : "bg-[rgba(45,52,73,0.50)] text-[#DAE2FD] hover:bg-[rgba(45,52,73,0.80)]"
+                            ? "brand-gradient text-white"
+                            : "bg-[#E8F0E8] text-[#2D4D35] hover:bg-[#D4E8D8]"
                         }`}
                       >
                         {opt.label}
@@ -166,8 +166,8 @@ export default function LoremIpsumGenerator() {
 
                 {/* Count Slider */}
                 <div>
-                  <label className="block text-xs text-[#C7C4D8] mb-2">
-                    Number of {type}: <span className="text-[#4CD7F6] font-semibold">{count}</span>
+                  <label className="block text-xs text-[#4A6857] mb-2">
+                    Number of {type}: <span className="text-[#10A968] font-semibold">{count}</span>
                   </label>
                   <input
                     type="range"
@@ -175,9 +175,9 @@ export default function LoremIpsumGenerator() {
                     max={type === "paragraphs" ? 20 : type === "sentences" ? 50 : 100}
                     value={count}
                     onChange={(e) => setCount(Number(e.target.value))}
-                    className="w-full accent-[#4F46E5] bg-[#131B2E]"
+                    className="w-full accent-[#10A968] bg-white"
                   />
-                  <div className="flex gap-2 mt-2 text-xs text-[#C7C4D8]">
+                  <div className="flex gap-2 mt-2 text-xs text-[#4A6857]">
                     <span>1</span>
                     <span className="flex-1"></span>
                     <span>{type === "paragraphs" ? 20 : type === "sentences" ? 50 : 100}</span>
@@ -185,14 +185,14 @@ export default function LoremIpsumGenerator() {
                 </div>
 
                 {/* Info */}
-                <div className="border-t border-[rgba(195,192,255,0.10)] pt-4 space-y-2">
-                  <div className="flex justify-between text-xs text-[#C7C4D8]">
+                <div className="border-t border-[#E0E0E0] pt-4 space-y-2">
+                  <div className="flex justify-between text-xs text-[#4A6857]">
                     <span>Words:</span>
-                    <span className="text-[#4CD7F6] font-semibold">{wordCount}</span>
+                    <span className="text-[#10A968] font-semibold">{wordCount}</span>
                   </div>
-                  <div className="flex justify-between text-xs text-[#C7C4D8]">
+                  <div className="flex justify-between text-xs text-[#4A6857]">
                     <span>Characters:</span>
-                    <span className="text-[#4CD7F6] font-semibold">{charCount}</span>
+                    <span className="text-[#10A968] font-semibold">{charCount}</span>
                   </div>
                 </div>
               </div>
@@ -201,7 +201,7 @@ export default function LoremIpsumGenerator() {
             {/* Right output preview */}
             <div className="lg:col-span-5 flex flex-col items-center">
               <div className="glass-card-dark p-8 rounded-[24px] w-full flex flex-col items-center gap-6 text-center">
-                <span className="text-[#DAE2FD] text-sm font-semibold tracking-wider uppercase">Generated Text</span>
+                <span className="text-[#2D4D35] text-sm font-semibold tracking-wider uppercase">Generated Text</span>
 
                 {/* Text output container */}
                 <div className="relative w-full rounded-[16px] bg-white p-4 flex items-center justify-center shadow-lg border border-[rgba(255,255,255,0.05)] overflow-auto min-h-[300px]">
@@ -209,7 +209,7 @@ export default function LoremIpsumGenerator() {
                     <textarea
                       value={loremText}
                       readOnly
-                      className="w-full h-80 px-4 py-3 rounded-lg bg-[#131B2E] text-[#DAE2FD] font-serif text-sm border border-[rgba(70,69,85,0.30)] focus:outline-none resize-none leading-relaxed"
+                      className="w-full h-80 px-4 py-3 rounded-lg bg-white text-[#2D4D35] font-serif text-sm border border-[#E0E0E0] focus:outline-none resize-none leading-relaxed"
                     />
                   ) : (
                     <div className="flex flex-col items-center gap-2 text-gray-400 py-8">
@@ -223,7 +223,7 @@ export default function LoremIpsumGenerator() {
                   <div className="flex gap-3 w-full">
                     <button
                       onClick={copyToClipboard}
-                      className="flex-1 py-3 px-4 rounded-[12px] bg-gradient-indigo-cyan text-white font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-95 transition-opacity"
+                      className="flex-1 py-3 px-4 rounded-[12px] brand-gradient text-white font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-95 transition-opacity"
                     >
                       {copied ? (
                         <>
@@ -237,14 +237,14 @@ export default function LoremIpsumGenerator() {
                     </button>
                     <button
                       onClick={downloadText}
-                      className="px-4 py-3 rounded-[12px] border border-[#464555] bg-[rgba(23,31,51,0.40)] hover:bg-[rgba(23,31,51,0.60)] text-[#DAE2FD] transition-colors"
+                      className="px-4 py-3 rounded-[12px] border border-[#C5DCC9] bg-[#F0F7F0] hover:bg-[#E8F0E8] text-[#2D4D35] transition-colors"
                       title="Download text"
                     >
                       <Download className="w-4 h-4" />
                     </button>
                     <button
                       onClick={shareText}
-                      className="px-4 py-3 rounded-[12px] border border-[#464555] bg-[rgba(23,31,51,0.40)] hover:bg-[rgba(23,31,51,0.60)] text-[#DAE2FD] transition-colors"
+                      className="px-4 py-3 rounded-[12px] border border-[#C5DCC9] bg-[#F0F7F0] hover:bg-[#E8F0E8] text-[#2D4D35] transition-colors"
                       title="Share link"
                     >
                       <Share2 className="w-4 h-4" />
@@ -252,7 +252,7 @@ export default function LoremIpsumGenerator() {
                   </div>
                 )}
 
-                <span className="text-xs text-[#C7C4D8] max-w-[280px]">
+                <span className="text-xs text-[#4A6857] max-w-[280px]">
                   All processing is conducted safely in-browser. Perfect for mockups, designs, and prototypes.
                 </span>
               </div>

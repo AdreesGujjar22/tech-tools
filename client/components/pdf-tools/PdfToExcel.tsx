@@ -122,7 +122,7 @@ export default function PdfToExcel() {
       configTitle="Excel Output Options"
       renderConfig={() => (
         <div className="py-2 text-center">
-          <p className="text-xs text-neutral-400 font-mono leading-relaxed">
+          <p className="text-xs text-[#4A6857] font-mono leading-relaxed">
             Detects alignment voids and organizes text rows dynamically into separate tabular column grids before downloading.
           </p>
         </div>

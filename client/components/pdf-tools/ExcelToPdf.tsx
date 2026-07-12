@@ -115,7 +115,7 @@ export default function ExcelToPdf() {
       configTitle="Conversion Targets"
       renderConfig={() => (
         <div className="py-2 text-center">
-          <p className="text-xs text-neutral-400 font-mono leading-relaxed">
+          <p className="text-xs text-[#4A6857] font-mono leading-relaxed">
             Parses spreadsheet cell rows and renders them with borders and shading as a horizontal ledger PDF layout.
           </p>
         </div>

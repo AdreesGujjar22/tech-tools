@@ -15,27 +15,39 @@ export default function MergePdf() {
   ) => {
     updateProgress(15, "Reading input bytes...");
     const mergedPdf = await PDFDocument.create();
-    
+
     // Sort files based on user selection or leave custom
     const len = files.length;
     for (let i = 0; i < len; i++) {
       const file = files[i];
       const stepMsg = `Merging: ${file.name} (${i + 1}/${len})`;
       updateProgress(Math.floor(15 + (i / len) * 70), stepMsg);
-      
-      const fileBytes = await file.arrayBuffer();
-      const document = await PDFDocument.load(fileBytes);
-      const copiedPages = await mergedPdf.copyPages(document, document.getPageIndices());
-      
-      copiedPages.forEach((page) => {
-        mergedPdf.addPage(page);
-      });
+
+      try {
+        const fileBytes = await file.arrayBuffer();
+
+        // Validate PDF header
+        const view = new Uint8Array(fileBytes);
+        const header = new TextDecoder().decode(view.slice(0, 5));
+        if (!header.startsWith("%PDF")) {
+          throw new Error(`"${file.name}" is not a valid PDF file. Please ensure all files are valid PDFs.`);
+        }
+
+        const document = await PDFDocument.load(fileBytes);
+        const copiedPages = await mergedPdf.copyPages(document, document.getPageIndices());
+
+        copiedPages.forEach((page) => {
+          mergedPdf.addPage(page);
+        });
+      } catch (err: any) {
+        throw new Error(`Failed to process "${file.name}": ${err.message || "Invalid PDF format"}`);
+      }
     }
 
     updateProgress(90, "Assembling and flushing stream dictionary...");
     const finalBytes = await mergedPdf.save();
-    const finalBlob = new Blob([finalBytes.buffer as ArrayBuffer], { type: "application/pdf" });
-    
+    const finalBlob = new Blob([finalBytes as any], { type: "application/pdf" });
+
     return {
       blob: finalBlob,
       fileName: `merged_${Date.now()}.pdf`
@@ -51,14 +63,14 @@ export default function MergePdf() {
       configTitle="Merge Controls"
       renderConfig={(files, config, setConfig) => (
         <div className="space-y-4">
-          <p className="text-xs text-neutral-400 leading-relaxed">
+          <p className="text-xs text-[#4A6857] leading-relaxed">
             Drag files to reorder or sort. They will be integrated from top to bottom into a single document.
           </p>
-          <div className="border border-neutral-800 rounded-xl divide-y divide-neutral-800 bg-neutral-950 max-h-[250px] overflow-y-auto custom-scroll">
+          <div className="border border-[#C5DCC9] rounded-xl divide-y divide-[#C5DCC9] bg-[#F0F7F0] max-h-[250px] overflow-y-auto custom-scroll">
             {files.map((file, idx) => (
-              <div key={`${file.name}-${idx}`} className="flex items-center justify-between p-3 text-xs bg-neutral-950/40 font-mono">
-                <span className="truncate max-w-[180px] text-neutral-300 font-semibold">{file.name}</span>
-                <span className="text-neutral-500 font-normal">Page Count: N/A</span>
+              <div key={`${file.name}-${idx}`} className="flex items-center justify-between p-3 text-xs bg-white/40 font-mono">
+                <span className="truncate max-w-[180px] text-[#1F3A26] font-semibold">{file.name}</span>
+                <span className="text-[#4A6857] font-normal">Page Count: N/A</span>
               </div>
             ))}
           </div>

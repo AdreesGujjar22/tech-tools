@@ -125,20 +125,20 @@ export function AdvancedColorPicker() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="glass-card-dark rounded-2xl p-6 border border-[rgba(195,192,255,0.10)]"
+      className="rounded-2xl p-6 border border-[#C5DCC9] bg-white"
     >
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-semibold text-[#DAE2FD]">Color Picker</h2>
-        <button className="p-2 hover:bg-[rgba(23,31,51,0.60)] rounded-lg transition-colors">
-          <Share2 size={20} className="text-[#C7C4D8]" />
+        <h2 className="text-2xl font-semibold text-[#1F3A26]">Color Picker</h2>
+        <button className="p-2 hover:bg-[#F0F7F0] rounded-lg transition-colors">
+          <Share2 size={20} className="text-[#4A6857]" />
         </button>
       </div>
 
       <div
         ref={gradientRef}
-        className="relative w-full h-80 rounded-xl cursor-crosshair mb-6 overflow-hidden border border-[rgba(195,192,255,0.10)]"
+        className="relative w-full h-80 rounded-xl cursor-crosshair mb-6 overflow-hidden border border-[#C5DCC9]"
         style={{
-          background: `linear-gradient(to bottom, transparent, #000), linear-gradient(to right, #fff, hsl(${hue}, 100%, 50%))`,
+          background: `linear-gradient(to bottom, transparent, rgba(0,0,0,0.3)), linear-gradient(to right, #fff, hsl(${hue}, 100%, 50%))`,
         }}
         onMouseDown={handleGradientMouseDown}
       >
@@ -154,7 +154,7 @@ export function AdvancedColorPicker() {
 
       <div
         ref={hueRef}
-        className="hue-slider relative w-full h-12 rounded-lg cursor-pointer mb-6 border border-[rgba(195,192,255,0.10)]"
+        className="hue-slider relative w-full h-12 rounded-lg cursor-pointer mb-6 border border-[#C5DCC9]"
         style={{
           background: "linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)",
         }}
@@ -164,56 +164,56 @@ export function AdvancedColorPicker() {
         }}
       >
         <div
-          className="absolute w-6 h-14 bg-white border-2 border-[#131B2E] rounded-lg shadow-lg transform -translate-x-1/2 -translate-y-1 pointer-events-none"
+          className="absolute w-6 h-14 bg-white border-2 border-[#1F3A26] rounded-lg shadow-lg transform -translate-x-1/2 -translate-y-1 pointer-events-none"
           style={{ left: `${(hue / 360) * 100}%` }}
         />
       </div>
 
       <div className="space-y-3">
-        <div className="bg-[#1D263B] border border-[rgba(195,192,255,0.05)] rounded-xl p-4 flex items-center justify-between">
+        <div className="bg-[#F0F7F0] border border-[#C5DCC9] rounded-xl p-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div
-              className="w-16 h-16 rounded-lg shadow-lg border border-[rgba(195,192,255,0.20)]"
+              className="w-16 h-16 rounded-lg shadow-lg border border-[#C5DCC9]"
               style={{ backgroundColor: currentColor }}
             />
             <div>
-              <div className="text-[#C7C4D8] text-sm mb-1 font-semibold">HEX</div>
-              <div className="text-[#DAE2FD] text-xl font-mono font-semibold">{formats.hex.toUpperCase()}</div>
+              <div className="text-[#2D4D35] text-sm mb-1 font-semibold">HEX</div>
+              <div className="text-[#1F3A26] text-xl font-mono font-semibold">{formats.hex.toUpperCase()}</div>
             </div>
           </div>
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => copyToClipboard(formats.hex.toUpperCase(), "HEX")}
-            className="p-3 bg-[#31394D] hover:bg-[#3d4561] text-[#DAE2FD] rounded-lg transition-colors cursor-pointer"
+            className="p-3 bg-[#E8F0E8] hover:bg-[#D4E8D8] text-[#2D4D35] rounded-lg transition-colors cursor-pointer"
           >
             {copiedFormat === "HEX" ? (
-              <Check size={20} className="text-green-400" />
+              <Check size={20} className="text-green-600" />
             ) : (
-              <Copy size={20} className="text-[#C3C0FF]" />
+              <Copy size={20} className="text-[#4A6857]" />
             )}
           </motion.button>
         </div>
 
         <div className="grid grid-cols-2 gap-3">
           {formatDisplays.slice(1).map((format) => (
-            <div key={format.label} className="bg-[#1D263B] border border-[rgba(195,192,255,0.05)] rounded-xl p-4">
+            <div key={format.label} className="bg-[#F0F7F0] border border-[#C5DCC9] rounded-xl p-4">
               <div className="flex items-center justify-between mb-2">
-                <div className="text-[#C7C4D8] text-sm font-semibold">{format.label}</div>
+                <div className="text-[#2D4D35] text-sm font-semibold">{format.label}</div>
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={() => copyToClipboard(format.copyValue, format.label)}
-                  className="p-1.5 hover:bg-[#31394D] rounded transition-colors cursor-pointer"
+                  className="p-1.5 hover:bg-[#E8F0E8] rounded transition-colors cursor-pointer"
                 >
                   {copiedFormat === format.label ? (
-                    <Check size={16} className="text-green-400" />
+                    <Check size={16} className="text-green-600" />
                   ) : (
-                    <Copy size={16} className="text-[#C7C4D8]" />
+                    <Copy size={16} className="text-[#4A6857]" />
                   )}
                 </motion.button>
               </div>
-              <div className="text-[#DAE2FD] text-sm font-mono">{format.value}</div>
+              <div className="text-[#1F3A26] text-sm font-mono">{format.value}</div>
             </div>
           ))}
         </div>

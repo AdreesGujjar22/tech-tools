@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { AtSign, Hash, Clock, Type, Quote, RotateCcw } from "lucide-react";
 
 export default function TypingSpeed() {
   useEffect(() => {
@@ -19,28 +20,31 @@ export default function TypingSpeed() {
   }, []);
 
   return (
-    <div
-      className="typing-speed-container min-h-screen bg-[#10131d] text-[#f6f7fb] pt-24"
-      dangerouslySetInnerHTML={{
-        __html: `
+    <main className="min-h-screen bg-gradient-to-b from-[#F0F7F0] via-white to-transparent">
+      <div className="py-8 lg:py-12">
+        <div
+          className="typing-speed-container text-[#2D4D35]"
+          dangerouslySetInnerHTML={{
+            __html: `
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
   .typing-speed-container {
-    --bg: #10131d;
-    --surface: #171d2e;
-    --surface-soft: #1f2637;
-    --surface-elevated: #232b3f;
-    --border: #2e384f;
-    --text-dim: #9da5b4;
-    --text-muted: #7f8799;
-    --text-sub: #c5cbd8;
-    --text-main: #f6f7fb;
-    --accent: #fafdff;
-    --accent-alt: #e5e9f0;
-    --correct: #ffffff;
-    --wrong: #b0b3b8;
-    --cursor: #f6f7fb;
+    --bg: transparent;
+    --surface: rgba(245, 250, 247, 0.8);
+    --surface-soft: rgba(240, 247, 240, 0.9);
+    --surface-elevated: rgba(197, 220, 201, 0.3);
+    --border: #C5DCC9;
+    --border-hover: rgba(16, 169, 104, 0.3);
+    --text-dim: #4A6857;
+    --text-muted: #74968A;
+    --text-sub: #2D4D35;
+    --text-main: #1F3A26;
+    --accent: #10A968;
+    --accent-alt: #1fb981;
+    --correct: #10A968;
+    --wrong: #ef4444;
+    --cursor: #10A968;
     --font-mono: 'Roboto Mono', monospace;
     --font-ui: 'Space Grotesk', sans-serif;
   }
@@ -79,9 +83,9 @@ export default function TypingSpeed() {
   }
 
   .tb-btn {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid transparent;
-    color: var(--text-sub);
+    background: rgba(16, 169, 104, 0.12);
+    border: 1px solid var(--border);
+    color: #2D4D35;
     cursor: pointer;
     font-size: 0.82rem;
     font-family: var(--font-ui);
@@ -90,29 +94,58 @@ export default function TypingSpeed() {
     transition: all 0.2s ease;
     display: flex; align-items: center; gap: 5px;
     white-space: nowrap;
+    font-weight: 600;
   }
-  .tb-btn:hover { color: var(--text-main); background: rgba(255,255,255,0.08); }
+  .tb-btn:hover {
+    color: #10A968;
+    background: rgba(16, 169, 104, 0.18);
+    border-color: #10A968;
+  }
   .tb-btn.active {
-    color: var(--text-main);
-    background: rgba(255,255,255,0.14);
-    border-color: rgba(255,255,255,0.12);
+    color: #fff;
+    background: #10A968;
+    border-color: #10A968;
   }
 
-  .tb-icon { font-size: 0.75rem; opacity: 0.7; }
+  .tb-icon {
+    width: 0.9em;
+    height: 0.9em;
+    opacity: 0.8;
+    flex-shrink: 0;
+  }
+
+  .tb-btn svg {
+    width: 0.9em;
+    height: 0.9em;
+    flex-shrink: 0;
+    opacity: 0.8;
+  }
+
+  .btn-primary svg, .btn-secondary svg {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+  }
+
+  .restart-btn svg {
+    width: 1.1em;
+    height: 1.1em;
+    flex-shrink: 0;
+  }
 
   /* TIMER DISPLAY */
   .timer-display {
     font-family: var(--font-mono);
     font-size: 2.2rem;
-    font-weight: 400;
-    color: var(--text-main);
+    font-weight: 600;
+    color: #10A968;
     min-width: 60px;
     text-align: center;
     transition: color 0.3s;
     padding: 14px 28px;
     border-radius: 18px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(240, 247, 240, 0.8);
+    border: 2px solid #C5DCC9;
   }
   .timer-display.urgent { color: var(--wrong); animation: pulse 0.5s infinite alternate; }
   @keyframes pulse { to { opacity: 0.6; } }
@@ -123,7 +156,7 @@ export default function TypingSpeed() {
     max-width: 1000px;
     position: relative;
     background: var(--surface-soft);
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid var(--border);
     border-radius: 28px;
     padding: 18px;
     box-shadow: 0 30px 70px rgba(0, 0, 0, 0.22);
@@ -138,10 +171,9 @@ export default function TypingSpeed() {
     overflow: hidden;
     cursor: text;
     user-select: none;
-    /* background: rgba(255,255,255,0.04); */
-    /* border: 1px solid rgba(255,255,255,0.08); */
     border-radius: 24px;
     padding: 24px 22px;
+    color: #1F3A26;
   }
 
   .words-inner {
@@ -164,13 +196,14 @@ export default function TypingSpeed() {
   }
 
   .letter {
-    color: var(--text-dim);
+    color: #74968A;
     transition: color 0.05s;
     position: relative;
+    font-weight: 500;
   }
-  .letter.correct { color: #ffffff; }
-  .letter.wrong { color: var(--text-muted); }
-  .letter.extra { color: var(--text-muted); opacity: 0.85; }
+  .letter.correct { color: #10A968; font-weight: 600; }
+  .letter.wrong { color: #dc2626; font-weight: 600; }
+  .letter.extra { color: #dc2626; opacity: 0.9; font-weight: 600; }
 
   /* CARET — sits as underline beneath the current letter */
   .caret {
@@ -207,18 +240,19 @@ export default function TypingSpeed() {
   .focus-overlay {
     position: absolute;
     inset: -20px;
-    background: rgba(20,24,38,0.95);
+    background: rgba(240, 247, 240, 0.85);
     backdrop-filter: blur(10px);
     border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.95rem;
-    color: var(--text-sub);
+    color: #2D4D35;
     gap: 8px;
     cursor: pointer;
     transition: opacity 0.2s;
     z-index: 10;
+    font-weight: 600;
   }
   .focus-overlay.hidden { opacity: 0; pointer-events: none; }
 
@@ -230,8 +264,8 @@ export default function TypingSpeed() {
   }
 
   .restart-btn {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(16, 169, 104, 0.08);
+    border: 1px solid var(--border);
     color: var(--text-main);
     cursor: pointer;
     padding: 12px;
@@ -240,7 +274,11 @@ export default function TypingSpeed() {
     transition: all 0.2s ease;
     display: flex; align-items: center;
   }
-  .restart-btn:hover { color: var(--text-main); background: rgba(255,255,255,0.08); }
+  .restart-btn:hover {
+    color: var(--accent);
+    background: rgba(16, 169, 104, 0.12);
+    border-color: var(--border-hover);
+  }
 
   /* RESULTS */
   .results-panel {
@@ -265,7 +303,7 @@ export default function TypingSpeed() {
 
   .stat-card {
     background: var(--surface-soft);
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid var(--border);
     border-radius: 18px;
     padding: 24px 18px;
     text-align: center;
@@ -276,15 +314,16 @@ export default function TypingSpeed() {
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    color: var(--text-sub);
+    color: #4A6857;
     margin-bottom: 8px;
+    font-weight: 600;
   }
 
   .stat-value {
     font-family: var(--font-mono);
     font-size: 2.2rem;
-    font-weight: 300;
-    color: var(--accent);
+    font-weight: 700;
+    color: #10A968;
   }
 
   .stat-unit {
@@ -300,8 +339,8 @@ export default function TypingSpeed() {
   }
 
   .btn-primary {
-    background: #f7f8fb;
-    color: #12141d;
+    background: #10A968;
+    color: #ffffff;
     border: none;
     padding: 14px 30px;
     border-radius: 14px;
@@ -311,14 +350,17 @@ export default function TypingSpeed() {
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     display: flex; align-items: center; gap: 8px;
-    box-shadow: 0 16px 34px rgba(0,0,0,0.12);
+    box-shadow: 0 16px 34px rgba(16, 169, 104, 0.25);
   }
-  .btn-primary:hover { background: #ffffff; transform: translateY(-1px); }
+  .btn-primary:hover {
+    background: #0d8a52;
+    transform: translateY(-1px);
+  }
 
   .btn-secondary {
-    background: rgba(255,255,255,0.04);
-    color: var(--text-main);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(16, 169, 104, 0.1);
+    color: var(--accent);
+    border: 1px solid var(--border);
     padding: 14px 30px;
     border-radius: 14px;
     font-family: var(--font-ui);
@@ -326,7 +368,10 @@ export default function TypingSpeed() {
     cursor: pointer;
     transition: border-color 0.2s ease, background 0.2s ease;
   }
-  .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.14); }
+  .btn-secondary:hover {
+    background: rgba(16, 169, 104, 0.15);
+    border-color: var(--border-hover);
+  }
 
   /* WPM Chart Bar */
   .wpm-chart {
@@ -351,9 +396,9 @@ export default function TypingSpeed() {
   }
   .chart-bar {
     flex: 1;
-    background: var(--accent);
+    background: #10A968;
     border-radius: 3px 3px 0 0;
-    opacity: 0.7;
+    opacity: 0.8;
     min-height: 2px;
     transition: opacity 0.2s;
   }
@@ -375,17 +420,23 @@ export default function TypingSpeed() {
   <!-- TOOLBAR -->
   <div class="toolbar" id="toolbar">
     <button class="tb-btn" id="tb-punct" onclick="toggleOption('punctuation')">
-      <span class="tb-icon">@</span> punctuation
+      <svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><text x="9" y="15" font-size="8" fill="currentColor">@</text></svg> punctuation
     </button>
     <button class="tb-btn" id="tb-numbers" onclick="toggleOption('numbers')">
-      <span class="tb-icon">#</span> numbers
+      <svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M9 9h6v6H9z"></path></svg> numbers
     </button>
 
     <div class="toolbar-divider"></div>
 
-    <button class="tb-btn active" id="mode-time" onclick="setMode('time')">⏱ time</button>
-    <button class="tb-btn" id="mode-words" onclick="setMode('words')">A words</button>
-    <button class="tb-btn" id="mode-quote" onclick="setMode('quote')" >" quote</button>
+    <button class="tb-btn active" id="mode-time" onclick="setMode('time')">
+      <svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> time
+    </button>
+    <button class="tb-btn" id="mode-words" onclick="setMode('words')">
+      <svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7h16M4 12h16M4 17h16"></polyline></svg> words
+    </button>
+    <button class="tb-btn" id="mode-quote" onclick="setMode('quote')">
+      <svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-4-4-7-4s-4 2.75-4 4c0 5 4 1 4 8s0 7-4 7z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-4-4-7-4s-4 2.75-4 4c0 5 4 1 4 8s0 7-4 7z"></path></svg> quote
+    </button>
 
     <div class="toolbar-divider"></div>
 
@@ -413,7 +464,7 @@ export default function TypingSpeed() {
   <!-- CONTROLS -->
   <div class="controls">
     <button class="restart-btn" id="restart-btn" onclick="restartTest()" title="Restart (Tab + Enter)">
-      ↺
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2-8.83"></path></svg>
     </button>
   </div>
 
@@ -458,8 +509,14 @@ export default function TypingSpeed() {
     </div>
 
     <div class="results-actions">
-      <button class="btn-primary" onclick="restartTest()">↺ Try Again</button>
-      <button class="btn-secondary" onclick="newTest()">New Test</button>
+      <button class="btn-primary" onclick="restartTest()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1em; height: 1em;"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2-8.83"></path></svg>
+        Try Again
+      </button>
+      <button class="btn-secondary" onclick="newTest()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1em; height: 1em;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+        New Test
+      </button>
     </div>
   </div>
 
@@ -1005,7 +1062,9 @@ export default function TypingSpeed() {
 })();
 </script>
         `,
-      }}
-    />
+          }}
+        />
+      </div>
+    </main>
   );
 }
