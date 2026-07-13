@@ -15,6 +15,7 @@ const STATIC_ROUTES = [
   { url: "/ilovepdf", priority: 0.9, changefreq: "weekly" as const },
   { url: "/qr-generator", priority: 0.8, changefreq: "weekly" as const },
   { url: "/barcode-generator", priority: 0.8, changefreq: "weekly" as const },
+  { url: "/barcode-reader", priority: 0.8, changefreq: "weekly" as const },
   { url: "/password-generator", priority: 0.8, changefreq: "weekly" as const },
   { url: "/lorem-ipsum-generator", priority: 0.8, changefreq: "weekly" as const },
   { url: "/emoji-picker", priority: 0.8, changefreq: "weekly" as const },

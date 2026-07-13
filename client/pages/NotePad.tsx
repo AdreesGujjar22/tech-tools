@@ -191,7 +191,7 @@ export default function NotePad() {
             value={content}
             onChange={handleTextChange}
             placeholder="Start typing your notes here..."
-            className="relative w-full h-full px-4 py-4 bg-transparent text-[#2D4D35] focus:outline-none resize-none font-mono text-sm border-0"
+            className="relative w-full h-full px-4 pb-4 bg-transparent text-[#2D4D35] focus:outline-none resize-none font-mono text-sm border-0"
             spellCheck="false"
             style={{
               lineHeight: "24px",
@@ -199,18 +199,6 @@ export default function NotePad() {
             }}
           />
 
-          {/* Placeholder text overlay - shows only when empty */}
-          {!content && (
-            <div
-              className="absolute top-0 left-0 text-[#999B99] font-mono text-sm pointer-events-none p-4"
-              style={{
-                lineHeight: "24px",
-                paddingTop: "16px",
-              }}
-            >
-              Start typing your notes here...
-            </div>
-          )}
         </div>
       </div>
 
