@@ -17,8 +17,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
           <div className="flex min-h-screen flex-col">
             <Navbar />
 
-            <main className="flex-1 my-16">
-              <Suspense
+            <main className="flex-1 my-24">
+0C142B              <Suspense
                 fallback={
                   <div className="h-[80vh] bg-background" />
                 }

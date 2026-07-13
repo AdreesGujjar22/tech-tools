@@ -70,6 +70,14 @@ const qrItems = [
   },
   {
     id: 8,
+    title: "Barcode & QR Reader",
+    url: "/barcode-reader",
+    type: "URL",
+    date: currentDate,
+    preview: "/images/qr-code-generation.png",
+  },
+  {
+    id: 9,
     title: "Password Generator",
     url: "/password-generator",
     type: "URL",
