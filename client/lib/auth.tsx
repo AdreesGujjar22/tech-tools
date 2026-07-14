@@ -1,8 +1,9 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { signOut } from "firebase/auth";
-import { auth } from "./firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { auth, db } from "./firebase";
 
 interface AdminUser {
   uid: string;
@@ -22,110 +23,100 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+function toAdminUser(firebaseUser: {
+  uid: string;
+  email: string | null;
+  emailVerified: boolean;
+  isAnonymous: boolean;
+  displayName: string | null;
+}): AdminUser {
+  return {
+    uid: firebaseUser.uid,
+    email: firebaseUser.email || "",
+    emailVerified: firebaseUser.emailVerified,
+    isAnonymous: firebaseUser.isAnonymous,
+    displayName: firebaseUser.displayName || "Admin",
+  };
+}
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<AdminUser | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is stored in localStorage (persisted session)
-    if (typeof window !== "undefined") {
-      const storedUser = localStorage.getItem("admin_user");
-      if (storedUser) {
-        try {
-          const parsedUser = JSON.parse(storedUser) as AdminUser;
-          setUser(parsedUser);
-          setIsAdmin(true);
-        } catch (e) {
-          localStorage.removeItem("admin_user");
-        }
-      }
+    if (!auth || !db) {
+      setLoading(false);
+      return;
     }
-    setLoading(false);
+
+    return onAuthStateChanged(auth, async (firebaseUser) => {
+      if (!firebaseUser) {
+        setUser(null);
+        setIsAdmin(false);
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const adminDoc = await getDoc(doc(db, "admins", firebaseUser.uid));
+        setUser(toAdminUser(firebaseUser));
+        setIsAdmin(adminDoc.exists());
+      } catch (error) {
+        console.error("Admin authorization check failed:", error);
+        setUser(toAdminUser(firebaseUser));
+        setIsAdmin(false);
+      } finally {
+        setLoading(false);
+      }
+    });
   }, []);
 
   const loginWithEmail = async (email: string, password: string) => {
+    if (!auth || !db) {
+      throw new Error("Firebase is not configured. Add the Firebase environment variables before signing in.");
+    }
+
     setLoading(true);
     try {
-      const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
-      const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
-
-      if (!adminEmail || !adminPassword) {
-        throw new Error("Admin email and password must be set in environment variables (NEXT_PUBLIC_ADMIN_EMAIL, NEXT_PUBLIC_ADMIN_PASSWORD)");
+      let credential;
+      try {
+        credential = await signInWithEmailAndPassword(auth, email.trim(), password);
+      } catch (error: any) {
+        const messages: Record<string, string> = {
+          "auth/invalid-credential": "The email or password is incorrect.",
+          "auth/user-not-found": "The email or password is incorrect.",
+          "auth/wrong-password": "The email or password is incorrect.",
+          "auth/invalid-email": "Enter a valid email address.",
+          "auth/user-disabled": "This account has been disabled. Contact the site administrator.",
+          "auth/too-many-requests": "Too many sign-in attempts. Wait a moment and try again.",
+          "auth/network-request-failed": "We could not connect to Firebase. Check your connection and try again.",
+        };
+        throw new Error(messages[error?.code] || "We could not sign you in. Please try again.");
       }
+      const adminDoc = await getDoc(doc(db, "admins", credential.user.uid));
 
-      // Trim whitespace to avoid issues
-      const trimmedEmail = email.trim();
-      const trimmedPassword = password.trim();
-      const trimmedAdminEmail = adminEmail.trim();
-      const trimmedAdminPassword = adminPassword.trim();
-
-      // Check email first
-      if (trimmedEmail !== trimmedAdminEmail) {
-        throw new Error("Invalid admin credentials");
+      if (!adminDoc.exists()) {
+        await signOut(auth);
+        throw new Error("This account is not authorized to access the admin panel.");
       }
-
-      // Check password
-      if (trimmedPassword !== trimmedAdminPassword) {
-        throw new Error("Invalid admin credentials");
-      }
-
-      // Create admin user session
-      const adminUser: AdminUser = {
-        uid: "admin_" + Date.now(),
-        email: trimmedEmail,
-        emailVerified: true,
-        isAnonymous: false,
-        displayName: "Admin",
-      };
-
-      setUser(adminUser);
-      setIsAdmin(true);
-
-      // Persist session in localStorage
-      if (typeof window !== "undefined") {
-        localStorage.setItem("admin_user", JSON.stringify(adminUser));
-      }
-    } catch (error) {
+    } finally {
       setLoading(false);
-      throw error;
     }
   };
 
   const logout = async () => {
+    if (!auth) return;
     setLoading(true);
     try {
-      // Clear local session
-      setUser(null);
-      setIsAdmin(false);
-
-      if (typeof window !== "undefined") {
-        localStorage.removeItem("admin_user");
-      }
-
-      // Try to sign out from Firebase if available
-      try {
-        await signOut(auth);
-      } catch (e) {
-        // Firebase signout is optional
-      }
-    } catch (error) {
-      console.error("Logout Error:", error);
+      await signOut(auth);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        isAdmin,
-        loading,
-        loginWithEmail,
-        logout
-      }}
-    >
+    <AuthContext.Provider value={{ user, isAdmin, loading, loginWithEmail, logout }}>
       {children}
     </AuthContext.Provider>
   );

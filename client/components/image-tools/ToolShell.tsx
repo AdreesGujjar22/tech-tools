@@ -530,8 +530,8 @@ export default function ToolShell({
                 className="border border-indigo-950/50 rounded-3xl p-16 text-center bg-gradient-to-br from-indigo-950/20 to-neutral-950/40 backdrop-blur-sm"
               >
                 <div className="flex justify-center mb-6">
-                  <div className="p-4 bg-indigo-500/20 border border-indigo-500/30 rounded-full">
-                    <Loader2 className="w-10 h-10 text-indigo-400 animate-spin" />
+                  <div className="p-4 bg-primary/10 border border-primary/20 rounded-full">
+                    <Loader2 className="w-10 h-10 text-primary animate-spin" />
                   </div>
                 </div>
                 <div className="flex items-center justify-center gap-2 mb-2">

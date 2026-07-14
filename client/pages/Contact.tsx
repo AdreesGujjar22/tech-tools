@@ -90,7 +90,7 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium text-muted-foreground">
+                      <label htmlFor="name" className="text-sm font-semibold text-foreground">
                         Name
                       </label>
                       <input
@@ -100,12 +100,12 @@ export default function Contact() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="input-modern w-full"
+                        className="input-modern w-full rounded-xl px-4 py-3"
                         placeholder="Your name"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium text-muted-foreground">
+                      <label htmlFor="email" className="text-sm font-semibold text-foreground">
                         Email
                       </label>
                       <input
@@ -115,13 +115,13 @@ export default function Contact() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="input-modern w-full"
+                        className="input-modern w-full rounded-xl px-4 py-3"
                         placeholder="your@email.com"
                       />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="subject" className="text-sm font-medium text-muted-foreground">
+                    <label htmlFor="subject" className="text-sm font-semibold text-foreground">
                       Subject
                     </label>
                     <input
@@ -131,12 +131,12 @@ export default function Contact() {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="input-modern w-full"
+                      className="input-modern w-full rounded-xl px-4 py-3"
                       placeholder="How can we help?"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium text-muted-foreground">
+                    <label htmlFor="message" className="text-sm font-semibold text-foreground">
                       Message
                     </label>
                     <textarea
@@ -146,7 +146,7 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       rows={6}
-                      className="input-modern w-full resize-none"
+                      className="input-modern w-full rounded-xl px-4 py-3 resize-none"
                       placeholder="Tell us more about your inquiry..."
                     />
                   </div>

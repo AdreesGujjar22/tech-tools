@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "@/lib/auth";
 import { ThemeProvider } from "@/lib/theme";
+import { Toaster } from "sonner";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient());
@@ -14,11 +15,12 @@ export default function Providers({ children }: { children: React.ReactNode }) {
      <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <AuthProvider>
+          <Toaster position="bottom-right" richColors theme="light" />
           <div className="flex min-h-screen flex-col">
             <Navbar />
 
             <main className="flex-1 my-24">
-0C142B              <Suspense
+              <Suspense
                 fallback={
                   <div className="h-[80vh] bg-background" />
                 }
