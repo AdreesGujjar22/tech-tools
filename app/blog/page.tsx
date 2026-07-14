@@ -47,8 +47,7 @@ export default function BlogArchive() {
         let fetchedCats: Category[] = [];
         let fetchedTags: Tag[] = [];
 
-        try {
-          const blogSnap = await getDocs(blogsQuery);
+        const blogSnap = await getDocs(blogsQuery);
           blogSnap.forEach((docSnap) => {
             const data = docSnap.data() as any;
             fetchedBlogs.push({
@@ -77,65 +76,11 @@ export default function BlogArchive() {
             fetchedCats.push({ id: d.id, name: data.name, slug: data.name });
           });
 
-          const tagSnap = await getDocs(collection(db, "tags"));
-          tagSnap.forEach((d) => {
-            const data = d.data() as any;
-            fetchedTags.push({ id: d.id, name: data.name, slug: data.name });
-          });
-        } catch (dbErr) {
-          console.warn("Could not read from cloud Firestore, loading from local fallback: ", dbErr);
-        }
-
-        // Merge localStorage items
-        if (typeof window !== "undefined") {
-          const localBlogsRaw = localStorage.getItem("local_blogs");
-          if (localBlogsRaw) {
-            try {
-              const localBlogs = JSON.parse(localBlogsRaw) as Blog[];
-              localBlogs.forEach((lb) => {
-                // Determine whether to display: admin sees all, public sees only published
-                const isStatusAllowed = isAdmin || lb.status === "published";
-                if (isStatusAllowed) {
-                  if (!fetchedBlogs.some((fb) => fb.slug === lb.slug)) {
-                    fetchedBlogs.unshift(lb); // show newest local articles first
-                  } else {
-                    fetchedBlogs = fetchedBlogs.map((fb) => fb.slug === lb.slug ? lb : fb);
-                  }
-                }
-              });
-            } catch (err) {
-              console.error(err);
-            }
-          }
-
-          const localCatsRaw = localStorage.getItem("local_categories");
-          if (localCatsRaw) {
-            try {
-              const localCats = JSON.parse(localCatsRaw) as Category[];
-              localCats.forEach((lc) => {
-                if (!fetchedCats.some((fc) => fc.id === lc.id)) {
-                  fetchedCats.push(lc);
-                }
-              });
-            } catch (err) {
-              console.error(err);
-            }
-          }
-
-          const localTagsRaw = localStorage.getItem("local_tags");
-          if (localTagsRaw) {
-            try {
-              const localTags = JSON.parse(localTagsRaw) as Tag[];
-              localTags.forEach((lt) => {
-                if (!fetchedTags.some((ft) => ft.id === lt.id)) {
-                  fetchedTags.push(lt);
-                }
-              });
-            } catch (err) {
-              console.error(err);
-            }
-          }
-        }
+        const tagSnap = await getDocs(collection(db, "tags"));
+        tagSnap.forEach((d) => {
+          const data = d.data() as any;
+          fetchedTags.push({ id: d.id, name: data.name, slug: data.name });
+        });
 
         setBlogs(fetchedBlogs);
         setCategories(fetchedCats.length > 0 ? fetchedCats : [

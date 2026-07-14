@@ -117,37 +117,38 @@ service cloud.firestore {
     match /blogs/{blogId} {
       // Allow public get if the post is published
       allow get: if isValidId(blogId) && (
-        resource == null ||
-        resource.data.status == 'published'
+        isAdmin() || resource == null || resource.data.status == 'published'
       );
 
       // Secure listing queries
-      allow list: if resource.data.status == 'published';
+      allow list: if isAdmin() || resource.data.status == 'published';
 
       // Create rule - allow for CMS admin operations
       allow create: if isValidId(blogId)
+        && isAdmin()
         && isValidBlog(incoming());
 
       // Update rule - allow for CMS admin operations
       allow update: if isValidId(blogId)
+        && isAdmin()
         && isValidBlog(incoming());
 
       // Delete rule
-      allow delete: if isValidId(blogId);
+      allow delete: if isValidId(blogId) && isAdmin();
     }
 
     // 6. Categories Collection Rules
     match /categories/{categoryId} {
       allow read: if isValidId(categoryId);
-      allow create, update: if isValidId(categoryId) && isValidCategory(incoming());
-      allow delete: if isValidId(categoryId);
+      allow create, update: if isValidId(categoryId) && isAdmin() && isValidCategory(incoming());
+      allow delete: if isValidId(categoryId) && isAdmin();
     }
 
     // 7. Tags Collection Rules
     match /tags/{tagId} {
       allow read: if isValidId(tagId);
-      allow create, update: if isValidId(tagId) && isValidTag(incoming());
-      allow delete: if isValidId(tagId);
+      allow create, update: if isValidId(tagId) && isAdmin() && isValidTag(incoming());
+      allow delete: if isValidId(tagId) && isAdmin();
     }
 
     // 8. PDF Tools Settings Rules

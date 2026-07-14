@@ -19,7 +19,7 @@ export default function BlogEditor({ value, onChange, placeholder }: BlogEditorP
       maxHeight: 800,
       readonly: false,
       placeholder: placeholder || "Write your blog content here...",
-      theme: "dark",
+      theme: "default",
       uploader: {
         insertImageAsBase64URI: true,
       },
@@ -108,32 +108,32 @@ export default function BlogEditor({ value, onChange, placeholder }: BlogEditorP
       />
       <style jsx global>{`
         .jodit-container {
-          background: #1a1f3a !important;
-          border: 1px solid #334155 !important;
+          background: #ffffff !important;
+          border: 1px solid #e2e8f0 !important;
           border-radius: 0.75rem !important;
-          color: #e2dfff !important;
+          color: #1f2937 !important;
         }
 
         .jodit-container.jodit_active {
-          border-color: #6366f1 !important;
+          border-color: #60b044 !important;
         }
 
         .jodit-toolbar {
-          background: #0f1729 !important;
-          border-bottom: 1px solid #334155 !important;
+          background: #f8fafc !important;
+          border-bottom: 1px solid #e2e8f0 !important;
         }
 
         .jodit-toolbar__box {
-          background: #0f1729 !important;
+          background: #f8fafc !important;
         }
 
         .jodit-toolbar-button {
-          color: #cbd5e1 !important;
+          color: #64748b !important;
         }
 
         .jodit-toolbar-button:hover {
-          background: #334155 !important;
-          color: #e2dfff !important;
+          background: #e2e8f0 !important;
+          color: #1f2937 !important;
         }
 
         .jodit-toolbar-button.jodit_disabled {
@@ -141,80 +141,80 @@ export default function BlogEditor({ value, onChange, placeholder }: BlogEditorP
         }
 
         .jodit-toolbar-button.active {
-          background: #4f46e5 !important;
-          color: #ffffff !important;
+          background: #4a8f3a !important;
+          color: #1f2937 !important;
         }
 
         .jodit-wysiwyg {
-          background: #1a1f3a !important;
-          color: #e2dfff !important;
+          background: #ffffff !important;
+          color: #1f2937 !important;
           padding: 1.5rem !important;
           min-height: 400px !important;
         }
 
         .jodit-wysiwyg_top_border {
-          border-top: 1px solid #334155 !important;
+          border-top: 1px solid #e2e8f0 !important;
         }
 
         .jodit-wysiwyg a {
-          color: #60a5fa !important;
+          color: #4a8f3a !important;
         }
 
         .jodit-wysiwyg a:hover {
-          color: #93c5fd !important;
+          color: #3d7a2e !important;
         }
 
         .jodit-status-bar {
-          background: #0f1729 !important;
-          border-top: 1px solid #334155 !important;
-          color: #cbd5e1 !important;
+          background: #f8fafc !important;
+          border-top: 1px solid #e2e8f0 !important;
+          color: #64748b !important;
         }
 
         .jodit-popup {
-          background: #1a1f3a !important;
-          border: 1px solid #334155 !important;
-          color: #e2dfff !important;
+          background: #ffffff !important;
+          border: 1px solid #e2e8f0 !important;
+          color: #1f2937 !important;
         }
 
         .jodit-popup__header {
-          background: #0f1729 !important;
-          border-bottom: 1px solid #334155 !important;
-          color: #e2dfff !important;
+          background: #f8fafc !important;
+          border-bottom: 1px solid #e2e8f0 !important;
+          color: #1f2937 !important;
         }
 
         .jodit-popup input[type="text"],
         .jodit-popup input[type="url"],
         .jodit-popup textarea,
         .jodit-popup select {
-          background: #0f1729 !important;
-          border: 1px solid #334155 !important;
-          color: #e2dfff !important;
+          background: #f8fafc !important;
+          border: 1px solid #e2e8f0 !important;
+          color: #1f2937 !important;
         }
 
         .jodit-popup input[type="text"]:focus,
         .jodit-popup input[type="url"]:focus,
         .jodit-popup textarea:focus,
         .jodit-popup select:focus {
-          border-color: #6366f1 !important;
+          border-color: #60b044 !important;
           outline: none !important;
         }
 
         .jodit-dialog button {
-          background: #4f46e5 !important;
-          color: #ffffff !important;
+          background: #4a8f3a !important;
+          color: #1f2937 !important;
           border: none !important;
         }
 
         .jodit-dialog button:hover {
-          background: #4338ca !important;
+          background: #3d7a2e !important;
         }
 
         .jodit-dialog button.jodit_button_cancel {
-          background: #334155 !important;
+          background: #e2e8f0 !important;
         }
 
         .jodit-dialog button.jodit_button_cancel:hover {
-          background: #475569 !important;
+          background: #cbd5e1 !important;
         }
 
         /* Ensure proper sizing on all screens */
@@ -233,7 +233,7 @@ export default function BlogEditor({ value, onChange, placeholder }: BlogEditorP
         .jodit-wysiwyg h4,
         .jodit-wysiwyg h5,
         .jodit-wysiwyg h6 {
-          color: #ffffff !important;
+          color: #1f2937 !important;
           margin-top: 1em !important;
           margin-bottom: 0.5em !important;
         }
@@ -251,26 +251,26 @@ export default function BlogEditor({ value, onChange, placeholder }: BlogEditorP
         }
 
         .jodit-wysiwyg code {
-          background: #0f1729 !important;
-          color: #60a5fa !important;
+          background: #f8fafc !important;
+          color: #4a8f3a !important;
           padding: 0.25em 0.5em !important;
           border-radius: 0.25rem !important;
           font-family: "Monaco", "Courier New", monospace !important;
         }
 
         .jodit-wysiwyg pre {
-          background: #0f1729 !important;
-          color: #cbd5e1 !important;
+          background: #f8fafc !important;
+          color: #64748b !important;
           padding: 1rem !important;
           border-radius: 0.5rem !important;
           overflow-x: auto !important;
-          border-left: 4px solid #4f46e5 !important;
+          border-left: 4px solid #4a8f3a !important;
         }
 
         .jodit-wysiwyg blockquote {
-          border-left: 4px solid #4f46e5 !important;
+          border-left: 4px solid #4a8f3a !important;
           padding-left: 1rem !important;
-          color: #cbd5e1 !important;
+          color: #64748b !important;
           font-style: italic !important;
           margin: 1em 0 !important;
         }
@@ -290,19 +290,19 @@ export default function BlogEditor({ value, onChange, placeholder }: BlogEditorP
 
         .jodit-wysiwyg table td,
         .jodit-wysiwyg table th {
-          border: 1px solid #334155 !important;
+          border: 1px solid #e2e8f0 !important;
           padding: 0.75rem !important;
           text-align: left !important;
         }
 
         .jodit-wysiwyg table th {
-          background: #0f1729 !important;
-          color: #ffffff !important;
+          background: #f8fafc !important;
+          color: #1f2937 !important;
           font-weight: 600 !important;
         }
 
         .jodit-wysiwyg table tr:hover {
-          background: #0f1729 !important;
+          background: #f8fafc !important;
         }
 
         .jodit-wysiwyg ul,
@@ -317,7 +317,7 @@ export default function BlogEditor({ value, onChange, placeholder }: BlogEditorP
 
         .jodit-wysiwyg hr {
           border: none !important;
-          border-top: 1px solid #334155 !important;
+          border-top: 1px solid #e2e8f0 !important;
           margin: 2em 0 !important;
         }
       `}</style>

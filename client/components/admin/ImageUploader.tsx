@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Upload, X, CheckCircle, Loader2, AlertCircle, Image as ImageIcon } from "lucide-react";
 import { toast } from "sonner";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -18,6 +18,13 @@ export default function ImageUploader({ value, onChange, label = "Featured Image
   const [uploading, setUploading] = useState(false);
   const [preview, setPreview] = useState<string | null>(value || null);
   const [isDragActive, setIsDragActive] = useState(false);
+  const uploadTokenRef = useRef(0);
+
+  useEffect(() => {
+    if (!uploading) {
+      setPreview(value || null);
+    }
+  }, [value, uploading]);
 
   const handleFile = async (file: File) => {
     // Validate file type
@@ -32,6 +39,7 @@ export default function ImageUploader({ value, onChange, label = "Featured Image
       return;
     }
 
+    const uploadToken = ++uploadTokenRef.current;
     setUploading(true);
     try {
       // Create preview
@@ -49,14 +57,19 @@ export default function ImageUploader({ value, onChange, label = "Featured Image
       const snapshot = await uploadBytes(storageRef, file);
       const downloadURL = await getDownloadURL(snapshot.ref);
 
+      if (uploadToken !== uploadTokenRef.current) return;
       onChange(downloadURL);
       toast.success("Image uploaded successfully!");
     } catch (error: any) {
+      if (uploadToken !== uploadTokenRef.current) return;
       console.error("Upload error:", error);
       toast.error(error.message || "Failed to upload image");
       setPreview(null);
+      onChange("");
     } finally {
-      setUploading(false);
+      if (uploadToken === uploadTokenRef.current) {
+        setUploading(false);
+      }
     }
   };
 
@@ -87,7 +100,9 @@ export default function ImageUploader({ value, onChange, label = "Featured Image
   };
 
   const handleRemove = () => {
+    uploadTokenRef.current += 1;
     onChange("");
+    setUploading(false);
     setPreview(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
@@ -96,14 +111,14 @@ export default function ImageUploader({ value, onChange, label = "Featured Image
 
   return (
     <div className="space-y-3">
-      <label className="text-xs font-semibold text-[#DAD7FF]/80 uppercase font-mono tracking-wider block">
+      <label className="text-xs font-semibold text-foreground uppercase font-mono tracking-wider block">
         {label}
       </label>
 
       {preview ? (
         <div className="space-y-3">
           {/* Image Preview */}
-          <div className="relative w-full h-40 rounded-xl overflow-hidden border border-indigo-500/20 bg-slate-950">
+          <div className="relative w-full h-40 rounded-xl overflow-hidden border border-border bg-muted/30">
             <img
               src={preview}
               alt="Preview"
@@ -111,16 +126,16 @@ export default function ImageUploader({ value, onChange, label = "Featured Image
             />
             {uploading && (
               <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                <Loader2 className="w-6 h-6 text-indigo-400 animate-spin" />
+                <Loader2 className="w-6 h-6 text-primary animate-spin" />
               </div>
             )}
           </div>
 
           {/* Image Info */}
           {value && (
-            <div className="flex items-start gap-2 p-2 bg-emerald-950/20 border border-emerald-900/30 rounded-lg">
-              <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-              <div className="text-xs text-emerald-300 break-all">
+            <div className="flex items-start gap-2 p-2 bg-emerald-50 border border-emerald-200 rounded-xl">
+              <CheckCircle className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" />
+              <div className="text-xs text-emerald-700 break-all">
                 Image uploaded successfully
               </div>
             </div>
@@ -132,7 +147,7 @@ export default function ImageUploader({ value, onChange, label = "Featured Image
               type="button"
               onClick={() => fileInputRef.current?.click()}
               disabled={uploading}
-              className="flex-1 px-3 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white text-xs font-semibold rounded-lg transition cursor-pointer flex items-center justify-center gap-1"
+              className="flex-1 px-3 py-2.5 brand-gradient hover:opacity-90 disabled:opacity-50 text-white text-xs font-semibold rounded-lg transition cursor-pointer flex items-center justify-center gap-1"
             >
               {uploading ? (
                 <>
@@ -149,7 +164,7 @@ export default function ImageUploader({ value, onChange, label = "Featured Image
             <button
               type="button"
               onClick={handleRemove}
-              className="px-3 py-2 bg-red-950/30 hover:bg-red-950/50 text-red-400 text-xs font-semibold rounded-lg transition cursor-pointer flex items-center gap-1"
+              className="px-3 py-2 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 text-xs font-semibold rounded-xl transition cursor-pointer flex items-center gap-1"
             >
               <X className="w-3 h-3" />
               Remove
@@ -165,21 +180,21 @@ export default function ImageUploader({ value, onChange, label = "Featured Image
           onClick={() => fileInputRef.current?.click()}
           className={`border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition ${
             isDragActive
-              ? "border-indigo-500 bg-indigo-950/20"
-              : "border-slate-700 bg-slate-950/40 hover:border-indigo-500/50"
+              ? "border-primary bg-primary/10"
+              : "border-border bg-muted/20 hover:border-primary/50 hover:bg-primary/5"
           }`}
         >
           <div className="flex justify-center mb-3">
             {uploading ? (
-              <Loader2 className="w-8 h-8 text-indigo-400 animate-spin" />
+              <Loader2 className="w-8 h-8 text-primary animate-spin" />
             ) : (
-              <ImageIcon className="w-8 h-8 text-slate-500" />
+              <ImageIcon className="w-8 h-8 text-muted-foreground" />
             )}
           </div>
-          <p className="text-sm font-semibold text-white mb-1">
+          <p className="text-sm font-semibold text-foreground mb-1">
             {uploading ? "Uploading..." : "Drop image here or click to browse"}
           </p>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-muted-foreground">
             JPG, PNG, WebP (max 5MB)
           </p>
         </div>
@@ -195,9 +210,9 @@ export default function ImageUploader({ value, onChange, label = "Featured Image
 
       {/* Error State Info */}
       {!value && !preview && (
-        <div className="flex items-start gap-2 p-2 bg-amber-950/20 border border-amber-900/30 rounded-lg">
-          <AlertCircle className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
-          <p className="text-xs text-amber-300">
+        <div className="flex items-start gap-2 p-2 bg-amber-50 border border-amber-200 rounded-xl">
+          <AlertCircle className="w-4 h-4 text-amber-600 mt-0.5 shrink-0" />
+          <p className="text-xs text-amber-700">
             Images are uploaded to cloud storage and will be available for all your blog posts.
           </p>
         </div>

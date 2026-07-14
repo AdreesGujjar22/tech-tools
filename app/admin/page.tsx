@@ -2,9 +2,9 @@
 
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useAuth } from "@/lib/auth";
-import { OfflineHelper } from "@/lib/offlineHelper";
+
 import { Blog, Category , Tag } from "@shared/api";
 import {
   collection,
@@ -66,6 +66,10 @@ export default function AdminPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [signingIn, setSigningIn] = useState(false);
+  const [authError, setAuthError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const passwordInputRef = useRef<HTMLInputElement>(null);
 
   // Core CMS state
   const [articles, setArticles] = useState<Blog[]>([]);
@@ -94,6 +98,7 @@ export default function AdminPage() {
   const [postSeoKeywords, setPostSeoKeywords] = useState("");
 
   const [savingPost, setSavingPost] = useState(false);
+  const [saveError, setSaveError] = useState("");
 
   // Auto slug generation toggles
   const [autoSlug, setAutoSlug] = useState(true);
@@ -130,110 +135,49 @@ export default function AdminPage() {
       let fetchedCats: Category[] = [];
       let fetchedTags: Tag[] = [];
 
-      // Check connection status
-      OfflineHelper.logOfflineMode();
+      const articlesSnap = await Promise.race([
+        getDocs(query(collection(db, "blogs"), orderBy("createdAt", "desc"))),
+        new Promise((_, reject) => setTimeout(() => reject(new Error("Firebase timeout")), 5000))
+      ]);
 
-      // 1. Try reading from Firestore (with offline fallback)
-      if (!OfflineHelper.shouldUseLocalStorage()) {
-        try {
-          const articlesSnap = await Promise.race([
-            getDocs(query(collection(db, "blogs"), orderBy("createdAt", "desc"))),
-            new Promise((_, reject) => setTimeout(() => reject(new Error("Firebase timeout")), 5000))
-          ]);
+      (articlesSnap as any).forEach((docSnap: any) => {
+        const d = docSnap.data() as any;
+        fetchedArticles.push({
+          id: docSnap.id,
+          title: d.title || "",
+          slug: d.slug || "",
+          content: d.content || "",
+          status: d.status || "draft",
+          excerpt: d.excerpt || "",
+          category: d.category || "General",
+          tags: d.tags || [],
+          featuredImage: d.featuredImage || "",
+          readingTime: d.readingTime || "3 min read",
+          createdAt: d.createdAt?.toDate ? d.createdAt.toDate().toLocaleDateString() : String(d.createdAt || ""),
+          updatedAt: d.updatedAt?.toDate ? d.updatedAt.toDate().toLocaleDateString() : String(d.updatedAt || ""),
+          seoTitle: d.seoTitle || "",
+          seoDescription: d.seoDescription || "",
+          seoKeywords: d.seoKeywords || ""
+        });
+      });
 
-          (articlesSnap as any).forEach((docSnap: any) => {
-            const d = docSnap.data() as any;
-            fetchedArticles.push({
-              id: docSnap.id,
-              title: d.title || "",
-              slug: d.slug || "",
-              content: d.content || "",
-              status: d.status || "draft",
-              excerpt: d.excerpt || "",
-              category: d.category || "General",
-              tags: d.tags || [],
-              featuredImage: d.featuredImage || "",
-              readingTime: d.readingTime || "3 min read",
-              createdAt: d.createdAt?.toDate ? d.createdAt.toDate().toLocaleDateString() : String(d.createdAt || ""),
-              updatedAt: d.updatedAt?.toDate ? d.updatedAt.toDate().toLocaleDateString() : String(d.updatedAt || ""),
-              seoTitle: d.seoTitle || "",
-              seoDescription: d.seoDescription || "",
-              seoKeywords: d.seoKeywords || ""
-            });
-          });
+      const categoriesSnap = await Promise.race([
+        getDocs(collection(db, "categories")),
+        new Promise((_, reject) => setTimeout(() => reject(new Error("Firebase timeout")), 5000))
+      ]);
+      (categoriesSnap as any).forEach((d: any) => {
+        const data = d.data() as any;
+        fetchedCats.push({ id: d.id, name: data.name, slug: data.name });
+      });
 
-          // Fetch Categories
-          const categoriesSnap = await Promise.race([
-            getDocs(collection(db, "categories")),
-            new Promise((_, reject) => setTimeout(() => reject(new Error("Firebase timeout")), 5000))
-          ]);
-          (categoriesSnap as any).forEach((d: any) => {
-            const data = d.data() as any;
-            fetchedCats.push({ id: d.id, name: data.name, slug: data.name });
-          });
-
-          // Fetch Tags
-          const tagsSnap = await Promise.race([
-            getDocs(collection(db, "tags")),
-            new Promise((_, reject) => setTimeout(() => reject(new Error("Firebase timeout")), 5000))
-          ]);
-          (tagsSnap as any).forEach((d: any) => {
-            const data = d.data() as any;
-            fetchedTags.push({ id: d.id, name: data.name, slug: data.name });
-          });
-        } catch (fbError) {
-          console.warn("Could not read from cloud Firestore, using local storage fallback:", fbError);
-        }
-      }
-
-      // 2. Read and merge localStorage items for seamless offline or simulated dev experience
-      if (typeof window !== "undefined") {
-        const localBlogsRaw = localStorage.getItem("local_blogs");
-        if (localBlogsRaw) {
-          try {
-            const localBlogs = JSON.parse(localBlogsRaw) as Blog[];
-            // Filter duplicates by slug/id (prefer local overriding if matched, or append)
-            localBlogs.forEach(lb => {
-              if (!fetchedArticles.some(fa => fa.slug === lb.slug)) {
-                fetchedArticles.unshift(lb); // add local blogs first
-              } else {
-                // replace existing with local
-                fetchedArticles = fetchedArticles.map(fa => fa.slug === lb.slug ? lb : fa);
-              }
-            });
-          } catch (e) {
-            console.error(e);
-          }
-        }
-
-        const localCatsRaw = localStorage.getItem("local_categories");
-        if (localCatsRaw) {
-          try {
-            const localCats = JSON.parse(localCatsRaw) as Category[];
-            localCats.forEach(lc => {
-              if (!fetchedCats.some(fc => fc.id === lc.id)) {
-                fetchedCats.push(lc);
-              }
-            });
-          } catch (e) {
-            console.error(e);
-          }
-        }
-
-        const localTagsRaw = localStorage.getItem("local_tags");
-        if (localTagsRaw) {
-          try {
-            const localTags = JSON.parse(localTagsRaw) as Tag[];
-            localTags.forEach(lt => {
-              if (!fetchedTags.some(ft => ft.id === lt.id)) {
-                fetchedTags.push(lt);
-              }
-            });
-          } catch (e) {
-            console.error(e);
-          }
-        }
-      }
+      const tagsSnap = await Promise.race([
+        getDocs(collection(db, "tags")),
+        new Promise((_, reject) => setTimeout(() => reject(new Error("Firebase timeout")), 5000))
+      ]);
+      (tagsSnap as any).forEach((d: any) => {
+        const data = d.data() as any;
+        fetchedTags.push({ id: d.id, name: data.name, slug: data.name });
+      });
 
       setArticles(fetchedArticles);
       setCategories(fetchedCats);
@@ -241,7 +185,7 @@ export default function AdminPage() {
 
     } catch (error) {
       console.error("Error fetching CMS database: ", error);
-      toast.error("Could not fetch CMS data.");
+      toast.error(error instanceof Error ? error.message : "Could not fetch CMS data.");
     } finally {
       setCmsLoading(false);
     }
@@ -251,45 +195,48 @@ export default function AdminPage() {
   const handleAuthSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validation
-    if (!email || !password) {
-      toast.error("Please enter both email and password.");
+    setAuthError("");
+    const normalizedEmail = email.trim();
+
+    if (!normalizedEmail) {
+      const message = "Enter your email address.";
+      setAuthError(message);
+      toast.error(message);
+      emailInputRef.current?.focus();
       return;
     }
 
-    if (!email.includes("@")) {
-      toast.error("Please enter a valid email address.");
+    if (!/^\S+@\S+\.\S+$/.test(normalizedEmail)) {
+      const message = "Enter a valid email address.";
+      setAuthError(message);
+      toast.error(message);
+      emailInputRef.current?.focus();
       return;
     }
 
-    if (password.length < 1) {
-      toast.error("Password cannot be empty.");
+    if (!password) {
+      const message = "Enter your password.";
+      setAuthError(message);
+      toast.error(message);
+      passwordInputRef.current?.focus();
       return;
     }
 
     try {
       setSigningIn(true);
-      await loginWithEmail(email, password);
-      toast.success("✓ Admin logged in successfully! Welcome back.");
+      await loginWithEmail(normalizedEmail, password);
+      toast.success("Welcome back. Your admin workspace is ready.");
       setEmail("");
       setPassword("");
     } catch (error: any) {
-      console.error("Authentication Error:", error);
-
-      // Provide specific error messages
-      let errorMessage = "Authentication failed. Please try again.";
-
-      if (error.message?.includes("Admin credentials not configured")) {
-        errorMessage = "❌ Server error: Admin credentials not configured.";
-      } else if (error.message?.includes("Invalid admin credentials")) {
-        errorMessage = "❌ Invalid email or password. Please check and try again.";
-      } else if (error.message?.includes("Admin email and password must be set")) {
-        errorMessage = "❌ Admin credentials are not properly configured.";
-      } else if (error.message) {
-        errorMessage = `❌ ${error.message}`;
-      }
-
+      const errorMessage = error?.message || "We could not sign you in. Please try again.";
+      setAuthError(errorMessage);
       toast.error(errorMessage);
+      if (errorMessage.toLowerCase().includes("email")) {
+        emailInputRef.current?.focus();
+      } else {
+        passwordInputRef.current?.focus();
+      }
     } finally {
       setSigningIn(false);
     }
@@ -300,26 +247,13 @@ export default function AdminPage() {
     e.preventDefault();
     if (!newCategory.trim()) return;
     const slug = newCategory.toLowerCase().trim().replace(/\s+/g, "-");
-    const isSimulated = typeof window !== "undefined" && localStorage.getItem("dev_bypass_active") === "true";
-
     try {
-      if (isSimulated) {
-        throw new Error("Simulated dev mode");
-      }
       const ref = doc(db, "categories", slug);
-      await setDoc(ref, { name: newCategory.trim() });
+      await setDoc(ref, { name: newCategory.trim(), slug });
       toast.success("Category added to Firebase!");
     } catch (err) {
-      console.warn("Saving to Firebase failed / bypassed, falling back to local storage:", err);
-      if (typeof window !== "undefined") {
-        const localCatsRaw = localStorage.getItem("local_categories") || "[]";
-        const localCats = JSON.parse(localCatsRaw) as Category[];
-        if (!localCats.some(c => c.id === slug)) {
-          localCats.push({ id: slug, name: newCategory.trim(), slug: slug });
-          localStorage.setItem("local_categories", JSON.stringify(localCats));
-        }
-      }
-      toast.success("Category added locally!");
+      console.error("Could not add category to Firebase:", err);
+      toast.error(err instanceof Error ? err.message : "Could not add category. Please try again.");
     }
     setNewCategory("");
     fetchCmsData();
@@ -327,22 +261,12 @@ export default function AdminPage() {
 
   const handleDeleteCategory = async (id: string) => {
     if (!confirm("Are you sure you want to delete this category?")) return;
-    const isSimulated = typeof window !== "undefined" && localStorage.getItem("dev_bypass_active") === "true";
     try {
-      if (isSimulated) {
-        throw new Error("Simulated dev mode");
-      }
       await deleteDoc(doc(db, "categories", id));
       toast.success("Category deleted from Firebase.");
     } catch (err) {
-      console.warn("Deleting from Firebase failed or bypassed, deleting locally:", err);
-      if (typeof window !== "undefined") {
-        const localCatsRaw = localStorage.getItem("local_categories") || "[]";
-        let localCats = JSON.parse(localCatsRaw) as Category[];
-        localCats = localCats.filter(c => c.id !== id);
-        localStorage.setItem("local_categories", JSON.stringify(localCats));
-      }
-      toast.success("Category deleted locally.");
+      console.error("Could not delete category from Firebase:", err);
+      toast.error(err instanceof Error ? err.message : "Could not delete category. Please try again.");
     }
     fetchCmsData();
   };
@@ -352,26 +276,13 @@ export default function AdminPage() {
     e.preventDefault();
     if (!newTag.trim()) return;
     const slug = newTag.toLowerCase().trim().replace(/\s+/g, "-");
-    const isSimulated = typeof window !== "undefined" && localStorage.getItem("dev_bypass_active") === "true";
-
     try {
-      if (isSimulated) {
-        throw new Error("Simulated dev mode");
-      }
       const ref = doc(db, "tags", slug);
-      await setDoc(ref, { name: newTag.trim() });
+      await setDoc(ref, { name: newTag.trim(), slug });
       toast.success("Tag added to Firebase!");
     } catch (err) {
-      console.warn("Saving to Firebase failed / bypassed, saving locally:", err);
-      if (typeof window !== "undefined") {
-        const localTagsRaw = localStorage.getItem("local_tags") || "[]";
-        const localTags = JSON.parse(localTagsRaw) as Tag[];
-        if (!localTags.some(t => t.id === slug)) {
-          localTags.push({ id: slug, name: newTag.trim(), slug: slug });
-          localStorage.setItem("local_tags", JSON.stringify(localTags));
-        }
-      }
-      toast.success("Tag added locally!");
+      console.error("Could not add tag to Firebase:", err);
+      toast.error(err instanceof Error ? err.message : "Could not add tag. Please try again.");
     }
     setNewTag("");
     fetchCmsData();
@@ -379,64 +290,40 @@ export default function AdminPage() {
 
   const handleDeleteTag = async (id: string) => {
     if (!confirm("Are you sure you want to delete this tag?")) return;
-    const isSimulated = typeof window !== "undefined" && localStorage.getItem("dev_bypass_active") === "true";
     try {
-      if (isSimulated) {
-        throw new Error("Simulated dev mode");
-      }
       await deleteDoc(doc(db, "tags", id));
       toast.success("Tag deleted from Firebase.");
     } catch (err) {
-      console.warn("Deleting from Firebase failed or bypassed, deleting locally:", err);
-      if (typeof window !== "undefined") {
-        const localTagsRaw = localStorage.getItem("local_tags") || "[]";
-        let localTags = JSON.parse(localTagsRaw) as Tag[];
-        localTags = localTags.filter(t => t.id !== id);
-        localStorage.setItem("local_tags", JSON.stringify(localTags));
-      }
-      toast.success("Tag deleted locally.");
+      console.error("Could not delete tag from Firebase:", err);
+      toast.error(err instanceof Error ? err.message : "Could not delete tag. Please try again.");
     }
     fetchCmsData();
   };
 
   // Post Submission / Saving (Create & Update workflows)
-  const savePostSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const savePostSubmit = async (e?: React.FormEvent) => {
+    e?.preventDefault();
+    setSaveError("");
     if (!postTitle || !postSlug || !postContent) {
-      toast.error("Please fill in Title, Slug, and content.");
+      const message = "Please fill in Title, Slug, and content.";
+      setSaveError(message);
+      toast.error(message);
       return;
     }
 
-    const isSimulated = typeof window !== "undefined" && localStorage.getItem("dev_bypass_active") === "true";
 
     try {
       setSavingPost(true);
       
-      // Enforce duplicate slug check on creation
-      if (!editingPostId && !isSimulated) {
-        try {
-          const blogsRef = collection(db, "blogs");
-          const dupQuery = query(blogsRef, where("slug", "==", postSlug));
-          const dupSnap = await getDocs(dupQuery);
-          if (!dupSnap.empty) {
-            toast.error("Slug already exists! Please write a unique slug.");
-            setSavingPost(false);
-            return;
-          }
-        } catch (slugError) {
-          console.warn("Duplicate slug query failed rules-side, relying on local check.");
-        }
-      }
-
-      // Check unique slug in local blogs
-      if (!editingPostId && typeof window !== "undefined") {
-        const localBlogsRaw = localStorage.getItem("local_blogs") || "[]";
-        const localBlogs = JSON.parse(localBlogsRaw) as Blog[];
-        if (localBlogs.some(lb => lb.slug === postSlug)) {
-          toast.error("Slug already exists in local storage! Please write a unique slug.");
-          setSavingPost(false);
-          return;
-        }
+      const blogsRef = collection(db, "blogs");
+      const dupQuery = query(blogsRef, where("slug", "==", postSlug));
+      const dupSnap = await getDocs(dupQuery);
+      if (dupSnap.docs.some((duplicate) => duplicate.id !== editingPostId)) {
+        const message = "Slug already exists! Please write a unique slug.";
+        setSaveError(message);
+        toast.error(message);
+        setSavingPost(false);
+        return;
       }
 
       const postData = {
@@ -455,22 +342,9 @@ export default function AdminPage() {
         updatedAt: new Date(),
       };
 
-      if (isSimulated) {
-        throw new Error("Simulated dev active, bypassing cloud write.");
-      }
-
       if (editingPostId) {
-        // Update
-        if (editingPostId.startsWith("post_local_")) {
-          throw new Error("Local post edit - fallback to local storage write.");
-        }
         const docRef = doc(db, "blogs", editingPostId);
-        await setDoc(docRef, {
-          ...postData,
-          createdAt: articles.find(a => a.id === editingPostId)?.createdAt 
-            ? new Date(articles.find(a => a.id === editingPostId)!.createdAt) 
-            : new Date()
-        }, { merge: true });
+        await setDoc(docRef, postData, { merge: true });
         toast.success("Post updated successfully on Firebase!");
       } else {
         // Create
@@ -484,53 +358,14 @@ export default function AdminPage() {
       }
 
       // Refresh listings
-      fetchCmsData();
+      await fetchCmsData();
       resetPostForm();
       setCmsView("list");
     } catch (err: any) {
-      console.warn("Save Post cloud operation bypassed or failed, saving locally:", err);
-      
-      // FALLBACK TO LOCAL STORAGE
-      if (typeof window !== "undefined") {
-        const localBlogsRaw = localStorage.getItem("local_blogs") || "[]";
-        const localBlogs = JSON.parse(localBlogsRaw) as Blog[];
-        
-        const localPostData: Blog = {
-          id: editingPostId || `post_local_${Date.now()}`,
-          title: postTitle,
-          slug: postSlug,
-          content: postContent,
-          excerpt: postExcerpt,
-          category: postCategory,
-          tags: postTags,
-          featuredImage: postFeaturedImage || "https://picsum.photos/seed/blog/800/600",
-          status: postStatus,
-          readingTime: postReadingTime,
-          createdAt: articles.find(a => a.id === editingPostId)?.createdAt || new Date().toLocaleDateString(),
-          updatedAt: new Date().toLocaleDateString(),
-          seoTitle: postSeoTitle || `${postTitle} | Local Workspaces`,
-          seoDescription: postSeoDescription || postExcerpt,
-          seoKeywords: postSeoKeywords
-        };
-
-        if (editingPostId) {
-          const index = localBlogs.findIndex(b => b.id === editingPostId);
-          if (index !== -1) {
-            localBlogs[index] = localPostData;
-          } else {
-            localBlogs.push(localPostData);
-          }
-          toast.success("Post updated locally!");
-        } else {
-          localBlogs.push(localPostData);
-          toast.success("Post created locally!");
-        }
-        localStorage.setItem("local_blogs", JSON.stringify(localBlogs));
-      }
-
-      fetchCmsData();
-      resetPostForm();
-      setCmsView("list");
+      const message = err?.message || "Could not save post. Please try again.";
+      console.error("Could not save post to Firebase:", err);
+      setSaveError(message);
+      toast.error(message);
     } finally {
       setSavingPost(false);
     }
@@ -562,52 +397,28 @@ export default function AdminPage() {
   // Delete Post Entry
   const handleDeletePost = async (id: string) => {
     if (!confirm("Are you absolutely sure you want to delete this post? This cannot be undone.")) return;
-    const isSimulated = typeof window !== "undefined" && localStorage.getItem("dev_bypass_active") === "true";
-    
     try {
-      if (isSimulated || id.startsWith("post_local_")) {
-        throw new Error("Local post delete fallback.");
-      }
       await deleteDoc(doc(db, "blogs", id));
       toast.success("Post deleted from Firebase.");
     } catch (err) {
-      console.warn("Delete failed or bypassed, deleting locally:", err);
-      if (typeof window !== "undefined") {
-        const localBlogsRaw = localStorage.getItem("local_blogs") || "[]";
-        let localBlogs = JSON.parse(localBlogsRaw) as Blog[];
-        localBlogs = localBlogs.filter(b => b.id !== id);
-        localStorage.setItem("local_blogs", JSON.stringify(localBlogs));
-      }
-      toast.success("Post deleted locally.");
+      console.error("Could not delete post from Firebase:", err);
+      toast.error(err instanceof Error ? err.message : "Could not delete post. Please try again.");
     }
     fetchCmsData();
   };
 
   const handlePostStatusToggle = async (postItem: Blog) => {
-    const isSimulated = typeof window !== "undefined" && localStorage.getItem("dev_bypass_active") === "true";
     const nextStatus = postItem.status === "draft" ? "published" : "draft";
 
     try {
-      if (isSimulated || postItem.id!.startsWith("post_local_")) {
-        throw new Error("Local post toggle fallback.");
-      }
       await setDoc(doc(db, "blogs", postItem.id!), {
         status: nextStatus,
         updatedAt: new Date()
       }, { merge: true });
       toast.success(`Post status toggled to ${nextStatus}!`);
     } catch (error) {
-      console.warn("Toggle failed or bypassed, toggling locally:", error);
-      if (typeof window !== "undefined") {
-        const localBlogsRaw = localStorage.getItem("local_blogs") || "[]";
-        const localBlogs = JSON.parse(localBlogsRaw) as Blog[];
-        const index = localBlogs.findIndex(b => b.id === postItem.id);
-        if (index !== -1) {
-          localBlogs[index].status = nextStatus;
-          localStorage.setItem("local_blogs", JSON.stringify(localBlogs));
-          toast.success(`Post status toggled locally to ${nextStatus}!`);
-        }
-      }
+      console.error("Could not update post status in Firebase:", error);
+      toast.error(error instanceof Error ? error.message : "Could not update post status. Please try again.");
     }
     fetchCmsData();
   };
@@ -640,9 +451,9 @@ export default function AdminPage() {
   // Handle Loading Gate
   if (authLoading) {
     return (
-      <div className="min-h-screen bg-[#0C142B] text-slate-300 flex flex-col items-center justify-center">
-        <div className="w-12 h-12 rounded-full border-4 border-indigo-500/20 border-t-indigo-600 animate-spin mb-4" />
-        <p className="text-sm font-mono text-indigo-400">Loading sessions context...</p>
+      <div className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center">
+        <div className="w-12 h-12 rounded-full border-4 border-primary/20 border-t-primary animate-spin mb-4" />
+        <p className="text-sm font-mono text-primary">Preparing your workspace...</p>
       </div>
     );
   }
@@ -650,75 +461,88 @@ export default function AdminPage() {
   // View Gate 1: No User Authenticated
   if (!user) {
     return (
-      <div className="min-h-screen bg-[#0C142B] text-slate-300 pt-36 pb-24 px-6 flex items-center justify-center">
-        <div className="w-full max-w-md premium-card p-8 rounded-2xl border border-white/5 relative overflow-hidden shadow-2xl">
+      <div className="min-h-screen bg-background text-foreground pt-36 pb-24 px-6 flex items-center justify-center">
+        <div className="w-full max-w-md premium-card p-8 rounded-2xl border border-border relative overflow-hidden shadow-2xl">
           
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-violet-600 to-indigo-600" />
+          <div className="absolute top-0 left-0 right-0 h-1 brand-gradient" />
           
           <div className="text-center mb-8">
-            <Layers className="mx-auto text-indigo-400 mb-2" size={36} />
-            <span className="text-[10px] font-mono tracking-widest uppercase text-indigo-400/80">
+            <Layers className="mx-auto text-primary mb-2" size={36} />
+            <span className="text-[10px] font-mono tracking-widest uppercase text-primary/80">
               Tech Tool Blog Station
             </span>
-            <h2 className="text-2xl font-bold tracking-tight text-white mt-1">
+            <h2 className="text-2xl font-bold tracking-tight text-foreground mt-1">
               CMS Admin Access
             </h2>
-            <p className="text-[#C7C4D8] text-xs mt-2 leading-relaxed">
-              Unlock drafting, categorization, tags, SEO optimization tools, and content authoring panels securely.
+            <p className="text-muted-foreground text-xs mt-2 leading-relaxed">
+              Sign in to continue.
             </p>
           </div>
 
           <form onSubmit={handleAuthSubmit} className="space-y-4">
             <div>
-              <label className="text-xs font-semibold text-[#DAD7FF]/80 uppercase font-mono tracking-wider mb-1.5 block">
-                Workspace Email
+              <label className="text-xs font-semibold text-foreground/80 uppercase font-mono tracking-wider mb-1.5 block">
+                Email
               </label>
               <div className="relative">
-                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#C7C4D8]/50">
-                  <UserIcon size={14} />
+                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground/50">
+                  <UserIcon className="text-primary" size={16} />
                 </span>
                 <input
+                  ref={emailInputRef}
                   type="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => { setEmail(e.target.value); setAuthError(""); }}
                   placeholder="name@company.com"
-                  className="w-full pl-10 pr-4 py-2.5 bg-slate-900 border border-slate-800 focus:border-indigo-500 rounded-xl focus:outline-none placeholder-slate-600 text-sm text-white"
+                  aria-invalid={Boolean(authError)}
+                  className={`w-full pl-10 pr-4 py-2.5 bg-white border rounded-xl focus:outline-none placeholder-slate-400 text-sm text-foreground transition-colors ${authError ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"}`}
                   required
                 />
               </div>
             </div>
 
             <div>
-              <label className="text-xs font-semibold text-[#DAD7FF]/80 uppercase font-mono tracking-wider mb-1.5 block">
-                Secure Password
+              <label className="text-xs font-semibold text-foreground/80 uppercase font-mono tracking-wider mb-1.5 block">
+                Password
               </label>
               <div className="relative">
-                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#C7C4D8]/50">
-                  <Key size={14} />
+                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground/50">
+                  <Key className="text-primary" size={16} />
                 </span>
                 <input
-                  type="password"
+                  ref={passwordInputRef}
+                  type={showPassword ? "text" : "password"}
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => { setPassword(e.target.value); setAuthError(""); }}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-4 py-2.5 bg-slate-900 border border-slate-800 focus:border-indigo-500 rounded-xl focus:outline-none placeholder-slate-600 text-sm text-white"
+                  aria-invalid={Boolean(authError)}
+                  className={`w-full pl-10 pr-12 py-2.5 bg-white border rounded-xl focus:outline-none placeholder-slate-400 text-sm text-foreground transition-colors ${authError ? "border-red-400 focus:border-red-500" : "border-border focus:border-primary"}`}
                   required
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((visible) => !visible)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-primary hover:text-primary/70 p-1"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff size={17} /> : <Eye size={17} />}
+                </button>
               </div>
             </div>
+            {authError && <p className="text-sm text-red-600" role="alert">{authError}</p>}
 
             <button
               type="submit"
               disabled={signingIn}
-              className="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-505 font-bold text-white transition-all text-sm shadow-lg shadow-indigo-600/20 hover:active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-xl brand-gradient hover:opacity-90 font-bold text-primary-foreground transition-all text-sm shadow-lg shadow-indigo-600/20 hover:active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2"
             >
               {signingIn ? (
                 <>
                   <RefreshCw className="animate-spin" size={16} />
-                  <span>Verifying Credentials...</span>
+                  <span>Signing in...</span>
                 </>
               ) : (
-                <span>Sign In to Admin Panel</span>
+                <span>Sign in</span>
               )}
             </button>
           </form>
@@ -731,12 +555,12 @@ export default function AdminPage() {
   // View Gate 2: Not authorized as admin
   if (!isAdmin) {
     return (
-      <div className="min-h-screen bg-[#0C142B] text-slate-300 pt-36 pb-24 px-6 flex items-center justify-center">
-        <div className="w-full max-w-lg premium-card p-8 rounded-2xl border border-white/5 text-center relative overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-1 bg-red-500" />
+      <div className="min-h-screen bg-background text-foreground pt-36 pb-24 px-6 flex items-center justify-center">
+        <div className="w-full max-w-lg premium-card p-8 rounded-2xl border border-border text-center relative overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-1 bg-destructive" />
           <ShieldAlert className="mx-auto text-red-500 mb-4 animate-pulse" size={48} />
-          <h2 className="text-2xl font-bold text-white mb-2">Access Denied</h2>
-          <p className="text-[#C7C4D8] text-sm leading-relaxed max-w-sm mx-auto mb-6">
+          <h2 className="text-2xl font-bold text-foreground mb-2">Access Denied</h2>
+          <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mx-auto mb-6">
             Your credentials do not have admin access. Please contact the site administrator.
           </p>
         </div>
@@ -746,7 +570,7 @@ export default function AdminPage() {
 
   // Core Authorized CMS Layout
   return (
-    <div className="min-h-screen bg-[#0C142B] text-[#E2DFFF] pt-32 pb-24 px-6 md:px-12">
+    <div className="min-h-screen bg-background text-foreground pt-32 pb-24 px-6 md:px-12">
       <div className="max-w-[1280px] mx-auto">
         
         {/* Core View 1: Articles and Taxonomies Lists */}
@@ -754,62 +578,62 @@ export default function AdminPage() {
           <div>
             
             {/* Dashboard Welcome header */}
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 pb-6 border-b border-white/5 mb-8">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 pb-6 border-b border-border mb-8">
               <div>
-                <span className="text-xs font-mono text-indigo-400 uppercase tracking-widest">
-                  CMS ADMINISTRATIVE DESK
+                <span className="text-xs font-mono text-primary uppercase tracking-widest">
+                  CONTENT WORKSPACE
                 </span>
-                <h1 className="text-4xl font-bold font-sans tracking-tight text-white mt-1">
-                  Control Panel
+                <h1 className="text-4xl font-bold font-sans tracking-tight text-foreground mt-1">
+                  Your publishing workspace
                 </h1>
-                <p className="text-sm text-[#C7C4D8] mt-1">
-                  Manage posts, schedule drafts, configure metadata, and track categories.
+                <p className="text-sm text-muted-foreground mt-1">
+                  Create, edit, and publish helpful content from one simple place.
                 </p>
               </div>
 
               <div className="flex gap-3">
                 <button
                   onClick={() => openPostEditor()}
-                  className="px-5 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-indigo-50 font-bold text-xs transition-all flex items-center gap-2 uppercase tracking-wider"
+                  className="px-5 py-3 rounded-lg brand-gradient hover:opacity-90 text-primary-foreground font-bold text-xs transition-all flex items-center gap-2 uppercase tracking-wider"
                 >
                   <Plus size={16} />
-                  Create New Post
+                  New post
                 </button>
               </div>
             </div>
 
             {/* Admin Index Metric Cards */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8" id="metrics-panel">
-              <div className="premium-card p-5 rounded-xl border border-white/5">
-                <span className="text-xs font-mono tracking-wider text-[#C7C4D8]/80 block">TOTAL ARTICLES</span>
-                <span className="text-3xl font-black text-white mt-1 block">{articles.length}</span>
+              <div className="premium-card p-5 rounded-xl border border-border">
+                <span className="text-xs font-mono tracking-wider text-muted-foreground/80 block">TOTAL ARTICLES</span>
+                <span className="text-3xl font-black text-foreground mt-1 block">{articles.length}</span>
               </div>
-              <div className="premium-card p-5 rounded-xl border border-white/5">
-                <span className="text-xs font-mono tracking-wider text-[#C7C4D8]/80 block">PUBLISHED POSTS</span>
-                <span className="text-3xl font-black text-indigo-400 mt-1 block">
+              <div className="premium-card p-5 rounded-xl border border-border">
+                <span className="text-xs font-mono tracking-wider text-muted-foreground/80 block">PUBLISHED POSTS</span>
+                <span className="text-3xl font-black text-primary mt-1 block">
                   {articles.filter(a => a.status === "published").length}
                 </span>
               </div>
-              <div className="premium-card p-5 rounded-xl border border-white/5">
-                <span className="text-xs font-mono tracking-wider text-[#C7C4D8]/80 block">SAVED DRAFTS</span>
-                <span className="text-3xl font-black text-amber-400 mt-1 block">
+              <div className="premium-card p-5 rounded-xl border border-border">
+                <span className="text-xs font-mono tracking-wider text-muted-foreground/80 block">SAVED DRAFTS</span>
+                <span className="text-3xl font-black text-amber-600 mt-1 block">
                   {articles.filter(a => a.status === "draft").length}
                 </span>
               </div>
-              <div className="premium-card p-5 rounded-xl border border-white/5">
-                <span className="text-xs font-mono tracking-wider text-[#C7C4D8]/80 block">TAXONOMIES COUNT</span>
-                <span className="text-3xl font-black text-emerald-400 mt-1 block">
+              <div className="premium-card p-5 rounded-xl border border-border">
+                <span className="text-xs font-mono tracking-wider text-muted-foreground/80 block">TAXONOMIES COUNT</span>
+                <span className="text-3xl font-black text-emerald-600 mt-1 block">
                   {categories.length + tags.length}
                 </span>
               </div>
             </div>
 
             {/* Workspace Tab bar toggles */}
-            <div className="flex border-b border-white/5 mb-8">
+            <div className="flex border-b border-border mb-8">
               <button
                 onClick={() => setActiveTab("posts")}
                 className={`py-3 px-6 font-semibold text-sm transition-all relative ${
-                  activeTab === "posts" ? "text-white border-b-2 border-indigo-500" : "text-[#C7C4D8] hover:text-white"
+                  activeTab === "posts" ? "text-foreground border-b-2 border-primary" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 All Articles ({articles.length})
@@ -817,18 +641,18 @@ export default function AdminPage() {
               <button
                 onClick={() => setActiveTab("taxonomies")}
                 className={`py-3 px-6 font-semibold text-sm transition-all relative ${
-                  activeTab === "taxonomies" ? "text-white border-b-2 border-indigo-500" : "text-[#C7C4D8] hover:text-white"
+                  activeTab === "taxonomies" ? "text-foreground border-b-2 border-primary" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                Taxonomy Manager ({categories.length + tags.length})
+                Categories & tags ({categories.length + tags.length})
               </button>
             </div>
 
             {/* Loader inside dynamic components */}
             {cmsLoading ? (
               <div className="p-12 text-center">
-                <RefreshCw className="animate-spin text-indigo-400 mx-auto mb-4" size={32} />
-                <p className="text-xs text-indigo-400 font-mono">Loading data assets...</p>
+                <RefreshCw className="animate-spin text-primary mx-auto mb-4" size={32} />
+                <p className="text-xs text-primary font-mono">Loading your content...</p>
               </div>
             ) : activeTab === "posts" ? (
               
@@ -836,23 +660,24 @@ export default function AdminPage() {
               <div className="space-y-4">
                 {articles.length === 0 ? (
                   <div className="premium-card p-12 text-center rounded-xl max-w-md mx-auto">
-                    <FileText className="text-indigo-400 mb-3 mx-auto opacity-40" size={36} />
-                    <h3 className="font-semibold text-white mb-1">No Posts Created Yet</h3>
-                    <p className="text-[#C7C4D8]/80 text-xs mb-4">
-                      Get started immediately by drafting your very first structural article.
+                    <FileText className="text-primary mb-3 mx-auto opacity-40" size={36} />
+                    <h3 className="font-semibold text-foreground mb-1">Your story starts here</h3>
+                    <p className="text-muted-foreground/80 text-xs mb-4">
+                      Create your first article and share something useful with your audience.
                     </p>
                     <button
                       onClick={() => openPostEditor()}
-                      className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-xs font-semibold inline-flex items-center gap-1.5"
+                      className="px-4 py-2 brand-gradient text-primary-foreground rounded-lg text-xs font-semibold inline-flex items-center gap-1.5"
                     >
-                      <Plus size={14} /> Start Blogging
+                      <Plus size={14} /> Create an article
                     </button>
                   </div>
                 ) : (
-                  <div className="overflow-x-auto rounded-xl border border-white/5">
-                    <table className="w-full text-left border-collapse bg-slate-900/10">
+                  <div className="premium-card overflow-hidden">
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-left border-collapse bg-background">
                       <thead>
-                        <tr className="border-b border-white/5 bg-slate-900/35 font-mono text-[10px] text-[#C7C4D8]/80 tracking-widest uppercase">
+                        <tr className="border-b border-border bg-muted/30 font-mono text-[10px] text-muted-foreground tracking-widest uppercase">
                           <th className="py-4 px-6 font-normal">State</th>
                           <th className="py-4 px-6 font-normal">Title</th>
                           <th className="py-4 px-6 font-normal">Category</th>
@@ -861,9 +686,9 @@ export default function AdminPage() {
                           <th className="py-4 px-6 font-normal text-right">Actions</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-white/5">
+                      <tbody className="divide-y divide-border">
                         {articles.map((item) => (
-                          <tr key={item.id} className="hover:bg-slate-900/20 transition-colors text-sm text-[#DAD7FF]">
+                          <tr key={item.id} className="hover:bg-muted/30 transition-colors text-sm text-foreground">
                             
                             {/* State Column */}
                             <td className="py-4 px-6">
@@ -871,8 +696,8 @@ export default function AdminPage() {
                                 onClick={() => handlePostStatusToggle(item)}
                                 className={`px-2.5 py-1 rounded inline-flex items-center gap-1 text-[10px] uppercase font-bold tracking-wider font-mono cursor-pointer ${
                                   item.status === "published"
-                                    ? "bg-slate-950 text-emerald-400 border border-emerald-500/10"
-                                    : "bg-slate-950 text-amber-500 border border-amber-500/10"
+                                    ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                                    : "bg-amber-50 text-amber-700 border border-amber-200"
                                 }`}
                                 title="Click to toggle publish/draft status"
                               >
@@ -889,7 +714,7 @@ export default function AdminPage() {
                             </td>
 
                             {/* Title Column */}
-                            <td className="py-4 px-6 font-bold text-white max-w-xs truncate">
+                            <td className="py-4 px-6 font-bold text-foreground max-w-xs truncate">
                               {item.title}
                             </td>
 
@@ -899,13 +724,13 @@ export default function AdminPage() {
                             </td>
 
                             {/* Custom Date formatting */}
-                            <td className="py-4 px-6 font-mono text-xs text-[#C7C4D8]/80">
+                            <td className="py-4 px-6 font-mono text-xs text-muted-foreground/80">
                               {item.createdAt}
                             </td>
 
                             {/* SEO Slug */}
-                            <td className="py-4 px-6 text-[#C7C4D8]/80 text-xs">
-                              <span className="font-mono text-indigo-400">/blog/</span>
+                            <td className="py-4 px-6 text-muted-foreground/80 text-xs">
+                              <span className="font-mono text-primary">/blog/</span>
                               <span className="underline">{item.slug}</span>
                             </td>
 
@@ -914,21 +739,21 @@ export default function AdminPage() {
                               <div className="inline-flex gap-2.5 justify-end">
                                 <Link
                                   to={`/blog/${item.slug}`}
-                                  className="p-1.5 rounded bg-indigo-950/45 text-indigo-400 hover:text-indigo-300 hover:bg-indigo-950 transition-all border border-indigo-900/40"
+                                  className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/15 transition-all border border-primary/20"
                                   title="View Article"
                                 >
                                   <Eye size={14} />
                                 </Link>
                                 <button
                                   onClick={() => openPostEditor(item)}
-                                  className="p-1.5 rounded bg-slate-950 text-indigo-400 hover:text-indigo-300 hover:bg-indigo-500/10 transition-all border border-indigo-500/20"
+                                  className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/15 transition-all border border-primary/20"
                                   title="Edit Post"
                                 >
                                   <Edit3 size={14} />
                                 </button>
                                 <button
                                   onClick={() => handleDeletePost(item.id!)}
-                                  className="p-1.5 rounded bg-slate-950 text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all border border-red-500/20"
+                                  className="p-2 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition-all border border-red-200"
                                   title="Delete Post permanently"
                                 >
                                   <Trash2 size={14} />
@@ -939,7 +764,8 @@ export default function AdminPage() {
                           </tr>
                         ))}
                       </tbody>
-                    </table>
+                      </table>
+                    </div>
                   </div>
                 )}
               </div>
@@ -949,13 +775,13 @@ export default function AdminPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 
                 {/* Category Board list */}
-                <div className="premium-card p-6 rounded-xl border border-white/5">
-                  <div className="flex items-center gap-1.5 text-xs font-mono text-indigo-400 uppercase tracking-wider mb-2">
+                <div className="premium-card p-6 rounded-xl border border-border">
+                  <div className="flex items-center gap-1.5 text-xs font-mono text-primary uppercase tracking-wider mb-2">
                     <Layers size={13} />
-                    <span>SYSTEM CATEGORIES</span>
+                    <span>CONTENT ORGANIZATION</span>
                   </div>
-                  <h3 className="text-xl font-bold tracking-tight text-white mb-6">
-                    Category Engine
+                  <h3 className="text-xl font-bold tracking-tight text-foreground mb-6">
+                    Categories
                   </h3>
 
                   {/* Add category form */}
@@ -965,12 +791,12 @@ export default function AdminPage() {
                       placeholder="E.g. Engineering, Design, Product..."
                       value={newCategory}
                       onChange={(e) => setNewCategory(e.target.value)}
-                      className="flex-1 px-4 py-2 bg-slate-900 border border-slate-800 focus:border-indigo-500 rounded-lg focus:outline-none placeholder-slate-700 text-sm text-white"
+                      className="flex-1 px-4 py-2 bg-card border border-border focus:border-primary rounded-lg focus:outline-none placeholder-slate-700 text-sm text-foreground"
                       required
                     />
                     <button
                       type="submit"
-                      className="px-4 py-2 bg-indigo-600 hover:bg-indigo-505 text-[#E2DFFF] text-xs font-bold rounded-lg transition-all"
+                      className="px-4 py-2 brand-gradient hover:opacity-90 text-foreground text-xs font-bold rounded-lg transition-all"
                     >
                       Add
                     </button>
@@ -978,13 +804,13 @@ export default function AdminPage() {
 
                   <div className="space-y-2.5 max-h-96 overflow-y-auto">
                     {categories.length === 0 ? (
-                      <p className="text-xs font-mono text-slate-500 p-2 italic">No custom categories registered.</p>
+                      <p className="text-xs font-mono text-muted-foreground p-2 italic">No custom categories registered.</p>
                     ) : (
                       categories.map((cat) => (
-                        <div key={cat.id} className="px-4 py-2.5 rounded-lg bg-slate-900/50 hover:bg-slate-900 border border-slate-800 flex justify-between items-center text-sm">
-                          <span className="font-bold text-slate-200">{cat.name}</span>
-                          <div className="flex items-center gap-4 text-[#C1C3D1]">
-                            <span className="text-[10px] font-mono select-none px-2 py-0.5 rounded bg-slate-950 text-[#C7C4D8]/80 border border-white/5">
+                        <div key={cat.id} className="px-4 py-2.5 rounded-lg bg-card/50 hover:bg-card border border-border flex justify-between items-center text-sm">
+                          <span className="font-bold text-foreground">{cat.name}</span>
+                          <div className="flex items-center gap-4 text-muted-foreground">
+                            <span className="text-[10px] font-mono select-none px-2 py-0.5 rounded bg-muted text-muted-foreground/80 border border-border">
                               slug: {cat.id}
                             </span>
                             <button
@@ -1002,13 +828,13 @@ export default function AdminPage() {
                 </div>
 
                 {/* Tags Board list */}
-                <div className="premium-card p-6 rounded-xl border border-white/5">
-                  <div className="flex items-center gap-1.5 text-xs font-mono text-indigo-400 uppercase tracking-wider mb-2">
+                <div className="premium-card p-6 rounded-xl border border-border">
+                  <div className="flex items-center gap-1.5 text-xs font-mono text-primary uppercase tracking-wider mb-2">
                     <Settings size={13} />
-                    <span>SYSTEM TAG INDEXES</span>
+                    <span>CONTENT LABELS</span>
                   </div>
-                  <h3 className="text-xl font-bold tracking-tight text-white mb-6">
-                    Tag Library
+                  <h3 className="text-xl font-bold tracking-tight text-foreground mb-6">
+                    Tags
                   </h3>
 
                   {/* Add tag form */}
@@ -1018,12 +844,12 @@ export default function AdminPage() {
                       placeholder="E.g. nextjs, drizzle, custom..."
                       value={newTag}
                       onChange={(e) => setNewTag(e.target.value)}
-                      className="flex-1 px-4 py-2 bg-slate-900 border border-slate-800 focus:border-indigo-500 rounded-lg focus:outline-none placeholder-slate-700 text-sm text-white"
+                      className="flex-1 px-4 py-2 bg-card border border-border focus:border-primary rounded-lg focus:outline-none placeholder-slate-700 text-sm text-foreground"
                       required
                     />
                     <button
                       type="submit"
-                      className="px-4 py-2 bg-indigo-600 hover:bg-indigo-505 text-[#E2DFFF] text-xs font-bold rounded-lg transition-all"
+                      className="px-4 py-2 brand-gradient hover:opacity-90 text-foreground text-xs font-bold rounded-lg transition-all"
                     >
                       Add
                     </button>
@@ -1031,13 +857,13 @@ export default function AdminPage() {
 
                   <div className="space-y-2.5 max-h-96 overflow-y-auto">
                     {tags.length === 0 ? (
-                      <p className="text-xs font-mono text-slate-500 p-2 italic">No custom tags indexed.</p>
+                      <p className="text-xs font-mono text-muted-foreground p-2 italic">No custom tags indexed.</p>
                     ) : (
                       tags.map((tg) => (
-                        <div key={tg.id} className="px-4 py-2.5 rounded-lg bg-slate-900/50 hover:bg-slate-900 border border-slate-800 flex justify-between items-center text-sm">
-                          <span className="font-bold text-slate-200">#{tg.name}</span>
-                          <div className="flex items-center gap-4 text-[#C1C3D1]">
-                            <span className="text-[10px] font-mono select-none px-2 py-0.5 rounded bg-slate-950 text-[#C7C4D8]/80 border border-white/5">
+                        <div key={tg.id} className="px-4 py-2.5 rounded-lg bg-card/50 hover:bg-card border border-border flex justify-between items-center text-sm">
+                          <span className="font-bold text-foreground">#{tg.name}</span>
+                          <div className="flex items-center gap-4 text-muted-foreground">
+                            <span className="text-[10px] font-mono select-none px-2 py-0.5 rounded bg-muted text-muted-foreground/80 border border-border">
                               slug: {tg.id}
                             </span>
                             <button
@@ -1065,30 +891,36 @@ export default function AdminPage() {
           <div className="space-y-6">
             
             {/* Action Bar */}
-            <div className="flex items-center justify-between border-b border-white/5 pb-6">
+            <div className="flex items-center justify-between border-b border-border pb-6">
               <div>
                 <button
                   onClick={() => setCmsView("list")}
-                  className="text-xs text-[#C7C4D8] hover:text-white flex items-center gap-1.5 uppercase font-mono tracking-widest mb-2 cursor-pointer pb-1"
+                  className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1.5 uppercase font-mono tracking-widest mb-2 cursor-pointer pb-1"
                 >
-                  <ArrowLeft size={12} /> Back to dashboard
+                  <ArrowLeft size={12} /> Back to workspace
                 </button>
-                <h1 className="text-3xl font-bold tracking-tight text-white font-sans">
-                  {editingPostId ? "Reform Workspaces Post" : "Draft Structural Insights"}
+                <h1 className="text-3xl font-bold tracking-tight text-foreground font-sans">
+                  {editingPostId ? "Edit article" : "Create an article"}
                 </h1>
+                {saveError && (
+                  <p className="mt-2 max-w-xl text-sm text-red-600" role="alert">
+                    {saveError}
+                  </p>
+                )}
               </div>
 
               <div className="flex gap-3">
                 <button
                   onClick={() => setCmsView("list")}
-                  className="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-950 border border-slate-800 text-xs font-semibold"
+                  className="px-4 py-2.5 rounded-xl bg-card hover:bg-muted border border-border text-xs font-semibold"
                 >
                   Cancel
                 </button>
                 <button
-                  onClick={savePostSubmit}
+                  type="button"
+                  onClick={() => void savePostSubmit()}
                   disabled={savingPost}
-                  className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-505 text-white text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl brand-gradient hover:opacity-90 text-white text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer"
                 >
                   {savingPost ? <RefreshCw className="animate-spin" size={12} /> : null}
                   Save Post
@@ -1099,14 +931,14 @@ export default function AdminPage() {
             {/* Split Grid - Left Editor, Right Live Markdown Reader */}
             <form onSubmit={savePostSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-8" id="editorial-form">
               
-              <div className="lg:col-span-12 grid grid-cols-1 md:grid-cols-12 gap-6 bg-slate-900/25 p-6 border border-slate-800 rounded-2xl">
+              <div className="lg:col-span-12 grid grid-cols-1 md:grid-cols-12 gap-6 premium-card p-6">
                 {/* Left side variables configurations */}
                 <div className="md:col-span-8 space-y-5">
                   
                   {/* Post Title & auto generating Slug */}
                   <div>
-                    <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
-                      <Heading2 size={16} className="text-indigo-400" />
+                    <label className="text-xs font-semibold text-foreground uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
+                      <Heading2 size={16} className="text-primary" />
                       Post Title *
                     </label>
                     <input
@@ -1114,7 +946,7 @@ export default function AdminPage() {
                       placeholder="Enter your blog post title here"
                       value={postTitle}
                       onChange={(e) => setPostTitle(e.target.value)}
-                      className="w-full px-4 py-3 bg-[#0F1729] border border-indigo-500/30 hover:border-indigo-500/50 focus:border-indigo-500 rounded-xl focus:outline-none placeholder-slate-500 text-white font-semibold transition"
+                      className="w-full px-4 py-3 bg-background border border-input hover:border-primary/60 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl focus:outline-none placeholder:text-muted-foreground text-foreground font-semibold transition"
                       required
                     />
                   </div>
@@ -1122,22 +954,36 @@ export default function AdminPage() {
                   {/* Slug field with Manual Override control */}
                   <div>
                     <div className="flex items-center justify-between mb-2">
-                      <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider block flex items-center gap-2">
-                        <LinkIcon size={16} className="text-indigo-400" />
+                      <label className="text-xs font-semibold text-foreground uppercase font-mono tracking-wider block flex items-center gap-2">
+                        <LinkIcon size={16} className="text-primary" />
                         URL Address *
                       </label>
                       <button
                         type="button"
+                        aria-pressed={autoSlug}
                         onClick={() => setAutoSlug(!autoSlug)}
-                        className={`text-[10px] font-mono px-3 py-1 rounded-lg cursor-pointer transition-all ${
-                          autoSlug ? "bg-emerald-950/40 text-emerald-400 border border-emerald-900/50" : "bg-amber-950/40 text-amber-400 border border-amber-900/50"
+                        className={`inline-flex items-center gap-2 rounded-full border px-2.5 py-1 text-[11px] font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-primary/25 ${
+                          autoSlug
+                            ? "border-primary/30 bg-primary/10 text-primary hover:bg-primary/15"
+                            : "border-border bg-muted/50 text-muted-foreground hover:bg-muted"
                         }`}
                       >
-                        {autoSlug ? "✓ Auto" : "✎ Manual"}
+                        <span
+                          className={`relative h-4 w-7 rounded-full transition-colors ${
+                            autoSlug ? "bg-primary" : "bg-muted-foreground/40"
+                          }`}
+                        >
+                          <span
+                            className={`absolute top-0.5 h-3 w-3 rounded-full bg-white shadow-sm transition-transform ${
+                              autoSlug ? "translate-x-3.5" : "translate-x-0.5"
+                            }`}
+                          />
+                        </span>
+                        {autoSlug ? "Auto slug" : "Manual slug"}
                       </button>
                     </div>
                     <div className="relative">
-                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-mono text-indigo-400/60">
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-mono text-primary/60">
                         /blog/
                       </span>
                       <input
@@ -1148,7 +994,7 @@ export default function AdminPage() {
                           setPostSlug(e.target.value.toLowerCase().replace(/\s+/g, "-"));
                           setAutoSlug(false);
                         }}
-                        className="w-full pl-[70px] pr-4 py-3 bg-[#0F1729] border border-indigo-500/30 hover:border-indigo-500/50 focus:border-indigo-500 rounded-xl focus:outline-none font-mono text-sm text-white transition"
+                        className="w-full pl-[70px] pr-4 py-3 bg-background border border-input hover:border-primary/60 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl focus:outline-none font-mono text-sm text-foreground transition"
                         required
                       />
                     </div>
@@ -1156,15 +1002,15 @@ export default function AdminPage() {
 
                   {/* Excerpt */}
                   <div>
-                    <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
-                      <Zap size={16} className="text-indigo-400" />
+                    <label className="text-xs font-semibold text-foreground uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
+                      <Zap size={16} className="text-primary" />
                       Short Summary *
                     </label>
                     <textarea
                       placeholder="Write a brief 1-2 sentence summary of what this post is about"
                       value={postExcerpt}
                       onChange={(e) => setPostExcerpt(e.target.value)}
-                      className="w-full px-4 py-3 bg-[#0F1729] border border-indigo-500/30 hover:border-indigo-500/50 focus:border-indigo-500 rounded-xl focus:outline-none placeholder-slate-500 text-sm text-white resize-none transition"
+                      className="w-full px-4 py-3 bg-background border border-input hover:border-primary/60 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl focus:outline-none placeholder:text-muted-foreground text-sm text-foreground resize-none transition"
                       rows={2}
                       maxLength={1000}
                     />
@@ -1177,14 +1023,14 @@ export default function AdminPage() {
                   
                   {/* Category dropdown */}
                   <div>
-                    <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
-                      <Folder size={16} className="text-indigo-400" />
+                    <label className="text-xs font-semibold text-foreground uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
+                      <Folder size={16} className="text-primary" />
                       Category
                     </label>
                     <select
                       value={postCategory}
                       onChange={(e) => setPostCategory(e.target.value)}
-                      className="w-full px-4 py-3 bg-[#0F1729] border border-indigo-500/30 hover:border-indigo-500/50 focus:border-indigo-500 rounded-xl focus:outline-none text-sm text-white cursor-pointer transition"
+                      className="w-full px-4 py-3 bg-background border border-input hover:border-primary/60 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl focus:outline-none text-sm text-foreground cursor-pointer transition"
                     >
                       <option value="General">General</option>
                       {categories.map((c) => (
@@ -1196,14 +1042,14 @@ export default function AdminPage() {
                   {/* Status drafting toggle */}
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
-                        <Pin size={16} className="text-indigo-400" />
+                      <label className="text-xs font-semibold text-foreground uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
+                        <Pin size={16} className="text-primary" />
                         Status
                       </label>
                       <select
                         value={postStatus}
                         onChange={(e) => setPostStatus(e.target.value as any)}
-                        className="w-full px-3 py-2.5 bg-[#0F1729] border border-indigo-500/30 hover:border-indigo-500/50 focus:border-indigo-500 rounded-lg text-sm text-white font-semibold cursor-pointer transition"
+                        className="w-full px-3 py-2.5 bg-background border border-input hover:border-primary/60 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl text-sm text-foreground font-semibold cursor-pointer transition"
                       >
                         <option value="draft">Draft (Hidden)</option>
                         <option value="published">Published (Public)</option>
@@ -1211,15 +1057,15 @@ export default function AdminPage() {
                     </div>
 
                     <div>
-                      <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
-                        <Clock size={16} className="text-indigo-400" />
+                      <label className="text-xs font-semibold text-foreground uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
+                        <Clock size={16} className="text-primary" />
                         Read Time
                       </label>
                       <input
                         type="text"
                         value={postReadingTime}
                         onChange={(e) => setPostReadingTime(e.target.value)}
-                        className="w-full px-3 py-2.5 bg-[#0F1729] border border-indigo-500/30 hover:border-indigo-500/50 focus:border-indigo-500 rounded-lg text-sm text-white text-center font-mono transition"
+                        className="w-full px-3 py-2.5 bg-background border border-input hover:border-primary/60 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl text-sm text-foreground text-center font-mono transition"
                         placeholder="5 min"
                       />
                     </div>
@@ -1240,11 +1086,11 @@ export default function AdminPage() {
               <div className="lg:col-span-12 flex flex-col space-y-3">
                 <div className="flex items-center justify-between">
                   <div>
-                    <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider block flex items-center gap-2">
-                      <PenTool size={16} className="text-indigo-400" />
+                    <label className="text-xs font-semibold text-foreground uppercase font-mono tracking-wider block flex items-center gap-2">
+                      <PenTool size={16} className="text-primary" />
                       Write Your Content *
                     </label>
-                    <p className="text-sm text-slate-400 mt-2">
+                    <p className="text-sm text-muted-foreground mt-2">
                       Use the editor below to write your post. Add bold text, lists, images, links, and more.
                     </p>
                   </div>
@@ -1262,10 +1108,10 @@ export default function AdminPage() {
               </div>
 
               {/* SEO METADATA PANEL COMPILER CARD */}
-              <div className="lg:col-span-12 premium-card p-6 rounded-2xl border border-white/5 space-y-6">
+              <div className="lg:col-span-12 premium-card p-6 rounded-2xl border border-border space-y-6">
                 
-                <div className="flex items-center gap-2 text-sm font-semibold text-white uppercase tracking-wider border-b border-indigo-500/20 pb-4">
-                  <Globe size={16} className="text-indigo-400" />
+                <div className="flex items-center gap-2 text-sm font-semibold text-foreground uppercase tracking-wider border-b border-primary/20 pb-4">
+                  <Globe size={16} className="text-primary" />
                   <span>Search & Social Media Info (Optional)</span>
                 </div>
 
@@ -1273,8 +1119,8 @@ export default function AdminPage() {
                   
                   {/* SEO Title Tag */}
                   <div>
-                    <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
-                      <Search size={16} className="text-indigo-400" />
+                    <label className="text-xs font-semibold text-foreground uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
+                      <Search size={16} className="text-primary" />
                       Search Title (What Google shows)
                     </label>
                     <input
@@ -1282,25 +1128,25 @@ export default function AdminPage() {
                       placeholder="My Post Title - Website Name"
                       value={postSeoTitle}
                       onChange={(e) => setPostSeoTitle(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-[#0F1729] border border-indigo-500/30 hover:border-indigo-500/50 focus:border-indigo-500 rounded-lg focus:outline-none text-sm text-white transition"
+                      className="w-full px-4 py-2.5 bg-background border border-input hover:border-primary/60 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl focus:outline-none text-sm text-foreground transition"
                       maxLength={120}
                     />
-                    <p className="text-xs text-slate-500 mt-2">
+                    <p className="text-xs text-muted-foreground mt-2">
                       Leave empty to use your post title
                     </p>
                   </div>
 
                   {/* SEO Description Tag */}
                   <div>
-                    <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
-                      <FileText size={16} className="text-indigo-400" />
+                    <label className="text-xs font-semibold text-foreground uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
+                      <FileText size={16} className="text-primary" />
                       Description (What shows in search)
                     </label>
                     <textarea
                       placeholder="Write a 2-3 sentence summary of what this post is about"
                       value={postSeoDescription}
                       onChange={(e) => setPostSeoDescription(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-[#0F1729] border border-indigo-500/30 hover:border-indigo-500/50 focus:border-indigo-500 rounded-lg focus:outline-none text-sm text-white resize-none transition"
+                      className="w-full px-4 py-2.5 bg-background border border-input hover:border-primary/60 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl focus:outline-none text-sm text-foreground resize-none transition"
                       rows={2}
                       maxLength={200}
                     />
@@ -1308,13 +1154,13 @@ export default function AdminPage() {
 
                   {/* Tag Multi-Selector Selection library */}
                   <div>
-                    <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
-                      <Pin size={16} className="text-indigo-400" />
+                    <label className="text-xs font-semibold text-foreground uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
+                      <Pin size={16} className="text-primary" />
                       Tags (Click to add)
                     </label>
-                    <div className="flex flex-wrap gap-2 p-4 bg-[#0F1729] border border-indigo-500/30 rounded-lg max-h-24 overflow-y-auto">
+                    <div className="flex flex-wrap gap-2 p-4 bg-muted/30 border border-input rounded-xl max-h-24 overflow-y-auto">
                       {tags.length === 0 ? (
-                        <p className="text-sm text-slate-400 italic">No tags yet. Create tags in the sidebar.</p>
+                        <p className="text-sm text-muted-foreground italic">No tags yet. Create tags in the sidebar.</p>
                       ) : (
                         tags.map((tg) => {
                           const isSelected = postTags.includes(tg.name);
@@ -1325,8 +1171,8 @@ export default function AdminPage() {
                               onClick={() => toggleTagSelection(tg.name)}
                               className={`px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer transition-all ${
                                 isSelected
-                                  ? "bg-indigo-600 text-white"
-                                  : "bg-slate-900/60 text-slate-400 hover:text-white hover:bg-slate-800"
+                                  ? "brand-gradient text-primary-foreground"
+                                  : "bg-card/60 text-muted-foreground hover:text-foreground hover:bg-muted"
                               }`}
                             >
                               {tg.name}
@@ -1339,21 +1185,21 @@ export default function AdminPage() {
 
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-indigo-500/20 bg-indigo-950/10 p-5 rounded-xl">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-primary/20 bg-indigo-950/10 p-5 rounded-xl">
                   {/* Google Preview mock */}
                   <div>
-                    <p className="text-xs font-semibold text-indigo-400 uppercase tracking-wider mb-3">How it looks in Google Search</p>
-                    <div className="bg-slate-900 border border-slate-800 p-4 rounded-lg flex flex-col">
-                      <span className="text-slate-500 font-mono text-xs">blog.website.com/{postSlug || "your-slug"}</span>
-                      <span className="text-indigo-400 font-bold text-base leading-tight mt-1.5 truncate">{postSeoTitle || postTitle || "Your Blog Title"}</span>
-                      <p className="text-slate-300 text-sm mt-1.5 line-clamp-2 leading-relaxed">{postSeoDescription || postExcerpt || "Your post description will show here"}</p>
+                    <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">How it looks in Google Search</p>
+                    <div className="bg-card border border-border p-4 rounded-lg flex flex-col">
+                      <span className="text-muted-foreground font-mono text-xs">blog.website.com/{postSlug || "your-slug"}</span>
+                      <span className="text-primary font-bold text-base leading-tight mt-1.5 truncate">{postSeoTitle || postTitle || "Your Blog Title"}</span>
+                      <p className="text-foreground text-sm mt-1.5 line-clamp-2 leading-relaxed">{postSeoDescription || postExcerpt || "Your post description will show here"}</p>
                     </div>
                   </div>
 
                   {/* Keywords Tag block metadata */}
                   <div>
-                    <label className="text-xs font-semibold text-white uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
-                      <Search size={16} className="text-indigo-400" />
+                    <label className="text-xs font-semibold text-foreground uppercase font-mono tracking-wider mb-2 block flex items-center gap-2">
+                      <Search size={16} className="text-primary" />
                       Keywords (comma separated)
                     </label>
                     <input
@@ -1361,7 +1207,7 @@ export default function AdminPage() {
                       placeholder="web design, coding tips, javascript, react"
                       value={postSeoKeywords}
                       onChange={(e) => setPostSeoKeywords(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-[#0F1729] border border-indigo-500/30 hover:border-indigo-500/50 focus:border-indigo-500 rounded-lg focus:outline-none text-sm text-white transition"
+                      className="w-full px-4 py-2.5 bg-background border border-input hover:border-primary/60 focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl focus:outline-none text-sm text-foreground transition"
                     />
                   </div>
                 </div>
