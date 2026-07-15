@@ -10,6 +10,7 @@ import { Blog, Category, Tag } from "@shared/api";
 import { Search, Calendar, Clock, Tag as TagIcon, Filter, Layers, PlusCircle, ArrowUpRight } from "lucide-react";
 import { Link } from "@/lib/router-compat";
 import { motion, AnimatePresence } from "motion/react";
+import Image from "next/image";
 
 export default function BlogArchive() {
   const { user, isAdmin } = useAuth();
@@ -36,11 +37,7 @@ export default function BlogArchive() {
           blogsQuery = query(blogsRef, orderBy("createdAt", "desc"));
         } else {
           // Public can only see published posts
-          blogsQuery = query(
-            blogsRef, 
-            where("status", "==", "published"),
-            orderBy("createdAt", "desc")
-          );
+          blogsQuery = query(blogsRef, where("status", "==", "published"));
         }
 
         let fetchedBlogs: Blog[] = [];
@@ -81,6 +78,12 @@ export default function BlogArchive() {
           const data = d.data() as any;
           fetchedTags.push({ id: d.id, name: data.name, slug: data.name });
         });
+
+        if (!isAdmin) {
+          fetchedBlogs.sort(
+            (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
+        }
 
         setBlogs(fetchedBlogs);
         setCategories(fetchedCats.length > 0 ? fetchedCats : [
@@ -254,6 +257,8 @@ export default function BlogArchive() {
                     <img
                       src={featuredPost.featuredImage}
                       alt={featuredPost.title}
+                      loading="eager"
+                      decoding="async"
                       className="absolute inset-0 w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-700"
                     />
                   ) : (
@@ -335,6 +340,8 @@ export default function BlogArchive() {
                           <img
                             src={post.featuredImage}
                             alt={post.title}
+                            loading="lazy"
+                            decoding="async"
                             className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-all duration-300"
                           />
                         ) : (

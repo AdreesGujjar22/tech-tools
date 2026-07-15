@@ -23,18 +23,18 @@ export function FeatureCard({
 
   return (
     <div className={cn(
-      "premium-card p-8 flex flex-col gap-4 h-full",
-      "border border-border/40 rounded-2xl",
-      "hover:shadow-lg hover:-translate-y-1 transition-all duration-300",
+      "group premium-card p-6 sm:p-7 flex flex-col gap-4 h-full min-h-[190px]",
+      "border border-[#C5DCC9]/80 rounded-2xl bg-white shadow-sm",
+      "hover:shadow-xl hover:-translate-y-1 hover:border-[#10A968]/40 transition-all duration-300",
       `bg-gradient-to-br ${gradientClasses[gradient]}`
     )}>
-      <div className="w-14 h-14 rounded-2xl bg-primary/15 border border-primary/25 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-300 group-hover:scale-110">
-        <Icon className="w-7 h-7 text-primary" />
+      <div className="w-14 h-14 rounded-2xl bg-[#E8F0E8] border border-[#C5DCC9] flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:bg-[#D4E8D8] transition-all duration-300 group-hover:scale-105">
+        <Icon className="w-7 h-7 text-[#10A968]" />
       </div>
 
-      <h3 className="text-lg sm:text-xl font-bold text-foreground leading-tight">{title}</h3>
+      <h3 className="text-lg sm:text-xl font-bold text-[#1F3A26] leading-tight">{title}</h3>
 
-      <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+      <p className="text-sm sm:text-base text-[#4A6857] leading-relaxed">
         {description}
       </p>
     </div>

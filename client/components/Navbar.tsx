@@ -26,12 +26,21 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [mobileOpen]);
+
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        "backdrop-blur-md bg-white/[0.03] dark:bg-white/[0.01]",
-        scrolled && "shadow-lg border-b border-white/5"
+        "fixed top-0 left-0 right-0 z-50 isolate transition-all duration-300",
+        "backdrop-blur-xl bg-background/95",
+        scrolled && "shadow-lg border-b border-border/60"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
@@ -41,7 +50,14 @@ export default function Navbar() {
             className="shrink-0 flex items-center gap-2 hover:opacity-70 transition-opacity duration-200"
             aria-label="Tech Tools home"
           >
-            <Image src="/images/web-logo.png" alt="Tech tool logo" className="h-16 sm:h-20 w-auto" width="140" height="100" />
+            <Image
+              src="/images/web-logo.png"
+              alt="Tech tool logo"
+              className="h-16 sm:h-20 w-auto"
+              width={140}
+              height={100}
+              sizes="140px"
+            />
           </Link>
           <nav className="hidden lg:flex items-center gap-0.5">
             {navLinks.map((link) => {
@@ -95,16 +111,23 @@ export default function Navbar() {
         </div>
 
         <button
-          className="lg:hidden text-muted-foreground hover:text-foreground p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
+          className="lg:hidden text-muted-foreground hover:text-foreground p-2 hover:bg-muted rounded-lg transition-colors duration-200"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-navigation-drawer"
         >
           {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {mobileOpen && (
-        <div className="lg:hidden backdrop-blur-md bg-white/[0.03] dark:bg-white/[0.01] border-t border-white/5 px-4 sm:px-6 py-4 flex flex-col gap-1">
+        <div
+          id="mobile-navigation-drawer"
+          role="dialog"
+          aria-label="Mobile navigation"
+          className="absolute inset-x-0 top-full max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain lg:hidden flex flex-col gap-1 border-t border-border/60 bg-background/98 px-4 py-4 shadow-2xl sm:px-6"
+        >
           {navLinks.map((link) => {
             const isActive = location.pathname === link.href;
             return (
@@ -112,7 +135,7 @@ export default function Navbar() {
                 key={link.href}
                 to={link.href}
                 className={`text-sm sm:text-base py-2.5 px-3 rounded-lg transition-all duration-200 ${
-                  isActive ? "text-foreground bg-white/15 font-medium" : "text-muted-foreground hover:bg-white/5"
+                  isActive ? "text-foreground bg-muted font-medium" : "text-muted-foreground hover:bg-muted/70"
                 }`}
                 onClick={() => setMobileOpen(false)}
               >
@@ -132,14 +155,14 @@ export default function Navbar() {
             </Link>
           )}
 
-          <div className="flex flex-col gap-3 pt-3 mt-2 border-t border-white/5">
+          <div className="flex flex-col gap-3 pt-4 mt-3 border-t border-border/60">
             {user ? (
               <button
                 onClick={() => {
                   logout();
                   setMobileOpen(false);
                 }}
-                className="text-center py-2.5 rounded-full bg-white/10 text-foreground hover:bg-white/15 text-sm font-semibold transition-all flex items-center justify-center gap-2"
+                className="text-center py-2.5 rounded-full bg-muted text-foreground hover:bg-muted/70 text-sm font-semibold transition-all flex items-center justify-center gap-2"
               >
                 <LogOut size={16} />
                 <span className="text-xs sm:text-sm">Sign Out</span>
@@ -147,7 +170,7 @@ export default function Navbar() {
             ) : (
               <Link
                 to="/admin"
-                className="text-center py-2.5 rounded-full bg-white/10 text-foreground hover:bg-white/15 text-sm font-semibold transition-all flex items-center justify-center gap-2"
+                className="text-center py-2.5 rounded-full bg-muted text-foreground hover:bg-muted/70 text-sm font-semibold transition-all flex items-center justify-center gap-2"
                 onClick={() => setMobileOpen(false)}
               >
                 <LogIn size={16} />

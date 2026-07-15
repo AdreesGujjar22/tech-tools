@@ -2,115 +2,20 @@
 
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "@/lib/router-compat";
-import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
-import { db } from "@/lib/firebase";
 import {
   Search,
-  Settings,
-  Lock,
-  ShieldCheck,
-  RefreshCw,
-  Power,
   ChevronRight,
   AlertCircle
 } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
-import { toast } from "sonner";
-import { IMAGE_TOOLS, IMAGE_CATEGORY_LABELS, IMAGE_CATEGORY_COLORS, getImageToolIcon } from "@/components/image-tools/toolsData";
-import { checkImageToolEnabled, setImageToolEnabled } from "@/components/image-tools/utils";
+import { motion } from "motion/react";
+import { IMAGE_TOOLS, IMAGE_CATEGORY_LABELS, getImageToolIcon } from "@/components/image-tools/toolsData";
 import { FeatureCard } from "@/components/ui/FeatureCard";
 
 export default function LoveImgDashboard() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [isAdminMode, setIsAdminMode] = useState(false);
-  const [adminAuthPassword, setAdminAuthPassword] = useState("");
-  const [isAdminAuthorized, setIsAdminAuthorized] = useState(false);
-
-  // Real-time admin settings & analytics caches
-  const [toolsStatus, setToolsStatus] = useState<{ [toolId: string]: boolean }>({});
-  const [telemetryLogs, setTelemetryLogs] = useState<any[]>([]);
-  const [isLoadingLogs, setIsLoadingLogs] = useState(false);
-
-  // Sync tools enabled/disabled states
-  useEffect(() => {
-    async function loadAllStatuses() {
-      const statusMap: { [id: string]: boolean } = {};
-      try {
-        for (const tool of IMAGE_TOOLS) {
-          try {
-            statusMap[tool.id] = await checkImageToolEnabled(tool.id);
-          } catch (err) {
-            // If Firebase is offline, assume tool is enabled
-            statusMap[tool.id] = true;
-          }
-        }
-        setToolsStatus(statusMap);
-      } catch (err) {
-        // Enable all tools if Firebase is unavailable
-        const allEnabled: { [id: string]: boolean } = {};
-        IMAGE_TOOLS.forEach(tool => {
-          allEnabled[tool.id] = true;
-        });
-        setToolsStatus(allEnabled);
-      }
-    }
-    loadAllStatuses();
-  }, []);
-
-  // Fetch Firestore Analytics Telemetries
-  const loadTelemetryLogs = async () => {
-    setIsLoadingLogs(true);
-    try {
-      const analyticsRef = collection(db, "image_tool_analytics");
-      const q = query(analyticsRef, orderBy("timestamp", "desc"), limit(25));
-      const querySnapshot = await getDocs(q);
-      const logs: any[] = [];
-      querySnapshot.forEach((doc) => {
-        const item = doc.data();
-        logs.push({
-          id: doc.id,
-          ...item,
-          timestamp: item.timestamp?.toDate() || new Date()
-        });
-      });
-      setTelemetryLogs(logs);
-    } catch (err: any) {
-      console.error("Telemetry query failed:", err);
-      // Handle offline gracefully
-      if (err.message?.includes("offline")) {
-        toast.error("Cannot load telemetry: Firebase is offline.");
-      } else {
-        toast.error("Administrator permissions required to pull live analytics stream.");
-      }
-      setTelemetryLogs([]);
-    } finally {
-      setIsLoadingLogs(false);
-    }
-  };
-
-  const handleAdminAuth = () => {
-    if (adminAuthPassword === "admin123" || adminAuthPassword === "developer") {
-      setIsAdminAuthorized(true);
-      toast.success("Admin clearance accepted! Image database telemetry unlocked.");
-      loadTelemetryLogs();
-    } else {
-      toast.error("Invalid secret credential. Try 'admin123'.");
-    }
-  };
-
-  const handleToggleTool = async (toolId: string, currentEnabled: boolean) => {
-    const nextState = !currentEnabled;
-    try {
-      await setImageToolEnabled(toolId, nextState);
-      setToolsStatus(prev => ({ ...prev, [toolId]: nextState }));
-      toast.success(`[${toolId}] state saved to Firestore: ${nextState ? "ONLINE" : "OFFLINE"}`);
-    } catch (err) {
-      toast.error("Database sync failed. Verify permissions or settings rules.");
-    }
-  };
 
   // Filter criteria
   const filteredTools = IMAGE_TOOLS.filter((tool) => {
@@ -217,17 +122,7 @@ export default function LoveImgDashboard() {
             ))}
           </div>
 
-          <button
-            onClick={() => setIsAdminMode(!isAdminMode)}
-            className={`p-2.5 rounded-xl border transition duration-150 relative cursor-pointer ${isAdminMode
-                ? "bg-[#F0F7F0] border-[#C5DCC9] text-[#10A968] shadow-xl"
-                : "bg-[#E8F0E8] border border-[#C5DCC9] text-[#4A6857] hover:text-[#2D4D35]"
-              }`}
-            title="System Settings"
-          >
-            <Settings className="w-5 h-5" />
-            <span className="absolute top-2 right-2 w-2 h-2 bg-[#10A968] rounded-full" />
-          </button>
+
         </div>
       </section>
 
@@ -238,10 +133,9 @@ export default function LoveImgDashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredTools.map((tool) => {
             const ToolIcon = getImageToolIcon(tool.iconName);
-            const isOffline = toolsStatus[tool.id] === false;
 
             return (
-              <Link to={tool.route} className={`block ${isOffline ? "pointer-events-none opacity-50" : "hover:scale-[1.02]"} transition-transform min-h-[150px]`}
+              <Link to={tool.route} className="block hover:scale-[1.02] transition-transform min-h-[150px]"
                 key={tool.id}>
                 <FeatureCard
                   key={tool.id}

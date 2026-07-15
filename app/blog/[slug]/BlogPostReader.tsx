@@ -11,6 +11,7 @@ import { ArrowLeft, Calendar, Clock, Share2, Check, ShieldAlert, BookOpen } from
 import { Link, useNavigate } from "@/lib/router-compat";
 import { toast } from "sonner";
 import { motion } from "motion/react";
+import Image from "next/image";
 
 export function BlogPostReader({ slug }: { slug: string }) {
   const navigate = useNavigate();
@@ -187,11 +188,12 @@ export function BlogPostReader({ slug }: { slug: string }) {
 
           {/* Featured Image */}
           {post.featuredImage && (
-            <div className="w-full h-72 md:h-[420px] rounded-2xl overflow-hidden mb-12 bg-muted/30">
-              <img
+            <div className="relative w-full h-72 md:h-[420px] rounded-2xl overflow-hidden mb-12 bg-muted/30">
+              <Image
                 src={post.featuredImage}
                 alt={post.title}
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
               />
             </div>
           )}
