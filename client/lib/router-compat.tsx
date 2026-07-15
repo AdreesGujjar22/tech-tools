@@ -4,12 +4,13 @@ import React, { Suspense } from "react";
 import NextLink from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
-export interface LinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
+export interface LinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
   to: string;
+  prefetch?: boolean;
 }
 
-export function Link({ to, ...props }: LinkProps) {
-  return <NextLink href={to} {...props} />;
+export function Link({ to, prefetch, ...props }: LinkProps) {
+  return <NextLink href={to} prefetch={prefetch} {...props} />;
 }
 
 export function useNavigate() {

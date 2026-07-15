@@ -1,83 +1,78 @@
 "use client";
 
-import React, { use } from "react";
-import dynamic from "next/dynamic";
+import React, { Suspense, use, useMemo } from "react";
 import { notFound } from "next/navigation";
 import { IMAGE_TOOLS } from "@/components/image-tools/toolsData";
 
-// Dynamically import matching components without SSR
-const CompressImage = dynamic(() => import("@/components/image-tools/CompressImage"), { ssr: false });
-const ResizeImage = dynamic(() => import("@/components/image-tools/ResizeImage"), { ssr: false });
-const CropImage = dynamic(() => import("@/components/image-tools/CropImage"), { ssr: false });
-const RotateImage = dynamic(() => import("@/components/image-tools/RotateImage"), { ssr: false });
-const WatermarkImage = dynamic(() => import("@/components/image-tools/WatermarkImage"), { ssr: false });
-const BackgroundRemover = dynamic(() => import("@/components/image-tools/BackgroundRemover"), { ssr: false });
-const UpscaleImage = dynamic(() => import("@/components/image-tools/UpscaleImage"), { ssr: false });
-const ImageConverter = dynamic(() => import("@/components/image-tools/ImageConverter"), { ssr: false });
-const ImageEditor = dynamic(() => import("@/components/image-tools/ImageEditor"), { ssr: false });
+const toolLoaders = {
+  "compress-image": () => import("@/components/image-tools/CompressImage"),
+  "resize-image": () => import("@/components/image-tools/ResizeImage"),
+  "crop-image": () => import("@/components/image-tools/CropImage"),
+  "rotate-image": () => import("@/components/image-tools/RotateImage"),
+  "watermark-image": () => import("@/components/image-tools/WatermarkImage"),
+  "remove-background": () => import("@/components/image-tools/BackgroundRemover"),
+  "upscale-image": () => import("@/components/image-tools/UpscaleImage"),
+  "image-editor": () => import("@/components/image-tools/ImageEditor"),
+  "image-to-jpg": () => import("@/components/image-tools/ImageConverter"),
+  "image-to-png": () => import("@/components/image-tools/ImageConverter"),
+  "image-to-webp": () => import("@/components/image-tools/ImageConverter"),
+  "image-to-avif": () => import("@/components/image-tools/ImageConverter"),
+  "jpg-to-png": () => import("@/components/image-tools/ImageConverter"),
+  "png-to-jpg": () => import("@/components/image-tools/ImageConverter"),
+  "webp-to-jpg": () => import("@/components/image-tools/ImageConverter"),
+  "webp-to-png": () => import("@/components/image-tools/ImageConverter"),
+  "gif-to-jpg": () => import("@/components/image-tools/ImageConverter"),
+  "svg-to-png": () => import("@/components/image-tools/ImageConverter"),
+  "batch-convert": () => import("@/components/image-tools/ImageConverter"),
+};
+
+const converterProps = {
+  "image-to-jpg": { forcedTargetFormat: "jpg" },
+  "image-to-png": { forcedTargetFormat: "png" },
+  "image-to-webp": { forcedTargetFormat: "webp" },
+  "image-to-avif": { forcedTargetFormat: "avif" },
+  "jpg-to-png": { sourceExtensions: [".jpg", ".jpeg"], forcedTargetFormat: "png" },
+  "png-to-jpg": { sourceExtensions: [".png"], forcedTargetFormat: "jpg" },
+  "webp-to-jpg": { sourceExtensions: [".webp"], forcedTargetFormat: "jpg" },
+  "webp-to-png": { sourceExtensions: [".webp"], forcedTargetFormat: "png" },
+  "gif-to-jpg": { sourceExtensions: [".gif"], forcedTargetFormat: "jpg" },
+  "svg-to-png": { sourceExtensions: [".svg"], forcedTargetFormat: "png" },
+  "batch-convert": {},
+};
 
 interface ToolPageProps {
-  params: Promise<{
-    tool: string;
-  }>;
+  params: Promise<{ tool: string }>;
 }
 
 export default function ToolPage({ params }: ToolPageProps) {
-  const resolvedParams = use(params);
-  const toolId = resolvedParams.tool;
+  const { tool: toolId } = use(params);
+  const Tool = useMemo(() => {
+    const loadTool = toolLoaders[toolId as keyof typeof toolLoaders];
+    return loadTool ? React.lazy(loadTool) : null;
+  }, [toolId]);
 
-  // Validate tool ID is a real registered item
-  const toolExists = IMAGE_TOOLS.some((t) => t.id === toolId);
-  if (!toolExists) {
+  if (!IMAGE_TOOLS.some((tool) => tool.id === toolId) || !Tool) {
     return notFound();
   }
+
+  const isConverter = toolId in converterProps;
+  const StandaloneTool = Tool as React.ComponentType;
+  const ConverterTool = Tool as React.ComponentType<{
+    toolId: string;
+    sourceExtensions?: string[];
+    forcedTargetFormat?: string;
+  }>;
 
   return (
     <main id="image-tool-workspace" className="min-h-screen bg-white text-[#2D4D35]">
       <div className="py-8 lg:py-12">
-        {toolId === "compress-image" && <CompressImage />}
-        {toolId === "resize-image" && <ResizeImage />}
-        {toolId === "crop-image" && <CropImage />}
-        {toolId === "rotate-image" && <RotateImage />}
-        {toolId === "watermark-image" && <WatermarkImage />}
-        {toolId === "remove-background" && <BackgroundRemover />}
-        {toolId === "upscale-image" && <UpscaleImage />}
-        {toolId === "image-editor" && <ImageEditor />}
-
-        {/* Global structured converter handles all specified image conversions */}
-        {toolId === "image-to-jpg" && (
-          <ImageConverter toolId={toolId} forcedTargetFormat="jpg" />
-        )}
-        {toolId === "image-to-png" && (
-          <ImageConverter toolId={toolId} forcedTargetFormat="png" />
-        )}
-        {toolId === "image-to-webp" && (
-          <ImageConverter toolId={toolId} forcedTargetFormat="webp" />
-        )}
-        {toolId === "image-to-avif" && (
-          <ImageConverter toolId={toolId} forcedTargetFormat="avif" />
-        )}
-        {toolId === "jpg-to-png" && (
-          <ImageConverter toolId={toolId} sourceExtensions={[".jpg", ".jpeg"]} forcedTargetFormat="png" />
-        )}
-        {toolId === "png-to-jpg" && (
-          <ImageConverter toolId={toolId} sourceExtensions={[".png"]} forcedTargetFormat="jpg" />
-        )}
-        {toolId === "webp-to-jpg" && (
-          <ImageConverter toolId={toolId} sourceExtensions={[".webp"]} forcedTargetFormat="jpg" />
-        )}
-        {toolId === "webp-to-png" && (
-          <ImageConverter toolId={toolId} sourceExtensions={[".webp"]} forcedTargetFormat="png" />
-        )}
-        {toolId === "gif-to-jpg" && (
-          <ImageConverter toolId={toolId} sourceExtensions={[".gif"]} forcedTargetFormat="jpg" />
-        )}
-        {toolId === "svg-to-png" && (
-          <ImageConverter toolId={toolId} sourceExtensions={[".svg"]} forcedTargetFormat="png" />
-        )}
-        {toolId === "batch-convert" && (
-          <ImageConverter toolId={toolId} />
-        )}
+        <Suspense fallback={<div className="min-h-[50vh]" aria-busy="true" />}>
+          {isConverter ? (
+            <ConverterTool toolId={toolId} {...converterProps[toolId as keyof typeof converterProps]} />
+          ) : (
+            <StandaloneTool />
+          )}
+        </Suspense>
       </div>
     </main>
   );

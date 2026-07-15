@@ -345,7 +345,7 @@ export default function ToolShell({
     : 0;
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8">
+    <div className="max-w-6xl mx-auto px-4 py-8 sm:py-10">
       {/* Route Back Header Link */}
       <div className="flex items-center justify-between mb-8">
         <Link
@@ -360,8 +360,8 @@ export default function ToolShell({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Main Work Area Column */}
         <div className="lg:col-span-8 space-y-6">
-          <div className="flex items-start gap-4">
-            <div className="p-3 bg-[#F0F7F0] border border-[#C5DCC9] text-[#10A968] rounded-xl">
+          <div className="flex items-start gap-4 rounded-2xl border border-[#C5DCC9] bg-white p-5 shadow-sm">
+            <div className="p-3 bg-[#E8F0E8] border border-[#C5DCC9] text-[#10A968] rounded-xl shrink-0">
               {React.createElement(getImageToolIcon(tool.iconName), { className: "w-6 h-6" })}
             </div>
             <div>
@@ -386,7 +386,7 @@ export default function ToolShell({
                 onDragLeave={handleDrag}
                 onDrop={handleDrop}
                 onClick={triggerFileSelect}
-                className={`border-2 border-dashed rounded-3xl p-16 text-center cursor-pointer transition-all relative overflow-hidden flex flex-col items-center justify-center min-h-[350px] group ${
+                className={`border-2 border-dashed rounded-3xl p-8 sm:p-14 text-center cursor-pointer transition-all relative overflow-hidden flex flex-col items-center justify-center min-h-[350px] bg-white shadow-sm group ${
                   isDragActive
                     ? "border-[#10A968] bg-[#10A968]/[0.05] scale-[1.01]"
                     : "border-[#C5DCC9] bg-[#F0F7F0] hover:border-[#10A968]/70 hover:bg-[#E8F0E8] hover:shadow-lg hover:shadow-[#10A968]/10"
@@ -439,7 +439,7 @@ export default function ToolShell({
                 className="space-y-4"
               >
                 {/* File Previews List */}
-                <div className="bg-[#F0F7F0] border border-[#C5DCC9] rounded-2xl p-5 backdrop-blur-sm hover:border-[#10A968]/50 transition">
+                <div className="bg-white border border-[#C5DCC9] rounded-2xl p-5 shadow-sm hover:border-[#10A968]/50 hover:shadow-md transition">
                   <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#C5DCC9]">
                     <div className="flex items-center gap-3">
                       <div className="p-2 bg-[#10A968]/20 border border-[#10A968]/30 rounded-lg">
@@ -503,8 +503,8 @@ export default function ToolShell({
 
                 {/* For smaller screen layouts, settings can be placed under as well */}
                 <div className="lg:hidden">
-                  <div className="bg-gradient-to-br from-neutral-900/60 to-neutral-950/40 border border-neutral-800 rounded-2xl p-6 space-y-6 backdrop-blur-sm hover:border-neutral-700 transition">
-                    <h3 className="font-bold text-lg text-white border-b border-neutral-800 pb-3 flex items-center gap-2">
+                  <div className="bg-white border border-[#C5DCC9] rounded-2xl p-6 space-y-6 shadow-sm">
+                    <h3 className="font-bold text-lg text-[#1F3A26] border-b border-[#C5DCC9] pb-3 flex items-center gap-2">
                       <Settings2 className="w-5 h-5" />
                       {configTitle}
                     </h3>
@@ -527,7 +527,7 @@ export default function ToolShell({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="border border-indigo-950/50 rounded-3xl p-16 text-center bg-gradient-to-br from-indigo-950/20 to-neutral-950/40 backdrop-blur-sm"
+                className="border border-[#C5DCC9] rounded-3xl p-16 text-center bg-white shadow-sm"
               >
                 <div className="flex justify-center mb-6">
                   <div className="p-4 bg-primary/10 border border-primary/20 rounded-full">
@@ -536,26 +536,26 @@ export default function ToolShell({
                 </div>
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <Zap className="w-5 h-5 text-[#10A968]" />
-                  <h3 className="text-white font-extrabold text-xl">Processing Your Images</h3>
+                  <h3 className="text-[#1F3A26] font-extrabold text-xl">Processing Your Images</h3>
                 </div>
-                <p className="text-neutral-400 text-sm mb-8 max-w-sm mx-auto font-medium line-clamp-2">
+                <p className="text-[#4A6857] text-sm mb-8 max-w-sm mx-auto font-medium line-clamp-2">
                   {progressMsg}
                 </p>
 
                 {/* Progress Bar Container */}
                 <div className="max-w-md mx-auto">
-                  <div className="w-full bg-neutral-900 rounded-full h-3 overflow-hidden mb-3 border border-neutral-800">
+                  <div className="w-full bg-[#E8F0E8] rounded-full h-3.5 overflow-hidden mb-3 border border-[#C5DCC9] p-0.5 shadow-inner">
                     <motion.div
-                      className="bg-gradient-to-r from-indigo-500 via-indigo-400 to-indigo-600 h-full shadow-lg shadow-indigo-500/50"
+                      className="bg-gradient-to-r from-[#0D8F56] via-[#10A968] to-[#54C98A] h-full rounded-full shadow-[0_0_12px_rgba(16,169,104,0.45)]"
                       animate={{ width: `${progress}%` }}
                       transition={{ duration: 0.2 }}
                     />
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-mono text-[#4A6857]">
+                    <span className="text-sm font-mono text-[#1F3A26]">
                       {progress}%
                     </span>
-                    <span className="text-2xs font-mono text-[#999B99]">
+                    <span className="text-2xs font-mono text-[#4A6857]">
                       Optimizing quality & size...
                     </span>
                   </div>
@@ -572,14 +572,14 @@ export default function ToolShell({
                 className="space-y-6"
               >
                 {/* Result Hero Header */}
-                <div className="border border-emerald-500/30 bg-gradient-to-br from-emerald-950/30 to-indigo-950/20 rounded-3xl p-8 text-center space-y-5 backdrop-blur-sm">
+                <div className="border border-[#8DCE9B] bg-gradient-to-br from-[#F0F9F1] to-[#E8F4F7] rounded-3xl p-8 text-center space-y-5 shadow-sm">
                   <div className="flex justify-center">
                     <div className="p-3 bg-emerald-500/20 border border-emerald-500/40 rounded-full">
                       <CheckCircle2 className="w-8 h-8 text-emerald-400" />
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-white font-extrabold text-2xl">All Done!</h3>
+                    <h3 className="text-[#1F3A26] font-extrabold text-2xl">All Done!</h3>
                     <p className="text-[#10A968] text-sm mt-2 font-medium">
                       {processedResults.length} {processedResults.length > 1 ? "files optimized" : "file optimized"} and ready to download
                     </p>
@@ -605,7 +605,7 @@ export default function ToolShell({
                     </button>
                     <button
                       onClick={handleReset}
-                      className="px-6 py-3 bg-gradient-to-r from-neutral-800 to-neutral-900 hover:from-neutral-700 hover:to-neutral-800 text-neutral-200 text-sm font-bold rounded-xl transition cursor-pointer border border-neutral-700 hover:border-neutral-600 active:scale-95 flex items-center gap-2"
+                      className="px-6 py-3 bg-white hover:bg-[#F0F7F0] text-[#1F3A26] text-sm font-bold rounded-xl transition cursor-pointer border border-[#9CBDA2] hover:border-[#10A968] active:scale-95 flex items-center gap-2"
                     >
                       <RotateCw className="w-4 h-4" />
                       Process More
@@ -614,13 +614,13 @@ export default function ToolShell({
                 </div>
 
                 {/* Individual File List with Single Downloads */}
-                <div className="bg-gradient-to-br from-neutral-900/60 to-neutral-950/40 border border-neutral-800 rounded-2xl p-5 backdrop-blur-sm hover:border-neutral-700 transition">
+                <div className="bg-white border border-[#C5DCC9] rounded-2xl p-5 shadow-sm transition">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="p-2 bg-indigo-500/20 border border-indigo-500/30 rounded-lg">
                       <FileImage className="w-4 h-4 text-indigo-400" />
                     </div>
                     <div>
-                      <span className="text-sm font-bold text-white block">Your Files</span>
+                      <span className="text-sm font-bold text-[#1F3A26] block">Your Files</span>
                       <span className="text-xs text-[#10A968] font-mono">
                         {processedResults.length} file{processedResults.length !== 1 ? 's' : ''}
                       </span>
@@ -636,20 +636,20 @@ export default function ToolShell({
                       return (
                         <div
                           key={index}
-                          className="flex items-center justify-between p-4 bg-gradient-to-r from-neutral-900/40 to-neutral-950/40 border border-neutral-800 rounded-xl hover:border-indigo-500/30 hover:bg-gradient-to-r hover:from-indigo-950/20 hover:to-neutral-900/40 transition group"
+                          className="flex items-center justify-between p-4 bg-[#F7FBF7] border border-[#C5DCC9] rounded-xl hover:border-[#10A968]/60 hover:bg-[#F0F7F0] transition group"
                         >
                           <div className="flex items-center gap-3 truncate pr-4 text-left flex-1">
                             <FileImage className="w-5 h-5 text-indigo-400 shrink-0 group-hover:text-indigo-300 transition" />
                             <div className="truncate flex-1">
-                              <p className="text-sm font-semibold text-white truncate max-w-xs md:max-w-md group-hover:text-indigo-100 transition">
+                              <p className="text-sm font-semibold text-[#1F3A26] truncate max-w-xs md:max-w-md group-hover:text-[#0D7A4A] transition">
                                 {res.fileName}
                               </p>
                               <div className="flex items-center gap-2 mt-1 font-mono text-3xs text-neutral-500 group-hover:text-neutral-400 transition">
-                                <span className="text-neutral-400">{formatSize(res.originalSize)}</span>
-                                <TrendingDown className="w-3 h-3 text-neutral-600" />
-                                <span className="text-white font-semibold">{formatSize(res.newSize)}</span>
+                                <span className="text-[#4A6857]">{formatSize(res.originalSize)}</span>
+                                <TrendingDown className="w-3 h-3 text-[#6E9277]" />
+                                <span className="text-[#1F3A26] font-semibold">{formatSize(res.newSize)}</span>
                                 {fileRatio > 0 && (
-                                  <span className="text-emerald-400 font-bold bg-emerald-950/40 border border-emerald-900/50 px-2 py-0.5 rounded-md ml-1 text-2xs flex items-center gap-1">
+                                  <span className="text-[#0D7A4A] font-bold bg-[#E1F4E5] border border-[#8DCE9B] px-2 py-0.5 rounded-md ml-1 text-2xs flex items-center gap-1">
                                     <CheckCircle2 className="w-3 h-3" />
                                     {fileRatio}% saved
                                   </span>
@@ -677,8 +677,8 @@ export default function ToolShell({
         {/* Right Sidebar Column - Configuration and stats */}
         <div className="lg:col-span-4 space-y-6">
           {/* Main Desktop Configuration Box */}
-          <div className="hidden lg:block bg-neutral-950/60 border border-neutral-900 rounded-3xl p-6 shadow-xl leading-relaxed">
-            <h3 className="font-extrabold text-neutral-200 text-base mb-4 pb-3 border-b border-neutral-900 flex items-center gap-2">
+          <div className="hidden lg:block bg-white border border-[#C5DCC9] rounded-3xl p-6 shadow-sm leading-relaxed">
+            <h3 className="font-extrabold text-[#1F3A26] text-base mb-4 pb-3 border-b border-[#C5DCC9] flex items-center gap-2">
               <span className="w-1.5 h-1.5 bg-indigo-505 rounded-full" />
               {configTitle}
             </h3>
@@ -689,7 +689,7 @@ export default function ToolShell({
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="py-12 text-center text-xs text-neutral-500 font-mono leading-relaxed"
+                  className="py-12 text-center text-xs text-[#4A6857] font-mono leading-relaxed"
                 >
                   Please choose or drop image files onto the canvas to configure setting parameters.
                 </motion.div>
@@ -720,28 +720,28 @@ export default function ToolShell({
                   className="space-y-4"
                 >
                   <div className="p-4 bg-[#F0F7F0] border border-[#C5DCC9] rounded-2xl space-y-3.5">
-                    <span className="text-2xs font-bold font-mono uppercase tracking-wider text-neutral-500 block">
+                    <span className="text-2xs font-bold font-mono uppercase tracking-wider text-[#4A6857] block">
                       Image Job Status Summary
                     </span>
                     
-                    <div className="flex justify-between items-center text-xs text-neutral-400">
+                    <div className="flex justify-between items-center text-xs text-[#4A6857]">
                       <span>Total Queue:</span>
-                      <span className="text-white font-mono font-bold">{files.length} files</span>
+                      <span className="text-[#1F3A26] font-mono font-bold">{files.length} files</span>
                     </div>
 
                     {stage === "success" && (
                       <>
-                        <div className="flex justify-between items-center text-xs text-neutral-400">
+                        <div className="flex justify-between items-center text-xs text-[#4A6857]">
                           <span>Original size:</span>
-                          <span className="text-white font-mono">{formatSize(originalTotalBytes)}</span>
+                          <span className="text-[#1F3A26] font-mono">{formatSize(originalTotalBytes)}</span>
                         </div>
-                        <div className="flex justify-between items-center text-xs text-neutral-400">
+                        <div className="flex justify-between items-center text-xs text-[#4A6857]">
                           <span>Compiled size:</span>
-                          <span className="text-white font-mono">{formatSize(finalTotalBytes)}</span>
+                          <span className="text-[#1F3A26] font-mono">{formatSize(finalTotalBytes)}</span>
                         </div>
                         
                         {totalRatio > 0 && (
-                          <div className="flex justify-between items-center text-xs text-neutral-400 pt-2 border-t border-neutral-900">
+                          <div className="flex justify-between items-center text-xs text-[#4A6857] pt-2 border-t border-[#C5DCC9]">
                             <span className="text-[#10A968] font-semibold flex items-center gap-1">
                               <TrendingDown className="w-3.5 h-3.5" /> Ratio Saved:
                             </span>
@@ -754,7 +754,7 @@ export default function ToolShell({
 
                   <button
                     onClick={handleReset}
-                    className="w-full py-2.5 bg-neutral-900 hover:bg-neutral-800 text-neutral-300 text-xs font-semibold rounded-xl border border-neutral-800 transition cursor-pointer"
+                    className="w-full py-2.5 bg-white hover:bg-[#F0F7F0] text-[#2D4D35] text-xs font-semibold rounded-xl border border-[#9CBDA2] hover:border-[#10A968] transition cursor-pointer"
                   >
                     Clear and start over
                   </button>

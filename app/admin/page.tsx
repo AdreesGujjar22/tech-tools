@@ -51,8 +51,17 @@ import {
 import { Link } from "@/lib/router-compat";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "motion/react";
-import BlogEditor from "@/components/admin/BlogEditor";
-import ImageUploader from "@/components/admin/ImageUploader";
+import dynamic from "next/dynamic";
+
+const BlogEditor = dynamic(() => import("@/components/admin/BlogEditor"), {
+  ssr: false,
+  loading: () => <p className="animate-pulse text-slate-400 p-8 text-center text-sm">Loading editor...</p>,
+});
+
+const ImageUploader = dynamic(() => import("@/components/admin/ImageUploader"), {
+  ssr: false,
+  loading: () => <p className="animate-pulse text-slate-400 p-4 text-sm">Loading uploader...</p>,
+});
 
 export default function AdminPage() {
   const {

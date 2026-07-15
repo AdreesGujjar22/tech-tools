@@ -1,4 +1,5 @@
 import { useNavigate, Link } from "@/lib/router-compat";
+import Image from "next/image";
 import SEO from "@/components/SEO";
 import { useState } from "react";
 import { Search, Clock, Eye, Share2, Sparkles, ShieldCheck, ShieldCheck as ShieldIcon, ArrowRight } from "lucide-react";
@@ -214,9 +215,14 @@ export default function Index() {
               <div className="absolute -inset-6 bg-[#10A968]/10 blur-3xl rounded-full pointer-events-none" />
               <div className="relative rounded-2xl sm:rounded-3xl backdrop-blur-md bg-white/10 dark:bg-white/[0.05] border border-white/10 p-6 sm:p-10 shadow-2xl">
                 <div className="aspect-square rounded-2xl bg-white p-6 flex items-center justify-center">
-                  <img
+                  <Image
                     src="/images/hero-section.png"
                     alt="QR Code preview generated with TechTools"
+                    width={400}
+                    height={400}
+                    priority
+                    quality={75}
+                    sizes="(max-width: 1023px) 0px, 400px"
                     className="w-full h-full object-cover rounded-lg"
                   />
                 </div>
@@ -321,11 +327,13 @@ export default function Index() {
                     onClick={() => navigate(item.url)}
                   >
                     {/* Preview */}
-                    <div className="aspect-square rounded-lg bg-white p-4 flex items-center justify-center overflow-hidden">
-                      <img
+                    <div className="aspect-square rounded-lg bg-white p-4 flex items-center justify-center overflow-hidden relative">
+                      <Image
                         src={item.preview || "/placeholder.svg"}
                         alt={item.title}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
 

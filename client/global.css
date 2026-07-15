@@ -333,6 +333,64 @@
     hover:bg-muted text-foreground;
 }
 
+/* Modern range controls */
+.range-modern {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 6px;
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+  background: #DCEBDD;
+  box-shadow: inset 0 1px 2px rgba(31, 58, 38, 0.18);
+}
+
+.range-modern::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 9999px;
+  background: transparent;
+}
+
+.range-modern::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -6px;
+  border: 3px solid #ffffff;
+  border-radius: 9999px;
+  background: #10A968;
+  box-shadow: 0 2px 7px rgba(16, 169, 104, 0.35), 0 0 0 1px rgba(13, 122, 74, 0.2);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.range-modern:hover::-webkit-slider-thumb,
+.range-modern:focus-visible::-webkit-slider-thumb {
+  transform: scale(1.12);
+  box-shadow: 0 3px 10px rgba(16, 169, 104, 0.4), 0 0 0 4px rgba(16, 169, 104, 0.14);
+}
+
+.range-modern::-moz-range-track {
+  height: 6px;
+  border-radius: 9999px;
+  background: #DCEBDD;
+}
+
+.range-modern::-moz-range-progress {
+  height: 6px;
+  border-radius: 9999px;
+  background: #10A968;
+}
+
+.range-modern::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 3px solid #ffffff;
+  border-radius: 9999px;
+  background: #10A968;
+  box-shadow: 0 2px 7px rgba(16, 169, 104, 0.35);
+}
+
 /* ==================== SCROLLBARS ==================== */
 
 /* Custom scrollbars */

@@ -1,4 +1,5 @@
 import { useNavigate } from "@/lib/router-compat";
+import Image from "next/image";
 import { useState } from "react";
 import { Search, Clock, Eye, Share2, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
@@ -250,11 +251,13 @@ export default function History() {
                   onClick={() => navigate(item.url)}
                 >
                   {/* Preview */}
-                  <div className="aspect-square rounded-lg bg-white p-4 flex items-center justify-center overflow-hidden">
-                    <img
+                  <div className="aspect-square rounded-lg bg-white p-4 flex items-center justify-center overflow-hidden relative">
+                    <Image
                       src={item.preview || "/placeholder.svg"}
                       alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
 

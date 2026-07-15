@@ -2,32 +2,15 @@
 
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "@/lib/router-compat";
-import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
-import { db } from "@/lib/firebase";
-import { 
-  Search, 
-  Settings, 
-  Activity, 
-  Check, 
-  X, 
-  FileCheck, 
-  Bookmark, 
-  Lock, 
-  Clock, 
-  BarChart4, 
+import {
+  Search,
   ChevronRight,
-  ShieldCheck,
-  RefreshCw,
-  Power,
-  Trash2,
   AlertCircle
 } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
-import { toast } from "sonner";
-import { PDF_TOOLS, CATEGORY_LABELS, CATEGORY_COLORS } from "@/components/pdf-tools/toolsData";
-import { checkPdfToolEnabled, setPdfToolEnabled } from "@/components/pdf-tools/utils";
+import { motion } from "motion/react";
+import { PDF_TOOLS, CATEGORY_LABELS } from "@/components/pdf-tools/toolsData";
 
 // Icon components resolver
 import { getToolIcon } from "@/components/pdf-tools/toolsData";
@@ -36,73 +19,6 @@ import { FeatureCard } from "@/components/ui/FeatureCard";
 export default function LovePdfDashboard() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [isAdminMode, setIsAdminMode] = useState(false);
-  const [adminAuthPassword, setAdminAuthPassword] = useState("");
-  const [isAdminAuthorized, setIsAdminAuthorized] = useState(false);
-  
-  // Real-time admin settings & analytics caches
-  const [toolsStatus, setToolsStatus] = useState<{ [toolId: string]: boolean }>({});
-  const [telemetryLogs, setTelemetryLogs] = useState<any[]>([]);
-  const [isLoadingLogs, setIsLoadingLogs] = useState(false);
-
-  // Sync tools enabled/disabled states
-  useEffect(() => {
-    async function loadAllStatuses() {
-      const statusMap: { [id: string]: boolean } = {};
-      for (const tool of PDF_TOOLS) {
-        statusMap[tool.id] = await checkPdfToolEnabled(tool.id);
-      }
-      setToolsStatus(statusMap);
-    }
-    loadAllStatuses();
-  }, []);
-
-  // Fetch Firestore Analytics Telemetries
-  const loadTelemetryLogs = async () => {
-    setIsLoadingLogs(true);
-    try {
-      const analyticsRef = collection(db, "pdf_tool_analytics");
-      const q = query(analyticsRef, orderBy("timestamp", "desc"), limit(25));
-      const querySnapshot = await getDocs(q);
-      const logs: any[] = [];
-      querySnapshot.forEach((doc) => {
-        const item = doc.data();
-        logs.push({
-          id: doc.id,
-          ...item,
-          timestamp: item.timestamp?.toDate() || new Date()
-        });
-      });
-      setTelemetryLogs(logs);
-    } catch (err) {
-      console.error("Telemetry query failed (Admins only permissions):", err);
-      toast.error("Administrators permission requested to pull live telemetries.");
-    } finally {
-      setIsLoadingLogs(false);
-    }
-  };
-
-  const handleAdminAuth = () => {
-    // Simple secure gate password to trigger developer panel
-    if (adminAuthPassword === "admin123" || adminAuthPassword === "developer") {
-      setIsAdminAuthorized(true);
-      toast.success("Admin clearance accepted! Database parameters unlocked.");
-      loadTelemetryLogs();
-    } else {
-      toast.error("Invalid secret credential. Try 'admin123'.");
-    }
-  };
-
-  const handleToggleTool = async (toolId: string, currentEnabled: boolean) => {
-    const nextState = !currentEnabled;
-    try {
-      await setPdfToolEnabled(toolId, nextState);
-      setToolsStatus(prev => ({ ...prev, [toolId]: nextState }));
-      toast.success(`[${toolId}] state saved to Firestore: ${nextState ? "ONLINE" : "OFFLINE"}`);
-    } catch (err) {
-      toast.error("Database sync failed. Verify permissions or settings rules.");
-    }
-  };
 
   // Filter criteria
   const filteredTools = PDF_TOOLS.filter((tool) => {
@@ -218,10 +134,9 @@ export default function LovePdfDashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredTools.map((tool) => {
             const ToolIcon = getToolIcon(tool.iconName);
-            const isOffline = toolsStatus[tool.id] === false;
 
             return (
-              <Link to={tool.route} className={`block ${isOffline ? "pointer-events-none opacity-50" : "hover:scale-[1.02]"} transition-transform min-h-[150px]`}
+              <Link to={tool.route} className="block hover:scale-[1.02] transition-transform min-h-[150px]"
                 key={tool.id}>
                 <FeatureCard
                   key={tool.id}

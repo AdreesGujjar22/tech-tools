@@ -252,7 +252,7 @@ export default function ToolShell({
   const ToolIcon = getToolIcon(tool.iconName);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="max-w-6xl mx-auto px-4 py-8 sm:py-10">
       {/* Shell Header */}
       <div className="mb-8">
         <Link
@@ -262,8 +262,8 @@ export default function ToolShell({
           <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
           Back to all tools
         </Link>
-        <div className="flex items-start gap-4">
-          <div className="p-3.5 bg-[#F0F7F0] border border-[#C5DCC9] rounded-2xl text-[#10A968] shadow-xl shadow-[#10A968]/10">
+        <div className="flex items-start gap-4 rounded-2xl border border-[#C5DCC9] bg-white p-5 shadow-sm">
+          <div className="p-3.5 bg-[#E8F0E8] border border-[#C5DCC9] rounded-2xl text-[#10A968] shadow-sm shrink-0">
             <ToolIcon className="w-8 h-8" />
           </div>
           <div>
@@ -282,7 +282,7 @@ export default function ToolShell({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.25 }}
-            className={`relative min-h-[400px] border-2 border-dashed rounded-3xl flex flex-col items-center justify-center p-8 transition-colors duration-300 ${
+            className={`relative min-h-[400px] border-2 border-dashed rounded-3xl flex flex-col items-center justify-center p-8 bg-white shadow-sm transition-colors duration-300 ${
               isDragActive
                 ? "border-[#10A968] bg-[#10A968]/5"
                 : "border-[#C5DCC9] bg-[#F0F7F0] hover:border-[#10A968]/50 hover:bg-[#E8F0E8]"
@@ -388,7 +388,7 @@ export default function ToolShell({
             </div>
 
             {/* Right side: Config parameters Column */}
-            <div className="bg-[#F0F7F0] border border-[#C5DCC9] rounded-3xl p-6 flex flex-col justify-between">
+            <div className="bg-white border border-[#C5DCC9] rounded-3xl p-6 flex flex-col justify-between shadow-sm">
               <div className="space-y-6">
                 <div className="border-b border-[#C5DCC9] pb-4">
                   <h3 className="font-semibold text-[#1F3A26] text-md tracking-tight">{configTitle}</h3>
@@ -429,7 +429,7 @@ export default function ToolShell({
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.98 }}
-            className="max-w-xl mx-auto rounded-3xl bg-white border border-[#C5DCC9] p-8 text-center"
+            className="max-w-xl mx-auto rounded-3xl bg-white border border-[#C5DCC9] p-8 text-center shadow-sm"
           >
             <div className="flex flex-col items-center justify-center p-8">
               <Loader2 className="w-14 h-14 text-[#10A968] animate-spin mb-6" />

@@ -19,17 +19,17 @@ export default function ImageConverter({
     return (
       <div className="space-y-4">
         {forcedTargetFormat ? (
-          <div className="p-4 bg-teal-950/15 border border-teal-900/40 rounded-2xl">
-            <p className="text-xs text-neutral-400 font-semibold leading-relaxed">
-              Target Conversion Format: <span className="text-teal-400 font-bold uppercase font-mono">{forcedTargetFormat}</span>
+          <div className="p-4 bg-[#F0F7F0] border border-[#C5DCC9] rounded-2xl">
+            <p className="text-xs text-[#2D4D35] font-semibold leading-relaxed">
+              Target Conversion Format: <span className="text-[#0D7A4A] font-bold uppercase font-mono">{forcedTargetFormat}</span>
             </p>
-            <p className="text-4xs text-neutral-500 font-mono mt-1">
+            <p className="text-4xs text-[#4A6857] font-mono mt-1">
               Optimized for fast client-side output packaging.
             </p>
           </div>
         ) : (
           <div>
-            <label className="text-xs font-bold text-neutral-400 block mb-2 font-mono uppercase">
+            <label className="text-xs font-bold text-[#2D4D35] block mb-2 font-mono uppercase">
               Target Convert Format
             </label>
             <div className="grid grid-cols-3 gap-2">
@@ -45,8 +45,8 @@ export default function ImageConverter({
                     onClick={() => setConfig({ ...config, targetFormat: fmt.id })}
                     className={`p-3 rounded-xl border text-center transition duration-150 flex flex-col items-center justify-center ${
                       active
-                        ? "bg-teal-950/40 border-teal-500 text-teal-400 font-bold"
-                        : "bg-neutral-900 border border-neutral-850 hover:border-neutral-750 text-neutral-400 hover:text-white"
+                        ? "bg-[#E1F4E5] border-[#10A968] text-[#0D7A4A] font-bold"
+                        : "bg-white border-[#C5DCC9] hover:border-[#10A968] text-[#4A6857] hover:text-[#1F3A26]"
                     }`}
                   >
                     <span className="text-xs">{fmt.label}</span>
@@ -59,7 +59,7 @@ export default function ImageConverter({
         )}
 
         <div>
-          <label className="text-[10px] font-bold text-neutral-500 block mb-1 font-mono uppercase">
+          <label className="text-[10px] font-bold text-[#4A6857] block mb-1 font-mono uppercase">
             Image Render Quality ({Math.round(config.quality * 100)}%)
           </label>
           <input
@@ -69,7 +69,7 @@ export default function ImageConverter({
             step="0.05"
             value={config.quality}
             onChange={(e) => setConfig({ ...config, quality: parseFloat(e.target.value) })}
-            className="w-full accent-teal-500"
+            className="w-full range-modern"
           />
         </div>
       </div>

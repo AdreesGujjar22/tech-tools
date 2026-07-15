@@ -1,38 +1,40 @@
 "use client";
 
-import React, { useState, Suspense } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { AuthProvider } from "@/lib/auth";
+import React, { Suspense } from "react";
+import dynamic from "next/dynamic";
 import { ThemeProvider } from "@/lib/theme";
-import { Toaster } from "sonner";
+import { AuthProvider } from "@/lib/auth";
+
+const AuthenticatedNavbar = dynamic(() => import("@/components/AuthenticatedNavbar"), {
+  ssr: false,
+  loading: () => <div className="h-24" aria-hidden="true" />,
+});
+
+const Footer = dynamic(() => import("@/components/Footer"), {
+  ssr: false,
+});
+
+const Toaster = dynamic(() => import("sonner").then(({ Toaster: Sonner }) => Sonner), {
+  ssr: false,
+});
 
 export default function Providers({ children }: { children: React.ReactNode }) {
-  const [queryClient] = useState(() => new QueryClient());
-
   return (
-     <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <AuthProvider>
-          <Toaster position="bottom-right" richColors theme="light" />
-          <div className="flex min-h-screen flex-col">
-            <Navbar />
+    <ThemeProvider>
+      <AuthProvider>
+        <Toaster position="bottom-right" richColors theme="light" />
+        <div className="flex min-h-screen flex-col">
+          <AuthenticatedNavbar />
 
-            <main className="flex-1 my-24">
-              <Suspense
-                fallback={
-                  <div className="h-[80vh] bg-background" />
-                }
-              >
-                {children}
-              </Suspense>
-            </main>
+          <main className="flex-1 my-24">
+            <Suspense fallback={<div className="h-[80vh] bg-background" />}>
+              {children}
+            </Suspense>
+          </main>
 
-            <Footer />
-          </div>
-        </AuthProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
+          <Footer />
+        </div>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
