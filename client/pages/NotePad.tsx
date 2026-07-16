@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import SEO from "@/components/SEO";
+import Modal from "@/components/ui/Modal";
+import { toast } from "sonner";
 import { Download, Upload, Copy, Trash2, Check, Sparkles, Save, Plus, Settings, FileText, Edit2, Eye, HelpCircle, Copy as CopyIcon, Scissors, RotateCcw } from "lucide-react";
 
 export default function NotePad() {
@@ -12,6 +14,7 @@ export default function NotePad() {
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
   const [lineNumber, setLineNumber] = useState(1);
   const [columnNumber, setColumnNumber] = useState(1);
+  const [pendingAction, setPendingAction] = useState<"clear" | "new" | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -86,7 +89,7 @@ export default function NotePad() {
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       if (err instanceof Error && err.name === "NotAllowedError") {
-        alert("Copy manually using Ctrl+A then Ctrl+C");
+        toast.error("Copy was blocked. Select the text and use Ctrl+A, then Ctrl+C.");
       } else {
         console.error(err);
       }
@@ -94,14 +97,26 @@ export default function NotePad() {
   };
 
   const clearNote = () => {
-    if (content && !window.confirm("Are you sure? This cannot be undone.")) return;
+    if (content) {
+      setPendingAction("clear");
+      return;
+    }
     setContent("");
   };
 
   const newNote = () => {
-    if (content && !window.confirm("Start a new note? Current note will be lost.")) return;
+    if (content) {
+      setPendingAction("new");
+      return;
+    }
     setContent("");
     setFileName("untitled.txt");
+  };
+
+  const confirmPendingAction = () => {
+    setContent("");
+    if (pendingAction === "new") setFileName("untitled.txt");
+    setPendingAction(null);
   };
 
   return (
@@ -223,6 +238,36 @@ export default function NotePad() {
         onChange={uploadNote}
         className="hidden"
       />
+
+      <Modal
+        open={Boolean(pendingAction)}
+        onOpenChange={(open) => !open && setPendingAction(null)}
+        title={pendingAction === "new" ? "Start a new note?" : "Clear this note?"}
+        footer={
+          <>
+            <button
+              type="button"
+              onClick={() => setPendingAction(null)}
+              className="px-4 py-2 rounded-lg border border-[#C5DCC9] bg-white text-sm font-semibold text-[#2D4D35] hover:bg-[#F0F7F0] transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={confirmPendingAction}
+              className="px-4 py-2 rounded-lg bg-red-600 text-white text-sm font-semibold hover:bg-red-700 transition-colors"
+            >
+              Continue
+            </button>
+          </>
+        }
+      >
+        <p className="text-sm text-[#4A6857] leading-relaxed">
+          {pendingAction === "new"
+            ? "Your current note will be lost. This action cannot be undone."
+            : "Your current note will be cleared. This action cannot be undone."}
+        </p>
+      </Modal>
     </div>
   );
 }
