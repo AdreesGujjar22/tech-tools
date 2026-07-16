@@ -18,8 +18,9 @@ let db: any;
 let auth: any;
 let storage: any;
 
-if (typeof window !== 'undefined') {
-  // Initialize Firebase only on client
+const hasFirebaseConfig = Object.values(firebaseConfig).every(Boolean);
+
+if (typeof window !== 'undefined' && hasFirebaseConfig) {
   app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
   db = getFirestore(app);
   auth = getAuth(app);

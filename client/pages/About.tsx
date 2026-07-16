@@ -1,5 +1,18 @@
 import { Link } from "@/lib/router-compat";
 import { StaggerList } from "@/components/StaggerList";
+import {
+  Barcode,
+  FileText,
+  Gauge,
+  ImageIcon,
+  Keyboard,
+  LockKeyhole,
+  Notebook,
+  Palette,
+  QrCode,
+  Ruler,
+  Smile,
+} from "lucide-react";
 
 export default function About() {
   return (
@@ -42,7 +55,7 @@ export default function About() {
             <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
-                  <span className="text-2xl">🚀</span>
+                  <Gauge className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Internet Speed Test</h3>
                 <p className="text-muted-foreground text-sm">
@@ -61,7 +74,7 @@ export default function About() {
             <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
-                  <span className="text-2xl">🎨</span>
+                  <Palette className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Color Picker Tool</h3>
                 <p className="text-muted-foreground text-sm">
@@ -80,7 +93,7 @@ export default function About() {
             <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
-                  <span className="text-2xl">⌨️</span>
+                  <Keyboard className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Typing Speed Test</h3>
                 <p className="text-muted-foreground text-sm">
@@ -99,7 +112,7 @@ export default function About() {
             <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
-                  <span className="text-2xl">📷</span>
+                  <QrCode className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">QR Code Generator</h3>
                 <p className="text-muted-foreground text-sm">
@@ -118,7 +131,7 @@ export default function About() {
             <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
-                  <span className="text-2xl">📊</span>
+                  <Barcode className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Barcode Generator</h3>
                 <p className="text-muted-foreground text-sm">
@@ -137,7 +150,7 @@ export default function About() {
             <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
-                  <span className="text-2xl">🔐</span>
+                  <LockKeyhole className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Password Generator</h3>
                 <p className="text-muted-foreground text-sm">
@@ -156,7 +169,7 @@ export default function About() {
             <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
-                  <span className="text-2xl">📝</span>
+                  <FileText className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Lorem Ipsum Generator</h3>
                 <p className="text-muted-foreground text-sm">
@@ -175,7 +188,7 @@ export default function About() {
             <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
-                  <span className="text-2xl">😀</span>
+                  <Smile className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Emoji Picker & Copier</h3>
                 <p className="text-muted-foreground text-sm">
@@ -194,7 +207,7 @@ export default function About() {
             <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
-                  <span className="text-2xl">📝</span>
+                  <Notebook className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Online NotePad</h3>
                 <p className="text-muted-foreground text-sm">
@@ -213,7 +226,7 @@ export default function About() {
             <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
-                  <span className="text-2xl">🖼</span>
+                  <ImageIcon className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Image Converter</h3>
                 <p className="text-muted-foreground text-sm">
@@ -232,7 +245,7 @@ export default function About() {
             <div className="premium-card p-8 flex flex-col justify-between border border-border/40 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
-                  <span className="text-2xl">📏</span>
+                  <Ruler className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Unit Converter</h3>
                 <p className="text-muted-foreground text-sm">

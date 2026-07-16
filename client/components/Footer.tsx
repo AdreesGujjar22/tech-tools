@@ -21,10 +21,10 @@ export default function Footer() {
               <Image
                 src="/images/web-logo.png"
                 alt="Tech tool logo"
-                className="h-20 w-auto"
-                width={140}
-                height={100}
-                sizes="140px"
+                className="h-24 w-auto"
+                width={168}
+                height={120}
+                sizes="168px"
               />
             </Link>
             <p className="text-[#4A6857] text-sm max-w-sm leading-relaxed">
