@@ -51,6 +51,7 @@ import {
 import { Link } from "@/lib/router-compat";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "motion/react";
+import Modal from "@/components/ui/Modal";
 import dynamic from "next/dynamic";
 
 const BlogEditor = dynamic(() => import("@/components/admin/BlogEditor"), {
@@ -115,6 +116,11 @@ export default function AdminPage() {
   // Taxonomies Form States
   const [newCategory, setNewCategory] = useState("");
   const [newTag, setNewTag] = useState("");
+  const [pendingDelete, setPendingDelete] = useState<{
+    collection: "categories" | "tags" | "blogs";
+    id: string;
+    label: string;
+  } | null>(null);
 
   // Populate data on login
   useEffect(() => {
@@ -268,14 +274,20 @@ export default function AdminPage() {
     fetchCmsData();
   };
 
-  const handleDeleteCategory = async (id: string) => {
-    if (!confirm("Are you sure you want to delete this category?")) return;
+  const requestDelete = (collection: "categories" | "tags" | "blogs", id: string, label: string) => {
+    setPendingDelete({ collection, id, label });
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!pendingDelete) return;
+    const { collection, id, label } = pendingDelete;
+    setPendingDelete(null);
     try {
-      await deleteDoc(doc(db, "categories", id));
-      toast.success("Category deleted from Firebase.");
+      await deleteDoc(doc(db, collection, id));
+      toast.success(`${label} deleted from Firebase.`);
     } catch (err) {
-      console.error("Could not delete category from Firebase:", err);
-      toast.error(err instanceof Error ? err.message : "Could not delete category. Please try again.");
+      console.error(`Could not delete ${label.toLowerCase()} from Firebase:`, err);
+      toast.error(err instanceof Error ? err.message : `Could not delete ${label.toLowerCase()}. Please try again.`);
     }
     fetchCmsData();
   };
@@ -298,15 +310,7 @@ export default function AdminPage() {
   };
 
   const handleDeleteTag = async (id: string) => {
-    if (!confirm("Are you sure you want to delete this tag?")) return;
-    try {
-      await deleteDoc(doc(db, "tags", id));
-      toast.success("Tag deleted from Firebase.");
-    } catch (err) {
-      console.error("Could not delete tag from Firebase:", err);
-      toast.error(err instanceof Error ? err.message : "Could not delete tag. Please try again.");
-    }
-    fetchCmsData();
+    requestDelete("tags", id, "Tag");
   };
 
   // Post Submission / Saving (Create & Update workflows)
@@ -405,15 +409,7 @@ export default function AdminPage() {
 
   // Delete Post Entry
   const handleDeletePost = async (id: string) => {
-    if (!confirm("Are you absolutely sure you want to delete this post? This cannot be undone.")) return;
-    try {
-      await deleteDoc(doc(db, "blogs", id));
-      toast.success("Post deleted from Firebase.");
-    } catch (err) {
-      console.error("Could not delete post from Firebase:", err);
-      toast.error(err instanceof Error ? err.message : "Could not delete post. Please try again.");
-    }
-    fetchCmsData();
+    requestDelete("blogs", id, "Post");
   };
 
   const handlePostStatusToggle = async (postItem: Blog) => {
@@ -761,7 +757,7 @@ export default function AdminPage() {
                                   <Edit3 size={14} />
                                 </button>
                                 <button
-                                  onClick={() => handleDeletePost(item.id!)}
+                                  onClick={() => requestDelete("blogs", item.id!, "Post")}
                                   className="p-2 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 transition-all border border-red-200"
                                   title="Delete Post permanently"
                                 >
@@ -805,7 +801,7 @@ export default function AdminPage() {
                     />
                     <button
                       type="submit"
-                      className="px-4 py-2 brand-gradient hover:opacity-90 text-foreground text-xs font-bold rounded-lg transition-all"
+                      className="px-4 py-2 brand-gradient hover:opacity-90 text-white text-xs font-bold rounded-lg transition-all"
                     >
                       Add
                     </button>
@@ -823,7 +819,7 @@ export default function AdminPage() {
                               slug: {cat.id}
                             </span>
                             <button
-                              onClick={() => handleDeleteCategory(cat.id!)}
+                              onClick={() => requestDelete("categories", cat.id!, "Category")}
                               className="text-red-400 hover:text-red-300 transition-colors cursor-pointer"
                               title="Delete category"
                             >
@@ -858,7 +854,7 @@ export default function AdminPage() {
                     />
                     <button
                       type="submit"
-                      className="px-4 py-2 brand-gradient hover:opacity-90 text-foreground text-xs font-bold rounded-lg transition-all"
+                      className="px-4 py-2 brand-gradient hover:opacity-90 text-white text-xs font-bold rounded-lg transition-all"
                     >
                       Add
                     </button>
@@ -876,7 +872,7 @@ export default function AdminPage() {
                               slug: {tg.id}
                             </span>
                             <button
-                              onClick={() => handleDeleteTag(tg.id!)}
+                              onClick={() => requestDelete("tags", tg.id!, "Tag")}
                               className="text-red-400 hover:text-red-300 transition-colors cursor-pointer"
                               title="Delete tag"
                             >
@@ -1227,6 +1223,33 @@ export default function AdminPage() {
           </div>
         )}
 
+        <Modal
+          open={Boolean(pendingDelete)}
+          onOpenChange={(open) => !open && setPendingDelete(null)}
+          title={`Delete ${pendingDelete?.label ?? "item"}?`}
+          footer={
+            <>
+              <button
+                type="button"
+                onClick={() => setPendingDelete(null)}
+                className="px-4 py-2 rounded-lg border border-border bg-card text-sm font-semibold text-foreground hover:bg-muted transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={() => void handleConfirmDelete()}
+                className="px-4 py-2 rounded-lg bg-red-600 text-white text-sm font-semibold hover:bg-red-700 transition-colors"
+              >
+                Delete permanently
+              </button>
+            </>
+          }
+        >
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            This action cannot be undone. Are you sure you want to delete this {pendingDelete?.label.toLowerCase() ?? "item"}?
+          </p>
+        </Modal>
       </div>
     </div>
   );

@@ -153,7 +153,7 @@ export default function Contact() {
                   <Button
                     type="submit"
                     disabled={isLoading}
-                    size="lg"
+                    size="md"
                     className="w-full gap-2"
                     isLoading={isLoading}
                   >

@@ -68,7 +68,10 @@ export default function Pricing() {
                 <Button
                   variant={plan.highlighted ? "primary" : "outline"}
                   size="md"
-                  className="w-full"
+                  className={`w-full ${
+                    !plan.highlighted &&
+                    "!bg-[#E8F0E8] !border-[#10A968]/40 !text-[#2D4D35] hover:!bg-[#D4E8D8]"
+                  }`}
                   onClick={() => navigate("/tools")}
                 >
                   Get Started

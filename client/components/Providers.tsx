@@ -7,7 +7,7 @@ import { AuthProvider } from "@/lib/auth";
 
 const AuthenticatedNavbar = dynamic(() => import("@/components/AuthenticatedNavbar"), {
   ssr: false,
-  loading: () => <div className="h-24" aria-hidden="true" />,
+  loading: () => <div className="h-20" aria-hidden="true" />,
 });
 
 const Footer = dynamic(() => import("@/components/Footer"), {
@@ -26,7 +26,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         <div className="flex min-h-screen flex-col">
           <AuthenticatedNavbar />
 
-          <main className="flex-1 my-24">
+          <main className="flex-1 mt-24 min-h-[calc(100vh-6rem)]">
             <Suspense fallback={<div className="h-[80vh] bg-background" />}>
               {children}
             </Suspense>

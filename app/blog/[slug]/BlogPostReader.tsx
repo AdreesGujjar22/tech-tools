@@ -193,6 +193,7 @@ export function BlogPostReader({ slug }: { slug: string }) {
                 src={post.featuredImage}
                 alt={post.title}
                 fill
+                crossOrigin="anonymous"
                 className="object-cover"
               />
             </div>

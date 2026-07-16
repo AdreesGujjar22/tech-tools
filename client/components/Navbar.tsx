@@ -29,9 +29,14 @@ export default function Navbar() {
   useEffect(() => {
     if (!mobileOpen) return;
     const previousOverflow = document.body.style.overflow;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMobileOpen(false);
+    };
     document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
     return () => {
       document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
     };
   }, [mobileOpen]);
 
@@ -43,7 +48,7 @@ export default function Navbar() {
         scrolled && "shadow-lg border-b border-border/60"
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+      <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
         <div className="flex items-center gap-8 lg:gap-12">
           <Link
             to="/"
@@ -53,10 +58,12 @@ export default function Navbar() {
             <Image
               src="/images/web-logo.png"
               alt="Tech tool logo"
-              className="h-16 sm:h-20 w-auto"
-              width={140}
-              height={100}
-              sizes="140px"
+              className="h-9 sm:h-10 w-auto"
+              width={84}
+              height={60}
+              sizes="84px"
+              quality={100}
+              priority
             />
           </Link>
           <nav className="hidden lg:flex items-center gap-0.5">
@@ -121,14 +128,55 @@ export default function Navbar() {
         </button>
       </div>
 
-      {mobileOpen && (
-        <div
-          id="mobile-navigation-drawer"
-          role="dialog"
-          aria-label="Mobile navigation"
-          className="absolute inset-x-0 top-full max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain lg:hidden flex flex-col gap-1 border-t border-border/60 bg-background/98 px-4 py-4 shadow-2xl sm:px-6"
-        >
-          {navLinks.map((link) => {
+      <div
+        aria-hidden="true"
+        className={cn(
+          "fixed inset-0 bg-black/20 backdrop-blur-[2px] transition-opacity duration-300 lg:hidden",
+          mobileOpen ? "opacity-100" : "pointer-events-none opacity-0"
+        )}
+        onClick={() => setMobileOpen(false)}
+      />
+
+      <div
+        id="mobile-navigation-drawer"
+        role="dialog"
+        aria-label="Mobile navigation"
+        aria-hidden={!mobileOpen}
+        className={cn(
+          "fixed top-0 bottom-0 left-0 z-[60] h-dvh max-h-dvh w-[min(22rem,calc(100vw-1rem))] overflow-y-auto overscroll-contain lg:hidden flex flex-col gap-1 border-r border-border/60 bg-background px-4 pb-6 pt-[20px] shadow-2xl transition-all duration-300 ease-out sm:px-6 sm:pt-28",
+          mobileOpen
+            ? "translate-x-0 opacity-100"
+            : "pointer-events-none -translate-x-full opacity-0"
+        )}
+      >
+        <div className="flex items-center justify-between border-b border-border/60 pb-4 mb-4">
+          <Link
+            to="/"
+            className="shrink-0 flex items-center"
+            aria-label="Tech Tools home"
+            onClick={() => setMobileOpen(false)}
+          >
+            <Image
+              src="/images/web-logo.png"
+              alt="Tech tool logo"
+              className="h-10 w-auto"
+              width={84}
+              height={60}
+              sizes="84px"
+              quality={100}
+            />
+          </Link>
+          <button
+            type="button"
+            onClick={() => setMobileOpen(false)}
+            className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+            aria-label="Close menu"
+          >
+            <X size={22} />
+          </button>
+        </div>
+
+        {navLinks.map((link) => {
             const isActive = location.pathname === link.href;
             return (
               <Link
@@ -187,7 +235,6 @@ export default function Navbar() {
             </Link>
           </div>
         </div>
-      )}
     </header>
   );
 }

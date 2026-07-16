@@ -3,8 +3,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Upload, X, CheckCircle, Loader2, AlertCircle, Image as ImageIcon } from "lucide-react";
 import { toast } from "sonner";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage } from "@/lib/firebase";
 
 interface ImageUploaderProps {
   value: string;
@@ -49,20 +47,34 @@ export default function ImageUploader({ value, onChange, label = "Featured Image
       };
       reader.readAsDataURL(file);
 
-      // Upload to Firebase Storage
-      const timestamp = Date.now();
-      const fileName = `blog-featured-${timestamp}-${file.name.replace(/[^a-zA-Z0-9.-]/g, "")}`;
-      const storageRef = ref(storage, `blog-images/${fileName}`);
+      const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+      const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
 
-      const snapshot = await uploadBytes(storageRef, file);
-      const downloadURL = await getDownloadURL(snapshot.ref);
+      if (!cloudName || !uploadPreset) {
+        throw new Error("Cloudinary upload is not configured");
+      }
+
+      const uploadData = new FormData();
+      uploadData.append("file", file);
+      uploadData.append("upload_preset", uploadPreset);
+      uploadData.append("folder", "techtools/blog");
+
+      const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+        method: "POST",
+        body: uploadData,
+      });
+      const result = await response.json();
+
+      if (!response.ok || !result.secure_url) {
+        throw new Error(result.error?.message || "Cloudinary upload failed");
+      }
 
       if (uploadToken !== uploadTokenRef.current) return;
-      onChange(downloadURL);
+      onChange(result.secure_url);
       toast.success("Image uploaded successfully!");
     } catch (error: any) {
       if (uploadToken !== uploadTokenRef.current) return;
-      console.error("Upload error:", error);
+      console.error("Cloudinary upload error:", error);
       toast.error(error.message || "Failed to upload image");
       setPreview(null);
       onChange("");
@@ -122,6 +134,7 @@ export default function ImageUploader({ value, onChange, label = "Featured Image
             <img
               src={preview}
               alt="Preview"
+              crossOrigin="anonymous"
               className="w-full h-full object-cover"
             />
             {uploading && (
