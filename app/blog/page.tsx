@@ -257,6 +257,7 @@ export default function BlogArchive() {
                     <img
                       src={featuredPost.featuredImage}
                       alt={featuredPost.title}
+                      crossOrigin="anonymous"
                       loading="eager"
                       decoding="async"
                       className="absolute inset-0 w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-700"
@@ -340,6 +341,7 @@ export default function BlogArchive() {
                           <img
                             src={post.featuredImage}
                             alt={post.title}
+                            crossOrigin="anonymous"
                             loading="lazy"
                             decoding="async"
                             className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-all duration-300"

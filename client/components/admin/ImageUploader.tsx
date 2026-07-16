@@ -134,6 +134,7 @@ export default function ImageUploader({ value, onChange, label = "Featured Image
             <img
               src={preview}
               alt="Preview"
+              crossOrigin="anonymous"
               className="w-full h-full object-cover"
             />
             {uploading && (

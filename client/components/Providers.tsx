@@ -7,7 +7,7 @@ import { AuthProvider } from "@/lib/auth";
 
 const AuthenticatedNavbar = dynamic(() => import("@/components/AuthenticatedNavbar"), {
   ssr: false,
-  loading: () => <div className="h-24" aria-hidden="true" />,
+  loading: () => <div className="h-20" aria-hidden="true" />,
 });
 
 const Footer = dynamic(() => import("@/components/Footer"), {

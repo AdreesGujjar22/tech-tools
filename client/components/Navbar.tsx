@@ -58,10 +58,10 @@ export default function Navbar() {
             <Image
               src="/images/web-logo.png"
               alt="Tech tool logo"
-              className="h-20 sm:h-24 w-auto"
-              width={168}
-              height={120}
-              sizes="168px"
+              className="h-14 sm:h-16 w-auto"
+              width={112}
+              height={80}
+              sizes="112px"
             />
           </Link>
           <nav className="hidden lg:flex items-center gap-0.5">
@@ -141,7 +141,7 @@ export default function Navbar() {
         aria-label="Mobile navigation"
         aria-hidden={!mobileOpen}
         className={cn(
-          "fixed left-0 top-0 bottom-0 z-20 w-[min(20rem,85vw)] overflow-y-auto overscroll-contain lg:hidden flex flex-col gap-1 border-r border-border/60 bg-background px-4 pb-6 pt-24 shadow-2xl transition-all duration-300 ease-out sm:px-6",
+          "fixed inset-y-0 left-0 z-20 w-[min(22rem,85vw)] overflow-y-auto overscroll-contain lg:hidden flex flex-col gap-1 border-r border-border/60 bg-background px-4 pb-6 pt-20 shadow-2xl transition-all duration-300 ease-out sm:px-6 sm:pt-24",
           mobileOpen
             ? "translate-x-0 opacity-100"
             : "pointer-events-none -translate-x-full opacity-0"
