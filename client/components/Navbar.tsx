@@ -62,6 +62,8 @@ export default function Navbar() {
               width={84}
               height={60}
               sizes="84px"
+              quality={100}
+              priority
             />
           </Link>
           <nav className="hidden lg:flex items-center gap-0.5">
@@ -147,7 +149,34 @@ export default function Navbar() {
             : "pointer-events-none -translate-x-full opacity-0"
         )}
       >
-          {navLinks.map((link) => {
+        <div className="flex items-center justify-between border-b border-border/60 pb-4 mb-4">
+          <Link
+            to="/"
+            className="shrink-0 flex items-center"
+            aria-label="Tech Tools home"
+            onClick={() => setMobileOpen(false)}
+          >
+            <Image
+              src="/images/web-logo.png"
+              alt="Tech tool logo"
+              className="h-10 w-auto"
+              width={84}
+              height={60}
+              sizes="84px"
+              quality={100}
+            />
+          </Link>
+          <button
+            type="button"
+            onClick={() => setMobileOpen(false)}
+            className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+            aria-label="Close menu"
+          >
+            <X size={22} />
+          </button>
+        </div>
+
+        {navLinks.map((link) => {
             const isActive = location.pathname === link.href;
             return (
               <Link

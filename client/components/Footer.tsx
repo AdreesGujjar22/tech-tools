@@ -25,6 +25,7 @@ export default function Footer() {
                 width={84}
                 height={60}
                 sizes="84px"
+                quality={100}
               />
             </Link>
             <p className="text-[#4A6857] text-sm max-w-sm leading-relaxed">

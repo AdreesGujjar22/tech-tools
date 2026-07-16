@@ -801,7 +801,7 @@ export default function AdminPage() {
                     />
                     <button
                       type="submit"
-                      className="px-4 py-2 brand-gradient hover:opacity-90 text-foreground text-xs font-bold rounded-lg transition-all"
+                      className="px-4 py-2 brand-gradient hover:opacity-90 text-white text-xs font-bold rounded-lg transition-all"
                     >
                       Add
                     </button>
@@ -854,7 +854,7 @@ export default function AdminPage() {
                     />
                     <button
                       type="submit"
-                      className="px-4 py-2 brand-gradient hover:opacity-90 text-foreground text-xs font-bold rounded-lg transition-all"
+                      className="px-4 py-2 brand-gradient hover:opacity-90 text-white text-xs font-bold rounded-lg transition-all"
                     >
                       Add
                     </button>
