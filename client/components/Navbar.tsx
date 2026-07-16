@@ -143,7 +143,7 @@ export default function Navbar() {
         aria-label="Mobile navigation"
         aria-hidden={!mobileOpen}
         className={cn(
-          "fixed top-0 bottom-0 left-0 z-[60] h-dvh max-h-dvh w-[min(22rem,calc(100vw-1rem))] overflow-y-auto overscroll-contain lg:hidden flex flex-col gap-1 border-r border-border/60 bg-background px-4 pb-6 pt-24 shadow-2xl transition-all duration-300 ease-out sm:px-6 sm:pt-28",
+          "fixed top-0 bottom-0 left-0 z-[60] h-dvh max-h-dvh w-[min(22rem,calc(100vw-1rem))] overflow-y-auto overscroll-contain lg:hidden flex flex-col gap-1 border-r border-border/60 bg-background px-4 pb-6 pt-[20px] shadow-2xl transition-all duration-300 ease-out sm:px-6 sm:pt-28",
           mobileOpen
             ? "translate-x-0 opacity-100"
             : "pointer-events-none -translate-x-full opacity-0"
