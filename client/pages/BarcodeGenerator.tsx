@@ -5,8 +5,10 @@ import SEO from "@/components/SEO";
 import JsBarcode from "jsbarcode";
 import { Download, Share2, Copy, Sparkles, RefreshCw, Layers, Sliders, Check, ImageIcon, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { useTranslations } from "next-intl";
 
 export default function BarcodeGenerator() {
+  const t = useTranslations("Tools.BarcodeGenerator");
   const [text, setText] = useState("123456789012");
   const [format, setFormat] = useState("CODE128");
   const [width, setWidth] = useState(2);
@@ -31,28 +33,28 @@ export default function BarcodeGenerator() {
 
   const validateInput = (value: string, fmt: string): string => {
     if (!value.trim()) {
-      return "Barcode content cannot be empty";
+      return t("empty");
     }
 
     switch (fmt) {
       case "EAN13":
         if (!/^\d{13}$/.test(value)) {
-          return "EAN13 requires exactly 13 digits";
+          return t("ean13");
         }
         break;
       case "EAN8":
         if (!/^\d{8}$/.test(value)) {
-          return "EAN8 requires exactly 8 digits";
+          return t("ean8");
         }
         break;
       case "UPC":
         if (!/^\d{11,12}$/.test(value)) {
-          return "UPC requires 11-12 digits";
+          return t("upc");
         }
         break;
       case "ITF14":
         if (!/^\d{14}$/.test(value)) {
-          return "ITF14 requires exactly 14 digits";
+          return t("itf14");
         }
         break;
       case "CODE39":
@@ -90,7 +92,7 @@ export default function BarcodeGenerator() {
         });
       }
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Failed to generate barcode";
+      const errorMessage = err instanceof Error ? err.message : t("failed");
       setError(errorMessage);
     } finally {
       setIsGenerating(false);
@@ -177,7 +179,7 @@ export default function BarcodeGenerator() {
                   <textarea
                     value={text}
                     onChange={(e) => setText(e.target.value)}
-                    placeholder="Enter barcode data..."
+                    placeholder={t("contentPlaceholder")}
                     className="w-full h-28 px-4 py-3 rounded-[12px] border border-[#E0E0E0] bg-white text-[#2D4D35] placeholder-[#999B99] focus:outline-none focus:border-[#10A968] resize-none"
                   />
                   <div className="absolute bottom-3 right-3 flex gap-2">
@@ -373,7 +375,7 @@ export default function BarcodeGenerator() {
                 </div>
 
                 <span className="text-xs text-[#4A6857] max-w-[280px]">
-                  All processing is conducted safely in-browser. Your data never leaves your local system.
+                  {t("privacy")}
                 </span>
               </div>
             </div>

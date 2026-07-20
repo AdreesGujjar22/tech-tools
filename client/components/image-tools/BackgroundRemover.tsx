@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Upload, Download, Trash2, Loader2, Check, AlertCircle, Wand2 } from "lucide-react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 interface ProcessedImage {
   id: string;
@@ -16,6 +17,7 @@ interface ProcessedImage {
 }
 
 export default function BackgroundRemover() {
+  const t = useTranslations("Tools.BackgroundRemover");
   const [images, setImages] = useState<ProcessedImage[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -348,9 +350,9 @@ export default function BackgroundRemover() {
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-3 mb-4">
             <Wand2 className="w-8 h-8 text-primary" />
-            <h1 className="text-3xl sm:text-4xl font-bold">Background Remover</h1>
+            <h1 className="text-3xl sm:text-4xl font-bold">{t("title")}</h1>
           </div>
-          <p className="text-muted-foreground">Upload an image and remove the background instantly using AI</p>
+          <p className="text-muted-foreground">{t("description")}</p>
         </div>
 
         {images.length === 0 ? (
@@ -367,13 +369,13 @@ export default function BackgroundRemover() {
             }`}
           >
             <Upload className="w-16 h-16 mx-auto mb-4 text-primary opacity-75" />
-            <h2 className="text-2xl font-bold mb-2">Drop your image here</h2>
-            <p className="text-muted-foreground mb-6">or click to browse</p>
+            <h2 className="text-2xl font-bold mb-2">{t("dropImage")}</h2>
+            <p className="text-muted-foreground mb-6">{t("orBrowse")}</p>
             <button
               onClick={() => fileInputRef.current?.click()}
               className="px-8 py-3 rounded-xl bg-primary text-primary-foreground font-semibold hover:shadow-lg transition"
             >
-              Choose Image
+              {t("chooseImage")}
             </button>
             <input
               ref={fileInputRef}
@@ -415,13 +417,13 @@ export default function BackgroundRemover() {
                           className="flex-1 px-4 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:shadow-lg transition flex items-center justify-center gap-2"
                         >
                           <Download className="w-5 h-5" />
-                          Download
+                          {t("download")}
                         </button>
                         <button
                           onClick={() => processImage(activeIndex)}
                           className="flex-1 px-4 py-3 rounded-lg border-2 border-border text-foreground font-semibold hover:bg-secondary transition"
                         >
-                          Reprocess
+                          {t("reprocess")}
                         </button>
                       </>
                     )}
@@ -434,12 +436,12 @@ export default function BackgroundRemover() {
                         {isProcessing ? (
                           <>
                             <Loader2 className="w-5 h-5 animate-spin" />
-                            Processing...
+                            {t("processing")}
                           </>
                         ) : (
                           <>
                             <Wand2 className="w-5 h-5" />
-                            Remove Background
+                            {t("removeBackground")}
                           </>
                         )}
                       </button>
@@ -450,7 +452,7 @@ export default function BackgroundRemover() {
                         className="flex-1 px-4 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:shadow-lg transition flex items-center justify-center gap-2"
                       >
                         <AlertCircle className="w-5 h-5" />
-                        Retry
+                        {t("retry")}
                       </button>
                     )}
                   </div>
@@ -462,14 +464,14 @@ export default function BackgroundRemover() {
             <div className="lg:col-span-1">
               <div className="bg-card border-2 border-border rounded-2xl overflow-hidden">
                 <div className="p-4 border-b border-border">
-                  <h3 className="font-bold text-lg mb-3">Images ({images.length})</h3>
+                  <h3 className="font-bold text-lg mb-3">{t("images", { count: images.length })}</h3>
                   {images.some(img => img.status === "idle") && (
                     <button
                       onClick={processAll}
                       disabled={isProcessing}
                       className="w-full px-4 py-2 rounded-lg bg-primary text-primary-foreground font-semibold hover:shadow-lg transition disabled:opacity-50 text-sm"
                     >
-                      Process All
+                      {t("processAll")}
                     </button>
                   )}
                 </div>

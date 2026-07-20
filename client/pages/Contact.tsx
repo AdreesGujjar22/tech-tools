@@ -3,8 +3,10 @@ import { Mail, Phone, Clock, Twitter, Linkedin, Github, Send, Loader2 } from "lu
 import { Button } from "@/components/ui/Button";
 import { toast } from "sonner";
 import emailjs from "@emailjs/browser";
+import { useTranslations } from "next-intl";
 
 export default function Contact() {
+  const t = useTranslations("Contact");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,7 +32,7 @@ export default function Contact() {
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || process.env.VITE_EMAILJS_PUBLIC_KEY || "";
 
       if (!serviceId || !templateId || !publicKey) {
-        toast.error("EmailJS configuration is missing. Please check environment variables.");
+        toast.error(t("errors.configurationMissing"));
         setIsLoading(false);
         return;
       }
@@ -47,11 +49,11 @@ export default function Contact() {
         publicKey
       );
 
-      toast.success("Message sent successfully! We'll get back to you soon.");
+      toast.success(t("success.sent"));
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
       console.error("EmailJS error:", error);
-      toast.error("Failed to send message. Please try again later.");
+      toast.error(t("errors.sendFailed"));
     } finally {
       setIsLoading(false);
     }
@@ -70,10 +72,10 @@ export default function Contact() {
         <div className="container-full relative z-10">
           <div className="text-center space-y-6 max-w-3xl mx-auto">
             <h1 className="text-5xl lg:text-6xl font-bold leading-tight gradient-text">
-              Contact TechTools
+              {t("title")}
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Have questions, feedback, or need support? We're here to help. Reach out to us and we'll respond as soon as possible.
+              {t("description")}
             </p>
           </div>
         </div>
@@ -86,12 +88,12 @@ export default function Contact() {
             {/* Contact Form */}
             <div className="lg:col-span-2 animate-slide-up">
               <div className="premium-card p-8 rounded-3xl border border-border/40 hover:shadow-lg transition-all">
-                <h2 className="text-2xl font-bold mb-8">Send us a message</h2>
+                <h2 className="text-2xl font-bold mb-8">{t("formTitle")}</h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-sm font-semibold text-foreground">
-                        Name
+                        {t("name")}
                       </label>
                       <input
                         type="text"
@@ -101,12 +103,12 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         className="input-modern w-full rounded-xl px-4 py-3"
-                        placeholder="Your name"
+                        placeholder={t("namePlaceholder")}
                       />
                     </div>
                     <div className="space-y-2">
                       <label htmlFor="email" className="text-sm font-semibold text-foreground">
-                        Email
+                        {t("email")}
                       </label>
                       <input
                         type="email"
@@ -116,13 +118,13 @@ export default function Contact() {
                         onChange={handleChange}
                         required
                         className="input-modern w-full rounded-xl px-4 py-3"
-                        placeholder="your@email.com"
+                        placeholder={t("emailPlaceholder")}
                       />
                     </div>
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="subject" className="text-sm font-semibold text-foreground">
-                      Subject
+                      {t("subject")}
                     </label>
                     <input
                       type="text"
@@ -132,12 +134,12 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       className="input-modern w-full rounded-xl px-4 py-3"
-                      placeholder="How can we help?"
+                      placeholder={t("subjectPlaceholder")}
                     />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="message" className="text-sm font-semibold text-foreground">
-                      Message
+                      {t("message")}
                     </label>
                     <textarea
                       id="message"
@@ -147,7 +149,7 @@ export default function Contact() {
                       required
                       rows={6}
                       className="input-modern w-full rounded-xl px-4 py-3 resize-none"
-                      placeholder="Tell us more about your inquiry..."
+                      placeholder={t("messagePlaceholder")}
                     />
                   </div>
                   <Button
@@ -158,7 +160,7 @@ export default function Contact() {
                     isLoading={isLoading}
                   >
                     {!isLoading && <Send className="w-5 h-5" />}
-                    {isLoading ? "Sending..." : "Send Message"}
+                    {isLoading ? t("sending") : t("sendMessage")}
                   </Button>
                 </form>
               </div>
@@ -167,14 +169,14 @@ export default function Contact() {
             {/* Contact Info */}
             <div className="space-y-6 animate-slide-down">
               <div className="premium-card p-6 rounded-2xl border border-border/40 hover:shadow-lg transition-all">
-                <h3 className="text-xl font-bold mb-6">Contact Information</h3>
+                <h3 className="text-xl font-bold mb-6">{t("information")}</h3>
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center flex-shrink-0">
                       <Mail className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1">Email</h4>
+                      <h4 className="font-semibold mb-1">{t("email")}</h4>
                       <p className="text-sm text-muted-foreground">support@ilovetechtools.com</p>
                     </div>
                   </div>
@@ -183,8 +185,8 @@ export default function Contact() {
                       <Phone className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1">Support</h4>
-                      <p className="text-sm text-muted-foreground">Available 24/7</p>
+                      <h4 className="font-semibold mb-1">{t("support")}</h4>
+                      <p className="text-sm text-muted-foreground">{t("available")}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -192,8 +194,8 @@ export default function Contact() {
                       <Clock className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1">Availability</h4>
-                      <p className="text-sm text-muted-foreground">Mon - Fri: 9AM - 6PM UTC</p>
+                      <h4 className="font-semibold mb-1">{t("availability")}</h4>
+                      <p className="text-sm text-muted-foreground">{t("hours")}</p>
                     </div>
                   </div>
                 </div>
@@ -201,7 +203,7 @@ export default function Contact() {
 
               {/* Social Media */}
               <div className="premium-card p-6 rounded-2xl border border-border/40 hover:shadow-lg transition-all">
-                <h3 className="text-xl font-bold mb-6">Follow Us</h3>
+                <h3 className="text-xl font-bold mb-6">{t("followUs")}</h3>
                 <div className="flex gap-4">
                   <a
                     href="https://twitter.com"
@@ -232,9 +234,9 @@ export default function Contact() {
 
               {/* Quick Response */}
               <div className="premium-card p-6 rounded-2xl border border-border/40 bg-gradient-indigo-soft hover:shadow-lg transition-all">
-                <h3 className="text-lg font-bold mb-3">Quick Response</h3>
+                <h3 className="text-lg font-bold mb-3">{t("quickResponse")}</h3>
                 <p className="text-sm text-muted-foreground">
-                  We typically respond to all inquiries within 24 hours. For urgent matters, please include "URGENT" in your subject line.
+                  {t("quickResponseText")}
                 </p>
               </div>
             </div>

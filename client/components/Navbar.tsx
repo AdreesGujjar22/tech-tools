@@ -1,20 +1,107 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "@/lib/router-compat";
-import { Menu, X, LogIn, LogOut, ShieldAlert, HelpCircle } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Link, stripLocalePrefix, useLocation, useNavigate } from "@/lib/router-compat";
+import { ChevronDown, Menu, X, LogIn, LogOut, ShieldAlert, HelpCircle } from "lucide-react";
 import { useAuth } from "@/lib/auth";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
+import { useLocale } from "@/lib/locale";
 
-const navLinks = [
-  { label: "About Us", href: "/about-us" },
-  { label: "Tools", href: "/tools" },
-  { label: "Blog", href: "/blog" },
-  { label: "Pricing", href: "/pricing" },
-];
+type LanguageSelectorProps = {
+  mobile?: boolean;
+};
+
+function LanguageSelector({ mobile = false }: LanguageSelectorProps) {
+  const common = useTranslations("Common");
+  const { locale, setLocale } = useLocale();
+  const [open, setOpen] = useState(false);
+  const selectorRef = useRef<HTMLDivElement>(null);
+  const languages = [
+    { code: "en" as const, flag: "🇺🇸", label: common("languages.english") },
+    { code: "es" as const, flag: "🇪🇸", label: common("languages.spanish") },
+  ];
+  const selectedLanguage = languages.find((language) => language.code === locale) ?? languages[0];
+
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (event: PointerEvent) => {
+      if (!selectorRef.current?.contains(event.target as Node)) setOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
+  }, [open]);
+
+  return (
+    <div ref={selectorRef} className={cn("relative", mobile && "w-full")}>
+      <button
+        type="button"
+        onClick={() => setOpen((isOpen) => !isOpen)}
+        className={cn(
+          "group flex items-center gap-2 rounded-xl border border-border/70 bg-background/80 text-foreground shadow-sm backdrop-blur transition-all duration-200",
+          "hover:border-primary/50 hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
+          mobile ? "w-full justify-center px-4 py-3" : "px-3 py-2"
+        )}
+        aria-label={common("language")}
+        aria-expanded={open}
+        aria-haspopup="listbox"
+      >
+        <span className="text-base leading-none" aria-hidden="true">{selectedLanguage.flag}</span>
+        <span className="text-xs font-semibold uppercase tracking-[0.12em]">{selectedLanguage.code}</span>
+        <span className="text-xs font-medium text-muted-foreground">{selectedLanguage.label}</span>
+        <ChevronDown className={cn("h-3.5 w-3.5 text-muted-foreground transition-transform", open && "rotate-180")} aria-hidden="true" />
+      </button>
+
+      {open && (
+        <div
+          className={cn(
+            "absolute z-[70] mt-2 min-w-[12.5rem] overflow-hidden rounded-2xl border border-border/70 bg-background/95 p-1.5 shadow-xl shadow-black/10 backdrop-blur-xl",
+            mobile ? "left-0 right-0 w-full" : "right-0"
+          )}
+          role="listbox"
+          aria-label={common("language")}
+        >
+          {languages.map((language) => (
+            <button
+              key={language.code}
+              type="button"
+              role="option"
+              aria-selected={language.code === locale}
+              onClick={() => {
+                setLocale(language.code);
+                setOpen(false);
+              }}
+              className={cn(
+                "flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors",
+                language.code === locale
+                  ? "bg-primary/10 text-foreground"
+                  : "text-muted-foreground hover:bg-muted/70 hover:text-foreground"
+              )}
+            >
+              <span className="text-base leading-none" aria-hidden="true">{language.flag}</span>
+              <span className="w-6 text-xs font-semibold uppercase tracking-[0.12em]">{language.code}</span>
+              <span className="text-sm font-medium">{language.label}</span>
+              {language.code === locale && <span className="ml-auto h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Navbar() {
+  const t = useTranslations("Navbar");
+  const common = useTranslations("Common");
+  const routes = useTranslations("Routes");
+  const navLinks = [
+    { label: t("links.about"), href: routes("about") },
+    { label: t("links.tools"), href: routes("tools") },
+    { label: t("links.blog"), href: routes("blog") },
+    { label: t("links.pricing"), href: routes("pricing") },
+  ];
   const navigate = useNavigate();
   const location = useLocation();
+  const currentPath = stripLocalePrefix(location.pathname);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { user, isAdmin, logout } = useAuth();
@@ -53,7 +140,7 @@ export default function Navbar() {
           <Link
             to="/"
             className="shrink-0 flex items-center gap-2 hover:opacity-70 transition-opacity duration-200"
-            aria-label="Tech Tools home"
+            aria-label={common("a11y.techToolsHome")}
           >
             <Image
               src="/images/web-logo.png"
@@ -68,7 +155,7 @@ export default function Navbar() {
           </Link>
           <nav className="hidden lg:flex items-center gap-0.5">
             {navLinks.map((link) => {
-              const isActive = location.pathname === link.href;
+              const isActive = currentPath === link.href;
               return (
                 <Link
                   key={link.href}
@@ -93,8 +180,8 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-2 sm:gap-3">
           <button
             className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-white/10 transition-all duration-200 cursor-pointer"
-            onClick={() => navigate("/help")}
-            aria-label="FAQ Help"
+            onClick={() => navigate(routes("help"))}
+            aria-label={t("links.help")}
           >
             <HelpCircle className="w-5 h-5" />
           </button>
@@ -105,22 +192,24 @@ export default function Navbar() {
               className="px-3 sm:px-4 py-2 rounded-lg bg-red-500/10 text-red-500 hover:bg-red-500/20 border border-red-500/20 text-xs sm:text-sm font-semibold flex items-center gap-1.5 transition-all duration-200"
             >
               <ShieldAlert size={14} />
-              <span className="hidden sm:inline">Admin</span>
+              <span className="hidden sm:inline">{t("admin")}</span>
             </Link>
           )}
 
+          <LanguageSelector />
+
           <Link
-            to="/contact-us"
+            to={routes("contact")}
             className="px-4 sm:px-6 py-2 sm:py-2.5 rounded-full brand-gradient text-white text-xs sm:text-sm font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300"
           >
-            Contact
+            {t("links.contact")}
           </Link>
         </div>
 
         <button
           className="lg:hidden text-muted-foreground hover:text-foreground p-2 hover:bg-muted rounded-lg transition-colors duration-200"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          aria-label={mobileOpen ? common("a11y.closeMenu") : common("a11y.openMenu")}
           aria-expanded={mobileOpen}
           aria-controls="mobile-navigation-drawer"
         >
@@ -140,7 +229,7 @@ export default function Navbar() {
       <div
         id="mobile-navigation-drawer"
         role="dialog"
-        aria-label="Mobile navigation"
+        aria-label={common("a11y.mobileNavigation")}
         aria-hidden={!mobileOpen}
         className={cn(
           "fixed top-0 bottom-0 left-0 z-[60] h-dvh max-h-dvh w-[min(22rem,calc(100vw-1rem))] overflow-y-auto overscroll-contain lg:hidden flex flex-col gap-1 border-r border-border/60 bg-background px-4 pb-6 pt-[20px] shadow-2xl transition-all duration-300 ease-out sm:px-6 sm:pt-28",
@@ -153,7 +242,7 @@ export default function Navbar() {
           <Link
             to="/"
             className="shrink-0 flex items-center"
-            aria-label="Tech Tools home"
+            aria-label={common("a11y.techToolsHome")}
             onClick={() => setMobileOpen(false)}
           >
             <Image
@@ -170,14 +259,14 @@ export default function Navbar() {
             type="button"
             onClick={() => setMobileOpen(false)}
             className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-            aria-label="Close menu"
+            aria-label={common("a11y.closeMenu")}
           >
             <X size={22} />
           </button>
         </div>
 
         {navLinks.map((link) => {
-            const isActive = location.pathname === link.href;
+            const isActive = currentPath === link.href;
             return (
               <Link
                 key={link.href}
@@ -199,11 +288,13 @@ export default function Navbar() {
               onClick={() => setMobileOpen(false)}
             >
               <ShieldAlert size={16} />
-              Admin
+              {t("admin")}
             </Link>
           )}
 
           <div className="flex flex-col gap-3 pt-4 mt-3 border-t border-border/60">
+            <LanguageSelector mobile />
+
             {user ? (
               <button
                 onClick={() => {
@@ -213,7 +304,7 @@ export default function Navbar() {
                 className="text-center py-2.5 rounded-full bg-muted text-foreground hover:bg-muted/70 text-sm font-semibold transition-all flex items-center justify-center gap-2"
               >
                 <LogOut size={16} />
-                <span className="text-xs sm:text-sm">Sign Out</span>
+                <span className="text-xs sm:text-sm">{t("signOut")}</span>
               </button>
             ) : (
               <Link
@@ -222,16 +313,16 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
               >
                 <LogIn size={16} />
-                Sign In
+                {t("signIn")}
               </Link>
             )}
 
             <Link
-              to="/contact-us"
+              to={routes("contact")}
               className="text-center py-3 rounded-full brand-gradient text-white text-sm font-semibold hover:shadow-lg transition-all"
               onClick={() => setMobileOpen(false)}
             >
-              Contact
+              {t("links.contact")}
             </Link>
           </div>
         </div>

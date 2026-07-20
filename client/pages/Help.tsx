@@ -5,27 +5,29 @@ import SEO from "@/components/SEO";
 import { HelpCircle, Search, Mail, BookOpen, ChevronDown, Users } from "lucide-react";
 import { StaggerList } from "@/components/StaggerList";
 import { Badge } from "@/components/ui/Badge";
+import { useTranslations } from "next-intl";
 
 export default function Help() {
+  const t = useTranslations("Help");
   const [search, setSearch] = useState("");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const faqs = [
     {
-      q: "Are the productivity tools safe to use?",
-      a: "Yes! All calculation, formatting, QR encoding, and color picking processes run fully in your own web browser. Your confidential information never leaves your device or gets saved on external servers.",
+      q: t("faqs.safe.question"),
+      a: t("faqs.safe.answer"),
     },
     {
-      q: "Can I use TechTools without an internet connection?",
-      a: "Yes! Because the utilities process client-side, the page can be fully loaded once, and core features like the Color Picker, Typing Test, and QR Generator will stay operational offline.",
+      q: t("faqs.offline.question"),
+      a: t("faqs.offline.answer"),
     },
     {
-      q: "How accurate is the Internet Speed Test?",
-      a: "It connects to edge locations to calculate latency, download metrics, and upload bandwidth. Results are highly precise but can vary slightly depending on network traffic or other apps running.",
+      q: t("faqs.accuracy.question"),
+      a: t("faqs.accuracy.answer"),
     },
     {
-      q: "How can I contact technical support?",
-      a: "Simply use our Contact Us form page or reach out directly via support@techtools.dev for assistance with bulk operations, API licenses, or reporting bugs.",
+      q: t("faqs.contact.question"),
+      a: t("faqs.contact.answer"),
     }
   ];
 
@@ -37,9 +39,9 @@ export default function Help() {
   return (
     <div className="min-h-screen bg-transparent text-foreground">
       <SEO
-        title="Help & Frequently Asked Questions"
-        description="Get instant help, read user manuals, review FAQs, and connect with technical support."
-        keywords="help, support, user guide, faq, tech tools help"
+        title={t("meta.title")}
+        description={t("meta.description")}
+        keywords={t("meta.keywords")}
       />
 
       <main className="section-py section-px">
@@ -48,13 +50,13 @@ export default function Help() {
           <div className="mb-12 text-center max-w-2xl mx-auto space-y-4 animate-fade-in">
             <Badge className="inline-flex items-center gap-2">
               <HelpCircle className="w-4 h-4" />
-              Support Center
+              {t("badge")}
             </Badge>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight gradient-text">
-              How Can We Help?
+              {t("title")}
             </h1>
             <p className="text-base text-muted-foreground">
-              Search our self-help articles, explore documentation guidelines, or get in touch with our tech specialists.
+              {t("description")}
             </p>
 
             {/* Support search input */}
@@ -63,7 +65,7 @@ export default function Help() {
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search resources, topics, or FAQs..."
+                placeholder={t("searchPlaceholder")}
                 className="input-modern w-full pl-12"
               />
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
@@ -74,7 +76,7 @@ export default function Help() {
             {/* FAQs Accordion */}
             <div className="lg:col-span-8 space-y-4 animate-slide-up">
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                <BookOpen className="w-6 h-6 text-primary" /> Frequently Asked Questions
+                <BookOpen className="w-6 h-6 text-primary" /> {t("faqTitle")}
               </h2>
 
               {filteredFaqs.length > 0 ? (
@@ -105,7 +107,7 @@ export default function Help() {
                 </StaggerList>
               ) : (
                 <div className="premium-card rounded-xl p-8 text-center text-muted-foreground border border-border/40">
-                  No results found matching "{search}". Try checking different keywords.
+                  {t("noResults", { search })}
                 </div>
               )}
             </div>
@@ -114,27 +116,27 @@ export default function Help() {
             <div className="lg:col-span-4 space-y-6 animate-slide-down">
               <div className="premium-card p-6 rounded-xl border border-border/40 hover:shadow-lg transition-all">
                 <Mail className="w-8 h-8 text-primary mb-4" />
-                <h3 className="font-bold text-lg mb-2">Still Have Questions?</h3>
+                <h3 className="font-bold text-lg mb-2">{t("stillQuestions")}</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed mb-6">
-                  Our professional support team is ready to assist you. Receive custom guides, license options, or setup parameters.
+                  {t("stillQuestionsText")}
                 </p>
                 <a
                   href="/contact-us"
                   className="inline-flex items-center justify-center w-full px-4 py-2 rounded-lg brand-gradient text-white font-semibold text-sm hover:brightness-110 transition-all"
                 >
-                  Submit Support Ticket
+                  {t("submitTicket")}
                 </a>
               </div>
 
               <div className="premium-card p-6 rounded-xl space-y-4 border border-border/40 hover:shadow-lg transition-all">
-                <h3 className="font-bold text-base">Community Support</h3>
+                <h3 className="font-bold text-base">{t("community")}</h3>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <Users className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold">Developer Discord Forum</h4>
-                    <p className="text-xs text-muted-foreground">Join 1,200+ online utilities members</p>
+                    <h4 className="text-xs font-bold">{t("discord")}</h4>
+                    <p className="text-xs text-muted-foreground">{t("communityMembers")}</p>
                   </div>
                 </div>
               </div>

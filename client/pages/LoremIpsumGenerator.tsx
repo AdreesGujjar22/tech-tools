@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import SEO from "@/components/SEO";
 import { Download, Share2, Copy, Sparkles, Sliders, Check } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const LOREM_IPSUM_TEXT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
@@ -48,6 +49,7 @@ const generateLoremSentences = (count: number): string => {
 };
 
 export default function LoremIpsumGenerator() {
+  const t = useTranslations("Tools.LoremGenerator");
   const [loremText, setLoremText] = useState("");
   const [type, setType] = useState("paragraphs");
   const [count, setCount] = useState(5);
@@ -124,7 +126,7 @@ export default function LoremIpsumGenerator() {
               <span className="text-[#10A968] text-xs font-semibold tracking-wider uppercase">Premium Utility</span>
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight gradient-text">
-              Lorem Ipsum Generator
+              {t("title")}
             </h1>
             <p className="text-base text-[#4A6857]">
               Generate placeholder Lorem Ipsum text instantly for designs, mockups, and prototypes.
@@ -137,7 +139,7 @@ export default function LoremIpsumGenerator() {
             <div className="lg:col-span-7 glass-card-dark p-8 rounded-[24px] space-y-6">
               <div className="space-y-4">
                 <h3 className="text-md font-bold text-[#1F3A26] flex items-center gap-2">
-                  <Sliders className="w-4 h-4 text-[#10A968]" /> Customize Lorem Text
+                  <Sliders className="w-4 h-4 text-[#10A968]" /> {t("customize")}
                 </h3>
 
                 {/* Type Selection */}
@@ -214,7 +216,7 @@ export default function LoremIpsumGenerator() {
                   ) : (
                     <div className="flex flex-col items-center gap-2 text-gray-400 py-8">
                       <Sparkles className="w-12 h-12" />
-                      <span>Generating Lorem Ipsum...</span>
+                      <span>{t("generating")}</span>
                     </div>
                   )}
                 </div>
@@ -253,7 +255,7 @@ export default function LoremIpsumGenerator() {
                 )}
 
                 <span className="text-xs text-[#4A6857] max-w-[280px]">
-                  All processing is conducted safely in-browser. Perfect for mockups, designs, and prototypes.
+                  {t("privacy")}
                 </span>
               </div>
             </div>

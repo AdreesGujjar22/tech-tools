@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import { IMAGE_TOOLS, getImageToolIcon } from "./toolsData";
 import { logImageToolUsage, checkImageToolEnabled } from "./utils";
 import JSZip from "jszip";
@@ -76,6 +77,9 @@ export default function ToolShell({
   onProcessFile
 }: ToolShellProps) {
   const tool = IMAGE_TOOLS.find((t) => t.id === toolId);
+  const t = useTranslations("Tools.shared");
+  const catalog = useTranslations("ToolCatalog");
+  const toolKey = toolId.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
   const [isEnabled, setIsEnabled] = useState<boolean | null>(null);
   const [stage, setStage] = useState<"select" | "config" | "processing" | "success">("select");
   const [files, setFiles] = useState<File[]>([]);
@@ -121,10 +125,10 @@ export default function ToolShell({
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-6">
         <AlertTriangle className="w-16 h-16 text-[#10A968] mb-4 animate-bounce" />
-        <h1 className="text-2xl font-bold tracking-tight text-[#1F3A26] mb-2">Tool Not Found</h1>
-        <p className="text-[#4A6857] mb-6 max-w-sm">The requested Image tool does not exist.</p>
+        <h1 className="text-2xl font-bold tracking-tight text-[#1F3A26] mb-2">{t("toolNotFound")}</h1>
+        <p className="text-[#4A6857] mb-6 max-w-sm">{t("imageToolMissing")}</p>
         <Link to="/iloveimg" className="px-6 py-2 bg-[#10A968] hover:bg-[#0d8f56] text-white rounded-xl font-semibold transition cursor-pointer">
-          Return to Hub
+          {t("returnToHub")}
         </Link>
       </div>
     );
@@ -134,12 +138,12 @@ export default function ToolShell({
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-6">
         <AlertTriangle className="w-16 h-16 text-amber-500 mb-4 animate-bounce" />
-        <h1 className="text-2xl font-bold tracking-tight text-[#1F3A26] mb-2">Tool Temporarily Offline</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-[#1F3A26] mb-2">{t("temporarilyOffline")}</h1>
         <p className="text-[#4A6857] max-w-sm mb-6 leading-relaxed text-sm">
-          The <span className="font-semibold text-[#2D4D35]">[{tool.name}]</span> tool has been temporarily disabled by the administrator. Please check back later.
+          {t("disabled", { toolName: catalog(`Image.${toolKey}.name`) })}
         </p>
         <Link to="/iloveimg" className="px-5 py-2.5 bg-[#E8F0E8] hover:bg-[#D4E8D8] text-[#2D4D35] font-medium rounded-xl transition duration-200 border border-[#C5DCC9]">
-          Back to Hub
+          {t("backToHub")}
         </Link>
       </div>
     );
@@ -154,7 +158,7 @@ export default function ToolShell({
       const ext = "." + file.name.split(".").pop()?.toLowerCase();
       const isAllowed = allowedExtensions.includes(ext) || allowedExtensions.includes("*");
       if (!isAllowed) {
-        toast.error(`Invalid extension for "${file.name}". Supported: ${allowedExtensions.join(", ")}`);
+        toast.error(t("invalidFileExtension", { fileName: file.name, extensions: allowedExtensions.join(", ") }));
       }
       return isAllowed;
     });
@@ -220,7 +224,7 @@ export default function ToolShell({
     if (files.length === 0) return;
     setStage("processing");
     setProgress(0);
-    setProgressMsg("Preparing compiler pipeline...");
+    setProgressMsg(t("preparingPipeline"));
     
     const results: ProcessedFileResult[] = [];
     
@@ -233,7 +237,7 @@ export default function ToolShell({
           const totalBase = i * stepWeight;
           const totalPercent = Math.min(Math.round(totalBase + (itemPercent * stepWeight / 100)), 95);
           setProgress(totalPercent);
-          setProgressMsg(msg || `Processing image [${i+1}/${files.length}]: ${file.name}`);
+          setProgressMsg(msg || t("processingImage", { current: i + 1, total: files.length, fileName: file.name }));
         };
         
         try {
@@ -263,7 +267,7 @@ export default function ToolShell({
       }
 
       setProgress(100);
-      setProgressMsg("Finished compilation processing!");
+      setProgressMsg(t("finishedCompilation"));
       setProcessedResults(results);
       
       // If single file, create instant url
@@ -276,7 +280,7 @@ export default function ToolShell({
       }
       
       setStage("success");
-      toast.success("Images compiled fully in-browser!");
+      toast.success(t("imagesCompiled"));
     } catch (err: any) {
       toast.error(err.message || "An error occurred during compilation.");
       setStage("config");
@@ -353,7 +357,7 @@ export default function ToolShell({
           className="inline-flex items-center gap-2 text-sm text-[#4A6857] hover:text-[#2D4D35] font-medium transition cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" />
-          Back to Image Dashboard
+          {t("backToImageDashboard")}
         </Link>
       </div>
 
@@ -366,10 +370,10 @@ export default function ToolShell({
             </div>
             <div>
               <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1F3A26] tracking-tight leading-none mb-2">
-                {tool.name}
+                {catalog(`Image.${toolKey}.name`)}
               </h1>
               <p className="text-[#4A6857] text-sm leading-relaxed max-w-2xl">
-                {tool.longDesc}
+                {catalog(`Image.${toolKey}.long`)}
               </p>
             </div>
           </div>
@@ -408,10 +412,10 @@ export default function ToolShell({
 
                 <div className="space-y-3 relative z-10 max-w-sm">
                   <h3 className="text-[#1F3A26] font-bold text-lg group-hover:text-[#10A968] transition">
-                    {allowMultiple ? "Drag & drop your images" : "Drag & drop an image"}
+                    {allowMultiple ? t("dragImages") : t("dragImage")}
                   </h3>
                   <p className="text-[#4A6857] text-sm leading-relaxed group-hover:text-[#2D4D35] transition">
-                    or <span className="text-[#10A968] font-semibold cursor-pointer hover:text-[#0d8f56]">click to browse</span> your files
+                    {t("orBrowse")} <span className="text-[#10A968] font-semibold cursor-pointer hover:text-[#0d8f56]">{t("browse")}</span> {t("yourFiles")}
                   </p>
                   <div className="flex flex-wrap gap-1 text-3xs text-[#999B99] font-mono mt-2 pt-1 border-t border-[#C5DCC9]">
                     {allowedExtensions.map((ext) => (
@@ -425,7 +429,7 @@ export default function ToolShell({
                 {/* Secure Containment Badge */}
                 <div className="absolute bottom-4 flex items-center gap-2 bg-[#F0F7F0]/80 backdrop-blur-sm p-2 px-3 border border-[#C5DCC9] rounded-full hover:border-[#10A968]/50 hover:bg-[#E8F0E8] transition">
                   <Lock className="w-3 h-3 text-[#10A968] animate-pulse" />
-                  <span className="text-3xs text-[#4A6857] font-mono">Local processing • Private</span>
+                  <span className="text-3xs text-[#4A6857] font-mono">{t("localProcessing")}</span>
                 </div>
               </motion.div>
             )}
@@ -446,7 +450,7 @@ export default function ToolShell({
                         <Package className="w-4 h-4 text-[#10A968]" />
                       </div>
                       <div>
-                        <span className="text-sm font-semibold text-[#1F3A26] block">Files Ready</span>
+                        <span className="text-sm font-semibold text-[#1F3A26] block">{t("filesReady")}</span>
                         <span className="text-xs text-[#10A968] font-mono">
                           {files.length} file{files.length !== 1 ? 's' : ''}
                         </span>
@@ -458,7 +462,7 @@ export default function ToolShell({
                         className="flex items-center gap-2 text-sm text-[#10A968] hover:text-[#0d8f56] font-semibold hover:bg-[#10A968]/10 px-3 py-2 rounded-lg transition border border-transparent hover:border-[#10A968]/30 cursor-pointer active:scale-95"
                       >
                         <Plus className="w-4 h-4" />
-                        Add More
+                        {t("addMore")}
                       </button>
                     )}
                   </div>
@@ -492,7 +496,7 @@ export default function ToolShell({
                         <button
                           onClick={() => removeFile(index)}
                           className="p-2 text-[#4A6857] hover:text-red-600 hover:bg-red-100 rounded-lg transition cursor-pointer border border-transparent hover:border-red-300 shrink-0 ml-2"
-                          title="Remove file"
+                          title={t("removeFile")}
                         >
                           <X className="w-4 h-4" />
                         </button>
@@ -514,7 +518,7 @@ export default function ToolShell({
                     className="w-full py-3 bg-[#10A968] hover:bg-[#0d8f56] text-white font-bold text-sm rounded-xl transition shadow-lg shadow-[#10A968]/20 hover:shadow-[#10A968]/40 cursor-pointer border border-[#10A968]/20 hover:border-[#10A968]/50 active:scale-95 flex items-center justify-center gap-2"
                     >
                       <Zap className="w-4 h-4" />
-                      Process {files.length} {files.length > 1 ? "Files" : "File"}
+                      {t("processFiles", { count: files.length })}
                     </button>
                   </div>
                 </div>
@@ -536,7 +540,7 @@ export default function ToolShell({
                 </div>
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <Zap className="w-5 h-5 text-[#10A968]" />
-                  <h3 className="text-[#1F3A26] font-extrabold text-xl">Processing Your Images</h3>
+                  <h3 className="text-[#1F3A26] font-extrabold text-xl">{t("processingImages")}</h3>
                 </div>
                 <p className="text-[#4A6857] text-sm mb-8 max-w-sm mx-auto font-medium line-clamp-2">
                   {progressMsg}
@@ -556,7 +560,7 @@ export default function ToolShell({
                       {progress}%
                     </span>
                     <span className="text-2xs font-mono text-[#4A6857]">
-                      Optimizing quality & size...
+                      {t("optimizing")}
                     </span>
                   </div>
                 </div>
@@ -579,9 +583,9 @@ export default function ToolShell({
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-[#1F3A26] font-extrabold text-2xl">All Done!</h3>
+                    <h3 className="text-[#1F3A26] font-extrabold text-2xl">{t("allDone")}</h3>
                     <p className="text-[#10A968] text-sm mt-2 font-medium">
-                      {processedResults.length} {processedResults.length > 1 ? "files optimized" : "file optimized"} and ready to download
+                      {t("optimizedReady", { count: processedResults.length })}
                     </p>
                   </div>
 
@@ -594,12 +598,12 @@ export default function ToolShell({
                       {isZipping ? (
                         <>
                           <Loader2 className="w-4 h-4 animate-spin" />
-                          Creating package...
+                          {t("creatingPackage")}
                         </>
                       ) : (
                         <>
                           <Download className="w-4 h-4" />
-                          {processedResults.length > 1 ? "Download ZIP" : "Download Image"}
+                          {processedResults.length > 1 ? t("downloadZip") : t("downloadImage")}
                         </>
                       )}
                     </button>
@@ -608,7 +612,7 @@ export default function ToolShell({
                       className="px-6 py-3 bg-white hover:bg-[#F0F7F0] text-[#1F3A26] text-sm font-bold rounded-xl transition cursor-pointer border border-[#9CBDA2] hover:border-[#10A968] active:scale-95 flex items-center gap-2"
                     >
                       <RotateCw className="w-4 h-4" />
-                      Process More
+                      {t("processMore")}
                     </button>
                   </div>
                 </div>
@@ -691,7 +695,7 @@ export default function ToolShell({
                   exit={{ opacity: 0 }}
                   className="py-12 text-center text-xs text-[#4A6857] font-mono leading-relaxed"
                 >
-                  Please choose or drop image files onto the canvas to configure setting parameters.
+                  {t("chooseImageFiles")}
                 </motion.div>
               )}
 
@@ -708,7 +712,7 @@ export default function ToolShell({
                     onClick={handleProcessSubmit}
                     className="w-full py-3 bg-[#10A968] hover:bg-[#0d8f56] text-white font-bold text-sm rounded-xl transition shadow-lg shadow-[#10A968]/20 hover:shadow-[#10A968]/40 mt-4 cursor-pointer"
                   >
-                    Process {files.length} {files.length > 1 ? "Files" : "File"} Now
+                    {t("processFilesNow", { count: files.length })}
                   </button>
                 </motion.div>
               )}
@@ -721,29 +725,29 @@ export default function ToolShell({
                 >
                   <div className="p-4 bg-[#F0F7F0] border border-[#C5DCC9] rounded-2xl space-y-3.5">
                     <span className="text-2xs font-bold font-mono uppercase tracking-wider text-[#4A6857] block">
-                      Image Job Status Summary
+                      {t("jobStatusSummary")}
                     </span>
                     
                     <div className="flex justify-between items-center text-xs text-[#4A6857]">
-                      <span>Total Queue:</span>
-                      <span className="text-[#1F3A26] font-mono font-bold">{files.length} files</span>
+                      <span>{t("totalQueue")}:</span>
+                      <span className="text-[#1F3A26] font-mono font-bold">{t("fileCount", { count: files.length })}</span>
                     </div>
 
                     {stage === "success" && (
                       <>
                         <div className="flex justify-between items-center text-xs text-[#4A6857]">
-                          <span>Original size:</span>
+                          <span>{t("originalSizeLabel")}</span>
                           <span className="text-[#1F3A26] font-mono">{formatSize(originalTotalBytes)}</span>
                         </div>
                         <div className="flex justify-between items-center text-xs text-[#4A6857]">
-                          <span>Compiled size:</span>
+                          <span>{t("compiledSize")}</span>
                           <span className="text-[#1F3A26] font-mono">{formatSize(finalTotalBytes)}</span>
                         </div>
                         
                         {totalRatio > 0 && (
                           <div className="flex justify-between items-center text-xs text-[#4A6857] pt-2 border-t border-[#C5DCC9]">
                             <span className="text-[#10A968] font-semibold flex items-center gap-1">
-                              <TrendingDown className="w-3.5 h-3.5" /> Ratio Saved:
+                              <TrendingDown className="w-3.5 h-3.5" /> {t("ratioSaved")}
                             </span>
                             <span className="text-emerald-500 font-bold font-mono">-{totalRatio}%</span>
                           </div>
@@ -756,7 +760,7 @@ export default function ToolShell({
                     onClick={handleReset}
                     className="w-full py-2.5 bg-white hover:bg-[#F0F7F0] text-[#2D4D35] text-xs font-semibold rounded-xl border border-[#9CBDA2] hover:border-[#10A968] transition cursor-pointer"
                   >
-                    Clear and start over
+                    {t("clearAndStartOver")}
                   </button>
                 </motion.div>
               )}
@@ -770,22 +774,22 @@ export default function ToolShell({
                 <ShieldCheck className="w-4 h-4 text-[#10A968]" />
               </div>
               <div className="flex-1">
-                <span className="text-sm font-bold text-[#10A968] block">Technology Containment</span>
-                <span className="text-2xs text-[#4A6857] font-mono">Secure Local Processing</span>
+                <span className="text-sm font-bold text-[#10A968] block">{t("technologyContainment")}</span>
+                <span className="text-2xs text-[#4A6857] font-mono">{t("secureLocalProcessing")}</span>
               </div>
             </div>
             <div className="space-y-2.5">
               <div className="flex items-start gap-3 text-sm">
                 <Cpu className="w-4 h-4 text-[#10A968] shrink-0 mt-0.5" />
-                <p className="text-[#2D4D35] font-medium">All processing runs in your browser sandbox</p>
+                <p className="text-[#2D4D35] font-medium">{t("browserSandbox")}</p>
               </div>
               <div className="flex items-start gap-3 text-sm">
                 <Lock className="w-4 h-4 text-[#10A968] shrink-0 mt-0.5" />
-                <p className="text-[#2D4D35] font-medium">Zero data transmission to any server</p>
+                <p className="text-[#2D4D35] font-medium">{t("zeroDataTransmission")}</p>
               </div>
               <div className="flex items-start gap-3 text-sm">
                 <Wifi className="w-4 h-4 text-[#10A968] shrink-0 mt-0.5" />
-                <p className="text-[#2D4D35] font-medium">Works completely offline</p>
+                <p className="text-[#2D4D35] font-medium">{t("worksOffline")}</p>
               </div>
             </div>
           </div>

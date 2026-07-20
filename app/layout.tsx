@@ -1,8 +1,14 @@
-import React from "react";
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "@/global.css";
 import Providers from "@/components/Providers";
+import { messages } from "../messages";
+import { buildPageMetadata } from "@/lib/server-locale";
+
+const BASE_URL =
+  process.env.NEXT_PUBLIC_APP_URL || "https://www.ilovetechtools.com";
+
+const siteMetadata = messages.en.Metadata.site;
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -11,51 +17,34 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://www.ilovetechtools.com"),
-  
+  metadataBase: new URL(BASE_URL),
   title: {
-    default: "Tech Tools - Free Online PDF, Image & AI Tools",
+    default: siteMetadata.title,
     template: "%s | Tech Tools",
   },
-  
-  description: "Tech Tools provides free online PDF tools, image editing tools, AI-powered utilities, file converters, compressors, generators, and productivity solutions. Fast, secure, and easy to use.",
-  
-  keywords: [
-    "pdf tools",
-    "image tools",
-    "ai tools",
-    "merge pdf",
-    "split pdf",
-    "compress pdf",
-    "compress image",
-    "image converter",
-    "pdf converter",
-    "jpg to png",
-    "png to jpg",
-    "pdf to word",
-    "word to pdf",
-    "online tools",
-    "free tools",
-    "tech tools",
-    "file converter",
-    "document tools",
-    "image optimizer",
-    "seo tools",
-    "developer tools",
-    "productivity tools",
-    "free online utilities"
-  ],
-  
+  description: siteMetadata.description,
+  keywords: siteMetadata.keywords,
+
   icons: {
     icon: "/images/fav-icon.png",
     apple: "/images/fav-icon.png",
   },
-  
+
+  alternates: {
+    canonical: `${BASE_URL}/en`,
+    languages: {
+      en: `${BASE_URL}/en`,
+      es: `${BASE_URL}/es`,
+      "x-default": `${BASE_URL}/en`,
+    },
+  },
+
   openGraph: {
-    title: "Tech Tools - Free Online PDF, Image & AI Tools",
-    description: "Tech Tools provides free online PDF tools, image editing tools, AI-powered utilities, file converters, compressors, generators, and productivity solutions.",
+    title: siteMetadata.title,
+    description: siteMetadata.description,
     siteName: "Tech Tools",
     locale: "en_US",
+    alternateLocale: "es_ES",
     type: "website",
     images: [
       {
@@ -66,11 +55,11 @@ export const metadata: Metadata = {
       },
     ],
   },
-  
+
   twitter: {
     card: "summary_large_image",
-    title: "Tech Tools - Free Online PDF, Image & AI Tools",
-    description: "Free online PDF, image, and AI tools for everyone. Convert, compress, edit, and generate files instantly.",
+    title: siteMetadata.title,
+    description: siteMetadata.description,
     images: ["/images/web-logo.png"],
   },
 };
@@ -96,7 +85,7 @@ export default function RootLayout({
                   document.documentElement.classList.add(theme);
                 } catch (e) {}
               })();
-            `
+            `,
           }}
         />
       </head>

@@ -5,8 +5,10 @@ import SEO from "@/components/SEO";
 import Modal from "@/components/ui/Modal";
 import { toast } from "sonner";
 import { Download, Upload, Copy, Trash2, Check, Sparkles, Save, Plus, Settings, FileText, Edit2, Eye, HelpCircle, Copy as CopyIcon, Scissors, RotateCcw } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function NotePad() {
+  const t = useTranslations("Tools.Notepad");
   const [content, setContent] = useState("");
   const [fileName, setFileName] = useState("untitled.txt");
   const [copied, setCopied] = useState(false);
@@ -89,7 +91,7 @@ export default function NotePad() {
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       if (err instanceof Error && err.name === "NotAllowedError") {
-        toast.error("Copy was blocked. Select the text and use Ctrl+A, then Ctrl+C.");
+        toast.error(t("copyBlocked"));
       } else {
         console.error(err);
       }
@@ -132,7 +134,7 @@ export default function NotePad() {
         <button
           onClick={newNote}
           className="p-2 hover:bg-[#E8F0E8] rounded transition-colors"
-          title="New"
+          title={t("newNote")}
         >
           <Plus className="w-5 h-5" />
         </button>
@@ -140,14 +142,14 @@ export default function NotePad() {
           onClick={downloadNote}
           disabled={!content}
           className="p-2 hover:bg-[#E8F0E8] rounded transition-colors disabled:opacity-30"
-          title="Download"
+          title={t("download")}
         >
           <Download className="w-5 h-5" />
         </button>
         <button
           onClick={() => fileInputRef.current?.click()}
           className="p-2 hover:bg-[#E8F0E8] rounded transition-colors"
-          title="Open"
+          title={t("open")}
         >
           <Upload className="w-5 h-5" />
         </button>
@@ -155,7 +157,7 @@ export default function NotePad() {
           onClick={copyToClipboard}
           disabled={!content}
           className="p-2 hover:bg-[#E8F0E8] rounded transition-colors disabled:opacity-30"
-          title="Copy"
+          title={t("copy")}
         >
           <CopyIcon className="w-5 h-5" />
         </button>
@@ -163,11 +165,11 @@ export default function NotePad() {
           onClick={clearNote}
           disabled={!content}
           className="p-2 hover:bg-[#E8F0E8] rounded transition-colors disabled:opacity-30"
-          title="Clear"
+          title={t("clear")}
         >
           <Trash2 className="w-5 h-5" />
         </button>
-        <button className="p-2 hover:bg-[#E8F0E8] rounded transition-colors" title="Undo">
+        <button className="p-2 hover:bg-[#E8F0E8] rounded transition-colors" title={t("undo")}>
           <RotateCcw className="w-5 h-5" />
         </button>
       </div>
@@ -205,7 +207,7 @@ export default function NotePad() {
             ref={textareaRef}
             value={content}
             onChange={handleTextChange}
-            placeholder="Start typing your notes here..."
+            placeholder={t("placeholder")}
             className="relative w-full h-full px-4 pb-4 bg-transparent text-[#2D4D35] focus:outline-none resize-none font-mono text-sm border-0"
             spellCheck="false"
             style={{
@@ -220,12 +222,12 @@ export default function NotePad() {
       {/* Status Bar */}
       <div className="bg-[#F0F7F0] border-t border-[#C5DCC9] flex items-center h-8 px-4 gap-6 text-xs text-[#4A6857]">
         <div className="flex gap-4">
-          <span>Line {lineNumber}, Column {columnNumber}</span>
+          <span>{t("lineColumn", { line: lineNumber, column: columnNumber })}</span>
         </div>
         <div className="flex gap-4 ml-auto">
-          <span>Chars {charCount}, Words {wordCount}</span>
+          <span>{t("counts", { characters: charCount, words: wordCount })}</span>
           {autoSaveEnabled && lastSaved && (
-            <span className="text-[#10A968]">Auto-saved {lastSaved.toLocaleTimeString()}</span>
+            <span className="text-[#10A968]">{t("autoSaved", { time: lastSaved.toLocaleTimeString() })}</span>
           )}
         </div>
       </div>
@@ -242,7 +244,7 @@ export default function NotePad() {
       <Modal
         open={Boolean(pendingAction)}
         onOpenChange={(open) => !open && setPendingAction(null)}
-        title={pendingAction === "new" ? "Start a new note?" : "Clear this note?"}
+        title={pendingAction === "new" ? t("newNote") : t("clearNote")}
         footer={
           <>
             <button
@@ -250,22 +252,22 @@ export default function NotePad() {
               onClick={() => setPendingAction(null)}
               className="px-4 py-2 rounded-lg border border-[#C5DCC9] bg-white text-sm font-semibold text-[#2D4D35] hover:bg-[#F0F7F0] transition-colors"
             >
-              Cancel
+              {t("cancel")}
             </button>
             <button
               type="button"
               onClick={confirmPendingAction}
               className="px-4 py-2 rounded-lg bg-red-600 text-white text-sm font-semibold hover:bg-red-700 transition-colors"
             >
-              Continue
+              {t("continue")}
             </button>
           </>
         }
       >
         <p className="text-sm text-[#4A6857] leading-relaxed">
           {pendingAction === "new"
-            ? "Your current note will be lost. This action cannot be undone."
-            : "Your current note will be cleared. This action cannot be undone."}
+            ? t("newDescription")
+            : t("clearDescription")}
         </p>
       </Modal>
     </div>

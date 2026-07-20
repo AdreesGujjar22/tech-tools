@@ -5,113 +5,112 @@ import { useState } from "react";
 import { Search, Clock, Eye, Share2, Sparkles, ShieldCheck, ShieldCheck as ShieldIcon, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { StaggerList } from "@/components/StaggerList";
-
-const currentDate = new Intl.DateTimeFormat("en-US", {
-  month: "short",
-  day: "numeric",
-  year: "numeric",
-}).format(new Date());
+import { useTranslations } from "next-intl";
+import { useLocale } from "@/lib/locale";
 
 const qrItems = [
   {
     id: 5,
-    title: "PDF Tools Dashboard",
+    titleKey: "pdfDashboard",
     url: "/ilovepdf",
     type: "URL",
-    date: currentDate,
+
     preview: "/images/pdf.png",
   },
   {
     id: 6,
-    title: "Image Tools Dashboard",
+    titleKey: "imageDashboard",
     url: "/iloveimg",
     type: "URL",
-    date: currentDate,
+
     preview: "/images/image.png",
   },
   {
     id: 1,
-    title: "Internet Speed Testing",
+    titleKey: "speedTest",
     url: "/speed-test",
     type: "URL",
-    date: currentDate,
+
     preview: "/images/speed-test.png",
   },
   {
     id: 2,
-    title: "Typing Speed Results",
+    titleKey: "typingSpeed",
     url: "/typing-speed",
     type: "URL",
-    date: currentDate,
+
     preview: "/images/typing-speed.png",
   },
   {
     id: 3,
-    title: "Color Picker Palette",
+    titleKey: "colorPicker",
     url: "/color-picker",
     type: "URL",
-    date: currentDate,
+
     preview: "/images/color-picker.png",
   },
   {
     id: 4,
-    title: "QR Code Generator",
+    titleKey: "qrGenerator",
     url: "/qr-generator",
     type: "URL",
-    date: currentDate,
+
     preview: "/images/qr-code-generation.png",
   },
   {
     id: 7,
-    title: "Barcode Generator",
+    titleKey: "barcodeGenerator",
     url: "/barcode-generator",
     type: "URL",
-    date: currentDate,
+
     preview: "/images/bar-code-generation.png",
   },
   {
     id: 8,
-    title: "Barcode & QR Reader",
+    titleKey: "barcodeReader",
     url: "/barcode-reader",
     type: "URL",
-    date: currentDate,
+
     preview: "/images/qr-code-generation.png",
   },
   {
     id: 9,
-    title: "Password Generator",
+    titleKey: "passwordGenerator",
     url: "/password-generator",
     type: "URL",
-    date: currentDate,
+
     preview: "/images/password-generator.png",
   },
   {
     id: 9,
-    title: "Lorem Ipsum Generator",
+    titleKey: "loremGenerator",
     url: "/lorem-ipsum-generator",
     type: "URL",
-    date: currentDate,
+
     preview: "/images/lorem-ipsum-generator.png",
   },
   {
     id: 10,
-    title: "Emoji Picker & Copier",
+    titleKey: "emojiPicker",
     url: "/emoji-picker",
     type: "URL",
-    date: currentDate,
+
     preview: "/images/emoji-picker-copier.png",
   },
   {
     id: 11,
-    title: "Online NotePad",
+    titleKey: "notepad",
     url: "/notepad",
     type: "URL",
-    date: currentDate,
+
     preview: "/images/online-notepad.png",
   },
 ];
 
 export default function Index() {
+  const t = useTranslations("Home");
+  const common = useTranslations("Common");
+  const { locale } = useLocale();
   const [copied, setCopied] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
@@ -120,7 +119,7 @@ export default function Index() {
     e.stopPropagation();
     const shareData = {
       title: title,
-      text: "Check out this tool!",
+      text: common("messages.checkOutTool"),
       url: url,
     };
 
@@ -142,23 +141,33 @@ export default function Index() {
     } catch (err) {
       // Fallback: show alert if clipboard fails (e.g., document not focused)
       if (err instanceof Error && err.name === "NotAllowedError") {
-        alert("Link: " + shareData.url);
+        alert(common("messages.link", { url: shareData.url }));
       } else {
         console.error("Failed to copy link: ", err);
       }
     }
   };
 
-  const filteredItems = qrItems.filter((item) =>
+  const currentDate = new Intl.DateTimeFormat(locale === "es" ? "es-ES" : "en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date());
+  const localizedItems = qrItems.map((item) => ({
+    ...item,
+    title: t(`toolCards.${item.titleKey}`),
+    date: currentDate,
+  }));
+  const filteredItems = localizedItems.filter((item) =>
     item.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <div className="min-h-screen bg-transparent text-foreground">
       <SEO
-        title="Modern Online Productivity Utilities"
-        description="Fast, secure, and modern online tools for developers, creators, and daily digital workloads. Includes QR generation, typing speed test, internet speed test, color selector and more."
-        keywords="developer utilities, scan qr code, typing tutor, internet speed test, code snippet tools, secure online converter"
+        title={t("meta.title")}
+        description={t("meta.description")}
+        keywords={t("meta.keywords")}
       />
 
       {/* Hero Section */}
@@ -172,16 +181,16 @@ export default function Index() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 w-fit px-3 sm:px-4 py-2 rounded-full border border-white/20 bg-white/5 dark:bg-white/[0.03] backdrop-blur-sm">
               <Sparkles className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-primary" />
-              <span className="text-primary text-xs font-semibold tracking-wide uppercase">Next-Gen Tools</span>
+              <span className="text-primary text-xs font-semibold tracking-wide uppercase">{t("badge")}</span>
             </div>
 
             {/* Main Heading */}
             <div className="space-y-4 sm:space-y-5">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
-                All Your Essential <span className="gradient-text">Tech Tools</span> in One Place
+                {t("title")}
               </h1>
               <p className="text-base sm:text-lg text-muted-foreground max-w-lg leading-relaxed">
-                Fast, free, and modern online tools for developers, students, creators. Everything designed for speed and simplicity.
+                {t("description")}
               </p>
             </div>
 
@@ -191,20 +200,20 @@ export default function Index() {
                 to="#tools"
                 className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-2xl brand-gradient text-white text-sm sm:text-base font-semibold hover:shadow-lg hover:shadow-[#10A968]/30 transition-all"
               >
-                Start Tools
+                {t("startTools")}
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/about-us"
                 className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-2xl border border-[#C5DCC9] bg-[#F0F7F0] hover:bg-[#E8F0E8] text-[#2D4D35] text-sm sm:text-base font-semibold transition-all"
               >
-                Learn More
+                {common("actions.learnMore")}
               </Link>
             </div>
 
             {/* Short Intro Paragraph */}
             <p className="text-xs sm:text-sm text-muted-foreground max-w-lg leading-relaxed">
-              QR generators, speed tests, image converters, color pickers, developer tools — all in your browser, securely.
+              {t("intro")}
             </p>
           </div>
 
@@ -217,7 +226,7 @@ export default function Index() {
                 <div className="aspect-square rounded-2xl bg-white p-6 flex items-center justify-center">
                   <Image
                     src="/images/hero-section.png"
-                    alt="QR Code preview generated with TechTools"
+                    alt={t("previewAlt")}
                     width={400}
                     height={400}
                     priority
@@ -235,7 +244,7 @@ export default function Index() {
                 {/* Info Badge */}
                 <div className="absolute top-6 right-6 px-4 py-2 rounded-2xl border border-[#C5DCC9] bg-[#F0F7F0]/70 backdrop-blur-md flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-[#10A968]" />
-                  <span className="text-[#2D4D35] text-sm font-medium">AES-256 Encoded</span>
+                  <span className="text-[#2D4D35] text-sm font-medium">{t("encoded")}</span>
                 </div>
               </div>
             </div>
@@ -260,7 +269,7 @@ export default function Index() {
                   className="inline-flex items-center gap-2 px-3 py-1 pb-1.5 rounded-full bg-[#10A968]/10 border border-[#10A968]/20 text-[#10A968] text-xs font-semibold uppercase tracking-wider mb-6 animate-pulse"
                 >
                   <span className="w-1.5 h-1.5 bg-[#10A968] rounded-full" />
-                  All Utilities
+                  {common("labels.allUtilities")}
                 </motion.div>
 
                 <motion.h2
@@ -269,10 +278,7 @@ export default function Index() {
                   transition={{ delay: 0.1, duration: 0.4 }}
                   className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tighter text-[#1F3A26] mb-6"
                 >
-                  Every tool you need to <br className="hidden sm:inline" />
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#10A968] to-[#10A968]">
-                    optimize and master
-                  </span>
+                  {t("toolsTitle")}
                 </motion.h2>
 
                 <motion.p
@@ -281,7 +287,7 @@ export default function Index() {
                   transition={{ delay: 0.15, duration: 0.4 }}
                   className="text-[#4A6857]/80 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed mb-10"
                 >
-                  These are the following Tech tools we have. Click on any item to view details or export options.
+                  {t("toolsDescription")}
                 </motion.p>
 
                 {/* Interactive Search Grid Controls */}
@@ -296,7 +302,7 @@ export default function Index() {
                   </div>
                   <input
                     type="text"
-                    placeholder="Search tools (e.g., QR code, color picker)..."
+                    placeholder={t("searchPlaceholder")}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full bg-transparent border-0 ring-0 focus:outline-none focus:ring-0 p-3 text-sm text-[#2D4D35] placeholder-[#999B99] font-medium"
@@ -306,7 +312,7 @@ export default function Index() {
                       onClick={() => setSearchQuery("")}
                       className="p-1 px-2.5 text-xs text-[#4A6857] bg-[#E8F0E8] hover:bg-[#D4E8D8] border border-[#C5DCC9] rounded-xl transition cursor-pointer"
                     >
-                      Clear
+                      {common("actions.clear")}
                     </button>
                   )}
                 </motion.div>
@@ -316,7 +322,7 @@ export default function Index() {
             {/* Items Grid */}
             {filteredItems.length === 0 ? (
               <div className="premium-card p-12 text-center text-[#4A6857] mb-12 rounded-2xl border border-[#C5DCC9]/40 bg-white">
-                No tools matching your search criteria were found.
+                {t("noResults")}
               </div>
             ) : (
               <StaggerList staggerDelay={0.08} className="grid-auto-fit mb-12">
@@ -350,20 +356,20 @@ export default function Index() {
                     <div className="flex gap-2 mt-auto">
                       <button className="flex-1 py-2 rounded-lg bg-[#E8F0E8] text-[#2D4D35] font-semibold text-xs flex items-center justify-center gap-1.5 hover:bg-[#D4E8D8] transition-colors">
                         <Eye className="w-3.5 h-3.5" />
-                        View
+                        {common("actions.view")}
                       </button>
                       <div className="relative inline-block w-auto">
                         <button
                           onClick={(e) => handleShare(e, item.title, item.url)}
                           className="py-2 px-3 rounded-lg bg-[#E8F0E8] text-[#2D4D35] font-semibold text-xs hover:bg-[#D4E8D8] transition-colors flex items-center justify-center"
-                          aria-label="Share page"
+                          aria-label={common("a11y.sharePage")}
                         >
                           <Share2 className="w-3.5 h-3.5" />
                         </button>
 
                         {copied && (
                           <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-[10px] font-medium text-white bg-emerald-600 rounded shadow-md pointer-events-none animate-fade-in whitespace-nowrap">
-                            Copied Link!
+                            {common("messages.copiedLink")}
                           </div>
                         )}
                       </div>
@@ -378,15 +384,15 @@ export default function Index() {
               <div className="w-16 h-16 mx-auto flex items-center justify-center rounded-lg bg-[#F0F7F0] border border-[#C5DCC9]">
                 <Sparkles className="w-7 h-7 text-[#10A968]" />
               </div>
-              <h3 className="text-2xl font-bold text-[#1F3A26]">Ready for more?</h3>
+              <h3 className="text-2xl font-bold text-[#1F3A26]">{t("ctaTitle")}</h3>
               <p className="text-base text-[#4A6857] max-w-md mx-auto">
-                Let us know what you're looking for, and we'll build it!
+                {t("ctaDescription")}
               </p>
               <button
                 className="btn-primary mx-auto px-8"
                 onClick={() => navigate("/contact-us")}
               >
-                Contact us
+                {t("contactUs")}
               </button>
             </div>
           </div>

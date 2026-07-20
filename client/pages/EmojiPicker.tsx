@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import SEO from "@/components/SEO";
+import { useTranslations } from "next-intl";
 import { Copy, Search, Sparkles, Check, Heart, Smile, TrendingUp, Activity, Utensils, Lightbulb, Trophy, Rocket, Flag } from "lucide-react";
 
 // Emoji name mapping for search functionality
@@ -114,6 +115,7 @@ const EMOJI_CATEGORIES = {
 };
 
 export default function EmojiPicker() {
+  const t = useTranslations("Tools.EmojiPicker");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("smileys");
   const [copied, setCopied] = useState("");
@@ -190,7 +192,7 @@ export default function EmojiPicker() {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#6B7280]" />
               <input
                 type="text"
-                placeholder="Search emojis..."
+                placeholder={t("search")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 rounded-[12px] border border-[#C5DCC9] bg-white text-[#2D4D35] placeholder-[#999B99] focus:outline-none focus:border-[#10A968] text-sm"
@@ -281,8 +283,8 @@ export default function EmojiPicker() {
             ) : (
               <div className="text-center py-12">
                 <Sparkles className="w-16 h-16 text-[#6B7280] mx-auto mb-4 opacity-50" />
-                <p className="text-[#4A6857]">No emojis found</p>
-                <p className="text-sm text-[#6B7280] mt-2">Try a different search term</p>
+                <p className="text-[#4A6857]">{t("noEmojis")}</p>
+                <p className="text-sm text-[#6B7280] mt-2">{t("differentSearch")}</p>
               </div>
             )}
           </div>

@@ -3,8 +3,10 @@
 import { useState, useEffect, useRef } from "react";
 import SEO from "@/components/SEO";
 import { Download, Share2, Copy, Sparkles, RefreshCw, Sliders, Check, Eye, EyeOff, Zap } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function PasswordGenerator() {
+  const t = useTranslations("Tools.PasswordGenerator");
   const [password, setPassword] = useState("");
   const [length, setLength] = useState(16);
   const [uppercase, setUppercase] = useState(true);
@@ -108,7 +110,7 @@ export default function PasswordGenerator() {
               <span className="text-[#10A968] text-xs font-semibold tracking-wider uppercase">Premium Utility</span>
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight gradient-text">
-              Password Generator
+              {t("title")}
             </h1>
             <p className="text-base text-[#4A6857]">
               Create strong, random passwords instantly. Customize character types and length for maximum security.
@@ -326,7 +328,7 @@ export default function PasswordGenerator() {
                 )}
 
                 <span className="text-xs text-[#4A6857] max-w-[280px]">
-                  All processing is conducted safely in-browser. Your passwords are never stored or transmitted.
+                  {t("privacy")}
                 </span>
               </div>
             </div>

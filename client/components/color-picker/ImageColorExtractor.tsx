@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Upload, X, Copy, Check, Plus, Minus, Download, Image as ImageIcon } from "lucide-react";
 import { getAllColorFormats, rgbToHex } from "../../utils/color-picker/colorConversions";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 interface ExtractedColor {
   hex: string;
@@ -10,6 +11,7 @@ interface ExtractedColor {
 }
 
 export function ImageColorExtractor() {
+  const t = useTranslations("Tools.ColorPicker");
   const [image, setImage] = useState<string | null>(null);
   const [colors, setColors] = useState<ExtractedColor[]>([]);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
@@ -87,7 +89,7 @@ export function ImageColorExtractor() {
   const copyToClipboard = async (text: string, format: string) => {
     await navigator.clipboard.writeText(text);
     setCopiedFormat(format);
-    toast.success(`${format} copied!`);
+    toast.success(t("copied", { format }));
     setTimeout(() => setCopiedFormat(null), 2000);
   };
 

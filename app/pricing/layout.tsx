@@ -1,21 +1,8 @@
-import React from "react";
 import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/server-locale";
 
-export const metadata: Metadata = {
-  title: "Pricing - Tech Tools",
-  description: "Explore our pricing plans. Most of our tools are completely free, with premium options available.",
-  keywords: ["pricing", "plans", "premium", "subscriptions"],
-  openGraph: {
-    title: "Pricing - Tech Tools",
-    description: "Explore our pricing plans.",
-    type: "website",
-  },
-};
+export const metadata: Metadata = buildPageMetadata("/pricing", "pricing");
 
-export default function PricingLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function PricingLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }

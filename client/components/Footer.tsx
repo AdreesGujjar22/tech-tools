@@ -1,8 +1,12 @@
 import { Link } from "@/lib/router-compat";
 import { Github, Twitter, Globe, Heart } from "lucide-react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export default function Footer() {
+  const t = useTranslations("Footer");
+  const catalog = useTranslations("ToolCatalog");
+  const routes = useTranslations("Routes");
   return (
     <footer className="relative bg-gradient-to-b from-[#F0F7F0] to-white border-t border-[#C5DCC9] overflow-hidden">
       {/* Background visual accents */}
@@ -14,9 +18,9 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-6">
             <Link
-              to="/"
+              to={routes("home")}
               className="shrink-0 flex items-center gap-2 transition-opacity hover:opacity-80"
-              aria-label="Tech Tools home"
+              aria-label={t("social.website")}
             >
               <Image
                 src="/images/web-logo.png"
@@ -29,7 +33,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-[#4A6857] text-sm max-w-sm leading-relaxed">
-              Fast, secure, and modern online tools for developers, creators, and daily digital workloads. Sandboxed entirely inside your browser context for ultimate privacy configuration.
+              {t("description")}
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a
@@ -62,31 +66,31 @@ export default function Footer() {
 
           {/* Column 2: Quick Links */}
           <div className="space-y-4">
-            <h4 className="text-[#1F3A26] font-bold text-sm uppercase tracking-wider">Quick Links</h4>
+            <h4 className="text-[#1F3A26] font-bold text-sm uppercase tracking-wider">{t("quickLinks")}</h4>
             <ul className="space-y-2.5">
               <li>
-                <Link to="/" className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
-                  Home
+                <Link to={routes("home")} className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
+                  {t("home")}
                 </Link>
               </li>
               <li>
-                <Link to="/tools" className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
-                  Productivity Tools
+                <Link to={routes("tools")} className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
+                  {t("productivityTools")}
                 </Link>
               </li>
               <li>
-                <Link to="/about-us" className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
-                  About Us
+                <Link to={routes("about")} className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
+                  {t("aboutUs")}
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
-                  Latest Blog Insights
+                <Link to={routes("blog")} className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
+                  {t("latestBlogInsights")}
                 </Link>
               </li>
               <li>
-                <Link to="/pricing" className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
-                  Pricing Plans
+                <Link to={routes("pricing")} className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
+                  {t("pricingPlans")}
                 </Link>
               </li>
             </ul>
@@ -94,36 +98,36 @@ export default function Footer() {
 
           {/* Column 3: PDF Tools */}
           <div className="space-y-4">
-            <h4 className="text-[#1F3A26] font-bold text-sm uppercase tracking-wider">PDF Tools</h4>
+            <h4 className="text-[#1F3A26] font-bold text-sm uppercase tracking-wider">{t("pdfTools")}</h4>
             <ul className="space-y-2.5">
               <li>
-                <Link to="/ilovepdf" className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200 font-semibold">
-                  PDF Dashboard
+                <Link to={routes("pdf")} className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200 font-semibold">
+                  {t("pdfDashboard")}
                 </Link>
               </li>
               <li>
                 <Link to="/ilovepdf/merge-pdf" className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
-                  Merge PDF
+                  {catalog("Pdf.mergePdf.name")}
                 </Link>
               </li>
               <li>
                 <Link to="/ilovepdf/split-pdf" className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
-                  Split PDF
+                  {catalog("Pdf.splitPdf.name")}
                 </Link>
               </li>
               <li>
                 <Link to="/ilovepdf/compress-pdf" className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
-                  Compress PDF
+                  {catalog("Pdf.compressPdf.name")}
                 </Link>
               </li>
               <li>
                 <Link to="/ilovepdf/pdf-to-word" className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
-                  PDF to Word
+                  {catalog("Pdf.pdfToWord.name")}
                 </Link>
               </li>
               <li>
                 <Link to="/ilovepdf/word-to-pdf" className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
-                  Word to PDF
+                  {catalog("Pdf.wordToPdf.name")}
                 </Link>
               </li>
             </ul>
@@ -131,36 +135,36 @@ export default function Footer() {
 
           {/* Column 4: Image Tools */}
           <div className="space-y-4">
-            <h4 className="text-[#1F3A26] font-bold text-sm uppercase tracking-wider">Image Tools</h4>
+            <h4 className="text-[#1F3A26] font-bold text-sm uppercase tracking-wider">{t("imageTools")}</h4>
             <ul className="space-y-2.5">
               <li>
-                <Link to="/iloveimg" className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200 font-semibold">
-                  Image Dashboard
+                <Link to={routes("image")} className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200 font-semibold">
+                  {t("imageDashboard")}
                 </Link>
               </li>
               <li>
                 <Link to="/iloveimg/compress-image" className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
-                  Compress Image
+                  {catalog("Image.compressImage.name")}
                 </Link>
               </li>
               <li>
                 <Link to="/iloveimg/resize-image" className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
-                  Resize Image
+                  {catalog("Image.resizeImage.name")}
                 </Link>
               </li>
               <li>
                 <Link to="/iloveimg/crop-image" className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
-                  Crop Image
+                  {catalog("Image.cropImage.name")}
                 </Link>
               </li>
               <li>
                 <Link to="/iloveimg/image-converter" className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
-                  Image Converter
+                  {catalog("Image.imageToJpg.name")}
                 </Link>
               </li>
               <li>
                 <Link to="/iloveimg/background-remover" className="text-[#4A6857] hover:text-[#10A968] text-sm transition-colors duration-200">
-                  Background Remover
+                  {catalog("Image.removeBackground.name")}
                 </Link>
               </li>
             </ul>
@@ -170,14 +174,14 @@ export default function Footer() {
         {/* Bottom Legal bar */}
         <div className="pt-8 border-t border-[#C5DCC9] flex flex-col sm:flex-row items-center justify-between gap-4 text-[#4A6857]/80 text-xs font-medium">
           <div className="flex items-center gap-1.5">
-            <span>© {new Date().getFullYear()} TechTools. All rights reserved.</span>
+            <span>{t("allRightsReserved", { year: new Date().getFullYear() })}</span>
           </div>
           <div className="flex items-center gap-6">
-            <Link to="/privacy-policy" className="text-[#4A6857] hover:text-[#10A968] transition-colors duration-200">
-              Privacy Policy
+            <Link to={routes("privacy")} className="text-[#4A6857] hover:text-[#10A968] transition-colors duration-200">
+              {t("privacyPolicy")}
             </Link>
-            <Link to="/terms-and-conditions" className="text-[#4A6857] hover:text-[#10A968] transition-colors duration-200">
-              Terms & Conditions
+            <Link to={routes("terms")} className="text-[#4A6857] hover:text-[#10A968] transition-colors duration-200">
+              {t("termsConditions")}
             </Link>
           </div>
         </div>

@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import { PDF_TOOLS, getToolIcon } from "./toolsData";
 import { logPdfToolUsage, checkPdfToolEnabled } from "./utils";
 
@@ -51,6 +52,9 @@ export default function ToolShell({
   onProcess
 }: ToolShellProps) {
   const tool = PDF_TOOLS.find((t) => t.id === toolId);
+  const t = useTranslations("Tools.shared");
+  const catalog = useTranslations("ToolCatalog");
+  const toolKey = toolId.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
   const [isEnabled, setIsEnabled] = useState<boolean | null>(null);
   const [stage, setStage] = useState<"select" | "config" | "processing" | "success">("select");
   const [files, setFiles] = useState<File[]>([]);
@@ -90,10 +94,10 @@ export default function ToolShell({
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-6">
         <AlertTriangle className="w-16 h-16 text-red-500 mb-4" />
-        <h1 className="text-2xl font-semibold mb-2 text-[#1F3A26]">Tool Not Found</h1>
-        <p className="text-[#4A6857] mb-6">The requested PDF tool does not exist.</p>
+        <h1 className="text-2xl font-semibold mb-2 text-[#1F3A26]">{t("toolNotFound")}</h1>
+        <p className="text-[#4A6857] mb-6">{t("pdfToolMissing")}</p>
         <Link to="/ilovepdf" className="px-6 py-2 bg-[#10A968] text-white rounded-lg hover:bg-[#0d8f56] transition">
-          Return to Hub
+          {t("returnToHub")}
         </Link>
       </div>
     );
@@ -103,12 +107,12 @@ export default function ToolShell({
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-6">
         <AlertTriangle className="w-16 h-16 text-amber-500 mb-4 animate-bounce" />
-        <h1 className="text-2xl font-bold tracking-tight text-[#1F3A26] mb-2">Tool Temporarily Offline</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-[#1F3A26] mb-2">{t("temporarilyOffline")}</h1>
         <p className="text-[#4A6857] max-w-md mb-6 leading-relaxed">
-          The <span className="font-semibold text-[#2D4D35]">[{tool.name}]</span> tool has been temporarily disabled by the administrator. Please check back later or use other tools.
+          {t("disabled", { toolName: catalog(`Pdf.${toolKey}.name`) })}
         </p>
         <Link to="/ilovepdf" className="px-5 py-2.5 bg-[#E8F0E8] hover:bg-[#D4E8D8] text-[#2D4D35] font-medium rounded-xl transition duration-200 border border-[#C5DCC9]">
-          Back to Hub
+          {t("backToHub")}
         </Link>
       </div>
     );
@@ -123,7 +127,7 @@ export default function ToolShell({
       const ext = "." + file.name.split(".").pop()?.toLowerCase();
       const isAllowed = allowedExtensions.includes(ext) || allowedExtensions.includes("*");
       if (!isAllowed) {
-        toast.error(`Invalid extension for "${file.name}". Supported: ${allowedExtensions.join(", ")}`);
+        toast.error(t("invalidFileExtension", { fileName: file.name, extensions: allowedExtensions.join(", ") }));
       }
       return isAllowed;
     });
@@ -181,12 +185,12 @@ export default function ToolShell({
 
   const handleProcessAction = async () => {
     if (files.length === 0) {
-      toast.error("Please upload at least one file.");
+      toast.error(t("noFilesUploaded"));
       return;
     }
     
     setProgress(0);
-    setProgressMsg("Preparing streams...");
+    setProgressMsg(t("preparingStreams"));
     setStage("processing");
 
     let statusSuccess = false;
@@ -218,7 +222,7 @@ export default function ToolShell({
 
       setStage("success");
       statusSuccess = true;
-      toast.success(`${tool.name} completed successfully!`);
+      toast.success(t("toolCompleted", { toolName: catalog(`Pdf.${toolKey}.name`) }));
     } catch (err: any) {
       console.error(err);
       errMsg = err.message || "An exception occurred during PDF conversion process.";
@@ -260,15 +264,15 @@ export default function ToolShell({
           className="inline-flex items-center gap-2 text-sm text-[#4A6857] hover:text-[#2D4D35] transition group mb-4"
         >
           <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-          Back to all tools
+          {t("backToAllTools")}
         </Link>
         <div className="flex items-start gap-4 rounded-2xl border border-[#C5DCC9] bg-white p-5 shadow-sm">
           <div className="p-3.5 bg-[#E8F0E8] border border-[#C5DCC9] rounded-2xl text-[#10A968] shadow-sm shrink-0">
             <ToolIcon className="w-8 h-8" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold tracking-tight text-[#1F3A26] mb-2">{tool.name}</h1>
-            <p className="text-[#4A6857] max-w-2xl text-sm md:text-base leading-relaxed">{tool.longDesc}</p>
+            <h1 className="text-3xl font-bold tracking-tight text-[#1F3A26] mb-2">{catalog(`Pdf.${toolKey}.name`)}</h1>
+            <p className="text-[#4A6857] max-w-2xl text-sm md:text-base leading-relaxed">{catalog(`Pdf.${toolKey}.long`)}</p>
           </div>
         </div>
       </div>
@@ -307,11 +311,11 @@ export default function ToolShell({
             </div>
 
             <h3 className="text-xl font-semibold text-[#1F3A26] mb-2 text-center">
-              Drag & Drop your files here
+              {t("dragFiles")}
             </h3>
 
             <p className="text-[#4A6857] text-sm mb-6 text-center max-w-md leading-relaxed">
-              Accepting files: {allowedExtensions.join(", ")} (max {formatSize(50 * 1024 * 1024)})
+              {t("acceptingFiles", { extensions: allowedExtensions.join(", "), maxSize: formatSize(50 * 1024 * 1024) })}
             </p>
 
             <button
@@ -319,7 +323,7 @@ export default function ToolShell({
               id="select-files-btn"
               className="px-8 py-4 brand-gradient font-semibold text-white rounded-2xl hover:opacity-90 transition duration-200 shadow-lg shadow-[#10A968]/30 text-md active:scale-98 cursor-pointer"
             >
-              Select {allowMultiple ? "Files" : "File"}
+              {allowMultiple ? t("selectFiles") : t("selectFile")}
             </button>
           </motion.div>
         )}
@@ -338,14 +342,14 @@ export default function ToolShell({
             <div className="lg:col-span-2 space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="font-semibold text-[#1F3A26] flex items-center gap-2 text-lg">
-                  Loaded Files <span>({files.length})</span>
+                  {t("loadedFiles", { count: files.length })}
                 </h3>
                 {allowMultiple && files.length < maxFiles && (
                   <button
                     onClick={handleManualSelect}
                     className="text-sm text-[#10A968] hover:text-[#0d8f56] flex items-center gap-1.5 font-medium transition cursor-pointer"
                   >
-                    <Upload className="w-4 h-4" /> Add Files
+                    <Upload className="w-4 h-4" /> {t("addFiles")}
                   </button>
                 )}
               </div>
@@ -398,7 +402,7 @@ export default function ToolShell({
                   renderConfig(files, config, setConfig)
                 ) : (
                   <div className="py-4 text-center">
-                    <p className="text-sm text-[#4A6857]">Ready to build your output file stream.</p>
+                    <p className="text-sm text-[#4A6857]">{t("readyToBuild")}</p>
                   </div>
                 )}
               </div>
@@ -409,13 +413,13 @@ export default function ToolShell({
                   id="process-btn"
                   className="w-full py-4 brand-gradient font-semibold text-white rounded-2xl hover:opacity-90 transition duration-205 shadow-lg shadow-[#10A968]/30 flex items-center justify-center gap-2 text-md active:scale-98 cursor-pointer"
                 >
-                  {tool.name}
+                  {catalog(`Pdf.${toolKey}.name`)}
                 </button>
                 <button
                   onClick={resetAll}
                   className="w-full py-3 bg-[#E8F0E8] hover:bg-[#D4E8D8] border border-[#C5DCC9] hover:border-[#10A968]/50 hover:text-[#2D4D35] font-medium text-[#4A6857] rounded-2xl transition duration-200 cursor-pointer"
                 >
-                  Clear & Choose Different
+                  {t("clearAndChooseDifferent")}
                 </button>
               </div>
             </div>
@@ -433,9 +437,9 @@ export default function ToolShell({
           >
             <div className="flex flex-col items-center justify-center p-8">
               <Loader2 className="w-14 h-14 text-[#10A968] animate-spin mb-6" />
-              <h3 className="text-xl font-bold text-[#1F3A26] mb-2">Processing Document</h3>
+              <h3 className="text-xl font-bold text-[#1F3A26] mb-2">{t("processingDocument")}</h3>
               <p className="text-[#4A6857] text-sm max-w-sm mb-6 leading-relaxed">
-                {progressMsg || "Assembling document components, running cryptographic rendering and matrix scaling..."}
+                {progressMsg || t("assemblingDocument")}
               </p>
 
               {/* Progress visualizer */}
@@ -445,7 +449,7 @@ export default function ToolShell({
                   style={{ width: `${progress}%` }}
                 />
               </div>
-              <span className="text-xs text-[#999B99] font-mono">{progress}% Complete</span>
+              <span className="text-xs text-[#999B99] font-mono">{t("complete", { progress })}</span>
             </div>
           </motion.div>
         )}
@@ -469,9 +473,9 @@ export default function ToolShell({
                 <div className="absolute inset-0 bg-[#10A968]/10 blur-xl rounded-full" />
               </div>
 
-              <h3 className="text-2xl font-bold text-[#1F3A26] mb-2">Success! PDF is ready</h3>
+              <h3 className="text-2xl font-bold text-[#1F3A26] mb-2">{t("pdfReady")}</h3>
               <p className="text-[#4A6857] text-sm max-w-sm mb-8 leading-relaxed">
-                Your operation completed perfectly. You can download the processed container now.
+                {t("pdfReadyDescription")}
               </p>
 
               {downloadUrl && (
@@ -482,27 +486,27 @@ export default function ToolShell({
                   className="w-full inline-flex items-center justify-center gap-2.5 py-3.5 px-6 brand-gradient font-bold text-white rounded-2xl hover:opacity-90 transition duration-250 shadow-lg shadow-[#10A968]/30 text-sm active:scale-98 mb-6 whitespace-nowrap"
                 >
                   <Download className="w-5 h-5 flex-shrink-0" />
-                  Download File
+                  {t("downloadFile")}
                 </a>
               )}
 
               {savedBytes && (
                 <div className="w-full grid grid-cols-2 gap-4 bg-[#F0F7F0] border border-[#C5DCC9] rounded-2xl p-4 text-left font-mono text-xs mb-8">
                   <div>
-                    <span className="text-[#999B99] block mb-0.5">Original Size:</span>
+                    <span className="text-[#999B99] block mb-0.5">{t("originalSize")}</span>
                     <span className="text-[#2D4D35] font-semibold">{formatSize(savedBytes.original)}</span>
                   </div>
                   <div>
                     {savedBytes.ratio !== undefined ? (
                       <>
-                        <span className="text-[#999B99] block mb-0.5">Ratio Saved:</span>
+                        <span className="text-[#999B99] block mb-0.5">{t("ratioSaved")}</span>
                         <span className="text-[#10A968] font-semibold flex items-center gap-1">
                           <TrendingUp className="w-3.5 h-3.5" /> -{savedBytes.ratio}%
                         </span>
                       </>
                     ) : (
                       <>
-                        <span className="text-[#999B99] block mb-0.5">Final Size:</span>
+                        <span className="text-[#999B99] block mb-0.5">{t("finalSize")}</span>
                         <span className="text-[#2D4D35] font-semibold">{formatSize(savedBytes.final)}</span>
                       </>
                     )}
@@ -514,7 +518,7 @@ export default function ToolShell({
                 onClick={resetAll}
                 className="w-full py-3 bg-[#E8F0E8] hover:bg-[#D4E8D8] border border-[#C5DCC9] hover:border-[#10A968]/50 hover:text-[#2D4D35] font-semibold text-[#4A6857] rounded-2xl transition duration-200"
               >
-                Perform another action
+                {t("performAnother")}
               </button>
             </div>
           </motion.div>

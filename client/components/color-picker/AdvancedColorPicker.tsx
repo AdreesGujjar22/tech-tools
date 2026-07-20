@@ -3,8 +3,10 @@ import { motion } from "motion/react";
 import { Copy, Check, Share2 } from "lucide-react";
 import { hsvToRgb, rgbToHex, getAllColorFormats, ColorFormats } from "../../utils/color-picker/colorConversions";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 export function AdvancedColorPicker() {
+  const t = useTranslations("Tools.ColorPicker");
   const [hue, setHue] = useState(0);
   const [saturation, setSaturation] = useState(100);
   const [value, setValue] = useState(100);
@@ -89,7 +91,7 @@ export function AdvancedColorPicker() {
   const copyToClipboard = async (text: string, format: string) => {
     await navigator.clipboard.writeText(text);
     setCopiedFormat(format);
-    toast.success(`${format} copied!`);
+    toast.success(t("copied", { format }));
     setTimeout(() => setCopiedFormat(null), 2000);
   };
 

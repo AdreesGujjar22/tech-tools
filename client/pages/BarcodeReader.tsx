@@ -4,6 +4,7 @@ import { BrowserMultiFormatReader } from "@zxing/browser";
 import { ChangeEvent, DragEvent, useEffect, useRef, useState } from "react";
 import SEO from "@/components/SEO";
 import { Barcode, Camera, CheckCircle2, Clipboard, Copy, FileImage, ImageUp, LoaderCircle, RotateCcw, ScanLine, Square, Upload, XCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type DetectedCode = {
   rawValue: string;
@@ -25,6 +26,7 @@ declare global {
 const supportedFormats = ["qr_code", "code_128", "code_39", "code_93", "codabar", "ean_13", "ean_8", "itf", "upc_a", "upc_e", "data_matrix", "aztec", "pdf417"];
 
 export default function BarcodeReader() {
+  const t = useTranslations("Tools.BarcodeReader");
   const inputRef = useRef<HTMLInputElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -58,7 +60,7 @@ export default function BarcodeReader() {
 
   const scanImage = async (file: File) => {
     if (!file.type.match(/^image\/(png|jpeg|jpg)$/)) {
-      setError("Choose a PNG or JPG image containing a QR code or barcode.");
+      setError(t("invalidImage"));
       return;
     }
 
@@ -88,9 +90,9 @@ export default function BarcodeReader() {
         handleDetectedCode({ rawValue: code.getText(), format: String(code.getBarcodeFormat()).toLowerCase() });
         return;
       }
-      setError("No readable code was found. Try a clearer, higher-resolution image.");
+      setError(t("notFound"));
     } catch {
-      setError("We could not decode that image. Try a clearer QR code or barcode image.");
+      setError(t("decodeFailed"));
     } finally {
       setIsScanningImage(false);
     }

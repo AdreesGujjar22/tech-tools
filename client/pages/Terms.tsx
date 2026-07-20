@@ -4,8 +4,10 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { BookOpen, HelpCircle, FileText, CheckCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function Terms() {
+  const t = useTranslations("Legal.terms");
   return (
     <div className="min-h-screen bg-transparent text-foreground">
       <SEO
@@ -19,10 +21,10 @@ export default function Terms() {
           {/* Header */}
           <div className="border-b border-[#C5DCC9] pb-6">
             <h1 className="text-3xl lg:text-4xl font-bold leading-tight text-[#1F3A26] mb-2">
-              Terms & Conditions
+              {t("title")}
             </h1>
             <p className="text-sm text-[#4A6857]">
-              Effective June 5, 2026 • Legal Terms of Service
+              {t("effective")}
             </p>
           </div>
 

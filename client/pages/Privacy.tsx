@@ -4,8 +4,10 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Shield, Lock, Eye, Server, RefreshCw } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function Privacy() {
+  const t = useTranslations("Legal.privacy");
   return (
     <div className="min-h-screen bg-transparent text-foreground">
       <SEO
@@ -19,10 +21,10 @@ export default function Privacy() {
           {/* Header */}
           <div className="border-b border-[#C5DCC9] pb-6">
             <h1 className="text-3xl lg:text-4xl font-bold leading-tight text-[#1F3A26] mb-2">
-              Privacy Policy
+              {t("title")}
             </h1>
             <p className="text-sm text-[#4A6857]">
-              Updated June 5, 2026 • Real-time Compliance Statement
+              {t("updated")}
             </p>
           </div>
 
