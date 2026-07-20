@@ -13,8 +13,8 @@ export default function MainColorPicker() {
   const [activeTab, setActiveTab] = useState<Tab>("image");
 
   const tabs = [
-    { id: "image" as Tab, label: "Image", icon: ImageIcon },
-    { id: "picker" as Tab, label: "Color Picker", icon: Pipette },
+    { id: "image" as Tab, label: t("imageTab"), icon: ImageIcon },
+    { id: "picker" as Tab, label: t("title"), icon: Pipette },
   ];
 
   return (
@@ -23,7 +23,7 @@ export default function MainColorPicker() {
         <div className="mb-12">
           <h1 className="text-5xl lg:text-6xl font-bold mb-2 text-[#1F3A26]">{t("title")}</h1>
           <p className="text-lg text-[#4A6857] font-medium">
-            Extract beautiful color palettes from any image or fine-tune and copy individual colors with surgical precision.
+            {t("description")}
           </p>
         </div>
 

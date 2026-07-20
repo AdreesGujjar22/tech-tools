@@ -146,8 +146,8 @@ export default function BarcodeGenerator() {
   return (
     <div className="min-h-screen bg-transparent text-foreground">
       <SEO
-        title="Barcode Generator"
-        description="Generate barcodes instantly. Create CODE128, CODE39, EAN13, UPC, and more. Instant download and customization."
+        title={t("title")}
+        description={t("description")}
         keywords="barcode generator, create barcode, barcode maker, CODE128, EAN13, UPC"
       />
 
@@ -157,14 +157,12 @@ export default function BarcodeGenerator() {
           <div className="mb-12 text-center max-w-2xl mx-auto space-y-4">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(76,215,246,0.15)] bg-white">
               <Sparkles className="w-4 h-4 text-[#10A968]" />
-              <span className="text-[#10A968] text-xs font-semibold tracking-wider uppercase">Premium Utility</span>
+              <span className="text-[#10A968] text-xs font-semibold tracking-wider uppercase">{t("premium")}</span>
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight gradient-text">
-              Barcode Generator
+              {t("title")}
             </h1>
-            <p className="text-base text-[#4A6857]">
-              Instantly create barcodes in multiple formats for products, inventory, and logistics. Fully customizable and printable.
-            </p>
+            <p className="text-base text-[#4A6857]">{t("description")}</p>
           </div>
 
           {/* Generator Grid */}
@@ -172,9 +170,7 @@ export default function BarcodeGenerator() {
             {/* Left controls panel */}
             <div className="lg:col-span-7 glass-card-dark p-8 rounded-[24px] space-y-6">
               <div>
-                <label className="block text-sm font-semibold text-[#2D4D35] mb-2">
-                  Barcode Content (Numbers & Text)
-                </label>
+                <label className="block text-sm font-semibold text-[#2D4D35] mb-2">{t("contentLabel")}</label>
                 <div className="relative">
                   <textarea
                     value={text}
@@ -204,12 +200,12 @@ export default function BarcodeGenerator() {
               {/* Advanced Options */}
               <div className="border-t border-[#E0E0E0] pt-6 space-y-4">
                 <h3 className="text-md font-bold text-[#1F3A26] flex items-center gap-2">
-                  <Sliders className="w-4 h-4 text-[#10A968]" /> Customize Design Settings
+                  <Sliders className="w-4 h-4 text-[#10A968]" /> {t("customize")}
                 </h3>
 
                 {/* Barcode Format */}
                 <div>
-                  <label className="block text-xs text-[#4A6857] mb-2">Barcode Format</label>
+                  <label className="block text-xs text-[#4A6857] mb-2">{t("format")}</label>
                   <select
                     value={format}
                     onChange={(e) => setFormat(e.target.value)}
@@ -222,14 +218,14 @@ export default function BarcodeGenerator() {
                     ))}
                   </select>
                   <p className="text-xs text-[#4A6857] mt-2">
-                    Current format: <span className="text-[#10A968] font-semibold">{barcodeFormats.find(f => f.value === format)?.requirement}</span>
+                    {t("currentFormat")} <span className="text-[#10A968] font-semibold">{barcodeFormats.find(f => f.value === format)?.requirement}</span>
                   </p>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-4">
                   {/* Line Color */}
                   <div>
-                    <label className="block text-xs text-[#4A6857] mb-2">Barcode Color (Lines)</label>
+                    <label className="block text-xs text-[#4A6857] mb-2">{t("color")}</label>
                     <div className="flex gap-2">
                       <input
                         type="color"
@@ -248,7 +244,7 @@ export default function BarcodeGenerator() {
 
                   {/* Background Color */}
                   <div>
-                    <label className="block text-xs text-[#4A6857] mb-2">Background Color</label>
+                    <label className="block text-xs text-[#4A6857] mb-2">{t("background")}</label>
                     <div className="flex gap-2">
                       <input
                         type="color"
@@ -270,7 +266,7 @@ export default function BarcodeGenerator() {
                   {/* Width slider */}
                   <div>
                     <label className="block text-xs text-[#4A6857] mb-2">
-                      Line Width: <span className="text-[#10A968] font-semibold">{width}px</span>
+                      {t("lineWidth")}: <span className="text-[#10A968] font-semibold">{width}px</span>
                     </label>
                     <input
                       type="range"
@@ -285,7 +281,7 @@ export default function BarcodeGenerator() {
                   {/* Height slider */}
                   <div>
                     <label className="block text-xs text-[#4A6857] mb-2">
-                      Height: <span className="text-[#10A968] font-semibold">{height}px</span>
+                      {t("height")}: <span className="text-[#10A968] font-semibold">{height}px</span>
                     </label>
                     <input
                       type="range"
@@ -308,7 +304,7 @@ export default function BarcodeGenerator() {
                     className="w-4 h-4 cursor-pointer"
                   />
                   <label htmlFor="displayValue" className="text-xs text-[#4A6857] cursor-pointer">
-                    Display barcode value below image
+                    {t("displayValue")}
                   </label>
                 </div>
               </div>
@@ -317,14 +313,14 @@ export default function BarcodeGenerator() {
             {/* Right output preview */}
             <div className="lg:col-span-5 flex flex-col items-center">
               <div className="glass-card-dark p-8 rounded-[24px] w-full flex flex-col items-center gap-6 text-center">
-                <span className="text-[#2D4D35] text-sm font-semibold tracking-wider uppercase">Live Barcode Preview</span>
+                <span className="text-[#2D4D35] text-sm font-semibold tracking-wider uppercase">{t("preview")}</span>
 
                 {/* Error message */}
                 {error && (
                   <div className="w-full p-4 rounded-[12px] bg-red-500/20 border border-red-500/40 flex items-start gap-3">
                     <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
                     <div className="text-left">
-                      <p className="text-red-400 text-sm font-medium">Invalid Input</p>
+                      <p className="text-red-400 text-sm font-medium">{t("invalidInput")}</p>
                       <p className="text-red-300/80 text-xs mt-1">{error}</p>
                     </div>
                   </div>
@@ -335,12 +331,12 @@ export default function BarcodeGenerator() {
                   {isGenerating ? (
                     <div className="flex flex-col items-center gap-2 text-gray-500 py-8">
                       <ImageIcon className="w-12 h-12" />
-                      <span>Generating Barcode...</span>
+                      <span>{t("generating")}</span>
                     </div>
                   ) : error ? (
                     <div className="flex flex-col items-center gap-2 text-gray-500 py-8">
                       <AlertCircle className="w-12 h-12" />
-                      <span>Fix the input to generate</span>
+                      <span>{t("fixInput")}</span>
                     </div>
                   ) : (
                     <svg ref={svgRef} />
@@ -352,7 +348,7 @@ export default function BarcodeGenerator() {
                     onClick={downloadBarcode}
                     className="flex-1 py-3 px-4 rounded-[12px] brand-gradient text-white font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-95 transition-opacity"
                   >
-                    <Download className="w-4 h-4" /> Download PNG
+                    <Download className="w-4 h-4" /> {t("download")}
                   </button>
                   <button
                     onClick={async () => {

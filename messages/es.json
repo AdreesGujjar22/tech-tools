@@ -266,6 +266,11 @@
     }
   },
   "Help": {
+    "meta": {
+      "title": "Ayuda y preguntas frecuentes",
+      "description": "Obtén ayuda al instante, consulta manuales, revisa preguntas frecuentes y contacta con soporte técnico.",
+      "keywords": "ayuda, soporte, guía de usuario, preguntas frecuentes, ayuda de herramientas"
+    },
     "badge": "Centro de soporte",
     "title": "¿Cómo podemos ayudarte?",
     "description": "Busca artículos de ayuda, consulta la documentación o contacta con nuestros especialistas.",
@@ -276,7 +281,97 @@
     "submitTicket": "Enviar ticket de soporte",
     "community": "Soporte de la comunidad",
     "discord": "Foro de Discord para desarrolladores",
-    "communityMembers": "Únete a más de 1.200 miembros de utilidades online"
+    "communityMembers": "Únete a más de 1.200 miembros de utilidades online",
+    "stillQuestionsText": "Nuestro equipo de soporte profesional está listo para ayudarte. Recibe guías personalizadas, opciones de licencia o parámetros de configuración.",
+    "faqs": {
+      "safe": {
+        "question": "¿Es seguro utilizar las herramientas de productividad?",
+        "answer": "¡Sí! Todos los cálculos, formatos, códigos QR y procesos de selección de color se ejecutan directamente en tu navegador. Tu información confidencial nunca sale de tu dispositivo ni se guarda en servidores externos."
+      },
+      "offline": {
+        "question": "¿Puedo usar TechTools sin conexión a Internet?",
+        "answer": "¡Sí! Como las utilidades se procesan en el cliente, la página puede cargarse por completo una vez y funciones principales como el selector de color, la prueba de escritura y el generador de códigos QR seguirán funcionando sin conexión."
+      },
+      "accuracy": {
+        "question": "¿Qué tan precisa es la prueba de velocidad de Internet?",
+        "answer": "Se conecta a ubicaciones periféricas para calcular la latencia, la velocidad de descarga y el ancho de banda de subida. Los resultados son muy precisos, aunque pueden variar ligeramente según el tráfico de la red u otras aplicaciones activas."
+      },
+      "contact": {
+        "question": "¿Cómo puedo contactar con el soporte técnico?",
+        "answer": "Utiliza nuestro formulario de Contacto o escribe directamente a support@techtools.dev para recibir ayuda con operaciones masivas, licencias de API o informes de errores."
+      }
+    }
+  },
+  "Legal": {
+    "privacy": {
+      "meta": {
+        "title": "Política de privacidad",
+        "description": "Conoce cómo TechTools recopila, utiliza y protege los datos de tu navegador local.",
+        "keywords": "privacidad, términos, cookies, seguridad, almacenamiento del navegador"
+      },
+      "title": "Política de privacidad",
+      "updated": "Actualizado el 5 de junio de 2026 • Declaración de cumplimiento en tiempo real",
+      "clientSide": "100% en el navegador",
+      "noCookies": "Cero cookies de seguimiento",
+      "noDataSales": "No vendemos datos",
+      "sections": {
+        "scope": {
+          "title": "1. Alcance e integridad principal",
+          "paragraphs": [
+            "En TechTools, la privacidad del usuario es nuestra máxima prioridad. Esta política explica cómo nuestra interfaz gestiona los parámetros, datos o valores procesados mediante la prueba de velocidad de escritura, el selector de color y el generador de códigos QR.",
+            "Como nuestra plataforma funciona directamente en el navegador del usuario, no transmitimos, analizamos, sincronizamos ni vendemos textos, URL, imágenes subidas o muestras de pruebas a nuestros servidores."
+          ]
+        },
+        "cookies": {
+          "title": "2. Cookies y almacenamiento local",
+          "paragraphs": [
+            "Podemos utilizar el almacenamiento local estándar de HTML5 o claves seguras en tu dispositivo para guardar temporalmente preferencias como velocidades elegidas, historial de extracción de colores o temas personalizados.",
+            "Estos valores se guardan completamente en tu dispositivo y puedes eliminarlos en cualquier momento limpiando la caché del navegador. No utilizamos métricas persistentes de seguimiento."
+          ]
+        },
+        "thirdParty": {
+          "title": "3. Integraciones de terceros y envío",
+          "paragraphs": [
+            "Nuestros datos de contacto utilizan EmailJS. Al enviar correos o consultas mediante nuestros formularios, solo se entregan al equipo de soporte el nombre, el texto y los datos del remitente indicados. Ninguno de estos datos se almacena en nuestros servidores."
+          ]
+        },
+        "children": {
+          "title": "4. Protección de la privacidad infantil",
+          "paragraphs": [
+            "Como nuestras utilidades educativas y pruebas de diagnóstico no transmiten datos personales identificables, son seguras y adecuadas para usuarios de todas las edades, incluidos los menores de 13 años."
+          ]
+        }
+      }
+    },
+    "terms": {
+      "meta": {
+        "title": "Términos y condiciones",
+        "description": "Conoce nuestras directrices de uso digital, seguridad del servidor y cláusulas de cumplimiento.",
+        "keywords": "términos, condiciones, reglas, acuerdo, licencias"
+      },
+      "title": "Términos y condiciones",
+      "effective": "Vigentes desde el 5 de junio de 2026 • Términos legales del servicio",
+      "freeUse": "Uso general completamente gratuito",
+      "commercialUse": "Permisos comerciales y de impresión",
+      "sections": {
+        "acceptance": {
+          "title": "1. Aceptación del contrato",
+          "text": "Al abrir, consultar o interactuar con la aplicación web de TechTools, aceptas cumplir estos términos y condiciones legales del servicio. Si no estás de acuerdo, deja de utilizar nuestra plataforma digital inmediatamente."
+        },
+        "license": {
+          "title": "2. Licencia del software y las herramientas",
+          "text": "Te concedemos una licencia no exclusiva, intransferible y revocable para utilizar nuestras utilidades, como el selector de color, la prueba de velocidad de Internet, el generador de códigos QR y la prueba de escritura, con fines personales, educativos o profesionales. Las impresiones de alta resolución, imágenes descargadas y bloques de código exportados son tuyos para conservarlos, compartirlos y comercializarlos."
+        },
+        "acceptableUse": {
+          "title": "3. Política de uso aceptable",
+          "text": "Aceptas no intentar aplicar ingeniería inversa a nuestros patrones de código, distribuir cargas masivas de bots para interferir con nuestros formularios de correo ni insertar nuestras páginas en marcos ocultos con fines fraudulentos."
+        },
+        "warranty": {
+          "title": "4. Exención de garantías",
+          "text": "TODOS LOS SERVICIOS Y CALCULADORAS SE PROPORCIONAN TAL CUAL Y SEGÚN DISPONIBILIDAD, SIN GARANTÍAS EXPRESAS NI IMPLÍCITAS, INCLUIDAS, ENTRE OTRAS, LAS DE PUNTUALIDAD, ESTABILIDAD DEL RENDIMIENTO O EXACTITUD COMPLETA. TECHTOOLS NO SERÁ RESPONSABLE DE PÉRDIDAS DE DATOS, INTERRUPCIONES DE CONEXIÓN NI ACCIDENTES DERIVADOS DEL USO."
+        }
+      }
+    }
   },
   "NotFound": {
     "title": "Página no encontrada",
@@ -381,6 +476,7 @@
       }
     },
     "ColorPicker": {
+      "download": "Descargar",
       "title": "Selector de color",
       "description": "Extrae paletas de colores de cualquier imagen o ajusta y copia colores individuales con precisión.",
       "imageTab": "Imagen",
@@ -485,7 +581,40 @@
       "images": "Imágenes ({count})",
       "processAll": "Procesar todo"
     },
+    "BarcodeGenerator": {
+      "title": "Generador de códigos de barras",
+      "description": "Crea códigos de barras al instante en varios formatos para productos, inventario y logística. Totalmente personalizables e imprimibles.",
+      "premium": "Utilidad premium",
+      "currentFormat": "Formato actual:",
+      "contentLabel": "Contenido del código de barras (números y texto)",
+      "customize": "Personalizar diseño",
+      "format": "Formato del código de barras",
+      "color": "Color del código de barras (líneas)",
+      "background": "Color de fondo",
+      "lineWidth": "Ancho de línea",
+      "height": "Altura",
+      "displayValue": "Mostrar el valor debajo de la imagen",
+      "preview": "Vista previa del código de barras",
+      "invalidInput": "Entrada no válida",
+      "generating": "Generando código de barras...",
+      "fixInput": "Corrige la entrada para generar",
+      "download": "Descargar PNG"
+    },
+    "BarcodeReader": {
+      "description": "Sube una imagen de código o usa tu cámara para revelar al instante su URL, número de producto o texto."
+    },
+    "PasswordGenerator": {
+      "description": "Crea contraseñas seguras y aleatorias al instante. Personaliza los tipos de caracteres y la longitud para máxima seguridad.",
+      "premium": "Utilidad premium",
+      "characters": "caracteres",
+      "copied": "¡Copiado!",
+      "copy": "Copiar"
+    },
     "LoremGenerator": {
+      "description": "Genera texto Lorem Ipsum de relleno al instante para diseños, maquetas y prototipos.",
+      "premium": "Utilidad premium",
+      "copied": "¡Copiado!",
+      "copy": "Copiar",
       "privacy": "Todo el procesamiento se realiza de forma segura en el navegador. Perfecto para maquetas, diseños y prototipos."
     },
     "Notepad": {
@@ -526,6 +655,24 @@
       "noMatches": "No se encontraron herramientas",
       "noMatchesDescription": "No encontramos convertidores o herramientas que coincidan con tus parámetros. Comprueba los términos de búsqueda."
     }
+  },
+  "Blog": {
+    "eyebrow": "Perspectivas y artefactos",
+    "title": "El blog de la creación",
+    "description": "Investigaciones profundas, guías tácticas y diseños estructurales para potenciar tu ingeniería de software y tu flujo de trabajo visual.",
+    "search": "Buscar artículos, palabras clave y temas...",
+    "categoryAll": "Categoría: Todas",
+    "category": "Categoría: {name}",
+    "tagAll": "Etiqueta: Todas",
+    "tag": "Etiqueta: {name}",
+    "writePost": "Escribir un artículo",
+    "noArticles": "No se encontraron artículos",
+    "noArticlesDescription": "No encontramos artículos que coincidan con tus filtros. Intenta limpiarlos o escribe un nuevo artículo.",
+    "clearFilters": "Limpiar filtros",
+    "featured": "ARTÍCULO DESTACADO",
+    "readFull": "Leer artículo completo",
+    "searchResults": "Resultados de búsqueda ({count})",
+    "allArticles": "Todos los artículos"
   },
   "ToolCatalog": {
     "Pdf": {

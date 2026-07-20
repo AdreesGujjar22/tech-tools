@@ -85,10 +85,10 @@ export default function PasswordGenerator() {
     if (numbers) score += 1;
     if (symbols) score += 1;
 
-    if (score <= 2) return { score, label: "Weak", color: "bg-red-500" };
-    if (score <= 4) return { score, label: "Fair", color: "bg-yellow-500" };
-    if (score <= 5) return { score, label: "Good", color: "bg-blue-500" };
-    return { score, label: "Strong", color: "bg-green-500" };
+    if (score <= 2) return { score, label: t("weak"), color: "bg-red-500" };
+    if (score <= 4) return { score, label: t("fair"), color: "bg-yellow-500" };
+    if (score <= 5) return { score, label: t("good"), color: "bg-blue-500" };
+    return { score, label: t("strong"), color: "bg-green-500" };
   };
 
   const strength = strengthScore();
@@ -96,8 +96,8 @@ export default function PasswordGenerator() {
   return (
     <div className="min-h-screen bg-transparent text-foreground">
       <SEO
-        title="Password Generator"
-        description="Generate strong, random passwords instantly. Customize length, character types, and create secure passwords for all your accounts."
+        title={t("title")}
+        description={t("description")}
         keywords="password generator, strong password, random password, password maker, secure password"
       />
 
@@ -107,13 +107,13 @@ export default function PasswordGenerator() {
           <div className="mb-12 text-center max-w-2xl mx-auto space-y-4">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(76,215,246,0.15)] bg-white">
               <Sparkles className="w-4 h-4 text-[#10A968]" />
-              <span className="text-[#10A968] text-xs font-semibold tracking-wider uppercase">Premium Utility</span>
+              <span className="text-[#10A968] text-xs font-semibold tracking-wider uppercase">{t("premium")}</span>
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight gradient-text">
               {t("title")}
             </h1>
             <p className="text-base text-[#4A6857]">
-              Create strong, random passwords instantly. Customize character types and length for maximum security.
+              {t("description")}
             </p>
           </div>
 
@@ -124,13 +124,13 @@ export default function PasswordGenerator() {
               {/* Password Options */}
               <div className="space-y-4">
                 <h3 className="text-md font-bold text-[#1F3A26] flex items-center gap-2">
-                  <Sliders className="w-4 h-4 text-[#10A968]" /> Customize Password Settings
+                  <Sliders className="w-4 h-4 text-[#10A968]" /> {t("customize")}
                 </h3>
 
                 {/* Length Slider */}
                 <div>
                   <label className="block text-xs text-[#4A6857] mb-2">
-                    Password Length: <span className="text-[#10A968] font-semibold">{length} characters</span>
+                    {t("length")}: <span className="text-[#10A968] font-semibold">{length} {t("characters")}</span>
                   </label>
                   <input
                     type="range"
@@ -149,7 +149,7 @@ export default function PasswordGenerator() {
 
                 {/* Character Options */}
                 <div className="border-t border-[#E0E0E0] pt-4 space-y-3">
-                  <label className="block text-xs text-[#4A6857] font-semibold mb-3">Character Types</label>
+                  <label className="block text-xs text-[#4A6857] font-semibold mb-3">{t("characterTypes")}</label>
 
                   <div className="flex items-center gap-3">
                     <input
@@ -160,7 +160,7 @@ export default function PasswordGenerator() {
                       className="w-4 h-4 cursor-pointer"
                     />
                     <label htmlFor="uppercase" className="text-sm text-[#2D4D35] cursor-pointer">
-                      Uppercase (A-Z)
+                      {t("uppercase")}
                     </label>
                   </div>
 
@@ -173,7 +173,7 @@ export default function PasswordGenerator() {
                       className="w-4 h-4 cursor-pointer"
                     />
                     <label htmlFor="lowercase" className="text-sm text-[#2D4D35] cursor-pointer">
-                      Lowercase (a-z)
+                      {t("lowercase")}
                     </label>
                   </div>
 
@@ -186,7 +186,7 @@ export default function PasswordGenerator() {
                       className="w-4 h-4 cursor-pointer"
                     />
                     <label htmlFor="numbers" className="text-sm text-[#2D4D35] cursor-pointer">
-                      Numbers (0-9)
+                      {t("numbers")}
                     </label>
                   </div>
 
@@ -199,19 +199,19 @@ export default function PasswordGenerator() {
                       className="w-4 h-4 cursor-pointer"
                     />
                     <label htmlFor="symbols" className="text-sm text-[#2D4D35] cursor-pointer">
-                      Symbols (!@#$%^&*...)
+                      {t("symbols")}
                     </label>
                   </div>
                 </div>
 
                 {/* Custom Characters */}
                 <div className="border-t border-[#E0E0E0] pt-4">
-                  <label className="block text-xs text-[#4A6857] font-semibold mb-2">Custom Characters (Optional)</label>
+                  <label className="block text-xs text-[#4A6857] font-semibold mb-2">{t("customCharacters")}</label>
                   <input
                     type="text"
                     value={customChars}
                     onChange={(e) => setCustomChars(e.target.value)}
-                    placeholder="Add custom characters to include..."
+                    placeholder={t("customPlaceholder")}
                     className="w-full px-3 py-2 rounded-lg border border-[#E0E0E0] bg-white text-[#2D4D35] placeholder-[#999B99] focus:outline-none focus:border-[#4F46E5] text-sm"
                   />
                 </div>
@@ -226,7 +226,7 @@ export default function PasswordGenerator() {
                     className="w-4 h-4 cursor-pointer"
                   />
                   <label htmlFor="autoGenerate" className="text-xs text-[#4A6857] cursor-pointer">
-                    Auto-generate on change
+                    {t("autoGenerate")}
                   </label>
                 </div>
 
@@ -235,7 +235,7 @@ export default function PasswordGenerator() {
                   onClick={generatePassword}
                   className="w-full py-3 px-4 rounded-[12px] bg-gradient-indigo-cyan text-white font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-95 transition-opacity mt-6"
                 >
-                  <Zap className="w-4 h-4" /> {isAutoGenerate ? "Regenerate" : "Generate"} Password
+                  <Zap className="w-4 h-4" /> {isAutoGenerate ? t("regenerate") : t("generate")}
                 </button>
               </div>
             </div>
@@ -243,13 +243,13 @@ export default function PasswordGenerator() {
             {/* Right output preview */}
             <div className="lg:col-span-5 flex flex-col items-center">
               <div className="glass-card-dark p-8 rounded-[24px] w-full flex flex-col items-center gap-6 text-center">
-                <span className="text-[#2D4D35] text-sm font-semibold tracking-wider uppercase">Generated Password</span>
+                <span className="text-[#2D4D35] text-sm font-semibold tracking-wider uppercase">{t("generated")}</span>
 
                 {/* Strength Indicator */}
                 {password && (
                   <div className="w-full space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className="text-xs text-[#4A6857]">Password Strength</span>
+                      <span className="text-xs text-[#4A6857]">{t("strength")}</span>
                       <span className={`text-xs font-semibold px-2 py-1 rounded ${strength.color === 'bg-red-500' ? 'text-red-600' : strength.color === 'bg-yellow-500' ? 'text-yellow-600' : strength.color === 'bg-blue-500' ? 'text-[#10A968]' : 'text-[#10A968]'}`}>
                         {strength.label}
                       </span>
@@ -277,7 +277,7 @@ export default function PasswordGenerator() {
                         <button
                           onClick={() => setShowPassword(!showPassword)}
                           className="p-3 rounded-lg bg-[#E8F0E8] hover:bg-[#D4E8D8] text-[#4A6857] transition-colors"
-                          title={showPassword ? "Hide password" : "Show password"}
+                          title={showPassword ? t("hide") : t("show")}
                         >
                           {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                         </button>
@@ -289,7 +289,7 @@ export default function PasswordGenerator() {
                   ) : (
                     <div className="flex flex-col items-center gap-2 text-gray-400">
                       <Zap className="w-12 h-12" />
-                      <span>Click generate to create password</span>
+                      <span>{t("empty")}</span>
                     </div>
                   )}
                 </div>
@@ -302,11 +302,11 @@ export default function PasswordGenerator() {
                     >
                       {copied && copyType === "password" ? (
                         <>
-                          <Check className="w-4 h-4" /> Copied!
+                          <Check className="w-4 h-4" /> {t("copied")}
                         </>
                       ) : (
                         <>
-                          <Copy className="w-4 h-4" /> Copy
+                          <Copy className="w-4 h-4" /> {t("copy")}
                         </>
                       )}
                     </button>

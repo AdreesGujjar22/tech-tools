@@ -452,6 +452,11 @@
   },
   "Legal": {
     "privacy": {
+      "meta": {
+        "title": "Privacy Policy",
+        "description": "Learn how TechTools collects, uses, and protects your local browser details.",
+        "keywords": "privacy, terms, cookies, safety, browser storage"
+      },
       "title": "Privacy Policy",
       "updated": "Updated June 5, 2026 • Real-time Compliance Statement",
       "clientSide": "100% Client-Side",
@@ -487,6 +492,11 @@
       }
     },
     "terms": {
+      "meta": {
+        "title": "Terms & Conditions",
+        "description": "Learn about our digital user guidelines, server safety, and compliance clauses.",
+        "keywords": "terms, conditions, rules, agreement, licensing"
+      },
       "title": "Terms & Conditions",
       "effective": "Effective June 5, 2026 • Legal Terms of Service",
       "freeUse": "Fully free for general use",
@@ -645,6 +655,9 @@
     },
     "BarcodeGenerator": {
       "title": "Barcode Generator",
+      "description": "Instantly create barcodes in multiple formats for products, inventory, and logistics. Fully customizable and printable.",
+      "premium": "Premium Utility",
+      "currentFormat": "Current format:",
       "contentLabel": "Barcode Content (Numbers & Text)",
       "contentPlaceholder": "Enter barcode data...",
       "customize": "Customize Design Settings",
@@ -671,6 +684,7 @@
     },
     "BarcodeReader": {
       "title": "Barcode & QR Reader",
+      "description": "Upload a code image or use your camera to instantly reveal its URL, product number, or text.",
       "privacy": "Private browser scanning",
       "upload": "Upload & scan image",
       "uploadDescription": "PNG or JPG, processed on your device.",
@@ -697,6 +711,11 @@
     },
     "PasswordGenerator": {
       "title": "Password Generator",
+      "description": "Create strong, random passwords instantly. Customize character types and length for maximum security.",
+      "premium": "Premium Utility",
+      "characters": "characters",
+      "copied": "Copied!",
+      "copy": "Copy",
       "customize": "Customize Password Settings",
       "length": "Password Length",
       "characterTypes": "Character Types",
@@ -724,6 +743,10 @@
     },
     "LoremGenerator": {
       "title": "Lorem Ipsum Generator",
+      "description": "Generate placeholder Lorem Ipsum text instantly for designs, mockups, and prototypes.",
+      "premium": "Premium Utility",
+      "copied": "Copied!",
+      "copy": "Copy",
       "customize": "Customize Lorem Text",
       "generateType": "Generate Type",
       "paragraphs": "Paragraphs",
@@ -784,6 +807,7 @@
     },
     "ColorPicker": {
       "title": "Color Picker",
+      "download": "Download",
       "description": "Extract beautiful color palettes from any image or fine-tune and copy individual colors with surgical precision.",
       "imageTab": "Image",
       "imageExtractor": "Image Color Extractor",
@@ -852,6 +876,24 @@
       "wpmOverTime": "WPM over time",
       "newTest": "New Test"
     }
+  },
+  "Blog": {
+    "eyebrow": "Insights & Artifacts",
+    "title": "The Craft Blog",
+    "description": "In-depth investigations, tactical guides, and structural designs to supercharge your software engineering and visual workflow.",
+    "search": "Search articles, keywords, topics...",
+    "categoryAll": "Category: All",
+    "category": "Category: {name}",
+    "tagAll": "Tag: All",
+    "tag": "Tag: {name}",
+    "writePost": "Write New Post",
+    "noArticles": "No Articles Found",
+    "noArticlesDescription": "We couldn't find any articles matching your filters. Try clearing your filters or writing a new blog post.",
+    "clearFilters": "Clear Filters",
+    "featured": "FEATURED POST",
+    "readFull": "Read Full Post",
+    "searchResults": "Search Results ({count})",
+    "allArticles": "All Articles"
   },
   "ToolCatalog": {
     "Pdf": {

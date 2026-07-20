@@ -45,7 +45,7 @@ function LanguageSelector({ mobile = false }: LanguageSelectorProps) {
         aria-expanded={open}
         aria-haspopup="listbox"
       >
-        <span className="text-base leading-none" aria-hidden="true">{selectedLanguage.flag}</span>
+        <span className="text-xl leading-none select-none" aria-hidden="true">{selectedLanguage.flag}</span>
         <span className="text-xs font-semibold uppercase tracking-[0.12em]">{selectedLanguage.code}</span>
         <span className="text-xs font-medium text-muted-foreground">{selectedLanguage.label}</span>
         <ChevronDown className={cn("h-3.5 w-3.5 text-muted-foreground transition-transform", open && "rotate-180")} aria-hidden="true" />
@@ -77,7 +77,7 @@ function LanguageSelector({ mobile = false }: LanguageSelectorProps) {
                   : "text-muted-foreground hover:bg-muted/70 hover:text-foreground"
               )}
             >
-              <span className="text-base leading-none" aria-hidden="true">{language.flag}</span>
+              <span className="text-xl leading-none select-none" aria-hidden="true">{language.flag}</span>
               <span className="w-6 text-xs font-semibold uppercase tracking-[0.12em]">{language.code}</span>
               <span className="text-sm font-medium">{language.label}</span>
               {language.code === locale && <span className="ml-auto h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />}

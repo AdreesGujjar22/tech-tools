@@ -6,9 +6,11 @@ import { HelpCircle, Search, Mail, BookOpen, ChevronDown, Users } from "lucide-r
 import { StaggerList } from "@/components/StaggerList";
 import { Badge } from "@/components/ui/Badge";
 import { useTranslations } from "next-intl";
+import { useLocale } from "@/lib/locale";
 
 export default function Help() {
   const t = useTranslations("Help");
+  const { locale } = useLocale();
   const [search, setSearch] = useState("");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -36,8 +38,26 @@ export default function Help() {
     faq.a.toLowerCase().includes(search.toLowerCase())
   );
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: locale,
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-transparent text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <SEO
         title={t("meta.title")}
         description={t("meta.description")}

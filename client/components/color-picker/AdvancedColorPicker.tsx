@@ -130,7 +130,7 @@ export function AdvancedColorPicker() {
       className="rounded-2xl p-6 border border-[#C5DCC9] bg-white"
     >
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-semibold text-[#1F3A26]">Color Picker</h2>
+        <h2 className="text-2xl font-semibold text-[#1F3A26]">{t("title")}</h2>
         <button className="p-2 hover:bg-[#F0F7F0] rounded-lg transition-colors">
           <Share2 size={20} className="text-[#4A6857]" />
         </button>

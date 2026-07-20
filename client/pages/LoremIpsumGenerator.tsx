@@ -79,7 +79,7 @@ export default function LoremIpsumGenerator() {
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       if (err instanceof Error && err.name === "NotAllowedError") {
-        alert("Copy text manually from the text area");
+        alert(t("copyManual"));
       } else {
         console.error(err);
       }
@@ -112,8 +112,8 @@ export default function LoremIpsumGenerator() {
   return (
     <div className="min-h-screen bg-transparent text-foreground">
       <SEO
-        title="Lorem Ipsum Generator"
-        description="Generate placeholder Lorem Ipsum text instantly. Create paragraphs, sentences, or words for your designs and projects."
+        title={t("title")}
+        description={t("description")}
         keywords="lorem ipsum generator, placeholder text, lorem ipsum, dummy text, filler text"
       />
 
@@ -123,14 +123,12 @@ export default function LoremIpsumGenerator() {
           <div className="mb-12 text-center max-w-2xl mx-auto space-y-4">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(76,215,246,0.15)] bg-white">
               <Sparkles className="w-4 h-4 text-[#10A968]" />
-              <span className="text-[#10A968] text-xs font-semibold tracking-wider uppercase">Premium Utility</span>
+              <span className="text-[#10A968] text-xs font-semibold tracking-wider uppercase">{t("premium")}</span>
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight gradient-text">
               {t("title")}
             </h1>
-            <p className="text-base text-[#4A6857]">
-              Generate placeholder Lorem Ipsum text instantly for designs, mockups, and prototypes.
-            </p>
+            <p className="text-base text-[#4A6857]">{t("description")}</p>
           </div>
 
           {/* Generator Grid */}
@@ -144,12 +142,12 @@ export default function LoremIpsumGenerator() {
 
                 {/* Type Selection */}
                 <div>
-                  <label className="block text-xs text-[#4A6857] font-semibold mb-3">Generate Type</label>
+                  <label className="block text-xs text-[#4A6857] font-semibold mb-3">{t("generateType")}</label>
                   <div className="grid grid-cols-3 gap-3">
                     {[
-                      { value: "paragraphs", label: "Paragraphs" },
-                      { value: "sentences", label: "Sentences" },
-                      { value: "words", label: "Words" },
+                      { value: "paragraphs", label: t("paragraphs") },
+                      { value: "sentences", label: t("sentences") },
+                      { value: "words", label: t("words") },
                     ].map((opt) => (
                       <button
                         key={opt.value}
@@ -169,7 +167,7 @@ export default function LoremIpsumGenerator() {
                 {/* Count Slider */}
                 <div>
                   <label className="block text-xs text-[#4A6857] mb-2">
-                    Number of {type}: <span className="text-[#10A968] font-semibold">{count}</span>
+                    {t("numberOf", { type: t(type) })}: <span className="text-[#10A968] font-semibold">{count}</span>
                   </label>
                   <input
                     type="range"
@@ -189,11 +187,11 @@ export default function LoremIpsumGenerator() {
                 {/* Info */}
                 <div className="border-t border-[#E0E0E0] pt-4 space-y-2">
                   <div className="flex justify-between text-xs text-[#4A6857]">
-                    <span>Words:</span>
+                    <span>{t("wordCount")}</span>
                     <span className="text-[#10A968] font-semibold">{wordCount}</span>
                   </div>
                   <div className="flex justify-between text-xs text-[#4A6857]">
-                    <span>Characters:</span>
+                    <span>{t("characterCount")}</span>
                     <span className="text-[#10A968] font-semibold">{charCount}</span>
                   </div>
                 </div>
@@ -203,7 +201,7 @@ export default function LoremIpsumGenerator() {
             {/* Right output preview */}
             <div className="lg:col-span-5 flex flex-col items-center">
               <div className="glass-card-dark p-8 rounded-[24px] w-full flex flex-col items-center gap-6 text-center">
-                <span className="text-[#2D4D35] text-sm font-semibold tracking-wider uppercase">Generated Text</span>
+                <span className="text-[#2D4D35] text-sm font-semibold tracking-wider uppercase">{t("generatedText")}</span>
 
                 {/* Text output container */}
                 <div className="relative w-full rounded-[16px] bg-white p-4 flex items-center justify-center shadow-lg border border-[rgba(255,255,255,0.05)] overflow-auto min-h-[300px]">
@@ -229,25 +227,25 @@ export default function LoremIpsumGenerator() {
                     >
                       {copied ? (
                         <>
-                          <Check className="w-4 h-4" /> Copied!
+                          <Check className="w-4 h-4" /> {t("copied")}
                         </>
                       ) : (
                         <>
-                          <Copy className="w-4 h-4" /> Copy
+                          <Copy className="w-4 h-4" /> {t("copy")}
                         </>
                       )}
                     </button>
                     <button
                       onClick={downloadText}
                       className="px-4 py-3 rounded-[12px] border border-[#C5DCC9] bg-[#F0F7F0] hover:bg-[#E8F0E8] text-[#2D4D35] transition-colors"
-                      title="Download text"
+                      title={t("download")}
                     >
                       <Download className="w-4 h-4" />
                     </button>
                     <button
                       onClick={shareText}
                       className="px-4 py-3 rounded-[12px] border border-[#C5DCC9] bg-[#F0F7F0] hover:bg-[#E8F0E8] text-[#2D4D35] transition-colors"
-                      title="Share link"
+                      title={t("share")}
                     >
                       <Share2 className="w-4 h-4" />
                     </button>
