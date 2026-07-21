@@ -152,7 +152,7 @@ export default function BarcodeReader() {
       setIsCameraActive(true);
     } catch (cameraError) {
       const name = cameraError instanceof DOMException ? cameraError.name : "";
-      setError(name === "NotAllowedError" ? "Camera permission was blocked. Allow access in your browser settings and try again." : "We could not start the camera. Check that another app is not using it.");
+      setError(name === "NotAllowedError" ? t("cameraBlocked") : t("cameraFailed"));
       stopCamera();
     }
   };

@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { AtSign, Hash, Clock, Type, Quote, RotateCcw } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function TypingSpeed() {
+  const t = useTranslations("Tools.TypingSpeed");
   useEffect(() => {
     // inject script only once
     const script = document.createElement("script");
@@ -420,22 +422,22 @@ export default function TypingSpeed() {
   <!-- TOOLBAR -->
   <div class="toolbar" id="toolbar">
     <button class="tb-btn" id="tb-punct" onclick="toggleOption('punctuation')">
-      <svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><text x="9" y="15" font-size="8" fill="currentColor">@</text></svg> punctuation
+      <svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><text x="9" y="15" font-size="8" fill="currentColor">@</text></svg> ${t("punctuation")}
     </button>
     <button class="tb-btn" id="tb-numbers" onclick="toggleOption('numbers')">
-      <svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M9 9h6v6H9z"></path></svg> numbers
+      <svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M9 9h6v6H9z"></path></svg> ${t("numbers")}
     </button>
 
     <div class="toolbar-divider"></div>
 
     <button class="tb-btn active" id="mode-time" onclick="setMode('time')">
-      <svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> time
+      <svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> ${t("time")}
     </button>
     <button class="tb-btn" id="mode-words" onclick="setMode('words')">
-      <svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7h16M4 12h16M4 17h16"></polyline></svg> words
+      <svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7h16M4 12h16M4 17h16"></polyline></svg> ${t("words")}
     </button>
     <button class="tb-btn" id="mode-quote" onclick="setMode('quote')">
-      <svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-4-4-7-4s-4 2.75-4 4c0 5 4 1 4 8s0 7-4 7z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-4-4-7-4s-4 2.75-4 4c0 5 4 1 4 8s0 7-4 7z"></path></svg> quote
+      <svg class="tb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-4-4-7-4s-4 2.75-4 4c0 5 4 1 4 8s0 7-4 7z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-4-4-7-4s-4 2.75-4 4c0 5 4 1 4 8s0 7-4 7z"></path></svg> ${t("quote")}
     </button>
 
     <div class="toolbar-divider"></div>
@@ -455,7 +457,7 @@ export default function TypingSpeed() {
       <div class="words-inner" id="words-inner"></div>
       <div class="caret" id="caret"></div>
       <div class="focus-overlay" id="focus-overlay" onclick="focusInput()">
-        🖱 Click here or press any key to start
+        🖱 ${t("start")}
       </div>
     </div>
     <textarea id="typing-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
@@ -463,7 +465,7 @@ export default function TypingSpeed() {
 
   <!-- CONTROLS -->
   <div class="controls">
-    <button class="restart-btn" id="restart-btn" onclick="restartTest()" title="Restart (Tab + Enter)">
+    <button class="restart-btn" id="restart-btn" onclick="restartTest()" title="${t("restart")}">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2-8.83"></path></svg>
     </button>
   </div>
@@ -472,27 +474,27 @@ export default function TypingSpeed() {
   <div class="results-panel" id="results-panel">
     <div class="results-grid">
       <div class="stat-card">
-        <div class="stat-label">wpm</div>
+        <div class="stat-label">${t("wpm")}</div>
         <div class="stat-value" id="res-wpm">0</div>
-        <div class="stat-unit">words per min</div>
+        <div class="stat-unit">${t("wordsPerMinute")}</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">raw</div>
+        <div class="stat-label">${t("raw")}</div>
         <div class="stat-value" id="res-raw">0</div>
-        <div class="stat-unit">raw wpm</div>
+        <div class="stat-unit">${t("rawWpm")}</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">accuracy</div>
+        <div class="stat-label">${t("accuracy")}</div>
         <div class="stat-value" id="res-acc">0%</div>
-        <div class="stat-unit">correct chars</div>
+        <div class="stat-unit">${t("correctChars")}</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">correct</div>
+        <div class="stat-label">${t("correct")}</div>
         <div class="stat-value" id="res-correct">0</div>
         <div class="stat-unit">words</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">incorrect</div>
+        <div class="stat-label">${t("incorrect")}</div>
         <div class="stat-value" id="res-incorrect">0</div>
         <div class="stat-unit">words</div>
       </div>
@@ -504,18 +506,18 @@ export default function TypingSpeed() {
     </div>
 
     <div class="wpm-chart">
-      <div class="chart-title">WPM over time</div>
+      <div class="chart-title">${t("wpmOverTime")}</div>
       <div class="chart-bars" id="chart-bars"></div>
     </div>
 
     <div class="results-actions">
       <button class="btn-primary" onclick="restartTest()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1em; height: 1em;"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2-8.83"></path></svg>
-        Try Again
+        ${t("tryAgain")}
       </button>
       <button class="btn-secondary" onclick="newTest()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1em; height: 1em;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-        New Test
+        ${t("newTest")}
       </button>
     </div>
   </div>

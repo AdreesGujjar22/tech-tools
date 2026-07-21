@@ -802,7 +802,10 @@
         "travel": "Travel & Places",
         "activities": "Activities & Sports",
         "objects": "Objects",
-        "flags": "Flags"
+        "flags": "Flags",
+        "clothing": "Clothing & Accessories",
+        "nature": "Nature & Weather",
+        "symbols": "Symbols & Signs"
       }
     },
     "ColorPicker": {

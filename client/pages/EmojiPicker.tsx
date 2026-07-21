@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import SEO from "@/components/SEO";
 import { useTranslations } from "next-intl";
-import { Copy, Search, Sparkles, Check, Heart, Smile, TrendingUp, Activity, Utensils, Lightbulb, Trophy, Rocket, Flag } from "lucide-react";
+import { Copy, Search, Sparkles, Check, Heart, Smile, TrendingUp, Activity, Utensils, Lightbulb, Trophy, Rocket, Flag, Hash } from "lucide-react";
 
 // Emoji name mapping for search functionality
 const EMOJI_NAMES: Record<string, string[]> = {
@@ -107,12 +107,36 @@ const EMOJI_CATEGORIES = {
     icon: Trophy,
     emojis: ["⌚", "📱", "💻", "⌨️", "🖥️", "🖨️", "🖱️", "🖲️", "🕹️", "🗜️", "💽", "💾", "💿", "📀", "🧮", "🎥", "🎬", "📺", "📷", "📸", "📹", "🎞️", "📽️", "🎦", "📞", "☎️", "📟", "📠", "📻", "🎙️", "🎚️", "🎛️", "⏱️", "⏲️", "⏰", "🕰️", "📲", "📎", "🖇️", "📐", "📏", "📌", "📍", "✂️", "🖊️", "🖋️", "✒️", "🖌️", "🖍️", "📝", "📁", "📂", "📅", "📆", "📇", "📈", "📉", "📊", "📋", "📑", "🧾", "📜", "📃", "📄", "📕", "📖", "📗", "📘", "📙", "📚", "📓", "📔", "📒", "🧷"],
   },
+  clothing: {
+    name: "Clothing & Accessories",
+    icon: Sparkles,
+    emojis: ["🪢", "🧶", "🧵", "🪡", "🧥", "🥼", "🦺", "🩱", "👕", "👖", "🩲", "🩳", "👔", "👗", "👙", "👚", "👘", "🥻", "🩴", "🥿", "👠", "👡", "👢", "👞", "👟", "🥾", "🧦", "🧤", "🧣", "🎩", "🧢", "👒", "⛑️", "👑", "👝", "🥽", "🌂", "👜", "💼", "🎒", "🧳", "👓", "🕶️"],
+  },
+  nature: {
+    name: "Nature & Weather",
+    icon: Sparkles,
+    emojis: ["🌵", "🎄", "🌲", "🌳", "🌴", "🪾", "🪵", "🌱", "🌿", "☘️", "🍀", "🎍", "🪴", "🎋", "🍃", "🍂", "🍁", "🪺", "🪹", "🍄", "🍄‍🟫", "🐚", "🪸", "🪨", "🛘", "🌾", "💐", "🌷", "🌹", "🥀", "🪻", "🪷", "🌺", "🌸", "🌼", "🌻", "🌞", "🌝", "🌛", "🌜", "🌚", "🌕", "🌖", "🌗", "🌘", "🌑", "🌒", "🌓", "🌔", "🌙", "🌎", "🌍", "🌏", "🪐", "💫", "⭐", "🌟", "✨", "⚡", "☄️", "💥", "🔥", "🫯", "🌪️", "🌈", "☀️", "🌤️", "⛅", "🌥️", "☁️", "🌦️", "🌧️", "⛈️", "🌨️", "🌩️", "❄️", "☃️", "⛄", "🌬️", "💨", "💧", "💦", "🫧", "☔", "☂️", "🌊", "🌫️"],
+  },
+  symbols: {
+    name: "Symbols & Signs",
+    icon: Hash,
+    emojis: ["🩷", "❤️", "🧡", "💛", "🩵", "💙", "💜", "🖤", "🤍", "🤎", "🩶", "❤️‍🔥", "❤️‍🩹", "❣️", "☪️", "🅰️", "🅱️", "🆎", "🅾️", "🆘", "❌", "⭕", "🛑", "⛔", "📛", "🚫", "💢", "💯", "♨️", "🚷", "🚯", "🚳", "🚱", "🔞", "📵", "🚭", "❗", "❕", "❓", "❔", "‼️", "⁉️", "⚠️", "🚸", "🔱", "⚜️", "🔰", "♻️", "✅", "🌐", "💠", "Ⓜ️", "🌀", "💤", "♿", "🅿️", "🚻", "🚮", "🎦", "📶", "🔣", "ℹ️", "🔤", "🔡", "🔠", "🆗", "🆙", "🆒", "🆕", "🆓", "0️⃣", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣", "🔟", "#️⃣", "*️⃣", "⏏️", "⏸️", "⏯️", "⏹️", "⏺️", "⏭️", "▶️", "⏮️", "⏩", "⏪", "⏫", "⏬", "◀️", "🔼", "🔽", "➡️", "⬅️", "⬆️", "⬇️", "↗️", "↘️", "↙️", "↖️", "↕️", "↔️", "↪️", "↩️", "⤴️", "⤵️", "🔀", "🔁", "🔂", "🔄", "🔃", "🎵", "🎶", "➕", "➖", "➗", "✖️", "🟰", "♾️", "💲", "💱", "™️", "©️", "®️", "✔️", "☑️", "🔘"],
+  },
   flags: {
     name: "Flags",
     icon: Flag,
     emojis: ["🇺🇸", "🇬🇧", "🇨🇦", "🇦🇺", "🇮🇪", "🇿🇦", "🇮🇳", "🇵🇰", "🇧🇩", "🇯🇵", "🇨🇳", "🇮🇷", "🇨🇭", "🇩🇪", "🇫🇷", "🇮🇹", "🇪🇸", "🇸🇪", "🇲🇪", "🇳🇴", "🇳🇱", "🇧🇪", "🇦🇹", "🇵🇹", "🇬🇷", "🇹🇷", "🇰🇷", "🇹🇭", "🇲🇾", "🇸🇬", "🇮🇩", "🇵🇭", "🇻🇳", "🇮🇶", "🇸🇦", "🇦🇪", "🇪🇬", "🇮🇱", "🇯🇴", "🇱🇧", "🇸🇾", "🇴🇲", "🇦🇫", "🇳🇵", "🇱🇰", "🇲🇲", "🇰🇭", "🇱🇦", "🇭🇰", "🇲🇴", "🇹🇼", "🇲🇳", "🇿🇼", "🇳🇬", "🇰🇪", "🇬🇭", "🇪🇹", "🇧🇹", "🇲🇹", "🇦🇱", "🇦🇿", "🇦🇲", "🇧🇬", "🇭🇷", "🇭🇺", "🇷🇴", "🇷🇸", "🇺🇦", "🇧🇾", "🇲🇩", "🇹🇿", "🇺🇬", "🇳🇦", "🇻🇳", "🇱🇾", "🇦🇴", "🇨🇻", "🇰🇿", "🇸🇱", "🇹🇱", "🇱🇹", "🇱🇻", "🇪🇪", "🇬🇪", "🇫🇮", "🇸🇰", "🇨🇿", "🇵🇱", "🇷🇺", "🇺🇿", "🇲🇦", "🇻🇦", "🇦🇩", "🇱🇺", "🇩🇰", "🇮🇸", "🇸🇸", "🇸🇩", "🇲🇱", "🇰🇲", "🇱🇸", "🇧🇳", "🇷🇪", "🇳🇪", "🇹🇯", "🇰🇬", "🇬🇼", "🇻🇨", "🇱🇨", "🇰🇳", "🇩🇲", "🇬🇩", "🇧🇧", "🇲🇺", "🇦🇮", "🇰🇮", "🇵🇼", "🇲🇭", "🇳🇷", "🇲🇶", "🇸🇨", "🇧🇴", "🇵🇾", "🇺🇾", "🇪🇨", "🇵🇪", "🇨🇱", "🇦🇷", "🇨🇴", "🇻🇪", "🇬🇾", "🇸🇷", "🇧🇷", "🇲🇽", "🇭🇳", "🇬🇹", "🇪🇱", "🇳🇮", "🇨🇷", "🇵🇦", "🇧🇿", "🇨🇺", "🇵🇷", "🇹🇹", "🇱🇮", "🇾🇪", "🇨🇾", "🇹🇲", "🇦🇬", "🇧🇦", "🇯🇪", "🇬🇬", "🇮🇲", "🇫🇴", "🇲🇼", "🇿🇲", "🏳️", "🏴", "🏁"],
   },
 };
+
+const seenEmojis = new Set<string>();
+Object.values(EMOJI_CATEGORIES).forEach((category) => {
+  category.emojis = category.emojis.filter((emoji) => {
+    if (seenEmojis.has(emoji)) return false;
+    seenEmojis.add(emoji);
+    return true;
+  });
+});
 
 export default function EmojiPicker() {
   const t = useTranslations("Tools.EmojiPicker");
@@ -165,8 +189,8 @@ export default function EmojiPicker() {
   return (
     <div className="min-h-screen bg-transparent text-foreground">
       <SEO
-        title="Emoji Picker & Copier"
-        description="Browse, search, and copy emojis easily. Find the perfect emoji for your messages and posts."
+        title={t("title")}
+        description={t("description")}
         keywords="emoji picker, emoji copier, emoji search, emojis, emoticons"
       />
 
@@ -176,10 +200,10 @@ export default function EmojiPicker() {
           <div className="mb-12 text-center max-w-2xl mx-auto space-y-4">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(76,215,246,0.15)] bg-white">
               <Sparkles className="w-4 h-4 text-[#10A968]" />
-              <span className="text-[#10A968] text-xs font-semibold tracking-wider uppercase">Premium Utility</span>
+              <span className="text-[#10A968] text-xs font-semibold tracking-wider uppercase">{t("premium")}</span>
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight gradient-text">
-              Emoji Picker & Copier
+              {t("title")}
             </h1>
             <p className="text-base text-[#4A6857]">
               Browse and copy emojis instantly. Find the perfect emoji for any occasion.
@@ -236,7 +260,7 @@ export default function EmojiPicker() {
                       }`}
                     >
                       <IconComponent className="w-4 h-4" />
-                      {category.name}
+                      {t(`categories.${key}`)}
                     </button>
                   );
                 })}
@@ -291,7 +315,7 @@ export default function EmojiPicker() {
 
           {/* Info Footer */}
           <div className="mt-12 text-center text-sm text-[#4A6857]">
-            <p>Click any emoji to copy it to your clipboard</p>
+            <p>{t("copyInstruction")}</p>
           </div>
         </div>
       </main>
