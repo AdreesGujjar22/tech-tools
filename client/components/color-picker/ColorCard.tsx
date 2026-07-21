@@ -4,6 +4,7 @@ import { Color, getTextColor } from "../../utils/color-picker/colorUtils";
 import { useState } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 interface ColorCardProps {
   color: Color;
@@ -15,6 +16,7 @@ interface ColorCardProps {
 const ItemType = "COLOR_CARD";
 
 export function ColorCard({ color, index, onToggleLock, onMove }: ColorCardProps) {
+  const t = useTranslations("Tools.ColorPicker");
   const [copiedFormat, setCopiedFormat] = useState<string | null>(null);
   const textColor = getTextColor(color.hex);
 
@@ -39,7 +41,7 @@ export function ColorCard({ color, index, onToggleLock, onMove }: ColorCardProps
   const copyToClipboard = async (text: string, format: string) => {
     await navigator.clipboard.writeText(text);
     setCopiedFormat(format);
-    toast.success(`${format} copied!`);
+    toast.success(t("copied", { format }));
     setTimeout(() => setCopiedFormat(null), 2000);
   };
 

@@ -1,5 +1,6 @@
 import { Link } from "@/lib/router-compat";
 import { StaggerList } from "@/components/StaggerList";
+import { useTranslations } from "next-intl";
 import {
   Barcode,
   FileText,
@@ -15,6 +16,8 @@ import {
 } from "lucide-react";
 
 export default function About() {
+  const t = useTranslations("About");
+  const common = useTranslations("Common");
   return (
     <div className="min-h-screen bg-transparent text-foreground">
       {/* Hero Section */}
@@ -28,13 +31,13 @@ export default function About() {
         <div className="container-full relative z-10">
           <div className="text-center space-y-6 max-w-3xl mx-auto">
             <h1 className="text-5xl lg:text-6xl font-bold leading-tight gradient-text">
-              What is TechTools?
+              {t("title")}
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              TechTools is a modern web platform offering a growing collection of online utilities and productivity tools. Whether you need to test internet speed, generate QR codes, compress images, or perform any other task, we've got you covered.
+              {t("intro")}
             </p>
             <p className="text-base text-muted-foreground leading-relaxed">
-              Built with performance and simplicity in mind, our mission is to save users time by offering easy-to-use digital tools without unnecessary complexity.
+              {t("mission")}
             </p>
           </div>
         </div>
@@ -44,9 +47,9 @@ export default function About() {
       <section className="section-py section-px bg-card/30">
         <div className="container-full">
           <div className="text-center mb-16 space-y-4 max-w-2xl mx-auto">
-            <h2 className="text-4xl font-bold">Popular Tools</h2>
+            <h2 className="text-4xl font-bold">{t("popularTools")}</h2>
             <p className="text-muted-foreground">
-              Explore our most used tools trusted by thousands of users daily.
+              {t("popularDescription")}
             </p>
           </div>
 
@@ -57,16 +60,16 @@ export default function About() {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
                   <Gauge className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold">Internet Speed Test</h3>
+                <h3 className="text-xl font-semibold">{t("tools.speed.name")}</h3>
                 <p className="text-muted-foreground text-sm">
-                  Measure download speed, upload speed, ping, and network performance in real time.
+                  {t("tools.speed.description")}
                 </p>
               </div>
               <Link
                 to="/speed-test"
                 className="mt-6 text-primary font-medium text-sm border-b border-primary/30 pb-1 hover:border-primary transition-colors w-fit"
               >
-                Try Now →
+                {common("actions.tryNow")} →
               </Link>
             </div>
 
@@ -76,16 +79,16 @@ export default function About() {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
                   <Palette className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold">Color Picker Tool</h3>
+                <h3 className="text-xl font-semibold">{t("tools.color.name")}</h3>
                 <p className="text-muted-foreground text-sm">
-                  Pick, copy, and convert colors easily with HEX, RGB, and HSL support.
+                  {t("tools.color.description")}
                 </p>
               </div>
               <Link
                 to="/color-picker"
                 className="mt-6 text-primary font-medium text-sm border-b border-primary/30 pb-1 hover:border-primary transition-colors w-fit"
               >
-                Try Now →
+                {common("actions.tryNow")} →
               </Link>
             </div>
 
@@ -95,16 +98,16 @@ export default function About() {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
                   <Keyboard className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold">Typing Speed Test</h3>
+                <h3 className="text-xl font-semibold">{t("tools.typing.name")}</h3>
                 <p className="text-muted-foreground text-sm">
-                  Improve typing speed and accuracy with real-time WPM tracking.
+                  {t("tools.typing.description")}
                 </p>
               </div>
               <Link
                 to="/typing-speed"
                 className="mt-6 text-primary font-medium text-sm border-b border-primary/30 pb-1 hover:border-primary transition-colors w-fit"
               >
-                Try Now →
+                {common("actions.tryNow")} →
               </Link>
             </div>
 
@@ -114,16 +117,16 @@ export default function About() {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
                   <QrCode className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold">QR Code Generator</h3>
+                <h3 className="text-xl font-semibold">{t("tools.qr.name")}</h3>
                 <p className="text-muted-foreground text-sm">
-                  Generate custom QR codes for URLs, text, WiFi, email, and more.
+                  {t("tools.qr.description")}
                 </p>
               </div>
               <Link
                 to="/qr-generator"
                 className="mt-6 text-primary font-medium text-sm border-b border-primary/30 pb-1 hover:border-primary transition-colors w-fit"
               >
-                Try Now →
+                {common("actions.tryNow")} →
               </Link>
             </div>
 
@@ -133,16 +136,16 @@ export default function About() {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
                   <Barcode className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold">Barcode Generator</h3>
+                <h3 className="text-xl font-semibold">{t("tools.barcode.name")}</h3>
                 <p className="text-muted-foreground text-sm">
-                  Create barcodes in multiple formats for products, inventory, and logistics.
+                  {t("tools.barcode.description")}
                 </p>
               </div>
               <Link
                 to="/barcode-generator"
                 className="mt-6 text-primary font-medium text-sm border-b border-primary/30 pb-1 hover:border-primary transition-colors w-fit"
               >
-                Try Now →
+                {common("actions.tryNow")} →
               </Link>
             </div>
 
@@ -152,16 +155,16 @@ export default function About() {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
                   <LockKeyhole className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold">Password Generator</h3>
+                <h3 className="text-xl font-semibold">{t("tools.password.name")}</h3>
                 <p className="text-muted-foreground text-sm">
-                  Create strong, random passwords with customizable character types and length.
+                  {t("tools.password.description")}
                 </p>
               </div>
               <Link
                 to="/password-generator"
                 className="mt-6 text-primary font-medium text-sm border-b border-primary/30 pb-1 hover:border-primary transition-colors w-fit"
               >
-                Try Now →
+                {common("actions.tryNow")} →
               </Link>
             </div>
 
@@ -171,16 +174,16 @@ export default function About() {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
                   <FileText className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold">Lorem Ipsum Generator</h3>
+                <h3 className="text-xl font-semibold">{t("tools.lorem.name")}</h3>
                 <p className="text-muted-foreground text-sm">
-                  Generate placeholder Lorem Ipsum text for designs, mockups, and prototypes instantly.
+                  {t("tools.lorem.description")}
                 </p>
               </div>
               <Link
                 to="/lorem-ipsum-generator"
                 className="mt-6 text-primary font-medium text-sm border-b border-primary/30 pb-1 hover:border-primary transition-colors w-fit"
               >
-                Try Now →
+                {common("actions.tryNow")} →
               </Link>
             </div>
 
@@ -190,16 +193,16 @@ export default function About() {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
                   <Smile className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold">Emoji Picker & Copier</h3>
+                <h3 className="text-xl font-semibold">{t("tools.emoji.name")}</h3>
                 <p className="text-muted-foreground text-sm">
-                  Browse, search, and copy emojis instantly for your messages and posts.
+                  {t("tools.emoji.description")}
                 </p>
               </div>
               <Link
                 to="/emoji-picker"
                 className="mt-6 text-primary font-medium text-sm border-b border-primary/30 pb-1 hover:border-primary transition-colors w-fit"
               >
-                Try Now →
+                {common("actions.tryNow")} →
               </Link>
             </div>
 
@@ -209,16 +212,16 @@ export default function About() {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
                   <Notebook className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold">Online NotePad</h3>
+                <h3 className="text-xl font-semibold">{t("tools.notepad.name")}</h3>
                 <p className="text-muted-foreground text-sm">
-                  Simple, fast online notepad with auto-save and file management.
+                  {t("tools.notepad.description")}
                 </p>
               </div>
               <Link
                 to="/notepad"
                 className="mt-6 text-primary font-medium text-sm border-b border-primary/30 pb-1 hover:border-primary transition-colors w-fit"
               >
-                Try Now →
+                {common("actions.tryNow")} →
               </Link>
             </div>
 
@@ -228,16 +231,16 @@ export default function About() {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
                   <ImageIcon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold">Image Converter</h3>
+                <h3 className="text-xl font-semibold">{t("tools.image.name")}</h3>
                 <p className="text-muted-foreground text-sm">
-                  Convert images into different formats quickly and easily.
+                  {t("tools.image.description")}
                 </p>
               </div>
               <Link
                 to="/tools"
                 className="mt-6 text-primary font-medium text-sm border-b border-primary/30 pb-1 hover:border-primary transition-colors w-fit"
               >
-                Try Now →
+                {common("actions.tryNow")} →
               </Link>
             </div>
 
@@ -247,16 +250,16 @@ export default function About() {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center">
                   <Ruler className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold">Unit Converter</h3>
+                <h3 className="text-xl font-semibold">{t("tools.unit.name")}</h3>
                 <p className="text-muted-foreground text-sm">
-                  Convert measurements, currencies, sizes, and more instantly.
+                  {t("tools.unit.description")}
                 </p>
               </div>
               <Link
                 to="/tools"
                 className="mt-6 text-primary font-medium text-sm border-b border-primary/30 pb-1 hover:border-primary transition-colors w-fit"
               >
-                Try Now →
+                {common("actions.tryNow")} →
               </Link>
             </div>
           </StaggerList>
@@ -267,28 +270,28 @@ export default function About() {
       <section className="section-bg-alt section-py section-px">
         <div className="container-full">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-4xl font-bold">Our Impact</h2>
+            <h2 className="text-4xl font-bold">{t("impact")}</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Trusted by users worldwide for their daily productivity needs.
+              {t("impactDescription")}
             </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center space-y-3">
               <div className="text-5xl font-bold gradient-text">50+</div>
-              <div className="text-muted-foreground">Useful Tools</div>
+              <div className="text-muted-foreground">{t("stats.tools")}</div>
             </div>
             <div className="text-center space-y-3">
               <div className="text-5xl font-bold gradient-text">10K+</div>
-              <div className="text-muted-foreground">Monthly Users</div>
+              <div className="text-muted-foreground">{t("stats.monthlyUsers")}</div>
             </div>
             <div className="text-center space-y-3">
               <div className="text-5xl font-bold gradient-text">Fast</div>
-              <div className="text-muted-foreground">& Secure</div>
+              <div className="text-muted-foreground">{t("stats.secure")}</div>
             </div>
             <div className="text-center space-y-3">
               <div className="text-5xl font-bold gradient-text">24/7</div>
-              <div className="text-muted-foreground">Available</div>
+              <div className="text-muted-foreground">{t("stats.available")}</div>
             </div>
           </div>
         </div>
@@ -300,15 +303,15 @@ export default function About() {
           <div className="glass-card p-12 sm:p-16 rounded-3xl relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-cta pointer-events-none" />
             <div className="relative flex flex-col items-center gap-6 text-center max-w-2xl mx-auto">
-              <h2 className="text-4xl sm:text-5xl font-bold">Ready to Get Started?</h2>
+              <h2 className="text-4xl sm:text-5xl font-bold">{t("ctaTitle")}</h2>
               <p className="text-lg text-muted-foreground">
-                Explore all our tools and boost your productivity today.
+                {t("ctaDescription")}
               </p>
               <Link
                 to="/tools"
                 className="btn-primary px-8"
               >
-                Explore All Tools
+                {t("exploreAll")}
               </Link>
             </div>
           </div>

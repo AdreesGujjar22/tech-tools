@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Upload, X, Copy, Check, Plus, Minus, Download, Image as ImageIcon } from "lucide-react";
 import { getAllColorFormats, rgbToHex } from "../../utils/color-picker/colorConversions";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 interface ExtractedColor {
   hex: string;
@@ -10,6 +11,7 @@ interface ExtractedColor {
 }
 
 export function ImageColorExtractor() {
+  const t = useTranslations("Tools.ColorPicker");
   const [image, setImage] = useState<string | null>(null);
   const [colors, setColors] = useState<ExtractedColor[]>([]);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
@@ -87,7 +89,7 @@ export function ImageColorExtractor() {
   const copyToClipboard = async (text: string, format: string) => {
     await navigator.clipboard.writeText(text);
     setCopiedFormat(format);
-    toast.success(`${format} copied!`);
+    toast.success(t("copied", { format }));
     setTimeout(() => setCopiedFormat(null), 2000);
   };
 
@@ -103,7 +105,7 @@ export function ImageColorExtractor() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div>
-          <h3 className="text-xl font-semibold mb-4 text-[#1F3A26]">Image Color Extractor</h3>
+          <h3 className="text-xl font-semibold mb-4 text-[#1F3A26]">{t("imageExtractor")}</h3>
 
           {!image ? (
             <motion.div
@@ -119,12 +121,8 @@ export function ImageColorExtractor() {
                 className="hidden"
               />
               <ImageIcon size={48} className="mx-auto mb-4 text-[#4A6857]" />
-              <p className="text-[#1F3A26] font-semibold mb-2">
-                Upload an image
-              </p>
-              <p className="text-sm text-[#4A6857]">
-                Click to browse or drag and drop
-              </p>
+              <p className="text-[#1F3A26] font-semibold mb-2">{t("uploadImage")}</p>
+              <p className="text-sm text-[#4A6857]">{t("browseOrDrop")}</p>
             </motion.div>
           ) : (
             <div className="relative rounded-xl overflow-hidden border border-[#C5DCC9] bg-white">
@@ -144,7 +142,7 @@ export function ImageColorExtractor() {
             <div className="mt-8">
               <div className="flex items-center justify-between mb-3">
                 <h4 className="text-sm font-semibold text-[#2D4D35] tracking-[1px] uppercase">
-                  Color Palette
+                  {t("palette")}
                 </h4>
               </div>
 
@@ -174,7 +172,7 @@ export function ImageColorExtractor() {
                   className="flex-1 px-4 py-3 bg-[#E8F0E8] hover:bg-[#D4E8D8] rounded-lg text-sm font-medium text-[#2D4D35] transition-colors flex items-center justify-center gap-2 cursor-pointer font-semibold"
                 >
                   <Download size={16} />
-                  Download
+                  {t("download")}
                 </button>
                 <button
                   onClick={() => {
@@ -184,7 +182,7 @@ export function ImageColorExtractor() {
                   className="flex-1 px-4 py-3 bg-[#E8F0E8] hover:bg-[#D4E8D8] rounded-lg text-sm font-medium text-[#2D4D35] transition-colors flex items-center justify-center gap-2 cursor-pointer font-semibold"
                 >
                   <Copy size={16} />
-                  Copy all
+                  {t("copyAll")}
                 </button>
               </div>
             </div>
@@ -192,7 +190,7 @@ export function ImageColorExtractor() {
         </div>
 
         <div>
-          <h3 className="text-xl font-semibold mb-4 text-[#1F3A26]">Extracted Color Details</h3>
+          <h3 className="text-xl font-semibold mb-4 text-[#1F3A26]">{t("details")}</h3>
 
           {selectedColor && formats ? (
             <motion.div
@@ -278,13 +276,13 @@ export function ImageColorExtractor() {
                   className="w-full px-4 py-3 bg-[#10A968] text-white rounded-lg font-semibold hover:bg-[#0d8a52] transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg"
                 >
                   <Upload size={18} />
-                  Use another image
+                  {t("useAnother")}
                 </button>
               </div>
             </motion.div>
           ) : (
             <div className="h-[250px] flex flex-col items-center justify-center text-[#4A6857] border border-dashed border-[#C5DCC9] bg-[#F0F7F0] rounded-xl p-6">
-              <p className="font-medium text-center">Upload an image of your choice to automatically extract its color palettes</p>
+              <p className="font-medium text-center">{t("empty")}</p>
             </div>
           )}
         </div>

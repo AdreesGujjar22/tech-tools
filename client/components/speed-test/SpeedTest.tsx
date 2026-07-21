@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Download, Upload, Zap } from "lucide-react";
 import "../../styles/speed-test/styles.css";
+import { useTranslations } from "next-intl";
 
 type Phase = "idle" | "download" | "upload" | "done";
 
 export function SpeedTest() {
+  const t = useTranslations("Tools.SpeedTest");
   const [phase, setPhase] = useState<Phase>("idle");
   const [speed, setSpeed] = useState(0);
   const [download, setDownload] = useState<number | null>(null);
@@ -123,11 +125,11 @@ export function SpeedTest() {
           <div className="flex items-center justify-center gap-3 mb-4">
             <Zap className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
-              Speed Test
+              {t("title")}
             </h1>
           </div>
           <p className="text-sm sm:text-base text-muted-foreground">
-            Test your internet speed with Cloudflare's network
+            {t("description")}
           </p>
         </div>
 
@@ -139,7 +141,7 @@ export function SpeedTest() {
               {displaySpeed}
             </div>
             <div className="text-base sm:text-lg text-muted-foreground mt-3 font-semibold">
-              {phase === "download" ? "Download Speed (Mbps)" : phase === "upload" ? "Upload Speed (Mbps)" : "Mbps"}
+              {phase === "download" ? t("downloadSpeed") : phase === "upload" ? t("uploadSpeed") : "Mbps"}
             </div>
           </div>
 
@@ -158,7 +160,7 @@ export function SpeedTest() {
                 </span>
               </div>
               <p className="text-center text-xs sm:text-sm text-muted-foreground font-semibold">
-                {phase === "download" ? "Testing Download…" : "Testing Upload…"}
+                {phase === "download" ? t("testingDownload") : t("testingUpload")}
               </p>
             </div>
           )}
@@ -167,10 +169,10 @@ export function SpeedTest() {
           {!isLoading && (
             <div className="text-center">
               {phase === "idle" && (
-                <p className="text-base sm:text-lg text-foreground font-semibold">Ready to test your speed?</p>
+                <p className="text-base sm:text-lg text-foreground font-semibold">{t("ready")}</p>
               )}
               {phase === "done" && (
-                <p className="text-base sm:text-lg text-primary font-bold">✓ Test Complete!</p>
+                <p className="text-base sm:text-lg text-primary font-bold">{t("complete")}</p>
               )}
             </div>
           )}
@@ -183,7 +185,7 @@ export function SpeedTest() {
             <div className="bg-card border-2 border-border rounded-xl p-6 sm:p-8 text-center">
               <div className="flex items-center justify-center gap-2 mb-3">
                 <Download className="w-6 h-6 text-primary" />
-                <h3 className="text-lg sm:text-xl font-bold text-foreground">Download</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-foreground">{t("download")}</h3>
               </div>
               <div className="text-4xl sm:text-5xl font-bold text-primary tabular-nums tracking-tight">
                 {download !== null ? download.toFixed(1) : "—"}
@@ -195,7 +197,7 @@ export function SpeedTest() {
             <div className="bg-card border-2 border-border rounded-xl p-6 sm:p-8 text-center">
               <div className="flex items-center justify-center gap-2 mb-3">
                 <Upload className="w-6 h-6 text-primary" />
-                <h3 className="text-lg sm:text-xl font-bold text-foreground">Upload</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-foreground">{t("upload")}</h3>
               </div>
               <div className="text-4xl sm:text-5xl font-bold text-primary tabular-nums tracking-tight">
                 {upload !== null ? upload.toFixed(1) : "—"}
@@ -216,14 +218,14 @@ export function SpeedTest() {
                 : "bg-primary text-primary-foreground hover:shadow-lg hover:-translate-y-1 active:scale-95 shadow-md"
             }`}
           >
-            {isLoading ? "Testing…" : "Start Speed Test"}
+            {isLoading ? t("testing") : t("start")}
           </button>
         </div>
 
         {/* Info */}
         <div className="text-center mt-8 text-xs sm:text-sm text-muted-foreground">
-          <p>Your results will appear here once testing is complete.</p>
-          <p className="mt-2">Powered by Cloudflare's global network</p>
+          <p>{t("results")}</p>
+          <p className="mt-2">{t("poweredBy")}</p>
         </div>
       </div>
     </main>

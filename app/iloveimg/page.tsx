@@ -12,16 +12,21 @@ import {
 import { motion } from "motion/react";
 import { IMAGE_TOOLS, IMAGE_CATEGORY_LABELS, getImageToolIcon } from "@/components/image-tools/toolsData";
 import { FeatureCard } from "@/components/ui/FeatureCard";
+import { useTranslations } from "next-intl";
 
 export default function LoveImgDashboard() {
+  const t = useTranslations("Tools.ImageDashboard");
+  const catalog = useTranslations("ToolCatalog");
+  const toolKey = (id: string) => id.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+  const categoryKey = (key: string) => key.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
   // Filter criteria
   const filteredTools = IMAGE_TOOLS.filter((tool) => {
     const matchesSearch =
-      tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      tool.shortDesc.toLowerCase().includes(searchQuery.toLowerCase());
+      catalog(`Image.${toolKey(tool.id)}.name`).toLowerCase().includes(searchQuery.toLowerCase()) ||
+      catalog(`Image.${toolKey(tool.id)}.short`).toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === "all" || tool.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -41,7 +46,7 @@ export default function LoveImgDashboard() {
             className="inline-flex items-center gap-2 px-3 py-1 pb-1.5 rounded-full bg-[#10A968]/10 border border-[#10A968]/20 text-[#10A968] text-xs font-semibold uppercase tracking-wider mb-6 animate-pulse"
           >
             <span className="w-1.5 h-1.5 bg-[#10A968] rounded-full" />
-            100% Client-Side Image Processing
+            {t("badge")}
           </motion.div>
 
           <motion.h1
@@ -50,11 +55,7 @@ export default function LoveImgDashboard() {
             transition={{ delay: 0.1, duration: 0.4 }}
             className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tighter text-[#1F3A26] mb-6"
           >
-            SaaS Tools to compress, convert,
-            <br className="hidden sm:inline" />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#10A968] to-[#10A968] ml-1.5">
-              and edit images in batch
-            </span>
+            {t("title")}
           </motion.h1>
 
           <motion.p
@@ -63,7 +64,7 @@ export default function LoveImgDashboard() {
             transition={{ delay: 0.15, duration: 0.4 }}
             className="text-[#4A6857] max-w-2xl mx-auto text-sm sm:text-base leading-relaxed mb-10"
           >
-            Unlock extremely fast cropping, scaling, watermarking, filters, background key subtraction, and conversions. Sandboxed entirely within your browser context.
+            {t("description")}
           </motion.p>
 
           {/* Interactive Search Grid Controls */}
@@ -78,7 +79,7 @@ export default function LoveImgDashboard() {
             </div>
             <input
               type="text"
-              placeholder="Search image tools (e.g., crop, background, png)..."
+              placeholder={t("searchPlaceholder")}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-transparent border-0 ring-0 focus:outline-none focus:ring-0 p-3 text-sm text-[#2D4D35] placeholder-[#999B99] font-medium"
@@ -88,7 +89,7 @@ export default function LoveImgDashboard() {
                 onClick={() => setSearchQuery("")}
                 className="p-1 px-2.5 text-xs text-[#4A6857] bg-[#E8F0E8] hover:bg-[#D4E8D8] border border-[#C5DCC9] rounded-xl transition cursor-pointer"
               >
-                Clear
+                {t("clear")}
               </button>
             )}
           </motion.div>
@@ -106,7 +107,7 @@ export default function LoveImgDashboard() {
                   : "bg-[#E8F0E8] border border-[#C5DCC9] text-[#4A6857] hover:text-[#2D4D35]"
                 }`}
             >
-              All Tools
+              {t("allTools")}
             </button>
             {Object.entries(IMAGE_CATEGORY_LABELS).map(([key, label]) => (
               <button
@@ -117,7 +118,7 @@ export default function LoveImgDashboard() {
                     : "bg-[#E8F0E8] border border-[#C5DCC9] text-[#4A6857] hover:text-[#2D4D35]"
                   }`}
               >
-                {label}
+                {catalog(`Image.categories.${categoryKey(label)}`)}
               </button>
             ))}
           </div>
@@ -139,8 +140,8 @@ export default function LoveImgDashboard() {
                 key={tool.id}>
                 <FeatureCard
                   key={tool.id}
-                  title={tool.name}
-                  description={tool.shortDesc}
+                  title={catalog(`Image.${toolKey(tool.id)}.name`)}
+                  description={catalog(`Image.${toolKey(tool.id)}.short`)}
                   icon={tool.iconName ? ToolIcon : ChevronRight}
                 />
               </Link>
@@ -152,9 +153,9 @@ export default function LoveImgDashboard() {
         {filteredTools.length === 0 && (
           <div className="text-center py-20 border border-dashed border-[#C5DCC9] rounded-3xl bg-[#F0F7F0] max-w-md mx-auto">
             <AlertCircle className="w-10 h-10 text-[#999B99] mx-auto mb-4" />
-            <h4 className="text-[#1F3A26] font-semibold text-sm">No matched tools</h4>
-            <p className="text-xs text-[#4A6857] max-w-xs mx-auto mt-1 leading-relaxed">
-              We couldn't locate any converters or tools aligning with your parameters. Verify your searching terms.
+            <h4 className="text-[#1F3A26] font-semibold text-sm">{t("noMatches")}</h4>
+              <p className="text-xs text-[#4A6857] max-w-xs mx-auto mt-1 leading-relaxed">
+              {t("noMatchesDescription")}
             </p>
           </div>
         )}

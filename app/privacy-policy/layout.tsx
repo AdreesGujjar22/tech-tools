@@ -1,21 +1,8 @@
-import React from "react";
 import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/server-locale";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy - Tech Tools",
-  description: "Privacy policy for Tech Tools. Learn how we protect your data and privacy.",
-  keywords: ["privacy", "privacy policy", "data protection"],
-  openGraph: {
-    title: "Privacy Policy - Tech Tools",
-    description: "Privacy policy for Tech Tools.",
-    type: "website",
-  },
-};
+export const metadata: Metadata = buildPageMetadata("/privacy-policy", "privacy");
 
-export default function PrivacyLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function PrivacyLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }

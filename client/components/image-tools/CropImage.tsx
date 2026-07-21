@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback, ReactNode } from "react";
 import ToolShell from "./ToolShell";
+import { useTranslations } from "next-intl";
 
 interface CropConfigUIProps {
   files: File[];
@@ -10,6 +11,7 @@ interface CropConfigUIProps {
 }
 
 function CropConfigUI({ files, config, setConfig }: CropConfigUIProps) {
+  const t = useTranslations("Tools.CropImage");
   const [imgUrl, setImgUrl] = useState<string | null>(null);
   const [originalDims, setOriginalDims] = useState<{ w: number; h: number }>({ w: 0, h: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
@@ -266,12 +268,12 @@ function CropConfigUI({ files, config, setConfig }: CropConfigUIProps) {
       {/* Aspect ratio controls */}
       <div>
         <label className="text-xs font-bold text-[#4A6857] block mb-2 font-mono uppercase">
-          Aspect Ratio
+          {t("aspectRatio")}
         </label>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 font-mono text-2xs">
           {[
-            { id: "free", label: "Free" },
-            { id: "1", label: "1:1 Square" },
+            { id: "free", label: t("free") },
+            { id: "1", label: t("square") },
             { id: "1.777", label: "16:9" },
             { id: "0.5625", label: "9:16" },
             { id: "1.333", label: "4:3" },
@@ -296,7 +298,7 @@ function CropConfigUI({ files, config, setConfig }: CropConfigUIProps) {
       {imgUrl && originalDims.w > 0 && (
         <div className="space-y-2">
           <span className="text-[10px] font-bold text-[#4A6857] block font-mono uppercase">
-            Interactive Crop Area
+            {t("interactiveCropArea")}
           </span>
           <div
             ref={containerRef}
@@ -306,7 +308,7 @@ function CropConfigUI({ files, config, setConfig }: CropConfigUIProps) {
             <img
               ref={imageRef}
               src={imgUrl}
-              alt="Crop preview"
+              alt={t("previewAlt")}
               className="h-full w-full object-contain pointer-events-none opacity-60"
             />
 
@@ -379,17 +381,17 @@ function CropConfigUI({ files, config, setConfig }: CropConfigUIProps) {
       {/* Dimension info */}
       <div className="p-4 bg-[#F0F7F0] rounded-2xl space-y-3 font-mono text-2xs text-[#4A6857] border border-[#C5DCC9]">
         <span className="text-[10px] font-bold text-[#4A6857] block uppercase mb-1">
-          Output Dimensions
+          {t("outputDimensions")}
         </span>
         <div className="grid grid-cols-2 gap-2 text-left">
           <div>
-            <span className="text-[#4A6857] block">Start X, Y:</span>
+            <span className="text-[#4A6857] block">{t("startXY")}:</span>
             <span className="text-[#1F3A26] font-bold">
               {config.cropX}, {config.cropY} px
             </span>
           </div>
           <div>
-            <span className="text-[#4A6857] block">Size W x H:</span>
+            <span className="text-[#4A6857] block">{t("sizeWH")}:</span>
             <span className="text-[#1F3A26] font-bold">
               {config.cropW} x {config.cropH} px
             </span>
@@ -401,6 +403,7 @@ function CropConfigUI({ files, config, setConfig }: CropConfigUIProps) {
 }
 
 export default function CropImage() {
+  const t = useTranslations("Tools.CropImage");
   const allowedExtensions = [".png", ".jpg", ".jpeg", ".webp"];
 
   const onProcessFile = async (
@@ -507,7 +510,7 @@ export default function CropImage() {
       toolId="crop-image"
       allowedExtensions={allowedExtensions}
       allowMultiple={false}
-      configTitle="Crop Settings"
+      configTitle={t("settings")}
       renderConfig={(files: File[], config: any, setConfig: any) => (
         <CropConfigUI files={files} config={config} setConfig={setConfig} />
       )}

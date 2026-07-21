@@ -5,8 +5,11 @@ import SEO from "@/components/SEO";
 import QRCode from "qrcode";
 import { Download, Share2, Copy, Sparkles, RefreshCw, Layers, Sliders, Check, ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { useTranslations } from "next-intl";
 
 export default function Generator() {
+  const t = useTranslations("Tools.QrGenerator");
+  const common = useTranslations("Common");
   const [text, setText] = useState("https://www.ilovetechtools.com");
   const [qrUrl, setQrUrl] = useState("");
   const [size, setSize] = useState(300);
@@ -72,9 +75,9 @@ export default function Generator() {
   return (
     <div className="min-h-screen bg-transparent text-foreground">
       <SEO
-        title="QR Code Generator"
-        description="Generate beautiful, customizable QR codes instantly. Choose background colors, foreground colors, sizing and print formats."
-        keywords="qr code generator, create qr code, dynamic qr, customizable qrcode"
+        title={t("title")}
+        description={t("metaDescription")}
+        keywords={t("metaKeywords")}
       />
 
       <main className="pt-32 pb-20 px-6">
@@ -83,13 +86,13 @@ export default function Generator() {
           <div className="mb-12 text-center max-w-2xl mx-auto space-y-4">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(16,169,104,0.25)] bg-[#F0F7F0]">
               <Sparkles className="w-4 h-4 text-[#10A968]" />
-              <span className="text-[#10A968] text-xs font-semibold tracking-wider uppercase">Premium Utility</span>
+              <span className="text-[#10A968] text-xs font-semibold tracking-wider uppercase">{common("labels.premiumUtility")}</span>
             </div>
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight gradient-text">
-              QR Code Generator
+              {t("title")}
             </h1>
             <p className="text-base text-[#4A6857]">
-              Instantly create fully customized QR codes for websites, WiFi networks, digital business cards, or text payloads.
+              {t("description")}
             </p>
           </div>
 
@@ -99,27 +102,27 @@ export default function Generator() {
             <div className="lg:col-span-7 glass-card-dark p-8 rounded-[24px] space-y-6">
               <div>
                 <label className="block text-sm font-semibold text-[#2D4D35] mb-2">
-                  QR Code Content (URL, Text, or Node)
+                  {t("contentLabel")}
                 </label>
                 <div className="relative">
                   <textarea
                     value={text}
                     onChange={(e) => setText(e.target.value)}
-                    placeholder="Enter URL or text to encode..."
+                    placeholder={t("contentPlaceholder")}
                     className="w-full h-28 px-4 py-3 rounded-[12px] border border-[#E0E0E0] bg-white text-[#2D4D35] placeholder-[#999B99] focus:outline-none focus:border-[#10A968] resize-none"
                   />
                   <div className="absolute bottom-3 right-3 flex gap-2">
                     <button
                       onClick={copyToClipboard}
                       className="p-2 rounded-lg bg-[#E8F0E8] hover:bg-[#D4E8D8] text-[#4A6857] transition-colors"
-                      title="Copy content"
+                      title={common("a11y.copyContent")}
                     >
                       {copied ? <Check className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
                     </button>
                     <button
                       onClick={() => setText("")}
                       className="p-2 rounded-lg bg-[#E8F0E8] hover:bg-[#D4E8D8] text-[#4A6857] transition-colors"
-                      title="Clear content"
+                      title={common("a11y.clearContent")}
                     >
                       <RefreshCw className="w-4 h-4" />
                     </button>
@@ -130,13 +133,13 @@ export default function Generator() {
               {/* Advanced Options Accordion/Drawer */}
               <div className="border-t border-[#E0E0E0] pt-6 space-y-4">
                 <h3 className="text-md font-bold text-[#1F3A26] flex items-center gap-2">
-                  <Sliders className="w-4 h-4 text-[#10A968]" /> Customize Design Settings
+                  <Sliders className="w-4 h-4 text-[#10A968]" /> {t("customize")}
                 </h3>
 
                 <div className="grid sm:grid-cols-2 gap-4">
                   {/* Foreground Color */}
                   <div>
-                    <label className="block text-xs text-[#4A6857] mb-2">QR Code Color (Foreground)</label>
+                    <label className="block text-xs text-[#4A6857] mb-2">{t("foreground")}</label>
                     <div className="flex gap-2">
                       <input
                         type="color"
@@ -155,7 +158,7 @@ export default function Generator() {
 
                   {/* Background Color */}
                   <div>
-                    <label className="block text-xs text-[#4A6857] mb-2">Background Color</label>
+                    <label className="block text-xs text-[#4A6857] mb-2">{t("background")}</label>
                     <div className="flex gap-2">
                       <input
                         type="color"
@@ -177,7 +180,7 @@ export default function Generator() {
                   {/* Size slider */}
                   <div>
                     <label className="block text-xs text-[#4A6857] mb-2">
-                      Resolution Sizing: <span className="text-[#10A968] font-semibold">{size} x {size}px</span>
+                      {t("resolution")} <span className="text-[#10A968] font-semibold">{size} x {size}px</span>
                     </label>
                     <input
                       type="range"
@@ -192,7 +195,7 @@ export default function Generator() {
                   {/* Margin slider */}
                   <div>
                     <label className="block text-xs text-[#4A6857] mb-2">
-                      Quiet Zone Margin: <span className="text-[#10A968] font-semibold">{margin}px</span>
+                      {t("margin")} <span className="text-[#10A968] font-semibold">{margin}px</span>
                     </label>
                     <input
                       type="range"
@@ -210,16 +213,16 @@ export default function Generator() {
             {/* Right output preview */}
             <div className="lg:col-span-5 flex flex-col items-center">
               <div className="glass-card-dark p-8 rounded-[24px] w-full flex flex-col items-center gap-6 text-center">
-                <span className="text-[#2D4D35] text-sm font-semibold tracking-wider uppercase">Live QR Preview</span>
+                <span className="text-[#2D4D35] text-sm font-semibold tracking-wider uppercase">{t("preview")}</span>
 
                 {/* QR output image container */}
                 <div className="relative aspect-square w-72 h-72 rounded-[16px] bg-white p-4 flex items-center justify-center shadow-lg border border-[#E0E0E0]">
                   {qrUrl ? (
-                    <img src={qrUrl} alt="Generated QR code" className="max-w-full max-h-full object-contain" />
+                    <img src={qrUrl} alt={t("previewAlt")} className="max-w-full max-h-full object-contain" />
                   ) : (
                     <div className="flex flex-col items-center gap-2 text-gray-500">
                       <ImageIcon className="w-12 h-12" />
-                      <span>Generating QR Code...</span>
+                      <span>{t("generating")}</span>
                     </div>
                   )}
 
@@ -236,31 +239,31 @@ export default function Generator() {
                     disabled={!qrUrl}
                     className="flex-1 py-3 px-4 rounded-[12px] brand-gradient text-white font-semibold text-sm flex items-center justify-center gap-2 hover:opacity-95 transition-opacity disabled:opacity-50"
                   >
-                    <Download className="w-4 h-4" /> Download PNG
+                    <Download className="w-4 h-4" /> {t("download")}
                   </button>
                   <button
                     onClick={async () => {
                       if (!qrUrl) return;
                       try {
                         await navigator.clipboard.writeText(window.location.href);
-                        alert("Saved sharing link to your clipboard!");
+                        alert(t("shareSuccess"));
                       } catch (err) {
                         if (err instanceof Error && err.name === "NotAllowedError") {
-                          alert("Link: " + window.location.href);
+                          alert(common("messages.link", { url: window.location.href }));
                         } else {
                           console.error(err);
                         }
                       }
                     }}
                     className="px-4 py-3 rounded-[12px] border border-[#C5DCC9] bg-[#F0F7F0] hover:bg-[#E8F0E8] text-[#2D4D35] transition-colors"
-                    title="Share QR Link"
+                    title={t("share")}
                   >
                     <Share2 className="w-4 h-4" />
                   </button>
                 </div>
 
                 <span className="text-xs text-[#4A6857] max-w-[280px]">
-                  All processing is conducted safely in-browser. Your data never leaves your local system.
+                  {t("privacy")}
                 </span>
               </div>
             </div>

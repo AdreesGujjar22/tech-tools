@@ -10,10 +10,12 @@ import { Blog, Category, Tag } from "@shared/api";
 import { Search, Calendar, Clock, Tag as TagIcon, Filter, Layers, PlusCircle, ArrowUpRight } from "lucide-react";
 import { Link } from "@/lib/router-compat";
 import { motion, AnimatePresence } from "motion/react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 export default function BlogArchive() {
   const { user, isAdmin } = useAuth();
+  const t = useTranslations("Blog");
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [tags, setTags] = useState<Tag[]>([]);
@@ -138,13 +140,13 @@ export default function BlogArchive() {
           <div>
             <div className="flex items-center gap-2 text-[#10A968] text-xs font-mono uppercase tracking-widest mb-3">
               <Layers size={14} />
-              <span>Insights & Artifacts</span>
+              <span>{t("eyebrow")}</span>
             </div>
             <h1 className="text-5xl lg:text-6xl font-bold font-sans tracking-tight text-[#1F3A26] mb-4">
-              The Craft Blog
+              {t("title")}
             </h1>
             <p className="text-lg text-[#4A6857] max-w-2xl leading-relaxed">
-              In-depth investigations, tactical guides, and structural designs to supercharge your software engineering and visual workflow.
+              {t("description")}
             </p>
           </div>
           {isAdmin && (
@@ -153,7 +155,7 @@ export default function BlogArchive() {
               className="px-5 py-3 rounded-xl bg-[#10A968] hover:bg-[#0d8a52] text-white font-bold transition-all flex items-center gap-2 shadow-lg hover:shadow-[#10A968]/20"
             >
               <PlusCircle size={18} />
-              Write New Post
+              {t("writePost")}
             </Link>
           )}
         </div>
@@ -167,7 +169,7 @@ export default function BlogArchive() {
             </span>
             <input
               type="text"
-              placeholder="Search articles, keywords, topics..."
+              placeholder={t("search")}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full pl-12 pr-4 py-3.5 bg-white border border-[#C5DCC9] focus:border-[#10A968] rounded-xl focus:outline-none placeholder-[#4A6857]/50 text-[#1F3A26] transition-all text-sm"
@@ -184,9 +186,9 @@ export default function BlogArchive() {
               onChange={(e) => setSelectedCategory(e.target.value)}
               className="w-full pl-11 pr-4 py-3.5 bg-white border border-[#C5DCC9] focus:border-[#10A968] rounded-xl focus:outline-none text-sm text-[#2D4D35] transition-all appearance-none cursor-pointer"
             >
-              <option value="All" className="bg-white">Category: All</option>
+              <option value="All" className="bg-white">{t("categoryAll")}</option>
               {uniqueCategories.filter(c => c !== "All").map((cat) => (
-                <option key={cat} value={cat} className="bg-white">Category: {cat}</option>
+                <option key={cat} value={cat} className="bg-white">{t("category", { name: cat })}</option>
               ))}
             </select>
           </div>
@@ -201,9 +203,9 @@ export default function BlogArchive() {
               onChange={(e) => setSelectedTag(e.target.value)}
               className="w-full pl-11 pr-4 py-3.5 bg-white border border-[#C5DCC9] focus:border-[#10A968] rounded-xl focus:outline-none text-sm text-[#2D4D35] transition-all appearance-none cursor-pointer"
             >
-              <option value="All" className="bg-white">Tag: All</option>
+              <option value="All" className="bg-white">{t("tagAll")}</option>
               {uniqueTags.filter(t => t !== "All").map((tag) => (
-                <option key={tag} value={tag} className="bg-white">Tag: {tag}</option>
+                <option key={tag} value={tag} className="bg-white">{t("tag", { name: tag })}</option>
               ))}
             </select>
           </div>
@@ -226,9 +228,9 @@ export default function BlogArchive() {
         ) : filteredBlogs.length === 0 ? (
           <div className="p-12 text-center rounded-2xl max-w-lg mx-auto mt-12 border border-dashed border-[#C5DCC9] bg-[#F0F7F0]" id="empty-state">
             <Layers className="mx-auto text-[#10A968]/50 mb-4" size={48} />
-            <h3 className="text-xl font-semibold mb-2 text-[#1F3A26]">No Articles Found</h3>
+            <h3 className="text-xl font-semibold mb-2 text-[#1F3A26]">{t("noArticles")}</h3>
             <p className="text-[#4A6857] mb-6 text-sm">
-              We couldn't find any articles matching your filters. Try clearing your filters or writing a new blog post.
+              {t("noArticlesDescription")}
             </p>
             <button
               onClick={() => {
@@ -238,7 +240,7 @@ export default function BlogArchive() {
               }}
               className="text-[#10A968] hover:text-[#0d8a52] font-bold transition-all text-sm underline"
             >
-              Clear Filters
+              {t("clearFilters")}
             </button>
           </div>
         ) : (
@@ -268,7 +270,7 @@ export default function BlogArchive() {
                     </div>
                   )}
                   <div className="absolute top-4 left-4 px-3.5 py-1.5 rounded-lg bg-[#10A968]/90 backdrop-blur-md text-xs font-mono font-bold tracking-widest text-white">
-                    FEATURED POST
+                    {t("featured")}
                   </div>
                 </div>
 
@@ -309,7 +311,7 @@ export default function BlogArchive() {
                       to={`/blog/${featuredPost.slug}`}
                       className="inline-flex items-center gap-1.5 text-[#10A968] hover:text-[#0d8a52] font-bold text-sm transition-all"
                     >
-                      Read Full Post
+                      {t("readFull")}
                       <ArrowUpRight size={16} />
                     </Link>
                   </div>
@@ -320,7 +322,7 @@ export default function BlogArchive() {
             {/* Standard Grid Layout */}
             <div>
               <h2 className="text-2xl font-bold tracking-tight text-[#1F3A26] mb-8 font-sans">
-                {search || selectedCategory !== "All" || selectedTag !== "All" ? `Search Results (${filteredBlogs.length})` : "All Articles"}
+                {search || selectedCategory !== "All" || selectedTag !== "All" ? t("searchResults", { count: filteredBlogs.length }) : t("allArticles")}
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-grid">

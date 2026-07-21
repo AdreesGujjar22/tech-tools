@@ -1,8 +1,10 @@
 import { Link } from "@/lib/router-compat";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useTranslations } from "next-intl";
 
 export default function NotFound() {
+  const t = useTranslations("NotFound");
   return (
     <div className="min-h-screen bg-transparent text-foreground flex flex-col">
 
@@ -10,9 +12,9 @@ export default function NotFound() {
         <div className="max-w-[1280px] mx-auto text-center space-y-8">
           <div className="space-y-4">
             <h1 className="text-7xl font-bold gradient-text">404</h1>
-            <h2 className="text-4xl font-bold">Page Not Found</h2>
+            <h2 className="text-4xl font-bold">{t("title")}</h2>
             <p className="text-lg text-[#4A6857] max-w-2xl mx-auto">
-              The page you're looking for doesn't exist or has been moved. Let's get you back on track.
+              {t("description")}
             </p>
           </div>
 
@@ -21,13 +23,13 @@ export default function NotFound() {
               to="/"
               className="px-8 py-3 rounded-[12px] brand-gradient text-white font-semibold hover:opacity-90 transition-opacity"
             >
-              Back to Home
+              {t("backHome")}
             </Link>
             <Link
               to="/tools"
               className="px-8 py-3 rounded-[12px] border border-[#C5DCC9] text-[#2D4D35] bg-[#F0F7F0] font-semibold hover:bg-[#E8F0E8] transition-colors"
             >
-              Go to Tools Page
+              {t("goToTools")}
             </Link>
           </div>
         </div>

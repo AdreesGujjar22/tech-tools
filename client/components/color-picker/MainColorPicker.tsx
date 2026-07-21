@@ -2,26 +2,28 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ImageIcon, Pipette } from "lucide-react";
 import { Toaster } from "sonner";
+import { useTranslations } from "next-intl";
 import { ImageColorExtractor } from "./ImageColorExtractor";
 import { AdvancedColorPicker } from "./AdvancedColorPicker";
 
 type Tab = "image" | "picker";
 
 export default function MainColorPicker() {
+  const t = useTranslations("Tools.ColorPicker");
   const [activeTab, setActiveTab] = useState<Tab>("image");
 
   const tabs = [
-    { id: "image" as Tab, label: "Image", icon: ImageIcon },
-    { id: "picker" as Tab, label: "Color Picker", icon: Pipette },
+    { id: "image" as Tab, label: t("imageTab"), icon: ImageIcon },
+    { id: "picker" as Tab, label: t("title"), icon: Pipette },
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#F0F7F0] via-white to-transparent text-[#2D4D35]">
       <main className="pt-32 pb-20 px-6 max-w-[1280px] mx-auto">
         <div className="mb-12">
-          <h1 className="text-5xl lg:text-6xl font-bold mb-2 text-[#1F3A26]">Color Picker</h1>
+          <h1 className="text-5xl lg:text-6xl font-bold mb-2 text-[#1F3A26]">{t("title")}</h1>
           <p className="text-lg text-[#4A6857] font-medium">
-            Extract beautiful color palettes from any image or fine-tune and copy individual colors with surgical precision.
+            {t("description")}
           </p>
         </div>
 

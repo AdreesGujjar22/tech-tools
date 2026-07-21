@@ -1,21 +1,8 @@
-import React from "react";
 import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/server-locale";
 
-export const metadata: Metadata = {
-  title: "Customization - Tech Tools",
-  description: "Customize your Tech Tools experience. Adjust settings, themes, and preferences.",
-  keywords: ["customization", "settings", "preferences", "themes"],
-  openGraph: {
-    title: "Customization - Tech Tools",
-    description: "Customize your Tech Tools experience.",
-    type: "website",
-  },
-};
+export const metadata: Metadata = buildPageMetadata("/customization", "customization");
 
-export default function CustomizationLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function CustomizationLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
