@@ -171,7 +171,7 @@ export default function Index() {
       />
 
       {/* Hero Section */}
-      <section className="pt-24 sm:pt-32 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <section className="pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         {/* Background Gradient */}
         <div className="absolute inset-0 w-full h-[20rem] sm:h-[28rem] bg-hero-radial pointer-events-none" style={{ top: 0 }} />
 

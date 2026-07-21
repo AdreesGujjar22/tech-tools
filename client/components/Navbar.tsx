@@ -7,9 +7,35 @@ import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/lib/locale";
 
+type LanguageCode = "en" | "es";
+
 type LanguageSelectorProps = {
   mobile?: boolean;
 };
+
+function FlagIcon({ code }: { code: LanguageCode }) {
+
+  if (code === "es") {
+    return (
+      <svg viewBox="0 0 24 16" className="h-4 w-6 shadow-sm" aria-hidden="true">
+        <rect width="24" height="16" fill="#F1BF00" />
+        <rect width="24" height="4" fill="#AA151B" />
+        <rect y="12" width="24" height="4" fill="#AA151B" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 16" className="h-4 w-6 shadow-sm" aria-hidden="true">
+      <rect width="24" height="16" fill="#B22234" />
+      <path d="M0 2h24M0 4h24M0 6h24M0 8h24M0 10h24M0 12h24M0 14h24" stroke="#fff" strokeWidth="1.2" />
+      <rect width="10" height="8.5" fill="#3C3B6E" />
+      <circle cx="2" cy="2" r=".45" fill="#fff" /><circle cx="4" cy="2" r=".45" fill="#fff" /><circle cx="6" cy="2" r=".45" fill="#fff" /><circle cx="8" cy="2" r=".45" fill="#fff" />
+      <circle cx="3" cy="4" r=".45" fill="#fff" /><circle cx="5" cy="4" r=".45" fill="#fff" /><circle cx="7" cy="4" r=".45" fill="#fff" /><circle cx="9" cy="4" r=".45" fill="#fff" />
+      <circle cx="2" cy="6" r=".45" fill="#fff" /><circle cx="4" cy="6" r=".45" fill="#fff" /><circle cx="6" cy="6" r=".45" fill="#fff" /><circle cx="8" cy="6" r=".45" fill="#fff" />
+    </svg>
+  );
+}
 
 function LanguageSelector({ mobile = false }: LanguageSelectorProps) {
   const common = useTranslations("Common");
@@ -17,8 +43,8 @@ function LanguageSelector({ mobile = false }: LanguageSelectorProps) {
   const [open, setOpen] = useState(false);
   const selectorRef = useRef<HTMLDivElement>(null);
   const languages = [
-    { code: "en" as const, flag: "🇺🇸", label: common("languages.english") },
-    { code: "es" as const, flag: "🇪🇸", label: common("languages.spanish") },
+    { code: "en" as const, label: common("languages.english") },
+    { code: "es" as const, label: common("languages.spanish") },
   ];
   const selectedLanguage = languages.find((language) => language.code === locale) ?? languages[0];
 
@@ -45,9 +71,9 @@ function LanguageSelector({ mobile = false }: LanguageSelectorProps) {
         aria-expanded={open}
         aria-haspopup="listbox"
       >
-        <span className="text-xl leading-none select-none" aria-hidden="true">{selectedLanguage.flag}</span>
+        <FlagIcon code={selectedLanguage.code} />
         <span className="text-xs font-semibold uppercase tracking-[0.12em]">{selectedLanguage.code}</span>
-        <span className="text-xs font-medium text-muted-foreground">{selectedLanguage.label}</span>
+        <span className="hidden sm:inline text-xs font-medium text-muted-foreground">{selectedLanguage.label}</span>
         <ChevronDown className={cn("h-3.5 w-3.5 text-muted-foreground transition-transform", open && "rotate-180")} aria-hidden="true" />
       </button>
 
@@ -77,7 +103,7 @@ function LanguageSelector({ mobile = false }: LanguageSelectorProps) {
                   : "text-muted-foreground hover:bg-muted/70 hover:text-foreground"
               )}
             >
-              <span className="text-xl leading-none select-none" aria-hidden="true">{language.flag}</span>
+              <FlagIcon code={language.code} />
               <span className="w-6 text-xs font-semibold uppercase tracking-[0.12em]">{language.code}</span>
               <span className="text-sm font-medium">{language.label}</span>
               {language.code === locale && <span className="ml-auto h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />}
@@ -206,15 +232,18 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <button
-          className="lg:hidden text-muted-foreground hover:text-foreground p-2 hover:bg-muted rounded-lg transition-colors duration-200"
+        <div className="flex lg:hidden items-center gap-2">
+          <LanguageSelector />
+          <button
+          className="text-muted-foreground hover:text-foreground p-2 hover:bg-muted rounded-lg transition-colors duration-200"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? common("a11y.closeMenu") : common("a11y.openMenu")}
           aria-expanded={mobileOpen}
           aria-controls="mobile-navigation-drawer"
         >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       <div
@@ -293,8 +322,6 @@ export default function Navbar() {
           )}
 
           <div className="flex flex-col gap-3 pt-4 mt-3 border-t border-border/60">
-            <LanguageSelector mobile />
-
             {user ? (
               <button
                 onClick={() => {
