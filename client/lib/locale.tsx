@@ -18,13 +18,13 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() || "/";
   const isAdminPath = pathname === "/admin" || pathname.startsWith("/admin/");
   const [locale, setLocaleState] = useState<Locale>(
-    isAdminPath ? defaultLocale : pathname.split("/")[1] === "es" ? "es" : defaultLocale
+    isAdminPath ? defaultLocale : pathname.split("/")[1] === "es" ? "es" : pathname.split("/")[1] === "pt" ? "pt" : defaultLocale
   );
 
   useEffect(() => {
     if (isAdminPath) return;
     const saved = window.localStorage.getItem("techtools-locale");
-    if (saved !== "en" && saved !== "es") return;
+    if (saved !== "en" && saved !== "es" && saved !== "pt") return;
     setLocaleState(saved);
     document.documentElement.lang = saved;
     if (saved !== (pathname.split("/")[1] as RouteLocale)) {
