@@ -30,6 +30,7 @@ import {
   Pen
 } from "lucide-react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import { IMAGE_TOOLS } from "./toolsData";
 import { logImageToolUsage } from "./utils";
 import JSZip from "jszip";
@@ -53,6 +54,7 @@ interface FileItem {
 export default function UpscaleImage() {
   const allowedExtensions = [".png", ".jpg", ".jpeg", ".webp"];
   const tool = IMAGE_TOOLS.find((t) => t.id === "upscale-image");
+  const t = useTranslations("Tools.UpscaleImage");
 
   // Pica Instance
   const [picaInstance, setPicaInstance] = useState<any>(null);
@@ -650,10 +652,10 @@ export default function UpscaleImage() {
           className="inline-flex items-center gap-2 text-sm text-[#4A6857] hover:text-[#1F3A26] font-medium transition cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" />
-          Back to Image Dashboard
+          {t("backToDashboard")}
         </Link>
         <span className="text-[10px] font-mono text-[#4A6857] bg-[#F0F7F0]/80 px-2.5 py-1 border border-[#C5DCC9] rounded-lg">
-          LANCZOS3 HYBRID INTERPOLATION
+          {t("badge")}
         </span>
       </div>
 
@@ -666,10 +668,10 @@ export default function UpscaleImage() {
             </div>
             <div className="text-left">
               <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1F3A26] tracking-tight leading-none mb-2">
-                AI Image Upscaler
+                {t("title")}
               </h1>
               <p className="text-[#4A6857] text-sm leading-relaxed max-w-2xl">
-                Enlarge photos, logs, documents, and illustrations up to 4x cleanly using on-device Lanczos-3 pixel matrices. Fully offline & client-side.
+                {t("description")}
               </p>
             </div>
           </div>
@@ -703,16 +705,16 @@ export default function UpscaleImage() {
 
               <div className="space-y-2 relative z-10 max-w-sm">
                 <h3 className="text-[#1F3A26] font-bold text-base">
-                  Drag & drop your images here
+                  {t("dropTitle")}
                 </h3>
                 <p className="text-[#4A6857]/80 text-xs leading-relaxed">
-                  or click to select files. Supports <span className="font-semibold text-[#2D4D35]">PNG, JPG, JPEG, WEBP</span> formats.
+                  {t("dropDescription")}
                 </p>
               </div>
 
               <div className="absolute bottom-4 text-[10px] text-[#4A6857] font-mono flex items-center gap-1.5 bg-[#F0F7F0]/90 p-1 px-3 border border-[#C5DCC9] rounded-full">
                 <span className="w-1.5 h-1.5 bg-[#10A968] rounded-full animate-ping" />
-                Processed fully local in-browser. Zero server limits.
+                {t("localProcessing")}
               </div>
             </div>
           ) : (
@@ -722,7 +724,7 @@ export default function UpscaleImage() {
                 <div className="flex items-center gap-3">
                   <div className="text-left font-mono shrink-0">
                     <span className="text-[10px] font-bold text-[#4A6857] uppercase block leading-none mb-1">
-                      CURRENT ATOM
+                      {t("currentAtom")}
                     </span>
                     <span className="text-xs text-[#1F3A26] font-medium max-w-[150px] sm:max-w-[220px] truncate block leading-none">
                       {activeFileItem?.file.name}
@@ -730,12 +732,12 @@ export default function UpscaleImage() {
                   </div>
                   {activeFileItem?.width > 0 && (
                     <span className="text-[10px] font-mono bg-[#F0F7F0] text-[#4A6857] px-2 py-0.5 rounded border border-[#C5DCC9] shrink-0">
-                      Input: {activeFileItem.width}x{activeFileItem.height}
+                      {t("input", { width: activeFileItem.width, height: activeFileItem.height })}
                     </span>
                   )}
                   {activeFileItem?.status === "success" && activeFileItem.processedWidth > 0 && (
                     <span className="text-[10px] font-mono bg-[#10A968]/20 text-[#10A968] px-2 py-0.5 rounded border border-[#10A968]/40 shrink-0 font-bold">
-                      Output: {activeFileItem.processedWidth}x{activeFileItem.processedHeight}
+                      {t("output", { width: activeFileItem.processedWidth, height: activeFileItem.processedHeight })}
                     </span>
                   )}
                 </div>
@@ -751,7 +753,7 @@ export default function UpscaleImage() {
                           : "text-[#4A6857] hover:text-[#1F3A26] border border-transparent"
                       }`}
                     >
-                      <Eye className="w-3.5 h-3.5" /> Split Slider
+                      <Eye className="w-3.5 h-3.5" /> {t("splitSlider")}
                     </button>
                     <button
                       onClick={() => setViewMode("side-by-side")}
@@ -761,7 +763,7 @@ export default function UpscaleImage() {
                           : "text-[#4A6857] hover:text-[#1F3A26] border border-transparent"
                       }`}
                     >
-                      <Layers className="w-3.5 h-3.5" /> Side-by-Side
+                      <Layers className="w-3.5 h-3.5" /> {t("sideBySide")}
                     </button>
                     <button
                       onClick={() => setViewMode("output")}
@@ -771,7 +773,7 @@ export default function UpscaleImage() {
                           : "text-[#4A6857] hover:text-[#1F3A26] border border-transparent"
                       }`}
                     >
-                      Output Format
+                      {t("outputFormat")}
                     </button>
                   </div>
                 )}
@@ -798,7 +800,7 @@ export default function UpscaleImage() {
                   <div className="absolute inset-0 z-20 bg-[#F0F7F0]/80 backdrop-blur-xs flex flex-col items-center justify-center p-6 space-y-4">
                     <Loader2 className="w-10 h-10 text-[#10A968] animate-spin" />
                     <div className="text-center space-y-1">
-                      <p className="text-[#1F3A26] font-bold text-sm">Processing image...</p>
+                      <p className="text-[#1F3A26] font-bold text-sm">{t("processing")}</p>
                       <p className="text-[#4A6857] text-xs font-mono">{activeFileItem.progressMsg}</p>
                     </div>
 
@@ -808,7 +810,7 @@ export default function UpscaleImage() {
                         className="bg-[#10A968] h-full transition-all duration-300"
                       />
                     </div>
-                    <span className="text-[10px] font-mono text-[#4A6857]">{activeFileItem.progress}% COMPLETE</span>
+                    <span className="text-[10px] font-mono text-[#4A6857]">{t("complete", { progress: activeFileItem.progress })}</span>
                   </div>
                 )}
 
@@ -817,16 +819,16 @@ export default function UpscaleImage() {
                   <div className="absolute inset-0 z-20 bg-[#F0F7F0]/90 flex flex-col items-center justify-center p-6 space-y-4 text-center">
                     <AlertCircle className="w-12 h-12 text-rose-500" />
                     <div className="space-y-1.5 max-w-md">
-                      <p className="text-[#1F3A26] font-bold text-sm">Enhancement operation failed</p>
+                      <p className="text-[#1F3A26] font-bold text-sm">{t("enhancementFailed")}</p>
                       <p className="text-rose-400/85 text-xs font-mono leading-relaxed bg-rose-950/30 p-3 rounded-xl border border-rose-900/30">
-                        {activeFileItem.errorMsg || "An unknown canvas error occurred."}
+                        {activeFileItem.errorMsg || t("unknownCanvasError")}
                       </p>
                     </div>
                     <button
                       onClick={handleReprocessActive}
                       className="px-5 py-2 bg-white border border-[#C5DCC9] text-[#1F3A26] rounded-xl text-xs font-semibold hover:bg-[#F0F7F0] transition flex items-center gap-1.5 cursor-pointer"
                     >
-                      <RefreshCw className="w-3.5 h-3.5" /> Re-attempt Process
+                      <RefreshCw className="w-3.5 h-3.5" /> {t("retry")}
                     </button>
                   </div>
                 )}
@@ -836,16 +838,16 @@ export default function UpscaleImage() {
                   <div className="absolute inset-0 z-15 bg-[#F0F7F0]/60 backdrop-blur-2xs flex flex-col items-center justify-center p-6 space-y-4 text-center">
                     <Sparkles className="w-12 h-12 text-[#10A968]/60" />
                     <div className="space-y-1 max-w-xs">
-                      <p className="text-[#1F3A26] font-bold text-sm">Awaiting super-resolution compile</p>
+                      <p className="text-[#1F3A26] font-bold text-sm">{t("awaitingCompile")}</p>
                       <p className="text-[#4A6857] text-xs">
-                        Click the processing buttons on the right side panel to trigger the upscaling calculations.
+                        {t("triggerProcessing")}
                       </p>
                     </div>
                     <button
                       onClick={handleReprocessActive}
                       className="px-6 py-2.5 bg-[#10A968] hover:bg-[#0d8654] text-[#F0F7F0] text-xs font-extrabold rounded-xl shadow-lg shadow-[#10A968]/10 transition flex items-center gap-1.5 cursor-pointer"
                     >
-                      Upscale Active Now
+                      {t("upscaleActive")}
                     </button>
                   </div>
                 )}
@@ -900,10 +902,10 @@ export default function UpscaleImage() {
 
                         {/* Interactive before and after helper labels */}
                         <span className="absolute bottom-2 left-2 px-2 py-0.5 bg-[#F0F7F0]/90 text-[#4A6857] font-mono text-3xs border border-[#C5DCC9] rounded-md z-30">
-                          BEFORE (Standard)
+                          {t("beforeStandard")}
                         </span>
                         <span className="absolute bottom-2 right-2 px-2 py-0.5 bg-[#10A968]/20 text-[#10A968] font-mono text-3xs border border-[#10A968]/30 rounded-md z-30">
-                          AFTER (Upscaled)
+                          {t("afterUpscaled")}
                         </span>
                       </div>
                     ) : viewMode === "side-by-side" && activeFileItem.status === "success" ? (
@@ -911,7 +913,7 @@ export default function UpscaleImage() {
                       // Viewmode: Side-by-Side Comparison
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full h-full items-center">
                         <div className="space-y-1.5 text-center">
-                          <p className="text-[10px] font-mono text-[#4A6857] font-bold uppercase tracking-wider">Before (Fuzzy Resize)</p>
+                          <p className="text-[10px] font-mono text-[#4A6857] font-bold uppercase tracking-wider">{t("beforeFuzzy")}</p>
                           <div className="bg-white border border-[#C5DCC9] p-2 rounded-2xl flex items-center justify-center h-[260px]">
                             <img
                               src={activeFileItem.originalUrl}
@@ -922,7 +924,7 @@ export default function UpscaleImage() {
                         </div>
                         <div className="space-y-1.5 text-center">
                           <p className="text-[10px] font-mono text-[#10A968] font-bold uppercase tracking-wider flex items-center justify-center gap-1">
-                            <Sparkles className="w-3 h-3 text-[#10A968] animate-pulse" /> Lanczos3 HD
+                            <Sparkles className="w-3 h-3 text-[#10A968] animate-pulse" /> {t("lanczosHd")}
                           </p>
                           <div
                             className="bg-white border border-[#C5DCC9] p-2 rounded-2xl flex items-center justify-center h-[260px] relative overflow-hidden"
@@ -963,7 +965,7 @@ export default function UpscaleImage() {
                 <div className="p-4 bg-white/60 border border-[#C5DCC9] rounded-3xl space-y-3 text-left">
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-mono font-bold text-[#4A6857] uppercase tracking-widest">
-                      BATCH QUEUE FEED ({files.length} ITEMS)
+                      {t("batchQueue", { count: files.length })}
                     </span>
                     <button
                       onClick={() => {
@@ -973,7 +975,7 @@ export default function UpscaleImage() {
                       }}
                       className="text-[#4A6857] hover:text-[#1F3A26] transition text-3xs font-bold flex items-center gap-1 cursor-pointer"
                     >
-                      <Trash2 className="w-3 h-3" /> Clear Queue
+                      <Trash2 className="w-3 h-3" /> {t("clearQueue")}
                     </button>
                   </div>
 
@@ -1019,7 +1021,7 @@ export default function UpscaleImage() {
                       className="shrink-0 w-[64px] h-[64px] rounded-xl border border-dashed border-[#C5DCC9] hover:border-[#10A968]/40 hover:bg-[#10A968]/[0.01] flex flex-col items-center justify-center cursor-pointer text-[#4A6857] hover:text-[#10A968] transition"
                     >
                       <span className="text-lg font-medium leading-none">+</span>
-                      <span className="text-[8px] font-bold font-mono uppercase mt-0.5">Add</span>
+                      <span className="text-[8px] font-bold font-mono uppercase mt-0.5">{t("add")}</span>
                     </div>
                   </div>
                 </div>
@@ -1034,7 +1036,7 @@ export default function UpscaleImage() {
             <div className="border-b border-[#C5DCC9] pb-3 flex items-center justify-between">
               <h3 className="font-extrabold text-[#1F3A26] text-base flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-[#10A968] rounded-full animate-pulse" />
-                Upscale controls
+                {t("controls")}
               </h3>
               {files.length > 0 && (
                 <button
@@ -1044,7 +1046,7 @@ export default function UpscaleImage() {
                   }}
                   className="text-3xs text-[#4A6857] hover:text-[#1F3A26] flex items-center gap-1 hover:underline cursor-pointer"
                 >
-                  <RefreshCw className="w-3 h-3" /> Reset Page
+                  <RefreshCw className="w-3 h-3" /> {t("resetPage")}
                 </button>
               )}
             </div>
@@ -1052,12 +1054,12 @@ export default function UpscaleImage() {
             {/* Scale Factors toggle buttons */}
             <div className="space-y-2">
               <label className="text-[10px] font-extrabold text-[#4A6857] font-mono uppercase tracking-wider block">
-                Sizing Multiplier
+                {t("sizingMultiplier")}
               </label>
               <div className="grid grid-cols-2 gap-2">
                 {[
-                  { value: 2, label: "2x Scale", desc: "Double pixel resolution" },
-                  { value: 4, label: "4x Scale", desc: "4x HD pixel matrices" }
+                  { value: 2, label: t("scale2x"), desc: t("scale2xDescription") },
+                  { value: 4, label: t("scale4x"), desc: t("scale4xDescription") }
                 ].map((scaleOpt) => {
                   const isActive = config.scale === scaleOpt.value;
                   return (
@@ -1081,14 +1083,14 @@ export default function UpscaleImage() {
             {/* Neural Enhance Mode presets selector layout */}
             <div className="space-y-2">
               <label className="text-[10px] font-extrabold text-[#4A6857] font-mono uppercase tracking-wider block">
-                AI Detail Mode Preset
+                {t("detailPreset")}
               </label>
               <div className="grid grid-cols-1 gap-2">
                 {[
-                  { id: "photo", label: "AI Detail (Natural Photos)", icon: ImagePlus, desc: "Soft-balanced contours; ideal for portraits and landscapes." },
-                  { id: "logo", label: "Digital Logos & Icons", icon: Zap, desc: "Geometric lines restoration + alpha transparency protection." },
-                  { id: "document", label: "Document / Text OCR", icon: Landmark, desc: "Heavy contour highlight to make low-res scans legible." },
-                  { id: "illustration", label: "Line Art / Anime", icon: Pen, desc: "Illustration color preserving with smoothed pixel edges." }
+                  { id: "photo", label: t("photoPreset"), icon: ImagePlus, desc: t("photoDescription") },
+                  { id: "logo", label: t("logoPreset"), icon: Zap, desc: t("logoDescription") },
+                  { id: "document", label: t("documentPreset"), icon: Landmark, desc: t("documentDescription") },
+                  { id: "illustration", label: t("illustrationPreset"), icon: Pen, desc: t("illustrationDescription") }
                 ].map((presetOpt) => {
                   const isActive = config.preset === presetOpt.id;
                   const IconComponent = presetOpt.icon;
@@ -1118,14 +1120,14 @@ export default function UpscaleImage() {
               <div className="flex items-center gap-1.5 text-[#4A6857]">
                 <SlidersHorizontal className="w-3.5 h-3.5 text-[#10A968]" />
                 <span className="text-[10px] font-black font-mono uppercase tracking-wider">
-                  Refined Calibration
+                  {t("refinedCalibration")}
                 </span>
               </div>
 
               {/* Sharpness slider */}
               <div className="space-y-1">
                 <div className="flex justify-between items-center text-[10px] font-mono font-bold text-[#4A6857]">
-                  <span>SHARPNESS DENSITY</span>
+                  <span>{t("sharpness")}</span>
                   <span className="text-[#10A968] font-extrabold">{config.customSharpness}%</span>
                 </div>
                 <input
@@ -1141,7 +1143,7 @@ export default function UpscaleImage() {
               {/* Local Contrast boosting slider */}
               <div className="space-y-1">
                 <div className="flex justify-between items-center text-[10px] font-mono font-bold text-[#4A6857]">
-                  <span>CONTRAST BOOSTING</span>
+                  <span>{t("contrast")}</span>
                   <span className="text-[#10A968] font-extrabold">{config.customContrast}%</span>
                 </div>
                 <input
@@ -1157,7 +1159,7 @@ export default function UpscaleImage() {
               {/* Noise grain filter smoothing slider */}
               <div className="space-y-1">
                 <div className="flex justify-between items-center text-[10px] font-mono font-bold text-[#4A6857]">
-                  <span>NOISE SMOOTH FILTER</span>
+                  <span>{t("smoothing")}</span>
                   <span className="text-[#10A968] font-extrabold">{config.customSmoothing}%</span>
                 </div>
                 <input
@@ -1179,7 +1181,7 @@ export default function UpscaleImage() {
                   className="w-full py-3.5 bg-[#10A968] hover:bg-[#0d8654] font-extrabold text-[#F0F7F0] text-sm rounded-xl transition duration-200 outline-none hover:shadow-[#10A968]/15 shadow-xl flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Sparkles className="w-4 h-4 shrink-0" />
-                  Upscale Queue Now
+                  {t("upscaleQueue")}
                 </button>
 
                 {files.filter(f => f.status === "success").length > 0 && (
@@ -1191,14 +1193,14 @@ export default function UpscaleImage() {
                     {isZipping ? (
                       <>
                         <Loader2 className="w-3.5 h-3.5 animate-spin text-[#10A968]" />
-                        Zipping files...
+                        {t("zipping")}
                       </>
                     ) : (
                       <>
                         <Download className="w-3.5 h-3.5" />
                         {files.filter(f => f.status === "success").length > 1
-                          ? `Download ZIP (${files.filter(f => f.status === "success").length} files)`
-                          : "Save Upscaled Image"}
+                          ? t("downloadZip", { count: files.filter(f => f.status === "success").length })
+                          : t("saveImage")}
                       </>
                     )}
                   </button>
@@ -1210,17 +1212,17 @@ export default function UpscaleImage() {
             {files.length > 0 && (
               <div className="p-3 bg-[#10A968]/10 border border-[#10A968]/30 rounded-2xl text-xs space-y-2">
                 <div className="flex justify-between items-center text-[#4A6857]">
-                  <span>Total files:</span>
-                  <span className="font-mono text-[#1F3A26] font-semibold">{files.length} items</span>
+                  <span>{t("totalFiles")}</span>
+                  <span className="font-mono text-[#1F3A26] font-semibold">{t("items", { count: files.length })}</span>
                 </div>
                 <div className="flex justify-between items-center text-[#4A6857]">
-                  <span>Processed:</span>
+                  <span>{t("processed")}</span>
                   <span className="font-mono text-[#10A968] font-bold">
                     {files.filter(f => f.status === "success").length} / {files.length}
                   </span>
                 </div>
                 <div className="flex justify-between items-center text-[#2D4D35]">
-                  <span>Total size:</span>
+                  <span>{t("totalSize")}</span>
                   <span className="font-mono text-[#1F3A26]">
                     {formatBytes(files.reduce((acc, curr) => acc + curr.file.size, 0))}
                   </span>
@@ -1230,7 +1232,7 @@ export default function UpscaleImage() {
 
             {files.length === 0 && (
               <div className="py-8 text-center text-xs text-[#4A6857] font-mono leading-relaxed bg-[#10A968]/10 border border-dashed border-[#C5DCC9] rounded-2xl">
-                Select or drop image files to activate the upscale processing settings.
+                {t("selectFiles")}
               </div>
             )}
           </div>
@@ -1238,10 +1240,10 @@ export default function UpscaleImage() {
           {/* Privacy and Technical Container explanation cards */}
           <div className="bg-[#10A968]/10 border border-[#10A968]/30 rounded-2xl p-5 text-left leading-relaxed">
             <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#10A968] font-mono block mb-2">
-              Performance & Privacy
+              {t("performancePrivacy")}
             </span>
             <p className="text-[#4A6857] text-xs">
-              Runs fully client-side on-device with zero cloud server communication. Processing occurs localized, supporting safe data storage sandbox containment, zero infrastructure fees, and works off-grid.
+              {t("privacyDescription")}
             </p>
           </div>
         </div>
