@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const locales = new Set(["en", "es"]);
+const locales = new Set(["en", "es", "pt"]);
 
 export default function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
@@ -12,7 +12,7 @@ export default function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  const internalPath = pathname.replace(/^\/(?:en|es)(?=\/|$)/, "") || "/";
+  const internalPath = pathname.replace(/^\/(?:en|es|pt)(?=\/|$)/, "") || "/";
   const url = request.nextUrl.clone();
   url.pathname = internalPath;
 

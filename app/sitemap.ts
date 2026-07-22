@@ -98,7 +98,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const routes = [...staticRoutes, ...imageToolRoutes, ...pdfToolRoutes, ...blogPostRoutes];
-  const localizedRoutes = ["en", "es"].flatMap((locale) =>
+  const localizedRoutes = ["en", "es", "pt"].flatMap((locale) =>
     routes.map((route) => ({
       ...route,
       url: `${baseUrl}/${locale}${route.url.slice(baseUrl.length)}`,

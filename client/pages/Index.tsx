@@ -148,7 +148,7 @@ export default function Index() {
     }
   };
 
-  const currentDate = new Intl.DateTimeFormat(locale === "es" ? "es-ES" : "en-US", {
+  const currentDate = new Intl.DateTimeFormat(locale === "pt" ? "pt-BR" : locale === "es" ? "es-ES" : "en-US", {
     month: "short",
     day: "numeric",
     year: "numeric",

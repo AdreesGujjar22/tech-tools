@@ -33,7 +33,7 @@
       "view": "View"
     },
     "language": "Language",
-    "languages": { "english": "English", "spanish": "Spanish" },
+    "languages": { "english": "English", "spanish": "Spanish", "portuguese": "Portuguese" },
     "labels": {
       "allUtilities": "All Utilities",
       "bytes": "Bytes",

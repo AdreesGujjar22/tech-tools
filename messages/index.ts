@@ -1,5 +1,6 @@
 import en from "./en.json";
 import es from "./es.json";
+import pt from "./pt.json";
 
 function mergeMessages<T extends Record<string, any>, U extends Record<string, any>>(base: T, override: U): T & U {
   const result: Record<string, any> = { ...base };
@@ -12,12 +13,14 @@ function mergeMessages<T extends Record<string, any>, U extends Record<string, a
 }
 
 const spanishMessages = mergeMessages(en, es);
+const portugueseMessages = mergeMessages(en, pt);
 
 export const defaultLocale = "en" as const;
 
 export const messages = {
   en,
   es: spanishMessages,
+  pt: portugueseMessages,
 } as const;
 
 export const publicRoutes = messages.en.Routes;

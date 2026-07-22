@@ -35,6 +35,7 @@ export const metadata: Metadata = {
     languages: {
       en: `${BASE_URL}/en`,
       es: `${BASE_URL}/es`,
+      pt: `${BASE_URL}/pt`,
       "x-default": `${BASE_URL}/en`,
     },
   },
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
     description: siteMetadata.description,
     siteName: "Tech Tools",
     locale: "en_US",
-    alternateLocale: "es_ES",
+    alternateLocale: ["es_ES", "pt_BR"],
     type: "website",
     images: [
       {

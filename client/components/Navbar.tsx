@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/lib/locale";
 
-type LanguageCode = "en" | "es";
+type LanguageCode = "en" | "es" | "pt";
 
 type LanguageSelectorProps = {
   mobile?: boolean;
@@ -21,6 +21,16 @@ function FlagIcon({ code }: { code: LanguageCode }) {
         <rect width="24" height="16" fill="#F1BF00" />
         <rect width="24" height="4" fill="#AA151B" />
         <rect y="12" width="24" height="4" fill="#AA151B" />
+      </svg>
+    );
+  }
+
+  if (code === "pt") {
+    return (
+      <svg viewBox="0 0 24 16" className="h-4 w-6 shadow-sm" aria-hidden="true">
+        <rect width="24" height="16" fill="#009B3A" />
+        <path d="M12 1 22 8 12 15 2 8Z" fill="#FFDF00" />
+        <circle cx="12" cy="8" r="3.5" fill="#002776" />
       </svg>
     );
   }
@@ -45,6 +55,7 @@ function LanguageSelector({ mobile = false }: LanguageSelectorProps) {
   const languages = [
     { code: "en" as const, label: common("languages.english") },
     { code: "es" as const, label: common("languages.spanish") },
+    { code: "pt" as const, label: common("languages.portuguese") },
   ];
   const selectedLanguage = languages.find((language) => language.code === locale) ?? languages[0];
 
