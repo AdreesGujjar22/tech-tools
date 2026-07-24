@@ -697,8 +697,15 @@
       "removeBackground": "Rimuovi Sfondo",
       "retry": "Riprova",
       "images": "Immagini ({count})",
-      "processAll": "Elabora Tutto"
+      "processAll": "Elabora Tutto",
+      "backgroundRemoved": "Sfondo rimosso da {fileName}"
     },
+    "Loading": { "imageTools": "Caricamento strumenti immagine...", "pdfTools": "Caricamento strumenti PDF..." },
+    "WatermarkImage": { "panel": "Pannello filigrana", "positionGrid": "Griglia posizione filigrana", "stampLabel": "Etichetta timbro del marchio", "defaultStamp": "© TIMBRO DEL MARCHIO", "fontSize": "Dimensione carattere (% dell'area di lavoro)", "textFillColor": "Colore di riempimento del testo", "opacity": "Opacità filigrana ({value}%)", "propertiesOverview": "Panoramica proprietà", "positionType": "Tipo di posizione", "stampText": "Testo del timbro", "none": "Nessuno" },
+    "ImageConverter": { "conversionSettings": "Impostazioni di conversione" },
+    "PdfToPowerpoint": { "slidesOutputOptions": "Opzioni di output delle diapositive" },
+    "PdfToWord": { "conversionTargets": "Destinazioni di conversione", "description": "Esegue l'estrazione completa del testo in tutte le sezioni e lo restituisce in modo nativo nei blocchi di file Word `.docx` standard." },
+    "UnlockPdf": { "unlockParameters": "Parametri di sblocco", "enterPassword": "Inserisci password di sblocco", "passwordPlaceholder": "Lascia vuoto se è un PDF standard...", "protectPdfNote": "Se il PDF è stato crittografato con il nostro strumento Proteggi PDF, fornisci la chiave sopra per rimuovere le limitazioni di blocco sul client." },
     "QrGenerator": {
       "title": "Generatore di Codici QR",
       "description": "Crea istantaneamente codici QR completamente personalizzati per siti web, reti WiFi, biglietti da visita digitali o testo.",

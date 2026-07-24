@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import ToolShell from "./ToolShell";
 import JSZip from "jszip";
 
 export default function PdfToPowerpoint() {
+  const t = useTranslations("Tools.PdfToPowerpoint");
   const [libLoaded, setLibLoaded] = useState(false);
 
   useEffect(() => {
@@ -161,7 +163,7 @@ export default function PdfToPowerpoint() {
       toolId="pdf-to-powerpoint"
       allowedExtensions={[".pdf"]}
       allowMultiple={false}
-      configTitle="Slides Output Options"
+      configTitle={t("slidesOutputOptions")}
       renderConfig={() => (
         <div className="py-2 text-center">
           <p className="text-xs text-neutral-400 font-mono leading-relaxed">

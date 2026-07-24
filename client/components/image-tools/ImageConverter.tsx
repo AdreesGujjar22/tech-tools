@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslations } from "next-intl";
 import ToolShell from "./ToolShell";
 
 interface ImageConverterProps {
@@ -14,6 +15,7 @@ export default function ImageConverter({
   sourceExtensions = [".png", ".jpg", ".jpeg", ".webp", ".svg", ".gif", ".bmp", ".tiff", ".ico"],
   forcedTargetFormat
 }: ImageConverterProps) {
+  const t = useTranslations("Tools.ImageConverter");
 
   const renderConfig = (files: any[], config: any, setConfig: any) => {
     return (
@@ -187,7 +189,7 @@ export default function ImageConverter({
       allowedExtensions={sourceExtensions}
       allowMultiple={true}
       maxFiles={50}
-      configTitle="Conversion Settings"
+      configTitle={t("conversionSettings")}
       renderConfig={renderConfig}
       defaultConfig={{
         targetFormat: forcedTargetFormat || "jpg",

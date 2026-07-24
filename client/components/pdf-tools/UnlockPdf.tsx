@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 import ToolShell from "./ToolShell";
 import { toast } from "sonner";
 
@@ -18,6 +19,7 @@ function xorCipher(bytes: Uint8Array, keyStr: string): Uint8Array {
 }
 
 export default function UnlockPdf() {
+  const t = useTranslations("Tools.UnlockPdf");
   const handleProcess = async (
     files: File[],
     config: any,
@@ -67,24 +69,24 @@ export default function UnlockPdf() {
       toolId="unlock-pdf"
       allowedExtensions={[".pdf"]}
       allowMultiple={false}
-      configTitle="Unlock Parameters"
+      configTitle={t("unlockParameters")}
       defaultConfig={{ password: "" }}
       renderConfig={(files, config, setConfig) => (
         <div className="space-y-4">
           <div>
             <label className="text-xs font-semibold text-neutral-400 block mb-1">
-              Enter Unlock Password
+              {t("enterPassword")}
             </label>
             <input
               type="password"
-              placeholder="Leave blank if standard PDF..."
+              placeholder={t("passwordPlaceholder")}
               value={config.password}
               onChange={(e) => setConfig({ ...config, password: e.target.value })}
               className="w-full px-4 py-3 bg-neutral-950 border border-neutral-800 rounded-xl text-sm text-white focus:outline-none focus:border-red-600 transition"
             />
           </div>
           <p className="text-2xs text-neutral-500 font-mono leading-relaxed mt-1">
-            If the PDF was encrypted using our **Protect PDF** tool, supply the key above to lift lock constraints client-side.
+            {t("protectPdfNote")}
           </p>
         </div>
       )}

@@ -1,11 +1,13 @@
 "use client";
 
 import React from "react";
+import { useTranslations } from "next-intl";
 import ToolShell from "./ToolShell";
 import ExcelJS from "exceljs";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 
 export default function ExcelToPdf() {
+  const t = useTranslations("Tools.PdfToWord");
   const handleProcess = async (
     files: File[],
     config: any,
@@ -112,7 +114,7 @@ export default function ExcelToPdf() {
       toolId="excel-to-pdf"
       allowedExtensions={[".xlsx"]}
       allowMultiple={false}
-      configTitle="Conversion Targets"
+      configTitle={t("conversionTargets")}
       renderConfig={() => (
         <div className="py-2 text-center">
           <p className="text-xs text-[#4A6857] font-mono leading-relaxed">

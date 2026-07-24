@@ -1,11 +1,13 @@
 "use client";
 
 import React from "react";
+import { useTranslations } from "next-intl";
 import ToolShell from "./ToolShell";
 import JSZip from "jszip";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 
 export default function PowerpointToPdf() {
+  const t = useTranslations("Tools.PdfToWord");
   const handleProcess = async (
     files: File[],
     config: any,
@@ -124,7 +126,7 @@ export default function PowerpointToPdf() {
       toolId="powerpoint-to-pdf"
       allowedExtensions={[".pptx"]}
       allowMultiple={false}
-      configTitle="Conversion Targets"
+      configTitle={t("conversionTargets")}
       renderConfig={() => (
         <div className="py-2 text-center">
           <p className="text-xs text-neutral-400 font-mono leading-relaxed">

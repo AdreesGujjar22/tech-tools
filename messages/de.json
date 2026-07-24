@@ -697,8 +697,15 @@
       "removeBackground": "Hintergrund Entfernen",
       "retry": "Erneut Versuchen",
       "images": "Bilder ({count})",
-      "processAll": "Alles Verarbeiten"
+      "processAll": "Alles Verarbeiten",
+      "backgroundRemoved": "Hintergrund von {fileName} entfernt"
     },
+    "Loading": { "imageTools": "Bildtools werden geladen...", "pdfTools": "PDF-Tools werden geladen..." },
+    "WatermarkImage": { "panel": "Wasserzeichen-Panel", "positionGrid": "Positionsraster für Wasserzeichen", "stampLabel": "Beschriftung des Markenstempels", "defaultStamp": "© MARKENSTEMPEL", "fontSize": "Schriftgröße (% der Arbeitsfläche)", "textFillColor": "Textfüllfarbe", "opacity": "Deckkraft des Wasserzeichens ({value}%)", "propertiesOverview": "Eigenschaftenübersicht", "positionType": "Positionstyp", "stampText": "Stempeltext", "none": "Keine" },
+    "ImageConverter": { "conversionSettings": "Konvertierungseinstellungen" },
+    "PdfToPowerpoint": { "slidesOutputOptions": "Optionen für die Folienausgabe" },
+    "PdfToWord": { "conversionTargets": "Konvertierungsziele", "description": "Führt eine vollständige Textextraktion in allen Abschnitten durch und gibt sie nativ in Standard-Word-`.docx`-Dateiblöcken aus." },
+    "UnlockPdf": { "unlockParameters": "Entsperrparameter", "enterPassword": "Entsperrpasswort eingeben", "passwordPlaceholder": "Bei Standard-PDF leer lassen...", "protectPdfNote": "Wenn die PDF mit unserem Tool „PDF schützen“ verschlüsselt wurde, geben Sie oben den Schlüssel ein, um die Sperrbeschränkungen clientseitig aufzuheben." },
     "QrGenerator": {
       "title": "QR-Code-Generator",
       "description": "Erstelle sofort vollständig individuelle QR-Codes für Websites, WLAN-Netzwerke, digitale Visitenkarten oder Textinhalte.",

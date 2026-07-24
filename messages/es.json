@@ -697,8 +697,15 @@
       "removeBackground": "Eliminar Fondo",
       "retry": "Reintentar",
       "images": "Imágenes ({count})",
-      "processAll": "Procesar Todo"
+      "processAll": "Procesar Todo",
+      "backgroundRemoved": "Fondo eliminado de {fileName}"
     },
+    "Loading": { "imageTools": "Cargando herramientas de imagen...", "pdfTools": "Cargando herramientas PDF..." },
+    "WatermarkImage": { "panel": "Panel de marca de agua", "positionGrid": "Cuadrícula de posición de marca de agua", "stampLabel": "Etiqueta de sello de marca", "defaultStamp": "© SELLO DE MARCA", "fontSize": "Tamaño de fuente (% del lienzo)", "textFillColor": "Color de relleno del texto", "opacity": "Opacidad de la marca de agua ({value}%)", "propertiesOverview": "Resumen de propiedades", "positionType": "Tipo de posición", "stampText": "Texto del sello", "none": "Ninguno" },
+    "ImageConverter": { "conversionSettings": "Ajustes de conversión" },
+    "PdfToPowerpoint": { "slidesOutputOptions": "Opciones de salida de diapositivas" },
+    "PdfToWord": { "conversionTargets": "Objetivos de conversión", "description": "Realiza una extracción completa de texto en todas las secciones y lo genera de forma nativa en bloques de archivo Word `.docx` estándar." },
+    "UnlockPdf": { "unlockParameters": "Parámetros de desbloqueo", "enterPassword": "Introducir contraseña de desbloqueo", "passwordPlaceholder": "Déjelo en blanco si es un PDF estándar...", "protectPdfNote": "Si el PDF se cifró con nuestra herramienta Proteger PDF, proporcione la clave anterior para eliminar las restricciones de bloqueo en el cliente." },
     "QrGenerator": {
       "title": "Generador de Códigos QR",
       "description": "Crea al instante códigos QR totalmente personalizados para sitios web, redes WiFi, tarjetas de presentación digitales o texto.",

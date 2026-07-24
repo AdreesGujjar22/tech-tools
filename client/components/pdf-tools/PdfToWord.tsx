@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 import ToolShell from "./ToolShell";
 import { Document, Paragraph, TextRun, Packer } from "docx";
 
 export default function PdfToWord() {
+  const t = useTranslations("Tools.PdfToWord");
   const [libLoaded, setLibLoaded] = useState(false);
 
   useEffect(() => {
@@ -137,11 +139,11 @@ export default function PdfToWord() {
       toolId="pdf-to-word"
       allowedExtensions={[".pdf"]}
       allowMultiple={false}
-      configTitle="Conversion Targets"
+      configTitle={t("conversionTargets")}
       renderConfig={() => (
         <div className="py-2 text-center">
           <p className="text-xs text-[#4A6857] font-mono leading-relaxed">
-            Performs complete text extraction across all sections and outputs them natively inside standard Word `.docx` file blocks.
+            {t("description")}
           </p>
         </div>
       )}
