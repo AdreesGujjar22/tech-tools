@@ -3,12 +3,22 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "@/global.css";
 import Providers from "@/components/Providers";
 import { messages } from "../messages";
-import { buildPageMetadata } from "@/lib/server-locale";
+import { getLocalizedAlternates, getRequestLocale } from "@/lib/server-locale";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_APP_URL || "https://www.ilovetechtools.com";
+  (process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_APP_URL || "https://www.ilovetechtools.com").replace(/\/$/, "");
 
-const siteMetadata = messages.en.Metadata.site;
+const openGraphLocales = {
+  de: "de_DE",
+  en: "en_US",
+  es: "es_ES",
+  fr: "fr_FR",
+  id: "id_ID",
+  it: "it_IT",
+  nl: "nl_NL",
+  pt: "pt_BR",
+  tr: "tr_TR",
+} as const;
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -16,7 +26,11 @@ const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
 });
 
-export const metadata: Metadata = {
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getRequestLocale();
+  const siteMetadata = messages[locale].Metadata.site;
+
+  return {
   metadataBase: new URL(BASE_URL),
   title: {
     default: siteMetadata.title,
@@ -30,22 +44,14 @@ export const metadata: Metadata = {
     apple: "/images/fav-icon.png",
   },
 
-  alternates: {
-    canonical: `${BASE_URL}/en`,
-    languages: {
-      en: `${BASE_URL}/en`,
-      es: `${BASE_URL}/es`,
-      pt: `${BASE_URL}/pt`,
-      "x-default": `${BASE_URL}/en`,
-    },
-  },
+  alternates: await getLocalizedAlternates("/"),
 
   openGraph: {
     title: siteMetadata.title,
     description: siteMetadata.description,
     siteName: "Tech Tools",
-    locale: "en_US",
-    alternateLocale: ["es_ES", "pt_BR"],
+    locale: openGraphLocales[locale],
+    alternateLocale: Object.values(openGraphLocales).filter((value) => value !== openGraphLocales[locale]),
     type: "website",
     images: [
       {
@@ -63,17 +69,37 @@ export const metadata: Metadata = {
     description: siteMetadata.description,
     images: ["/images/web-logo.png"],
   },
-};
+  };
+}
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const locale = await getRequestLocale();
+  const siteMetadata = messages[locale].Metadata.site;
+  const localizedUrl = `${BASE_URL}/${locale}`;
+  const siteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteMetadata.title,
+    description: siteMetadata.description,
+    url: localizedUrl,
+    inLanguage: locale,
+    publisher: {
+      "@type": "Organization",
+      name: "Tech Tools",
+      url: BASE_URL,
+      logo: `${BASE_URL}/images/web-logo.png`,
+    },
+  };
+
   return (
-    <html lang="en" suppressHydrationWarning className={`${jakarta.variable} bg-background`}>
+    <html lang={locale} suppressHydrationWarning className={`${jakarta.variable} bg-background`}>
       <head>
         <link rel="icon" type="image/png" href="/images/fav-icon.png" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }} />
         <script
           dangerouslySetInnerHTML={{
             __html: `

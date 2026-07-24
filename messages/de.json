@@ -1,0 +1,1161 @@
+{
+  "Common": {
+    "actions": {
+      "addFiles": "Dateien Hinzufügen",
+      "addMore": "Mehr Hinzufügen",
+      "back": "Zurück",
+      "backToHub": "Zurück zum Hub",
+      "backToAllTools": "Zurück zu allen Tools",
+      "browse": "zum Durchsuchen klicken",
+      "cancel": "Abbrechen",
+      "clear": "Löschen",
+      "clearAndChooseDifferent": "Löschen und Anderes Wählen",
+      "close": "Schließen",
+      "copy": "Kopieren",
+      "copied": "Kopiert!",
+      "download": "Herunterladen",
+      "downloadFile": "Datei Herunterladen",
+      "getStarted": "Loslegen",
+      "learnMore": "Mehr Erfahren",
+      "new": "Neu",
+      "open": "Öffnen",
+      "process": "Verarbeiten",
+      "remove": "Entfernen",
+      "reset": "Zurücksetzen",
+      "returnToHub": "Zurück zum Hub",
+      "selectFile": "Datei Auswählen",
+      "selectFiles": "Dateien Auswählen",
+      "share": "Teilen",
+      "submit": "Absenden",
+      "tryAgain": "Erneut Versuchen",
+      "tryNow": "Jetzt Testen",
+      "undo": "Rückgängig",
+      "view": "Ansehen"
+    },
+    "language": "Sprache",
+    "languages": {
+      "english": "English",
+      "spanish": "Español",
+      "portuguese": "Português",
+      "german": "Deutsch",
+      "french": "Français",
+      "indonesian": "Indonesia",
+      "italian": "Italiano",
+      "dutch": "Nederlands",
+      "turkish": "Türkçe"
+    },
+    "labels": {
+      "allUtilities": "Alle Werkzeuge",
+      "bytes": "Bytes",
+      "file": "Datei",
+      "files": "Dateien",
+      "loading": "Wird geladen...",
+      "localProcessingPrivate": "Lokale Verarbeitung • Privat",
+      "premiumUtility": "Premium-Werkzeug",
+      "processing": "Wird verarbeitet...",
+      "success": "Erfolg!"
+    },
+    "a11y": {
+      "closeMenu": "Menü schließen",
+      "closeModal": "Modal schließen",
+      "copyContent": "Inhalt kopieren",
+      "clearContent": "Inhalt löschen",
+      "mobileNavigation": "Mobile Navigation",
+      "openMenu": "Menü öffnen",
+      "removeFile": "Datei entfernen",
+      "sharePage": "Seite teilen",
+      "techToolsHome": "Tech Tools Startseite",
+      "techToolLogo": "Tech Tools Logo",
+      "toggleSidebar": "Seitenleiste umschalten"
+    },
+    "messages": {
+      "link": "Link: {url}",
+      "copiedLink": "Link kopiert!",
+      "copyManually": "Manuell kopieren: {content}",
+      "checkOutTool": "Schau dir dieses Tool an!",
+      "invalidFileExtension": "Ungültige Dateiendung für \"{fileName}\". Unterstützt: {extensions}",
+      "noFilesUploaded": "Bitte lade mindestens eine Datei hoch.",
+      "toolCompleted": "{toolName} erfolgreich abgeschlossen!",
+      "operationFailed": "Bei der Verarbeitung ist ein Fehler aufgetreten. Bitte versuche es erneut."
+    }
+  },
+  "Routes": {
+    "home": "/",
+    "about": "/about-us",
+    "tools": "/tools",
+    "blog": "/blog",
+    "pricing": "/pricing",
+    "help": "/help",
+    "contact": "/contact-us",
+    "privacy": "/privacy-policy",
+    "terms": "/terms-and-conditions",
+    "pdf": "/ilovepdf",
+    "image": "/iloveimg",
+    "qrGenerator": "/qr-generator",
+    "barcodeGenerator": "/barcode-generator",
+    "barcodeReader": "/barcode-reader",
+    "passwordGenerator": "/password-generator",
+    "loremGenerator": "/lorem-ipsum-generator",
+    "emojiPicker": "/emoji-picker",
+    "notepad": "/notepad",
+    "colorPicker": "/color-picker",
+    "speedTest": "/speed-test",
+    "typingSpeed": "/typing-speed"
+  },
+  "Metadata": {
+    "site": {
+      "title": "Tech Tools - Kostenlose Online-PDF-, Bild- und KI-Tools",
+      "description": "Tech Tools bietet kostenlose Online-Tools für PDF, Bildbearbeitung, KI-gestützte Dienstprogramme, Dateikonverter, Kompressoren, Generatoren und Produktivitätslösungen. Schnell, sicher und einfach zu bedienen.",
+      "keywords": "pdf werkzeuge, bild werkzeuge, ki werkzeuge, pdf zusammenfuegen, pdf teilen, bild komprimieren, bildkonverter, pdf konverter, online werkzeuge, kostenlose werkzeuge, produktivitaetswerkzeuge"
+    },
+    "home": {
+      "title": "Moderne Online-Produktivitätswerkzeuge",
+      "description": "Schnelle, sichere und moderne Online-Tools für Entwickler, Kreative und alltägliche digitale Aufgaben. Enthält QR-Code-Generator, Schreibgeschwindigkeitstest, Internet-Speedtest, Farbwähler und mehr.",
+      "keywords": "tools fuer entwickler, qr code scannen, schreibtrainer, internet speedtest, code snippet tools, sicherer online konverter"
+    },
+    "about": {
+      "title": "Über Uns - Tech Tools",
+      "description": "Lerne Tech Tools kennen – unsere Mission, kostenlose Online-Tools für PDF, Bilder, KI-Dienstprogramme und Produktivitätslösungen anzubieten.",
+      "keywords": "ueber uns, ueber tech tools, mission, vision"
+    },
+    "pricing": {
+      "title": "Preise - Tech Tools",
+      "description": "Entdecke unsere Preispläne. Die meisten unserer Tools sind völlig kostenlos, mit verfügbaren Premium-Optionen.",
+      "keywords": "preise, plaene, premium, abonnements"
+    },
+    "contact": {
+      "title": "Kontaktiere TechTools",
+      "description": "Hast du Fragen, Feedback oder brauchst Hilfe? Kontaktiere TechTools und wir antworten so schnell wie möglich.",
+      "keywords": "kontakt, support, TechTools"
+    },
+    "help": {
+      "title": "Hilfe und Häufig Gestellte Fragen",
+      "description": "Hol dir sofortige Hilfe, sieh dir Benutzerhandbücher an, durchsuche häufig gestellte Fragen und kontaktiere unseren technischen Support.",
+      "keywords": "hilfe, support, benutzerhandbuch, haeufig gestellte fragen, tech tools hilfe"
+    },
+    "privacy": {
+      "title": "Datenschutzrichtlinie",
+      "description": "Erfahre, wie TechTools Daten aus deinem lokalen Browser sammelt, nutzt und schützt.",
+      "keywords": "datenschutz, bedingungen, cookies, sicherheit, browser speicher"
+    },
+    "terms": {
+      "title": "Allgemeine Geschäftsbedingungen",
+      "description": "Erfahre mehr über unsere Richtlinien zur digitalen Nutzung, Serversicherheit und Compliance-Klauseln.",
+      "keywords": "bedingungen, konditionen, regeln, vereinbarung, lizenzen"
+    },
+    "qrGenerator": {
+      "title": "QR-Code-Generator",
+      "description": "Kostenloser QR-Code-Generator. Erstelle QR-Codes für URLs, Text, vCard, WLAN und mehr. Sofortiger Download und Anpassung.",
+      "keywords": "qr code, qr code generator, qr generator, barcode, code generator"
+    },
+    "barcodeGenerator": {
+      "title": "Barcode-Generator",
+      "description": "Erstelle Barcodes sofort. Erzeuge CODE128, CODE39, EAN13, UPC und mehr. Sofortiger Download und Anpassung.",
+      "keywords": "barcode generator, barcode erstellen, barcode ersteller, CODE128, EAN13, UPC"
+    },
+    "barcodeReader": {
+      "title": "Barcode- & QR-Scanner",
+      "description": "Scanne QR-Codes und Barcodes aus hochgeladenen Bildern oder der Kamera deines Geräts, sicher in deinem Browser.",
+      "keywords": "qr scanner, barcode scanner, qr bild scannen, barcode scanner mit kamera"
+    },
+    "passwordGenerator": {
+      "title": "Passwort-Generator",
+      "description": "Erstelle sofort starke, zufällige Passwörter. Passe Länge, Zeichentypen an und erstelle sichere Passwörter für alle deine Konten.",
+      "keywords": "passwort generator, starkes passwort, zufaelliges passwort, passwort ersteller, sicheres passwort"
+    },
+    "loremGenerator": {
+      "title": "Lorem-Ipsum-Generator",
+      "description": "Erstelle sofort Lorem-Ipsum-Platzhaltertext. Erzeuge Absätze, Sätze oder Wörter für deine Designs und Projekte.",
+      "keywords": "lorem ipsum generator, platzhaltertext, lorem ipsum, blindtext, testtext"
+    },
+    "emojiPicker": {
+      "title": "Emoji-Auswahl & Kopierer",
+      "description": "Durchsuche, suche und kopiere Emojis ganz einfach. Finde das perfekte Emoji für deine Nachrichten und Beiträge.",
+      "keywords": "emoji auswahl, emoji kopierer, emoji suche, emojis, smileys"
+    },
+    "notepad": {
+      "title": "Online-Notizblock - Tech Tools",
+      "description": "Kostenloser Online-Notizblock mit automatischem Speichern, Datei-Download/-Upload und Echtzeit-Wort-/Zeichenzählung.",
+      "keywords": "notizblock, online notizblock, texteditor, notizen machen, online texteditor"
+    },
+    "colorPicker": {
+      "title": "Farbwähler - Tech Tools",
+      "description": "Kostenloses Online-Tool zur Farbauswahl. Extrahiere Farben aus Bildern, erstelle Farbpaletten und konvertiere zwischen Farbformaten.",
+      "keywords": "farbwaehler, farbkonverter, farbpalette, hex farbe, rgb farbe"
+    },
+    "speedTest": {
+      "title": "Speedtest - Tech Tools",
+      "description": "Teste deine Internetgeschwindigkeit mit Tech Tools. Überprüfe Download-, Upload-Geschwindigkeit und Ping in Sekunden.",
+      "keywords": "speedtest, internetgeschwindigkeit, verbindungstest, bandbreitentest, ping"
+    },
+    "typingSpeed": {
+      "title": "Schreibgeschwindigkeitstest - Tech Tools",
+      "description": "Teste deine Schreibgeschwindigkeit und verbessere deine WPM. Kostenloser Online-Schreibtest mit Genauigkeits- und Ergebnisverfolgung.",
+      "keywords": "schreibgeschwindigkeit, tipptest, wpm, tippen, tastaturtest"
+    },
+    "tools": {
+      "title": "Werkzeuge - Tech Tools Sammlung",
+      "description": "Entdecke alle unsere kostenlosen Online-Tools, einschließlich PDF-, Bild-, KI-Dienstprogramme und Produktivitätslösungen.",
+      "keywords": "werkzeuge, online werkzeuge, kostenlose werkzeuge, dienstprogramme"
+    },
+    "pdf": {
+      "title": "PDF-Werkzeuge - Konvertieren, Zusammenführen, Teilen & Komprimieren | Tech Tools",
+      "description": "Kostenlose Online-PDF-Tools. Führe PDFs zusammen, teile PDFs, komprimiere PDFs, konvertiere zu/von PDF, extrahiere Seiten, bearbeite PDFs und vieles mehr.",
+      "keywords": "pdf werkzeuge, pdf zusammenfuegen, pdf teilen, pdf komprimieren, pdf konverter, pdf zu word, word zu pdf, jpg zu pdf"
+    },
+    "image": {
+      "title": "Bild-Werkzeuge - Komprimieren, Konvertieren & Bearbeiten | Tech Tools",
+      "description": "Kostenlose Online-Bild-Tools. Komprimiere Bilder, konvertiere Formate (JPG, PNG, WebP), skaliere, schneide zu, drehe, entferne den Hintergrund und mehr.",
+      "keywords": "bild werkzeuge, bild komprimieren, bildkonverter, bild skalieren, bild zuschneiden, bildeditor, jpg zu png, png zu jpg"
+    },
+    "customization": {
+      "title": "Anpassung - Tech Tools",
+      "description": "Passe dein Tech Tools Erlebnis an. Passe Einstellungen, Themen und Präferenzen an.",
+      "keywords": "anpassung, einstellungen, praeferenzen, themen"
+    }
+  },
+  "Navbar": {
+    "links": {
+      "about": "Über Uns",
+      "tools": "Werkzeuge",
+      "blog": "Blog",
+      "pricing": "Preise",
+      "contact": "Kontakt",
+      "help": "Hilfe & FAQ"
+    },
+    "admin": "Administrator",
+    "signIn": "Anmelden",
+    "signOut": "Abmelden"
+  },
+  "Footer": {
+    "description": "Schnelle, sichere und moderne Online-Tools für Entwickler, Kreative und alltägliche digitale Aufgaben. Vollständig in deiner Browserumgebung gesandboxt für optimalen Datenschutz.",
+    "aboutUs": "Über Uns",
+    "quickLinks": "Schnellzugriff",
+    "home": "Startseite",
+    "productivityTools": "Produktivitätswerkzeuge",
+    "latestBlogInsights": "Neueste Blog-Beiträge",
+    "pricingPlans": "Preispläne",
+    "pdfTools": "PDF-Werkzeuge",
+    "pdfDashboard": "PDF-Dashboard",
+    "imageTools": "Bild-Werkzeuge",
+    "imageDashboard": "Bild-Dashboard",
+    "allRightsReserved": "© {year} TechTools. Alle Rechte vorbehalten.",
+    "privacyPolicy": "Datenschutzrichtlinie",
+    "termsConditions": "Allgemeine Geschäftsbedingungen",
+    "social": {
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "website": "Webseite"
+    }
+  },
+  "Home": {
+    "meta": {
+      "title": "Moderne Online-Produktivitätswerkzeuge",
+      "description": "Schnelle, sichere und moderne Online-Tools für Entwickler, Kreative und alltägliche digitale Aufgaben. Enthält QR-Code-Generator, Schreibgeschwindigkeitstest, Internet-Speedtest, Farbwähler und mehr.",
+      "keywords": "tools fuer entwickler, qr code scannen, schreibtrainer, internet speedtest, code snippet tools, sicherer online konverter"
+    },
+    "badge": "Werkzeuge der Nächsten Generation",
+    "title": "Alle Wichtigen Tech-Tools an Einem Ort",
+    "description": "Schnelle, kostenlose und moderne Online-Tools für Entwickler, Studierende und Kreative. Alles für Geschwindigkeit und Einfachheit konzipiert.",
+    "startTools": "Werkzeuge Starten",
+    "intro": "QR-Generatoren, Speedtests, Bildkonverter, Farbwähler, Entwicklertools — alles sicher in deinem Browser.",
+    "previewAlt": "QR-Code-Vorschau erstellt mit TechTools",
+    "encoded": "AES-256-verschlüsselt",
+    "toolsTitle": "Jedes Werkzeug, das du zum Optimieren und Meistern brauchst",
+    "toolsDescription": "Das sind die Tech-Tools, die wir anbieten. Klicke auf ein Element, um Details oder Exportoptionen zu sehen.",
+    "searchPlaceholder": "Werkzeuge suchen (z. B. QR-Code, Farbwähler)...",
+    "noResults": "Es wurden keine Werkzeuge gefunden, die deiner Suche entsprechen.",
+    "ctaTitle": "Bereit für mehr?",
+    "ctaDescription": "Sag uns, wonach du suchst, und wir bauen es!",
+    "contactUs": "Kontaktiere uns",
+    "toolCards": {
+      "pdfDashboard": "PDF-Werkzeuge-Dashboard",
+      "imageDashboard": "Bild-Werkzeuge-Dashboard",
+      "speedTest": "Internet-Speedtest",
+      "typingSpeed": "Ergebnisse des Schreibgeschwindigkeitstests",
+      "colorPicker": "Farbwähler-Palette",
+      "qrGenerator": "QR-Code-Generator",
+      "barcodeGenerator": "Barcode-Generator",
+      "barcodeReader": "Barcode- & QR-Scanner",
+      "passwordGenerator": "Passwort-Generator",
+      "loremGenerator": "Lorem-Ipsum-Generator",
+      "emojiPicker": "Emoji-Auswahl & Kopierer",
+      "notepad": "Online-Notizblock"
+    }
+  },
+  "About": {
+    "title": "Was ist TechTools?",
+    "intro": "TechTools ist eine moderne Webplattform mit einer wachsenden Sammlung an Online-Dienstprogrammen und Produktivitätswerkzeugen. Egal, ob du deine Internetgeschwindigkeit testen, QR-Codes generieren, Bilder komprimieren oder eine andere Aufgabe erledigen möchtest, wir haben das Richtige für dich.",
+    "mission": "Mit Fokus auf Leistung und Einfachheit ist es unsere Mission, Nutzern Zeit zu sparen, indem wir einfach zu bedienende digitale Tools ohne unnötige Komplexität anbieten.",
+    "popularTools": "Beliebte Werkzeuge",
+    "popularDescription": "Entdecke unsere meistgenutzten Tools, denen täglich Tausende von Nutzern vertrauen.",
+    "impact": "Unsere Wirkung",
+    "impactDescription": "Weltweit vertraut für den täglichen Produktivitätsbedarf.",
+    "stats": {
+      "tools": "Nützliche Werkzeuge",
+      "monthlyUsers": "Monatliche Nutzer",
+      "fast": "Schnell",
+      "secure": "und Sicher",
+      "available": "Verfügbar"
+    },
+    "ctaTitle": "Bereit Loszulegen?",
+    "ctaDescription": "Entdecke alle unsere Tools und steigere noch heute deine Produktivität.",
+    "exploreAll": "Alle Werkzeuge Entdecken",
+    "tools": {
+      "speed": {
+        "name": "Internet-Speedtest",
+        "description": "Miss Download-Geschwindigkeit, Upload-Geschwindigkeit, Ping und Netzwerkleistung in Echtzeit."
+      },
+      "color": {
+        "name": "Farbwähler-Werkzeug",
+        "description": "Wähle, kopiere und konvertiere Farben ganz einfach mit Unterstützung für HEX, RGB und HSL."
+      },
+      "typing": {
+        "name": "Schreibgeschwindigkeitstest",
+        "description": "Verbessere deine Schreibgeschwindigkeit und Genauigkeit mit Echtzeit-WPM-Tracking."
+      },
+      "qr": {
+        "name": "QR-Code-Generator",
+        "description": "Erstelle individuelle QR-Codes für URLs, Text, WLAN, E-Mail und mehr."
+      },
+      "barcode": {
+        "name": "Barcode-Generator",
+        "description": "Erstelle Barcodes in mehreren Formaten für Produkte, Inventar und Logistik."
+      },
+      "password": {
+        "name": "Passwort-Generator",
+        "description": "Erstelle starke, zufällige Passwörter mit anpassbaren Zeichentypen und Länge."
+      },
+      "lorem": {
+        "name": "Lorem-Ipsum-Generator",
+        "description": "Erstelle sofort Lorem-Ipsum-Platzhaltertext für Designs, Mockups und Prototypen."
+      },
+      "emoji": {
+        "name": "Emoji-Auswahl & Kopierer",
+        "description": "Durchsuche, suche und kopiere Emojis sofort für deine Nachrichten und Beiträge."
+      },
+      "notepad": {
+        "name": "Online-Notizblock",
+        "description": "Einfacher, schneller Online-Notizblock mit automatischem Speichern und Dateiverwaltung."
+      },
+      "image": {
+        "name": "Bildkonverter",
+        "description": "Konvertiere Bilder schnell und einfach in verschiedene Formate."
+      },
+      "unit": {
+        "name": "Einheitenumrechner",
+        "description": "Konvertiere Maße, Währungen, Größen und mehr sofort."
+      }
+    }
+  },
+  "Pricing": {
+    "title": "Preispläne",
+    "description": "Wähle den perfekten Plan. Alle Pläne beinhalten Sicherheit und Zuverlässigkeit auf Unternehmensniveau.",
+    "popular": "Beliebt",
+    "perMonth": "/Monat",
+    "customPlanTitle": "Brauchst du einen individuellen Plan?",
+    "customPlanDescription": "Kontaktiere unser Vertriebsteam für Unternehmenslösungen, die auf deine Bedürfnisse zugeschnitten sind.",
+    "contactSales": "Vertrieb Kontaktieren",
+    "getStarted": "Loslegen",
+    "plans": {
+      "starter": {
+        "name": "Starter",
+        "price": "Kostenlos",
+        "description": "Perfekt für den Einstieg",
+        "features": [
+          "Bis zu 100 QR-Codes/Monat",
+          "Grundlegende Anpassung",
+          "Standard-Support"
+        ]
+      },
+      "professional": {
+        "name": "Professional",
+        "price": "99 $",
+        "description": "Ideal für wachsende Unternehmen",
+        "features": [
+          "Bis zu 1.000 QR-Codes/Monat",
+          "Erweiterte Anpassung",
+          "Priorisierter Support",
+          "Analyse-Dashboard"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "Individuell",
+        "description": "Für Großbetriebe",
+        "features": [
+          "Unbegrenzte QR-Codes",
+          "Vollständige Anpassung",
+          "Dedizierter Support",
+          "Erweiterte Analysen",
+          "API-Zugriff"
+        ]
+      }
+    }
+  },
+  "Contact": {
+    "title": "Kontaktiere TechTools",
+    "description": "Hast du Fragen, Feedback oder brauchst Hilfe? Wir sind hier, um zu helfen. Kontaktiere uns und wir antworten so schnell wie möglich.",
+    "formTitle": "Sende uns eine Nachricht",
+    "name": "Name",
+    "email": "E-Mail",
+    "subject": "Betreff",
+    "message": "Nachricht",
+    "namePlaceholder": "Dein Name",
+    "emailPlaceholder": "deine@email.com",
+    "subjectPlaceholder": "Wie können wir helfen?",
+    "messagePlaceholder": "Erzähl uns mehr über dein Anliegen...",
+    "sending": "Wird gesendet...",
+    "sendMessage": "Nachricht Senden",
+    "information": "Kontaktinformationen",
+    "support": "Support",
+    "available": "24/7 verfügbar",
+    "availability": "Verfügbarkeit",
+    "hours": "Mo - Fr: 9-18 Uhr UTC",
+    "followUs": "Folge Uns",
+    "quickResponse": "Schnelle Antwort",
+    "quickResponseText": "Wir beantworten alle Anfragen normalerweise innerhalb von 24 Stunden. Bei dringenden Angelegenheiten füge bitte \"DRINGEND\" in die Betreffzeile ein.",
+    "errors": {
+      "configurationMissing": "Die EmailJS-Konfiguration fehlt. Bitte überprüfe die Umgebungsvariablen.",
+      "sendFailed": "Nachricht konnte nicht gesendet werden. Bitte versuche es später erneut."
+    },
+    "success": {
+      "sent": "Nachricht erfolgreich gesendet! Wir melden uns bald bei dir."
+    }
+  },
+  "Help": {
+    "meta": {
+      "title": "Hilfe und Häufig Gestellte Fragen",
+      "description": "Hol dir sofortige Hilfe, sieh dir Benutzerhandbücher an, durchsuche häufig gestellte Fragen und kontaktiere unseren technischen Support.",
+      "keywords": "hilfe, support, benutzerhandbuch, haeufig gestellte fragen, tech tools hilfe"
+    },
+    "badge": "Support-Center",
+    "title": "Wie Können Wir Helfen?",
+    "description": "Durchsuche unsere Selbsthilfeartikel, sieh dir Dokumentationsrichtlinien an oder kontaktiere unsere technischen Spezialisten.",
+    "searchPlaceholder": "Ressourcen, Themen oder FAQ durchsuchen...",
+    "faqTitle": "Häufig Gestellte Fragen",
+    "noResults": "Keine Ergebnisse für \"{search}\" gefunden. Versuche andere Suchbegriffe.",
+    "stillQuestions": "Hast du Noch Fragen?",
+    "stillQuestionsText": "Unser professionelles Support-Team steht bereit, um zu helfen. Erhalte individuelle Anleitungen, Lizenzoptionen oder Konfigurationsparameter.",
+    "submitTicket": "Support-Ticket Einreichen",
+    "community": "Community-Support",
+    "discord": "Discord-Forum für Entwickler",
+    "communityMembers": "Werde Teil von über 1.200 Mitgliedern unserer Online-Tool-Community",
+    "faqs": {
+      "safe": {
+        "question": "Sind die Produktivitätswerkzeuge sicher in der Nutzung?",
+        "answer": "Ja! Alle Berechnungs-, Formatierungs-, QR-Codierungs- und Farbauswahlprozesse laufen vollständig in deinem eigenen Browser ab. Deine vertraulichen Informationen verlassen niemals dein Gerät und werden nicht auf externen Servern gespeichert."
+      },
+      "offline": {
+        "question": "Kann ich TechTools ohne Internetverbindung nutzen?",
+        "answer": "Ja! Da die Tools clientseitig verarbeiten, kann die Seite einmal vollständig geladen werden, und Kernfunktionen wie der Farbwähler, der Schreibtest und der QR-Generator bleiben auch offline funktionsfähig."
+      },
+      "accuracy": {
+        "question": "Wie genau ist der Internet-Speedtest?",
+        "answer": "Er verbindet sich mit Edge-Standorten, um Latenz, Download-Metriken und Upload-Bandbreite zu berechnen. Die Ergebnisse sind sehr präzise, können jedoch je nach Netzwerkauslastung oder anderen laufenden Anwendungen leicht variieren."
+      },
+      "contact": {
+        "question": "Wie kann ich den technischen Support kontaktieren?",
+        "answer": "Nutze einfach unser Kontaktformular oder wende dich direkt an support@techtools.dev für Hilfe bei Massenvorgängen, API-Lizenzen oder zur Meldung von Fehlern."
+      }
+    }
+  },
+  "Legal": {
+    "privacy": {
+      "meta": {
+        "title": "Datenschutzrichtlinie",
+        "description": "Erfahre, wie TechTools Daten aus deinem lokalen Browser sammelt, nutzt und schützt.",
+        "keywords": "datenschutz, bedingungen, cookies, sicherheit, browser speicher"
+      },
+      "title": "Datenschutzrichtlinie",
+      "updated": "Aktualisiert am 5. Juni 2026 • Echtzeit-Compliance-Erklärung",
+      "clientSide": "100% Clientseitig",
+      "noCookies": "Null Tracking-Cookies",
+      "noDataSales": "Kein Datenverkauf",
+      "sections": {
+        "scope": {
+          "title": "1. Umfang & Grundlegende Integrität",
+          "paragraphs": [
+            "Bei TechTools hat der Datenschutz der Nutzer oberste Priorität. Diese Richtlinie beschreibt, wie unsere Weboberfläche Parameter, Nutzdaten oder Werte handhabt, die durch unseren Schreibgeschwindigkeitstest, Farbwähler und QR-Code-Generator verarbeitet werden.",
+            "Da unsere Plattform nativ in deinem clientseitigen Browser läuft, übertragen, analysieren, synchronisieren oder verkaufen wir keine Textinhalte, URLs, hochgeladenen Bilder oder Testproben an unsere Server."
+          ]
+        },
+        "cookies": {
+          "title": "2. Cookies & Lokaler Speicher",
+          "paragraphs": [
+            "Wir können den standardmäßigen HTML5-Lokalspeicher oder sichere Schlüssel auf deinem eigenen Gerät verwenden, um Präferenzen wie gewählte Anzeigegeschwindigkeiten, Farbextraktionsverlauf oder angepasste Themen vorübergehend zu speichern.",
+            "Diese Werte werden ausschließlich lokal auf deinem Gerät gespeichert und können jederzeit vollständig gelöscht werden, indem du den Browser-Cache leerst. Wir verwenden keine dauerhaften Tracking-Metriken."
+          ]
+        },
+        "thirdParty": {
+          "title": "3. Drittanbieter-Integrationen & Dimensionierung",
+          "paragraphs": [
+            "Unsere Kontaktdaten nutzen EmailJS. Beim Absenden von E-Mails oder Anfragen über unsere Formulare werden nur der angegebene Name, Nachrichtentext und Absenderwert an die Support-Mitarbeiter übermittelt. Keine dieser Daten wird auf unseren Servern zwischengespeichert."
+          ]
+        },
+        "children": {
+          "title": "4. Datenschutzrichtlinien für Kinder",
+          "paragraphs": [
+            "Da unsere Lern-Tools und Diagnosetests keine persönlich identifizierbaren Daten übertragen, sind sie vollkommen sicher und für Nutzer jeden Alters geeignet, einschließlich Kinder unter 13 Jahren."
+          ]
+        }
+      }
+    },
+    "terms": {
+      "meta": {
+        "title": "Allgemeine Geschäftsbedingungen",
+        "description": "Erfahre mehr über unsere Richtlinien zur digitalen Nutzung, Serversicherheit und Compliance-Klauseln.",
+        "keywords": "bedingungen, konditionen, regeln, vereinbarung, lizenzen"
+      },
+      "title": "Allgemeine Geschäftsbedingungen",
+      "effective": "Gültig ab 5. Juni 2026 • Rechtliche Nutzungsbedingungen",
+      "freeUse": "Vollständig kostenlos für die allgemeine Nutzung",
+      "commercialUse": "Kommerzielle und Druckgenehmigungen",
+      "sections": {
+        "acceptance": {
+          "title": "1. Vertragsannahme",
+          "text": "Durch das Öffnen, Ansehen oder Interagieren mit der TechTools-Webanwendung erklärst du dich damit einverstanden, diese rechtlichen Allgemeinen Geschäftsbedingungen einzuhalten und dich an sie zu binden. Wenn du diesen Bedingungen nicht zustimmst, beende bitte sofort die Nutzung unserer digitalen Plattform."
+        },
+        "license": {
+          "title": "2. Software- & Werkzeuglizenz",
+          "text": "Wir gewähren dir eine nicht-exklusive, nicht übertragbare, widerrufliche Lizenz zur Nutzung unserer Tools (Farbwähler, Internet-Speedtest, QR-Generator und Schreibtest) für persönliche, schulische oder berufliche Zwecke. Hochauflösende Ausdrucke, heruntergeladene Bilder und exportierte Codeblöcke, die von unserer Software erstellt wurden, gehören vollständig dir, um sie zu behalten, zu teilen und zu vermarkten."
+        },
+        "acceptableUse": {
+          "title": "3. Richtlinie zur Zulässigen Nutzung",
+          "text": "Du stimmst zu, nicht zu versuchen, unsere Codemuster zurückzuentwickeln, massive Bot-Payloads zu verbreiten, die unsere E-Mail-Formulare stören sollen, oder unsere Seiten für betrügerische Zwecke in versteckte Frames einzubetten."
+        },
+        "warranty": {
+          "title": "4. Gewährleistungsausschluss",
+          "text": "ALLE DIENSTE UND RECHNER WERDEN \"WIE BESEHEN\" UND \"WIE VERFÜGBAR\" OHNE JEGLICHE AUSDRÜCKLICHE ODER STILLSCHWEIGENDE GEWÄHRLEISTUNG BEREITGESTELLT, EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF PÜNKTLICHKEIT, LEISTUNGSSTABILITÄT ODER UMFASSENDE GENAUIGKEIT. TECHTOOLS HAFTET UNTER KEINEN UMSTÄNDEN FÜR DATENVERLUST, VERBINDUNGSABBRUCH ODER UNFÄLLE WÄHREND DER NUTZUNG."
+        }
+      }
+    }
+  },
+  "NotFound": {
+    "title": "Seite Nicht Gefunden",
+    "description": "Entschuldigung, die gesuchte Seite existiert nicht mehr oder wurde verschoben. Wir bringen dich zurück auf Kurs.",
+    "backHome": "Zurück zur Startseite",
+    "goHome": "Zur Startseite",
+    "goBack": "Zurück",
+    "goToTools": "Zur Werkzeuge-Seite",
+    "exploreTools": "Unsere Werkzeuge Entdecken",
+    "imageTools": "Bild-Werkzeuge",
+    "pdfTools": "PDF-Werkzeuge",
+    "allTools": "Alle Werkzeuge"
+  },
+  "Tools": {
+    "UpscaleImage": {
+      "backToDashboard": "Back to Image Dashboard",
+      "badge": "LANCZOS3 HYBRID INTERPOLATION",
+      "title": "AI Image Upscaler",
+      "description": "Enlarge photos, logos, documents, and illustrations up to 4x cleanly using on-device Lanczos-3 pixel matrices. Fully offline & client-side.",
+      "dropTitle": "Drag & drop your images here",
+      "dropDescription": "or click to select files. Supports PNG, JPG, JPEG, WEBP formats.",
+      "localProcessing": "Processed fully local in-browser. Zero server limits.",
+      "currentAtom": "CURRENT IMAGE",
+      "input": "Input: {width}x{height}",
+      "output": "Output: {width}x{height}",
+      "splitSlider": "Split Slider",
+      "sideBySide": "Side-by-Side",
+      "outputFormat": "Output Format",
+      "processing": "Processing image...",
+      "complete": "{progress}% COMPLETE",
+      "enhancementFailed": "Enhancement operation failed",
+      "unknownCanvasError": "An unknown canvas error occurred.",
+      "retry": "Re-attempt Process",
+      "awaitingCompile": "Awaiting super-resolution compile",
+      "triggerProcessing": "Click the processing buttons on the right side panel to trigger the upscaling calculations.",
+      "upscaleActive": "Upscale Active Now",
+      "beforeStandard": "BEFORE (Standard)",
+      "afterUpscaled": "AFTER (Upscaled)",
+      "beforeFuzzy": "Before (Fuzzy Resize)",
+      "lanczosHd": "Lanczos3 HD",
+      "batchQueue": "BATCH QUEUE FEED ({count} ITEMS)",
+      "clearQueue": "Clear Queue",
+      "add": "Add",
+      "controls": "Upscale controls",
+      "resetPage": "Reset Page",
+      "sizingMultiplier": "Sizing Multiplier",
+      "scale2x": "2x Scale",
+      "scale2xDescription": "Double pixel resolution",
+      "scale4x": "4x Scale",
+      "scale4xDescription": "4x HD pixel matrices",
+      "detailPreset": "AI Detail Mode Preset",
+      "photoPreset": "AI Detail (Natural Photos)",
+      "photoDescription": "Soft-balanced contours; ideal for portraits and landscapes.",
+      "logoPreset": "Digital Logos & Icons",
+      "logoDescription": "Geometric lines restoration + alpha transparency protection.",
+      "documentPreset": "Document / Text OCR",
+      "documentDescription": "Heavy contour highlight to make low-res scans legible.",
+      "illustrationPreset": "Line Art / Anime",
+      "illustrationDescription": "Illustration color preserving with smoothed pixel edges.",
+      "refinedCalibration": "Refined Calibration",
+      "sharpness": "SHARPNESS DENSITY",
+      "contrast": "CONTRAST BOOSTING",
+      "smoothing": "NOISE SMOOTH FILTER",
+      "upscaleQueue": "Upscale Queue Now",
+      "zipping": "Zipping files...",
+      "downloadZip": "Download ZIP ({count} files)",
+      "saveImage": "Save Upscaled Image",
+      "totalFiles": "Total files:",
+      "items": "{count} items",
+      "processed": "Processed:",
+      "totalSize": "Total size:",
+      "selectFiles": "Select or drop image files to activate the upscale processing settings.",
+      "performancePrivacy": "Performance & Privacy",
+      "privacyDescription": "Runs fully client-side on-device with zero cloud server communication. Processing occurs locally, supporting safe data storage sandbox containment, zero infrastructure fees, and works off-grid."
+    },
+    "shared": {
+      "toolNotFound": "Werkzeug Nicht Gefunden",
+      "pdfToolMissing": "Das angeforderte PDF-Werkzeug existiert nicht.",
+      "imageToolMissing": "Das angeforderte Bild-Werkzeug existiert nicht.",
+      "temporarilyOffline": "Werkzeug Vorübergehend Offline",
+      "disabled": "Das Werkzeug [{toolName}] wurde vom Administrator vorübergehend deaktiviert. Bitte schau später noch einmal vorbei.",
+      "returnToHub": "Zurück zum Hub",
+      "backToHub": "Zurück zum Hub",
+      "backToAllTools": "Zurück zu allen Tools",
+      "backToImageDashboard": "Zurück zum Bild-Dashboard",
+      "invalidFileExtension": "Ungültige Dateiendung für \"{fileName}\". Unterstützt: {extensions}",
+      "noFilesUploaded": "Bitte lade mindestens eine Datei hoch.",
+      "toolCompleted": "{toolName} erfolgreich abgeschlossen!",
+      "selectFile": "Datei Auswählen",
+      "selectFiles": "Dateien Auswählen",
+      "addFiles": "Dateien Hinzufügen",
+      "addMore": "Mehr Hinzufügen",
+      "clearAndChooseDifferent": "Löschen und Anderes Wählen",
+      "readyToBuild": "Bereit, deinen Ausgabedatei-Stream zu erstellen.",
+      "orBrowse": "oder",
+      "browse": "zum Durchsuchen klicken",
+      "yourFiles": "deine Dateien",
+      "download": "Herunterladen",
+      "downloadZip": "ZIP Herunterladen",
+      "downloadImage": "Bild Herunterladen",
+      "processMore": "Mehr Verarbeiten",
+      "ratioSaved": "Gesparte Rate:",
+      "finalSize": "Endgröße:",
+      "originalSize": "Originalgröße:",
+      "performAnother": "Eine weitere Aktion durchführen",
+      "dragFiles": "Ziehe deine Dateien hierher",
+      "dragImage": "Ziehe ein Bild hierher",
+      "dragImages": "Ziehe deine Bilder hierher",
+      "acceptingFiles": "Akzeptierte Dateien: {extensions} (max. {maxSize})",
+      "loadedFiles": "Geladene Dateien ({count})",
+      "filesReady": "Dateien Bereit",
+      "preparingStreams": "Streams werden vorbereitet...",
+      "processingDocument": "Dokument wird Verarbeitet",
+      "assemblingDocument": "Dokumentkomponenten werden zusammengesetzt, kryptografisches Rendering und Matrixskalierung laufen...",
+      "complete": "{progress}% Abgeschlossen",
+      "pdfReady": "Erfolg! PDF ist Bereit",
+      "pdfReadyDescription": "Dein Vorgang wurde erfolgreich abgeschlossen. Du kannst die verarbeitete Datei jetzt herunterladen.",
+      "preparingPipeline": "Compiler-Pipeline wird vorbereitet...",
+      "processingImage": "Bild wird verarbeitet [{current}/{total}]: {fileName}",
+      "finishedCompilation": "Kompilierungsverarbeitung abgeschlossen!",
+      "imagesCompiled": "Bilder vollständig im Browser kompiliert!",
+      "packageFailed": "Fehler beim Packen der Dateien als ZIP.",
+      "processingImages": "Deine Bilder Werden Verarbeitet",
+      "optimizing": "Qualität & Größe werden optimiert...",
+      "allDone": "Alles Erledigt!",
+      "optimizedReady": "{count, plural, one {# Datei optimiert} other {# Dateien optimiert}} und bereit zum Download",
+      "creatingPackage": "Paket wird erstellt...",
+      "localProcessing": "Lokale Verarbeitung • Privat",
+      "removeFile": "Datei entfernen",
+      "processFiles": "{count, plural, one {# Datei} other {# Dateien}} Verarbeiten",
+      "chooseImageFiles": "Wähle oder ziehe Bilddateien auf die Fläche, um Einstellungsparameter zu konfigurieren.",
+      "processFilesNow": "{count, plural, one {# Datei} other {# Dateien}} Jetzt Verarbeiten",
+      "jobStatusSummary": "Zusammenfassung des Bildverarbeitungsstatus",
+      "totalQueue": "Gesamte Warteschlange",
+      "fileCount": "{count, plural, one {# Datei} other {# Dateien}}",
+      "originalSizeLabel": "Originalgröße",
+      "compiledSize": "Fertige Größe",
+      "clearAndStartOver": "Löschen und Neu Beginnen",
+      "technologyContainment": "Technologie-Eindämmung",
+      "secureLocalProcessing": "Sichere Lokale Verarbeitung",
+      "browserSandbox": "Die gesamte Verarbeitung läuft in der Sandbox deines Browsers",
+      "zeroDataTransmission": "Keine Datenübertragung an irgendeinen Server",
+      "worksOffline": "Funktioniert vollständig offline"
+    },
+    "CropImage": {
+      "settings": "Zuschnitt-Einstellungen",
+      "aspectRatio": "Seitenverhältnis",
+      "free": "Frei",
+      "square": "1:1 Quadrat",
+      "interactiveCropArea": "Interaktiver Zuschnittbereich",
+      "previewAlt": "Zuschnittvorschau",
+      "outputDimensions": "Ausgabemaße",
+      "startXY": "Start X, Y",
+      "sizeWH": "Größe B x H"
+    },
+    "BackgroundRemover": {
+      "title": "Hintergrundentferner",
+      "description": "Lade ein Bild hoch und entferne den Hintergrund sofort mit KI",
+      "dropImage": "Lege dein Bild hier ab",
+      "orBrowse": "oder klicke zum Durchsuchen",
+      "chooseImage": "Bild Wählen",
+      "download": "Herunterladen",
+      "reprocess": "Neu Verarbeiten",
+      "processing": "Wird verarbeitet...",
+      "removeBackground": "Hintergrund Entfernen",
+      "retry": "Erneut Versuchen",
+      "images": "Bilder ({count})",
+      "processAll": "Alles Verarbeiten"
+    },
+    "QrGenerator": {
+      "title": "QR-Code-Generator",
+      "description": "Erstelle sofort vollständig individuelle QR-Codes für Websites, WLAN-Netzwerke, digitale Visitenkarten oder Textinhalte.",
+      "metaDescription": "Erzeuge sofort wunderschöne, anpassbare QR-Codes. Wähle Hintergrundfarben, Vordergrundfarben, Größe und Druckformate.",
+      "metaKeywords": "qr code generator, qr code erstellen, dynamischer qr code, anpassbarer qr code",
+      "previewAlt": "Erstellter QR-Code",
+      "contentLabel": "QR-Code-Inhalt (URL, Text oder Knoten)",
+      "contentPlaceholder": "URL oder Text zum Codieren eingeben...",
+      "customize": "Design-Einstellungen Anpassen",
+      "foreground": "QR-Code-Farbe (Vordergrund)",
+      "background": "Hintergrundfarbe",
+      "resolution": "Auflösungsgröße",
+      "margin": "Ruhezonen-Rand",
+      "preview": "QR-Live-Vorschau",
+      "generating": "QR-Code wird Erstellt...",
+      "download": "PNG Herunterladen",
+      "share": "QR-Link Teilen",
+      "shareSuccess": "Link zum Teilen in die Zwischenablage kopiert!",
+      "privacy": "Die gesamte Verarbeitung erfolgt sicher im Browser. Deine Daten verlassen niemals dein lokales System."
+    },
+    "BarcodeGenerator": {
+      "title": "Barcode-Generator",
+      "description": "Erstelle sofort Barcodes in mehreren Formaten für Produkte, Inventar und Logistik. Vollständig anpassbar und druckbar.",
+      "premium": "Premium-Werkzeug",
+      "currentFormat": "Aktuelles Format:",
+      "contentLabel": "Barcode-Inhalt (Zahlen & Text)",
+      "contentPlaceholder": "Barcode-Daten eingeben...",
+      "customize": "Design-Einstellungen Anpassen",
+      "format": "Barcode-Format",
+      "color": "Barcode-Farbe (Linien)",
+      "background": "Hintergrundfarbe",
+      "lineWidth": "Linienbreite",
+      "height": "Höhe",
+      "displayValue": "Barcode-Wert unter dem Bild anzeigen",
+      "preview": "Barcode-Live-Vorschau",
+      "invalidInput": "Ungültige Eingabe",
+      "generating": "Barcode wird Erstellt...",
+      "fixInput": "Behebe die Eingabe zum Generieren",
+      "download": "PNG Herunterladen",
+      "share": "Barcode-Link Teilen",
+      "empty": "Barcode-Inhalt darf nicht leer sein",
+      "ean13": "EAN13 erfordert genau 13 Ziffern",
+      "ean8": "EAN8 erfordert genau 8 Ziffern",
+      "upc": "UPC erfordert 11-12 Ziffern",
+      "itf14": "ITF14 erfordert genau 14 Ziffern",
+      "code39": "CODE39 unterstützt nur alphanumerische Zeichen und - . $ / + % Leerzeichen",
+      "failed": "Barcode konnte nicht generiert werden",
+      "privacy": "Die gesamte Verarbeitung erfolgt sicher im Browser. Deine Daten verlassen niemals dein lokales System."
+    },
+    "BarcodeReader": {
+      "title": "Barcode- & QR-Scanner",
+      "description": "Lade ein Codebild hoch oder nutze deine Kamera, um sofort dessen URL, Produktnummer oder Text anzuzeigen.",
+      "privacy": "Private Browser-Scans",
+      "upload": "Bild Hochladen & Scannen",
+      "uploadDescription": "PNG oder JPG, auf deinem Gerät verarbeitet.",
+      "drop": "Lege ein Codebild hier ab",
+      "selectFile": "oder wähle eine Datei von deinem Gerät",
+      "reading": "Code wird Gelesen…",
+      "chooseImage": "Bild Wählen",
+      "clearImage": "Bild Löschen",
+      "camera": "Live-Webcam-Scanner",
+      "cameraDescription": "Richte deine Kamera auf einen physischen Code.",
+      "ready": "Bereit, wenn du es bist",
+      "cameraPrivacy": "Der Kamerazugriff wird nur während des Scannens verwendet.",
+      "scanning": "Live-Scan Läuft",
+      "stopCamera": "Kamera Stoppen",
+      "startCamera": "Kamera-Scan Starten",
+      "result": "Scan-Ergebnis",
+      "copyResult": "Ergebnis Kopieren",
+      "emptyResult": "Dein decodierter Inhalt erscheint hier.",
+      "invalidImage": "Wähle ein PNG- oder JPG-Bild mit einem QR- oder Barcode.",
+      "notFound": "In diesem Bild wurde kein lesbarer Code gefunden.",
+      "decodeFailed": "Wir konnten dieses Bild nicht decodieren. Bitte versuche ein anderes Bild.",
+      "cameraBlocked": "Der Kamerazugriff wurde blockiert. Erlaube den Zugriff und versuche es erneut.",
+      "cameraFailed": "Wir konnten die Kamera nicht starten. Bitte versuche es erneut."
+    },
+    "PasswordGenerator": {
+      "title": "Passwort-Generator",
+      "description": "Erstelle sofort starke, zufällige Passwörter. Passe Zeichentypen und Länge für maximale Sicherheit an.",
+      "premium": "Premium-Werkzeug",
+      "characters": "Zeichen",
+      "copied": "Kopiert!",
+      "copy": "Kopieren",
+      "customize": "Passwort-Einstellungen Anpassen",
+      "length": "Passwortlänge",
+      "characterTypes": "Zeichentypen",
+      "uppercase": "Großbuchstaben (A-Z)",
+      "lowercase": "Kleinbuchstaben (a-z)",
+      "numbers": "Zahlen (0-9)",
+      "symbols": "Symbole (!@#$%^&*...)",
+      "customCharacters": "Benutzerdefinierte Zeichen (Optional)",
+      "customPlaceholder": "Benutzerdefinierte Zeichen zum Einschließen hinzufügen...",
+      "autoGenerate": "Bei Änderung automatisch generieren",
+      "generate": "Passwort Generieren",
+      "regenerate": "Passwort Neu Generieren",
+      "generated": "Generiertes Passwort",
+      "strength": "Passwortstärke",
+      "weak": "Schwach",
+      "fair": "Ausreichend",
+      "good": "Gut",
+      "strong": "Stark",
+      "hide": "Passwort Verbergen",
+      "show": "Passwort Anzeigen",
+      "empty": "Klicke auf Generieren, um ein Passwort zu erstellen",
+      "share": "Link Teilen",
+      "download": "Passwort Herunterladen",
+      "privacy": "Die gesamte Verarbeitung erfolgt sicher im Browser. Deine Passwörter werden niemals gespeichert oder übertragen."
+    },
+    "LoremGenerator": {
+      "title": "Lorem-Ipsum-Generator",
+      "description": "Erstelle sofort Lorem-Ipsum-Platzhaltertext für Designs, Mockups und Prototypen.",
+      "premium": "Premium-Werkzeug",
+      "copied": "Kopiert!",
+      "copy": "Kopieren",
+      "customize": "Lorem-Text Anpassen",
+      "generateType": "Erstellungstyp",
+      "paragraphs": "Absätze",
+      "sentences": "Sätze",
+      "words": "Wörter",
+      "numberOf": "Anzahl von {type}",
+      "wordCount": "Wörter:",
+      "characterCount": "Zeichen:",
+      "generatedText": "Generierter Text",
+      "generating": "Lorem Ipsum wird Erstellt...",
+      "download": "Text Herunterladen",
+      "share": "Link Teilen",
+      "privacy": "Die gesamte Verarbeitung erfolgt sicher im Browser. Perfekt für Mockups, Designs und Prototypen.",
+      "copyManual": "Text manuell aus dem Textbereich kopieren"
+    },
+    "Notepad": {
+      "placeholder": "Beginne hier mit dem Schreiben deiner Notizen...",
+      "download": "Herunterladen",
+      "copy": "Kopieren",
+      "clear": "Löschen",
+      "newNote": "Neue Notiz beginnen?",
+      "clearNote": "Diese Notiz löschen?",
+      "continue": "Fortfahren",
+      "newDescription": "Deine aktuelle Notiz geht verloren. Diese Aktion kann nicht rückgängig gemacht werden.",
+      "clearDescription": "Deine aktuelle Notiz wird gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+      "cancel": "Abbrechen",
+      "open": "Öffnen",
+      "undo": "Rückgängig",
+      "lineColumn": "Zeile {line}, Spalte {column}",
+      "counts": "Zeichen {characters}, Wörter {words}",
+      "autoSaved": "Automatisch gespeichert {time}",
+      "copyBlocked": "Kopieren wurde blockiert. Wähle den Text aus und verwende Strg+A, dann Strg+C."
+    },
+    "EmojiPicker": {
+      "title": "Emoji-Auswahl & Kopierer",
+      "description": "Durchsuche und kopiere Emojis sofort. Finde das perfekte Emoji für jeden Anlass.",
+      "search": "Emojis suchen...",
+      "recent": "Kürzlich Kopiert",
+      "clickToCopy": "Zum Kopieren Klicken",
+      "noEmojis": "Keine Emojis gefunden",
+      "differentSearch": "Versuche einen anderen Suchbegriff",
+      "copyInstruction": "Klicke auf ein Emoji, um es in die Zwischenablage zu kopieren",
+      "copied": "{emoji} Kopiert!",
+      "emoji": "Emoji: {emoji}",
+      "categories": {
+        "smileys": "Smileys & Emotionen",
+        "hearts": "Herzen & Liebe",
+        "hands": "Handgesten",
+        "people": "Personen",
+        "food": "Essen & Trinken",
+        "animals": "Tiere",
+        "travel": "Reisen & Orte",
+        "activities": "Aktivitäten & Sport",
+        "objects": "Objekte",
+        "flags": "Flaggen",
+        "clothing": "Kleidung & Accessoires",
+        "nature": "Natur & Wetter",
+        "symbols": "Symbole & Zeichen"
+      }
+    },
+    "ColorPicker": {
+      "title": "Farbwähler",
+      "download": "Herunterladen",
+      "description": "Extrahiere wunderschöne Farbpaletten aus jedem Bild oder passe einzelne Farben präzise an und kopiere sie.",
+      "imageTab": "Bild",
+      "imageExtractor": "Bildfarbextraktor",
+      "uploadImage": "Bild Hochladen",
+      "browseOrDrop": "Zum Durchsuchen klicken oder per Drag & Drop",
+      "palette": "Farbpalette",
+      "copyAll": "Alles Kopieren",
+      "details": "Extrahierte Farbdetails",
+      "useAnother": "Anderes Bild Verwenden",
+      "empty": "Lade ein Bild deiner Wahl hoch, um automatisch dessen Farbpalette zu extrahieren",
+      "copied": "{format} kopiert!"
+    },
+    "PdfDashboard": {
+      "badge": "100% Clientseitiges Verarbeitungszentrum",
+      "title": "Jedes Werkzeug, das du zum Optimieren und Meistern von PDFs brauchst",
+      "description": "Führe blitzschnelle PDF-Aktionen direkt in deinem Browser aus. Deine sensiblen Dateien verlassen niemals deinen Computer – für vollständige Sicherheit.",
+      "searchPlaceholder": "PDF-Werkzeuge suchen (z. B. zusammenfügen, komprimieren)...",
+      "allTools": "Alle Werkzeuge",
+      "clear": "Löschen",
+      "noMatches": "Keine passenden Werkzeuge",
+      "noMatchesDescription": "Wir konnten keine Konverter oder Werkzeuge finden, die deinen Parametern entsprechen. Überprüfe deine Suchbegriffe."
+    },
+    "ImageDashboard": {
+      "badge": "100% Clientseitige Bildverarbeitung",
+      "title": "SaaS-Tools zum Komprimieren, Konvertieren und Bearbeiten von Bildern im Stapel",
+      "description": "Nutze blitzschnelles Zuschneiden, Skalieren, Wasserzeichen, Filter, Hintergrundentfernung und Konvertierungen. Vollständig in deiner Browserumgebung gesandboxt.",
+      "searchPlaceholder": "Bild-Werkzeuge suchen (z. B. zuschneiden, Hintergrund, png)...",
+      "allTools": "Alle Werkzeuge",
+      "clear": "Löschen",
+      "noMatches": "Keine passenden Werkzeuge",
+      "noMatchesDescription": "Wir konnten keine Konverter oder Werkzeuge finden, die deinen Parametern entsprechen. Überprüfe deine Suchbegriffe."
+    },
+    "SpeedTest": {
+      "title": "Speedtest",
+      "description": "Teste deine Internetgeschwindigkeit mit dem Netzwerk von Cloudflare",
+      "downloadSpeed": "Download-Geschwindigkeit (Mbps)",
+      "uploadSpeed": "Upload-Geschwindigkeit (Mbps)",
+      "testingDownload": "Download wird Getestet…",
+      "testingUpload": "Upload wird Getestet…",
+      "ready": "Bereit, deine Geschwindigkeit zu testen?",
+      "complete": "✓ Test Abgeschlossen!",
+      "download": "Herunterladen",
+      "upload": "Upload",
+      "start": "Speedtest Starten",
+      "testing": "Wird Getestet…",
+      "results": "Deine Ergebnisse erscheinen hier, sobald der Test abgeschlossen ist.",
+      "poweredBy": "Bereitgestellt durch das globale Netzwerk von Cloudflare"
+    },
+    "TypingSpeed": {
+      "punctuation": "Zeichensetzung",
+      "numbers": "Zahlen",
+      "time": "Zeit",
+      "words": "Wörter",
+      "quote": "Zitat",
+      "start": "Klicke hier oder drücke eine beliebige Taste, um zu starten",
+      "restart": "Neustart (Tab + Enter)",
+      "wpm": "wpm",
+      "wordsPerMinute": "Wörter pro Minute",
+      "raw": "roh",
+      "rawWpm": "rohe wpm",
+      "accuracy": "Genauigkeit",
+      "correctChars": "richtige Zeichen",
+      "correct": "richtig",
+      "incorrect": "falsch",
+      "duration": "Dauer",
+      "wpmOverTime": "WPM im Zeitverlauf",
+      "newTest": "Neuer Test"
+    }
+  },
+  "Blog": {
+    "eyebrow": "Einblicke & Ressourcen",
+    "title": "Der Craft-Blog",
+    "description": "Ausführliche Untersuchungen, taktische Leitfäden und strukturelle Designs, um deine Softwareentwicklung und deinen visuellen Workflow zu beflügeln.",
+    "search": "Artikel, Stichwörter, Themen durchsuchen...",
+    "categoryAll": "Kategorie: Alle",
+    "category": "Kategorie: {name}",
+    "tagAll": "Tag: Alle",
+    "tag": "Tag: {name}",
+    "writePost": "Neuen Beitrag Schreiben",
+    "noArticles": "Keine Artikel Gefunden",
+    "noArticlesDescription": "Wir konnten keine Artikel finden, die deinen Filtern entsprechen. Setze die Filter zurück oder schreibe einen neuen Beitrag.",
+    "clearFilters": "Filter Zurücksetzen",
+    "featured": "VORGESTELLTER BEITRAG",
+    "readFull": "Ganzen Beitrag Lesen",
+    "searchResults": "Suchergebnisse ({count})",
+    "allArticles": "Alle Artikel"
+  },
+  "ToolCatalog": {
+    "Pdf": {
+      "categories": {
+        "organize": "PDF Organisieren",
+        "fromPdf": "Von PDF Konvertieren",
+        "toPdf": "In PDF Konvertieren",
+        "optimizeEdit": "Optimieren & Bearbeiten",
+        "security": "PDF-Sicherheit"
+      },
+      "mergePdf": {
+        "name": "PDF Zusammenführen",
+        "short": "Mehrere PDF-Dateien zu einer zusammenführen.",
+        "long": "Wähle mehrere PDF-Dateien aus, ordne sie per Drag & Drop und führe sie zu einem einzigen hochwertigen Dokument zusammen."
+      },
+      "splitPdf": {
+        "name": "PDF Teilen",
+        "short": "Extrahiere bestimmte Seitenbereiche aus einem PDF.",
+        "long": "Teile ein PDF in einzelne Seiten oder extrahiere bestimmte Seitenbereiche (z. B. Seiten 1-5, 10) in ein neues PDF-Dokument."
+      },
+      "compressPdf": {
+        "name": "PDF Komprimieren",
+        "short": "Reduziere die PDF-Dateigröße bei gleichbleibender Qualität.",
+        "long": "Optimiere Dateien und Bilder in deinem PDF, um die Größe zu verringern, während Typografie und Auflösung scharf bleiben."
+      },
+      "pdfToWord": {
+        "name": "PDF zu Word",
+        "short": "Konvertiere PDF in ein bearbeitbares DOCX-Dokument.",
+        "long": "Extrahiere Absätze, Formatierungen und Tabellen direkt aus deinem PDF in eine vollständig bearbeitbare Microsoft Word .docx-Datei."
+      },
+      "wordToPdf": {
+        "name": "Word zu PDF",
+        "short": "Konvertiere Word-DOCX-Dateien in sicheres PDF.",
+        "long": "Verarbeite DOCX-Dateien zu hochwertigen PDF-Dokumenten mit vollständig erhaltenen Ausrichtungen, Schriftarten und Elementen."
+      },
+      "pdfToPowerpoint": {
+        "name": "PDF zu PowerPoint",
+        "short": "Verwandle PDF in PPTX-Präsentationen.",
+        "long": "Strukturiere Texte und Überschriften deiner PDF-Seiten in vollständig bearbeitbare, präsentationsbereite Microsoft PowerPoint-Folien."
+      },
+      "powerpointToPdf": {
+        "name": "PowerPoint zu PDF",
+        "short": "Konvertiere PPT/PPTX-Folien in PDF.",
+        "long": "Verwandle Präsentationsfolien (PPT/PPTX) in hochauflösende, leicht lesbare PDF-Seiten für reibungslose Weitergabe."
+      },
+      "pdfToExcel": {
+        "name": "PDF zu Excel",
+        "short": "Extrahiere Tabellen und Daten in Excel-Tabellen.",
+        "long": "Extrahiere mehrspaltige Rasterdaten und formatierte Tabellenlisten aus deinem PDF und übertrage sie in Microsoft Excel .xlsx-Formate."
+      },
+      "excelToPdf": {
+        "name": "Excel zu PDF",
+        "short": "Drucke dynamische Excel-Arbeitsblätter in sauberes PDF.",
+        "long": "Formatiere Tabellenzeilen und -raster ordentlich, lege benutzerdefinierte Breitenskalierung fest und rendere Arbeitsmappen als tabellenartiges PDF."
+      },
+      "pdfToJpg": {
+        "name": "PDF zu JPG",
+        "short": "Extrahiere alle PDF-Seiten als separate Bilder.",
+        "long": "Rendere jede einzelne Seite eines PDF-Dokuments in ein scharfes, herunterladbares hochauflösendes JPEG-Format (.jpg)."
+      },
+      "jpgToPdf": {
+        "name": "JPG zu PDF",
+        "short": "Füge mehrere Bilder zu einem einzigen PDF zusammen.",
+        "long": "Lade eigene JPG-, PNG- und WebP-Bilder hoch, ordne sie nach Belieben an, kombiniere Größen und erstelle ein mehrseitiges PDF-Dokument."
+      },
+      "rotatePdf": {
+        "name": "PDF Drehen",
+        "short": "Drehe Seiten eines PDFs visuell.",
+        "long": "Lies PDF-Dateien seitenweise, betrachte sie und drehe sie dynamisch in bestimmte Richtungen (90, 180, 270 Grad)."
+      },
+      "unlockPdf": {
+        "name": "PDF Entsperren",
+        "short": "Entferne Sicherheitskennwörter von individuellen PDFs.",
+        "long": "Entschlüssele geschützte Dateien, hebe allgemeine Bearbeitungsrechte auf und lade entsperrte Dokumente ohne übliche Sicherheitswarnungen herunter."
+      },
+      "protectPdf": {
+        "name": "PDF Schützen",
+        "short": "Verschlüssele PDF mit sicherem Passwortschutz.",
+        "long": "Sichere deine sensiblen PDFs, indem du Dateien mit Passwortparametern schützt, die beim Öffnen überall abgefragt werden."
+      },
+      "repairPdf": {
+        "name": "PDF Reparieren",
+        "short": "Beschädigte Strukturen oder fehlerhafte Offsets rekonstruieren.",
+        "long": "Standardisiere Formatierungs-Streams und stelle fehlerhafte Querverweistabellen (XREF) wieder her, um Ladewarnungen zu umgehen."
+      },
+      "editPdf": {
+        "name": "PDF Bearbeiten",
+        "short": "Füge Textbeschriftungen, Formen und Zeichnungen zu Seiten hinzu.",
+        "long": "Lege reaktionsfähige Textblöcke, Formen, Hervorhebungen oder Signaturen visuell direkt auf bestimmten PDF-Ebenen ab."
+      }
+    },
+    "Image": {
+      "categories": {
+        "compress": "Komprimieren",
+        "resizeCrop": "Größe Ändern & Zuschneiden",
+        "convert": "Format Konvertieren",
+        "edit": "Ändern & Stylen",
+        "ai": "KI-Verbessert"
+      },
+      "compressImage": {
+        "name": "Bild Komprimieren",
+        "short": "Komprimiere JPG, PNG, SVG, GIF, WEBP und AVIF.",
+        "long": "Optimiere die Dateigröße bei möglichst hoher visueller Qualität. Komprimiert JPEG-, PNG-, WEBP-, GIF- und SVG-Formate in Echtzeit."
+      },
+      "resizeImage": {
+        "name": "Bild Größe Ändern",
+        "short": "Lege Breite und Höhe in Pixeln fest.",
+        "long": "Ändere die Bildabmessungen prozentual oder nach gewünschter Breite/Höhe in Pixeln. Option zum Sperren des Verhältnisses oder Auswählen beliebter Social-Media-Vorlagen."
+      },
+      "cropImage": {
+        "name": "Bild Zuschneiden",
+        "short": "Schneide Bilder mit einem interaktiven Auswahlrahmen zu.",
+        "long": "Entferne Ränder oder isoliere gewünschte Fokusbereiche mit visuellen Ankern. Bietet beliebte individuelle Seitenverhältnisse und Zuschnittvorlagen."
+      },
+      "rotateImage": {
+        "name": "Bild Drehen",
+        "short": "Drehe Bilder und spiegle sie auf jeder Achse.",
+        "long": "Spiegle Bilder horizontal, vertikal oder drehe sie in 90-Grad-Schritten im Uhrzeigersinn/gegen den Uhrzeigersinn für perfekte Ausrichtungen."
+      },
+      "watermarkImage": {
+        "name": "Wasserzeichen für Bild",
+        "short": "Bringe individuelle Text-Overlays oder Markenlogos an.",
+        "long": "Schütze deine Kreationen, indem du Texte oder kleine transparente Overlay-Logos überlagerst. Passe Position, Größe und Deckkraft an."
+      },
+      "removeBackground": {
+        "name": "KI-Hintergrundentferner",
+        "short": "Automatische Extraktion des transparenten Hintergrunds.",
+        "long": "Entferne einfarbige oder komplexe Hintergründe, um saubere transparente PNG-Dateien zu erstellen. Nutzt clientseitige Kantenkontrasterkennung und intelligente Filter."
+      },
+      "upscaleImage": {
+        "name": "KI-Bild-Vergrößerer",
+        "short": "Vergrößere die Auflösung mit bikubischer Kantenschärfung.",
+        "long": "Interpoliere Pixel bis zu 4x und wende dabei intelligente Schärfungsfilter an, um Details wiederherzustellen, Konturen zu schärfen und visuelle Unschärfe zu reduzieren."
+      },
+      "imageToJpg": {
+        "name": "In JPG Konvertieren",
+        "short": "Rendere PNG, WEBP, AVIF, HEIC, TIFF neu zu JPG.",
+        "long": "Konvertiere mehrere geschichtete Bildformate im Stapel in ein standardisiertes, hochkompatibles JPEG-Format."
+      },
+      "imageToPng": {
+        "name": "In PNG Konvertieren",
+        "short": "Rendere WebP, JPEG, AVIF zu PNG-Formaten neu.",
+        "long": "Sorge für Transparenzvektoren und scharfe Raster, indem eingehende Dateien in hochwertige Web-PNG-Standardformate kompiliert werden."
+      },
+      "imageToWebp": {
+        "name": "In WebP Konvertieren",
+        "short": "Verwandle schwere Bilder in optimiertes WebP.",
+        "long": "Konvertiere Ordner mit PNG- oder JPG-Dateien in ultraleichte WebP-Formate, um Website- und App-Geschwindigkeit zu maximieren."
+      },
+      "imageToAvif": {
+        "name": "In AVIF Konvertieren",
+        "short": "Konvertiere Bilder in den AVIF-Standard der nächsten Generation.",
+        "long": "Exportiere hochwertige Bilder in das AVIF-Format, das hohe Qualität mit kleineren Dateien als WebP kombiniert."
+      },
+      "jpgToPng": {
+        "name": "JPG zu PNG",
+        "short": "Konvertiere JPG-Dateien in transparentes PNG.",
+        "long": "Verwandle flache JPG/JPEG-Dokumente in verlustfreie, farbstarke PNG-Dateien und erhalte die ursprünglichen Farbverläufe ohne Artefakte."
+      },
+      "pngToJpg": {
+        "name": "PNG zu JPG",
+        "short": "Konvertiere PNG-Bilder in hochkompatible JPGs.",
+        "long": "Verflache alpha-transparente PNG-Vektoren in standardmäßige rasterisierte JPEG-Raster mit einheitlichem, festem Hintergrund."
+      },
+      "webpToJpg": {
+        "name": "WebP zu JPG",
+        "short": "Decodiere WebP-Seiten in standardmäßige JPG-Bilder.",
+        "long": "Verarbeite sicher platzsparende WebP-Bilder zu statischen JPEG-Formaten, um universelle Kompatibilität in lokalen Tools zu gewährleisten."
+      },
+      "webpToPng": {
+        "name": "WebP zu PNG",
+        "short": "Stelle Alphakanal-Transparenz für PNG wieder her.",
+        "long": "Entpacke leichte, webbasierte optimierte WebP-Dateien zurück in vollständig bearbeitbare, verlustfreie PNG-Dateien mit intakten Ebenen."
+      },
+      "gifToJpg": {
+        "name": "GIF zu JPG",
+        "short": "Konvertiere animierte GIF-Frames in statische JPGs.",
+        "long": "Isoliere einzelne Animationsphasen aus geladenen GIFs oder gib das erste Bild als leichtes, statisches JPG-Snapshot aus."
+      },
+      "svgToPng": {
+        "name": "SVG zu PNG",
+        "short": "Rastere Vektor-SVGs in hochwertige PNG-Layouts.",
+        "long": "Lade Vektordefinitionen, skaliere sie auf scharfe Abmessungen und kompiliere sie in vollständig kompatible, hochwertige rasterisierte PNG-Dateien."
+      },
+      "batchConvert": {
+        "name": "Stapel-Formatkonverter",
+        "short": "Konvertiere Dutzende Bildformate auf einmal.",
+        "long": "Importiere jede Mischung aus JPG-, PNG-, WEBP-, GIF-, SVG-, BMP-, TIFF-, ICO-Bildern, wähle ein Ziel-Exportformat und kompiliere sie in Sekunden."
+      },
+      "imageEditor": {
+        "name": "Kreativer Bildeditor",
+        "short": "Vollwertiges Foto-Design-Studio mit Leinwand.",
+        "long": "Zeichne, kritzle, füge Textfelder, Filter (Sepia, Monochrom, Invertieren) hinzu, passe Farbregler an, skaliere, schneide zu und füge Wasserzeichen in einem einheitlichen Arbeitsbereich hinzu."
+      }
+    }
+  }
+}

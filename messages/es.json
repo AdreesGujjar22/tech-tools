@@ -34,9 +34,15 @@
     },
     "language": "Idioma",
     "languages": {
-      "english": "Inglés",
+      "english": "English",
       "spanish": "Español",
-      "portuguese": "Portugués"
+      "portuguese": "Português",
+      "german": "Deutsch",
+      "french": "Français",
+      "indonesian": "Indonesia",
+      "italian": "Italiano",
+      "dutch": "Nederlands",
+      "turkish": "Türkçe"
     },
     "labels": {
       "allUtilities": "Todas las Utilidades",

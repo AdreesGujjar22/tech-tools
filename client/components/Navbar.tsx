@@ -7,44 +7,40 @@ import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/lib/locale";
 
-type LanguageCode = "en" | "es" | "pt";
+type LanguageCode = "de" | "en" | "es" | "fr" | "id" | "it" | "nl" | "pt" | "tr";
 
 type LanguageSelectorProps = {
   mobile?: boolean;
 };
 
 function FlagIcon({ code }: { code: LanguageCode }) {
+  const svgProps = { viewBox: "0 0 24 16", className: "h-4 w-6 shrink-0 rounded-[2px] shadow-sm", "aria-hidden": true } as const;
 
+  if (code === "de") {
+    return <svg {...svgProps}><rect width="24" height="16" fill="#FFCE00" /><rect width="24" height="5.33" fill="#000" /><rect y="5.33" width="24" height="5.33" fill="#DD0000" /></svg>;
+  }
   if (code === "es") {
-    return (
-      <svg viewBox="0 0 24 16" className="h-4 w-6 shadow-sm" aria-hidden="true">
-        <rect width="24" height="16" fill="#F1BF00" />
-        <rect width="24" height="4" fill="#AA151B" />
-        <rect y="12" width="24" height="4" fill="#AA151B" />
-      </svg>
-    );
+    return <svg {...svgProps}><rect width="24" height="16" fill="#F1BF00" /><rect width="24" height="4" fill="#AA151B" /><rect y="12" width="24" height="4" fill="#AA151B" /></svg>;
   }
-
+  if (code === "fr") {
+    return <svg {...svgProps}><rect width="8" height="16" fill="#0055A4" /><rect x="8" width="8" height="16" fill="#fff" /><rect x="16" width="8" height="16" fill="#EF4135" /></svg>;
+  }
+  if (code === "id") {
+    return <svg {...svgProps}><rect width="24" height="8" fill="#CE1126" /><rect y="8" width="24" height="8" fill="#fff" /></svg>;
+  }
+  if (code === "it") {
+    return <svg {...svgProps}><rect width="8" height="16" fill="#009246" /><rect x="8" width="8" height="16" fill="#fff" /><rect x="16" width="8" height="16" fill="#CE2B37" /></svg>;
+  }
+  if (code === "nl") {
+    return <svg {...svgProps}><rect width="24" height="16" fill="#21468B" /><rect width="24" height="5.33" fill="#AE1C28" /><rect y="5.33" width="24" height="5.33" fill="#fff" /></svg>;
+  }
   if (code === "pt") {
-    return (
-      <svg viewBox="0 0 24 16" className="h-4 w-6 shadow-sm" aria-hidden="true">
-        <rect width="24" height="16" fill="#009B3A" />
-        <path d="M12 1 22 8 12 15 2 8Z" fill="#FFDF00" />
-        <circle cx="12" cy="8" r="3.5" fill="#002776" />
-      </svg>
-    );
+    return <svg {...svgProps}><rect width="24" height="16" fill="#046A38" /><rect x="9" width="15" height="16" fill="#DA291C" /><circle cx="9" cy="8" r="4.2" fill="#FFCD00" /><circle cx="9" cy="8" r="2.7" fill="#fff" /></svg>;
   }
-
-  return (
-    <svg viewBox="0 0 24 16" className="h-4 w-6 shadow-sm" aria-hidden="true">
-      <rect width="24" height="16" fill="#B22234" />
-      <path d="M0 2h24M0 4h24M0 6h24M0 8h24M0 10h24M0 12h24M0 14h24" stroke="#fff" strokeWidth="1.2" />
-      <rect width="10" height="8.5" fill="#3C3B6E" />
-      <circle cx="2" cy="2" r=".45" fill="#fff" /><circle cx="4" cy="2" r=".45" fill="#fff" /><circle cx="6" cy="2" r=".45" fill="#fff" /><circle cx="8" cy="2" r=".45" fill="#fff" />
-      <circle cx="3" cy="4" r=".45" fill="#fff" /><circle cx="5" cy="4" r=".45" fill="#fff" /><circle cx="7" cy="4" r=".45" fill="#fff" /><circle cx="9" cy="4" r=".45" fill="#fff" />
-      <circle cx="2" cy="6" r=".45" fill="#fff" /><circle cx="4" cy="6" r=".45" fill="#fff" /><circle cx="6" cy="6" r=".45" fill="#fff" /><circle cx="8" cy="6" r=".45" fill="#fff" />
-    </svg>
-  );
+  if (code === "tr") {
+    return <svg {...svgProps}><rect width="24" height="16" fill="#E30A17" /><circle cx="10" cy="8" r="4" fill="#fff" /><circle cx="11.2" cy="8" r="3.2" fill="#E30A17" /><path d="m15 8 3.2 1.05-1.98-2.62v3.14L18.2 6.95Z" fill="#fff" /></svg>;
+  }
+  return <svg {...svgProps}><rect width="24" height="16" fill="#B22234" /><path d="M0 2h24M0 4h24M0 6h24M0 8h24M0 10h24M0 12h24M0 14h24" stroke="#fff" strokeWidth="1.2" /><rect width="10" height="8.5" fill="#3C3B6E" /></svg>;
 }
 
 function LanguageSelector({ mobile = false }: LanguageSelectorProps) {
@@ -56,6 +52,12 @@ function LanguageSelector({ mobile = false }: LanguageSelectorProps) {
     { code: "en" as const, label: common("languages.english") },
     { code: "es" as const, label: common("languages.spanish") },
     { code: "pt" as const, label: common("languages.portuguese") },
+    { code: "de" as const, label: common("languages.german") },
+    { code: "fr" as const, label: common("languages.french") },
+    { code: "id" as const, label: common("languages.indonesian") },
+    { code: "it" as const, label: common("languages.italian") },
+    { code: "nl" as const, label: common("languages.dutch") },
+    { code: "tr" as const, label: common("languages.turkish") },
   ];
   const selectedLanguage = languages.find((language) => language.code === locale) ?? languages[0];
 

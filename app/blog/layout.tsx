@@ -1,16 +1,34 @@
 import React from "react";
 import type { Metadata } from "next";
+import { getLocalizedAlternates, getRequestLocale } from "@/lib/server-locale";
+import { messages } from "../../messages";
 
-export const metadata: Metadata = {
-  title: "Blog - Tech Tools Articles & Guides",
-  description: "Read articles, tutorials, and guides about PDF tools, image editing, AI utilities, and online productivity solutions.",
-  keywords: ["blog", "articles", "guides", "tutorials", "tech tools blog"],
-  openGraph: {
-    title: "Blog - Tech Tools Articles & Guides",
-    description: "Read articles, tutorials, and guides about PDF tools, image editing, AI utilities, and online productivity solutions.",
-    type: "website",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getRequestLocale();
+  const blog = messages[locale].Blog;
+  const title = blog.title;
+  const description = blog.description;
+
+  return {
+    title,
+    description,
+    keywords: ["blog", "articles", "guides", "tutorials", "tech tools blog"],
+    alternates: await getLocalizedAlternates("/blog"),
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: (await getLocalizedAlternates("/blog")).canonical,
+      images: [{ url: "/images/web-logo.png", width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/images/web-logo.png"],
+    },
+  };
+}
 
 export default function BlogLayout({
   children,
