@@ -697,8 +697,15 @@
       "removeBackground": "Arka Planı Kaldır",
       "retry": "Tekrar Dene",
       "images": "Görseller ({count})",
-      "processAll": "Tümünü İşle"
+      "processAll": "Tümünü İşle",
+      "backgroundRemoved": "Arka plan {fileName} dosyasından kaldırıldı"
     },
+    "Loading": { "imageTools": "Görüntü araçları yükleniyor...", "pdfTools": "PDF araçları yükleniyor..." },
+    "WatermarkImage": { "panel": "Filigran paneli", "positionGrid": "Filigran konum ızgarası", "stampLabel": "Marka damgası etiketi", "defaultStamp": "© MARKA DAMGASI", "fontSize": "Yazı tipi boyutu (% tuval)", "textFillColor": "Metin dolgu rengi", "opacity": "Filigran opaklığı ({value}%)", "propertiesOverview": "Özelliklere genel bakış", "positionType": "Konum türü", "stampText": "Damga metni", "none": "Yok" },
+    "ImageConverter": { "conversionSettings": "Dönüştürme ayarları" },
+    "PdfToPowerpoint": { "slidesOutputOptions": "Slayt çıktı seçenekleri" },
+    "PdfToWord": { "conversionTargets": "Dönüştürme hedefleri", "description": "Tüm bölümlerde tam metin çıkarımı gerçekleştirir ve bunu standart Word `.docx` dosya blokları içinde yerel olarak oluşturur." },
+    "UnlockPdf": { "unlockParameters": "Kilit açma parametreleri", "enterPassword": "Kilit açma parolasını girin", "passwordPlaceholder": "Standart PDF ise boş bırakın...", "protectPdfNote": "PDF, PDF Koru aracımızla şifrelendiyse kilit kısıtlamalarını istemci tarafında kaldırmak için yukarıdaki anahtarı girin." },
     "QrGenerator": {
       "title": "QR Kod Oluşturucu",
       "description": "Web siteleri, WiFi ağları, dijital kartvizitler veya metin verileri için anında tamamen özelleştirilmiş QR kodları oluşturun.",

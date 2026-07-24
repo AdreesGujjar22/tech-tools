@@ -697,7 +697,41 @@
       "removeBackground": "Remove Background",
       "retry": "Retry",
       "images": "Images ({count})",
-      "processAll": "Process All"
+      "processAll": "Process All",
+      "backgroundRemoved": "Background removed from {fileName}"
+    },
+    "Loading": {
+      "imageTools": "Loading image tools...",
+      "pdfTools": "Loading PDF tools..."
+    },
+    "WatermarkImage": {
+      "panel": "Watermark Panel",
+      "positionGrid": "Watermark Position Grid",
+      "stampLabel": "Branding Stamp Label",
+      "defaultStamp": "© BRAND STAMP",
+      "fontSize": "Font Size (% of Canvas)",
+      "textFillColor": "Text Fill Color",
+      "opacity": "Watermark Opacity ({value}%)",
+      "propertiesOverview": "Properties Overview",
+      "positionType": "Position Type",
+      "stampText": "Stamp Text",
+      "none": "None"
+    },
+    "ImageConverter": {
+      "conversionSettings": "Conversion Settings"
+    },
+    "PdfToPowerpoint": {
+      "slidesOutputOptions": "Slides Output Options"
+    },
+    "PdfToWord": {
+      "conversionTargets": "Conversion Targets",
+      "description": "Performs complete text extraction across all sections and outputs them natively inside standard Word `.docx` file blocks."
+    },
+    "UnlockPdf": {
+      "unlockParameters": "Unlock Parameters",
+      "enterPassword": "Enter Unlock Password",
+      "passwordPlaceholder": "Leave blank if standard PDF...",
+      "protectPdfNote": "If the PDF was encrypted using our Protect PDF tool, supply the key above to lift lock constraints client-side."
     },
     "QrGenerator": {
       "title": "QR Code Generator",

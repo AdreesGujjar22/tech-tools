@@ -697,8 +697,15 @@
       "removeBackground": "Hapus Latar Belakang",
       "retry": "Coba Lagi",
       "images": "Gambar ({count})",
-      "processAll": "Proses Semua"
+      "processAll": "Proses Semua",
+      "backgroundRemoved": "Latar belakang dihapus dari {fileName}"
     },
+    "Loading": { "imageTools": "Memuat alat gambar...", "pdfTools": "Memuat alat PDF..." },
+    "WatermarkImage": { "panel": "Panel tanda air", "positionGrid": "Grid posisi tanda air", "stampLabel": "Label stempel merek", "defaultStamp": "© STEMPEL MEREK", "fontSize": "Ukuran font (% kanvas)", "textFillColor": "Warna isi teks", "opacity": "Opasitas tanda air ({value}%)", "propertiesOverview": "Ringkasan properti", "positionType": "Jenis posisi", "stampText": "Teks stempel", "none": "Tidak ada" },
+    "ImageConverter": { "conversionSettings": "Pengaturan konversi" },
+    "PdfToPowerpoint": { "slidesOutputOptions": "Opsi keluaran slide" },
+    "PdfToWord": { "conversionTargets": "Target konversi", "description": "Melakukan ekstraksi teks lengkap di semua bagian dan menghasilkan secara asli dalam blok file Word `.docx` standar." },
+    "UnlockPdf": { "unlockParameters": "Parameter buka kunci", "enterPassword": "Masukkan kata sandi buka kunci", "passwordPlaceholder": "Biarkan kosong jika PDF standar...", "protectPdfNote": "Jika PDF dienkripsi menggunakan alat Lindungi PDF kami, masukkan kunci di atas untuk menghapus batasan kunci di sisi klien." },
     "QrGenerator": {
       "title": "Generator Kode QR",
       "description": "Buat kode QR yang sepenuhnya disesuaikan secara instan untuk situs web, jaringan WiFi, kartu nama digital, atau payload teks.",

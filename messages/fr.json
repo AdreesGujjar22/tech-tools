@@ -697,8 +697,15 @@
       "removeBackground": "Supprimer l'Arrière-Plan",
       "retry": "Réessayer",
       "images": "Images ({count})",
-      "processAll": "Tout Traiter"
+      "processAll": "Tout Traiter",
+      "backgroundRemoved": "Arrière-plan supprimé de {fileName}"
     },
+    "Loading": { "imageTools": "Chargement des outils d'image...", "pdfTools": "Chargement des outils PDF..." },
+    "WatermarkImage": { "panel": "Panneau de filigrane", "positionGrid": "Grille de position du filigrane", "stampLabel": "Libellé du tampon de marque", "defaultStamp": "© TAMPON DE MARQUE", "fontSize": "Taille de police (% de la zone de travail)", "textFillColor": "Couleur de remplissage du texte", "opacity": "Opacité du filigrane ({value}%)", "propertiesOverview": "Aperçu des propriétés", "positionType": "Type de position", "stampText": "Texte du tampon", "none": "Aucun" },
+    "ImageConverter": { "conversionSettings": "Paramètres de conversion" },
+    "PdfToPowerpoint": { "slidesOutputOptions": "Options de sortie des diapositives" },
+    "PdfToWord": { "conversionTargets": "Cibles de conversion", "description": "Effectue une extraction complète du texte dans toutes les sections et le génère nativement dans des blocs de fichiers Word `.docx` standard." },
+    "UnlockPdf": { "unlockParameters": "Paramètres de déverrouillage", "enterPassword": "Saisir le mot de passe de déverrouillage", "passwordPlaceholder": "Laisser vide pour un PDF standard...", "protectPdfNote": "Si le PDF a été chiffré avec notre outil Protéger le PDF, indiquez la clé ci-dessus pour lever les restrictions côté client." },
     "QrGenerator": {
       "title": "Générateur de Code QR",
       "description": "Créez instantanément des codes QR entièrement personnalisés pour des sites web, réseaux WiFi, cartes de visite numériques ou du texte.",

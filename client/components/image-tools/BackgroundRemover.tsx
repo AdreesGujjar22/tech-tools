@@ -289,7 +289,7 @@ export default function BackgroundRemover() {
           error: null
         } : img
       ));
-      toast.success(`Background removed from ${image.original.name}`);
+      toast.success(t("backgroundRemoved", { fileName: image.original.name }));
       console.log(`Successfully processed: ${image.original.name}`);
     } catch (error: any) {
       console.error(`Error processing image ${image.original.name}:`, error);

@@ -697,8 +697,15 @@
       "removeBackground": "Remover Fundo",
       "retry": "Tentar Novamente",
       "images": "Imagens ({count})",
-      "processAll": "Processar Tudo"
+      "processAll": "Processar Tudo",
+      "backgroundRemoved": "Fundo removido de {fileName}"
     },
+    "Loading": { "imageTools": "Carregando ferramentas de imagem...", "pdfTools": "Carregando ferramentas de PDF..." },
+    "WatermarkImage": { "panel": "Painel de marca-d'água", "positionGrid": "Grade de posição da marca-d'água", "stampLabel": "Rótulo do carimbo da marca", "defaultStamp": "© CARIMBO DA MARCA", "fontSize": "Tamanho da fonte (% da tela)", "textFillColor": "Cor de preenchimento do texto", "opacity": "Opacidade da marca-d'água ({value}%)", "propertiesOverview": "Visão geral das propriedades", "positionType": "Tipo de posição", "stampText": "Texto do carimbo", "none": "Nenhum" },
+    "ImageConverter": { "conversionSettings": "Configurações de conversão" },
+    "PdfToPowerpoint": { "slidesOutputOptions": "Opções de saída dos slides" },
+    "PdfToWord": { "conversionTargets": "Destinos de conversão", "description": "Realiza a extração completa de texto em todas as seções e o produz nativamente em blocos de arquivos Word `.docx` padrão." },
+    "UnlockPdf": { "unlockParameters": "Parâmetros de desbloqueio", "enterPassword": "Inserir senha de desbloqueio", "passwordPlaceholder": "Deixe em branco se for um PDF padrão...", "protectPdfNote": "Se o PDF foi criptografado usando nossa ferramenta Proteger PDF, informe a chave acima para remover as restrições de bloqueio no cliente." },
     "QrGenerator": {
       "title": "Gerador de Código QR",
       "description": "Crie instantaneamente códigos QR totalmente personalizados para sites, redes WiFi, cartões de visita digitais ou textos.",

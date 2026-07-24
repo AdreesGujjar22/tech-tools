@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import ToolShell from "./ToolShell";
 import { Type, Image as ImageIcon, Sliders, LayoutGrid } from "lucide-react";
 
 export default function WatermarkImage() {
+  const t = useTranslations("Tools.WatermarkImage");
   const allowedExtensions = [".png", ".jpg", ".jpeg", ".webp", ".svg"];
 
   const renderConfig = (filesParam: any[], config: any, setConfig: any) => {
@@ -24,7 +26,7 @@ export default function WatermarkImage() {
         {/* Placement Selector */}
         <div>
           <label className="text-xs font-bold text-[#4A6857] block mb-2.5 font-mono uppercase">
-            Watermark Position Grid
+            {t("positionGrid")}
           </label>
           <div className="grid grid-cols-3 gap-1 max-w-[180px]">
             {[
@@ -61,7 +63,7 @@ export default function WatermarkImage() {
         <div className="space-y-3.5">
           <div>
             <label className="text-xs font-bold text-[#4A6857] block mb-1.5 font-mono uppercase">
-              Branding Stamp Label
+              {t("stampLabel")}
             </label>
             <input
               type="text"
@@ -75,7 +77,7 @@ export default function WatermarkImage() {
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="text-[10px] font-bold text-[#4A6857] block mb-1 font-mono uppercase">
-                Font Size (% of Canvas)
+                {t("fontSize")}
               </label>
               <input
                 type="number"
@@ -88,7 +90,7 @@ export default function WatermarkImage() {
             </div>
             <div>
               <label className="text-[10px] font-bold text-[#4A6857] block mb-1 font-mono uppercase">
-                Text Fill Color
+                {t("textFillColor")}
               </label>
               <input
                 type="color"
@@ -103,7 +105,7 @@ export default function WatermarkImage() {
           <div>
             <div className="flex justify-between items-center mb-1">
               <label className="text-[10px] font-bold text-[#4A6857] block font-mono uppercase">
-                Watermark Opacity ({Math.round(config.opacity * 100)}%)
+                {t("opacity", { value: Math.round(config.opacity * 100) })}
               </label>
             </div>
             <input
@@ -122,10 +124,10 @@ export default function WatermarkImage() {
         {hasFiles && (
           <div className="p-3 bg-[#F0F7F0] rounded-xl space-y-1 text-left font-mono border border-[#C5DCC9] text-2xs">
             <span className="text-[10px] font-bold text-[#4A6857] block uppercase mb-1">
-              Properties Overview
+              {t("propertiesOverview")}
             </span>
-            <p className="text-[#4A6857]">Position Type: <span className="text-[#1F3A26] font-semibold uppercase">{config.position}</span></p>
-            <p className="text-[#666666] truncate">Stamp Text: <span className="text-[#10A968] font-bold">"{config.text || "None"}"</span></p>
+            <p className="text-[#4A6857]">{t("positionType")}: <span className="text-[#1F3A26] font-semibold uppercase">{config.position}</span></p>
+            <p className="text-[#666666] truncate">{t("stampText")}: <span className="text-[#10A968] font-bold">"{config.text || t("none")}"</span></p>
           </div>
         )}
       </div>
@@ -283,11 +285,11 @@ export default function WatermarkImage() {
       allowedExtensions={allowedExtensions}
       allowMultiple={true}
       maxFiles={50}
-      configTitle="Watermark Panel"
+      configTitle={t("panel")}
       renderConfig={renderConfig}
       defaultConfig={{
         type: "text",
-        text: "© BRAND STAMP",
+        text: t("defaultStamp"),
         fontSizePercent: 5,
         color: "#ffffff",
         opacity: 0.5,

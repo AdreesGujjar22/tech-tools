@@ -697,8 +697,15 @@
       "removeBackground": "Achtergrond Verwijderen",
       "retry": "Opnieuw Proberen",
       "images": "Afbeeldingen ({count})",
-      "processAll": "Alles Verwerken"
+      "processAll": "Alles Verwerken",
+      "backgroundRemoved": "Achtergrond verwijderd uit {fileName}"
     },
+    "Loading": { "imageTools": "Afbeeldingstools laden...", "pdfTools": "PDF-tools laden..." },
+    "WatermarkImage": { "panel": "Watermerkpaneel", "positionGrid": "Positieraster voor watermerk", "stampLabel": "Label voor merkstempel", "defaultStamp": "© MERKSTEMPEL", "fontSize": "Lettergrootte (% van canvas)", "textFillColor": "Vulkleur van tekst", "opacity": "Dekking van watermerk ({value}%)", "propertiesOverview": "Overzicht van eigenschappen", "positionType": "Positietype", "stampText": "Stempeltekst", "none": "Geen" },
+    "ImageConverter": { "conversionSettings": "Conversie-instellingen" },
+    "PdfToPowerpoint": { "slidesOutputOptions": "Opties voor dia-uitvoer" },
+    "PdfToWord": { "conversionTargets": "Conversiedoelen", "description": "Voert volledige tekstextractie uit in alle secties en voert deze systeemeigen uit in standaard Word-`.docx`-bestandsblokken." },
+    "UnlockPdf": { "unlockParameters": "Ontgrendelparameters", "enterPassword": "Ontgrendelwachtwoord invoeren", "passwordPlaceholder": "Leeg laten bij een standaard-PDF...", "protectPdfNote": "Als de PDF is versleuteld met onze PDF beveiligen-tool, voer dan hierboven de sleutel in om de vergrendelingsbeperkingen aan de clientzijde op te heffen." },
     "QrGenerator": {
       "title": "QR-Code Generator",
       "description": "Maak direct volledig aangepaste QR-codes voor websites, WiFi-netwerken, digitale visitekaartjes of tekstpayloads.",
