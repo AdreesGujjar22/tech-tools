@@ -3,7 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "@/global.css";
 import Providers from "@/components/Providers";
 import { messages } from "../messages";
-import { buildPageMetadata } from "@/lib/server-locale";
+import { getLocalizedAlternates } from "@/lib/server-locale";
 
 const BASE_URL =
   process.env.NEXT_PUBLIC_APP_URL || "https://www.ilovetechtools.com";
@@ -16,7 +16,8 @@ const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
 });
 
-export const metadata: Metadata = {
+export async function generateMetadata(): Promise<Metadata> {
+  return {
   metadataBase: new URL(BASE_URL),
   title: {
     default: siteMetadata.title,
@@ -30,22 +31,14 @@ export const metadata: Metadata = {
     apple: "/images/fav-icon.png",
   },
 
-  alternates: {
-    canonical: `${BASE_URL}/en`,
-    languages: {
-      en: `${BASE_URL}/en`,
-      es: `${BASE_URL}/es`,
-      pt: `${BASE_URL}/pt`,
-      "x-default": `${BASE_URL}/en`,
-    },
-  },
+  alternates: await getLocalizedAlternates("/"),
 
   openGraph: {
     title: siteMetadata.title,
     description: siteMetadata.description,
     siteName: "Tech Tools",
     locale: "en_US",
-    alternateLocale: ["es_ES", "pt_BR"],
+    alternateLocale: ["de_DE", "es_ES", "fr_FR", "id_ID", "it_IT", "nl_NL", "pt_BR", "tr_TR"],
     type: "website",
     images: [
       {
@@ -63,7 +56,8 @@ export const metadata: Metadata = {
     description: siteMetadata.description,
     images: ["/images/web-logo.png"],
   },
-};
+  };
+}
 
 export default function RootLayout({
   children,

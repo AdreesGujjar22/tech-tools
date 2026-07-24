@@ -4,20 +4,20 @@ import React, { Suspense } from "react";
 import NextLink from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
-export const locales = ["en", "es", "pt"] as const;
+export const locales = ["de", "en", "es", "fr", "id", "it", "nl", "pt", "tr"] as const;
 export type RouteLocale = (typeof locales)[number];
 
 function getPathLocale(pathname: string | null | undefined): RouteLocale {
   const segment = pathname?.split("/")[1];
-  return segment === "es" || segment === "pt" ? segment : "en";
+  return locales.includes(segment as RouteLocale) ? (segment as RouteLocale) : "en";
 }
 
 export function stripLocalePrefix(pathname: string) {
-  return pathname.replace(/^\/(?:en|es|pt)(?=\/|$)/, "") || "/";
+  return pathname.replace(/^\/(?:de|en|es|fr|id|it|nl|pt|tr)(?=\/|$)/, "") || "/";
 }
 
 export function withLocalePath(to: string, locale: RouteLocale) {
-  if (!to.startsWith("/") || to.startsWith("//") || to.startsWith("/admin") || to.startsWith("/api") || /^\/(?:en|es|pt)(?:\/|$)/.test(to)) {
+  if (!to.startsWith("/") || to.startsWith("//") || to.startsWith("/admin") || to.startsWith("/api") || /^\/(?:de|en|es|fr|id|it|nl|pt|tr)(?:\/|$)/.test(to)) {
     return to;
   }
   return `/${locale}${to === "/" ? "" : to}`;

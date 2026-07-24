@@ -17,18 +17,20 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname() || "/";
   const isAdminPath = pathname === "/admin" || pathname.startsWith("/admin/");
-  const [locale, setLocaleState] = useState<Locale>(
-    isAdminPath ? defaultLocale : pathname.split("/")[1] === "es" ? "es" : pathname.split("/")[1] === "pt" ? "pt" : defaultLocale
-  );
+  const [locale, setLocaleState] = useState<Locale>(() => {
+    const pathLocale = pathname.split("/")[1] as Locale;
+    return isAdminPath || !messages[pathLocale] ? defaultLocale : pathLocale;
+  });
 
   useEffect(() => {
     if (isAdminPath) return;
     const saved = window.localStorage.getItem("techtools-locale");
-    if (saved !== "en" && saved !== "es" && saved !== "pt") return;
-    setLocaleState(saved);
-    document.documentElement.lang = saved;
-    if (saved !== (pathname.split("/")[1] as RouteLocale)) {
-      router.replace(withLocalePath(stripLocalePrefix(pathname), saved));
+    if (!saved || !messages[saved as Locale]) return;
+    const savedLocale = saved as Locale;
+    setLocaleState(savedLocale);
+    document.documentElement.lang = savedLocale;
+    if (savedLocale !== (pathname.split("/")[1] as RouteLocale)) {
+      router.replace(withLocalePath(stripLocalePrefix(pathname), savedLocale));
     }
   }, [isAdminPath, pathname, router]);
 

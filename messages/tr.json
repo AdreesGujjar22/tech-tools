@@ -1,0 +1,1161 @@
+{
+  "Common": {
+    "actions": {
+      "addFiles": "Dosya Ekle",
+      "addMore": "Daha Fazla Ekle",
+      "back": "Geri",
+      "backToHub": "Ana Sayfaya Dön",
+      "backToAllTools": "Tüm araçlara dön",
+      "browse": "göz atmak için tıklayın",
+      "cancel": "İptal",
+      "clear": "Temizle",
+      "clearAndChooseDifferent": "Temizle ve Başkasını Seç",
+      "close": "Kapat",
+      "copy": "Kopyala",
+      "copied": "Kopyalandı!",
+      "download": "İndir",
+      "downloadFile": "Dosyayı İndir",
+      "getStarted": "Başla",
+      "learnMore": "Daha Fazla Bilgi",
+      "new": "Yeni",
+      "open": "Aç",
+      "process": "İşle",
+      "remove": "Kaldır",
+      "reset": "Sıfırla",
+      "returnToHub": "Ana Sayfaya Dön",
+      "selectFile": "Dosya Seç",
+      "selectFiles": "Dosyalar Seç",
+      "share": "Paylaş",
+      "submit": "Gönder",
+      "tryAgain": "Tekrar Dene",
+      "tryNow": "Şimdi Dene",
+      "undo": "Geri Al",
+      "view": "Görüntüle"
+    },
+    "language": "Dil",
+    "languages": {
+      "english": "English",
+      "spanish": "Español",
+      "portuguese": "Português",
+      "german": "Deutsch",
+      "french": "Français",
+      "indonesian": "Indonesia",
+      "italian": "Italiano",
+      "dutch": "Nederlands",
+      "turkish": "Türkçe"
+    },
+    "labels": {
+      "allUtilities": "Tüm Araçlar",
+      "bytes": "Bayt",
+      "file": "Dosya",
+      "files": "Dosyalar",
+      "loading": "Yükleniyor...",
+      "localProcessingPrivate": "Yerel işleme • Gizli",
+      "premiumUtility": "Premium Araç",
+      "processing": "İşleniyor...",
+      "success": "Başarılı!"
+    },
+    "a11y": {
+      "closeMenu": "Menüyü kapat",
+      "closeModal": "Pencereyi kapat",
+      "copyContent": "İçeriği kopyala",
+      "clearContent": "İçeriği temizle",
+      "mobileNavigation": "Mobil gezinme",
+      "openMenu": "Menüyü aç",
+      "removeFile": "Dosyayı kaldır",
+      "sharePage": "Sayfayı paylaş",
+      "techToolsHome": "Tech Tools Ana Sayfası",
+      "techToolLogo": "Tech Tools Logosu",
+      "toggleSidebar": "Kenar çubuğunu aç/kapat"
+    },
+    "messages": {
+      "link": "Bağlantı: {url}",
+      "copiedLink": "Bağlantı kopyalandı!",
+      "copyManually": "Manuel olarak kopyala: {content}",
+      "checkOutTool": "Bu araca göz atın!",
+      "invalidFileExtension": "\"{fileName}\" için geçersiz uzantı. Desteklenenler: {extensions}",
+      "noFilesUploaded": "Lütfen en az bir dosya yükleyin.",
+      "toolCompleted": "{toolName} başarıyla tamamlandı!",
+      "operationFailed": "İşlem sırasında bir hata oluştu. Lütfen tekrar deneyin."
+    }
+  },
+  "Routes": {
+    "home": "/",
+    "about": "/about-us",
+    "tools": "/tools",
+    "blog": "/blog",
+    "pricing": "/pricing",
+    "help": "/help",
+    "contact": "/contact-us",
+    "privacy": "/privacy-policy",
+    "terms": "/terms-and-conditions",
+    "pdf": "/ilovepdf",
+    "image": "/iloveimg",
+    "qrGenerator": "/qr-generator",
+    "barcodeGenerator": "/barcode-generator",
+    "barcodeReader": "/barcode-reader",
+    "passwordGenerator": "/password-generator",
+    "loremGenerator": "/lorem-ipsum-generator",
+    "emojiPicker": "/emoji-picker",
+    "notepad": "/notepad",
+    "colorPicker": "/color-picker",
+    "speedTest": "/speed-test",
+    "typingSpeed": "/typing-speed"
+  },
+  "Metadata": {
+    "site": {
+      "title": "Tech Tools - Ücretsiz Çevrimiçi PDF, Görsel ve Yapay Zeka Araçları",
+      "description": "Tech Tools; PDF, görsel düzenleme, yapay zeka destekli araçlar, dosya dönüştürücüler, sıkıştırıcılar, üreticiler ve üretkenlik çözümleri için ücretsiz çevrimiçi araçlar sunar. Hızlı, güvenli ve kullanımı kolay.",
+      "keywords": "pdf araclari, gorsel araclari, yapay zeka araclari, pdf birlestirme, pdf bolme, gorsel sikistirma, gorsel donusturucu, pdf donusturucu, cevrimici araclar, ucretsiz araclar, uretkenlik araclari"
+    },
+    "home": {
+      "title": "Modern Çevrimiçi Üretkenlik Araçları",
+      "description": "Geliştiriciler, içerik üreticileri ve günlük dijital işler için hızlı, güvenli ve modern çevrimiçi araçlar. QR kod oluşturucu, yazma hızı testi, internet hız testi, renk seçici ve daha fazlasını içerir.",
+      "keywords": "gelistiriciler icin araclar, qr kod tara, yazma egitmeni, internet hiz testi, kod parcaciklari araclari, guvenli cevrimici donusturucu"
+    },
+    "about": {
+      "title": "Hakkımızda - Tech Tools",
+      "description": "Tech Tools'u tanıyın; PDF, görsel, yapay zeka araçları ve üretkenlik çözümleri için ücretsiz çevrimiçi araçlar sunma misyonumuz.",
+      "keywords": "hakkimizda, tech tools hakkinda, misyon, vizyon"
+    },
+    "pricing": {
+      "title": "Fiyatlandırma - Tech Tools",
+      "description": "Fiyatlandırma planlarımızı keşfedin. Araçlarımızın çoğu tamamen ücretsizdir, premium seçenekler de mevcuttur.",
+      "keywords": "fiyatlandirma, planlar, premium, abonelikler"
+    },
+    "contact": {
+      "title": "TechTools ile İletişime Geçin",
+      "description": "Sorularınız, geri bildiriminiz mi var ya da yardıma mı ihtiyacınız var? TechTools ile iletişime geçin, en kısa sürede yanıt verelim.",
+      "keywords": "iletisim, destek, TechTools"
+    },
+    "help": {
+      "title": "Yardım ve Sıkça Sorulan Sorular",
+      "description": "Anında yardım alın, kullanıcı kılavuzlarına göz atın, sıkça sorulan soruları inceleyin ve teknik destekle iletişime geçin.",
+      "keywords": "yardim, destek, kullanici kilavuzu, sikca sorulan sorular, tech tools yardim"
+    },
+    "privacy": {
+      "title": "Gizlilik Politikası",
+      "description": "TechTools'un yerel tarayıcı verilerinizi nasıl topladığını, kullandığını ve koruduğunu öğrenin.",
+      "keywords": "gizlilik, kosullar, cerezler, guvenlik, tarayici depolama"
+    },
+    "terms": {
+      "title": "Şartlar ve Koşullar",
+      "description": "Dijital kullanım yönergelerimizi, sunucu güvenliğini ve uyumluluk maddelerini öğrenin.",
+      "keywords": "sartlar, kosullar, kurallar, anlasma, lisanslar"
+    },
+    "qrGenerator": {
+      "title": "QR Kod Oluşturucu",
+      "description": "Ücretsiz QR kod oluşturucu. URL'ler, metin, vCard, WiFi ve daha fazlası için QR kod oluşturun. Anında indirme ve özelleştirme.",
+      "keywords": "qr kod, qr kod olusturucu, qr olusturucu, barkod, kod olusturucu"
+    },
+    "barcodeGenerator": {
+      "title": "Barkod Oluşturucu",
+      "description": "Anında barkod oluşturun. CODE128, CODE39, EAN13, UPC ve daha fazlasını oluşturun. Anında indirme ve özelleştirme.",
+      "keywords": "barkod olusturucu, barkod olustur, barkod yapici, CODE128, EAN13, UPC"
+    },
+    "barcodeReader": {
+      "title": "Barkod ve QR Okuyucu",
+      "description": "Yüklenen görsellerden veya cihazınızın kamerasından QR kodları ve barkodları güvenle, tarayıcınızda tarayın.",
+      "keywords": "qr okuyucu, barkod tarayici, qr gorsel tarama, kameralı barkod tarayici"
+    },
+    "passwordGenerator": {
+      "title": "Şifre Oluşturucu",
+      "description": "Anında güçlü, rastgele şifreler oluşturun. Uzunluğu, karakter türlerini özelleştirin ve tüm hesaplarınız için güvenli şifreler oluşturun.",
+      "keywords": "sifre olusturucu, guclu sifre, rastgele sifre, sifre yapici, guvenli sifre"
+    },
+    "loremGenerator": {
+      "title": "Lorem Ipsum Oluşturucu",
+      "description": "Anında Lorem Ipsum dolgu metni oluşturun. Tasarımlarınız ve projeleriniz için paragraf, cümle veya kelime oluşturun.",
+      "keywords": "lorem ipsum olusturucu, dolgu metni, lorem ipsum, sahte metin, test metni"
+    },
+    "emojiPicker": {
+      "title": "Emoji Seçici ve Kopyalayıcı",
+      "description": "Emojilere kolayca göz atın, arayın ve kopyalayın. Mesajlarınız ve gönderileriniz için mükemmel emojiyi bulun.",
+      "keywords": "emoji secici, emoji kopyalayici, emoji ara, emoji, emotikon"
+    },
+    "notepad": {
+      "title": "Çevrimiçi Not Defteri - Tech Tools",
+      "description": "Otomatik kaydetme, dosya indirme/yükleme ve gerçek zamanlı kelime/karakter sayımı ile ücretsiz çevrimiçi not defteri.",
+      "keywords": "not defteri, cevrimici not defteri, metin editoru, not al, cevrimici metin editoru"
+    },
+    "colorPicker": {
+      "title": "Renk Seçici - Tech Tools",
+      "description": "Ücretsiz çevrimiçi renk seçme aracı. Görsellerden renk çıkarın, renk paletleri oluşturun ve renk formatları arasında dönüştürün.",
+      "keywords": "renk secici, renk donusturucu, renk paleti, hex renk, rgb renk"
+    },
+    "speedTest": {
+      "title": "Hız Testi - Tech Tools",
+      "description": "İnternet hızınızı Tech Tools ile test edin. İndirme hızını, yükleme hızını ve pingi saniyeler içinde kontrol edin.",
+      "keywords": "hiz testi, internet hizi, baglanti testi, bant genisligi testi, ping"
+    },
+    "typingSpeed": {
+      "title": "Yazma Hızı Testi - Tech Tools",
+      "description": "Yazma hızınızı test edin ve DPD'nizi geliştirin. Doğruluk takibi ve sonuçlarıyla ücretsiz çevrimiçi yazma testi.",
+      "keywords": "yazma hizi, yazma testi, dpd, daktilografi, klavye testi"
+    },
+    "tools": {
+      "title": "Araçlar - Tech Tools Koleksiyonu",
+      "description": "PDF, görsel araçları, yapay zeka araçları ve üretkenlik çözümleri dahil tüm ücretsiz çevrimiçi araçlarımızı keşfedin.",
+      "keywords": "araclar, cevrimici araclar, ucretsiz araclar, yardimci araclar"
+    },
+    "pdf": {
+      "title": "PDF Araçları - Dönüştür, Birleştir, Böl ve Sıkıştır | Tech Tools",
+      "description": "Ücretsiz çevrimiçi PDF araçları. PDF'leri birleştirin, bölün, sıkıştırın, PDF'den/PDF'e dönüştürün, sayfaları çıkarın, PDF'leri düzenleyin ve daha fazlası.",
+      "keywords": "pdf araclari, pdf birlestirme, pdf bolme, pdf sikistirma, pdf donusturucu, pdf'den word'e, word'den pdf'e, jpg'den pdf'e"
+    },
+    "image": {
+      "title": "Görsel Araçları - Sıkıştır, Dönüştür ve Düzenle | Tech Tools",
+      "description": "Ücretsiz çevrimiçi görsel araçları. Görselleri sıkıştırın, formatları dönüştürün (JPG, PNG, WebP), yeniden boyutlandırın, kırpın, döndürün, arka planı kaldırın ve daha fazlası.",
+      "keywords": "gorsel araclari, gorsel sikistirma, gorsel donusturucu, gorsel yeniden boyutlandirma, gorsel kirpma, gorsel editoru, jpg'den png'ye, png'den jpg'ye"
+    },
+    "customization": {
+      "title": "Özelleştirme - Tech Tools",
+      "description": "Tech Tools deneyiminizi özelleştirin. Ayarları, temaları ve tercihleri düzenleyin.",
+      "keywords": "ozellestirme, ayarlar, tercihler, temalar"
+    }
+  },
+  "Navbar": {
+    "links": {
+      "about": "Hakkımızda",
+      "tools": "Araçlar",
+      "blog": "Blog",
+      "pricing": "Fiyatlandırma",
+      "contact": "İletişim",
+      "help": "SSS Yardım"
+    },
+    "admin": "Yönetici",
+    "signIn": "Giriş Yap",
+    "signOut": "Çıkış Yap"
+  },
+  "Footer": {
+    "description": "Geliştiriciler, içerik üreticileri ve günlük dijital işler için hızlı, güvenli ve modern çevrimiçi araçlar. Maksimum gizlilik yapılandırması için tamamen tarayıcı bağlamınızda izole edilmiştir.",
+    "aboutUs": "Hakkımızda",
+    "quickLinks": "Hızlı Bağlantılar",
+    "home": "Ana Sayfa",
+    "productivityTools": "Üretkenlik Araçları",
+    "latestBlogInsights": "Son Blog Yazıları",
+    "pricingPlans": "Fiyatlandırma Planları",
+    "pdfTools": "PDF Araçları",
+    "pdfDashboard": "PDF Panosu",
+    "imageTools": "Görsel Araçları",
+    "imageDashboard": "Görsel Panosu",
+    "allRightsReserved": "© {year} TechTools. Tüm hakları saklıdır.",
+    "privacyPolicy": "Gizlilik Politikası",
+    "termsConditions": "Şartlar ve Koşullar",
+    "social": {
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "website": "Web Sitesi"
+    }
+  },
+  "Home": {
+    "meta": {
+      "title": "Modern Çevrimiçi Üretkenlik Araçları",
+      "description": "Geliştiriciler, içerik üreticileri ve günlük dijital işler için hızlı, güvenli ve modern çevrimiçi araçlar. QR kod oluşturucu, yazma hızı testi, internet hız testi, renk seçici ve daha fazlasını içerir.",
+      "keywords": "gelistiriciler icin araclar, qr kod tara, yazma egitmeni, internet hiz testi, kod parcaciklari araclari, guvenli cevrimici donusturucu"
+    },
+    "badge": "Yeni Nesil Araçlar",
+    "title": "Tüm Temel Teknoloji Araçlarınız Tek Bir Yerde",
+    "description": "Geliştiriciler, öğrenciler ve içerik üreticileri için hızlı, ücretsiz ve modern çevrimiçi araçlar. Her şey hız ve sadelik için tasarlandı.",
+    "startTools": "Araçları Başlat",
+    "intro": "QR oluşturucular, hız testleri, görsel dönüştürücüler, renk seçiciler, geliştirici araçları — hepsi tarayıcınızda, güvenli bir şekilde.",
+    "previewAlt": "TechTools ile oluşturulan QR kod önizlemesi",
+    "encoded": "AES-256 ile Şifrelenmiş",
+    "toolsTitle": "Optimize etmek ve ustalaşmak için ihtiyacınız olan her araç",
+    "toolsDescription": "Sunduğumuz Tech araçları bunlardır. Ayrıntıları veya dışa aktarma seçeneklerini görmek için herhangi bir öğeye tıklayın.",
+    "searchPlaceholder": "Araçları ara (ör. QR kod, renk seçici)...",
+    "noResults": "Arama kriterlerinize uyan hiçbir araç bulunamadı.",
+    "ctaTitle": "Daha fazlasına hazır mısınız?",
+    "ctaDescription": "Neye ihtiyacınız olduğunu bize bildirin, biz de onu oluşturalım!",
+    "contactUs": "Bize Ulaşın",
+    "toolCards": {
+      "pdfDashboard": "PDF Araçları Paneli",
+      "imageDashboard": "Görsel Araçları Paneli",
+      "speedTest": "İnternet Hız Testi",
+      "typingSpeed": "Yazma Hızı Sonuçları",
+      "colorPicker": "Renk Seçici Paleti",
+      "qrGenerator": "QR Kod Oluşturucu",
+      "barcodeGenerator": "Barkod Oluşturucu",
+      "barcodeReader": "Barkod ve QR Okuyucu",
+      "passwordGenerator": "Şifre Oluşturucu",
+      "loremGenerator": "Lorem Ipsum Oluşturucu",
+      "emojiPicker": "Emoji Seçici ve Kopyalayıcı",
+      "notepad": "Çevrimiçi Not Defteri"
+    }
+  },
+  "About": {
+    "title": "TechTools Nedir?",
+    "intro": "TechTools, giderek büyüyen bir çevrimiçi araç ve üretkenlik koleksiyonu sunan modern bir web platformudur. İnternet hızını test etmek, QR kod oluşturmak, görselleri sıkıştırmak ya da başka bir işlemi yapmak istiyor olun, sizi kapsıyoruz.",
+    "mission": "Performans ve sadelik göz önünde bulundurularak geliştirilen misyonumuz, kullanıcıların zamandan tasarruf etmesini sağlayan, gereksiz karmaşıklık içermeyen kullanımı kolay dijital araçlar sunmaktır.",
+    "popularTools": "Popüler Araçlar",
+    "popularDescription": "Her gün binlerce kullanıcının güvendiği en çok kullanılan araçlarımızı keşfedin.",
+    "impact": "Etkimiz",
+    "impactDescription": "Günlük üretkenlik ihtiyaçları için dünya çapında kullanıcılar tarafından güvenilir.",
+    "stats": {
+      "tools": "Kullanışlı Araçlar",
+      "monthlyUsers": "Aylık Kullanıcılar",
+      "fast": "Hızlı",
+      "secure": "ve Güvenli",
+      "available": "Kullanılabilir"
+    },
+    "ctaTitle": "Başlamaya Hazır mısınız?",
+    "ctaDescription": "Tüm araçlarımızı keşfedin ve üretkenliğinizi bugün artırın.",
+    "exploreAll": "Tüm Araçları Keşfedin",
+    "tools": {
+      "speed": {
+        "name": "İnternet Hız Testi",
+        "description": "İndirme hızını, yükleme hızını, pingi ve ağ performansını gerçek zamanlı olarak ölçün."
+      },
+      "color": {
+        "name": "Renk Seçici Aracı",
+        "description": "HEX, RGB ve HSL desteğiyle renkleri kolayca seçin, kopyalayın ve dönüştürün."
+      },
+      "typing": {
+        "name": "Yazma Hızı Testi",
+        "description": "Gerçek zamanlı DPD takibiyle yazma hızınızı ve doğruluğunuzu geliştirin."
+      },
+      "qr": {
+        "name": "QR Kod Oluşturucu",
+        "description": "URL'ler, metin, WiFi, e-posta ve daha fazlası için özel QR kodları oluşturun."
+      },
+      "barcode": {
+        "name": "Barkod Oluşturucu",
+        "description": "Ürünler, envanter ve lojistik için birden fazla formatta barkod oluşturun."
+      },
+      "password": {
+        "name": "Şifre Oluşturucu",
+        "description": "Özelleştirilebilir karakter türleri ve uzunlukla güçlü, rastgele şifreler oluşturun."
+      },
+      "lorem": {
+        "name": "Lorem Ipsum Oluşturucu",
+        "description": "Tasarımlar, maketler ve prototipler için anında Lorem Ipsum dolgu metni oluşturun."
+      },
+      "emoji": {
+        "name": "Emoji Seçici ve Kopyalayıcı",
+        "description": "Mesajlarınız ve gönderileriniz için emojilere anında göz atın, arayın ve kopyalayın."
+      },
+      "notepad": {
+        "name": "Çevrimiçi Not Defteri",
+        "description": "Otomatik kaydetme ve dosya yönetimi ile basit, hızlı çevrimiçi not defteri."
+      },
+      "image": {
+        "name": "Görsel Dönüştürücü",
+        "description": "Görselleri hızlı ve kolay bir şekilde farklı formatlara dönüştürün."
+      },
+      "unit": {
+        "name": "Birim Dönüştürücü",
+        "description": "Ölçüleri, para birimlerini, boyutları ve daha fazlasını anında dönüştürün."
+      }
+    }
+  },
+  "Pricing": {
+    "title": "Fiyatlandırma Planları",
+    "description": "Mükemmel planı seçin. Tüm planlar kurumsal düzeyde güvenlik ve güvenilirlik içerir.",
+    "popular": "Popüler",
+    "perMonth": "/ay",
+    "customPlanTitle": "Özel bir plana mı ihtiyacınız var?",
+    "customPlanDescription": "İhtiyaçlarınıza uygun kurumsal çözümler için satış ekibimizle iletişime geçin.",
+    "contactSales": "Satışla İletişime Geçin",
+    "getStarted": "Başla",
+    "plans": {
+      "starter": {
+        "name": "Başlangıç",
+        "price": "Ücretsiz",
+        "description": "Başlamak için mükemmel",
+        "features": [
+          "Ayda 100 QR koduna kadar",
+          "Temel özelleştirme",
+          "Standart destek"
+        ]
+      },
+      "professional": {
+        "name": "Profesyonel",
+        "price": "99 $",
+        "description": "Büyüyen işletmeler için en iyisi",
+        "features": [
+          "Ayda 1.000 QR koduna kadar",
+          "Gelişmiş özelleştirme",
+          "Öncelikli destek",
+          "Analiz paneli"
+        ]
+      },
+      "enterprise": {
+        "name": "Kurumsal",
+        "price": "Özel",
+        "description": "Büyük ölçekli operasyonlar için",
+        "features": [
+          "Sınırsız QR kodu",
+          "Tam özelleştirme",
+          "Özel destek",
+          "Gelişmiş analizler",
+          "API erişimi"
+        ]
+      }
+    }
+  },
+  "Contact": {
+    "title": "TechTools ile İletişime Geçin",
+    "description": "Sorularınız, geri bildiriminiz mi var ya da yardıma mı ihtiyacınız var? Yardımcı olmak için buradayız. Bize ulaşın, en kısa sürede yanıt verelim.",
+    "formTitle": "Bize bir mesaj gönderin",
+    "name": "Ad",
+    "email": "E-posta",
+    "subject": "Konu",
+    "message": "Mesaj",
+    "namePlaceholder": "Adınız",
+    "emailPlaceholder": "siz@eposta.com",
+    "subjectPlaceholder": "Nasıl yardımcı olabiliriz?",
+    "messagePlaceholder": "Talebiniz hakkında bize daha fazla bilgi verin...",
+    "sending": "Gönderiliyor...",
+    "sendMessage": "Mesaj Gönder",
+    "information": "İletişim Bilgileri",
+    "support": "Destek",
+    "available": "7/24 Kullanılabilir",
+    "availability": "Uygunluk",
+    "hours": "Pzt - Cum: 09:00 - 18:00 UTC",
+    "followUs": "Bizi Takip Edin",
+    "quickResponse": "Hızlı Yanıt",
+    "quickResponseText": "Genellikle tüm sorulara 24 saat içinde yanıt veririz. Acil konular için lütfen konu satırınıza \"ACİL\" ekleyin.",
+    "errors": {
+      "configurationMissing": "EmailJS yapılandırması eksik. Lütfen ortam değişkenlerini kontrol edin.",
+      "sendFailed": "Mesaj gönderilemedi. Lütfen daha sonra tekrar deneyin."
+    },
+    "success": {
+      "sent": "Mesaj başarıyla gönderildi! En kısa sürede size döneceğiz."
+    }
+  },
+  "Help": {
+    "meta": {
+      "title": "Yardım ve Sıkça Sorulan Sorular",
+      "description": "Anında yardım alın, kullanıcı kılavuzlarına göz atın, sıkça sorulan soruları inceleyin ve teknik destekle iletişime geçin.",
+      "keywords": "yardim, destek, kullanici kilavuzu, sikca sorulan sorular, tech tools yardim"
+    },
+    "badge": "Destek Merkezi",
+    "title": "Nasıl Yardımcı Olabiliriz?",
+    "description": "Kendi kendine yardım makalelerimizde arama yapın, dokümantasyon yönergelerine göz atın veya teknik uzmanlarımızla iletişime geçin.",
+    "searchPlaceholder": "Kaynaklarda, konularda veya SSS'de arama yapın...",
+    "faqTitle": "Sıkça Sorulan Sorular",
+    "noResults": "\"{search}\" ile eşleşen sonuç bulunamadı. Farklı anahtar kelimeler deneyin.",
+    "stillQuestions": "Hâlâ Sorularınız mı Var?",
+    "stillQuestionsText": "Profesyonel destek ekibimiz size yardımcı olmaya hazır. Özel kılavuzlar, lisans seçenekleri veya yapılandırma parametreleri alın.",
+    "submitTicket": "Destek Talebi Gönder",
+    "community": "Topluluk Desteği",
+    "discord": "Geliştirici Discord Forumu",
+    "communityMembers": "1.200'den fazla çevrimiçi araç üyesine katılın",
+    "faqs": {
+      "safe": {
+        "question": "Üretkenlik araçları kullanmak için güvenli mi?",
+        "answer": "Evet! Tüm hesaplama, biçimlendirme, QR kodlama ve renk seçme işlemleri tamamen kendi tarayıcınızda çalışır. Gizli bilgileriniz asla cihazınızdan çıkmaz veya harici sunucularda saklanmaz."
+      },
+      "offline": {
+        "question": "TechTools'u internet bağlantısı olmadan kullanabilir miyim?",
+        "answer": "Evet! Araçlar istemci tarafında işlem yaptığından, sayfa bir kez tamamen yüklenebilir ve Renk Seçici, Yazma Testi ve QR Oluşturucu gibi temel özellikler çevrimdışı çalışmaya devam eder."
+      },
+      "accuracy": {
+        "question": "İnternet Hız Testi ne kadar doğru?",
+        "answer": "Gecikmeyi, indirme ölçümlerini ve yükleme bant genişliğini hesaplamak için uç konumlara bağlanır. Sonuçlar oldukça hassastır ancak ağ trafiğine veya çalışan diğer uygulamalara bağlı olarak biraz değişebilir."
+      },
+      "contact": {
+        "question": "Teknik destekle nasıl iletişime geçebilirim?",
+        "answer": "Toplu işlemler, API lisansları veya hata bildirimi için yardım almak üzere iletişim formu sayfamızı kullanabilir veya doğrudan support@techtools.dev adresine yazabilirsiniz."
+      }
+    }
+  },
+  "Legal": {
+    "privacy": {
+      "meta": {
+        "title": "Gizlilik Politikası",
+        "description": "TechTools'un yerel tarayıcı verilerinizi nasıl topladığını, kullandığını ve koruduğunu öğrenin.",
+        "keywords": "gizlilik, kosullar, cerezler, guvenlik, tarayici depolama"
+      },
+      "title": "Gizlilik Politikası",
+      "updated": "5 Haziran 2026'da Güncellendi • Gerçek Zamanlı Uyumluluk Beyanı",
+      "clientSide": "%100 İstemci Tarafında",
+      "noCookies": "Sıfır Takip Çerezi",
+      "noDataSales": "Veri Satışı Yok",
+      "sections": {
+        "scope": {
+          "title": "1. Kapsam ve Temel Bütünlük",
+          "paragraphs": [
+            "TechTools'ta kullanıcı gizliliği en büyük önceliğimizdir. Bu politika, web arayüzümüzün Yazma Hızı Testi, Renk Seçici ve QR Kod Oluşturucumuz aracılığıyla işlenen parametreleri, verileri veya değerleri nasıl ele aldığını açıklar.",
+            "Platformumuz istemci tarafındaki tarayıcınızda yerel olarak çalıştığından, sunucularımıza herhangi bir metinsel içerik, URL, yüklenen görsel veya test örneği iletmiyor, analiz etmiyor, senkronize etmiyor veya satmıyoruz."
+          ]
+        },
+        "cookies": {
+          "title": "2. Çerezler ve Yerel Depolama",
+          "paragraphs": [
+            "Seçilen görüntüleme hızları, renk çıkarma geçmişi veya özelleştirilmiş temalar gibi tercihleri geçici olarak depolamak için kendi cihazınızda standart HTML5 yerel depolama alanı veya güvenli anahtarlar kullanabiliriz.",
+            "Bu değerler tamamen makinenizde saklanır ve tarayıcı önbelleğinizi temizleyerek istediğiniz zaman tamamen silinebilir. Herhangi bir kalıcı takip metriği kullanmıyoruz."
+          ]
+        },
+        "thirdParty": {
+          "title": "3. Üçüncü Taraf Entegrasyonları ve Boyutlandırma",
+          "paragraphs": [
+            "İletişim bilgilerimiz EmailJS kullanır. Formlarımız aracılığıyla e-posta veya sorgu gönderdiğinizde, yalnızca belirtilen ad, gövde metni ve gönderen değerleri destek temsilcilerine iletilir. Bu verilerin hiçbiri sunucularımızda önbelleğe alınmaz."
+          ]
+        },
+        "children": {
+          "title": "4. Çocukların Gizliliğine İlişkin Yönergeler",
+          "paragraphs": [
+            "Eğitim araçlarımız ve tanılama testlerimiz herhangi bir kişisel tanımlanabilir veri iletmediğinden, 13 yaş altındaki çocuklar dahil her yaştaki kullanıcı için tamamen güvenli ve uygundur."
+          ]
+        }
+      }
+    },
+    "terms": {
+      "meta": {
+        "title": "Şartlar ve Koşullar",
+        "description": "Dijital kullanım yönergelerimizi, sunucu güvenliğini ve uyumluluk maddelerini öğrenin.",
+        "keywords": "sartlar, kosullar, kurallar, anlasma, lisanslar"
+      },
+      "title": "Şartlar ve Koşullar",
+      "effective": "5 Haziran 2026'dan İtibaren Yürürlükte • Yasal Hizmet Şartları",
+      "freeUse": "Genel kullanım için tamamen ücretsiz",
+      "commercialUse": "Ticari ve baskı izinleri",
+      "sections": {
+        "acceptance": {
+          "title": "1. Sözleşmenin Kabulü",
+          "text": "TechTools web uygulamasını açarak, görüntüleyerek veya onunla etkileşime geçerek, bu yasal Hizmet Şartları ve Koşullarına uymayı ve bunlarla bağlı olmayı kabul edersiniz. Bu şartları kabul etmiyorsanız, lütfen dijital platformumuzu kullanmayı hemen bırakın."
+        },
+        "license": {
+          "title": "2. Yazılım ve Araç Lisansı",
+          "text": "Size, araçlarımızı (Renk Seçici, İnternet Hız Testi, QR Oluşturucu ve Yazma Testi) kişisel, eğitim amaçlı veya profesyonel çalışmalar için kullanmanız için münhasır olmayan, devredilemez, iptal edilebilir bir lisans veriyoruz. Yazılımımız tarafından oluşturulan yüksek çözünürlüklü çıktılar, indirilen görseller ve dışa aktarılan kod blokları tamamen sizindir; saklayabilir, paylaşabilir ve ticarileştirebilirsiniz."
+        },
+        "acceptableUse": {
+          "title": "3. Kabul Edilebilir Kullanım Politikası",
+          "text": "Kod kalıplarımızı tersine mühendislikle çözmeye çalışmayacağınızı, e-posta formlarımıza müdahale etmek için tasarlanmış büyük bot yüklerini dağıtmayacağınızı ya da sahtekârlık amaçlı kullanım için sayfalarımızı gizli çerçevelere sarmayacağınızı kabul edersiniz."
+        },
+        "warranty": {
+          "title": "4. Garanti Reddi",
+          "text": "TÜM HİZMETLER VE HESAPLAYICILAR, ZAMANLAMA, PERFORMANS İSTİKRARI VEYA KAPSAMLI DOĞRULUK DAHİL ANCAK BUNLARLA SINIRLI OLMAMAK ÜZERE AÇIK VEYA ZIMNİ HİÇBİR GARANTİ OLMAKSIZIN \"OLDUĞU GİBİ\" VE \"MEVCUT OLDUĞU ŞEKİLDE\" SUNULMAKTADIR. TECHTOOLS HİÇBİR KOŞULDA KULLANIM SIRASINDA MEYDANA GELEN VERİ KAYBI, BAĞLANTI KESİNTİSİ VEYA KAZADAN SORUMLU TUTULAMAZ."
+        }
+      }
+    }
+  },
+  "NotFound": {
+    "title": "Sayfa Bulunamadı",
+    "description": "Üzgünüz, aradığınız sayfa mevcut değil veya taşınmış. Sizi doğru yola geri döndürelim.",
+    "backHome": "Ana Sayfaya Dön",
+    "goHome": "Ana Sayfaya Git",
+    "goBack": "Geri Dön",
+    "goToTools": "Araçlar Sayfasına Git",
+    "exploreTools": "Araçlarımızı Keşfedin",
+    "imageTools": "Görsel Araçları",
+    "pdfTools": "PDF Araçları",
+    "allTools": "Tüm Araçlar"
+  },
+  "Tools": {
+    "UpscaleImage": {
+      "backToDashboard": "Back to Image Dashboard",
+      "badge": "LANCZOS3 HYBRID INTERPOLATION",
+      "title": "AI Image Upscaler",
+      "description": "Enlarge photos, logos, documents, and illustrations up to 4x cleanly using on-device Lanczos-3 pixel matrices. Fully offline & client-side.",
+      "dropTitle": "Drag & drop your images here",
+      "dropDescription": "or click to select files. Supports PNG, JPG, JPEG, WEBP formats.",
+      "localProcessing": "Processed fully local in-browser. Zero server limits.",
+      "currentAtom": "CURRENT IMAGE",
+      "input": "Input: {width}x{height}",
+      "output": "Output: {width}x{height}",
+      "splitSlider": "Split Slider",
+      "sideBySide": "Side-by-Side",
+      "outputFormat": "Output Format",
+      "processing": "Processing image...",
+      "complete": "{progress}% COMPLETE",
+      "enhancementFailed": "Enhancement operation failed",
+      "unknownCanvasError": "An unknown canvas error occurred.",
+      "retry": "Re-attempt Process",
+      "awaitingCompile": "Awaiting super-resolution compile",
+      "triggerProcessing": "Click the processing buttons on the right side panel to trigger the upscaling calculations.",
+      "upscaleActive": "Upscale Active Now",
+      "beforeStandard": "BEFORE (Standard)",
+      "afterUpscaled": "AFTER (Upscaled)",
+      "beforeFuzzy": "Before (Fuzzy Resize)",
+      "lanczosHd": "Lanczos3 HD",
+      "batchQueue": "BATCH QUEUE FEED ({count} ITEMS)",
+      "clearQueue": "Clear Queue",
+      "add": "Add",
+      "controls": "Upscale controls",
+      "resetPage": "Reset Page",
+      "sizingMultiplier": "Sizing Multiplier",
+      "scale2x": "2x Scale",
+      "scale2xDescription": "Double pixel resolution",
+      "scale4x": "4x Scale",
+      "scale4xDescription": "4x HD pixel matrices",
+      "detailPreset": "AI Detail Mode Preset",
+      "photoPreset": "AI Detail (Natural Photos)",
+      "photoDescription": "Soft-balanced contours; ideal for portraits and landscapes.",
+      "logoPreset": "Digital Logos & Icons",
+      "logoDescription": "Geometric lines restoration + alpha transparency protection.",
+      "documentPreset": "Document / Text OCR",
+      "documentDescription": "Heavy contour highlight to make low-res scans legible.",
+      "illustrationPreset": "Line Art / Anime",
+      "illustrationDescription": "Illustration color preserving with smoothed pixel edges.",
+      "refinedCalibration": "Refined Calibration",
+      "sharpness": "SHARPNESS DENSITY",
+      "contrast": "CONTRAST BOOSTING",
+      "smoothing": "NOISE SMOOTH FILTER",
+      "upscaleQueue": "Upscale Queue Now",
+      "zipping": "Zipping files...",
+      "downloadZip": "Download ZIP ({count} files)",
+      "saveImage": "Save Upscaled Image",
+      "totalFiles": "Total files:",
+      "items": "{count} items",
+      "processed": "Processed:",
+      "totalSize": "Total size:",
+      "selectFiles": "Select or drop image files to activate the upscale processing settings.",
+      "performancePrivacy": "Performance & Privacy",
+      "privacyDescription": "Runs fully client-side on-device with zero cloud server communication. Processing occurs locally, supporting safe data storage sandbox containment, zero infrastructure fees, and works off-grid."
+    },
+    "shared": {
+      "toolNotFound": "Araç Bulunamadı",
+      "pdfToolMissing": "İstenen PDF aracı mevcut değil.",
+      "imageToolMissing": "İstenen Görsel aracı mevcut değil.",
+      "temporarilyOffline": "Araç Geçici Olarak Çevrimdışı",
+      "disabled": "[{toolName}] aracı yönetici tarafından geçici olarak devre dışı bırakıldı. Lütfen daha sonra tekrar kontrol edin.",
+      "returnToHub": "Ana Sayfaya Dön",
+      "backToHub": "Ana Sayfaya Dön",
+      "backToAllTools": "Tüm araçlara dön",
+      "backToImageDashboard": "Görsel Paneline Dön",
+      "invalidFileExtension": "\"{fileName}\" için geçersiz uzantı. Desteklenenler: {extensions}",
+      "noFilesUploaded": "Lütfen en az bir dosya yükleyin.",
+      "toolCompleted": "{toolName} başarıyla tamamlandı!",
+      "selectFile": "Dosya Seç",
+      "selectFiles": "Dosyalar Seç",
+      "addFiles": "Dosya Ekle",
+      "addMore": "Daha Fazla Ekle",
+      "clearAndChooseDifferent": "Temizle ve Başkasını Seç",
+      "readyToBuild": "Çıktı dosya akışınızı oluşturmaya hazır.",
+      "orBrowse": "veya",
+      "browse": "göz atmak için tıklayın",
+      "yourFiles": "dosyalarınız",
+      "download": "İndir",
+      "downloadZip": "ZIP İndir",
+      "downloadImage": "Görseli İndir",
+      "processMore": "Daha Fazla İşle",
+      "ratioSaved": "Kazanılan Oran:",
+      "finalSize": "Son Boyut:",
+      "originalSize": "Orijinal Boyut:",
+      "performAnother": "Başka bir işlem gerçekleştirin",
+      "dragFiles": "Dosyalarınızı buraya sürükleyip bırakın",
+      "dragImage": "Bir görsel sürükleyip bırakın",
+      "dragImages": "Görsellerinizi sürükleyip bırakın",
+      "acceptingFiles": "Kabul edilen dosyalar: {extensions} (maks. {maxSize})",
+      "loadedFiles": "Yüklenen Dosyalar ({count})",
+      "filesReady": "Dosyalar Hazır",
+      "preparingStreams": "Akışlar hazırlanıyor...",
+      "processingDocument": "Belge İşleniyor",
+      "assemblingDocument": "Belge bileşenleri birleştiriliyor, kriptografik oluşturma ve matris ölçeklendirme çalıştırılıyor...",
+      "complete": "%{progress} Tamamlandı",
+      "pdfReady": "Başarılı! PDF Hazır",
+      "pdfReadyDescription": "İşleminiz mükemmel şekilde tamamlandı. İşlenmiş dosyayı şimdi indirebilirsiniz.",
+      "preparingPipeline": "Derleyici hattı hazırlanıyor...",
+      "processingImage": "Görsel işleniyor [{current}/{total}]: {fileName}",
+      "finishedCompilation": "Derleme işlemi tamamlandı!",
+      "imagesCompiled": "Görseller tamamen tarayıcıda derlendi!",
+      "packageFailed": "Dosyalar dinamik bir ZIP olarak paketlenemedi.",
+      "processingImages": "Görselleriniz İşleniyor",
+      "optimizing": "Kalite ve boyut optimize ediliyor...",
+      "allDone": "Hepsi Tamam!",
+      "optimizedReady": "{count, plural, one {# dosya optimize edildi} other {# dosya optimize edildi}} ve indirilmeye hazır",
+      "creatingPackage": "Paket oluşturuluyor...",
+      "localProcessing": "Yerel işleme • Gizli",
+      "removeFile": "Dosyayı kaldır",
+      "processFiles": "{count, plural, one {# Dosyayı} other {# Dosyayı}} İşle",
+      "chooseImageFiles": "Ayar parametrelerini yapılandırmak için tuval üzerine görsel dosyaları seçin veya bırakın.",
+      "processFilesNow": "{count, plural, one {# Dosyayı} other {# Dosyayı}} Şimdi İşle",
+      "jobStatusSummary": "Görsel İş Durumu Özeti",
+      "totalQueue": "Toplam Kuyruk",
+      "fileCount": "{count, plural, one {# dosya} other {# dosya}}",
+      "originalSizeLabel": "Orijinal boyut",
+      "compiledSize": "Derlenen boyut",
+      "clearAndStartOver": "Temizle ve baştan başla",
+      "technologyContainment": "Teknoloji Kısıtlaması",
+      "secureLocalProcessing": "Güvenli Yerel İşleme",
+      "browserSandbox": "Tüm işlemler tarayıcınızın korumalı alanında çalışır",
+      "zeroDataTransmission": "Herhangi bir sunucuya sıfır veri iletimi",
+      "worksOffline": "Tamamen çevrimdışı çalışır"
+    },
+    "CropImage": {
+      "settings": "Kırpma Ayarları",
+      "aspectRatio": "En-Boy Oranı",
+      "free": "Serbest",
+      "square": "1:1 Kare",
+      "interactiveCropArea": "Etkileşimli Kırpma Alanı",
+      "previewAlt": "Kırpma önizlemesi",
+      "outputDimensions": "Çıktı Boyutları",
+      "startXY": "Başlangıç X, Y",
+      "sizeWH": "Boyut G x Y"
+    },
+    "BackgroundRemover": {
+      "title": "Arka Plan Kaldırıcı",
+      "description": "Bir görsel yükleyin ve yapay zeka kullanarak arka planı anında kaldırın",
+      "dropImage": "Görselinizi buraya bırakın",
+      "orBrowse": "veya göz atmak için tıklayın",
+      "chooseImage": "Görsel Seç",
+      "download": "İndir",
+      "reprocess": "Yeniden İşle",
+      "processing": "İşleniyor...",
+      "removeBackground": "Arka Planı Kaldır",
+      "retry": "Tekrar Dene",
+      "images": "Görseller ({count})",
+      "processAll": "Tümünü İşle"
+    },
+    "QrGenerator": {
+      "title": "QR Kod Oluşturucu",
+      "description": "Web siteleri, WiFi ağları, dijital kartvizitler veya metin verileri için anında tamamen özelleştirilmiş QR kodları oluşturun.",
+      "metaDescription": "Anında güzel, özelleştirilebilir QR kodları oluşturun. Arka plan renklerini, ön plan renklerini, boyutu ve baskı formatlarını seçin.",
+      "metaKeywords": "qr kod olusturucu, qr kod olustur, dinamik qr, ozellestirilebilir qr kod",
+      "previewAlt": "Oluşturulan QR kod",
+      "contentLabel": "QR Kod İçeriği (URL, Metin veya Düğüm)",
+      "contentPlaceholder": "Kodlamak için URL veya metin girin...",
+      "customize": "Tasarım Ayarlarını Özelleştir",
+      "foreground": "QR Kod Rengi (Ön Plan)",
+      "background": "Arka Plan Rengi",
+      "resolution": "Çözünürlük Boyutu",
+      "margin": "Sessiz Bölge Kenar Boşluğu",
+      "preview": "Canlı QR Önizleme",
+      "generating": "QR Kod Oluşturuluyor...",
+      "download": "PNG İndir",
+      "share": "QR Bağlantısını Paylaş",
+      "shareSuccess": "Paylaşım bağlantısı panonuza kaydedildi!",
+      "privacy": "Tüm işlemler tarayıcıda güvenli bir şekilde gerçekleştirilir. Verileriniz asla yerel sisteminizden çıkmaz."
+    },
+    "BarcodeGenerator": {
+      "title": "Barkod Oluşturucu",
+      "description": "Ürünler, envanter ve lojistik için anında birden fazla formatta barkod oluşturun. Tamamen özelleştirilebilir ve yazdırılabilir.",
+      "premium": "Premium Araç",
+      "currentFormat": "Mevcut format:",
+      "contentLabel": "Barkod İçeriği (Sayılar ve Metin)",
+      "contentPlaceholder": "Barkod verilerini girin...",
+      "customize": "Tasarım Ayarlarını Özelleştir",
+      "format": "Barkod Formatı",
+      "color": "Barkod Rengi (Çizgiler)",
+      "background": "Arka Plan Rengi",
+      "lineWidth": "Çizgi Kalınlığı",
+      "height": "Yükseklik",
+      "displayValue": "Kod değerini görselin altında göster",
+      "preview": "Canlı Barkod Önizleme",
+      "invalidInput": "Geçersiz Giriş",
+      "generating": "Barkod Oluşturuluyor...",
+      "fixInput": "Oluşturmak için girişi düzeltin",
+      "download": "PNG İndir",
+      "share": "Barkod Bağlantısını Paylaş",
+      "empty": "Barkod içeriği boş olamaz",
+      "ean13": "EAN13 tam olarak 13 hane gerektirir",
+      "ean8": "EAN8 tam olarak 8 hane gerektirir",
+      "upc": "UPC 11-12 hane gerektirir",
+      "itf14": "ITF14 tam olarak 14 hane gerektirir",
+      "code39": "CODE39 yalnızca alfanümerik karakterleri ve - . $ / + % boşluğu destekler",
+      "failed": "Barkod oluşturulamadı",
+      "privacy": "Tüm işlemler tarayıcıda güvenli bir şekilde gerçekleştirilir. Verileriniz asla yerel sisteminizden çıkmaz."
+    },
+    "BarcodeReader": {
+      "title": "Barkod ve QR Okuyucu",
+      "description": "Bir kod görseli yükleyin veya URL'sini, ürün numarasını ya da metnini anında ortaya çıkarmak için kameranızı kullanın.",
+      "privacy": "Gizli tarayıcı taraması",
+      "upload": "Görsel Yükle ve Tara",
+      "uploadDescription": "PNG veya JPG, cihazınızda işlenir.",
+      "drop": "Buraya bir kod görseli bırakın",
+      "selectFile": "veya cihazınızdan bir dosya seçin",
+      "reading": "Kod okunuyor…",
+      "chooseImage": "Görsel seç",
+      "clearImage": "Görseli temizle",
+      "camera": "Canlı web kamerası tarayıcısı",
+      "cameraDescription": "Kameranızı fiziksel bir koda doğrultun.",
+      "ready": "Hazır olduğunuzda",
+      "cameraPrivacy": "Kamera erişimi yalnızca tarama sırasında kullanılır.",
+      "scanning": "Canlı tarama",
+      "stopCamera": "Kamerayı durdur",
+      "startCamera": "Kamera taramasını başlat",
+      "result": "Tarama sonucu",
+      "copyResult": "Sonucu kopyala",
+      "emptyResult": "Çözülen içeriğiniz burada görünecek.",
+      "invalidImage": "QR kod veya barkod içeren bir PNG veya JPG görseli seçin.",
+      "notFound": "O görselde okunabilir bir kod bulunamadı.",
+      "decodeFailed": "O görseli çözemedik. Lütfen başka bir görsel deneyin.",
+      "cameraBlocked": "Kamera izni engellendi. Erişime izin verin ve tekrar deneyin.",
+      "cameraFailed": "Kamerayı başlatamadık. Lütfen tekrar deneyin."
+    },
+    "PasswordGenerator": {
+      "title": "Şifre Oluşturucu",
+      "description": "Anında güçlü, rastgele şifreler oluşturun. Maksimum güvenlik için karakter türlerini ve uzunluğu özelleştirin.",
+      "premium": "Premium Araç",
+      "characters": "karakter",
+      "copied": "Kopyalandı!",
+      "copy": "Kopyala",
+      "customize": "Şifre Ayarlarını Özelleştir",
+      "length": "Şifre Uzunluğu",
+      "characterTypes": "Karakter Türleri",
+      "uppercase": "Büyük Harf (A-Z)",
+      "lowercase": "Küçük Harf (a-z)",
+      "numbers": "Sayılar (0-9)",
+      "symbols": "Semboller (!@#$%^&*...)",
+      "customCharacters": "Özel Karakterler (İsteğe Bağlı)",
+      "customPlaceholder": "Dahil edilecek özel karakterler ekleyin...",
+      "autoGenerate": "Değişiklikte otomatik oluştur",
+      "generate": "Şifre Oluştur",
+      "regenerate": "Şifreyi Yeniden Oluştur",
+      "generated": "Oluşturulan Şifre",
+      "strength": "Şifre Gücü",
+      "weak": "Zayıf",
+      "fair": "Orta",
+      "good": "İyi",
+      "strong": "Güçlü",
+      "hide": "Şifreyi gizle",
+      "show": "Şifreyi göster",
+      "empty": "Şifre oluşturmak için oluştur'a tıklayın",
+      "share": "Bağlantıyı paylaş",
+      "download": "Şifreyi indir",
+      "privacy": "Tüm işlemler tarayıcıda güvenli bir şekilde gerçekleştirilir. Şifreleriniz asla depolanmaz veya iletilmez."
+    },
+    "LoremGenerator": {
+      "title": "Lorem Ipsum Oluşturucu",
+      "description": "Tasarımlar, maketler ve prototipler için anında Lorem Ipsum dolgu metni oluşturun.",
+      "premium": "Premium Araç",
+      "copied": "Kopyalandı!",
+      "copy": "Kopyala",
+      "customize": "Lorem Metnini Özelleştir",
+      "generateType": "Oluşturma Türü",
+      "paragraphs": "Paragraflar",
+      "sentences": "Cümleler",
+      "words": "Kelimeler",
+      "numberOf": "{type} Sayısı",
+      "wordCount": "Kelimeler:",
+      "characterCount": "Karakterler:",
+      "generatedText": "Oluşturulan Metin",
+      "generating": "Lorem Ipsum Oluşturuluyor...",
+      "download": "Metni indir",
+      "share": "Bağlantıyı paylaş",
+      "privacy": "Tüm işlemler tarayıcıda güvenli bir şekilde gerçekleştirilir. Maketler, tasarımlar ve prototipler için mükemmeldir.",
+      "copyManual": "Metni metin alanından manuel olarak kopyalayın"
+    },
+    "Notepad": {
+      "placeholder": "Notlarınızı buraya yazmaya başlayın...",
+      "download": "İndir",
+      "copy": "Kopyala",
+      "clear": "Temizle",
+      "newNote": "Yeni bir not başlatılsın mı?",
+      "clearNote": "Bu not temizlensin mi?",
+      "continue": "Devam Et",
+      "newDescription": "Mevcut notunuz kaybolacak. Bu işlem geri alınamaz.",
+      "clearDescription": "Mevcut notunuz temizlenecek. Bu işlem geri alınamaz.",
+      "cancel": "İptal",
+      "open": "Aç",
+      "undo": "Geri Al",
+      "lineColumn": "Satır {line}, Sütun {column}",
+      "counts": "Karakter {characters}, Kelime {words}",
+      "autoSaved": "Otomatik kaydedildi {time}",
+      "copyBlocked": "Kopyalama engellendi. Metni seçin ve Ctrl+A, ardından Ctrl+C kullanın."
+    },
+    "EmojiPicker": {
+      "title": "Emoji Seçici ve Kopyalayıcı",
+      "description": "Emojilere anında göz atın ve kopyalayın. Her durum için mükemmel emojiyi bulun.",
+      "search": "Emoji ara...",
+      "recent": "Son Kopyalananlar",
+      "clickToCopy": "Kopyalamak için tıklayın",
+      "noEmojis": "Emoji bulunamadı",
+      "differentSearch": "Farklı bir arama terimi deneyin",
+      "copyInstruction": "Panonuza kopyalamak için herhangi bir emojiye tıklayın",
+      "copied": "{emoji} Kopyalandı!",
+      "emoji": "Emoji: {emoji}",
+      "categories": {
+        "smileys": "Yüz İfadeleri ve Duygular",
+        "hearts": "Kalpler ve Aşk",
+        "hands": "El Hareketleri",
+        "people": "İnsanlar",
+        "food": "Yiyecek ve İçecek",
+        "animals": "Hayvanlar",
+        "travel": "Seyahat ve Yerler",
+        "activities": "Aktiviteler ve Sporlar",
+        "objects": "Nesneler",
+        "flags": "Bayraklar",
+        "clothing": "Giyim ve Aksesuarlar",
+        "nature": "Doğa ve Hava Durumu",
+        "symbols": "Semboller ve İşaretler"
+      }
+    },
+    "ColorPicker": {
+      "title": "Renk Seçici",
+      "download": "İndir",
+      "description": "Herhangi bir görselden güzel renk paletleri çıkarın veya tek tek renkleri hassas bir şekilde ayarlayıp kopyalayın.",
+      "imageTab": "Görsel",
+      "imageExtractor": "Görsel Renk Çıkarıcı",
+      "uploadImage": "Bir görsel yükleyin",
+      "browseOrDrop": "Göz atmak için tıklayın veya sürükleyip bırakın",
+      "palette": "Renk Paleti",
+      "copyAll": "Tümünü kopyala",
+      "details": "Çıkarılan Renk Detayları",
+      "useAnother": "Başka bir görsel kullan",
+      "empty": "Renk paletini otomatik olarak çıkarmak için istediğiniz görseli yükleyin",
+      "copied": "{format} kopyalandı!"
+    },
+    "PdfDashboard": {
+      "badge": "%100 İstemci Tarafında İşleme Merkezi",
+      "title": "PDF'leri optimize etmek ve ustalaşmak için ihtiyacınız olan her araç",
+      "description": "Tarayıcınızda doğrudan yıldırım hızında PDF işlemleri gerçekleştirin. Hassas dosyalarınız asla bilgisayarınızdan çıkmaz, tam gizlilik sağlanır.",
+      "searchPlaceholder": "PDF araçlarını ara (ör. birleştir, sıkıştır)...",
+      "allTools": "Tüm Araçlar",
+      "clear": "Temizle",
+      "noMatches": "Eşleşen araç yok",
+      "noMatchesDescription": "Parametrelerinize uyan hiçbir dönüştürücü veya araç bulamadık. Arama terimlerinizi kontrol edin."
+    },
+    "ImageDashboard": {
+      "badge": "%100 İstemci Tarafında Görsel İşleme",
+      "title": "Görselleri toplu olarak sıkıştırmak, dönüştürmek ve düzenlemek için SaaS Araçları",
+      "description": "Yıldırım hızında kırpma, ölçeklendirme, filigranlama, filtreler, arka plan anahtarı çıkarma ve dönüştürmelerin kilidini açın. Tamamen tarayıcı bağlamınızda izole edilmiştir.",
+      "searchPlaceholder": "Görsel araçlarını ara (ör. kırp, arka plan, png)...",
+      "allTools": "Tüm Araçlar",
+      "clear": "Temizle",
+      "noMatches": "Eşleşen araç yok",
+      "noMatchesDescription": "Parametrelerinize uyan hiçbir dönüştürücü veya araç bulamadık. Arama terimlerinizi kontrol edin."
+    },
+    "SpeedTest": {
+      "title": "Hız Testi",
+      "description": "Cloudflare'in ağıyla internet hızınızı test edin",
+      "downloadSpeed": "İndirme Hızı (Mbps)",
+      "uploadSpeed": "Yükleme Hızı (Mbps)",
+      "testingDownload": "İndirme Test Ediliyor…",
+      "testingUpload": "Yükleme Test Ediliyor…",
+      "ready": "Hızınızı test etmeye hazır mısınız?",
+      "complete": "✓ Test Tamamlandı!",
+      "download": "İndir",
+      "upload": "Yükleme",
+      "start": "Hız Testini Başlat",
+      "testing": "Test ediliyor…",
+      "results": "Test tamamlandığında sonuçlarınız burada görünecek.",
+      "poweredBy": "Cloudflare'in küresel ağı tarafından desteklenmektedir"
+    },
+    "TypingSpeed": {
+      "punctuation": "noktalama",
+      "numbers": "sayılar",
+      "time": "süre",
+      "words": "kelimeler",
+      "quote": "alıntı",
+      "start": "Başlamak için buraya tıklayın veya herhangi bir tuşa basın",
+      "restart": "Yeniden Başlat (Tab + Enter)",
+      "wpm": "dpd",
+      "wordsPerMinute": "dakikadaki kelime sayısı",
+      "raw": "ham",
+      "rawWpm": "ham dpd",
+      "accuracy": "doğruluk",
+      "correctChars": "doğru karakterler",
+      "correct": "doğru",
+      "incorrect": "yanlış",
+      "duration": "süre",
+      "wpmOverTime": "Zaman içinde DPD",
+      "newTest": "Yeni Test"
+    }
+  },
+  "Blog": {
+    "eyebrow": "İçgörüler ve Kaynaklar",
+    "title": "Zanaat Blogu",
+    "description": "Yazılım mühendisliğinizi ve görsel iş akışınızı güçlendirmek için derinlemesine araştırmalar, taktik kılavuzlar ve yapısal tasarımlar.",
+    "search": "Makaleleri, anahtar kelimeleri, konuları ara...",
+    "categoryAll": "Kategori: Tümü",
+    "category": "Kategori: {name}",
+    "tagAll": "Etiket: Tümü",
+    "tag": "Etiket: {name}",
+    "writePost": "Yeni Yazı Yaz",
+    "noArticles": "Makale Bulunamadı",
+    "noArticlesDescription": "Filtrelerinizle eşleşen hiçbir makale bulamadık. Filtreleri temizlemeyi veya yeni bir blog yazısı yazmayı deneyin.",
+    "clearFilters": "Filtreleri Temizle",
+    "featured": "ÖNE ÇIKAN YAZI",
+    "readFull": "Yazının Tamamını Oku",
+    "searchResults": "Arama Sonuçları ({count})",
+    "allArticles": "Tüm Makaleler"
+  },
+  "ToolCatalog": {
+    "Pdf": {
+      "categories": {
+        "organize": "PDF Düzenle",
+        "fromPdf": "PDF'den Dönüştür",
+        "toPdf": "PDF'e Dönüştür",
+        "optimizeEdit": "Optimize Et ve Düzenle",
+        "security": "PDF Güvenliği"
+      },
+      "mergePdf": {
+        "name": "PDF Birleştir",
+        "short": "Birden fazla PDF dosyasını tek bir dosyada birleştirin.",
+        "long": "Birden fazla PDF dosyası seçin, sürükle-bırak ile sıralarını düzenleyin ve tek bir yüksek kaliteli belgede birleştirin."
+      },
+      "splitPdf": {
+        "name": "PDF Böl",
+        "short": "Bir PDF'den belirli sayfa aralıklarını çıkarın.",
+        "long": "Bir PDF'i tek tek sayfalara bölün veya belirli sayfa aralıklarını (ör. sayfa 1-5, 10) yepyeni bir PDF belgesine çıkarın."
+      },
+      "compressPdf": {
+        "name": "PDF Sıkıştır",
+        "short": "Kaliteyi koruyarak PDF dosya boyutunu küçültün.",
+        "long": "Boyutu küçültmek için PDF'inizdeki dosyaları ve görselleri optimize ederken keskin tipografi ve çözünürlüğü koruyun."
+      },
+      "pdfToWord": {
+        "name": "PDF'den Word'e",
+        "short": "PDF'i düzenlenebilir DOCX belgesine dönüştürün.",
+        "long": "Paragrafları, format ızgaralarını ve tabloları doğrudan PDF'inizden tamamen düzenlenebilir bir Microsoft Word .docx dosyasına aktarın."
+      },
+      "wordToPdf": {
+        "name": "Word'den PDF'e",
+        "short": "Word DOCX dosyalarını güvenli PDF'e dönüştürün.",
+        "long": "DOCX formatındaki dosyaları, hizalamaları, yazı tiplerini ve öğeleri tamamen koruyarak yüksek doğrulukta PDF belgelerine dönüştürün."
+      },
+      "pdfToPowerpoint": {
+        "name": "PDF'den PowerPoint'e",
+        "short": "PDF'i PPTX sunumlarına dönüştürün.",
+        "long": "PDF sayfalarınızdaki metin düzenlerini ve başlıkları tamamen düzenlenebilir, sunuma hazır Microsoft PowerPoint slaytlarına dönüştürün."
+      },
+      "powerpointToPdf": {
+        "name": "PowerPoint'ten PDF'e",
+        "short": "PPT/PPTX slaytlarını PDF'e dönüştürün.",
+        "long": "Sunum görsel slaytlarını (PPT/PPTX) sorunsuz paylaşım için yüksek çözünürlüklü, okunması kolay PDF sayfalarına dönüştürün."
+      },
+      "pdfToExcel": {
+        "name": "PDF'den Excel'e",
+        "short": "Tabloları ve verileri Excel elektronik tablolarına aktarın.",
+        "long": "Çok sütunlu ızgara dizilerini ve biçimlendirilmiş tablo listelerini PDF'inizden çıkarın ve Microsoft Excel .xlsx formatlarına doldurun."
+      },
+      "excelToPdf": {
+        "name": "Excel'den PDF'e",
+        "short": "Dinamik Excel çalışma sayfalarını temiz PDF'e yazdırın.",
+        "long": "Elektronik tablo satırlarını ve düzen ızgaralarını düzgünce biçimlendirin, özel genişlik ölçeklendirmesi ayarlayın ve çalışma kitabını defter tarzı bir PDF'e dönüştürün."
+      },
+      "pdfToJpg": {
+        "name": "PDF'den JPG'ye",
+        "short": "Tüm PDF sayfalarını ayrı görsellere dönüştürün.",
+        "long": "Bir PDF belgesinin her sayfasını keskin, indirilebilir yüksek çözünürlüklü bir JPEG (.jpg) formatına dönüştürün."
+      },
+      "jpgToPdf": {
+        "name": "JPG'den PDF'e",
+        "short": "Birden fazla görseli sağlam bir PDF'de birleştirin.",
+        "long": "Özel JPG, PNG ve WebP görsellerini yükleyin, istediğiniz gibi yeniden sıralayın, boyutları birleştirin ve çok sayfalı bir PDF çalışma kitabı oluşturun."
+      },
+      "rotatePdf": {
+        "name": "PDF Döndür",
+        "short": "Bir PDF'in sayfalarını görsel olarak döndürün.",
+        "long": "PDF dosyalarını sayfa sayfa okuyun, görüntüleyin ve dinamik olarak belirli yönlerde (90, 180, 270 derece) döndürün."
+      },
+      "unlockPdf": {
+        "name": "PDF Kilidini Aç",
+        "short": "Özel PDF'lerden güvenlik şifrelerini kaldırın.",
+        "long": "Korumalı dosyaların şifresini çözün, genel kullanıcı düzenleme yetkilerini kaldırın ve standart güvenlik uyarıları olmadan kilidi açılmış belgeleri indirin."
+      },
+      "protectPdf": {
+        "name": "PDF'i Koru",
+        "short": "PDF'i güvenli şifre koruması ile şifreleyin.",
+        "long": "Her yerde açıldığında giriş isteyen şifre parametreleriyle dosyalarınızı güvence altına alarak hassas PDF'lerinizi kilitleyin."
+      },
+      "repairPdf": {
+        "name": "PDF Onar",
+        "short": "Hasarlı yapıları veya hatalı ofsetleri yeniden oluşturun.",
+        "long": "Yükleme uyarılarını atlamak için biçimlendirme akışlarını standartlaştırın ve hatalı çapraz referans tablolarını (XREF) yeniden oluşturun."
+      },
+      "editPdf": {
+        "name": "PDF Düzenle",
+        "short": "Sayfalara metin etiketleri, şekiller ve karalamalar ekleyin.",
+        "long": "Belirli PDF tuval katmanlarının üzerine doğrudan görsel olarak duyarlı metin blokları, şekiller, vurgu etiketleri veya imza çizimleri yerleştirin."
+      }
+    },
+    "Image": {
+      "categories": {
+        "compress": "Sıkıştır",
+        "resizeCrop": "Yeniden Boyutlandır ve Kırp",
+        "convert": "Formatı Dönüştür",
+        "edit": "Değiştir ve Biçimlendir",
+        "ai": "Yapay Zeka ile Geliştirildi"
+      },
+      "compressImage": {
+        "name": "Görseli Sıkıştır",
+        "short": "JPG, PNG, SVG, GIF, WEBP ve AVIF'i sıkıştırın.",
+        "long": "Görsel kaliteyi mümkün olduğunca yüksek tutarak dosya boyutunu optimize edin. JPEG, PNG, WEBP, GIF ve SVG formatlarını gerçek zamanlı olarak sıkıştırır."
+      },
+      "resizeImage": {
+        "name": "Görseli Yeniden Boyutlandır",
+        "short": "Genişlik ve yükseklik boyutlarını piksel cinsinden ayarlayın.",
+        "long": "Görsel boyutlarını yüzde veya hedef genişlik/yükseklik piksel cinsinden yeniden boyutlandırın. Oranı kilitleme veya popüler sosyal medya tuval ön ayarlarını seçme seçeneği."
+      },
+      "cropImage": {
+        "name": "Görseli Kırp",
+        "short": "Görselleri etkileşimli bir seçim kutusuyla kırpın.",
+        "long": "Görsel çapalar kullanarak kenarlıkları kaldırın veya istenen odak sınırlarını izole edin. Popüler özel en-boy oranları ve kırpma şablonları sunar."
+      },
+      "rotateImage": {
+        "name": "Görseli Döndür",
+        "short": "Görselleri döndürün ve herhangi bir eksende çevirin.",
+        "long": "Görselleri yatay, dikey olarak çevirin veya mükemmel hizalamalar için 90 derecelik adımlarla saat yönünde/saat yönünün tersine döndürün."
+      },
+      "watermarkImage": {
+        "name": "Görsele Filigran Ekle",
+        "short": "Özel metin katmanları veya marka logoları ekleyin.",
+        "long": "Metin veya küçük şeffaf katman logoları ekleyerek eserlerinizi koruyun. Konumu, boyutu ve marka opaklığını ayarlayın."
+      },
+      "removeBackground": {
+        "name": "Yapay Zeka ile Arka Plan Kaldırma",
+        "short": "Otomatik şeffaf arka plan çıkarma.",
+        "long": "Temiz şeffaf png dosyaları oluşturmak için sabit veya karmaşık arka planları silin. İstemci tarafı kenar kontrastı algılama ve akıllı anahtar filtrelerinden yararlanır."
+      },
+      "upscaleImage": {
+        "name": "Yapay Zeka ile Görsel Büyütücü",
+        "short": "Bikübik kenar keskinleştirme kullanarak çözünürlüğü büyütün.",
+        "long": "Detayları geri yüklemek, kontürleri keskinleştirmek ve görsel bulanıklığı azaltmak için akıllı netlik filtreleri uygularken pikselleri 4 kata kadar enterpole edin."
+      },
+      "imageToJpg": {
+        "name": "JPG'ye Dönüştür",
+        "short": "PNG, WEBP, AVIF, HEIC, TIFF'i yeniden JPG'ye dönüştürün.",
+        "long": "Birden fazla katmanlı görsel formatını toplu olarak standartlaştırılmış, oldukça uyumlu JPEG formatlarına dönüştürün."
+      },
+      "imageToPng": {
+        "name": "PNG'ye Dönüştür",
+        "short": "WebP, JPEG, AVIF'i PNG formatlarına dönüştürün.",
+        "long": "Gelen dosyaları yüksek doğrulukta web PNG standart formatlarına derleyerek şeffaflık vektörlerini ve keskin ızgaraları garanti edin."
+      },
+      "imageToWebp": {
+        "name": "WebP'ye Dönüştür",
+        "short": "Ağır görselleri optimize edilmiş WebP'ye dönüştürün.",
+        "long": "Web sitesi ve uygulama hızını en üst düzeye çıkarmak için PNG veya JPG dosya klasörlerini ultra hafif WebP formatlarına dönüştürün."
+      },
+      "imageToAvif": {
+        "name": "AVIF'e Dönüştür",
+        "short": "Görselleri yeni nesil AVIF standartlarına dönüştürün.",
+        "long": "WebP'den daha küçük dosyalarla yüksek kaliteyi birleştiren AVIF formatına yüksek doğrulukta görseller aktarın."
+      },
+      "jpgToPng": {
+        "name": "JPG'den PNG'ye",
+        "short": "JPG dosyalarını şeffaf PNG'ye dönüştürün.",
+        "long": "Düz temel JPG/JPEG belgelerini kayıpsız, yüksek renkli PNG dosyalarına dönüştürün ve orijinal gradyanları eserler olmadan koruyun."
+      },
+      "pngToJpg": {
+        "name": "PNG'den JPG'ye",
+        "short": "PNG görsellerini oldukça uyumlu JPG'lere dönüştürün.",
+        "long": "Alfa şeffaf PNG vektörlerini, sabit arka plan değişkenleriyle standart rasterize JPEG ızgaralarına düzleştirin."
+      },
+      "webpToJpg": {
+        "name": "WebP'den JPG'ye",
+        "short": "WebP sayfalarını standart JPG görsellerine kod çözün.",
+        "long": "Yerel araçlarda evrensel uyumluluğu korumak için alandan tasarruf sağlayan WebP görsellerini güvenli bir şekilde statik JPEG formatlarına işleyin."
+      },
+      "webpToPng": {
+        "name": "WebP'den PNG'ye",
+        "short": "Alfa kanalı şeffaflığını PNG'ye geri yükleyin.",
+        "long": "Hafif, web için optimize edilmiş WebP dosyalarını, katmanları bozulmadan tamamen düzenlenebilir, kayıpsız PNG dosyalarına geri açın."
+      },
+      "gifToJpg": {
+        "name": "GIF'ten JPG'ye",
+        "short": "Animasyonlu GIF karelerini statik JPG'lere dönüştürün.",
+        "long": "Yüklenen GIF'lerden bireysel animasyon aşamalarını ayırın veya ilk kareyi hafif, statik bir JPG anlık görüntüsü olarak çıkarın."
+      },
+      "svgToPng": {
+        "name": "SVG'den PNG'ye",
+        "short": "Vektör SVG'leri zengin PNG düzenlerine rasterize edin.",
+        "long": "Vektör tanımlarını yükleyin, keskin boyutlara ölçeklendirin ve tamamen uyumlu, zengin rasterize edilmiş PNG dosyalarına derleyin."
+      },
+      "batchConvert": {
+        "name": "Toplu Format Dönüştürücü",
+        "short": "Onlarca görsel formatını aynı anda dönüştürün.",
+        "long": "JPG, PNG, WEBP, GIF, SVG, BMP, TIFF, ICO görsellerinin herhangi bir karışımını içe aktarın, hedef bir dışa aktarma formatı seçin ve saniyeler içinde derleyin."
+      },
+      "imageEditor": {
+        "name": "Yaratıcı Görsel Düzenleyici",
+        "short": "Tam ölçekli tuval fotoğraf tasarım stüdyosu.",
+        "long": "Birleşik bir çalışma alanında çizin, karalama yapın, metin kutuları, filtreler (sepya, monokrom, ters çevir) ekleyin, renk kaydırıcılarını ayarlayın, ölçeklendirin, kırpın ve filigran ekleyin."
+      }
+    }
+  }
+}

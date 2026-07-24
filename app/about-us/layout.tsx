@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { buildPageMetadata } from "@/lib/server-locale";
 
-export const metadata: Metadata = buildPageMetadata("/about-us", "about");
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata("/about-us", "about");
+}
 
 export default function AboutLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;

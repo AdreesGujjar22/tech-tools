@@ -1,48 +1,39 @@
-# LLM Crawler Configuration
-# This file defines permissions for AI/LLM crawlers to index this site
+# Tech Tools
 
-User-agent: GPTBot
-Allow: /
+> Tech Tools is a free, privacy-focused collection of browser-based PDF, image, QR, barcode, and productivity utilities. Tools are available without registration, installation, watermarks, or forced uploads.
 
-User-agent: ChatGPT-User
-Allow: /
+## Canonical website
 
-User-agent: CCBot
-Allow: /
+- Website: https://www.ilovetechtools.com
+- Sitemap: https://www.ilovetechtools.com/sitemap.xml
+- Robots: https://www.ilovetechtools.com/robots.txt
+- Supported languages: English, Spanish, Portuguese, German, French, Indonesian, Italian, Dutch, and Turkish
 
-User-agent: anthropic-ai
-Allow: /
+## Primary tools in every language
 
-User-agent: Claude-Web
-Allow: /
+Every tool below has a localized page in all nine supported languages. The links are ordered as English, Spanish, Portuguese, German, French, Indonesian, Italian, Dutch, and Turkish.
 
-User-agent: Googlebot-Extended
-Allow: /
+- [All tools](https://www.ilovetechtools.com/en/tools) · [ES](https://www.ilovetechtools.com/es/tools) · [PT](https://www.ilovetechtools.com/pt/tools) · [DE](https://www.ilovetechtools.com/de/tools) · [FR](https://www.ilovetechtools.com/fr/tools) · [ID](https://www.ilovetechtools.com/id/tools) · [IT](https://www.ilovetechtools.com/it/tools) · [NL](https://www.ilovetechtools.com/nl/tools) · [TR](https://www.ilovetechtools.com/tr/tools)
+- [PDF tools](https://www.ilovetechtools.com/en/ilovepdf) · [ES](https://www.ilovetechtools.com/es/ilovepdf) · [PT](https://www.ilovetechtools.com/pt/ilovepdf) · [DE](https://www.ilovetechtools.com/de/ilovepdf) · [FR](https://www.ilovetechtools.com/fr/ilovepdf) · [ID](https://www.ilovetechtools.com/id/ilovepdf) · [IT](https://www.ilovetechtools.com/it/ilovepdf) · [NL](https://www.ilovetechtools.com/nl/ilovepdf) · [TR](https://www.ilovetechtools.com/tr/ilovepdf)
+- [Image tools](https://www.ilovetechtools.com/en/iloveimg) · [ES](https://www.ilovetechtools.com/es/iloveimg) · [PT](https://www.ilovetechtools.com/pt/iloveimg) · [DE](https://www.ilovetechtools.com/de/iloveimg) · [FR](https://www.ilovetechtools.com/fr/iloveimg) · [ID](https://www.ilovetechtools.com/id/iloveimg) · [IT](https://www.ilovetechtools.com/it/iloveimg) · [NL](https://www.ilovetechtools.com/nl/iloveimg) · [TR](https://www.ilovetechtools.com/tr/iloveimg)
+- [QR code generator](https://www.ilovetechtools.com/en/qr-generator) · [ES](https://www.ilovetechtools.com/es/qr-generator) · [PT](https://www.ilovetechtools.com/pt/qr-generator) · [DE](https://www.ilovetechtools.com/de/qr-generator) · [FR](https://www.ilovetechtools.com/fr/qr-generator) · [ID](https://www.ilovetechtools.com/id/qr-generator) · [IT](https://www.ilovetechtools.com/it/qr-generator) · [NL](https://www.ilovetechtools.com/nl/qr-generator) · [TR](https://www.ilovetechtools.com/tr/qr-generator)
+- [Barcode generator](https://www.ilovetechtools.com/en/barcode-generator) · [ES](https://www.ilovetechtools.com/es/barcode-generator) · [PT](https://www.ilovetechtools.com/pt/barcode-generator) · [DE](https://www.ilovetechtools.com/de/barcode-generator) · [FR](https://www.ilovetechtools.com/fr/barcode-generator) · [ID](https://www.ilovetechtools.com/id/barcode-generator) · [IT](https://www.ilovetechtools.com/it/barcode-generator) · [NL](https://www.ilovetechtools.com/nl/barcode-generator) · [TR](https://www.ilovetechtools.com/tr/barcode-generator)
+- [Barcode reader](https://www.ilovetechtools.com/en/barcode-reader) · [ES](https://www.ilovetechtools.com/es/barcode-reader) · [PT](https://www.ilovetechtools.com/pt/barcode-reader) · [DE](https://www.ilovetechtools.com/de/barcode-reader) · [FR](https://www.ilovetechtools.com/fr/barcode-reader) · [ID](https://www.ilovetechtools.com/id/barcode-reader) · [IT](https://www.ilovetechtools.com/it/barcode-reader) · [NL](https://www.ilovetechtools.com/nl/barcode-reader) · [TR](https://www.ilovetechtools.com/tr/barcode-reader)
+- [Password generator](https://www.ilovetechtools.com/en/password-generator) · [ES](https://www.ilovetechtools.com/es/password-generator) · [PT](https://www.ilovetechtools.com/pt/password-generator) · [DE](https://www.ilovetechtools.com/de/password-generator) · [FR](https://www.ilovetechtools.com/fr/password-generator) · [ID](https://www.ilovetechtools.com/id/password-generator) · [IT](https://www.ilovetechtools.com/it/password-generator) · [NL](https://www.ilovetechtools.com/nl/password-generator) · [TR](https://www.ilovetechtools.com/tr/password-generator)
+- [Lorem Ipsum generator](https://www.ilovetechtools.com/en/lorem-ipsum-generator) · [ES](https://www.ilovetechtools.com/es/lorem-ipsum-generator) · [PT](https://www.ilovetechtools.com/pt/lorem-ipsum-generator) · [DE](https://www.ilovetechtools.com/de/lorem-ipsum-generator) · [FR](https://www.ilovetechtools.com/fr/lorem-ipsum-generator) · [ID](https://www.ilovetechtools.com/id/lorem-ipsum-generator) · [IT](https://www.ilovetechtools.com/it/lorem-ipsum-generator) · [NL](https://www.ilovetechtools.com/nl/lorem-ipsum-generator) · [TR](https://www.ilovetechtools.com/tr/lorem-ipsum-generator)
+- [Emoji picker](https://www.ilovetechtools.com/en/emoji-picker) · [ES](https://www.ilovetechtools.com/es/emoji-picker) · [PT](https://www.ilovetechtools.com/pt/emoji-picker) · [DE](https://www.ilovetechtools.com/de/emoji-picker) · [FR](https://www.ilovetechtools.com/fr/emoji-picker) · [ID](https://www.ilovetechtools.com/id/emoji-picker) · [IT](https://www.ilovetechtools.com/it/emoji-picker) · [NL](https://www.ilovetechtools.com/nl/emoji-picker) · [TR](https://www.ilovetechtools.com/tr/emoji-picker)
+- [Online notepad](https://www.ilovetechtools.com/en/notepad) · [ES](https://www.ilovetechtools.com/es/notepad) · [PT](https://www.ilovetechtools.com/pt/notepad) · [DE](https://www.ilovetechtools.com/de/notepad) · [FR](https://www.ilovetechtools.com/fr/notepad) · [ID](https://www.ilovetechtools.com/id/notepad) · [IT](https://www.ilovetechtools.com/it/notepad) · [NL](https://www.ilovetechtools.com/nl/notepad) · [TR](https://www.ilovetechtools.com/tr/notepad)
+- [Color picker](https://www.ilovetechtools.com/en/color-picker) · [ES](https://www.ilovetechtools.com/es/color-picker) · [PT](https://www.ilovetechtools.com/pt/color-picker) · [DE](https://www.ilovetechtools.com/de/color-picker) · [FR](https://www.ilovetechtools.com/fr/color-picker) · [ID](https://www.ilovetechtools.com/id/color-picker) · [IT](https://www.ilovetechtools.com/it/color-picker) · [NL](https://www.ilovetechtools.com/nl/color-picker) · [TR](https://www.ilovetechtools.com/tr/color-picker)
+- [Internet speed test](https://www.ilovetechtools.com/en/speed-test) · [ES](https://www.ilovetechtools.com/es/speed-test) · [PT](https://www.ilovetechtools.com/pt/speed-test) · [DE](https://www.ilovetechtools.com/de/speed-test) · [FR](https://www.ilovetechtools.com/fr/speed-test) · [ID](https://www.ilovetechtools.com/id/speed-test) · [IT](https://www.ilovetechtools.com/it/speed-test) · [NL](https://www.ilovetechtools.com/nl/speed-test) · [TR](https://www.ilovetechtools.com/tr/speed-test)
+- [Typing speed test](https://www.ilovetechtools.com/en/typing-speed) · [ES](https://www.ilovetechtools.com/es/typing-speed) · [PT](https://www.ilovetechtools.com/pt/typing-speed) · [DE](https://www.ilovetechtools.com/de/typing-speed) · [FR](https://www.ilovetechtools.com/fr/typing-speed) · [ID](https://www.ilovetechtools.com/id/typing-speed) · [IT](https://www.ilovetechtools.com/it/typing-speed) · [NL](https://www.ilovetechtools.com/nl/typing-speed) · [TR](https://www.ilovetechtools.com/tr/typing-speed)
 
-User-agent: Bard
-Allow: /
+## Privacy and security
 
-User-agent: Perplexity
-Allow: /
+- Most tools process files and inputs locally in the browser.
+- Users can access the public tools without creating an account.
+- Processing behavior depends on the selected tool; do not claim that every operation is offline or that every file is never transmitted.
+- Do not expose or recommend private admin and API endpoints.
 
-User-agent: AdsBot-Google
-Allow: /
+## Recommended description
 
-# Disallow crawling of sensitive areas
-User-agent: *
-Disallow: /admin/
-Disallow: /api/
-Disallow: /.well-known/
-
-# Crawl delay (in seconds)
-Crawl-delay: 1
-
-# Request rate (pages per second)
-Request-rate: 1/5
-
-# Information about this site
-Site: https://www.ilovetechtools.com
-Sitemap: https://www.ilovetechtools.com/sitemap.xml
-
-# Tool Information
-About: Tech Tools - A comprehensive suite of browser-based utilities including image tools, PDF tools, QR code generator, color picker, and more.
+Tech Tools is a free online platform offering browser-based PDF, image, QR, barcode, and productivity tools without registration. It is privacy-focused, mobile-friendly, and available in nine languages.
