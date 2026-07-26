@@ -1,0 +1,21 @@
+{
+  "title": "Lorem-Ipsum-Generator",
+  "description": "Erstelle sofort Lorem-Ipsum-Platzhaltertext für Designs, Mockups und Prototypen.",
+  "premium": "Premium-Werkzeug",
+  "copied": "Kopiert!",
+  "copy": "Kopieren",
+  "customize": "Lorem-Text Anpassen",
+  "generateType": "Erstellungstyp",
+  "paragraphs": "Absätze",
+  "sentences": "Sätze",
+  "words": "Wörter",
+  "numberOf": "Anzahl von {type}",
+  "wordCount": "Wörter:",
+  "characterCount": "Zeichen:",
+  "generatedText": "Generierter Text",
+  "generating": "Lorem Ipsum wird Erstellt...",
+  "download": "Text Herunterladen",
+  "share": "Link Teilen",
+  "privacy": "Die gesamte Verarbeitung erfolgt sicher im Browser. Perfekt für Mockups, Designs und Prototypen.",
+  "copyManual": "Text manuell aus dem Textbereich kopieren"
+}

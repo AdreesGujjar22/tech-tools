@@ -1,0 +1,20 @@
+{
+  "title": "QR Kod Oluşturucu",
+  "description": "Web siteleri, WiFi ağları, dijital kartvizitler veya metin verileri için anında tamamen özelleştirilmiş QR kodları oluşturun.",
+  "metaDescription": "Anında güzel, özelleştirilebilir QR kodları oluşturun. Arka plan renklerini, ön plan renklerini, boyutu ve baskı formatlarını seçin.",
+  "metaKeywords": "qr kod olusturucu, qr kod olustur, dinamik qr, ozellestirilebilir qr kod",
+  "previewAlt": "Oluşturulan QR kod",
+  "contentLabel": "QR Kod İçeriği (URL, Metin veya Düğüm)",
+  "contentPlaceholder": "Kodlamak için URL veya metin girin...",
+  "customize": "Tasarım Ayarlarını Özelleştir",
+  "foreground": "QR Kod Rengi (Ön Plan)",
+  "background": "Arka Plan Rengi",
+  "resolution": "Çözünürlük Boyutu",
+  "margin": "Sessiz Bölge Kenar Boşluğu",
+  "preview": "Canlı QR Önizleme",
+  "generating": "QR Kod Oluşturuluyor...",
+  "download": "PNG İndir",
+  "share": "QR Bağlantısını Paylaş",
+  "shareSuccess": "Paylaşım bağlantısı panonuza kaydedildi!",
+  "privacy": "Tüm işlemler tarayıcıda güvenli bir şekilde gerçekleştirilir. Verileriniz asla yerel sisteminizden çıkmaz."
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Color Picker",
+  "download": "Download",
+  "description": "Extract beautiful color palettes from any image or fine-tune and copy individual colors with surgical precision.",
+  "imageTab": "Image",
+  "imageExtractor": "Image Color Extractor",
+  "uploadImage": "Upload an image",
+  "browseOrDrop": "Click to browse or drag and drop",
+  "palette": "Color Palette",
+  "copyAll": "Copy all",
+  "details": "Extracted Color Details",
+  "useAnother": "Use another image",
+  "empty": "Upload an image of your choice to automatically extract its color palettes",
+  "copied": "{format} copied!"
+}

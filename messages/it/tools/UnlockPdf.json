@@ -1,0 +1,6 @@
+{
+  "unlockParameters": "Parametri di sblocco",
+  "enterPassword": "Inserisci password di sblocco",
+  "passwordPlaceholder": "Lascia vuoto se è un PDF standard...",
+  "protectPdfNote": "Se il PDF è stato crittografato con il nostro strumento Proteggi PDF, fornisci la chiave sopra per rimuovere le limitazioni di blocco sul client."
+}

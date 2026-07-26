@@ -1,0 +1,15 @@
+{
+  "title": "Penghapus Latar Belakang",
+  "description": "Unggah gambar dan hapus latar belakang secara instan menggunakan AI",
+  "dropImage": "Letakkan gambar Anda di sini",
+  "orBrowse": "atau klik untuk menjelajah",
+  "chooseImage": "Pilih Gambar",
+  "download": "Unduh",
+  "reprocess": "Proses Ulang",
+  "processing": "Memproses...",
+  "removeBackground": "Hapus Latar Belakang",
+  "retry": "Coba Lagi",
+  "images": "Gambar ({count})",
+  "processAll": "Proses Semua",
+  "backgroundRemoved": "Latar belakang dihapus dari {fileName}"
+}

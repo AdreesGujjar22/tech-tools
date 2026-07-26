@@ -1,0 +1,20 @@
+{
+  "punctuation": "tanda baca",
+  "numbers": "angka",
+  "time": "waktu",
+  "words": "kata",
+  "quote": "kutipan",
+  "start": "Klik di sini atau tekan tombol apa pun untuk memulai",
+  "restart": "Mulai Ulang (Tab + Enter)",
+  "wpm": "wpm",
+  "wordsPerMinute": "kata per menit",
+  "raw": "mentah",
+  "rawWpm": "wpm mentah",
+  "accuracy": "akurasi",
+  "correctChars": "karakter benar",
+  "correct": "benar",
+  "incorrect": "salah",
+  "duration": "durasi",
+  "wpmOverTime": "WPM sepanjang waktu",
+  "newTest": "Tes Baru"
+}

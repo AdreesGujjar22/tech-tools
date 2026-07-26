@@ -1,0 +1,10 @@
+{
+  "badge": "Procesamiento de Imágenes 100% en el Navegador",
+  "title": "Herramientas para comprimir, convertir y editar imágenes en lote",
+  "description": "Disfruta de recorte, escalado, marcas de agua, filtros, eliminación de fondo y conversiones ultrarrápidas. Todo aislado completamente dentro de tu navegador.",
+  "searchPlaceholder": "Buscar herramientas de imagen (p. ej., recortar, fondo, png)...",
+  "allTools": "Todas las Herramientas",
+  "clear": "Borrar",
+  "noMatches": "No se encontraron herramientas",
+  "noMatchesDescription": "No pudimos encontrar convertidores o herramientas que coincidan con tus parámetros. Verifica tus términos de búsqueda."
+}

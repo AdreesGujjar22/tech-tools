@@ -1,0 +1,16 @@
+{
+  "title": "Test di Velocità",
+  "description": "Testa la velocità della tua connessione internet con la rete di Cloudflare",
+  "downloadSpeed": "Velocità di Download (Mbps)",
+  "uploadSpeed": "Velocità di Upload (Mbps)",
+  "testingDownload": "Test Download in corso…",
+  "testingUpload": "Test Upload in corso…",
+  "ready": "Pronto a testare la tua velocità?",
+  "complete": "✓ Test Completato!",
+  "download": "Scarica",
+  "upload": "Upload",
+  "start": "Avvia Test di Velocità",
+  "testing": "Test in corso…",
+  "results": "I tuoi risultati appariranno qui una volta completato il test.",
+  "poweredBy": "Offerto dalla rete globale di Cloudflare"
+}

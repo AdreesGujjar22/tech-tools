@@ -1,0 +1,6 @@
+{
+  "unlockParameters": "Parameter buka kunci",
+  "enterPassword": "Masukkan kata sandi buka kunci",
+  "passwordPlaceholder": "Biarkan kosong jika PDF standar...",
+  "protectPdfNote": "Jika PDF dienkripsi menggunakan alat Lindungi PDF kami, masukkan kunci di atas untuk menghapus batasan kunci di sisi klien."
+}

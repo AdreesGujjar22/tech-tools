@@ -1,0 +1,10 @@
+{
+  "badge": "%100 İstemci Tarafında İşleme Merkezi",
+  "title": "PDF'leri optimize etmek ve ustalaşmak için ihtiyacınız olan her araç",
+  "description": "Tarayıcınızda doğrudan yıldırım hızında PDF işlemleri gerçekleştirin. Hassas dosyalarınız asla bilgisayarınızdan çıkmaz, tam gizlilik sağlanır.",
+  "searchPlaceholder": "PDF araçlarını ara (ör. birleştir, sıkıştır)...",
+  "allTools": "Tüm Araçlar",
+  "clear": "Temizle",
+  "noMatches": "Eşleşen araç yok",
+  "noMatchesDescription": "Parametrelerinize uyan hiçbir dönüştürücü veya araç bulamadık. Arama terimlerinizi kontrol edin."
+}

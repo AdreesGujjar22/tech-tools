@@ -1,0 +1,20 @@
+{
+  "title": "Generador de Códigos QR",
+  "description": "Crea al instante códigos QR totalmente personalizados para sitios web, redes WiFi, tarjetas de presentación digitales o texto.",
+  "metaDescription": "Genera hermosos códigos QR personalizables al instante. Elige colores de fondo, colores principales, tamaño y formatos de impresión.",
+  "metaKeywords": "generador de codigo qr, crear codigo qr, qr dinamico, codigo qr personalizable",
+  "previewAlt": "Código QR generado",
+  "contentLabel": "Contenido del Código QR (URL, texto o nodo)",
+  "contentPlaceholder": "Ingresa una URL o texto para codificar...",
+  "customize": "Personalizar Configuración de Diseño",
+  "foreground": "Color del Código QR (Primer Plano)",
+  "background": "Color de Fondo",
+  "resolution": "Tamaño de Resolución",
+  "margin": "Margen de Zona Silenciosa",
+  "preview": "Vista Previa del QR en Vivo",
+  "generating": "Generando Código QR...",
+  "download": "Descargar PNG",
+  "share": "Compartir Enlace QR",
+  "shareSuccess": "¡Enlace para compartir guardado en el portapapeles!",
+  "privacy": "Todo el procesamiento se realiza de forma segura en el navegador. Tus datos nunca salen de tu sistema local."
+}

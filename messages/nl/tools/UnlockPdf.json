@@ -1,0 +1,6 @@
+{
+  "unlockParameters": "Ontgrendelparameters",
+  "enterPassword": "Ontgrendelwachtwoord invoeren",
+  "passwordPlaceholder": "Leeg laten bij een standaard-PDF...",
+  "protectPdfNote": "Als de PDF is versleuteld met onze PDF beveiligen-tool, voer dan hierboven de sleutel in om de vergrendelingsbeperkingen aan de clientzijde op te heffen."
+}

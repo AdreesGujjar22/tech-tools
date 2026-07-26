@@ -1,0 +1,647 @@
+{
+  "Common": {
+    "actions": {
+      "addFiles": "Bestanden Toevoegen",
+      "addMore": "Meer Toevoegen",
+      "back": "Terug",
+      "backToHub": "Terug naar Hub",
+      "backToAllTools": "Terug naar alle tools",
+      "browse": "klik om te bladeren",
+      "cancel": "Annuleren",
+      "clear": "Wissen",
+      "clearAndChooseDifferent": "Wissen en Andere Kiezen",
+      "close": "Sluiten",
+      "copy": "Kopiëren",
+      "copied": "Gekopieerd!",
+      "download": "Downloaden",
+      "downloadFile": "Bestand Downloaden",
+      "getStarted": "Beginnen",
+      "learnMore": "Meer Weten",
+      "new": "Nieuw",
+      "open": "Openen",
+      "process": "Verwerken",
+      "remove": "Verwijderen",
+      "reset": "Resetten",
+      "returnToHub": "Terug naar Hub",
+      "selectFile": "Bestand Selecteren",
+      "selectFiles": "Bestanden Selecteren",
+      "share": "Delen",
+      "submit": "Verzenden",
+      "tryAgain": "Opnieuw Proberen",
+      "tryNow": "Nu Proberen",
+      "undo": "Ongedaan Maken",
+      "view": "Bekijken"
+    },
+    "language": "Taal",
+    "languages": {
+      "english": "English",
+      "spanish": "Español",
+      "portuguese": "Português",
+      "german": "Deutsch",
+      "french": "Français",
+      "indonesian": "Indonesia",
+      "italian": "Italiano",
+      "dutch": "Nederlands",
+      "turkish": "Türkçe"
+    },
+    "labels": {
+      "allUtilities": "Alle Hulpmiddelen",
+      "bytes": "Bytes",
+      "file": "Bestand",
+      "files": "Bestanden",
+      "loading": "Laden...",
+      "localProcessingPrivate": "Lokale verwerking • Privé",
+      "premiumUtility": "Premium Hulpmiddel",
+      "processing": "Verwerken...",
+      "success": "Gelukt!"
+    },
+    "a11y": {
+      "closeMenu": "Menu sluiten",
+      "closeModal": "Modal sluiten",
+      "copyContent": "Inhoud kopiëren",
+      "clearContent": "Inhoud wissen",
+      "mobileNavigation": "Mobiele navigatie",
+      "openMenu": "Menu openen",
+      "removeFile": "Bestand verwijderen",
+      "sharePage": "Pagina delen",
+      "techToolsHome": "Tech Tools startpagina",
+      "techToolLogo": "Tech Tools logo",
+      "toggleSidebar": "Zijbalk in-/uitschakelen"
+    },
+    "messages": {
+      "link": "Link: {url}",
+      "copiedLink": "Link gekopieerd!",
+      "copyManually": "Handmatig kopiëren: {content}",
+      "checkOutTool": "Bekijk deze tool!",
+      "invalidFileExtension": "Ongeldige extensie voor \"{fileName}\". Ondersteund: {extensions}",
+      "noFilesUploaded": "Upload minstens één bestand.",
+      "toolCompleted": "{toolName} succesvol voltooid!",
+      "operationFailed": "Er is een fout opgetreden tijdens de verwerking. Probeer het opnieuw."
+    }
+  },
+  "Routes": {
+    "home": "/",
+    "about": "/about-us",
+    "tools": "/tools",
+    "blog": "/blog",
+    "pricing": "/pricing",
+    "help": "/help",
+    "contact": "/contact-us",
+    "privacy": "/privacy-policy",
+    "terms": "/terms-and-conditions",
+    "pdf": "/ilovepdf",
+    "image": "/iloveimg",
+    "qrGenerator": "/qr-generator",
+    "barcodeGenerator": "/barcode-generator",
+    "barcodeReader": "/barcode-reader",
+    "passwordGenerator": "/password-generator",
+    "loremGenerator": "/lorem-ipsum-generator",
+    "emojiPicker": "/emoji-picker",
+    "notepad": "/notepad",
+    "colorPicker": "/color-picker",
+    "speedTest": "/speed-test",
+    "typingSpeed": "/typing-speed"
+  },
+  "Navbar": {
+    "links": {
+      "about": "Over Ons",
+      "tools": "Tools",
+      "blog": "Blog",
+      "pricing": "Prijzen",
+      "contact": "Contact",
+      "help": "Veelgestelde Vragen"
+    },
+    "admin": "Beheerder",
+    "signIn": "Inloggen",
+    "signOut": "Uitloggen"
+  },
+  "Footer": {
+    "description": "Snelle, veilige en moderne online tools voor ontwikkelaars, makers en dagelijkse digitale taken. Volledig geïsoleerd binnen je browsercontext voor optimale privacy.",
+    "aboutUs": "Over Ons",
+    "quickLinks": "Snelle Links",
+    "home": "Startpagina",
+    "productivityTools": "Productiviteitstools",
+    "latestBlogInsights": "Laatste Blogartikelen",
+    "pricingPlans": "Prijsplannen",
+    "pdfTools": "PDF-Tools",
+    "pdfDashboard": "PDF-Dashboard",
+    "imageTools": "Afbeeldingstools",
+    "imageDashboard": "Afbeeldingsdashboard",
+    "allRightsReserved": "© {year} TechTools. Alle rechten voorbehouden.",
+    "privacyPolicy": "Privacybeleid",
+    "termsConditions": "Algemene Voorwaarden",
+    "social": {
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "website": "Website"
+    }
+  },
+  "Home": {
+    "meta": {
+      "title": "Moderne Online Productiviteitshulpmiddelen",
+      "description": "Snelle, veilige en moderne online tools voor ontwikkelaars, makers en dagelijkse digitale taken. Inclusief QR-codegenerator, typesnelheidstest, internetsnelheidstest, kleurkiezer en meer.",
+      "keywords": "tools voor ontwikkelaars, qr code scannen, typcursus, internet snelheidstest, code snippet tools, veilige online converter"
+    },
+    "badge": "Next-Gen Tools",
+    "title": "Al Je Essentiële Techtools op Één Plek",
+    "description": "Snelle, gratis en moderne online tools voor ontwikkelaars, studenten en makers. Alles ontworpen voor snelheid en eenvoud.",
+    "startTools": "Tools Starten",
+    "intro": "QR-generators, snelheidstests, afbeeldingsconverters, kleurkiezers, ontwikkelaarstools — allemaal in je browser, veilig.",
+    "previewAlt": "QR-codevoorbeeld gegenereerd met TechTools",
+    "encoded": "AES-256 Versleuteld",
+    "toolsTitle": "Elke tool die je nodig hebt om te optimaliseren en te beheersen",
+    "toolsDescription": "Dit zijn de Tech-tools die we aanbieden. Klik op een item om details of exportopties te bekijken.",
+    "searchPlaceholder": "Zoek tools (bijv. QR-code, kleurkiezer)...",
+    "noResults": "Er zijn geen tools gevonden die overeenkomen met je zoekcriteria.",
+    "ctaTitle": "Klaar voor meer?",
+    "ctaDescription": "Laat ons weten waar je naar op zoek bent, en we bouwen het!",
+    "contactUs": "Neem Contact op",
+    "toolCards": {
+      "pdfDashboard": "PDF-Tools Dashboard",
+      "imageDashboard": "Afbeeldingstools Dashboard",
+      "speedTest": "Internetsnelheidstest",
+      "typingSpeed": "Typesnelheidsresultaten",
+      "colorPicker": "Kleurkiezer Palet",
+      "qrGenerator": "QR-Code Generator",
+      "barcodeGenerator": "Barcode Generator",
+      "barcodeReader": "Barcode- & QR-Lezer",
+      "passwordGenerator": "Wachtwoord Generator",
+      "loremGenerator": "Lorem Ipsum Generator",
+      "emojiPicker": "Emoji Kiezer & Kopiëerder",
+      "notepad": "Online Notitieblok"
+    }
+  },
+  "About": {
+    "title": "Wat is TechTools?",
+    "intro": "TechTools is een modern webplatform met een groeiende verzameling online hulpmiddelen en productiviteitstools. Of je nu je internetsnelheid wilt testen, QR-codes wilt genereren, afbeeldingen wilt comprimeren of iets anders wilt doen, wij hebben het voor je.",
+    "mission": "Gebouwd met prestaties en eenvoud in gedachten, is onze missie om gebruikers tijd te besparen door gebruiksvriendelijke digitale tools aan te bieden zonder onnodige complexiteit.",
+    "popularTools": "Populaire Tools",
+    "popularDescription": "Ontdek onze meest gebruikte tools, waar dagelijks duizenden gebruikers op vertrouwen.",
+    "impact": "Onze Impact",
+    "impactDescription": "Wereldwijd vertrouwd door gebruikers voor hun dagelijkse productiviteitsbehoeften.",
+    "stats": {
+      "tools": "Nuttige Tools",
+      "monthlyUsers": "Maandelijkse Gebruikers",
+      "fast": "Snel",
+      "secure": "en Veilig",
+      "available": "Beschikbaar"
+    },
+    "ctaTitle": "Klaar om te Beginnen?",
+    "ctaDescription": "Ontdek al onze tools en verhoog vandaag nog je productiviteit.",
+    "exploreAll": "Alle Tools Ontdekken",
+    "tools": {
+      "speed": {
+        "name": "Internetsnelheidstest",
+        "description": "Meet download-, uploadsnelheid, ping en netwerkprestaties in real time."
+      },
+      "color": {
+        "name": "Kleurkiezer Tool",
+        "description": "Kies, kopieer en converteer kleuren eenvoudig met ondersteuning voor HEX, RGB en HSL."
+      },
+      "typing": {
+        "name": "Typesnelheidstest",
+        "description": "Verbeter je typesnelheid en nauwkeurigheid met real-time WPM-tracking."
+      },
+      "qr": {
+        "name": "QR-Code Generator",
+        "description": "Genereer aangepaste QR-codes voor URL's, tekst, WiFi, e-mail en meer."
+      },
+      "barcode": {
+        "name": "Barcode Generator",
+        "description": "Maak barcodes in meerdere formaten voor producten, voorraad en logistiek."
+      },
+      "password": {
+        "name": "Wachtwoord Generator",
+        "description": "Maak sterke, willekeurige wachtwoorden met aanpasbare tekentypes en lengte."
+      },
+      "lorem": {
+        "name": "Lorem Ipsum Generator",
+        "description": "Genereer direct Lorem Ipsum vultekst voor ontwerpen, mockups en prototypes."
+      },
+      "emoji": {
+        "name": "Emoji Kiezer & Kopiëerder",
+        "description": "Blader, zoek en kopieer emoji's direct voor je berichten en posts."
+      },
+      "notepad": {
+        "name": "Online Notitieblok",
+        "description": "Eenvoudig, snel online notitieblok met automatisch opslaan en bestandsbeheer."
+      },
+      "image": {
+        "name": "Afbeeldingsconverter",
+        "description": "Converteer afbeeldingen snel en eenvoudig naar verschillende formaten."
+      },
+      "unit": {
+        "name": "Eenheidsconverter",
+        "description": "Converteer maten, valuta, groottes en meer direct."
+      }
+    }
+  },
+  "Pricing": {
+    "title": "Prijsplannen",
+    "description": "Kies het perfecte plan. Alle plannen bevatten beveiliging en betrouwbaarheid van bedrijfsniveau.",
+    "popular": "Populair",
+    "perMonth": "/maand",
+    "customPlanTitle": "Heb je een aangepast plan nodig?",
+    "customPlanDescription": "Neem contact op met ons verkoopteam voor zakelijke oplossingen op maat van jouw behoeften.",
+    "contactSales": "Contact Verkoop",
+    "getStarted": "Beginnen",
+    "plans": {
+      "starter": {
+        "name": "Starter",
+        "price": "Gratis",
+        "description": "Perfect om te beginnen",
+        "features": [
+          "Tot 100 QR-codes/maand",
+          "Basisaanpassing",
+          "Standaard ondersteuning"
+        ]
+      },
+      "professional": {
+        "name": "Professional",
+        "price": "$99",
+        "description": "Beste voor groeiende bedrijven",
+        "features": [
+          "Tot 1.000 QR-codes/maand",
+          "Geavanceerde aanpassing",
+          "Prioritaire ondersteuning",
+          "Analysedashboard"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "Aangepast",
+        "description": "Voor grootschalige activiteiten",
+        "features": [
+          "Onbeperkte QR-codes",
+          "Volledige aanpassing",
+          "Toegewijde ondersteuning",
+          "Geavanceerde analyses",
+          "API-toegang"
+        ]
+      }
+    }
+  },
+  "Contact": {
+    "title": "Neem Contact op met TechTools",
+    "description": "Heb je vragen, feedback of hulp nodig? We staan klaar om te helpen. Neem contact op en we reageren zo snel mogelijk.",
+    "formTitle": "Stuur ons een bericht",
+    "name": "Naam",
+    "email": "E-mail",
+    "subject": "Onderwerp",
+    "message": "Bericht",
+    "namePlaceholder": "Je naam",
+    "emailPlaceholder": "jouw@email.com",
+    "subjectPlaceholder": "Hoe kunnen we helpen?",
+    "messagePlaceholder": "Vertel ons meer over je vraag...",
+    "sending": "Verzenden...",
+    "sendMessage": "Bericht Verzenden",
+    "information": "Contactgegevens",
+    "support": "Ondersteuning",
+    "available": "24/7 Beschikbaar",
+    "availability": "Beschikbaarheid",
+    "hours": "Ma - Vr: 9-18 uur UTC",
+    "followUs": "Volg Ons",
+    "quickResponse": "Snelle Reactie",
+    "quickResponseText": "We reageren doorgaans binnen 24 uur op alle vragen. Voeg bij dringende zaken \"URGENT\" toe aan je onderwerpregel.",
+    "errors": {
+      "configurationMissing": "EmailJS-configuratie ontbreekt. Controleer de omgevingsvariabelen.",
+      "sendFailed": "Bericht verzenden mislukt. Probeer het later opnieuw."
+    },
+    "success": {
+      "sent": "Bericht succesvol verzonden! We nemen snel contact met je op."
+    }
+  },
+  "Help": {
+    "meta": {
+      "title": "Hulp en Veelgestelde Vragen",
+      "description": "Krijg direct hulp, bekijk gebruikershandleidingen, doorzoek veelgestelde vragen en neem contact op met onze technische ondersteuning.",
+      "keywords": "hulp, ondersteuning, gebruikershandleiding, veelgestelde vragen, tech tools hulp"
+    },
+    "badge": "Ondersteuningscentrum",
+    "title": "Hoe Kunnen We Helpen?",
+    "description": "Doorzoek onze zelfhulpartikelen, bekijk documentatierichtlijnen of neem contact op met onze technische specialisten.",
+    "searchPlaceholder": "Zoek bronnen, onderwerpen of veelgestelde vragen...",
+    "faqTitle": "Veelgestelde Vragen",
+    "noResults": "Geen resultaten gevonden voor \"{search}\". Probeer andere zoekwoorden.",
+    "stillQuestions": "Nog Vragen?",
+    "stillQuestionsText": "Ons professionele ondersteuningsteam staat klaar om je te helpen. Ontvang aangepaste handleidingen, licentieopties of configuratieparameters.",
+    "submitTicket": "Ondersteuningsticket Indienen",
+    "community": "Community-Ondersteuning",
+    "discord": "Discord-Forum voor Ontwikkelaars",
+    "communityMembers": "Word lid van meer dan 1.200 leden van online hulpmiddelen",
+    "faqs": {
+      "safe": {
+        "question": "Zijn de productiviteitstools veilig in gebruik?",
+        "answer": "Ja! Alle berekenings-, opmaak-, QR-codering- en kleurkeuzeprocessen draaien volledig in je eigen browser. Je vertrouwelijke gegevens verlaten je apparaat nooit en worden niet op externe servers opgeslagen."
+      },
+      "offline": {
+        "question": "Kan ik TechTools zonder internetverbinding gebruiken?",
+        "answer": "Ja! Omdat de hulpmiddelen aan de clientzijde verwerken, kan de pagina volledig eenmalig worden geladen, en blijven kernfuncties zoals de Kleurkiezer, Typetest en QR-Generator ook offline werken."
+      },
+      "accuracy": {
+        "question": "Hoe nauwkeurig is de Internetsnelheidstest?",
+        "answer": "Deze maakt verbinding met edge-locaties om latentie, downloadmetingen en uploadbandbreedte te berekenen. De resultaten zijn zeer nauwkeurig, maar kunnen enigszins variëren afhankelijk van netwerkverkeer of andere actieve apps."
+      },
+      "contact": {
+        "question": "Hoe kan ik contact opnemen met technische ondersteuning?",
+        "answer": "Gebruik gewoon onze contactformulierpagina of neem rechtstreeks contact op via support@techtools.dev voor hulp bij bulkbewerkingen, API-licenties of het melden van bugs."
+      }
+    }
+  },
+  "Legal": {
+    "privacy": {
+      "meta": {
+        "title": "Privacybeleid",
+        "description": "Ontdek hoe TechTools gegevens van je lokale browser verzamelt, gebruikt en beschermt.",
+        "keywords": "privacy, voorwaarden, cookies, beveiliging, browseropslag"
+      },
+      "title": "Privacybeleid",
+      "updated": "Bijgewerkt op 5 juni 2026 • Realtime Nalevingsverklaring",
+      "clientSide": "100% Aan de Clientzijde",
+      "noCookies": "Nul Trackingcookies",
+      "noDataSales": "Geen Verkoop van Gegevens",
+      "sections": {
+        "scope": {
+          "title": "1. Reikwijdte & Kernintegriteit",
+          "paragraphs": [
+            "Bij TechTools is privacy van gebruikers onze hoogste prioriteit. Dit beleid beschrijft hoe onze webinterface parameters, gegevens of waarden verwerkt die worden verwerkt via onze Typesnelheidstest, Kleurkiezer en QR-Codegenerator.",
+            "Omdat ons platform native binnen je browser aan de clientzijde werkt, verzenden, analyseren, synchroniseren of verkopen we geen tekstuele inhoud, URL's, geüploade afbeeldingen of testmonsters naar onze servers."
+          ]
+        },
+        "cookies": {
+          "title": "2. Cookies & Lokale Opslag",
+          "paragraphs": [
+            "We kunnen standaard HTML5-lokale opslagruimte of veilige sleutels op je eigen apparaat gebruiken om voorkeuren zoals gekozen weergavesnelheden, kleurextractiegeschiedenis of aangepaste thema's tijdelijk op te slaan.",
+            "Deze waarden worden volledig lokaal op je apparaat opgeslagen en kunnen op elk moment volledig worden verwijderd door je browsercache te wissen. We gebruiken geen permanente trackingmetingen."
+          ]
+        },
+        "thirdParty": {
+          "title": "3. Integraties van Derden & Dimensionering",
+          "paragraphs": [
+            "Onze contactgegevens gebruiken EmailJS. Bij het indienen van e-mails of vragen via onze formulieren worden alleen de opgegeven naam, berichttekst en afzenderwaarden aan ondersteuningsmedewerkers geleverd. Geen van deze gegevens wordt in de cache van onze servers opgeslagen."
+          ]
+        },
+        "children": {
+          "title": "4. Richtlijnen voor Privacy van Kinderen",
+          "paragraphs": [
+            "Aangezien onze educatieve hulpmiddelen en diagnostische tests geen persoonlijk identificeerbare gegevens verzenden, zijn ze volledig veilig en geschikt voor gebruikers van alle leeftijden, inclusief kinderen onder de 13 jaar."
+          ]
+        }
+      }
+    },
+    "terms": {
+      "meta": {
+        "title": "Algemene Voorwaarden",
+        "description": "Ontdek onze richtlijnen voor digitaal gebruik, serverbeveiliging en nalevingsclausules.",
+        "keywords": "voorwaarden, condities, regels, overeenkomst, licenties"
+      },
+      "title": "Algemene Voorwaarden",
+      "effective": "Van kracht sinds 5 juni 2026 • Juridische Servicevoorwaarden",
+      "freeUse": "Volledig gratis voor algemeen gebruik",
+      "commercialUse": "Commerciële en afdrukrechten",
+      "sections": {
+        "acceptance": {
+          "title": "1. Aanvaarding van het Contract",
+          "text": "Door de TechTools-webapplicatie te openen, te bekijken of ermee te interacteren, ga je akkoord met en bent je gebonden aan deze juridische Algemene Voorwaarden. Als je niet akkoord gaat met deze voorwaarden, stop dan onmiddellijk met het gebruik van ons digitale platform."
+        },
+        "license": {
+          "title": "2. Software- & Toolslicentie",
+          "text": "We verlenen je een niet-exclusieve, niet-overdraagbare, herroepbare licentie om onze hulpmiddelen (Kleurkiezer, Internetsnelheidstest, QR-Generator en Typetest) te gebruiken voor persoonlijk, educatief of professioneel werk. Hoge-resolutie afdrukken, gedownloade afbeeldingen en geëxporteerde codeblokken die door onze software worden gegenereerd, zijn volledig van jou om te behouden, te delen en te commercialiseren."
+        },
+        "acceptableUse": {
+          "title": "3. Beleid voor Acceptabel Gebruik",
+          "text": "Je stemt ermee in geen pogingen te doen om onze codepatronen te reverse-engineeren, massale bot-payloads te verspreiden die zijn ontworpen om onze e-mailformulieren te verstoren, of onze pagina's in verborgen frames te verpakken voor frauduleus gebruik."
+        },
+        "warranty": {
+          "title": "4. Garantie-uitsluiting",
+          "text": "ALLE DIENSTEN EN CALCULATORS WORDEN GELEVERD \"ZOALS ZE ZIJN\" EN \"ZOALS BESCHIKBAAR\" ZONDER ENIGE UITDRUKKELIJKE OF IMPLICIETE GARANTIE, INCLUSIEF MAAR NIET BEPERKT TOT TIJDIGHEID, PRESTATIESTABILITEIT OF ALOMVATTENDE NAUWKEURIGHEID. TECHTOOLS IS IN GEEN GEVAL AANSPRAKELIJK VOOR ENIG GEVOLGSCHADE DOOR GEGEVENSVERLIES, VERBINDINGSONDERBREKING OF ONGEVAL TIJDENS GEBRUIK."
+        }
+      }
+    }
+  },
+  "NotFound": {
+    "title": "Pagina Niet Gevonden",
+    "description": "Sorry, de pagina die je zoekt bestaat niet of is verplaatst. We helpen je terug op het juiste spoor.",
+    "backHome": "Terug naar Startpagina",
+    "goHome": "Naar Startpagina",
+    "goBack": "Ga Terug",
+    "goToTools": "Naar Tools-pagina",
+    "exploreTools": "Ontdek Onze Tools",
+    "imageTools": "Afbeeldingstools",
+    "pdfTools": "PDF-Tools",
+    "allTools": "Alle Tools"
+  },
+  "Blog": {
+    "eyebrow": "Inzichten & Bronnen",
+    "title": "De Vakblog",
+    "description": "Diepgaand onderzoek, tactische handleidingen en structurele ontwerpen om je softwareontwikkeling en visuele workflow te versterken.",
+    "search": "Zoek artikelen, trefwoorden, onderwerpen...",
+    "categoryAll": "Categorie: Alle",
+    "category": "Categorie: {name}",
+    "tagAll": "Tag: Alle",
+    "tag": "Tag: {name}",
+    "writePost": "Nieuw Bericht Schrijven",
+    "noArticles": "Geen Artikelen Gevonden",
+    "noArticlesDescription": "We konden geen artikelen vinden die overeenkomen met je filters. Wis de filters of schrijf een nieuw blogbericht.",
+    "clearFilters": "Filters Wissen",
+    "featured": "UITGELICHT BERICHT",
+    "readFull": "Volledig Bericht Lezen",
+    "searchResults": "Zoekresultaten ({count})",
+    "allArticles": "Alle Artikelen"
+  },
+  "ToolCatalog": {
+    "Pdf": {
+      "categories": {
+        "organize": "PDF Organiseren",
+        "fromPdf": "Converteren vanuit PDF",
+        "toPdf": "Converteren naar PDF",
+        "optimizeEdit": "Optimaliseren & Bewerken",
+        "security": "PDF-Beveiliging"
+      },
+      "mergePdf": {
+        "name": "PDF Samenvoegen",
+        "short": "Combineer meerdere PDF-bestanden tot één.",
+        "long": "Selecteer meerdere PDF-bestanden, orden ze via slepen en neerzetten, en voeg ze samen tot één document van hoge kwaliteit."
+      },
+      "splitPdf": {
+        "name": "PDF Splitsen",
+        "short": "Extraheer specifieke paginabereiken uit een PDF.",
+        "long": "Splits een PDF in losse pagina's, of extraheer specifieke paginabereiken (bijv. pagina's 1-5, 10) in een gloednieuw PDF-document."
+      },
+      "compressPdf": {
+        "name": "PDF Comprimeren",
+        "short": "Verklein de bestandsgrootte van PDF's met behoud van kwaliteit.",
+        "long": "Optimaliseer bestanden en afbeeldingen in je PDF om de grootte te verkleinen, met behoud van scherpe typografie en resolutie."
+      },
+      "pdfToWord": {
+        "name": "PDF naar Word",
+        "short": "Converteer PDF naar een bewerkbaar DOCX-document.",
+        "long": "Extraheer paragrafen, opmaakraster en tabellen rechtstreeks uit je PDF naar een volledig bewerkbaar Microsoft Word .docx-bestand."
+      },
+      "wordToPdf": {
+        "name": "Word naar PDF",
+        "short": "Converteer Word DOCX-bestanden naar veilige PDF.",
+        "long": "Verwerk bestanden vanuit DOCX-formaten naar PDF-documenten van hoge kwaliteit met volledig behouden uitlijningen, lettertypen en elementen."
+      },
+      "pdfToPowerpoint": {
+        "name": "PDF naar PowerPoint",
+        "short": "Zet PDF om in PPTX-diavoorstellingen.",
+        "long": "Structureer teksten en titels van je PDF-pagina's tot volledig bewerkbare, presentatieklare Microsoft PowerPoint-dia's."
+      },
+      "powerpointToPdf": {
+        "name": "PowerPoint naar PDF",
+        "short": "Converteer PPT/PPTX-dia's naar PDF.",
+        "long": "Zet presentatiedia's (PPT/PPTX) om in hoogresolutie, gemakkelijk leesbare PDF-pagina's voor naadloos delen."
+      },
+      "pdfToExcel": {
+        "name": "PDF naar Excel",
+        "short": "Haal tabellen en gegevens naar Excel-spreadsheets.",
+        "long": "Extraheer meerkoloms rasterarrays en opgemaakte tabellijsten uit je PDF en zet ze in Microsoft Excel .xlsx-formaten."
+      },
+      "excelToPdf": {
+        "name": "Excel naar PDF",
+        "short": "Druk dynamische Excel-werkbladen af naar nette PDF.",
+        "long": "Formatteer spreadsheetrijen en indelingsroosters netjes, stel aangepaste breedteschaal in en maak van het werkboek een grootboekachtige PDF."
+      },
+      "pdfToJpg": {
+        "name": "PDF naar JPG",
+        "short": "Extraheer alle PDF-pagina's als aparte afbeeldingen.",
+        "long": "Render elke individuele pagina van een PDF-document naar een scherp, downloadbaar afbeeldingsformaat van hoge resolutie (JPEG/.jpg)."
+      },
+      "jpgToPdf": {
+        "name": "JPG naar PDF",
+        "short": "Voeg meerdere afbeeldingen samen tot één solide PDF.",
+        "long": "Upload aangepaste JPG-, PNG- en WebP-afbeeldingen, herschik ze naar wens, combineer groottes en genereer een PDF-werkboek met meerdere pagina's."
+      },
+      "rotatePdf": {
+        "name": "PDF Draaien",
+        "short": "Draai pagina's van een PDF visueel.",
+        "long": "Lees PDF-bestanden pagina voor pagina, bekijk ze en draai ze dynamisch in specifieke richtingen (90, 180, 270 graden)."
+      },
+      "unlockPdf": {
+        "name": "PDF Ontgrendelen",
+        "short": "Verwijder beveiligingswachtwoorden van aangepaste PDF's.",
+        "long": "Ontsleutel beveiligde bestanden, hef algemene bewerkingsrechten van gebruikers op en download ontgrendelde documenten zonder standaard beveiligingswaarschuwingen."
+      },
+      "protectPdf": {
+        "name": "PDF Beveiligen",
+        "short": "Versleutel PDF met veilige wachtwoordbeveiliging.",
+        "long": "Vergrendel je gevoelige PDF's door bestanden te beveiligen met wachtwoordparameters die overal om invoer vragen bij het openen."
+      },
+      "repairPdf": {
+        "name": "PDF Repareren",
+        "short": "Herstel beschadigde structuren of foutieve offsets.",
+        "long": "Standaardiseer opmaakstromen en herbouw foutieve kruisverwijzingstabellen (XREF) om laadwaarschuwingen te omzeilen."
+      },
+      "editPdf": {
+        "name": "PDF Bewerken",
+        "short": "Voeg tekstlabels, vormen en tekeningen toe aan pagina's.",
+        "long": "Plaats visueel responsieve tekstblokken, vormen, markeringslabels of handtekeningtekeningen direct op specifieke PDF-canvaslagen."
+      }
+    },
+    "Image": {
+      "categories": {
+        "compress": "Comprimeren",
+        "resizeCrop": "Formaat Wijzigen & Bijsnijden",
+        "convert": "Formaat Converteren",
+        "edit": "Aanpassen & Stylen",
+        "ai": "Verbeterd met AI"
+      },
+      "compressImage": {
+        "name": "Afbeelding Comprimeren",
+        "short": "Comprimeer JPG, PNG, SVG, GIF, WEBP en AVIF.",
+        "long": "Optimaliseer de bestandsgrootte terwijl de visuele kwaliteit zo hoog mogelijk blijft. Comprimeert JPEG-, PNG-, WEBP-, GIF- en SVG-formaten in real time."
+      },
+      "resizeImage": {
+        "name": "Afbeelding Formaat Wijzigen",
+        "short": "Stel breedte- en hoogte-afmetingen in pixels in.",
+        "long": "Wijzig het formaat van afbeeldingen op percentage of doelbreedte/-hoogte in pixels. Optie om de verhouding te vergrendelen of populaire social media canvas-presets te selecteren."
+      },
+      "cropImage": {
+        "name": "Afbeelding Bijsnijden",
+        "short": "Snijd afbeeldingen bij met een interactief selectiekader.",
+        "long": "Verwijder randen of isoleer gewenste focusgebieden met visuele ankers. Biedt populaire aangepaste beeldverhoudingen en bijsnijdsjablonen."
+      },
+      "rotateImage": {
+        "name": "Afbeelding Draaien",
+        "short": "Draai afbeeldingen en spiegel ze op elke as.",
+        "long": "Spiegel afbeeldingen horizontaal, verticaal, of draai ze rechtsom/linksom in stappen van 90 graden voor perfecte uitlijning."
+      },
+      "watermarkImage": {
+        "name": "Watermerk op Afbeelding",
+        "short": "Breng aangepaste tekstoverlays of merklogo's aan.",
+        "long": "Bescherm je creaties door tekst of kleine transparante overlaylogo's te plaatsen. Pas positie, grootte en opaciteit van het merk aan."
+      },
+      "removeBackground": {
+        "name": "AI Achtergrond Verwijderen",
+        "short": "Automatische extractie van transparante achtergrond.",
+        "long": "Wis effen of complexe achtergronden om schone transparante PNG-bestanden te maken. Maakt gebruik van client-side randcontrastdetectie en slimme filters."
+      },
+      "upscaleImage": {
+        "name": "AI Afbeeldingsvergroter",
+        "short": "Vergroot resolutie met bicubische randverscherping.",
+        "long": "Interpoleer pixels tot 4x terwijl slimme scherpte-filters worden toegepast om details te herstellen, contouren te verscherpen en visuele vaagheid te verminderen."
+      },
+      "imageToJpg": {
+        "name": "Converteren naar JPG",
+        "short": "Render PNG, WEBP, AVIF, HEIC, TIFF opnieuw naar JPG.",
+        "long": "Converteer meerdere gelaagde afbeeldingsformaten in batches naar een gestandaardiseerd, zeer compatibel JPEG-formaat."
+      },
+      "imageToPng": {
+        "name": "Converteren naar PNG",
+        "short": "Render WebP, JPEG, AVIF opnieuw naar PNG-formaten.",
+        "long": "Garandeer transparantievectoren en scherpe rasters door binnenkomende bestanden te compileren tot PNG-standaardformaten van hoge kwaliteit voor het web."
+      },
+      "imageToWebp": {
+        "name": "Converteren naar WebP",
+        "short": "Zet zware afbeeldingen om in geoptimaliseerde WebP.",
+        "long": "Converteer mappen met PNG- of JPG-bestanden naar ultralichte WebP-formaten om website- en applicatiesnelheden te maximaliseren."
+      },
+      "imageToAvif": {
+        "name": "Converteren naar AVIF",
+        "short": "Converteer afbeeldingen naar next-gen AVIF-standaarden.",
+        "long": "Exporteer afbeeldingen van hoge kwaliteit naar AVIF-formaat, met hoge kwaliteit en kleinere bestanden dan WebP."
+      },
+      "jpgToPng": {
+        "name": "JPG naar PNG",
+        "short": "Converteer JPG-bestanden naar transparante PNG.",
+        "long": "Zet platte, basis JPG/JPEG-documenten om in lossless, kleurrijke PNG-bestanden en behoud originele verlopen zonder artefacten."
+      },
+      "pngToJpg": {
+        "name": "PNG naar JPG",
+        "short": "Converteer PNG-afbeeldingen naar zeer compatibele JPG's.",
+        "long": "Plat alpha-transparante PNG-vectoren af tot standaard gerasteriseerde JPEG-rasters met effen achtergrondwaarden."
+      },
+      "webpToJpg": {
+        "name": "WebP naar JPG",
+        "short": "Decodeer WebP-pagina's naar standaard JPG-afbeeldingen.",
+        "long": "Verwerk veilig ruimte-efficiënte WebP-afbeeldingen naar statische JPEG-formaten om universele compatibiliteit in lokale hulpmiddelen te behouden."
+      },
+      "webpToPng": {
+        "name": "WebP naar PNG",
+        "short": "Herstel alfakanaaltransparantie naar PNG.",
+        "long": "Decomprimeer lichte, web-geoptimaliseerde WebP-bestanden terug naar volledig bewerkbare, lossless PNG-bestanden met intacte lagen."
+      },
+      "gifToJpg": {
+        "name": "GIF naar JPG",
+        "short": "Converteer geanimeerde GIF-frames naar statische JPG's.",
+        "long": "Isoleer individuele animatiestadia uit geladen GIF's of geef het eerste frame weer als een lichte, statische JPG-snapshot."
+      },
+      "svgToPng": {
+        "name": "SVG naar PNG",
+        "short": "Rasteriseer vector-SVG's naar rijke PNG-lay-outs.",
+        "long": "Laad vectordefinities, schaal ze naar scherpe afmetingen en compileer ze tot volledig compatibele, rijke gerasteriseerde PNG-bestanden."
+      },
+      "batchConvert": {
+        "name": "Batch Formaatconverter",
+        "short": "Converteer tientallen afbeeldingsformaten tegelijk.",
+        "long": "Importeer elke mix van JPG-, PNG-, WEBP-, GIF-, SVG-, BMP-, TIFF-, ICO-afbeeldingen, kies een doel-exportformaat en compileer ze binnen seconden."
+      },
+      "imageEditor": {
+        "name": "Creatieve Afbeeldingseditor",
+        "short": "Fotostudio met volledig canvasontwerp.",
+        "long": "Teken, krabbel, voeg tekstvakken toe, filters (sepia, monochroom, omkeren), pas kleurschuifregelaars aan, schaal, snijd bij en voeg watermerken toe in één uniforme werkruimte."
+      }
+    }
+  }
+}

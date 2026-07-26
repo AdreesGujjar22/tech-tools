@@ -1,0 +1,4 @@
+{
+  "conversionTargets": "Konvertierungsziele",
+  "description": "Führt eine vollständige Textextraktion in allen Abschnitten durch und gibt sie nativ in Standard-Word-`.docx`-Dateiblöcken aus."
+}

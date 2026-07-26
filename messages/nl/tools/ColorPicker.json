@@ -1,0 +1,15 @@
+{
+  "title": "Kleurkiezer",
+  "download": "Downloaden",
+  "description": "Haal prachtige kleurenpaletten uit elke afbeelding, of pas individuele kleuren nauwkeurig aan en kopieer ze.",
+  "imageTab": "Afbeelding",
+  "imageExtractor": "Afbeeldingskleurextractor",
+  "uploadImage": "Upload een afbeelding",
+  "browseOrDrop": "Klik om te bladeren of sleep en zet neer",
+  "palette": "Kleurenpalet",
+  "copyAll": "Alles kopiëren",
+  "details": "Details van Geëxtraheerde Kleur",
+  "useAnother": "Andere afbeelding gebruiken",
+  "empty": "Upload de afbeelding van je keuze om automatisch het kleurenpalet te extraheren",
+  "copied": "{format} gekopieerd!"
+}

@@ -1,0 +1,10 @@
+{
+  "badge": "%100 İstemci Tarafında Görsel İşleme",
+  "title": "Görselleri toplu olarak sıkıştırmak, dönüştürmek ve düzenlemek için SaaS Araçları",
+  "description": "Yıldırım hızında kırpma, ölçeklendirme, filigranlama, filtreler, arka plan anahtarı çıkarma ve dönüştürmelerin kilidini açın. Tamamen tarayıcı bağlamınızda izole edilmiştir.",
+  "searchPlaceholder": "Görsel araçlarını ara (ör. kırp, arka plan, png)...",
+  "allTools": "Tüm Araçlar",
+  "clear": "Temizle",
+  "noMatches": "Eşleşen araç yok",
+  "noMatchesDescription": "Parametrelerinize uyan hiçbir dönüştürücü veya araç bulamadık. Arama terimlerinizi kontrol edin."
+}

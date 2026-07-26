@@ -2,7 +2,7 @@ import { BlogPostReader } from "./BlogPostReader";
 
 import type { Metadata } from "next";
 import { getLocalizedAlternates, getRequestLocale } from "@/lib/server-locale";
-import { messages } from "../../../messages";
+import { loadMessages } from "../../../messages";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -11,7 +11,8 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const locale = await getRequestLocale();
-  const blog = messages[locale].Blog;
+  const loaded = await loadMessages(locale, ["meta"]);
+  const blog = (loaded.Metadata as Record<string, { title: string; description: string; keywords: string }>).blog;
   const alternates = await getLocalizedAlternates(`/blog/${slug}`);
   const title = blog.title;
   const description = blog.description;
@@ -19,6 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title,
     description,
+    keywords: blog.keywords,
     alternates,
     openGraph: {
       title,

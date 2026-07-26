@@ -1,0 +1,27 @@
+{
+  "title": "Pemilih & Penyalin Emoji",
+  "description": "Jelajahi dan salin emoji secara instan. Temukan emoji yang sempurna untuk setiap kesempatan.",
+  "search": "Cari emoji...",
+  "recent": "Baru Disalin",
+  "clickToCopy": "Klik untuk menyalin",
+  "noEmojis": "Tidak ada emoji ditemukan",
+  "differentSearch": "Coba istilah pencarian yang berbeda",
+  "copyInstruction": "Klik emoji apa pun untuk menyalinnya ke clipboard Anda",
+  "copied": "{emoji} Disalin!",
+  "emoji": "Emoji: {emoji}",
+  "categories": {
+    "smileys": "Wajah Tersenyum & Emosi",
+    "hearts": "Hati & Cinta",
+    "hands": "Gestur Tangan",
+    "people": "Orang",
+    "food": "Makanan & Minuman",
+    "animals": "Hewan",
+    "travel": "Perjalanan & Tempat",
+    "activities": "Aktivitas & Olahraga",
+    "objects": "Objek",
+    "flags": "Bendera",
+    "clothing": "Pakaian & Aksesori",
+    "nature": "Alam & Cuaca",
+    "symbols": "Simbol & Tanda"
+  }
+}

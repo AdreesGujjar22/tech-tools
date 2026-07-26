@@ -1,0 +1,16 @@
+{
+  "title": "Tes Kecepatan",
+  "description": "Uji kecepatan internet Anda dengan jaringan Cloudflare",
+  "downloadSpeed": "Kecepatan Unduh (Mbps)",
+  "uploadSpeed": "Kecepatan Unggah (Mbps)",
+  "testingDownload": "Menguji Unduhan…",
+  "testingUpload": "Menguji Unggahan…",
+  "ready": "Siap menguji kecepatan Anda?",
+  "complete": "✓ Tes Selesai!",
+  "download": "Unduh",
+  "upload": "Unggah",
+  "start": "Mulai Tes Kecepatan",
+  "testing": "Menguji…",
+  "results": "Hasil Anda akan muncul di sini setelah pengujian selesai.",
+  "poweredBy": "Didukung oleh jaringan global Cloudflare"
+}

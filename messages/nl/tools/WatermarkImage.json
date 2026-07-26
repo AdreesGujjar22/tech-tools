@@ -1,0 +1,13 @@
+{
+  "panel": "Watermerkpaneel",
+  "positionGrid": "Positieraster voor watermerk",
+  "stampLabel": "Label voor merkstempel",
+  "defaultStamp": "© MERKSTEMPEL",
+  "fontSize": "Lettergrootte (% van canvas)",
+  "textFillColor": "Vulkleur van tekst",
+  "opacity": "Dekking van watermerk ({value}%)",
+  "propertiesOverview": "Overzicht van eigenschappen",
+  "positionType": "Positietype",
+  "stampText": "Stempeltekst",
+  "none": "Geen"
+}

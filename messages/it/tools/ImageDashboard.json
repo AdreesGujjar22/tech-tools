@@ -1,0 +1,10 @@
+{
+  "badge": "Elaborazione Immagini 100% Lato Client",
+  "title": "Strumenti SaaS per comprimere, convertire e modificare immagini in batch",
+  "description": "Sblocca ritaglio, ridimensionamento, filigrane, filtri, rimozione dello sfondo e conversioni velocissime. Completamente isolato all'interno del contesto del tuo browser.",
+  "searchPlaceholder": "Cerca strumenti immagine (es. ritaglio, sfondo, png)...",
+  "allTools": "Tutti gli Strumenti",
+  "clear": "Cancella",
+  "noMatches": "Nessuno strumento corrispondente",
+  "noMatchesDescription": "Non siamo riusciti a trovare convertitori o strumenti corrispondenti ai tuoi parametri. Verifica i termini di ricerca."
+}

@@ -1,0 +1,16 @@
+{
+  "title": "Snelheidstest",
+  "description": "Test je internetsnelheid met het netwerk van Cloudflare",
+  "downloadSpeed": "Downloadsnelheid (Mbps)",
+  "uploadSpeed": "Uploadsnelheid (Mbps)",
+  "testingDownload": "Download Wordt Getest…",
+  "testingUpload": "Upload Wordt Getest…",
+  "ready": "Klaar om je snelheid te testen?",
+  "complete": "✓ Test Voltooid!",
+  "download": "Downloaden",
+  "upload": "Upload",
+  "start": "Snelheidstest Starten",
+  "testing": "Bezig met testen…",
+  "results": "Je resultaten verschijnen hier zodra de test is voltooid.",
+  "poweredBy": "Mogelijk gemaakt door het wereldwijde netwerk van Cloudflare"
+}

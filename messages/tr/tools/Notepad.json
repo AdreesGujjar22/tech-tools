@@ -1,0 +1,18 @@
+{
+  "placeholder": "Notlarınızı buraya yazmaya başlayın...",
+  "download": "İndir",
+  "copy": "Kopyala",
+  "clear": "Temizle",
+  "newNote": "Yeni bir not başlatılsın mı?",
+  "clearNote": "Bu not temizlensin mi?",
+  "continue": "Devam Et",
+  "newDescription": "Mevcut notunuz kaybolacak. Bu işlem geri alınamaz.",
+  "clearDescription": "Mevcut notunuz temizlenecek. Bu işlem geri alınamaz.",
+  "cancel": "İptal",
+  "open": "Aç",
+  "undo": "Geri Al",
+  "lineColumn": "Satır {line}, Sütun {column}",
+  "counts": "Karakter {characters}, Kelime {words}",
+  "autoSaved": "Otomatik kaydedildi {time}",
+  "copyBlocked": "Kopyalama engellendi. Metni seçin ve Ctrl+A, ardından Ctrl+C kullanın."
+}

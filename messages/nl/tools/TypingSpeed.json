@@ -1,0 +1,20 @@
+{
+  "punctuation": "leestekens",
+  "numbers": "cijfers",
+  "time": "tijd",
+  "words": "woorden",
+  "quote": "citaat",
+  "start": "Klik hier of druk op een willekeurige toets om te beginnen",
+  "restart": "Herstarten (Tab + Enter)",
+  "wpm": "wpm",
+  "wordsPerMinute": "woorden per minuut",
+  "raw": "ruw",
+  "rawWpm": "ruwe wpm",
+  "accuracy": "nauwkeurigheid",
+  "correctChars": "correcte tekens",
+  "correct": "correct",
+  "incorrect": "incorrect",
+  "duration": "duur",
+  "wpmOverTime": "WPM in de tijd",
+  "newTest": "Nieuwe Test"
+}

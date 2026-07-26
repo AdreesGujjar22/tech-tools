@@ -1,0 +1,136 @@
+{
+  "Metadata": {
+    "site": {
+      "title": "Tech Tools - Outils Gratuits en Ligne pour PDF, Images et IA",
+      "description": "Tech Tools propose des outils gratuits en ligne pour PDF, l'édition d'images, des utilitaires basés sur l'IA, des convertisseurs de fichiers, des compresseurs, des générateurs et des solutions de productivité. Rapides, sécurisés et faciles à utiliser.",
+      "keywords": "outils pdf, outils image, outils ia, fusionner pdf, diviser pdf, compresser image, convertisseur image, convertisseur pdf, outils en ligne, outils gratuits, outils de productivite"
+    },
+    "home": {
+      "title": "Utilitaires de Productivité en Ligne Modernes",
+      "description": "Des outils en ligne rapides, sécurisés et modernes pour les développeurs, créateurs et tâches numériques quotidiennes. Comprend un générateur de QR code, un test de vitesse de frappe, un test de vitesse internet, un sélecteur de couleurs et plus encore.",
+      "keywords": "utilitaires pour developpeurs, scanner qr code, tuteur de frappe, test de vitesse internet, outils de fragments de code, convertisseur en ligne securise"
+    },
+    "about": {
+      "title": "À Propos - Tech Tools",
+      "description": "Découvrez Tech Tools, notre mission consistant à proposer des outils gratuits en ligne pour PDF, images, utilitaires IA et solutions de productivité.",
+      "keywords": "a propos, a propos de tech tools, mission, vision"
+    },
+    "pricing": {
+      "title": "Tarifs - Tech Tools",
+      "description": "Découvrez nos plans tarifaires. La plupart de nos outils sont entièrement gratuits, avec des options premium disponibles.",
+      "keywords": "tarifs, plans, premium, abonnements"
+    },
+    "contact": {
+      "title": "Contactez TechTools",
+      "description": "Des questions, des commentaires ou besoin d'aide ? Contactez TechTools et nous vous répondrons dans les plus brefs délais.",
+      "keywords": "contact, support, TechTools"
+    },
+    "help": {
+      "title": "Aide et Foire Aux Questions",
+      "description": "Obtenez une aide instantanée, consultez les guides utilisateur, parcourez la FAQ et contactez notre support technique.",
+      "keywords": "aide, support, guide utilisateur, faq, aide tech tools"
+    },
+    "privacy": {
+      "title": "Politique de Confidentialité",
+      "description": "Découvrez comment TechTools collecte, utilise et protège les données de votre navigateur local.",
+      "keywords": "confidentialite, conditions, cookies, securite, stockage navigateur"
+    },
+    "terms": {
+      "title": "Conditions Générales",
+      "description": "Découvrez nos directives d'utilisation numérique, la sécurité serveur et les clauses de conformité.",
+      "keywords": "conditions, regles, accord, licences"
+    },
+    "qrGenerator": {
+      "title": "Générateur de Code QR",
+      "description": "Générateur de code QR gratuit. Créez des codes QR pour des URL, du texte, une vCard, un WiFi et plus encore. Téléchargement et personnalisation instantanés.",
+      "keywords": "code qr, generateur de code qr, generateur qr, code-barres, generateur de codes"
+    },
+    "barcodeGenerator": {
+      "title": "Générateur de Code-Barres",
+      "description": "Générez des codes-barres instantanément. Créez des CODE128, CODE39, EAN13, UPC et plus encore. Téléchargement et personnalisation instantanés.",
+      "keywords": "generateur de code-barres, creer code-barres, createur de code-barres, CODE128, EAN13, UPC"
+    },
+    "barcodeReader": {
+      "title": "Lecteur de Code-Barres et QR",
+      "description": "Scannez des codes QR et des codes-barres à partir d'images importées ou de la caméra de votre appareil, en toute sécurité dans votre navigateur.",
+      "keywords": "lecteur qr, scanner de code-barres, scanner image qr, scanner code-barres avec webcam"
+    },
+    "passwordGenerator": {
+      "title": "Générateur de Mots de Passe",
+      "description": "Générez des mots de passe forts et aléatoires instantanément. Personnalisez la longueur, les types de caractères et créez des mots de passe sécurisés pour tous vos comptes.",
+      "keywords": "generateur de mots de passe, mot de passe fort, mot de passe aleatoire, createur de mot de passe, mot de passe securise"
+    },
+    "loremGenerator": {
+      "title": "Générateur de Lorem Ipsum",
+      "description": "Générez du texte de remplissage Lorem Ipsum instantanément. Créez des paragraphes, des phrases ou des mots pour vos designs et projets.",
+      "keywords": "generateur de lorem ipsum, texte de remplissage, lorem ipsum, faux texte, texte de test"
+    },
+    "emojiPicker": {
+      "title": "Sélecteur et Copieur d'Emojis",
+      "description": "Parcourez, recherchez et copiez des emojis facilement. Trouvez l'emoji parfait pour vos messages et publications.",
+      "keywords": "selecteur d'emojis, copieur d'emojis, rechercher emojis, emojis, emoticones"
+    },
+    "notepad": {
+      "title": "Bloc-Notes en Ligne - Tech Tools",
+      "description": "Bloc-notes en ligne gratuit avec sauvegarde automatique, téléchargement/importation de fichiers et comptage de mots/caractères en temps réel.",
+      "keywords": "bloc-notes, bloc-notes en ligne, editeur de texte, prendre des notes, editeur de texte en ligne"
+    },
+    "colorPicker": {
+      "title": "Sélecteur de Couleurs - Tech Tools",
+      "description": "Outil gratuit de sélection de couleurs en ligne. Extrayez des couleurs à partir d'images, générez des palettes de couleurs et convertissez entre différents formats de couleur.",
+      "keywords": "selecteur de couleurs, convertisseur de couleurs, palette de couleurs, couleur hexadecimale, couleur rgb"
+    },
+    "speedTest": {
+      "title": "Test de Vitesse - Tech Tools",
+      "description": "Testez la vitesse de votre connexion internet avec Tech Tools. Vérifiez la vitesse de téléchargement, d'envoi et le ping en quelques secondes.",
+      "keywords": "test de vitesse, vitesse internet, test de connexion, test de bande passante, ping"
+    },
+    "typingSpeed": {
+      "title": "Test de Vitesse de Frappe - Tech Tools",
+      "description": "Testez votre vitesse de frappe et améliorez vos MPM. Test de frappe gratuit en ligne avec suivi de la précision et des résultats.",
+      "keywords": "vitesse de frappe, test de frappe, mpm, dactylographie, test de clavier"
+    },
+    "tools": {
+      "title": "Outils - Collection Tech Tools",
+      "description": "Découvrez tous nos outils gratuits en ligne, y compris des outils PDF, image, des utilitaires IA et des solutions de productivité.",
+      "keywords": "outils, outils en ligne, outils gratuits, utilitaires"
+    },
+    "pdf": {
+      "title": "Outils PDF - Convertir, Fusionner, Diviser et Compresser des PDF | Tech Tools",
+      "description": "Outils PDF gratuits en ligne. Fusionnez des PDF, divisez des PDF, compressez des PDF, convertissez vers/depuis PDF, extrayez des pages, modifiez des PDF et bien plus.",
+      "keywords": "outils pdf, fusionner pdf, diviser pdf, compresser pdf, convertisseur pdf, pdf vers word, word vers pdf, jpg vers pdf"
+    },
+    "image": {
+      "title": "Outils Image - Compresser, Convertir et Modifier des Images | Tech Tools",
+      "description": "Outils image gratuits en ligne. Compressez des images, convertissez des formats (JPG, PNG, WebP), redimensionnez, recadrez, faites pivoter, supprimez l'arrière-plan et plus.",
+      "keywords": "outils image, compresser image, convertisseur image, redimensionner image, recadrer image, editeur d'image, jpg vers png, png vers jpg"
+    },
+    "customization": {
+      "title": "Personnalisation - Tech Tools",
+      "description": "Personnalisez votre expérience sur Tech Tools. Ajustez les paramètres, thèmes et préférences.",
+      "keywords": "personnalisation, parametres, preferences, themes"
+    }
+  },
+  "blog": {
+    "title": "Le Blog du Métier",
+    "description": "Enquêtes approfondies, guides pratiques et conceptions structurelles pour dynamiser votre ingénierie logicielle et votre flux de travail visuel.",
+    "keywords": "blog, articles, guides, tutoriels, blog d'outils technologiques"
+  },
+  "seo": {
+    "home": "Tous Vos Outils Technologiques Essentiels au Même Endroit",
+    "tools": {
+      "UpscaleImage": "AI Image Upscaler",
+      "BackgroundRemover": "Suppresseur d'Arrière-Plan",
+      "QrGenerator": "Générateur de Code QR",
+      "BarcodeGenerator": "Générateur de Code-Barres",
+      "BarcodeReader": "Lecteur de Code-Barres et QR",
+      "PasswordGenerator": "Générateur de Mots de Passe",
+      "LoremGenerator": "Générateur de Lorem Ipsum",
+      "EmojiPicker": "Sélecteur et Copieur d'Emojis",
+      "ColorPicker": "Sélecteur de Couleurs",
+      "PdfDashboard": "Tous les outils dont vous avez besoin pour optimiser et maîtriser les PDF",
+      "ImageDashboard": "Outils pour compresser, convertir et modifier des images par lots",
+      "SpeedTest": "Test de Vitesse"
+    }
+  }
+}

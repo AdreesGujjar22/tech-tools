@@ -1,0 +1,27 @@
+{
+  "title": "Emoji Seçici ve Kopyalayıcı",
+  "description": "Emojilere anında göz atın ve kopyalayın. Her durum için mükemmel emojiyi bulun.",
+  "search": "Emoji ara...",
+  "recent": "Son Kopyalananlar",
+  "clickToCopy": "Kopyalamak için tıklayın",
+  "noEmojis": "Emoji bulunamadı",
+  "differentSearch": "Farklı bir arama terimi deneyin",
+  "copyInstruction": "Panonuza kopyalamak için herhangi bir emojiye tıklayın",
+  "copied": "{emoji} Kopyalandı!",
+  "emoji": "Emoji: {emoji}",
+  "categories": {
+    "smileys": "Yüz İfadeleri ve Duygular",
+    "hearts": "Kalpler ve Aşk",
+    "hands": "El Hareketleri",
+    "people": "İnsanlar",
+    "food": "Yiyecek ve İçecek",
+    "animals": "Hayvanlar",
+    "travel": "Seyahat ve Yerler",
+    "activities": "Aktiviteler ve Sporlar",
+    "objects": "Nesneler",
+    "flags": "Bayraklar",
+    "clothing": "Giyim ve Aksesuarlar",
+    "nature": "Doğa ve Hava Durumu",
+    "symbols": "Semboller ve İşaretler"
+  }
+}

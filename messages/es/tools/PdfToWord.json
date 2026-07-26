@@ -1,0 +1,4 @@
+{
+  "conversionTargets": "Objetivos de conversión",
+  "description": "Realiza una extracción completa de texto en todas las secciones y lo genera de forma nativa en bloques de archivo Word `.docx` estándar."
+}

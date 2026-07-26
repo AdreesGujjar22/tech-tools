@@ -1,5 +1,5 @@
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 31536000,
@@ -18,23 +18,7 @@ const nextConfig = {
       },
     ],
   },
-  headers: async () => {
-    return [
-      {
-        source: "/:path*",
-        headers: [
-          {
-            key: "Cross-Origin-Opener-Policy",
-            value: "same-origin"
-          },
-          {
-            key: "Cross-Origin-Embedder-Policy",
-            value: "require-corp"
-          }
-        ]
-      }
-    ];
-  }
+
 };
 
 export default nextConfig;

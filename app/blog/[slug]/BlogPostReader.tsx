@@ -12,6 +12,7 @@ import { Link, useNavigate } from "@/lib/router-compat";
 import { toast } from "sonner";
 import { motion } from "motion/react";
 import Image from "next/image";
+import DOMPurify from "isomorphic-dompurify";
 
 export function BlogPostReader({ slug }: { slug: string }) {
   const navigate = useNavigate();
@@ -202,7 +203,7 @@ export function BlogPostReader({ slug }: { slug: string }) {
           {/* Body Content rendered from Jodit HTML editor */}
           <div
             className="prose max-w-none text-foreground/90 font-sans tracking-wide leading-relaxed text-base md:text-lg"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
           />
 
           {/* Tags list footer */}

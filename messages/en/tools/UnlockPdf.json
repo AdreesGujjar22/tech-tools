@@ -1,0 +1,6 @@
+{
+  "unlockParameters": "Unlock Parameters",
+  "enterPassword": "Enter Unlock Password",
+  "passwordPlaceholder": "Leave blank if standard PDF...",
+  "protectPdfNote": "If the PDF was encrypted using our Protect PDF tool, supply the key above to lift lock constraints client-side."
+}

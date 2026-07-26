@@ -1,0 +1,11 @@
+{
+  "settings": "Impostazioni Ritaglio",
+  "aspectRatio": "Proporzioni",
+  "free": "Libero",
+  "square": "1:1 Quadrato",
+  "interactiveCropArea": "Area di Ritaglio Interattiva",
+  "previewAlt": "Anteprima ritaglio",
+  "outputDimensions": "Dimensioni di Output",
+  "startXY": "Inizio X, Y",
+  "sizeWH": "Dimensione L x A"
+}

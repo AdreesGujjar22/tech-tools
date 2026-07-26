@@ -1,0 +1,21 @@
+{
+  "title": "Lorem Ipsum Generator",
+  "description": "Generate placeholder Lorem Ipsum text instantly for designs, mockups, and prototypes.",
+  "premium": "Premium Utility",
+  "copied": "Copied!",
+  "copy": "Copy",
+  "customize": "Customize Lorem Text",
+  "generateType": "Generate Type",
+  "paragraphs": "Paragraphs",
+  "sentences": "Sentences",
+  "words": "Words",
+  "numberOf": "Number of {type}",
+  "wordCount": "Words:",
+  "characterCount": "Characters:",
+  "generatedText": "Generated Text",
+  "generating": "Generating Lorem Ipsum...",
+  "download": "Download text",
+  "share": "Share link",
+  "privacy": "All processing is conducted safely in-browser. Perfect for mockups, designs, and prototypes.",
+  "copyManual": "Copy text manually from the text area"
+}

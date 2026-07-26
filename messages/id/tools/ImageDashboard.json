@@ -1,0 +1,10 @@
+{
+  "badge": "Pemrosesan Gambar 100% Sisi Klien",
+  "title": "Alat SaaS untuk mengompres, mengonversi, dan mengedit gambar secara batch",
+  "description": "Buka kunci pemotongan, penskalaan, pemberian watermark, filter, penghapusan latar belakang, dan konversi yang sangat cepat. Sepenuhnya terisolasi dalam konteks browser Anda.",
+  "searchPlaceholder": "Cari alat gambar (mis. potong, latar belakang, png)...",
+  "allTools": "Semua Alat",
+  "clear": "Hapus",
+  "noMatches": "Tidak ada alat yang cocok",
+  "noMatchesDescription": "Kami tidak dapat menemukan konverter atau alat yang sesuai dengan parameter Anda. Periksa istilah pencarian Anda."
+}

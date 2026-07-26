@@ -1,0 +1,21 @@
+{
+  "title": "Generador de Lorem Ipsum",
+  "description": "Genera texto de relleno Lorem Ipsum al instante para diseños, maquetas y prototipos.",
+  "premium": "Utilidad Premium",
+  "copied": "¡Copiado!",
+  "copy": "Copiar",
+  "customize": "Personalizar Texto Lorem",
+  "generateType": "Tipo de Generación",
+  "paragraphs": "Párrafos",
+  "sentences": "Oraciones",
+  "words": "Palabras",
+  "numberOf": "Número de {type}",
+  "wordCount": "Palabras:",
+  "characterCount": "Caracteres:",
+  "generatedText": "Texto Generado",
+  "generating": "Generando Lorem Ipsum...",
+  "download": "Descargar texto",
+  "share": "Compartir enlace",
+  "privacy": "Todo el procesamiento se realiza de forma segura en el navegador. Perfecto para maquetas, diseños y prototipos.",
+  "copyManual": "Copia el texto manualmente desde el área de texto"
+}

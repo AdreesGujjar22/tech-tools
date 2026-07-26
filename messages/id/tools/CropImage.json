@@ -1,0 +1,11 @@
+{
+  "settings": "Pengaturan Pemotongan",
+  "aspectRatio": "Rasio Aspek",
+  "free": "Bebas",
+  "square": "1:1 Persegi",
+  "interactiveCropArea": "Area Pemotongan Interaktif",
+  "previewAlt": "Pratinjau pemotongan",
+  "outputDimensions": "Dimensi Output",
+  "startXY": "Mulai X, Y",
+  "sizeWH": "Ukuran L x T"
+}

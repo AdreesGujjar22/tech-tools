@@ -1,0 +1,18 @@
+{
+  "placeholder": "Commencez à taper vos notes ici...",
+  "download": "Télécharger",
+  "copy": "Copier",
+  "clear": "Effacer",
+  "newNote": "Commencer une nouvelle note ?",
+  "clearNote": "Effacer cette note ?",
+  "continue": "Continuer",
+  "newDescription": "Votre note actuelle sera perdue. Cette action est irréversible.",
+  "clearDescription": "Votre note actuelle sera effacée. Cette action est irréversible.",
+  "cancel": "Annuler",
+  "open": "Ouvrir",
+  "undo": "Annuler l'Action",
+  "lineColumn": "Ligne {line}, Colonne {column}",
+  "counts": "Caractères {characters}, Mots {words}",
+  "autoSaved": "Sauvegardé automatiquement {time}",
+  "copyBlocked": "La copie a été bloquée. Sélectionnez le texte et utilisez Ctrl+A, puis Ctrl+C."
+}

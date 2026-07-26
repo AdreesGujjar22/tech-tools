@@ -1,18 +1,19 @@
 import React from "react";
 import type { Metadata } from "next";
 import { getLocalizedAlternates, getRequestLocale } from "@/lib/server-locale";
-import { messages } from "../../messages";
+import { loadMessages } from "../../messages";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getRequestLocale();
-  const blog = messages[locale].Blog;
+  const loaded = await loadMessages(locale, ["meta"]);
+  const blog = (loaded.Metadata as Record<string, { title: string; description: string; keywords: string }>).blog;
   const title = blog.title;
   const description = blog.description;
 
   return {
     title,
     description,
-    keywords: ["blog", "articles", "guides", "tutorials", "tech tools blog"],
+    keywords: blog.keywords,
     alternates: await getLocalizedAlternates("/blog"),
     openGraph: {
       title,

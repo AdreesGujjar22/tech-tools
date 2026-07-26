@@ -1,0 +1,10 @@
+{
+  "badge": "100% Client-Side Image Processing",
+  "title": "SaaS Tools to compress, convert, and edit images in batch",
+  "description": "Unlock extremely fast cropping, scaling, watermarking, filters, background key subtraction, and conversions. Sandboxed entirely within your browser context.",
+  "searchPlaceholder": "Search image tools (e.g., crop, background, png)...",
+  "allTools": "All Tools",
+  "clear": "Clear",
+  "noMatches": "No matched tools",
+  "noMatchesDescription": "We couldn't locate any converters or tools aligning with your parameters. Verify your searching terms."
+}

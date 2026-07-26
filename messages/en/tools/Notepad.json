@@ -1,0 +1,18 @@
+{
+  "placeholder": "Start typing your notes here...",
+  "download": "Download",
+  "copy": "Copy",
+  "clear": "Clear",
+  "newNote": "Start a new note?",
+  "clearNote": "Clear this note?",
+  "continue": "Continue",
+  "newDescription": "Your current note will be lost. This action cannot be undone.",
+  "clearDescription": "Your current note will be cleared. This action cannot be undone.",
+  "cancel": "Cancel",
+  "open": "Open",
+  "undo": "Undo",
+  "lineColumn": "Line {line}, Column {column}",
+  "counts": "Chars {characters}, Words {words}",
+  "autoSaved": "Auto-saved {time}",
+  "copyBlocked": "Copy was blocked. Select the text and use Ctrl+A, then Ctrl+C."
+}

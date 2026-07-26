@@ -1,0 +1,20 @@
+{
+  "title": "Generator Kode QR",
+  "description": "Buat kode QR yang sepenuhnya disesuaikan secara instan untuk situs web, jaringan WiFi, kartu nama digital, atau payload teks.",
+  "metaDescription": "Hasilkan kode QR yang indah dan dapat disesuaikan secara instan. Pilih warna latar belakang, warna latar depan, ukuran, dan format cetak.",
+  "metaKeywords": "generator kode qr, buat kode qr, qr dinamis, kode qr yang dapat disesuaikan",
+  "previewAlt": "Kode QR yang dihasilkan",
+  "contentLabel": "Konten Kode QR (URL, Teks, atau Node)",
+  "contentPlaceholder": "Masukkan URL atau teks untuk dikodekan...",
+  "customize": "Sesuaikan Pengaturan Desain",
+  "foreground": "Warna Kode QR (Latar Depan)",
+  "background": "Warna Latar Belakang",
+  "resolution": "Ukuran Resolusi",
+  "margin": "Margin Zona Tenang",
+  "preview": "Pratinjau QR Langsung",
+  "generating": "Menghasilkan Kode QR...",
+  "download": "Unduh PNG",
+  "share": "Bagikan Tautan QR",
+  "shareSuccess": "Tautan berbagi disimpan ke clipboard Anda!",
+  "privacy": "Semua pemrosesan dilakukan dengan aman di browser. Data Anda tidak pernah meninggalkan sistem lokal Anda."
+}

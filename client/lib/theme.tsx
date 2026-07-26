@@ -13,35 +13,26 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  // Initialize with a default of "dark" (ssr safe)
-  const [theme, setThemeState] = useState<Theme>("dark");
-  const [mounted, setMounted] = useState(false);
+  const [theme, setThemeState] = useState<Theme>("light");
 
   useEffect(() => {
-    const initialTheme = "dark";
-    setThemeState(initialTheme);
-    setMounted(true);
-
-    // Sync theme class to HTML element
-    const root = window.document.documentElement;
-    root.classList.remove("light");
-    root.classList.add("dark");
+    const storedTheme = window.localStorage.getItem("theme");
+    if (storedTheme === "light" || storedTheme === "dark") {
+      setThemeState(storedTheme);
+      document.documentElement.classList.remove("light", "dark");
+      document.documentElement.classList.add(storedTheme);
+    }
   }, []);
 
   const setTheme = (newTheme: Theme) => {
-    // Force dark theme and ignore other options
-    setThemeState("dark");
-    localStorage.setItem("theme", "dark");
-    if (typeof window !== "undefined") {
-      const root = window.document.documentElement;
-      root.classList.remove("light");
-      root.classList.add("dark");
-    }
+    setThemeState(newTheme);
+    window.localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(newTheme);
   };
 
   const toggleTheme = () => {
-    // No-op to preserve only dark theme
-    setTheme("dark");
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (

@@ -1,0 +1,13 @@
+{
+  "panel": "Wasserzeichen-Panel",
+  "positionGrid": "Positionsraster für Wasserzeichen",
+  "stampLabel": "Beschriftung des Markenstempels",
+  "defaultStamp": "© MARKENSTEMPEL",
+  "fontSize": "Schriftgröße (% der Arbeitsfläche)",
+  "textFillColor": "Textfüllfarbe",
+  "opacity": "Deckkraft des Wasserzeichens ({value}%)",
+  "propertiesOverview": "Eigenschaftenübersicht",
+  "positionType": "Positionstyp",
+  "stampText": "Stempeltext",
+  "none": "Keine"
+}

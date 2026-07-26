@@ -1,0 +1,647 @@
+{
+  "Common": {
+    "actions": {
+      "addFiles": "Add Files",
+      "addMore": "Add More",
+      "back": "Back",
+      "backToHub": "Back to Hub",
+      "backToAllTools": "Back to all tools",
+      "browse": "click to browse",
+      "cancel": "Cancel",
+      "clear": "Clear",
+      "clearAndChooseDifferent": "Clear & Choose Different",
+      "close": "Close",
+      "copy": "Copy",
+      "copied": "Copied!",
+      "download": "Download",
+      "downloadFile": "Download File",
+      "getStarted": "Get Started",
+      "learnMore": "Learn More",
+      "new": "New",
+      "open": "Open",
+      "process": "Process",
+      "remove": "Remove",
+      "reset": "Reset",
+      "returnToHub": "Return to Hub",
+      "selectFile": "Select File",
+      "selectFiles": "Select Files",
+      "share": "Share",
+      "submit": "Submit",
+      "tryAgain": "Try Again",
+      "tryNow": "Try Now",
+      "undo": "Undo",
+      "view": "View"
+    },
+    "language": "Language",
+    "languages": {
+      "english": "English",
+      "spanish": "Español",
+      "portuguese": "Português",
+      "german": "Deutsch",
+      "french": "Français",
+      "indonesian": "Indonesia",
+      "italian": "Italiano",
+      "dutch": "Nederlands",
+      "turkish": "Türkçe"
+    },
+    "labels": {
+      "allUtilities": "All Utilities",
+      "bytes": "Bytes",
+      "file": "File",
+      "files": "Files",
+      "loading": "Loading...",
+      "localProcessingPrivate": "Local processing • Private",
+      "premiumUtility": "Premium Utility",
+      "processing": "Processing...",
+      "success": "Success!"
+    },
+    "a11y": {
+      "closeMenu": "Close menu",
+      "closeModal": "Close modal",
+      "copyContent": "Copy content",
+      "clearContent": "Clear content",
+      "mobileNavigation": "Mobile navigation",
+      "openMenu": "Open menu",
+      "removeFile": "Remove file",
+      "sharePage": "Share page",
+      "techToolsHome": "Tech Tools home",
+      "techToolLogo": "Tech tool logo",
+      "toggleSidebar": "Toggle sidebar"
+    },
+    "messages": {
+      "link": "Link: {url}",
+      "copiedLink": "Copied Link!",
+      "copyManually": "Copy manually: {content}",
+      "checkOutTool": "Check out this tool!",
+      "invalidFileExtension": "Invalid extension for \"{fileName}\". Supported: {extensions}",
+      "noFilesUploaded": "Please upload at least one file.",
+      "toolCompleted": "{toolName} completed successfully!",
+      "operationFailed": "An error occurred during processing. Please try again."
+    }
+  },
+  "Routes": {
+    "home": "/",
+    "about": "/about-us",
+    "tools": "/tools",
+    "blog": "/blog",
+    "pricing": "/pricing",
+    "help": "/help",
+    "contact": "/contact-us",
+    "privacy": "/privacy-policy",
+    "terms": "/terms-and-conditions",
+    "pdf": "/ilovepdf",
+    "image": "/iloveimg",
+    "qrGenerator": "/qr-generator",
+    "barcodeGenerator": "/barcode-generator",
+    "barcodeReader": "/barcode-reader",
+    "passwordGenerator": "/password-generator",
+    "loremGenerator": "/lorem-ipsum-generator",
+    "emojiPicker": "/emoji-picker",
+    "notepad": "/notepad",
+    "colorPicker": "/color-picker",
+    "speedTest": "/speed-test",
+    "typingSpeed": "/typing-speed"
+  },
+  "Navbar": {
+    "links": {
+      "about": "About Us",
+      "tools": "Tools",
+      "blog": "Blog",
+      "pricing": "Pricing",
+      "contact": "Contact",
+      "help": "FAQ Help"
+    },
+    "admin": "Admin",
+    "signIn": "Sign In",
+    "signOut": "Sign Out"
+  },
+  "Footer": {
+    "description": "Fast, secure, and modern online tools for developers, creators, and daily digital workloads. Sandboxed entirely inside your browser context for ultimate privacy configuration.",
+    "aboutUs": "About Us",
+    "quickLinks": "Quick Links",
+    "home": "Home",
+    "productivityTools": "Productivity Tools",
+    "latestBlogInsights": "Latest Blog Insights",
+    "pricingPlans": "Pricing Plans",
+    "pdfTools": "PDF Tools",
+    "pdfDashboard": "PDF Dashboard",
+    "imageTools": "Image Tools",
+    "imageDashboard": "Image Dashboard",
+    "allRightsReserved": "© {year} TechTools. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsConditions": "Terms & Conditions",
+    "social": {
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "website": "Website"
+    }
+  },
+  "Home": {
+    "meta": {
+      "title": "Modern Online Productivity Utilities",
+      "description": "Fast, secure, and modern online tools for developers, creators, and daily digital workloads. Includes QR generation, typing speed test, internet speed test, color selector and more.",
+      "keywords": "developer utilities, scan qr code, typing tutor, internet speed test, code snippet tools, secure online converter"
+    },
+    "badge": "Next-Gen Tools",
+    "title": "All Your Essential Tech Tools in One Place",
+    "description": "Fast, free, and modern online tools for developers, students, creators. Everything designed for speed and simplicity.",
+    "startTools": "Start Tools",
+    "intro": "QR generators, speed tests, image converters, color pickers, developer tools — all in your browser, securely.",
+    "previewAlt": "QR Code preview generated with TechTools",
+    "encoded": "AES-256 Encoded",
+    "toolsTitle": "Every tool you need to optimize and master",
+    "toolsDescription": "These are the following Tech tools we have. Click on any item to view details or export options.",
+    "searchPlaceholder": "Search tools (e.g., QR code, color picker)...",
+    "noResults": "No tools matching your search criteria were found.",
+    "ctaTitle": "Ready for more?",
+    "ctaDescription": "Let us know what you're looking for, and we'll build it!",
+    "contactUs": "Contact us",
+    "toolCards": {
+      "pdfDashboard": "PDF Tools Dashboard",
+      "imageDashboard": "Image Tools Dashboard",
+      "speedTest": "Internet Speed Testing",
+      "typingSpeed": "Typing Speed Results",
+      "colorPicker": "Color Picker Palette",
+      "qrGenerator": "QR Code Generator",
+      "barcodeGenerator": "Barcode Generator",
+      "barcodeReader": "Barcode & QR Reader",
+      "passwordGenerator": "Password Generator",
+      "loremGenerator": "Lorem Ipsum Generator",
+      "emojiPicker": "Emoji Picker & Copier",
+      "notepad": "Online NotePad"
+    }
+  },
+  "About": {
+    "title": "What is TechTools?",
+    "intro": "TechTools is a modern web platform offering a growing collection of online utilities and productivity tools. Whether you need to test internet speed, generate QR codes, compress images, or perform any other task, we've got you covered.",
+    "mission": "Built with performance and simplicity in mind, our mission is to save users time by offering easy-to-use digital tools without unnecessary complexity.",
+    "popularTools": "Popular Tools",
+    "popularDescription": "Explore our most used tools trusted by thousands of users daily.",
+    "impact": "Our Impact",
+    "impactDescription": "Trusted by users worldwide for their daily productivity needs.",
+    "stats": {
+      "tools": "Useful Tools",
+      "monthlyUsers": "Monthly Users",
+      "fast": "Fast",
+      "secure": "& Secure",
+      "available": "Available"
+    },
+    "ctaTitle": "Ready to Get Started?",
+    "ctaDescription": "Explore all our tools and boost your productivity today.",
+    "exploreAll": "Explore All Tools",
+    "tools": {
+      "speed": {
+        "name": "Internet Speed Test",
+        "description": "Measure download speed, upload speed, ping, and network performance in real time."
+      },
+      "color": {
+        "name": "Color Picker Tool",
+        "description": "Pick, copy, and convert colors easily with HEX, RGB, and HSL support."
+      },
+      "typing": {
+        "name": "Typing Speed Test",
+        "description": "Improve typing speed and accuracy with real-time WPM tracking."
+      },
+      "qr": {
+        "name": "QR Code Generator",
+        "description": "Generate custom QR codes for URLs, text, WiFi, email, and more."
+      },
+      "barcode": {
+        "name": "Barcode Generator",
+        "description": "Create barcodes in multiple formats for products, inventory, and logistics."
+      },
+      "password": {
+        "name": "Password Generator",
+        "description": "Create strong, random passwords with customizable character types and length."
+      },
+      "lorem": {
+        "name": "Lorem Ipsum Generator",
+        "description": "Generate placeholder Lorem Ipsum text for designs, mockups, and prototypes instantly."
+      },
+      "emoji": {
+        "name": "Emoji Picker & Copier",
+        "description": "Browse, search, and copy emojis instantly for your messages and posts."
+      },
+      "notepad": {
+        "name": "Online NotePad",
+        "description": "Simple, fast online notepad with auto-save and file management."
+      },
+      "image": {
+        "name": "Image Converter",
+        "description": "Convert images into different formats quickly and easily."
+      },
+      "unit": {
+        "name": "Unit Converter",
+        "description": "Convert measurements, currencies, sizes, and more instantly."
+      }
+    }
+  },
+  "Pricing": {
+    "title": "Pricing Plans",
+    "description": "Choose the perfect plan. All plans include enterprise-grade security and reliability.",
+    "popular": "Popular",
+    "perMonth": "/mo",
+    "customPlanTitle": "Need a custom plan?",
+    "customPlanDescription": "Contact our sales team for enterprise solutions tailored to your needs.",
+    "contactSales": "Contact Sales",
+    "getStarted": "Get Started",
+    "plans": {
+      "starter": {
+        "name": "Starter",
+        "price": "Free",
+        "description": "Perfect for getting started",
+        "features": [
+          "Up to 100 QR codes/month",
+          "Basic customization",
+          "Standard support"
+        ]
+      },
+      "professional": {
+        "name": "Professional",
+        "price": "$99",
+        "description": "Best for growing businesses",
+        "features": [
+          "Up to 1,000 QR codes/month",
+          "Advanced customization",
+          "Priority support",
+          "Analytics dashboard"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "Custom",
+        "description": "For large-scale operations",
+        "features": [
+          "Unlimited QR codes",
+          "Full customization",
+          "Dedicated support",
+          "Advanced analytics",
+          "API access"
+        ]
+      }
+    }
+  },
+  "Contact": {
+    "title": "Contact TechTools",
+    "description": "Have questions, feedback, or need support? We're here to help. Reach out to us and we'll respond as soon as possible.",
+    "formTitle": "Send us a message",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "your@email.com",
+    "subjectPlaceholder": "How can we help?",
+    "messagePlaceholder": "Tell us more about your inquiry...",
+    "sending": "Sending...",
+    "sendMessage": "Send Message",
+    "information": "Contact Information",
+    "support": "Support",
+    "available": "Available 24/7",
+    "availability": "Availability",
+    "hours": "Mon - Fri: 9AM - 6PM UTC",
+    "followUs": "Follow Us",
+    "quickResponse": "Quick Response",
+    "quickResponseText": "We typically respond to all inquiries within 24 hours. For urgent matters, please include \"URGENT\" in your subject line.",
+    "errors": {
+      "configurationMissing": "EmailJS configuration is missing. Please check environment variables.",
+      "sendFailed": "Failed to send message. Please try again later."
+    },
+    "success": {
+      "sent": "Message sent successfully! We'll get back to you soon."
+    }
+  },
+  "Help": {
+    "meta": {
+      "title": "Help & Frequently Asked Questions",
+      "description": "Get instant help, read user manuals, review FAQs, and connect with technical support.",
+      "keywords": "help, support, user guide, faq, tech tools help"
+    },
+    "badge": "Support Center",
+    "title": "How Can We Help?",
+    "description": "Search our self-help articles, explore documentation guidelines, or get in touch with our tech specialists.",
+    "searchPlaceholder": "Search resources, topics, or FAQs...",
+    "faqTitle": "Frequently Asked Questions",
+    "noResults": "No results found matching \"{search}\". Try checking different keywords.",
+    "stillQuestions": "Still Have Questions?",
+    "stillQuestionsText": "Our professional support team is ready to assist you. Receive custom guides, license options, or setup parameters.",
+    "submitTicket": "Submit Support Ticket",
+    "community": "Community Support",
+    "discord": "Developer Discord Forum",
+    "communityMembers": "Join 1,200+ online utilities members",
+    "faqs": {
+      "safe": {
+        "question": "Are the productivity tools safe to use?",
+        "answer": "Yes! All calculation, formatting, QR encoding, and color picking processes run fully in your own web browser. Your confidential information never leaves your device or gets saved on external servers."
+      },
+      "offline": {
+        "question": "Can I use TechTools without an internet connection?",
+        "answer": "Yes! Because the utilities process client-side, the page can be fully loaded once, and core features like the Color Picker, Typing Test, and QR Generator will stay operational offline."
+      },
+      "accuracy": {
+        "question": "How accurate is the Internet Speed Test?",
+        "answer": "It connects to edge locations to calculate latency, download metrics, and upload bandwidth. Results are highly precise but can vary slightly depending on network traffic or other apps running."
+      },
+      "contact": {
+        "question": "How can I contact technical support?",
+        "answer": "Simply use our Contact Us form page or reach out directly via support@techtools.dev for assistance with bulk operations, API licenses, or reporting bugs."
+      }
+    }
+  },
+  "Legal": {
+    "privacy": {
+      "meta": {
+        "title": "Privacy Policy",
+        "description": "Learn how TechTools collects, uses, and protects your local browser details.",
+        "keywords": "privacy, terms, cookies, safety, browser storage"
+      },
+      "title": "Privacy Policy",
+      "updated": "Updated June 5, 2026 • Real-time Compliance Statement",
+      "clientSide": "100% Client-Side",
+      "noCookies": "Zero Tracking Cookies",
+      "noDataSales": "No Data Sales",
+      "sections": {
+        "scope": {
+          "title": "1. Scope & Core Integrity",
+          "paragraphs": [
+            "At TechTools, user privacy is our topmost priority. This policy covers how our web interface handles parameters, payloads, or values processed through our Typing Speed Test, Color Selector, and QR Code Generator.",
+            "Because our platform works natively inside your client-side browser, we do not transmit, analyze, sync, or sell any textual content, URLs, uploaded images, or test samples to our servers."
+          ]
+        },
+        "cookies": {
+          "title": "2. Cookies & Local Storage",
+          "paragraphs": [
+            "We may use standard HTML5 local storage space or secure keys on your immediate device to temporarily store preferences such as chosen display speeds, color extraction history, or customized themes.",
+            "These values are stored entirely locally on your machine and can be deleted entirely at any time by clearing your browser cache. We utilize no persistent tracking metrics."
+          ]
+        },
+        "thirdParty": {
+          "title": "3. Third-Party Integrations & Sizing",
+          "paragraphs": [
+            "Our contact details use EmailJS. By submitting emails or queries through our forms, only specified name, body text, and sender values are delivered to support agents. None of this data is cached on our structural server blocks."
+          ]
+        },
+        "children": {
+          "title": "4. Children's Privacy Guidelines",
+          "paragraphs": [
+            "Since our educational utilities and diagnostic tests transmit no personal identifiable data, they are fully safe and appropriate for users of all age levels, including children under 13."
+          ]
+        }
+      }
+    },
+    "terms": {
+      "meta": {
+        "title": "Terms & Conditions",
+        "description": "Learn about our digital user guidelines, server safety, and compliance clauses.",
+        "keywords": "terms, conditions, rules, agreement, licensing"
+      },
+      "title": "Terms & Conditions",
+      "effective": "Effective June 5, 2026 • Legal Terms of Service",
+      "freeUse": "Fully free for general use",
+      "commercialUse": "Commercial and print permissions",
+      "sections": {
+        "acceptance": {
+          "title": "1. Contract Acceptance",
+          "text": "By opening, viewing, or interacting with the TechTools web application, you agree to comply with and be bound by these legal Terms and Conditions of service. If you do not agree to these terms, please stop using our digital platform immediately."
+        },
+        "license": {
+          "title": "2. Software & Tool License",
+          "text": "We grant you a non-exclusive, non-transferable, revocable license to use our utilities (Color Picker, Internet Speed Test, QR Generator, and Typing Test) for personal, educational, or professional work. High-resolution printouts, downloaded images, and exported code blocks generated by our software are entirely yours to keep, share, and commercialize."
+        },
+        "acceptableUse": {
+          "title": "3. Acceptable Use Policy",
+          "text": "You agree not to attempt to reverse engineer our code patterns, distribute massive bot payloads designed to interfere with our email forms, or wrap our pages inside hidden frames for fraudulent uses."
+        },
+        "warranty": {
+          "title": "4. Disclaimer of Warranty",
+          "text": "ALL SERVICES AND CALCULATORS ARE PROVIDED \"AS IS\" AND \"AS AVAILABLE\" WITHOUT ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING BUT NOT LIMITED TO TIMELINESS, PERFORMANCE STABILITY, OR COMPREHENSIVE ACCURACY. IN NO EVENT SHALL TECHTOOLS BE LIABLE FOR ANY CONSEQUENTIAL DATA LOSS, CONNECTION TERMINATION, OR ACCIDENT DURING USE."
+        }
+      }
+    }
+  },
+  "NotFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you're looking for doesn't exist or has been moved. Let's get you back on track.",
+    "backHome": "Back to Home",
+    "goHome": "Go Home",
+    "goBack": "Go Back",
+    "goToTools": "Go to Tools Page",
+    "exploreTools": "Explore Our Tools",
+    "imageTools": "Image Tools",
+    "pdfTools": "PDF Tools",
+    "allTools": "All Tools"
+  },
+  "Blog": {
+    "eyebrow": "Insights & Artifacts",
+    "title": "The Craft Blog",
+    "description": "In-depth investigations, tactical guides, and structural designs to supercharge your software engineering and visual workflow.",
+    "search": "Search articles, keywords, topics...",
+    "categoryAll": "Category: All",
+    "category": "Category: {name}",
+    "tagAll": "Tag: All",
+    "tag": "Tag: {name}",
+    "writePost": "Write New Post",
+    "noArticles": "No Articles Found",
+    "noArticlesDescription": "We couldn't find any articles matching your filters. Try clearing your filters or writing a new blog post.",
+    "clearFilters": "Clear Filters",
+    "featured": "FEATURED POST",
+    "readFull": "Read Full Post",
+    "searchResults": "Search Results ({count})",
+    "allArticles": "All Articles"
+  },
+  "ToolCatalog": {
+    "Pdf": {
+      "categories": {
+        "organize": "Organize PDF",
+        "fromPdf": "Convert from PDF",
+        "toPdf": "Convert to PDF",
+        "optimizeEdit": "Optimize & Edit",
+        "security": "PDF Security"
+      },
+      "mergePdf": {
+        "name": "Merge PDF",
+        "short": "Combine multiple PDF files into one.",
+        "long": "Select multiple PDF files, arrange their order with drag-and-drop, and merge them into a single high-quality document."
+      },
+      "splitPdf": {
+        "name": "Split PDF",
+        "short": "Extract specific page ranges from a PDF.",
+        "long": "Divide a PDF into single pages, or extract specific page ranges (e.g., pages 1-5, 10) into a brand new PDF document."
+      },
+      "compressPdf": {
+        "name": "Compress PDF",
+        "short": "Reduce PDF file size while keeping quality.",
+        "long": "Optimize files and images inside your PDF to shrink size while maintaining crisp typography and layout resolution."
+      },
+      "pdfToWord": {
+        "name": "PDF to Word",
+        "short": "Convert PDF to editable DOCX document.",
+        "long": "Extract paragraphs, format grids, and transfer tables directly from your PDF into a fully editable Microsoft Word .docx file."
+      },
+      "wordToPdf": {
+        "name": "Word to PDF",
+        "short": "Convert Word DOCX files to secure PDF.",
+        "long": "Process files from DOCX formats into high-fidelity PDF documents with fully preserved alignments, fonts, and elements."
+      },
+      "pdfToPowerpoint": {
+        "name": "PDF to PowerPoint",
+        "short": "Transform PDF into PPTX slideshows.",
+        "long": "Structure text layouts and headings from your PDF pages into fully editable, presentation-ready Microsoft PowerPoint slide decks."
+      },
+      "powerpointToPdf": {
+        "name": "PowerPoint to PDF",
+        "short": "Convert PPT/PPTX slides to PDF.",
+        "long": "Transform presentation visual slides (PPT/PPTX) into high-resolution, easy-to-read PDF pages for seamless sharing."
+      },
+      "pdfToExcel": {
+        "name": "PDF to Excel",
+        "short": "Pull tables and data into Excel spreadsheets.",
+        "long": "Extract multi-column grid arrays and formatted table lists from your PDF and populate them into Microsoft Excel.xlsx formats."
+      },
+      "excelToPdf": {
+        "name": "Excel to PDF",
+        "short": "Print dynamic Excel worksheets to clean PDF.",
+        "long": "Format spreadsheet rows and layout grids neatly, setting custom width scaling, and render workbook lines to a ledger PDF."
+      },
+      "pdfToJpg": {
+        "name": "PDF to JPG",
+        "short": "Extract all PDF pages into separate images.",
+        "long": "Render each individual page of a PDF document into a sharp, downloadable high-resolution JPEG (.jpg) format."
+      },
+      "jpgToPdf": {
+        "name": "JPG to PDF",
+        "short": "Stitch multiple images into a solid PDF.",
+        "long": "Upload custom JPG, PNG, and WebP images, reorder them as desired, combine sizes, and generate a multi-page PDF workbook."
+      },
+      "rotatePdf": {
+        "name": "Rotate PDF",
+        "short": "Rotate pages of a PDF visually.",
+        "long": "Read PDF files page-by-page, visualize them, and rotate them in specific directions (90, 180, 270 degrees) dynamically."
+      },
+      "unlockPdf": {
+        "name": "Unlock PDF",
+        "short": "Remove security passwords from custom PDFs.",
+        "long": "Decrypt protected files, lift general user editing credentials, and download cracked documents without standard security warnings."
+      },
+      "protectPdf": {
+        "name": "Protect PDF",
+        "short": "Encrypt PDF with secure password protection.",
+        "long": "Lock down your sensitive PDFs by securing files with password parameters that prompt for entry upon opening anywhere."
+      },
+      "repairPdf": {
+        "name": "Repair PDF",
+        "short": "Reconstruct damaged structures or faulty offsets.",
+        "long": "Standardize formatting streams and rebuild faulty cross-reference tables (XREF) to bypass loading warnings."
+      },
+      "editPdf": {
+        "name": "Edit PDF",
+        "short": "Add text labels, shapes, and doodles onto pages.",
+        "long": "Visually superimpose responsive text blocks, shapes, highlight labels, or signature drawings directly onto specified PDF canvas layers."
+      }
+    },
+    "Image": {
+      "categories": {
+        "compress": "Compress",
+        "resizeCrop": "Resize & Crop",
+        "convert": "Convert Format",
+        "edit": "Modify & Style",
+        "ai": "AI Enhanced"
+      },
+      "compressImage": {
+        "name": "Compress Image",
+        "short": "Compress JPG, PNG, SVG, GIF, WEBP, and AVIF.",
+        "long": "Optimize file size while keeping visual quality as high as possible. Compresses JPEG, PNG, WEBP, GIF, and SVG formats in real-time."
+      },
+      "resizeImage": {
+        "name": "Resize Image",
+        "short": "Set width and height dimensions in pixels.",
+        "long": "Resize image dimensions by percentage or target width/height pixels. Option to lock ratio or select popular social media canvas presets."
+      },
+      "cropImage": {
+        "name": "Crop Image",
+        "short": "Crop images with an interactive selection bounding box.",
+        "long": "Remove borders or isolate desired focus bounds using visual anchors. Offers popular custom aspect ratios and cropping templates."
+      },
+      "rotateImage": {
+        "name": "Rotate Image",
+        "short": "Rotate images and flip them on any axis.",
+        "long": "Flip images horizontally, vertically, or rotate clockwise/counterclockwise by 90-degree steps for perfect alignments."
+      },
+      "watermarkImage": {
+        "name": "Watermark Image",
+        "short": "Stamp custom text overlays or branding logos.",
+        "long": "Secure your creations by superimposing texts or small transparent overlay logos. Adjust position, size, and branding opacity."
+      },
+      "removeBackground": {
+        "name": "AI Remove Background",
+        "short": "Automated transparency background extraction.",
+        "long": "Erase solid or complex backgrounds to create clean transparent png files. Leverages client-side edge contrast detection and smart keys filters."
+      },
+      "upscaleImage": {
+        "name": "AI Image Upscaler",
+        "short": "Upscale resolution using bicubic edge sharpening.",
+        "long": "Interpolate pixels up to 4x while applying intelligent unsharp filters to restore detail, sharpen contours, and reduce visual fuzziness."
+      },
+      "imageToJpg": {
+        "name": "Convert to JPG",
+        "short": "Re-render PNG, WEBP, AVIF, HEIC, TIFF to JPG.",
+        "long": "Transconvert multiple layered image formats into standardized, highly compatible JPEG formats in batches."
+      },
+      "imageToPng": {
+        "name": "Convert to PNG",
+        "short": "Transconvert WebP, JPEG, AVIF to PNG formats.",
+        "long": "Ensure transparency vectors and crisp grids by compiling incoming files into high-fidelity web PNG standard formats."
+      },
+      "imageToWebp": {
+        "name": "Convert to WebP",
+        "short": "Transform heavy images into optimized WebP.",
+        "long": "Convert folders of PNG or JPG files to ultra-lightweight WebP formats to maximize website and application speeds."
+      },
+      "imageToAvif": {
+        "name": "Convert to AVIF",
+        "short": "Convert images to next-gen AVIF standards.",
+        "long": "Export high-fidelity images to AVIF format, combining high quality with smaller files than WebP."
+      },
+      "jpgToPng": {
+        "name": "JPG to PNG",
+        "short": "Convert JPG files to transparent PNG.",
+        "long": "Transform basic flat JPG/JPEG documents into high-color lossless PNG files and preserve original gradients without artifacts."
+      },
+      "pngToJpg": {
+        "name": "PNG to JPG",
+        "short": "Convert PNG images into highly compatible JPGs.",
+        "long": "Flatten alpha transparent PNG vectors into standard rasterized JPEG grids with solid solid backing variables."
+      },
+      "webpToJpg": {
+        "name": "WebP to JPG",
+        "short": "Decode WebP pages into standard JPG images.",
+        "long": "Safely process space-efficient WebP images into static JPEG formats to maintain universal compatibility in local utilities."
+      },
+      "webpToPng": {
+        "name": "WebP to PNG",
+        "short": "Restore alpha-channel transparency to PNG.",
+        "long": "Decompress lightweight, web-optimized WebP files back into fully editable, lossless PNG files with layers intact."
+      },
+      "gifToJpg": {
+        "name": "GIF to JPG",
+        "short": "Convert animated GIF frames into static JPGs.",
+        "long": "Isolate individual animation stages from loaded GIFs or output the first frame as a highly lightweight, static JPG snapshot."
+      },
+      "svgToPng": {
+        "name": "SVG to PNG",
+        "short": "Rasterize vector SVGs into rich PNG layouts.",
+        "long": "Load vector definitions, scale them to crisp dimensions, and compile them into fully compatible, rich rasterized PNG files."
+      },
+      "batchConvert": {
+        "name": "Batch Format Converter",
+        "short": "Cross-convert dozens of image formats at once.",
+        "long": "Import any mixture of JPG, PNG, WEBP, GIF, SVG, BMP, TIFF, ICO images, choose an export format target, and compile them in seconds."
+      },
+      "imageEditor": {
+        "name": "Creative Image Editor",
+        "short": "Full-scale canvas photo designer studio.",
+        "long": "Draw, doodle, add text boxes, filters (sepia, monochrome, invert), adjust color sliders, scale, crop, and watermarks in a unified workspace."
+      }
+    }
+  }
+}

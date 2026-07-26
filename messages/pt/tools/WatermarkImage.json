@@ -1,0 +1,13 @@
+{
+  "panel": "Painel de marca-d'água",
+  "positionGrid": "Grade de posição da marca-d'água",
+  "stampLabel": "Rótulo do carimbo da marca",
+  "defaultStamp": "© CARIMBO DA MARCA",
+  "fontSize": "Tamanho da fonte (% da tela)",
+  "textFillColor": "Cor de preenchimento do texto",
+  "opacity": "Opacidade da marca-d'água ({value}%)",
+  "propertiesOverview": "Visão geral das propriedades",
+  "positionType": "Tipo de posição",
+  "stampText": "Texto do carimbo",
+  "none": "Nenhum"
+}

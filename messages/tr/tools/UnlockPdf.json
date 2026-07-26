@@ -1,0 +1,6 @@
+{
+  "unlockParameters": "Kilit açma parametreleri",
+  "enterPassword": "Kilit açma parolasını girin",
+  "passwordPlaceholder": "Standart PDF ise boş bırakın...",
+  "protectPdfNote": "PDF, PDF Koru aracımızla şifrelendiyse kilit kısıtlamalarını istemci tarafında kaldırmak için yukarıdaki anahtarı girin."
+}

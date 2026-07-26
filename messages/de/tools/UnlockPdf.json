@@ -1,0 +1,6 @@
+{
+  "unlockParameters": "Entsperrparameter",
+  "enterPassword": "Entsperrpasswort eingeben",
+  "passwordPlaceholder": "Bei Standard-PDF leer lassen...",
+  "protectPdfNote": "Wenn die PDF mit unserem Tool „PDF schützen“ verschlüsselt wurde, geben Sie oben den Schlüssel ein, um die Sperrbeschränkungen clientseitig aufzuheben."
+}

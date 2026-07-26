@@ -1,0 +1,10 @@
+{
+  "badge": "100% Clientseitige Bildverarbeitung",
+  "title": "SaaS-Tools zum Komprimieren, Konvertieren und Bearbeiten von Bildern im Stapel",
+  "description": "Nutze blitzschnelles Zuschneiden, Skalieren, Wasserzeichen, Filter, Hintergrundentfernung und Konvertierungen. Vollständig in deiner Browserumgebung gesandboxt.",
+  "searchPlaceholder": "Bild-Werkzeuge suchen (z. B. zuschneiden, Hintergrund, png)...",
+  "allTools": "Alle Werkzeuge",
+  "clear": "Löschen",
+  "noMatches": "Keine passenden Werkzeuge",
+  "noMatchesDescription": "Wir konnten keine Konverter oder Werkzeuge finden, die deinen Parametern entsprechen. Überprüfe deine Suchbegriffe."
+}

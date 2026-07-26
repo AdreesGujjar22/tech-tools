@@ -1,0 +1,15 @@
+{
+  "title": "Background Remover",
+  "description": "Upload an image and remove the background instantly using AI",
+  "dropImage": "Drop your image here",
+  "orBrowse": "or click to browse",
+  "chooseImage": "Choose Image",
+  "download": "Download",
+  "reprocess": "Reprocess",
+  "processing": "Processing...",
+  "removeBackground": "Remove Background",
+  "retry": "Retry",
+  "images": "Images ({count})",
+  "processAll": "Process All",
+  "backgroundRemoved": "Background removed from {fileName}"
+}

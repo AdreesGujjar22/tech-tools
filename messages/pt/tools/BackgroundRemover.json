@@ -1,0 +1,15 @@
+{
+  "title": "Removedor de Fundo",
+  "description": "Envie uma imagem e remova o fundo instantaneamente usando IA",
+  "dropImage": "Solte sua imagem aqui",
+  "orBrowse": "ou clique para procurar",
+  "chooseImage": "Escolher Imagem",
+  "download": "Baixar",
+  "reprocess": "Reprocessar",
+  "processing": "Processando...",
+  "removeBackground": "Remover Fundo",
+  "retry": "Tentar Novamente",
+  "images": "Imagens ({count})",
+  "processAll": "Processar Tudo",
+  "backgroundRemoved": "Fundo removido de {fileName}"
+}

@@ -1,0 +1,21 @@
+{
+  "title": "Generator Lorem Ipsum",
+  "description": "Buat teks pengisi Lorem Ipsum secara instan untuk desain, mockup, dan prototipe.",
+  "premium": "Utilitas Premium",
+  "copied": "Disalin!",
+  "copy": "Salin",
+  "customize": "Sesuaikan Teks Lorem",
+  "generateType": "Jenis Pembuatan",
+  "paragraphs": "Paragraf",
+  "sentences": "Kalimat",
+  "words": "Kata",
+  "numberOf": "Jumlah {type}",
+  "wordCount": "Kata:",
+  "characterCount": "Karakter:",
+  "generatedText": "Teks yang Dihasilkan",
+  "generating": "Menghasilkan Lorem Ipsum...",
+  "download": "Unduh teks",
+  "share": "Bagikan tautan",
+  "privacy": "Semua pemrosesan dilakukan dengan aman di browser. Sempurna untuk mockup, desain, dan prototipe.",
+  "copyManual": "Salin teks secara manual dari area teks"
+}
