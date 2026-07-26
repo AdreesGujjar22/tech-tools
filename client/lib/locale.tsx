@@ -7,6 +7,8 @@ import { stripLocalePrefix, withLocalePath, type RouteLocale } from "./router-co
 import { NextIntlClientProvider } from "next-intl";
 import enCommon from "../../messages/en/common.json";
 import enMeta from "../../messages/en/meta.json";
+import enImageDashboard from "../../messages/en/tools/ImageDashboard.json";
+import enPdfDashboard from "../../messages/en/tools/PdfDashboard.json";
 
 type LocaleContextValue = {
   locale: Locale;
@@ -50,13 +52,26 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
     const pathLocale = pathname.split("/")[1] as Locale;
     return isAdminPath || !supportedLocales.includes(pathLocale) ? defaultLocale : pathLocale;
   });
-  const [messages, setMessages] = useState<Record<string, any>>({ ...enCommon, ...enMeta });
+  const [messages, setMessages] = useState<Record<string, any>>({
+    ...enCommon,
+    ...enMeta,
+    Tools: {
+      ImageDashboard: enImageDashboard,
+      PdfDashboard: enPdfDashboard,
+    },
+  });
+  const [loadedKey, setLoadedKey] = useState<string | null>(null);
+  const messageKey = `${locale}:${pathname}`;
 
   useEffect(() => {
     let active = true;
+    setLoadedKey(null);
     const namespaces = getRouteNamespaces(pathname);
     loadMessages(locale, namespaces).then((loaded) => {
-      if (active) setMessages(loaded);
+      if (active) {
+        setMessages(loaded);
+        setLoadedKey(messageKey);
+      }
     });
     return () => { active = false; };
   }, [locale, pathname]);
@@ -86,7 +101,7 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
   return (
     <LocaleContext.Provider value={value}>
       <NextIntlClientProvider locale={locale} messages={messages}>
-        {children}
+        {loadedKey === messageKey ? children : null}
       </NextIntlClientProvider>
     </LocaleContext.Provider>
   );
