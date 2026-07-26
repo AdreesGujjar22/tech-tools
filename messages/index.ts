@@ -25,7 +25,7 @@ const loaders: Record<Locale, Record<MessageNamespace, () => Promise<{ default: 
 };
 
 export async function loadMessages(locale: Locale, namespaces: readonly MessageNamespace[] = ['common', 'meta']): Promise<Messages> {
-  const selected = namespaces.length ? namespaces : ['common'];
+  const selected: readonly MessageNamespace[] = namespaces.length ? namespaces : ['common'];
   const loaded = await Promise.all(selected.map(async (namespace) => [namespace, (await loaders[locale][namespace]()).default] as const));
   const common = loaded.find(([namespace]) => namespace === 'common')?.[1] || {};
   const meta = loaded.find(([namespace]) => namespace === 'meta')?.[1] || {};
