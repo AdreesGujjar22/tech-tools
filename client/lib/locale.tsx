@@ -5,6 +5,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { defaultLocale, loadMessages, supportedLocales, supportedToolNamespaces, type Locale, type MessageNamespace } from "../../messages";
 import { stripLocalePrefix, withLocalePath, type RouteLocale } from "./router-compat";
 import { NextIntlClientProvider } from "next-intl";
+import enCommon from "../../messages/en/common.json";
+import enMeta from "../../messages/en/meta.json";
 
 type LocaleContextValue = {
   locale: Locale;
@@ -48,7 +50,7 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
     const pathLocale = pathname.split("/")[1] as Locale;
     return isAdminPath || !supportedLocales.includes(pathLocale) ? defaultLocale : pathLocale;
   });
-  const [messages, setMessages] = useState<Record<string, any>>({});
+  const [messages, setMessages] = useState<Record<string, any>>({ ...enCommon, ...enMeta });
 
   useEffect(() => {
     let active = true;
