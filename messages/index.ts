@@ -1,5 +1,3 @@
-export const defaultLocale = 'en' as const;
-
 export const supportedLocales = ["en","de","es","fr","id","it","nl","pt","tr"] as const;
 export const defaultLocale = "en" as const;
 export type Locale = (typeof supportedLocales)[number];
