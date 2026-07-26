@@ -1,5 +1,3 @@
-"use client";
-
 import type { Metadata } from "next";
 import Index from "@/pages/Index";
 import { getRequestLocale } from "@/lib/server-locale";

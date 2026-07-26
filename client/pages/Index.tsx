@@ -1,3 +1,5 @@
+"use client";
+
 import { useNavigate, Link } from "@/lib/router-compat";
 import Image from "next/image";
 import SEO from "@/components/SEO";
