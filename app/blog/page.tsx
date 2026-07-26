@@ -30,6 +30,12 @@ export default function BlogArchive() {
     async function fetchBlogData() {
       try {
         setLoading(true);
+        if (!db) {
+          setBlogs([]);
+          setCategories([]);
+          setTags([]);
+          return;
+        }
         // Build Blogs Query
         const blogsRef = collection(db, "blogs");
         let blogsQuery;
