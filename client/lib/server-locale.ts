@@ -1,5 +1,4 @@
 import { headers } from "next/headers";
-import { headers } from "next/headers";
 import { loadMessages, supportedLocales, type Locale } from "../../messages";
 
 type PageMetadata = { title: string; description: string; keywords: string };
