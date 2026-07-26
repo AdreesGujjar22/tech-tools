@@ -132,7 +132,7 @@ export default function PdfToPowerpoint() {
         <p:txBody>
           <a:bodyPr/>
           <a:lstStyle/>
-          ${slideBodies.map(line => `
+          ${slideBodies.map((line: string) => `
           <a:p>
             <a:r>
               <a:rPr lang="en-US" sz="1800"/>
