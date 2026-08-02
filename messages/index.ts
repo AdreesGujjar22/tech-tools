@@ -1,3 +1,5 @@
+import type { AbstractIntlMessages } from "next-intl";
+
 export const supportedLocales = ["en","de","es","fr","id","it","nl","pt","tr"] as const;
 export const defaultLocale = "en" as const;
 export type Locale = (typeof supportedLocales)[number];
@@ -20,7 +22,7 @@ export const supportedToolNamespaces = [
 export type ToolNamespace = (typeof supportedToolNamespaces)[number] | string;
 export type MessageNamespace = 'common' | 'meta' | ToolNamespace | 'DashboardCategories';
 
-type Messages = Record<string, unknown>;
+type Messages = AbstractIntlMessages;
 
 export async function loadMessages(locale: Locale, namespaces: readonly MessageNamespace[] = ['common', 'meta']): Promise<Messages> {
   const selected: readonly MessageNamespace[] = namespaces.length ? namespaces : ['common'];
@@ -28,23 +30,32 @@ export async function loadMessages(locale: Locale, namespaces: readonly MessageN
     try {
       if (namespace === 'common') {
         const mod = await import(`./${locale}/common.json`);
-        return [namespace, mod.default] as const;
+        return [namespace, mod.default as AbstractIntlMessages] as const;
       }
       if (namespace === 'meta') {
         const mod = await import(`./${locale}/meta.json`);
-        return [namespace, mod.default] as const;
+        return [namespace, mod.default as AbstractIntlMessages] as const;
       }
       const mod = await import(`./${locale}/tools/${namespace}.json`);
-      return [namespace, mod.default] as const;
+      return [namespace, mod.default as AbstractIntlMessages] as const;
     } catch (e) {
-      return [namespace, {}] as const;
+      return [namespace, {} as AbstractIntlMessages] as const;
     }
   }));
 
-  const common = loaded.find(([namespace]) => namespace === 'common')?.[1] || {};
-  const meta = loaded.find(([namespace]) => namespace === 'meta')?.[1] || {};
-  const tools = Object.fromEntries(loaded.filter(([namespace]) => namespace !== 'common' && namespace !== 'meta').map(([namespace, value]) => [namespace, value]));
-  return { ...(common as Messages), ...(meta as Messages), ...(Object.keys(tools).length ? { Tools: tools } : {}) };
+  const common = (loaded.find(([namespace]) => namespace === 'common')?.[1] || {}) as AbstractIntlMessages;
+  const meta = (loaded.find(([namespace]) => namespace === 'meta')?.[1] || {}) as AbstractIntlMessages;
+  const tools = Object.fromEntries(
+    loaded
+      .filter(([namespace]) => namespace !== 'common' && namespace !== 'meta')
+      .map(([namespace, value]) => [namespace, value as AbstractIntlMessages])
+  );
+
+  return {
+    ...(common as Messages),
+    ...(meta as Messages),
+    ...(Object.keys(tools).length ? { Tools: tools as Messages } : {}),
+  } as Messages;
 }
 
 export const publicRoutes = {
