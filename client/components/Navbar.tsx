@@ -126,13 +126,13 @@ export default function Navbar({ collapsed, onCollapsedChange }: NavbarProps) {
           collapsed && "-translate-x-full"
         )}
       >
-        <div className="relative h-36 shrink-0 overflow-hidden bg-gradient-to-br from-emerald-800 via-emerald-700 to-teal-600 px-6 pt-6">
-          <div className="absolute -bottom-9 -left-10 h-20 w-60 rounded-[50%] bg-emerald-300/70" />
-          <div className="absolute -bottom-8 left-16 h-16 w-72 rotate-[-6deg] rounded-[50%] bg-teal-300/75" />
+        <div className="relative h-36 shrink-0 overflow-hidden bg-gradient-to-br from-[#0b8060] via-[#0a9b70] to-[#18b887] px-4 pt-4">
+          <div className="absolute -bottom-10 -left-8 h-20 w-56 rounded-[50%] bg-emerald-300/20" />
+          <div className="absolute -bottom-10 left-20 h-16 w-64 rotate-[-6deg] rounded-[50%] bg-teal-200/20" />
           <div className="relative flex items-start justify-between">
             <Link to="/" className="block" aria-label="Tech Tools home">
-              <Image src="/images/web-logo.png" alt="Tech Tools" width={142} height={92} className="h-20 w-auto" priority />
-              <p className="mt-2 text-xs font-medium text-white/90">Handy tools for developers</p>
+              <Image src="/images/web-logo.png" alt="Tech Tools" width={112} height={52} className="h-[72px] w-auto object-contain object-left" priority />
+              <p className="mt-1 text-[11px] font-medium tracking-wide text-white/85">Handy tools for developers</p>
             </Link>
             <button type="button" onClick={() => onCollapsedChange(true)} className="grid h-8 w-8 place-items-center rounded-md text-white/80 transition-colors hover:bg-white/15 hover:text-white" aria-label="Close tools sidebar">
               <PanelLeftClose size={19} />
@@ -164,13 +164,13 @@ export default function Navbar({ collapsed, onCollapsedChange }: NavbarProps) {
 
       <div className={cn("fixed inset-0 z-50 bg-slate-950/35 transition-opacity lg:hidden", mobileOpen ? "opacity-100" : "pointer-events-none opacity-0")} onClick={() => setMobileOpen(false)} aria-hidden="true" />
       <aside className={cn("fixed inset-y-0 left-0 z-[60] flex w-[min(21rem,calc(100vw-1rem))] flex-col bg-white shadow-2xl transition-transform duration-300 lg:hidden", mobileOpen ? "translate-x-0" : "-translate-x-full")} aria-hidden={!mobileOpen}>
-        <div className="relative h-36 shrink-0 overflow-hidden bg-gradient-to-br from-emerald-800 via-emerald-700 to-teal-600 px-6 pt-6">
-          <div className="absolute -bottom-9 -left-10 h-20 w-60 rounded-[50%] bg-emerald-300/70" />
-          <div className="absolute -bottom-8 left-16 h-16 w-72 rotate-[-6deg] rounded-[50%] bg-teal-300/75" />
+        <div className="relative h-36 shrink-0 overflow-hidden bg-gradient-to-br from-[#0b8060] via-[#0a9b70] to-[#18b887] px-5 pt-4">
+          <div className="absolute -bottom-10 -left-8 h-20 w-56 rounded-[50%] bg-emerald-300/20" />
+          <div className="absolute -bottom-10 left-20 h-16 w-64 rotate-[-6deg] rounded-[50%] bg-teal-200/20" />
           <div className="relative flex items-start justify-between">
             <Link to="/" className="block" aria-label="Tech Tools home" onClick={() => setMobileOpen(false)}>
-              <Image src="/images/web-logo.png" alt="Tech Tools" width={142} height={72} className="h-16 w-auto" priority />
-              <p className="mt-2 text-xs font-medium text-white/90">Handy tools for developers</p>
+              <Image src="/images/web-logo.png" alt="Tech Tools" width={112} height={52} className="h-[72px] w-auto object-contain object-left" priority />
+              <p className="mt-1 text-[11px] font-medium tracking-wide text-white/85">Handy tools for developers</p>
             </Link>
             <button type="button" onClick={() => setMobileOpen(false)} className="grid h-8 w-8 place-items-center rounded-md text-white/80 transition-colors hover:bg-white/15 hover:text-white" aria-label="Close tools sidebar">
               <X size={20} />
