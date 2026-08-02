@@ -1,5 +1,7 @@
-import type { LucideIcon } from "lucide-react";
 import { FileText, Image as ImageIcon, ShieldCheck, ArrowRightLeft, Globe2, Code2, Network, Type, Calculator } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { PDF_TOOLS, getToolIcon } from "@/components/pdf-tools/toolsData";
+import { IMAGE_TOOLS, getImageToolIcon } from "@/components/image-tools/toolsData";
 
 export type DashboardTool = { id: string; title: string; description: string; route: string; icon: LucideIcon };
 export type DashboardCategory = { slug: string; title: string; titleKey: string; description: string; descriptionKey: string; icon: LucideIcon; badgeCount: number; tools: DashboardTool[] };
@@ -7,9 +9,20 @@ export type DashboardCategory = { slug: string; title: string; titleKey: string;
 const tool = (id: string, title: string, route: string, Icon: LucideIcon, description = "A focused utility for everyday technical work."): DashboardTool => ({ id, title, route, icon: Icon, description });
 const Arrow = ArrowRightLeft;
 
+const pdfToolNames: Record<string, string> = {
+  "merge-pdf": "Merge PDF", "split-pdf": "Split PDF", "compress-pdf": "Compress PDF", "pdf-to-word": "PDF to Word", "word-to-pdf": "Word to PDF", "pdf-to-powerpoint": "PDF to PowerPoint", "powerpoint-to-pdf": "PowerPoint to PDF", "pdf-to-excel": "PDF to Excel", "excel-to-pdf": "Excel to PDF", "pdf-to-jpg": "PDF to JPG", "jpg-to-pdf": "JPG to PDF", "rotate-pdf": "Rotate PDF", "unlock-pdf": "Unlock PDF", "protect-pdf": "Protect PDF", "repair-pdf": "Repair PDF", "edit-pdf": "Edit PDF",
+};
+
+const imageToolNames: Record<string, string> = {
+  "compress-image": "Compress Image", "resize-image": "Resize Image", "crop-image": "Crop Image", "rotate-image": "Rotate Image", "watermark-image": "Watermark Image", "remove-background": "Remove Background", "upscale-image": "Upscale Image", "image-to-jpg": "Image to JPG", "image-to-png": "Image to PNG", "image-to-webp": "Image to WebP", "image-to-avif": "Image to AVIF", "jpg-to-png": "JPG to PNG", "png-to-jpg": "PNG to JPG", "webp-to-jpg": "WebP to JPG", "webp-to-png": "WebP to PNG", "gif-to-jpg": "GIF to JPG", "svg-to-png": "SVG to PNG", "batch-convert": "Batch Convert", "image-editor": "Image Editor",
+};
+
+const pdfDashboardTools = PDF_TOOLS.map((item) => tool(item.id, pdfToolNames[item.id] ?? item.id, item.route, getToolIcon(item.iconName) as LucideIcon));
+const imageDashboardTools = IMAGE_TOOLS.map((item) => tool(item.id, imageToolNames[item.id] ?? item.id, item.route, getImageToolIcon(item.iconName) as LucideIcon));
+
 export const DASHBOARD_CATEGORIES: DashboardCategory[] = [
-  { slug: "pdf-tools-dashboard", title: "PDF Tools Dashboard", titleKey: "pdf", description: "Manage PDF files from one focused workspace.", descriptionKey: "pdfDescription", icon: FileText, badgeCount: 1, tools: [tool("pdf-tools", "PDF Tools", "/ilovepdf", FileText, "Merge, split, convert, compress, and manage PDF files.")] },
-  { slug: "image-tools-dashboard", title: "Image Tools Dashboard", titleKey: "image", description: "Edit, convert, and optimize images in one place.", descriptionKey: "imageDescription", icon: ImageIcon, badgeCount: 1, tools: [tool("image-tools", "Image Tools", "/iloveimg", ImageIcon, "Resize, compress, convert, and optimize images.")] },
+  { slug: "pdf-tools-dashboard", title: "PDF Tools Dashboard", titleKey: "pdf", description: "Manage PDF files from one focused workspace.", descriptionKey: "pdfDescription", icon: FileText, badgeCount: pdfDashboardTools.length, tools: pdfDashboardTools },
+  { slug: "image-tools-dashboard", title: "Image Tools Dashboard", titleKey: "image", description: "Edit, convert, and optimize images in one place.", descriptionKey: "imageDescription", icon: ImageIcon, badgeCount: imageDashboardTools.length, tools: imageDashboardTools },
   { slug: "crypto-security-dashboard", title: "Crypto & Security Dashboard", titleKey: "cryptoSecurity", description: "Protect, validate, hash, and inspect sensitive data.", descriptionKey: "cryptoSecurityDescription", icon: ShieldCheck, badgeCount: 13, tools: [
     tool("password-generator", "Password Generator", "/password-generator", ShieldCheck), tool("password-strength", "Password Strength Analyser", "/password-strength-analyser", ShieldCheck), tool("jwt-parser", "JWT Parser", "/jwt-parser", ShieldCheck), tool("hash-text", "Hash Text", "/hash-text", ShieldCheck), tool("token-generator", "Token Generator", "/token-generator", ShieldCheck), tool("encryption", "Encryption / Decryption", "/encryption-decryption", ShieldCheck), tool("hmac", "HMAC Generator", "/hmac-generator", ShieldCheck), tool("rsa", "RSA Key Pair Generator", "/rsa-key-pair-generator", ShieldCheck), tool("pdf-signature", "PDF Signature Checker", "/pdf-signature-checker", ShieldCheck), tool("bcrypt", "Bcrypt Generator", "/bcrypt-generator", ShieldCheck), tool("iban", "IBAN Validator", "/iban-validator", ShieldCheck), tool("base64", "Base64 String Converter", "/base64-string-converter", ShieldCheck), tool("basic-auth", "Basic Auth Generator", "/basic-auth-generator", ShieldCheck), tool("bip39", "BIP39 Generator", "/bip39-generator", ShieldCheck)
   ] },

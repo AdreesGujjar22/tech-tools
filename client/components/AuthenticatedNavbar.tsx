@@ -2,6 +2,11 @@
 
 import Navbar from "@/components/Navbar";
 
-export default function AuthenticatedNavbar() {
-  return <Navbar />;
+type AuthenticatedNavbarProps = {
+  collapsed: boolean;
+  onCollapsedChange: (collapsed: boolean) => void;
+};
+
+export default function AuthenticatedNavbar({ collapsed, onCollapsedChange }: AuthenticatedNavbarProps) {
+  return <Navbar collapsed={collapsed} onCollapsedChange={onCollapsedChange} />;
 }

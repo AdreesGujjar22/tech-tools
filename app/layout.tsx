@@ -117,7 +117,7 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body className="bg-background text-foreground font-sans">
+      <body suppressHydrationWarning className="bg-background text-foreground font-sans">
         <Providers>{children}</Providers>
       </body>
     </html>
