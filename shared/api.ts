@@ -3,15 +3,15 @@ export interface DemoResponse {
 }
 
 export interface Blog {
-  id?: string;
+  id: string;
   title: string;
   slug: string;
   content: string;
+  status: "draft" | "published";
   excerpt?: string;
   category?: string;
   tags?: string[];
   featuredImage?: string;
-  status: "draft" | "published";
   readingTime?: string;
   createdAt: string;
   updatedAt: string;
@@ -21,13 +21,13 @@ export interface Blog {
 }
 
 export interface Category {
-  id?: string;
+  id: string;
   name: string;
   slug: string;
 }
 
 export interface Tag {
-  id?: string;
+  id: string;
   name: string;
   slug: string;
 }

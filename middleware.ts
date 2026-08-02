@@ -1,29 +1,31 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-const locales = new Set(["de", "en", "es", "fr", "id", "it", "nl", "pt", "tr"]);
+const locales = ["de", "en", "es", "fr", "id", "it", "nl", "pt", "tr"];
 
-export default function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname;
-  const firstSegment = pathname.split("/")[1];
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
 
-  if (!locales.has(firstSegment)) {
-    const url = request.nextUrl.clone();
-    url.pathname = `/en${pathname === "/" ? "" : pathname}`;
-    return NextResponse.redirect(url);
+  const pathnameSegments = pathname.split("/");
+  const firstSegment = pathnameSegments[1];
+
+  if (locales.includes(firstSegment)) {
+    const locale = firstSegment;
+    const restOfPath = pathnameSegments.slice(2).join("/");
+    const targetPath = restOfPath ? `/${restOfPath}` : "/";
+
+    const response = NextResponse.rewrite(new URL(targetPath, request.url));
+    response.headers.set("x-locale", locale);
+    return response;
   }
 
-  const internalPath = pathname.replace(/^\/(?:de|en|es|fr|id|it|nl|pt|tr)(?=\/|$)/, "") || "/";
-  const url = request.nextUrl.clone();
-  url.pathname = internalPath;
-
-  // Forward x-locale on the rewritten request so server components
-  // can read it via headers() from next/headers.
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-locale", firstSegment);
-
-  return NextResponse.rewrite(url, { request: { headers: requestHeaders } });
+  const response = NextResponse.next();
+  response.headers.set("x-locale", "en");
+  return response;
 }
 
 export const config = {
-  matcher: ["/((?!api|_next|admin(?:/|$)|.*\\..*).*)"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|images|robots.txt|sitemap.xml|llms.txt).*)",
+  ],
 };
