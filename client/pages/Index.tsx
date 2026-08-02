@@ -13,22 +13,6 @@ import { DASHBOARD_CATEGORIES } from "@/lib/dashboards-config";
 
 const qrItems = [
   {
-    id: 5,
-    titleKey: "pdfDashboard",
-    url: "/ilovepdf",
-    type: "URL",
-
-    preview: "/images/pdf.png",
-  },
-  {
-    id: 6,
-    titleKey: "imageDashboard",
-    url: "/iloveimg",
-    type: "URL",
-
-    preview: "/images/image.png",
-  },
-  {
     id: 1,
     titleKey: "speedTest",
     url: "/speed-test",
@@ -161,7 +145,8 @@ export default function Index() {
     title: t(`toolCards.${item.titleKey}`),
     date: currentDate,
   }));
-  const filteredItems = localizedItems.filter((item) =>
+  const uniqueItems = Array.from(new Map(localizedItems.map((item) => [item.url, item])).values());
+  const filteredItems = uniqueItems.filter((item) =>
     item.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -345,51 +330,29 @@ export default function Index() {
               <StaggerList staggerDelay={0.08} className="grid-auto-fit mb-12">
                 {filteredItems.map((item) => (
                   <div
-                    key={item.id}
-                    className="premium-card p-5 flex flex-col gap-4 cursor-pointer group rounded-xl border border-[#C5DCC9]/40 bg-white hover:shadow-lg hover:-translate-y-2 transition-all"
+                    key={item.url}
+                    className="group relative flex min-h-[190px] cursor-pointer flex-col rounded-2xl border border-[#10A968]/30 bg-gradient-to-br from-[#F0F7F0] to-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
                     onClick={() => navigate(item.url)}
                   >
-                    {/* Preview */}
-                    <div className="aspect-square rounded-lg bg-white p-4 flex items-center justify-center overflow-hidden relative">
-                      <Image
-                        src={item.preview || "/placeholder.svg"}
-                        alt={item.title}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
+                    <span className="absolute right-4 top-4 rounded-full bg-[#10A968] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white">Tool</span>
+                    <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E8F0E8] text-[#10A968]"><Eye size={22} /></div>
+                    <h3 className="text-lg font-bold leading-tight text-[#1F3A26] group-hover:text-[#10A968]">{item.title}</h3>
+                    <div className="mt-2 flex items-center gap-1.5 text-[#4A6857]">
+                      <Clock className="h-3.5 w-3.5" />
+                      <span className="text-xs font-semibold">{item.date}</span>
                     </div>
-
-                    {/* Info */}
-                    <div className="space-y-2">
-                      <h3 className="font-bold text-lg leading-tight text-[#1F3A26]">{item.title}</h3>
-                      <div className="flex items-center gap-1.5 text-[#4A6857]">
-                        <Clock className="w-3.5 h-3.5" />
-                        <span className="text-xs font-semibold">{item.date}</span>
-                      </div>
-                    </div>
-
-                    {/* Actions */}
-                    <div className="flex gap-2 mt-auto">
-                      <button className="flex-1 py-2 rounded-lg bg-[#E8F0E8] text-[#2D4D35] font-semibold text-xs flex items-center justify-center gap-1.5 hover:bg-[#D4E8D8] transition-colors">
-                        <Eye className="w-3.5 h-3.5" />
+                    <div className="mt-auto flex gap-2 pt-4">
+                      <button className="flex-1 rounded-lg bg-[#E8F0E8] py-2 text-xs font-semibold text-[#2D4D35] transition-colors hover:bg-[#D4E8D8]">
                         {common("actions.view")}
                       </button>
-                      <div className="relative inline-block w-auto">
-                        <button
-                          onClick={(e) => handleShare(e, item.title, item.url)}
-                          className="py-2 px-3 rounded-lg bg-[#E8F0E8] text-[#2D4D35] font-semibold text-xs hover:bg-[#D4E8D8] transition-colors flex items-center justify-center"
-                          aria-label={common("a11y.sharePage")}
-                        >
-                          <Share2 className="w-3.5 h-3.5" />
-                        </button>
-
-                        {copied && (
-                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-[10px] font-medium text-white bg-emerald-600 rounded shadow-md pointer-events-none animate-fade-in whitespace-nowrap">
-                            {common("messages.copiedLink")}
-                          </div>
-                        )}
-                      </div>
+                      <button
+                        onClick={(e) => handleShare(e, item.title, item.url)}
+                        className="flex items-center justify-center rounded-lg bg-[#E8F0E8] px-3 py-2 text-[#2D4D35] transition-colors hover:bg-[#D4E8D8]"
+                        aria-label={common("a11y.sharePage")}
+                      >
+                        <Share2 className="h-3.5 w-3.5" />
+                      </button>
+                      {copied && <span className="sr-only">{common("messages.copiedLink")}</span>}
                     </div>
                   </div>
                 ))}
