@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 
 type Phase = "idle" | "download" | "upload" | "done";
 
-export function SpeedTest() {
+export default function SpeedTest() {
   const t = useTranslations("Tools.SpeedTest");
   const [phase, setPhase] = useState<Phase>("idle");
   const [speed, setSpeed] = useState(0);

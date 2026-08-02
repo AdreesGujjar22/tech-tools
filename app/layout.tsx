@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import Script from "next/script";
 import "@/global.css";
 import Providers from "@/components/Providers";
 import { loadMessages } from "../messages";
@@ -32,44 +33,49 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteMetadata = (loaded.Metadata as Record<string, { title: string; description: string; keywords: string }>).site;
 
   return {
-  metadataBase: new URL(BASE_URL),
-  title: {
-    default: siteMetadata.title,
-    template: "%s | Tech Tools",
-  },
-  description: siteMetadata.description,
-  keywords: siteMetadata.keywords,
-
-  icons: {
-    icon: "/images/fav-icon.png",
-    apple: "/images/fav-icon.png",
-  },
-
-  alternates: await getLocalizedAlternates("/"),
-
-  openGraph: {
-    title: siteMetadata.title,
+    metadataBase: new URL(BASE_URL),
+    title: {
+      default: siteMetadata.title,
+      template: "%s | Tech Tools",
+    },
     description: siteMetadata.description,
-    siteName: "Tech Tools",
-    locale: openGraphLocales[locale],
-    alternateLocale: Object.values(openGraphLocales).filter((value) => value !== openGraphLocales[locale]),
-    type: "website",
-    images: [
-      {
-        url: "/images/web-logo.png",
-        width: 1200,
-        height: 630,
-        alt: "Tech Tools Logo",
-      },
-    ],
-  },
+    keywords: siteMetadata.keywords,
 
-  twitter: {
-    card: "summary_large_image",
-    title: siteMetadata.title,
-    description: siteMetadata.description,
-    images: ["/images/web-logo.png"],
-  },
+    // <-- 2. Google Search Console Verification added here
+    verification: {
+      google: "OV20fZCUF7uLzykR-5TucUuS0yktGuZz2D3tRi-2dAg",
+    },
+
+    icons: {
+      icon: "/images/fav-icon.png",
+      apple: "/images/fav-icon.png",
+    },
+
+    alternates: await getLocalizedAlternates("/"),
+
+    openGraph: {
+      title: siteMetadata.title,
+      description: siteMetadata.description,
+      siteName: "Tech Tools",
+      locale: openGraphLocales[locale],
+      alternateLocale: Object.values(openGraphLocales).filter((value) => value !== openGraphLocales[locale]),
+      type: "website",
+      images: [
+        {
+          url: "/images/web-logo.png",
+          width: 1200,
+          height: 630,
+          alt: "Tech Tools Logo",
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: siteMetadata.title,
+      description: siteMetadata.description,
+      images: ["/images/web-logo.png"],
+    },
   };
 }
 
@@ -119,6 +125,23 @@ export default async function RootLayout({
       </head>
       <body suppressHydrationWarning className="bg-background text-foreground font-sans">
         <Providers>{children}</Providers>
+
+        {/* <-- 3. Google Analytics (gtag.js) components added before body close */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-KPHLTKW84R"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-KPHLTKW84R', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
       </body>
     </html>
   );

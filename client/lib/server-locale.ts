@@ -39,6 +39,13 @@ export async function buildPageMetadata(routePath: string, metadataKey: Metadata
     description: pageData.description,
     keywords: pageData.keywords,
     alternates,
+    robots: {
+      index: true,
+      follow: true,
+      maxSnippet: -1,
+      maxImagePreview: "large" as const,
+      maxVideoPreview: -1,
+    },
     openGraph: {
       title: pageData.title,
       description: pageData.description,

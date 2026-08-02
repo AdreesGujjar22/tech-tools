@@ -28,7 +28,7 @@ export interface LinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorEle
   prefetch?: boolean;
 }
 
-export function Link({ to, prefetch, ...props }: LinkProps) {
+export function Link({ to, prefetch = false, ...props }: LinkProps) {
   const pathname = usePathname();
   const locale = getPathLocale(pathname);
   return <NextLink href={withLocalePath(to, locale)} prefetch={prefetch} {...props} />;

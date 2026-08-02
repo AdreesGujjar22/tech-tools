@@ -1,12 +1,15 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import SEO from "@/components/SEO";
-import { Download, Share2, Copy, Sparkles, RefreshCw, Sliders, Check, Eye, EyeOff, Zap } from "lucide-react";
+import FaqSection from "@/components/FaqSection";
+import { getFaqsForRoute } from "@/lib/faq-data";
+import { Download, Share2, Copy, Sparkles, Sliders, Check, Eye, EyeOff, Zap } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 export default function PasswordGenerator() {
   const t = useTranslations("Tools.PasswordGenerator");
+  const faqs = getFaqsForRoute("password-generator");
   const [password, setPassword] = useState("");
   const [length, setLength] = useState(16);
   const [uppercase, setUppercase] = useState(true);
@@ -99,6 +102,8 @@ export default function PasswordGenerator() {
         title={t("title")}
         description={t("description")}
         keywords="password generator, strong password, random password, password maker, secure password"
+        categoryName="Crypto & Security"
+        toolName={t("title")}
       />
 
       <main className="pt-32 pb-20 px-6">
@@ -120,12 +125,11 @@ export default function PasswordGenerator() {
           {/* Generator Grid */}
           <div className="grid lg:grid-cols-12 gap-8 items-start">
             {/* Left controls panel */}
-            <div className="lg:col-span-7 glass-card-dark p-8 rounded-[24px] space-y-6">
-              {/* Password Options */}
+            <section className="lg:col-span-7 glass-card-dark p-8 rounded-[24px] space-y-6">
               <div className="space-y-4">
-                <h3 className="text-md font-bold text-[#1F3A26] flex items-center gap-2">
+                <h2 className="text-md font-bold text-[#1F3A26] flex items-center gap-2">
                   <Sliders className="w-4 h-4 text-[#10A968]" /> {t("customize")}
-                </h3>
+                </h2>
 
                 {/* Length Slider */}
                 <div>
@@ -149,7 +153,7 @@ export default function PasswordGenerator() {
 
                 {/* Character Options */}
                 <div className="border-t border-[#E0E0E0] pt-4 space-y-3">
-                  <label className="block text-xs text-[#4A6857] font-semibold mb-3">{t("characterTypes")}</label>
+                  <span className="block text-xs text-[#4A6857] font-semibold mb-3">{t("characterTypes")}</span>
 
                   <div className="flex items-center gap-3">
                     <input
@@ -238,12 +242,12 @@ export default function PasswordGenerator() {
                   <Zap className="w-4 h-4" /> {isAutoGenerate ? t("regenerate") : t("generate")}
                 </button>
               </div>
-            </div>
+            </section>
 
             {/* Right output preview */}
-            <div className="lg:col-span-5 flex flex-col items-center">
+            <section className="lg:col-span-5 flex flex-col items-center">
               <div className="glass-card-dark p-8 rounded-[24px] w-full flex flex-col items-center gap-6 text-center">
-                <span className="text-[#2D4D35] text-sm font-semibold tracking-wider uppercase">{t("generated")}</span>
+                <h2 className="text-[#2D4D35] text-sm font-semibold tracking-wider uppercase">{t("generated")}</h2>
 
                 {/* Strength Indicator */}
                 {password && (
@@ -331,10 +335,12 @@ export default function PasswordGenerator() {
                   {t("privacy")}
                 </span>
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </main>
+
+      <FaqSection items={faqs} title="Password Generator FAQs" />
     </div>
   );
 }
