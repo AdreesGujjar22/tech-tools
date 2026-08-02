@@ -1,0 +1,1 @@
+{"title":"Normalizador de e-mail","description":"Normalize aliases específicos do provedor e inspecione detalhes do domínio.","input":"E-mails, um por linha","localPart":"Parte local","domain":"Domínio","provider":"Provedor","disposable":"Descartável","yes":"Sim","no":"Não","copy":"Copiar","invalid":"Endereço de e-mail inválido."}

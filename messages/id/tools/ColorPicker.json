@@ -1,0 +1,15 @@
+{
+  "title": "Pemilih Warna",
+  "download": "Unduh",
+  "description": "Ekstrak palet warna yang indah dari gambar apa pun, atau sesuaikan dan salin warna satu per satu dengan presisi tinggi.",
+  "imageTab": "Gambar",
+  "imageExtractor": "Ekstraktor Warna Gambar",
+  "uploadImage": "Unggah gambar",
+  "browseOrDrop": "Klik untuk menjelajah atau seret & lepas",
+  "palette": "Palet Warna",
+  "copyAll": "Salin semua",
+  "details": "Detail Warna yang Diekstrak",
+  "useAnother": "Gunakan gambar lain",
+  "empty": "Unggah gambar pilihan Anda untuk secara otomatis mengekstrak palet warnanya",
+  "copied": "{format} disalin!"
+}

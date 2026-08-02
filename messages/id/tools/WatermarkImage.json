@@ -1,0 +1,13 @@
+{
+  "panel": "Panel tanda air",
+  "positionGrid": "Grid posisi tanda air",
+  "stampLabel": "Label stempel merek",
+  "defaultStamp": "© STEMPEL MEREK",
+  "fontSize": "Ukuran font (% kanvas)",
+  "textFillColor": "Warna isi teks",
+  "opacity": "Opasitas tanda air ({value}%)",
+  "propertiesOverview": "Ringkasan properti",
+  "positionType": "Jenis posisi",
+  "stampText": "Teks stempel",
+  "none": "Tidak ada"
+}

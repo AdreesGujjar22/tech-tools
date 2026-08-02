@@ -1,0 +1,10 @@
+{
+  "badge": "Traitement d'Images 100% Navigateur",
+  "title": "Outils pour compresser, convertir et modifier des images par lots",
+  "description": "Débloquez le recadrage, le redimensionnement, le filigrane, les filtres, la suppression d'arrière-plan et les conversions ultra-rapides. Entièrement isolé dans le contexte de votre navigateur.",
+  "searchPlaceholder": "Rechercher des outils image (ex. : recadrer, arrière-plan, png)...",
+  "allTools": "Tous les Outils",
+  "clear": "Effacer",
+  "noMatches": "Aucun outil correspondant",
+  "noMatchesDescription": "Nous n'avons trouvé aucun convertisseur ou outil correspondant à vos paramètres. Vérifiez vos termes de recherche."
+}

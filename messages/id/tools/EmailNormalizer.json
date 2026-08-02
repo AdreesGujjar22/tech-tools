@@ -1,0 +1,1 @@
+{"title":"Normalisasi Email","description":"Normalisasi alias email khusus penyedia dan periksa detail domain.","input":"Email, satu per baris","localPart":"Bagian lokal","domain":"Domain","provider":"Penyedia","disposable":"Sekali pakai","yes":"Ya","no":"Tidak","copy":"Salin","invalid":"Alamat email tidak valid."}

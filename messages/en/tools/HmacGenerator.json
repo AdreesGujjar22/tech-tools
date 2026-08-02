@@ -1,0 +1,1 @@
+{"title":"HMAC Generator","description":"Generate keyed message authentication codes with SHA and MD5 algorithms.","message":"Message","secret":"Secret key","algorithm":"Algorithm","encoding":"Output encoding","generate":"Generate HMAC","copy":"Copy","invalid":"Unable to generate the HMAC."}

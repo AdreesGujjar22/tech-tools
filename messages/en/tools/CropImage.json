@@ -1,0 +1,11 @@
+{
+  "settings": "Crop Settings",
+  "aspectRatio": "Aspect Ratio",
+  "free": "Free",
+  "square": "1:1 Square",
+  "interactiveCropArea": "Interactive Crop Area",
+  "previewAlt": "Crop preview",
+  "outputDimensions": "Output Dimensions",
+  "startXY": "Start X, Y",
+  "sizeWH": "Size W x H"
+}

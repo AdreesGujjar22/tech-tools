@@ -1,0 +1,1 @@
+{"title":"Chiffrement / déchiffrement AES","description":"Chiffrez et déchiffrez du texte avec AES-GCM ou AES-CBC et une phrase PBKDF2.","mode":"Mode","passphrase":"Phrase secrète","input":"Entrée","encrypt":"Chiffrer","decrypt":"Déchiffrer","output":"Sortie","copy":"Copier","invalid":"Impossible de traiter l'entrée."}

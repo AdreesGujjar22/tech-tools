@@ -1,6 +1,4 @@
-"use client";
-
-import React, { Suspense, use, useMemo } from "react";
+import React from "react";
 import { notFound } from "next/navigation";
 import { PDF_TOOLS } from "@/components/pdf-tools/toolsData";
 
@@ -27,23 +25,20 @@ interface ToolPageProps {
   params: Promise<{ tool: string }>;
 }
 
-export default function ToolPage({ params }: ToolPageProps) {
-  const { tool: toolId } = use(params);
-  const Tool = useMemo(() => {
-    const loadTool = toolLoaders[toolId as keyof typeof toolLoaders];
-    return loadTool ? React.lazy(loadTool) : null;
-  }, [toolId]);
+export default async function ToolPage({ params }: ToolPageProps) {
+  const { tool: toolId } = await params;
+  const loadTool = toolLoaders[toolId as keyof typeof toolLoaders];
 
-  if (!PDF_TOOLS.some((tool) => tool.id === toolId) || !Tool) {
-    return notFound();
+  if (!PDF_TOOLS.some((tool) => tool.id === toolId) || !loadTool) {
+    notFound();
   }
+
+  const Tool = (await loadTool()).default;
 
   return (
     <main id="tool-workspace" className="min-h-screen bg-white text-[#2D4D35]">
       <div className="py-12">
-        <Suspense fallback={<div className="min-h-[50vh]" aria-busy="true" />}>
-          <Tool />
-        </Suspense>
+        <Tool />
       </div>
     </main>
   );

@@ -267,7 +267,7 @@ export default function BackgroundRemover() {
     ));
 
     try {
-      console.log(`Processing image: ${image.original.name}`);
+
       const resultBlob = await removeBackgroundWithAI(image.original, (progress) => {
         setImages(prev => prev.map((img, i) =>
           i === index ? { ...img, progress } : img
@@ -290,7 +290,7 @@ export default function BackgroundRemover() {
         } : img
       ));
       toast.success(t("backgroundRemoved", { fileName: image.original.name }));
-      console.log(`Successfully processed: ${image.original.name}`);
+
     } catch (error: any) {
       console.error(`Error processing image ${image.original.name}:`, error);
       setImages(prev => prev.map((img, i) =>

@@ -1,0 +1,1 @@
+{"title":"Base64 String Converter","description":"Encode and decode UTF-8 strings with optional URL-safe Base64.","encode":"Encode","decode":"Decode","urlSafe":"Use URL-safe Base64","copy":"Copy","invalid":"Invalid Base64 string."}

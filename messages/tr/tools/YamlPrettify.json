@@ -1,0 +1,1 @@
+{"title":"YAML Biçimlendirici","description":"YAML'ı tutarlı girintiyle doğrulayın, biçimlendirin ve küçültün.","input":"YAML girdisi","output":"YAML çıktısı","indent":"Girinti","minify":"Küçült","copy":"YAML'ı kopyala","invalid":"Geçersiz YAML sözdizimi."}

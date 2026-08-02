@@ -1,0 +1,11 @@
+{
+  "settings": "Configuración de Recorte",
+  "aspectRatio": "Relación de Aspecto",
+  "free": "Libre",
+  "square": "1:1 Cuadrado",
+  "interactiveCropArea": "Área de Recorte Interactiva",
+  "previewAlt": "Vista previa del recorte",
+  "outputDimensions": "Dimensiones de Salida",
+  "startXY": "Inicio X, Y",
+  "sizeWH": "Tamaño (An x Al)"
+}

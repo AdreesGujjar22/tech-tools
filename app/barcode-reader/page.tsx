@@ -1,8 +1,7 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const BarcodeReader = dynamic(() => import("@/pages/BarcodeReader"), { ssr: false });
+"use client";
+import BarcodeReader from "@/pages/BarcodeReader";
 
 export default function Page() {
   return <BarcodeReader />;

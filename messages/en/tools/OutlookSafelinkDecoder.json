@@ -1,0 +1,1 @@
+{"title":"Outlook Safelink Decoder","description":"Safely extract the original target URL from Microsoft SafeLinks.","input":"Outlook Safelink URL","output":"Original target URL","copy":"Copy URL","copied":"Copied","invalid":"Invalid or unsupported SafeLink URL."}

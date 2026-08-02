@@ -1,0 +1,15 @@
+{
+  "title": "Hintergrundentferner",
+  "description": "Lade ein Bild hoch und entferne den Hintergrund sofort mit KI",
+  "dropImage": "Lege dein Bild hier ab",
+  "orBrowse": "oder klicke zum Durchsuchen",
+  "chooseImage": "Bild Wählen",
+  "download": "Herunterladen",
+  "reprocess": "Neu Verarbeiten",
+  "processing": "Wird verarbeitet...",
+  "removeBackground": "Hintergrund Entfernen",
+  "retry": "Erneut Versuchen",
+  "images": "Bilder ({count})",
+  "processAll": "Alles Verarbeiten",
+  "backgroundRemoved": "Hintergrund von {fileName} entfernt"
+}

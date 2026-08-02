@@ -1,0 +1,18 @@
+{
+  "placeholder": "Beginne hier mit dem Schreiben deiner Notizen...",
+  "download": "Herunterladen",
+  "copy": "Kopieren",
+  "clear": "Löschen",
+  "newNote": "Neue Notiz beginnen?",
+  "clearNote": "Diese Notiz löschen?",
+  "continue": "Fortfahren",
+  "newDescription": "Deine aktuelle Notiz geht verloren. Diese Aktion kann nicht rückgängig gemacht werden.",
+  "clearDescription": "Deine aktuelle Notiz wird gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+  "cancel": "Abbrechen",
+  "open": "Öffnen",
+  "undo": "Rückgängig",
+  "lineColumn": "Zeile {line}, Spalte {column}",
+  "counts": "Zeichen {characters}, Wörter {words}",
+  "autoSaved": "Automatisch gespeichert {time}",
+  "copyBlocked": "Kopieren wurde blockiert. Wähle den Text aus und verwende Strg+A, dann Strg+C."
+}

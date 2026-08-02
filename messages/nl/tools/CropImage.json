@@ -1,0 +1,11 @@
+{
+  "settings": "Bijsnijdinstellingen",
+  "aspectRatio": "Beeldverhouding",
+  "free": "Vrij",
+  "square": "1:1 Vierkant",
+  "interactiveCropArea": "Interactief Bijsnijdgebied",
+  "previewAlt": "Bijsnijdvoorbeeld",
+  "outputDimensions": "Uitvoerafmetingen",
+  "startXY": "Start X, Y",
+  "sizeWH": "Grootte B x H"
+}

@@ -1,0 +1,11 @@
+{
+  "settings": "Paramètres de Recadrage",
+  "aspectRatio": "Format d'Image",
+  "free": "Libre",
+  "square": "1:1 Carré",
+  "interactiveCropArea": "Zone de Recadrage Interactive",
+  "previewAlt": "Aperçu du recadrage",
+  "outputDimensions": "Dimensions de Sortie",
+  "startXY": "Début X, Y",
+  "sizeWH": "Taille L x H"
+}

@@ -1,0 +1,1 @@
+{"title":"TOML'den YAML'e Dönüştürücü","description":"TOML'i ayrıştırın ve verileri temiz YAML olarak biçimlendirin.","input":"TOML girdisi","output":"YAML çıktısı","indent":"Girinti","copy":"YAML'ı kopyala","invalid":"Geçersiz TOML sözdizimi."}

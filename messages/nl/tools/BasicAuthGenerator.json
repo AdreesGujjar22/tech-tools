@@ -1,0 +1,1 @@
+{"title":"Basic Auth-generator","description":"Genereer een HTTP Basic Auth-header en htpasswd-regel.","username":"Gebruikersnaam","password":"Wachtwoord","header":"Authorization-header","htpasswd":"htpasswd-regel","copy":"Kopiëren"}

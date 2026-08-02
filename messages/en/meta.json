@@ -1,0 +1,136 @@
+{
+  "Metadata": {
+    "site": {
+      "title": "Tech Tools - Free Online PDF, Image & AI Tools (No Sign-Up)",
+      "description": "Tech Tools offers 20+ free online PDF and image tools, AI-powered utilities, file converters, compressors, and generators. No installs, no sign-up, no watermarks - fast, private, and browser-based.",
+      "keywords": "free online tools, pdf tools, image tools, ai tools, merge pdf, split pdf, compress pdf, compress image, image converter, pdf converter, jpg to pdf, pdf to word, qr code generator, password generator, productivity tools, no sign up tools"
+    },
+    "home": {
+      "title": "Modern Online Productivity Utilities | Tech Tools",
+      "description": "Fast, secure, browser-based tools for developers, creators, and everyday digital tasks: QR code generator, typing speed test, internet speed test, color picker, and more - free and instant.",
+      "keywords": "online productivity tools, developer utilities, qr code generator, free typing test, internet speed test, color picker online, code snippet tools, secure online converter"
+    },
+    "about": {
+      "title": "About Tech Tools - Free Online Utilities & Our Mission",
+      "description": "Learn about Tech Tools and our mission: fast, free, browser-based tools for PDF editing, image conversion, AI utilities, and everyday productivity - no downloads required.",
+      "keywords": "about tech tools, our mission, free online utilities, who we are"
+    },
+    "pricing": {
+      "title": "Pricing Plans - Free & Premium Tools | Tech Tools",
+      "description": "Compare Tech Tools pricing plans. Most tools are 100% free forever, with affordable premium plans for higher limits, priority support, and advanced customization.",
+      "keywords": "tech tools pricing, free plan, premium plan, subscription plans, tool pricing"
+    },
+    "contact": {
+      "title": "Contact Us - Tech Tools Support",
+      "description": "Have a question, feedback, or need help? Contact the Tech Tools team directly - we typically reply within 24 hours.",
+      "keywords": "contact tech tools, tech tools support, get in touch, customer support"
+    },
+    "help": {
+      "title": "Help Center & FAQs - Tech Tools",
+      "description": "Find instant answers in our help center: user guides, frequently asked questions, and direct access to technical support for every Tech Tools feature.",
+      "keywords": "tech tools help, faq, support center, user guide, how to use tech tools"
+    },
+    "privacy": {
+      "title": "Privacy Policy - Your Data Stays in Your Browser | Tech Tools",
+      "description": "See exactly how Tech Tools handles your data. Our tools process files locally in your browser - nothing is uploaded, stored, or sold.",
+      "keywords": "privacy policy, data privacy, browser-based tools, no data storage, cookie policy"
+    },
+    "terms": {
+      "title": "Terms & Conditions - Tech Tools",
+      "description": "Read the Tech Tools terms of service, including usage guidelines, licensing terms, and service conditions for our free and premium tools.",
+      "keywords": "terms and conditions, terms of service, usage policy, licensing terms"
+    },
+    "qrGenerator": {
+      "title": "Free QR Code Generator - Create Custom QR Codes Online",
+      "description": "Generate free custom QR codes for URLs, text, WiFi, vCards, and more. Choose colors and sizes, then download instantly as a high-resolution PNG - no sign-up needed.",
+      "keywords": "qr code generator, free qr code, create qr code, custom qr code, qr code maker, wifi qr code, vcard qr code"
+    },
+    "barcodeGenerator": {
+      "title": "Free Barcode Generator - CODE128, EAN13, UPC & More",
+      "description": "Create barcodes instantly in CODE128, CODE39, EAN13, UPC, and other formats. Fully customizable and free to download - perfect for products and inventory.",
+      "keywords": "barcode generator, free barcode maker, create barcode online, CODE128 generator, EAN13 generator, UPC barcode"
+    },
+    "barcodeReader": {
+      "title": "Barcode & QR Code Scanner Online - Free & Private",
+      "description": "Scan and decode QR codes or barcodes instantly from an uploaded image or your camera - entirely in your browser, with nothing uploaded to a server.",
+      "keywords": "qr code scanner online, barcode scanner online, scan qr code from image, decode barcode, webcam qr scanner"
+    },
+    "passwordGenerator": {
+      "title": "Strong Random Password Generator - Free & Secure",
+      "description": "Generate strong, random passwords instantly. Customize length and character types to create secure, hard-to-crack passwords for every account.",
+      "keywords": "password generator, strong password generator, random password generator, secure password maker, free password tool"
+    },
+    "loremGenerator": {
+      "title": "Lorem Ipsum Generator - Free Placeholder Text Tool",
+      "description": "Generate Lorem Ipsum placeholder text instantly by paragraphs, sentences, or words - perfect for mockups, wireframes, and design projects.",
+      "keywords": "lorem ipsum generator, placeholder text generator, dummy text, filler text, lorem ipsum online"
+    },
+    "emojiPicker": {
+      "title": "Emoji Picker & Copier - Search and Copy Emojis Free",
+      "description": "Browse, search, and copy any emoji in one click. Find the perfect emoji for messages, posts, and documents - fast and free.",
+      "keywords": "emoji picker, copy emoji, emoji search, emoji keyboard online, emoji list"
+    },
+    "notepad": {
+      "title": "Free Online Notepad - Auto-Save Text Editor",
+      "description": "A free online notepad with auto-save, file upload/download, and real-time word and character counting - no account needed.",
+      "keywords": "online notepad, free text editor online, notes app online, auto save notepad, plain text editor"
+    },
+    "colorPicker": {
+      "title": "Online Color Picker - Extract & Convert Colors Free",
+      "description": "Pick colors from any image, generate color palettes, and convert instantly between HEX, RGB, and HSL - a free online color tool for designers.",
+      "keywords": "color picker online, image color picker, hex to rgb converter, color palette generator, eyedropper tool online"
+    },
+    "speedTest": {
+      "title": "Free Internet Speed Test - Check Download & Upload Speed",
+      "description": "Test your internet speed in seconds. Check download speed, upload speed, and ping powered by Cloudflare's global network - free and accurate.",
+      "keywords": "internet speed test, wifi speed test, download speed test, upload speed test, ping test, bandwidth test"
+    },
+    "typingSpeed": {
+      "title": "Free Typing Speed Test - Check Your WPM Online",
+      "description": "Test your typing speed and accuracy for free. Track your WPM in real time and improve with every attempt - no sign-up required.",
+      "keywords": "typing speed test, wpm test, typing test online, free typing test, keyboard speed test"
+    },
+    "tools": {
+      "title": "All Free Online Tools - PDF, Image & AI Utilities | Tech Tools",
+      "description": "Browse every free Tech Tools utility in one place: PDF tools, image tools, AI-powered utilities, and productivity tools - all free, fast, and browser-based.",
+      "keywords": "online tools, free tools, all tools, productivity tools, utility tools"
+    },
+    "pdf": {
+      "title": "Free PDF Tools - Merge, Split, Compress & Convert PDFs Online",
+      "description": "20+ free PDF tools in your browser: merge PDFs, split PDFs, compress PDFs, convert PDF to Word/Excel/JPG and back, edit and protect PDFs - no upload limits.",
+      "keywords": "pdf tools, merge pdf, split pdf, compress pdf online, pdf converter, pdf to word, word to pdf, jpg to pdf, pdf to excel, edit pdf online"
+    },
+    "image": {
+      "title": "Free Image Tools - Compress, Convert, Resize & Edit Images",
+      "description": "Free online image tools: compress images, convert between JPG, PNG, WebP and AVIF, resize, crop, rotate, remove backgrounds with AI, and more - all in your browser.",
+      "keywords": "image tools, compress image online, image converter, resize image online, crop image, remove background online, jpg to png, png to jpg, webp converter"
+    },
+    "customization": {
+      "title": "Customize Your Experience - Tech Tools Settings",
+      "description": "Personalize your Tech Tools experience - adjust themes, display settings, and preferences to match how you work.",
+      "keywords": "customization settings, theme settings, tech tools preferences"
+    }
+  },
+  "blog": {
+    "title": "The Craft Blog",
+    "description": "In-depth investigations, tactical guides, and structural designs to supercharge your software engineering and visual workflow.",
+    "keywords": "blog, articles, guides, tutorials, tech tools blog"
+  },
+  "seo": {
+    "home": "All Your Essential Tech Tools in One Place",
+    "tools": {
+      "UpscaleImage": "AI Image Upscaler",
+      "BackgroundRemover": "Background Remover",
+      "QrGenerator": "QR Code Generator",
+      "BarcodeGenerator": "Barcode Generator",
+      "BarcodeReader": "Barcode & QR Reader",
+      "PasswordGenerator": "Password Generator",
+      "LoremGenerator": "Lorem Ipsum Generator",
+      "EmojiPicker": "Emoji Picker & Copier",
+      "ColorPicker": "Color Picker",
+      "PdfDashboard": "Every tool you need to optimize and master PDFs",
+      "ImageDashboard": "SaaS Tools to compress, convert, and edit images in batch",
+      "SpeedTest": "Speed Test"
+    }
+  }
+}

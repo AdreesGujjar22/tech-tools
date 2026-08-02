@@ -1,0 +1,13 @@
+{
+  "panel": "Watermark Panel",
+  "positionGrid": "Watermark Position Grid",
+  "stampLabel": "Branding Stamp Label",
+  "defaultStamp": "© BRAND STAMP",
+  "fontSize": "Font Size (% of Canvas)",
+  "textFillColor": "Text Fill Color",
+  "opacity": "Watermark Opacity ({value}%)",
+  "propertiesOverview": "Properties Overview",
+  "positionType": "Position Type",
+  "stampText": "Stamp Text",
+  "none": "None"
+}

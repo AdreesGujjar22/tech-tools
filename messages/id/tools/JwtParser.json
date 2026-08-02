@@ -1,0 +1,1 @@
+{"title":"JWT Parser","description":"Decode and inspect JSON Web Tokens safely in your browser.","inputLabel":"JWT to decode","placeholder":"Paste your token here...","header":"Header","payload":"Payload","valid":"Valid JWT format","expired":"This token is expired","invalid":"Invalid token","copy":"Copy"}

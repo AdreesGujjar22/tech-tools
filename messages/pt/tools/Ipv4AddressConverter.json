@@ -1,0 +1,1 @@
+{"title":"Conversor de endereços IPv4","description":"Converta endereços IPv4 entre notação pontuada, decimal, hexadecimal, octal e binária.","input":"Valor IPv4","notation":"Notação de entrada","dotted":"Decimal pontuado","decimal":"Decimal","hexadecimal":"Hexadecimal","octal":"Octal","binary":"Binário","invalid":"Introduza um valor IPv4 válido para a notação selecionada."}

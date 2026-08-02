@@ -1,8 +1,7 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const MainColorPicker = dynamic(() => import("@/components/color-picker/MainColorPicker"), { ssr: false });
+"use client";
+import MainColorPicker from "@/components/color-picker/MainColorPicker";
 
 export default function Page() {
   return <MainColorPicker />;

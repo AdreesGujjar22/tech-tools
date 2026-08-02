@@ -1,8 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const Contact = dynamic(() => import("@/pages/Contact"), { ssr: false });
+import Contact from "@/pages/Contact";
 
 export default function Page() {
   return <Contact />;

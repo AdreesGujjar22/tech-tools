@@ -1,0 +1,1 @@
+{"title":"TOML-zu-YAML-Konverter","description":"Parsen Sie TOML und formatieren Sie die Daten als sauberes YAML.","input":"TOML-Eingabe","output":"YAML-Ausgabe","indent":"Einrückung","copy":"YAML kopieren","invalid":"Ungültige TOML-Syntax."}

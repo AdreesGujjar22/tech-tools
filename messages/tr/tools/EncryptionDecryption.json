@@ -1,0 +1,1 @@
+{"title":"AES Şifreleme / Şifre Çözme","description":"PBKDF2 parola ifadesiyle AES-GCM veya AES-CBC kullanarak metni şifreleyin ve çözün.","mode":"Mod","passphrase":"Parola ifadesi","input":"Girdi","encrypt":"Şifrele","decrypt":"Şifreyi çöz","output":"Çıktı","copy":"Kopyala","invalid":"Girdi işlenemedi."}

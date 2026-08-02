@@ -1,0 +1,136 @@
+{
+  "Metadata": {
+    "site": {
+      "title": "Tech Tools - Kostenlose Online-PDF-, Bild- und KI-Tools",
+      "description": "Tech Tools bietet kostenlose Online-Tools für PDF, Bildbearbeitung, KI-gestützte Dienstprogramme, Dateikonverter, Kompressoren, Generatoren und Produktivitätslösungen. Schnell, sicher und einfach zu bedienen.",
+      "keywords": "pdf werkzeuge, bild werkzeuge, ki werkzeuge, pdf zusammenfuegen, pdf teilen, bild komprimieren, bildkonverter, pdf konverter, online werkzeuge, kostenlose werkzeuge, produktivitaetswerkzeuge"
+    },
+    "home": {
+      "title": "Moderne Online-Produktivitätswerkzeuge",
+      "description": "Schnelle, sichere und moderne Online-Tools für Entwickler, Kreative und alltägliche digitale Aufgaben. Enthält QR-Code-Generator, Schreibgeschwindigkeitstest, Internet-Speedtest, Farbwähler und mehr.",
+      "keywords": "tools fuer entwickler, qr code scannen, schreibtrainer, internet speedtest, code snippet tools, sicherer online konverter"
+    },
+    "about": {
+      "title": "Über Uns - Tech Tools",
+      "description": "Lerne Tech Tools kennen – unsere Mission, kostenlose Online-Tools für PDF, Bilder, KI-Dienstprogramme und Produktivitätslösungen anzubieten.",
+      "keywords": "ueber uns, ueber tech tools, mission, vision"
+    },
+    "pricing": {
+      "title": "Preise - Tech Tools",
+      "description": "Entdecke unsere Preispläne. Die meisten unserer Tools sind völlig kostenlos, mit verfügbaren Premium-Optionen.",
+      "keywords": "preise, plaene, premium, abonnements"
+    },
+    "contact": {
+      "title": "Kontaktiere TechTools",
+      "description": "Hast du Fragen, Feedback oder brauchst Hilfe? Kontaktiere TechTools und wir antworten so schnell wie möglich.",
+      "keywords": "kontakt, support, TechTools"
+    },
+    "help": {
+      "title": "Hilfe und Häufig Gestellte Fragen",
+      "description": "Hol dir sofortige Hilfe, sieh dir Benutzerhandbücher an, durchsuche häufig gestellte Fragen und kontaktiere unseren technischen Support.",
+      "keywords": "hilfe, support, benutzerhandbuch, haeufig gestellte fragen, tech tools hilfe"
+    },
+    "privacy": {
+      "title": "Datenschutzrichtlinie",
+      "description": "Erfahre, wie TechTools Daten aus deinem lokalen Browser sammelt, nutzt und schützt.",
+      "keywords": "datenschutz, bedingungen, cookies, sicherheit, browser speicher"
+    },
+    "terms": {
+      "title": "Allgemeine Geschäftsbedingungen",
+      "description": "Erfahre mehr über unsere Richtlinien zur digitalen Nutzung, Serversicherheit und Compliance-Klauseln.",
+      "keywords": "bedingungen, konditionen, regeln, vereinbarung, lizenzen"
+    },
+    "qrGenerator": {
+      "title": "QR-Code-Generator",
+      "description": "Kostenloser QR-Code-Generator. Erstelle QR-Codes für URLs, Text, vCard, WLAN und mehr. Sofortiger Download und Anpassung.",
+      "keywords": "qr code, qr code generator, qr generator, barcode, code generator"
+    },
+    "barcodeGenerator": {
+      "title": "Barcode-Generator",
+      "description": "Erstelle Barcodes sofort. Erzeuge CODE128, CODE39, EAN13, UPC und mehr. Sofortiger Download und Anpassung.",
+      "keywords": "barcode generator, barcode erstellen, barcode ersteller, CODE128, EAN13, UPC"
+    },
+    "barcodeReader": {
+      "title": "Barcode- & QR-Scanner",
+      "description": "Scanne QR-Codes und Barcodes aus hochgeladenen Bildern oder der Kamera deines Geräts, sicher in deinem Browser.",
+      "keywords": "qr scanner, barcode scanner, qr bild scannen, barcode scanner mit kamera"
+    },
+    "passwordGenerator": {
+      "title": "Passwort-Generator",
+      "description": "Erstelle sofort starke, zufällige Passwörter. Passe Länge, Zeichentypen an und erstelle sichere Passwörter für alle deine Konten.",
+      "keywords": "passwort generator, starkes passwort, zufaelliges passwort, passwort ersteller, sicheres passwort"
+    },
+    "loremGenerator": {
+      "title": "Lorem-Ipsum-Generator",
+      "description": "Erstelle sofort Lorem-Ipsum-Platzhaltertext. Erzeuge Absätze, Sätze oder Wörter für deine Designs und Projekte.",
+      "keywords": "lorem ipsum generator, platzhaltertext, lorem ipsum, blindtext, testtext"
+    },
+    "emojiPicker": {
+      "title": "Emoji-Auswahl & Kopierer",
+      "description": "Durchsuche, suche und kopiere Emojis ganz einfach. Finde das perfekte Emoji für deine Nachrichten und Beiträge.",
+      "keywords": "emoji auswahl, emoji kopierer, emoji suche, emojis, smileys"
+    },
+    "notepad": {
+      "title": "Online-Notizblock - Tech Tools",
+      "description": "Kostenloser Online-Notizblock mit automatischem Speichern, Datei-Download/-Upload und Echtzeit-Wort-/Zeichenzählung.",
+      "keywords": "notizblock, online notizblock, texteditor, notizen machen, online texteditor"
+    },
+    "colorPicker": {
+      "title": "Farbwähler - Tech Tools",
+      "description": "Kostenloses Online-Tool zur Farbauswahl. Extrahiere Farben aus Bildern, erstelle Farbpaletten und konvertiere zwischen Farbformaten.",
+      "keywords": "farbwaehler, farbkonverter, farbpalette, hex farbe, rgb farbe"
+    },
+    "speedTest": {
+      "title": "Speedtest - Tech Tools",
+      "description": "Teste deine Internetgeschwindigkeit mit Tech Tools. Überprüfe Download-, Upload-Geschwindigkeit und Ping in Sekunden.",
+      "keywords": "speedtest, internetgeschwindigkeit, verbindungstest, bandbreitentest, ping"
+    },
+    "typingSpeed": {
+      "title": "Schreibgeschwindigkeitstest - Tech Tools",
+      "description": "Teste deine Schreibgeschwindigkeit und verbessere deine WPM. Kostenloser Online-Schreibtest mit Genauigkeits- und Ergebnisverfolgung.",
+      "keywords": "schreibgeschwindigkeit, tipptest, wpm, tippen, tastaturtest"
+    },
+    "tools": {
+      "title": "Werkzeuge - Tech Tools Sammlung",
+      "description": "Entdecke alle unsere kostenlosen Online-Tools, einschließlich PDF-, Bild-, KI-Dienstprogramme und Produktivitätslösungen.",
+      "keywords": "werkzeuge, online werkzeuge, kostenlose werkzeuge, dienstprogramme"
+    },
+    "pdf": {
+      "title": "PDF-Werkzeuge - Konvertieren, Zusammenführen, Teilen & Komprimieren | Tech Tools",
+      "description": "Kostenlose Online-PDF-Tools. Führe PDFs zusammen, teile PDFs, komprimiere PDFs, konvertiere zu/von PDF, extrahiere Seiten, bearbeite PDFs und vieles mehr.",
+      "keywords": "pdf werkzeuge, pdf zusammenfuegen, pdf teilen, pdf komprimieren, pdf konverter, pdf zu word, word zu pdf, jpg zu pdf"
+    },
+    "image": {
+      "title": "Bild-Werkzeuge - Komprimieren, Konvertieren & Bearbeiten | Tech Tools",
+      "description": "Kostenlose Online-Bild-Tools. Komprimiere Bilder, konvertiere Formate (JPG, PNG, WebP), skaliere, schneide zu, drehe, entferne den Hintergrund und mehr.",
+      "keywords": "bild werkzeuge, bild komprimieren, bildkonverter, bild skalieren, bild zuschneiden, bildeditor, jpg zu png, png zu jpg"
+    },
+    "customization": {
+      "title": "Anpassung - Tech Tools",
+      "description": "Passe dein Tech Tools Erlebnis an. Passe Einstellungen, Themen und Präferenzen an.",
+      "keywords": "anpassung, einstellungen, praeferenzen, themen"
+    }
+  },
+  "blog": {
+    "title": "Der Craft-Blog",
+    "description": "Ausführliche Untersuchungen, taktische Leitfäden und strukturelle Designs, um deine Softwareentwicklung und deinen visuellen Workflow zu beflügeln.",
+    "keywords": "blog, artikel, leitfäden, tutorials, tech-tools-blog"
+  },
+  "seo": {
+    "home": "Alle Wichtigen Tech-Tools an Einem Ort",
+    "tools": {
+      "UpscaleImage": "AI Image Upscaler",
+      "BackgroundRemover": "Hintergrundentferner",
+      "QrGenerator": "QR-Code-Generator",
+      "BarcodeGenerator": "Barcode-Generator",
+      "BarcodeReader": "Barcode- & QR-Scanner",
+      "PasswordGenerator": "Passwort-Generator",
+      "LoremGenerator": "Lorem-Ipsum-Generator",
+      "EmojiPicker": "Emoji-Auswahl & Kopierer",
+      "ColorPicker": "Farbwähler",
+      "PdfDashboard": "Jedes Werkzeug, das du zum Optimieren und Meistern von PDFs brauchst",
+      "ImageDashboard": "SaaS-Tools zum Komprimieren, Konvertieren und Bearbeiten von Bildern im Stapel",
+      "SpeedTest": "Speedtest"
+    }
+  }
+}

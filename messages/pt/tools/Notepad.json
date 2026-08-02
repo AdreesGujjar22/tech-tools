@@ -1,0 +1,18 @@
+{
+  "placeholder": "Comece a digitar suas notas aqui...",
+  "download": "Baixar",
+  "copy": "Copiar",
+  "clear": "Limpar",
+  "newNote": "Iniciar uma nova nota?",
+  "clearNote": "Limpar esta nota?",
+  "continue": "Continuar",
+  "newDescription": "Sua nota atual será perdida. Esta ação não pode ser desfeita.",
+  "clearDescription": "Sua nota atual será limpa. Esta ação não pode ser desfeita.",
+  "cancel": "Cancelar",
+  "open": "Abrir",
+  "undo": "Desfazer",
+  "lineColumn": "Linha {line}, Coluna {column}",
+  "counts": "Caracteres {characters}, Palavras {words}",
+  "autoSaved": "Salvo automaticamente {time}",
+  "copyBlocked": "A cópia foi bloqueada. Selecione o texto e use Ctrl+A, depois Ctrl+C."
+}

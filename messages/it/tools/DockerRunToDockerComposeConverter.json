@@ -1,0 +1,1 @@
+{"title":"Docker Run to Docker Compose Converter","description":"Convert common docker run flags into a clean Docker Compose YAML service.","input":"Docker run command","output":"Docker Compose YAML","copy":"Copy YAML","invalid":"Unable to convert this command"}

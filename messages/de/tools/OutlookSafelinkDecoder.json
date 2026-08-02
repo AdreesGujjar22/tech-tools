@@ -1,0 +1,1 @@
+{"title":"Outlook-Safelink-Decoder","description":"Ermitteln Sie sicher die ursprüngliche Zieladresse aus Microsoft SafeLinks.","input":"Outlook-Safelink-URL","output":"Ursprüngliche Ziel-URL","copy":"URL kopieren","copied":"Kopiert","invalid":"Ungültige oder nicht unterstützte SafeLink-URL."}

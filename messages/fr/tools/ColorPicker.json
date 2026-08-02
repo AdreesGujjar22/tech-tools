@@ -1,0 +1,15 @@
+{
+  "title": "Sélecteur de Couleurs",
+  "download": "Télécharger",
+  "description": "Extrayez de superbes palettes de couleurs depuis n'importe quelle image, ou ajustez et copiez des couleurs individuelles avec précision.",
+  "imageTab": "Image",
+  "imageExtractor": "Extracteur de Couleur d'Image",
+  "uploadImage": "Importez une image",
+  "browseOrDrop": "Cliquez pour parcourir ou glissez-déposez",
+  "palette": "Palette de Couleurs",
+  "copyAll": "Tout copier",
+  "details": "Détails de la Couleur Extraite",
+  "useAnother": "Utiliser une autre image",
+  "empty": "Importez l'image de votre choix pour extraire automatiquement sa palette de couleurs",
+  "copied": "{format} copié !"
+}

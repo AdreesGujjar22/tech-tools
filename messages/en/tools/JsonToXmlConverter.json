@@ -1,0 +1,1 @@
+{"title":"JSON to XML Converter","description":"Convert valid JSON into clean nested XML with a custom root tag.","rootTag":"Root element","input":"JSON input","output":"XML output","copy":"Copy XML","invalid":"Invalid JSON or XML element name."}

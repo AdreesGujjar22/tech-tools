@@ -1,0 +1,1 @@
+{"title":"Constructeur de benchmarks","description":"Exécutez et comparez des snippets JavaScript avec une mesure précise.","iterations":"Itérations","add":"Ajouter un snippet","run":"Exécuter les benchmarks","opsPerSecond":"ops/s","slower":"plus lent que le meilleur","invalid":"Impossible d'exécuter le benchmark."}

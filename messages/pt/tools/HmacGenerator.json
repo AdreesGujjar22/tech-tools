@@ -1,0 +1,1 @@
+{"title":"Gerador HMAC","description":"Gere códigos de autenticação com algoritmos SHA e MD5.","message":"Mensagem","secret":"Chave secreta","algorithm":"Algoritmo","encoding":"Codificação de saída","generate":"Gerar HMAC","copy":"Copiar","invalid":"Não foi possível gerar o HMAC."}

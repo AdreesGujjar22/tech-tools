@@ -1,0 +1,4 @@
+{
+  "conversionTargets": "Conversiedoelen",
+  "description": "Voert volledige tekstextractie uit in alle secties en voert deze systeemeigen uit in standaard Word-`.docx`-bestandsblokken."
+}

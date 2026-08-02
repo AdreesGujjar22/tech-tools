@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const Picker = dynamic(() => import("@/pages/EmojiPicker"), { ssr: false });
+"use client";
+import EmojiPicker from "@/pages/EmojiPicker";
 
 export default function Page() {
-  return <Picker />;
+  return <EmojiPicker />;
 }

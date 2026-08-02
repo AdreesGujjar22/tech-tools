@@ -1,0 +1,1 @@
+{"title":"Gerador de Basic Auth","description":"Gere um cabeçalho HTTP Basic e uma linha htpasswd.","username":"Usuário","password":"Senha","header":"Cabeçalho Authorization","htpasswd":"Linha htpasswd","copy":"Copiar"}

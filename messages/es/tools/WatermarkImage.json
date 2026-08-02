@@ -1,0 +1,13 @@
+{
+  "panel": "Panel de marca de agua",
+  "positionGrid": "Cuadrícula de posición de marca de agua",
+  "stampLabel": "Etiqueta de sello de marca",
+  "defaultStamp": "© SELLO DE MARCA",
+  "fontSize": "Tamaño de fuente (% del lienzo)",
+  "textFillColor": "Color de relleno del texto",
+  "opacity": "Opacidad de la marca de agua ({value}%)",
+  "propertiesOverview": "Resumen de propiedades",
+  "positionType": "Tipo de posición",
+  "stampText": "Texto del sello",
+  "none": "Ninguno"
+}

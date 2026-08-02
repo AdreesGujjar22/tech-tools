@@ -1,0 +1,1 @@
+{"title":"TOML-naar-YAML-converter","description":"Parse TOML en formatteer de gegevens als schone YAML.","input":"TOML-invoer","output":"YAML-uitvoer","indent":"Inspringing","copy":"YAML kopiëren","invalid":"Ongeldige TOML-syntaxis."}

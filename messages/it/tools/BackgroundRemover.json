@@ -1,0 +1,15 @@
+{
+  "title": "Rimozione Sfondo",
+  "description": "Carica un'immagine e rimuovi lo sfondo istantaneamente con l'IA",
+  "dropImage": "Rilascia qui la tua immagine",
+  "orBrowse": "o clicca per sfogliare",
+  "chooseImage": "Scegli Immagine",
+  "download": "Scarica",
+  "reprocess": "Rielabora",
+  "processing": "Elaborazione in corso...",
+  "removeBackground": "Rimuovi Sfondo",
+  "retry": "Riprova",
+  "images": "Immagini ({count})",
+  "processAll": "Elabora Tutto",
+  "backgroundRemoved": "Sfondo rimosso da {fileName}"
+}

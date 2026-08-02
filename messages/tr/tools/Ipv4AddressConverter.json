@@ -1,0 +1,1 @@
+{"title":"IPv4 Adres Dönüştürücü","description":"IPv4 adreslerini noktalı, ondalık, onaltılık, sekizlik ve ikili gösterimler arasında dönüştürün.","input":"IPv4 değeri","notation":"Giriş gösterimi","dotted":"Noktalı ondalık","decimal":"Ondalık","hexadecimal":"Onaltılık","octal":"Sekizlik","binary":"İkili","invalid":"Seçilen gösterim için geçerli bir IPv4 değeri girin."}

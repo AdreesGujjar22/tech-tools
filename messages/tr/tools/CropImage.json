@@ -1,0 +1,11 @@
+{
+  "settings": "Kırpma Ayarları",
+  "aspectRatio": "En-Boy Oranı",
+  "free": "Serbest",
+  "square": "1:1 Kare",
+  "interactiveCropArea": "Etkileşimli Kırpma Alanı",
+  "previewAlt": "Kırpma önizlemesi",
+  "outputDimensions": "Çıktı Boyutları",
+  "startXY": "Başlangıç X, Y",
+  "sizeWH": "Boyut G x Y"
+}

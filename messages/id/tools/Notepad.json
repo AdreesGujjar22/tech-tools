@@ -1,0 +1,18 @@
+{
+  "placeholder": "Mulai ketik catatan Anda di sini...",
+  "download": "Unduh",
+  "copy": "Salin",
+  "clear": "Hapus",
+  "newNote": "Mulai catatan baru?",
+  "clearNote": "Hapus catatan ini?",
+  "continue": "Lanjutkan",
+  "newDescription": "Catatan Anda saat ini akan hilang. Tindakan ini tidak dapat dibatalkan.",
+  "clearDescription": "Catatan Anda saat ini akan dihapus. Tindakan ini tidak dapat dibatalkan.",
+  "cancel": "Batal",
+  "open": "Buka",
+  "undo": "Urungkan",
+  "lineColumn": "Baris {line}, Kolom {column}",
+  "counts": "Karakter {characters}, Kata {words}",
+  "autoSaved": "Tersimpan otomatis {time}",
+  "copyBlocked": "Penyalinan diblokir. Pilih teks dan gunakan Ctrl+A, lalu Ctrl+C."
+}

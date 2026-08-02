@@ -1,0 +1,1 @@
+{"title":"Benchmark-Builder","description":"Führen Sie JavaScript-Snippets mit präziser Browser-Zeitmessung aus und vergleichen Sie sie.","iterations":"Iterationen","add":"Snippet hinzufügen","run":"Benchmarks ausführen","opsPerSecond":"Ops/Sek.","slower":"langsamer als die schnellste","invalid":"Benchmark konnte nicht ausgeführt werden."}

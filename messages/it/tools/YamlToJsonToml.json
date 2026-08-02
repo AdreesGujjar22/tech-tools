@@ -1,0 +1,1 @@
+{"title":"YAML to JSON & TOML","description":"Parse YAML and convert it to formatted JSON or TOML.","input":"YAML input","json":"JSON output","toml":"TOML output","copy":"Copy","invalid":"Invalid YAML input"}

@@ -1,0 +1,11 @@
+{
+  "settings": "Configurações de Corte",
+  "aspectRatio": "Proporção",
+  "free": "Livre",
+  "square": "1:1 Quadrado",
+  "interactiveCropArea": "Área de Corte Interativa",
+  "previewAlt": "Prévia do corte",
+  "outputDimensions": "Dimensões de Saída",
+  "startXY": "Início X, Y",
+  "sizeWH": "Tamanho L x A"
+}

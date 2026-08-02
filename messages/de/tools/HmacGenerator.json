@@ -1,0 +1,1 @@
+{"title":"HMAC-Generator","description":"Erzeugen Sie Nachrichtenauthentifizierungscodes mit SHA- und MD5-Algorithmen.","message":"Nachricht","secret":"Geheimer Schlüssel","algorithm":"Algorithmus","encoding":"Ausgabeformat","generate":"HMAC erzeugen","copy":"Kopieren","invalid":"HMAC konnte nicht erzeugt werden."}

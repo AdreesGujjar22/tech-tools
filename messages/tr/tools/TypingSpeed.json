@@ -1,0 +1,20 @@
+{
+  "punctuation": "noktalama",
+  "numbers": "sayılar",
+  "time": "süre",
+  "words": "kelimeler",
+  "quote": "alıntı",
+  "start": "Başlamak için buraya tıklayın veya herhangi bir tuşa basın",
+  "restart": "Yeniden Başlat (Tab + Enter)",
+  "wpm": "dpd",
+  "wordsPerMinute": "dakikadaki kelime sayısı",
+  "raw": "ham",
+  "rawWpm": "ham dpd",
+  "accuracy": "doğruluk",
+  "correctChars": "doğru karakterler",
+  "correct": "doğru",
+  "incorrect": "yanlış",
+  "duration": "süre",
+  "wpmOverTime": "Zaman içinde DPD",
+  "newTest": "Yeni Test"
+}

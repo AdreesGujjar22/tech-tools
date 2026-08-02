@@ -1,0 +1,1 @@
+{"title":"TOML to YAML Converter","description":"Parse TOML and format the resulting data as clean YAML.","input":"TOML input","output":"YAML output","indent":"Indentation","copy":"Copy YAML","invalid":"Invalid TOML syntax."}

@@ -1,0 +1,4 @@
+{
+  "conversionTargets": "Target konversi",
+  "description": "Melakukan ekstraksi teks lengkap di semua bagian dan menghasilkan secara asli dalam blok file Word `.docx` standar."
+}

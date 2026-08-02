@@ -1,0 +1,15 @@
+{
+  "title": "Arka Plan Kaldırıcı",
+  "description": "Bir görsel yükleyin ve yapay zeka kullanarak arka planı anında kaldırın",
+  "dropImage": "Görselinizi buraya bırakın",
+  "orBrowse": "veya göz atmak için tıklayın",
+  "chooseImage": "Görsel Seç",
+  "download": "İndir",
+  "reprocess": "Yeniden İşle",
+  "processing": "İşleniyor...",
+  "removeBackground": "Arka Planı Kaldır",
+  "retry": "Tekrar Dene",
+  "images": "Görseller ({count})",
+  "processAll": "Tümünü İşle",
+  "backgroundRemoved": "Arka plan {fileName} dosyasından kaldırıldı"
+}

@@ -1,0 +1,1 @@
+{"title":"JSON-naar-XML-converter","description":"Converteer geldige JSON naar geneste XML met een aangepaste root-tag.","rootTag":"Root-element","input":"JSON-invoer","output":"XML-uitvoer","copy":"XML kopiëren","invalid":"Ongeldige JSON of elementnaam."}

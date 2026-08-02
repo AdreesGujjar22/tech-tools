@@ -1,0 +1,1 @@
+{"title":"Convertidor de JSON a XML","description":"Convierta JSON válido en XML anidado con una etiqueta raíz personalizada.","rootTag":"Elemento raíz","input":"Entrada JSON","output":"Salida XML","copy":"Copiar XML","invalid":"JSON o nombre de elemento no válido."}

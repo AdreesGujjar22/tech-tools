@@ -1,6 +1,4 @@
-"use client";
-
-import React, { Suspense, use, useMemo } from "react";
+import React from "react";
 import { notFound } from "next/navigation";
 import { IMAGE_TOOLS } from "@/components/image-tools/toolsData";
 
@@ -44,17 +42,15 @@ interface ToolPageProps {
   params: Promise<{ tool: string }>;
 }
 
-export default function ToolPage({ params }: ToolPageProps) {
-  const { tool: toolId } = use(params);
-  const Tool = useMemo(() => {
-    const loadTool = toolLoaders[toolId as keyof typeof toolLoaders];
-    return loadTool ? React.lazy(loadTool) : null;
-  }, [toolId]);
+export default async function ToolPage({ params }: ToolPageProps) {
+  const { tool: toolId } = await params;
+  const loadTool = toolLoaders[toolId as keyof typeof toolLoaders];
 
-  if (!IMAGE_TOOLS.some((tool) => tool.id === toolId) || !Tool) {
-    return notFound();
+  if (!IMAGE_TOOLS.some((tool) => tool.id === toolId) || !loadTool) {
+    notFound();
   }
 
+  const Tool = (await loadTool()).default;
   const isConverter = toolId in converterProps;
   const StandaloneTool = Tool as React.ComponentType;
   const ConverterTool = Tool as React.ComponentType<{
@@ -66,13 +62,11 @@ export default function ToolPage({ params }: ToolPageProps) {
   return (
     <main id="image-tool-workspace" className="min-h-screen bg-white text-[#2D4D35]">
       <div className="py-8 lg:py-12">
-        <Suspense fallback={<div className="min-h-[50vh]" aria-busy="true" />}>
-          {isConverter ? (
-            <ConverterTool toolId={toolId} {...converterProps[toolId as keyof typeof converterProps]} />
-          ) : (
-            <StandaloneTool />
-          )}
-        </Suspense>
+        {isConverter ? (
+          <ConverterTool toolId={toolId} {...converterProps[toolId as keyof typeof converterProps]} />
+        ) : (
+          <StandaloneTool />
+        )}
       </div>
     </main>
   );

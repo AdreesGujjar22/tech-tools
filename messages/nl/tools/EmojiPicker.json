@@ -1,0 +1,27 @@
+{
+  "title": "Emoji Kiezer & Kopiëerder",
+  "description": "Blader en kopieer emoji's direct. Vind de perfecte emoji voor elke gelegenheid.",
+  "search": "Emoji's zoeken...",
+  "recent": "Recent Gekopieerd",
+  "clickToCopy": "Klik om te kopiëren",
+  "noEmojis": "Geen emoji's gevonden",
+  "differentSearch": "Probeer een andere zoekterm",
+  "copyInstruction": "Klik op een emoji om deze naar je klembord te kopiëren",
+  "copied": "{emoji} Gekopieerd!",
+  "emoji": "Emoji: {emoji}",
+  "categories": {
+    "smileys": "Smileys & Emoties",
+    "hearts": "Harten & Liefde",
+    "hands": "Handgebaren",
+    "people": "Mensen",
+    "food": "Eten & Drinken",
+    "animals": "Dieren",
+    "travel": "Reizen & Plaatsen",
+    "activities": "Activiteiten & Sport",
+    "objects": "Objecten",
+    "flags": "Vlaggen",
+    "clothing": "Kleding & Accessoires",
+    "nature": "Natuur & Weer",
+    "symbols": "Symbolen & Tekens"
+  }
+}

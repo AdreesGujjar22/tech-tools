@@ -1,0 +1,20 @@
+{
+  "title": "QR-Code-Generator",
+  "description": "Erstelle sofort vollständig individuelle QR-Codes für Websites, WLAN-Netzwerke, digitale Visitenkarten oder Textinhalte.",
+  "metaDescription": "Erzeuge sofort wunderschöne, anpassbare QR-Codes. Wähle Hintergrundfarben, Vordergrundfarben, Größe und Druckformate.",
+  "metaKeywords": "qr code generator, qr code erstellen, dynamischer qr code, anpassbarer qr code",
+  "previewAlt": "Erstellter QR-Code",
+  "contentLabel": "QR-Code-Inhalt (URL, Text oder Knoten)",
+  "contentPlaceholder": "URL oder Text zum Codieren eingeben...",
+  "customize": "Design-Einstellungen Anpassen",
+  "foreground": "QR-Code-Farbe (Vordergrund)",
+  "background": "Hintergrundfarbe",
+  "resolution": "Auflösungsgröße",
+  "margin": "Ruhezonen-Rand",
+  "preview": "QR-Live-Vorschau",
+  "generating": "QR-Code wird Erstellt...",
+  "download": "PNG Herunterladen",
+  "share": "QR-Link Teilen",
+  "shareSuccess": "Link zum Teilen in die Zwischenablage kopiert!",
+  "privacy": "Die gesamte Verarbeitung erfolgt sicher im Browser. Deine Daten verlassen niemals dein lokales System."
+}

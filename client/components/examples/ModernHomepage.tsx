@@ -123,7 +123,7 @@ export default function ModernHomepage() {
         description="Free, fast, and secure online utilities for productivity. Process files, extract data, and build with confidence."
         primaryCTA={{
           label: "Explore Tools",
-          onClick: () => console.log("Explore clicked"),
+          onClick: () => {},
         }}
         secondaryCTA={{
           label: "Learn More",
@@ -168,7 +168,7 @@ export default function ModernHomepage() {
                 isNew={tool.isNew}
                 isFeatured={tool.isFeatured}
                 gradient={tool.gradient}
-                onClick={() => console.log(`Clicked ${tool.title}`)}
+                onClick={() => {}}
               />
             ))}
           </StaggerList>
@@ -183,7 +183,7 @@ export default function ModernHomepage() {
         variant="gradient"
         primaryCTA={{
           label: "Start Now",
-          onClick: () => console.log("Start clicked"),
+          onClick: () => {},
         }}
         secondaryCTA={{
           label: "View Pricing",

@@ -1,0 +1,1 @@
+{"title":"Hash Text","description":"Generate cryptographic digests from text.","inputLabel":"Text to hash","placeholder":"Enter text to hash...","encoding":"Digest encoding","binary":"Binary (base 2)","hex":"Hexadecimal (base 16)","base64":"Base64 (base 64)","base64url":"Base64url (URL-safe)","copy":"Copy"}

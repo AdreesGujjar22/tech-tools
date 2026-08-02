@@ -1,0 +1,21 @@
+{
+  "title": "Lorem Ipsum Oluşturucu",
+  "description": "Tasarımlar, maketler ve prototipler için anında Lorem Ipsum dolgu metni oluşturun.",
+  "premium": "Premium Araç",
+  "copied": "Kopyalandı!",
+  "copy": "Kopyala",
+  "customize": "Lorem Metnini Özelleştir",
+  "generateType": "Oluşturma Türü",
+  "paragraphs": "Paragraflar",
+  "sentences": "Cümleler",
+  "words": "Kelimeler",
+  "numberOf": "{type} Sayısı",
+  "wordCount": "Kelimeler:",
+  "characterCount": "Karakterler:",
+  "generatedText": "Oluşturulan Metin",
+  "generating": "Lorem Ipsum Oluşturuluyor...",
+  "download": "Metni indir",
+  "share": "Bağlantıyı paylaş",
+  "privacy": "Tüm işlemler tarayıcıda güvenli bir şekilde gerçekleştirilir. Maketler, tasarımlar ve prototipler için mükemmeldir.",
+  "copyManual": "Metni metin alanından manuel olarak kopyalayın"
+}

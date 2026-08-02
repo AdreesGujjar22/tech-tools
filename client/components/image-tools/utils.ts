@@ -23,7 +23,6 @@ export async function logImageToolUsage(
       success,
       errorMessage: errorMessage ? errorMessage.substring(0, 500) : null
     });
-    console.log(`[Telemetry] Successfully registered image operation: ${toolId}`);
   } catch (err) {
     console.error("Telemetry Logging Error:", err);
   }

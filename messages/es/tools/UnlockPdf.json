@@ -1,0 +1,6 @@
+{
+  "unlockParameters": "Parámetros de desbloqueo",
+  "enterPassword": "Introducir contraseña de desbloqueo",
+  "passwordPlaceholder": "Déjelo en blanco si es un PDF estándar...",
+  "protectPdfNote": "Si el PDF se cifró con nuestra herramienta Proteger PDF, proporcione la clave anterior para eliminar las restricciones de bloqueo en el cliente."
+}

@@ -1,8 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const Terms = dynamic(() => import("@/pages/Terms"), { ssr: false });
+import Terms from "@/pages/Terms";
 
 export default function Page() {
   return <Terms />;

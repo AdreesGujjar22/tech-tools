@@ -1,0 +1,1 @@
+{"title":"RSA Key Pair Generator","description":"Generate PEM-formatted RSA public and private keys in your browser.","length":"Key length","generate":"Generate key pair","generating":"Generating...","publicKey":"Public key","privateKey":"Private key","copy":"Copy","invalid":"Unable to generate the RSA key pair."}

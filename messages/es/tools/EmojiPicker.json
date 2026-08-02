@@ -1,0 +1,27 @@
+{
+  "title": "Selector y Copiador de Emojis",
+  "description": "Explora y copia emojis al instante. Encuentra el emoji perfecto para cualquier ocasión.",
+  "search": "Buscar emojis...",
+  "recent": "Copiado Recientemente",
+  "clickToCopy": "Haz clic para copiar",
+  "noEmojis": "No se encontraron emojis",
+  "differentSearch": "Prueba con otro término de búsqueda",
+  "copyInstruction": "Haz clic en cualquier emoji para copiarlo al portapapeles",
+  "copied": "¡{emoji} Copiado!",
+  "emoji": "Emoji: {emoji}",
+  "categories": {
+    "smileys": "Caritas y Emociones",
+    "hearts": "Corazones y Amor",
+    "hands": "Gestos con las Manos",
+    "people": "Personas",
+    "food": "Comida y Bebida",
+    "animals": "Animales",
+    "travel": "Viajes y Lugares",
+    "activities": "Actividades y Deportes",
+    "objects": "Objetos",
+    "flags": "Banderas",
+    "clothing": "Ropa y Accesorios",
+    "nature": "Naturaleza y Clima",
+    "symbols": "Símbolos y Señales"
+  }
+}

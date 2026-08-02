@@ -1,0 +1,1 @@
+{"title":"Validator dan parser IBAN","description":"Validasi struktur dan checksum modulo-97 IBAN, lalu periksa detail perbankannya.","inputLabel":"IBAN","placeholder":"Masukkan IBAN","valid":"IBAN valid","invalid":"IBAN tidak valid","country":"Kode negara","checkDigits":"Digit pemeriksa","bban":"BBAN","bankIdentifier":"Pengenal bank","accountDetails":"Detail rekening"}

@@ -1,0 +1,16 @@
+{
+  "title": "Hız Testi",
+  "description": "Cloudflare'in ağıyla internet hızınızı test edin",
+  "downloadSpeed": "İndirme Hızı (Mbps)",
+  "uploadSpeed": "Yükleme Hızı (Mbps)",
+  "testingDownload": "İndirme Test Ediliyor…",
+  "testingUpload": "Yükleme Test Ediliyor…",
+  "ready": "Hızınızı test etmeye hazır mısınız?",
+  "complete": "✓ Test Tamamlandı!",
+  "download": "İndir",
+  "upload": "Yükleme",
+  "start": "Hız Testini Başlat",
+  "testing": "Test ediliyor…",
+  "results": "Test tamamlandığında sonuçlarınız burada görünecek.",
+  "poweredBy": "Cloudflare'in küresel ağı tarafından desteklenmektedir"
+}

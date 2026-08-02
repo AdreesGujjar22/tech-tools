@@ -1,0 +1,1 @@
+{"title":"Enkripsi / Dekripsi AES","description":"Enkripsi dan dekripsi teks dengan AES-GCM atau AES-CBC menggunakan frasa PBKDF2.","mode":"Mode","passphrase":"Frasa sandi","input":"Masukan","encrypt":"Enkripsi","decrypt":"Dekripsi","output":"Keluaran","copy":"Salin","invalid":"Masukan tidak dapat diproses."}

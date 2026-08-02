@@ -1,0 +1,13 @@
+{
+  "panel": "Filigran paneli",
+  "positionGrid": "Filigran konum ızgarası",
+  "stampLabel": "Marka damgası etiketi",
+  "defaultStamp": "© MARKA DAMGASI",
+  "fontSize": "Yazı tipi boyutu (% tuval)",
+  "textFillColor": "Metin dolgu rengi",
+  "opacity": "Filigran opaklığı ({value}%)",
+  "propertiesOverview": "Özelliklere genel bakış",
+  "positionType": "Konum türü",
+  "stampText": "Damga metni",
+  "none": "Yok"
+}

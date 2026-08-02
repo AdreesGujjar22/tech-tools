@@ -1,0 +1,20 @@
+{
+  "title": "QR-Code Generator",
+  "description": "Maak direct volledig aangepaste QR-codes voor websites, WiFi-netwerken, digitale visitekaartjes of tekstpayloads.",
+  "metaDescription": "Genereer direct prachtige, aanpasbare QR-codes. Kies achtergrondkleuren, voorgrondkleuren, grootte en afdrukformaten.",
+  "metaKeywords": "qr code generator, qr code maken, dynamische qr, aanpasbare qr code",
+  "previewAlt": "Gegenereerde QR-code",
+  "contentLabel": "QR-Code-Inhoud (URL, Tekst of Node)",
+  "contentPlaceholder": "Voer een URL of tekst in om te coderen...",
+  "customize": "Ontwerpinstellingen Aanpassen",
+  "foreground": "QR-Codekleur (Voorgrond)",
+  "background": "Achtergrondkleur",
+  "resolution": "Resolutiegrootte",
+  "margin": "Rustzone Marge",
+  "preview": "Live QR-Voorbeeld",
+  "generating": "QR-Code Wordt Gegenereerd...",
+  "download": "PNG Downloaden",
+  "share": "QR-Link Delen",
+  "shareSuccess": "Deelbare link opgeslagen in je klembord!",
+  "privacy": "Alle verwerking gebeurt veilig in de browser. Je gegevens verlaten nooit je lokale systeem."
+}

@@ -1,0 +1,20 @@
+{
+  "punctuation": "Zeichensetzung",
+  "numbers": "Zahlen",
+  "time": "Zeit",
+  "words": "Wörter",
+  "quote": "Zitat",
+  "start": "Klicke hier oder drücke eine beliebige Taste, um zu starten",
+  "restart": "Neustart (Tab + Enter)",
+  "wpm": "wpm",
+  "wordsPerMinute": "Wörter pro Minute",
+  "raw": "roh",
+  "rawWpm": "rohe wpm",
+  "accuracy": "Genauigkeit",
+  "correctChars": "richtige Zeichen",
+  "correct": "richtig",
+  "incorrect": "falsch",
+  "duration": "Dauer",
+  "wpmOverTime": "WPM im Zeitverlauf",
+  "newTest": "Neuer Test"
+}

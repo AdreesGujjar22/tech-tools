@@ -1,0 +1,15 @@
+{
+  "title": "Achtergrondverwijderaar",
+  "description": "Upload een afbeelding en verwijder de achtergrond direct met AI",
+  "dropImage": "Zet je afbeelding hier neer",
+  "orBrowse": "of klik om te bladeren",
+  "chooseImage": "Afbeelding Kiezen",
+  "download": "Downloaden",
+  "reprocess": "Opnieuw Verwerken",
+  "processing": "Verwerken...",
+  "removeBackground": "Achtergrond Verwijderen",
+  "retry": "Opnieuw Proberen",
+  "images": "Afbeeldingen ({count})",
+  "processAll": "Alles Verwerken",
+  "backgroundRemoved": "Achtergrond verwijderd uit {fileName}"
+}

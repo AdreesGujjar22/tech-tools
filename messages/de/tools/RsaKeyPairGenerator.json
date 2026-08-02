@@ -1,0 +1,1 @@
+{"title":"RSA-Schlüsselpaar-Generator","description":"Erzeugen Sie PEM-formatierte RSA-Schlüsselpaare sicher im Browser.","length":"Schlüssellänge","generate":"Schlüsselpaar erzeugen","generating":"Wird erzeugt...","publicKey":"Öffentlicher Schlüssel","privateKey":"Privater Schlüssel","copy":"Kopieren","invalid":"RSA-Schlüsselpaar konnte nicht erzeugt werden."}

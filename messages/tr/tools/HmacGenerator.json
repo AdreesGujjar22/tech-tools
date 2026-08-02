@@ -1,0 +1,1 @@
+{"title":"HMAC Oluşturucu","description":"SHA ve MD5 algoritmalarıyla anahtarlı ileti kimlik doğrulama kodları oluşturun.","message":"İleti","secret":"Gizli anahtar","algorithm":"Algoritma","encoding":"Çıktı kodlaması","generate":"HMAC oluştur","copy":"Kopyala","invalid":"HMAC oluşturulamadı."}

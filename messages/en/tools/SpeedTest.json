@@ -1,0 +1,16 @@
+{
+  "title": "Speed Test",
+  "description": "Test your internet speed with Cloudflare's network",
+  "downloadSpeed": "Download Speed (Mbps)",
+  "uploadSpeed": "Upload Speed (Mbps)",
+  "testingDownload": "Testing Download…",
+  "testingUpload": "Testing Upload…",
+  "ready": "Ready to test your speed?",
+  "complete": "✓ Test Complete!",
+  "download": "Download",
+  "upload": "Upload",
+  "start": "Start Speed Test",
+  "testing": "Testing…",
+  "results": "Your results will appear here once testing is complete.",
+  "poweredBy": "Powered by Cloudflare's global network"
+}

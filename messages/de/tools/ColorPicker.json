@@ -1,0 +1,15 @@
+{
+  "title": "Farbwähler",
+  "download": "Herunterladen",
+  "description": "Extrahiere wunderschöne Farbpaletten aus jedem Bild oder passe einzelne Farben präzise an und kopiere sie.",
+  "imageTab": "Bild",
+  "imageExtractor": "Bildfarbextraktor",
+  "uploadImage": "Bild Hochladen",
+  "browseOrDrop": "Zum Durchsuchen klicken oder per Drag & Drop",
+  "palette": "Farbpalette",
+  "copyAll": "Alles Kopieren",
+  "details": "Extrahierte Farbdetails",
+  "useAnother": "Anderes Bild Verwenden",
+  "empty": "Lade ein Bild deiner Wahl hoch, um automatisch dessen Farbpalette zu extrahieren",
+  "copied": "{format} kopiert!"
+}

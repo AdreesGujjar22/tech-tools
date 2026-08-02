@@ -1,0 +1,1 @@
+{"title":"IBAN-Prüfer und Parser","description":"Prüfen Sie IBAN-Struktur und Modulo-97-Prüfsumme und sehen Sie Bankdaten ein.","inputLabel":"IBAN","placeholder":"IBAN eingeben","valid":"Gültige IBAN","invalid":"Ungültige IBAN","country":"Ländercode","checkDigits":"Prüfziffern","bban":"BBAN","bankIdentifier":"Bankkennung","accountDetails":"Kontodaten"}

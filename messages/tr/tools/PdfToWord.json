@@ -1,0 +1,4 @@
+{
+  "conversionTargets": "Dönüştürme hedefleri",
+  "description": "Tüm bölümlerde tam metin çıkarımı gerçekleştirir ve bunu standart Word `.docx` dosya blokları içinde yerel olarak oluşturur."
+}

@@ -1,0 +1,27 @@
+{
+  "title": "Emoji-Auswahl & Kopierer",
+  "description": "Durchsuche und kopiere Emojis sofort. Finde das perfekte Emoji für jeden Anlass.",
+  "search": "Emojis suchen...",
+  "recent": "Kürzlich Kopiert",
+  "clickToCopy": "Zum Kopieren Klicken",
+  "noEmojis": "Keine Emojis gefunden",
+  "differentSearch": "Versuche einen anderen Suchbegriff",
+  "copyInstruction": "Klicke auf ein Emoji, um es in die Zwischenablage zu kopieren",
+  "copied": "{emoji} Kopiert!",
+  "emoji": "Emoji: {emoji}",
+  "categories": {
+    "smileys": "Smileys & Emotionen",
+    "hearts": "Herzen & Liebe",
+    "hands": "Handgesten",
+    "people": "Personen",
+    "food": "Essen & Trinken",
+    "animals": "Tiere",
+    "travel": "Reisen & Orte",
+    "activities": "Aktivitäten & Sport",
+    "objects": "Objekte",
+    "flags": "Flaggen",
+    "clothing": "Kleidung & Accessoires",
+    "nature": "Natur & Wetter",
+    "symbols": "Symbole & Zeichen"
+  }
+}

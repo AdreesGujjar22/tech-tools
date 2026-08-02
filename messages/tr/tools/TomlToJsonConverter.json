@@ -1,0 +1,1 @@
+{"title":"TOML'den JSON'a Dönüştürücü","description":"TOML anahtar-değer çiftlerini, tabloları, dizileri ve satır içi nesneleri JSON'a ayrıştırın.","input":"TOML girdisi","output":"JSON çıktısı","copy":"JSON'ı kopyala","invalid":"Geçersiz TOML sözdizimi."}

@@ -1,0 +1,13 @@
+{
+  "panel": "Panneau de filigrane",
+  "positionGrid": "Grille de position du filigrane",
+  "stampLabel": "Libellé du tampon de marque",
+  "defaultStamp": "© TAMPON DE MARQUE",
+  "fontSize": "Taille de police (% de la zone de travail)",
+  "textFillColor": "Couleur de remplissage du texte",
+  "opacity": "Opacité du filigrane ({value}%)",
+  "propertiesOverview": "Aperçu des propriétés",
+  "positionType": "Type de position",
+  "stampText": "Texte du tampon",
+  "none": "Aucun"
+}

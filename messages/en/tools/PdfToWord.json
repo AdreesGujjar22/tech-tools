@@ -1,0 +1,4 @@
+{
+  "conversionTargets": "Conversion Targets",
+  "description": "Performs complete text extraction across all sections and outputs them natively inside standard Word `.docx` file blocks."
+}

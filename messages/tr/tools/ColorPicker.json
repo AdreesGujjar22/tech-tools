@@ -1,0 +1,15 @@
+{
+  "title": "Renk Seçici",
+  "download": "İndir",
+  "description": "Herhangi bir görselden güzel renk paletleri çıkarın veya tek tek renkleri hassas bir şekilde ayarlayıp kopyalayın.",
+  "imageTab": "Görsel",
+  "imageExtractor": "Görsel Renk Çıkarıcı",
+  "uploadImage": "Bir görsel yükleyin",
+  "browseOrDrop": "Göz atmak için tıklayın veya sürükleyip bırakın",
+  "palette": "Renk Paleti",
+  "copyAll": "Tümünü kopyala",
+  "details": "Çıkarılan Renk Detayları",
+  "useAnother": "Başka bir görsel kullan",
+  "empty": "Renk paletini otomatik olarak çıkarmak için istediğiniz görseli yükleyin",
+  "copied": "{format} kopyalandı!"
+}

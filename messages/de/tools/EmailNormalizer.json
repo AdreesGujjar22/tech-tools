@@ -1,0 +1,1 @@
+{"title":"E-Mail-Normalisierer","description":"Normalisieren Sie anbieterspezifische E-Mail-Aliase und prüfen Sie Domaindetails.","input":"E-Mails, eine pro Zeile","localPart":"Lokaler Teil","domain":"Domain","provider":"Anbieter","disposable":"Wegwerfadresse","yes":"Ja","no":"Nein","copy":"Kopieren","invalid":"Ungültige E-Mail-Adresse."}

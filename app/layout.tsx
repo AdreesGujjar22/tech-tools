@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "@/global.css";
 import Providers from "@/components/Providers";
-import { messages } from "../messages";
+import { loadMessages } from "../messages";
 import { getLocalizedAlternates, getRequestLocale } from "@/lib/server-locale";
 
 const BASE_URL =
@@ -28,7 +28,8 @@ const jakarta = Plus_Jakarta_Sans({
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getRequestLocale();
-  const siteMetadata = messages[locale].Metadata.site;
+  const loaded = await loadMessages(locale, ["meta"]);
+  const siteMetadata = (loaded.Metadata as Record<string, { title: string; description: string; keywords: string }>).site;
 
   return {
   metadataBase: new URL(BASE_URL),
@@ -78,7 +79,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const locale = await getRequestLocale();
-  const siteMetadata = messages[locale].Metadata.site;
+  const loaded = await loadMessages(locale, ["meta"]);
+  const siteMetadata = (loaded.Metadata as Record<string, { title: string; description: string; keywords: string }>).site;
   const localizedUrl = `${BASE_URL}/${locale}`;
   const siteSchema = {
     "@context": "https://schema.org",
@@ -106,8 +108,7 @@ export default async function RootLayout({
               (function() {
                 try {
                   var storedTheme = localStorage.getItem('theme');
-                  var systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-                  var theme = storedTheme || systemTheme || 'dark';
+                  var theme = storedTheme === 'dark' ? 'dark' : 'light';
                   document.documentElement.classList.remove('light', 'dark');
                   document.documentElement.classList.add(theme);
                 } catch (e) {}

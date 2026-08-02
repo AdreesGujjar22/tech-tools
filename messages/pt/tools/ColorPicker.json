@@ -1,0 +1,15 @@
+{
+  "title": "Seletor de Cores",
+  "download": "Baixar",
+  "description": "Extraia belas paletas de cores de qualquer imagem, ou ajuste e copie cores individuais com precisão.",
+  "imageTab": "Imagem",
+  "imageExtractor": "Extrator de Cor de Imagem",
+  "uploadImage": "Envie uma imagem",
+  "browseOrDrop": "Clique para procurar ou arraste e solte",
+  "palette": "Paleta de Cores",
+  "copyAll": "Copiar tudo",
+  "details": "Detalhes da Cor Extraída",
+  "useAnother": "Usar outra imagem",
+  "empty": "Envie a imagem que quiser para extrair automaticamente sua paleta de cores",
+  "copied": "{format} copiado!"
+}

@@ -23,9 +23,9 @@
     "strict": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noFallthroughCasesInSwitch": false,
-    "strictNullChecks": false,
+    "strictNullChecks": true,
     
     "baseUrl": ".",
     "paths": {

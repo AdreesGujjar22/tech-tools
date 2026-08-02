@@ -1,0 +1,1 @@
+{"title":"RSA Anahtar Çifti Oluşturucu","description":"Tarayıcınızda PEM biçimli RSA genel ve özel anahtarları oluşturun.","length":"Anahtar uzunluğu","generate":"Anahtar çifti oluştur","generating":"Oluşturuluyor...","publicKey":"Genel anahtar","privateKey":"Özel anahtar","copy":"Kopyala","invalid":"RSA anahtar çifti oluşturulamadı."}

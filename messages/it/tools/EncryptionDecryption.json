@@ -1,0 +1,1 @@
+{"title":"Crittografia / decrittografia AES","description":"Cifra e decifra testo con AES-GCM o AES-CBC usando una passphrase PBKDF2.","mode":"Modalità","passphrase":"Passphrase","input":"Input","encrypt":"Cifra","decrypt":"Decifra","output":"Output","copy":"Copia","invalid":"Impossibile elaborare l'input."}

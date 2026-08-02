@@ -1,0 +1,20 @@
+{
+  "punctuation": "ponctuation",
+  "numbers": "chiffres",
+  "time": "temps",
+  "words": "mots",
+  "quote": "citation",
+  "start": "Cliquez ici ou appuyez sur une touche pour commencer",
+  "restart": "Redémarrer (Tab + Entrée)",
+  "wpm": "mpm",
+  "wordsPerMinute": "mots par minute",
+  "raw": "brut",
+  "rawWpm": "mpm brut",
+  "accuracy": "précision",
+  "correctChars": "caractères corrects",
+  "correct": "corrects",
+  "incorrect": "incorrects",
+  "duration": "durée",
+  "wpmOverTime": "MPM au fil du temps",
+  "newTest": "Nouveau Test"
+}

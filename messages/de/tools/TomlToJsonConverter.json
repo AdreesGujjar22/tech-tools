@@ -1,0 +1,1 @@
+{"title":"TOML-zu-JSON-Konverter","description":"Parsen Sie TOML-Schlüssel, Tabellen, Arrays und Inline-Objekte in formatiertes JSON.","input":"TOML-Eingabe","output":"JSON-Ausgabe","copy":"JSON kopieren","invalid":"Ungültige TOML-Syntax."}

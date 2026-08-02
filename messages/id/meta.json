@@ -1,0 +1,136 @@
+{
+  "Metadata": {
+    "site": {
+      "title": "Tech Tools - Alat PDF, Gambar & AI Online Gratis",
+      "description": "Tech Tools menyediakan alat online gratis untuk PDF, pengeditan gambar, utilitas bertenaga AI, konverter file, kompresor, generator, dan solusi produktivitas. Cepat, aman, dan mudah digunakan.",
+      "keywords": "alat pdf, alat gambar, alat ai, gabung pdf, pisah pdf, kompres gambar, konverter gambar, konverter pdf, alat online, alat gratis, alat produktivitas"
+    },
+    "home": {
+      "title": "Utilitas Produktivitas Online Modern",
+      "description": "Alat online yang cepat, aman, dan modern untuk pengembang, kreator, dan tugas digital sehari-hari. Termasuk generator kode QR, tes kecepatan mengetik, tes kecepatan internet, pemilih warna, dan lainnya.",
+      "keywords": "alat untuk pengembang, pindai kode qr, tutor mengetik, tes kecepatan internet, alat cuplikan kode, konverter online aman"
+    },
+    "about": {
+      "title": "Tentang Kami - Tech Tools",
+      "description": "Kenali Tech Tools, misi kami menyediakan alat online gratis untuk PDF, gambar, utilitas AI, dan solusi produktivitas.",
+      "keywords": "tentang kami, tentang tech tools, misi, visi"
+    },
+    "pricing": {
+      "title": "Harga - Tech Tools",
+      "description": "Jelajahi paket harga kami. Sebagian besar alat kami sepenuhnya gratis, dengan opsi premium tersedia.",
+      "keywords": "harga, paket, premium, langganan"
+    },
+    "contact": {
+      "title": "Hubungi TechTools",
+      "description": "Punya pertanyaan, masukan, atau butuh bantuan? Hubungi TechTools dan kami akan merespons secepat mungkin.",
+      "keywords": "kontak, dukungan, TechTools"
+    },
+    "help": {
+      "title": "Bantuan dan Pertanyaan yang Sering Diajukan",
+      "description": "Dapatkan bantuan instan, lihat panduan pengguna, telusuri pertanyaan umum, dan hubungi dukungan teknis kami.",
+      "keywords": "bantuan, dukungan, panduan pengguna, pertanyaan umum, bantuan tech tools"
+    },
+    "privacy": {
+      "title": "Kebijakan Privasi",
+      "description": "Pelajari bagaimana TechTools mengumpulkan, menggunakan, dan melindungi data dari browser lokal Anda.",
+      "keywords": "privasi, ketentuan, cookie, keamanan, penyimpanan browser"
+    },
+    "terms": {
+      "title": "Syarat dan Ketentuan",
+      "description": "Pelajari pedoman penggunaan digital, keamanan server, dan klausul kepatuhan kami.",
+      "keywords": "syarat, ketentuan, aturan, perjanjian, lisensi"
+    },
+    "qrGenerator": {
+      "title": "Generator Kode QR",
+      "description": "Generator kode QR gratis. Buat kode QR untuk URL, teks, vCard, WiFi, dan lainnya. Unduhan dan penyesuaian instan.",
+      "keywords": "kode qr, generator kode qr, generator qr, barcode, generator kode"
+    },
+    "barcodeGenerator": {
+      "title": "Generator Barcode",
+      "description": "Buat barcode secara instan. Buat CODE128, CODE39, EAN13, UPC, dan lainnya. Unduhan dan penyesuaian instan.",
+      "keywords": "generator barcode, buat barcode, pembuat barcode, CODE128, EAN13, UPC"
+    },
+    "barcodeReader": {
+      "title": "Pembaca Barcode & QR",
+      "description": "Pindai kode QR dan barcode dari gambar yang diunggah atau kamera perangkat Anda, dengan aman di browser Anda.",
+      "keywords": "pembaca qr, pemindai barcode, pindai gambar qr, pemindai barcode dengan kamera"
+    },
+    "passwordGenerator": {
+      "title": "Generator Kata Sandi",
+      "description": "Buat kata sandi yang kuat dan acak secara instan. Sesuaikan panjang, jenis karakter, dan buat kata sandi aman untuk semua akun Anda.",
+      "keywords": "generator kata sandi, kata sandi kuat, kata sandi acak, pembuat kata sandi, kata sandi aman"
+    },
+    "loremGenerator": {
+      "title": "Generator Lorem Ipsum",
+      "description": "Buat teks pengisi Lorem Ipsum secara instan. Buat paragraf, kalimat, atau kata untuk desain dan proyek Anda.",
+      "keywords": "generator lorem ipsum, teks pengisi, lorem ipsum, teks palsu, teks uji"
+    },
+    "emojiPicker": {
+      "title": "Pemilih & Penyalin Emoji",
+      "description": "Jelajahi, cari, dan salin emoji dengan mudah. Temukan emoji yang sempurna untuk pesan dan unggahan Anda.",
+      "keywords": "pemilih emoji, penyalin emoji, cari emoji, emoji, emotikon"
+    },
+    "notepad": {
+      "title": "Buku Catatan Online - Tech Tools",
+      "description": "Buku catatan online gratis dengan penyimpanan otomatis, unduh/unggah file, dan penghitungan kata/karakter secara real-time.",
+      "keywords": "buku catatan, buku catatan online, editor teks, membuat catatan, editor teks online"
+    },
+    "colorPicker": {
+      "title": "Pemilih Warna - Tech Tools",
+      "description": "Alat pemilihan warna online gratis. Ekstrak warna dari gambar, buat palet warna, dan konversi antar format warna.",
+      "keywords": "pemilih warna, konverter warna, palet warna, warna hex, warna rgb"
+    },
+    "speedTest": {
+      "title": "Tes Kecepatan - Tech Tools",
+      "description": "Uji kecepatan internet Anda dengan Tech Tools. Periksa kecepatan unduh, unggah, dan ping dalam hitungan detik.",
+      "keywords": "tes kecepatan, kecepatan internet, tes koneksi, tes bandwidth, ping"
+    },
+    "typingSpeed": {
+      "title": "Tes Kecepatan Mengetik - Tech Tools",
+      "description": "Uji kecepatan mengetik Anda dan tingkatkan WPM Anda. Tes mengetik online gratis dengan pelacakan akurasi dan hasil.",
+      "keywords": "kecepatan mengetik, tes mengetik, wpm, mengetik, tes keyboard"
+    },
+    "tools": {
+      "title": "Alat - Koleksi Tech Tools",
+      "description": "Jelajahi semua alat online gratis kami, termasuk alat PDF, gambar, utilitas AI, dan solusi produktivitas.",
+      "keywords": "alat, alat online, alat gratis, utilitas"
+    },
+    "pdf": {
+      "title": "Alat PDF - Konversi, Gabung, Pisah & Kompres PDF | Tech Tools",
+      "description": "Alat PDF online gratis. Gabungkan PDF, pisahkan PDF, kompres PDF, konversi ke/dari PDF, ekstrak halaman, edit PDF, dan banyak lagi.",
+      "keywords": "alat pdf, gabung pdf, pisah pdf, kompres pdf, konverter pdf, pdf ke word, word ke pdf, jpg ke pdf"
+    },
+    "image": {
+      "title": "Alat Gambar - Kompres, Konversi & Edit Gambar | Tech Tools",
+      "description": "Alat gambar online gratis. Kompres gambar, konversi format (JPG, PNG, WebP), ubah ukuran, potong, putar, hapus latar belakang, dan lainnya.",
+      "keywords": "alat gambar, kompres gambar, konverter gambar, ubah ukuran gambar, potong gambar, editor gambar, jpg ke png, png ke jpg"
+    },
+    "customization": {
+      "title": "Kustomisasi - Tech Tools",
+      "description": "Sesuaikan pengalaman Tech Tools Anda. Atur pengaturan, tema, dan preferensi.",
+      "keywords": "kustomisasi, pengaturan, preferensi, tema"
+    }
+  },
+  "blog": {
+    "title": "Blog Kerajinan",
+    "description": "Investigasi mendalam, panduan taktis, dan desain struktural untuk meningkatkan rekayasa perangkat lunak dan alur kerja visual Anda.",
+    "keywords": "blog, artikel, panduan, tutorial, blog alat teknologi"
+  },
+  "seo": {
+    "home": "Semua Alat Teknologi Penting Anda dalam Satu Tempat",
+    "tools": {
+      "UpscaleImage": "AI Image Upscaler",
+      "BackgroundRemover": "Penghapus Latar Belakang",
+      "QrGenerator": "Generator Kode QR",
+      "BarcodeGenerator": "Generator Barcode",
+      "BarcodeReader": "Pembaca Barcode & QR",
+      "PasswordGenerator": "Generator Kata Sandi",
+      "LoremGenerator": "Generator Lorem Ipsum",
+      "EmojiPicker": "Pemilih & Penyalin Emoji",
+      "ColorPicker": "Pemilih Warna",
+      "PdfDashboard": "Setiap alat yang Anda butuhkan untuk mengoptimalkan dan menguasai PDF",
+      "ImageDashboard": "Alat SaaS untuk mengompres, mengonversi, dan mengedit gambar secara batch",
+      "SpeedTest": "Tes Kecepatan"
+    }
+  }
+}

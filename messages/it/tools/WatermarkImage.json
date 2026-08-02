@@ -1,0 +1,13 @@
+{
+  "panel": "Pannello filigrana",
+  "positionGrid": "Griglia posizione filigrana",
+  "stampLabel": "Etichetta timbro del marchio",
+  "defaultStamp": "© TIMBRO DEL MARCHIO",
+  "fontSize": "Dimensione carattere (% dell'area di lavoro)",
+  "textFillColor": "Colore di riempimento del testo",
+  "opacity": "Opacità filigrana ({value}%)",
+  "propertiesOverview": "Panoramica proprietà",
+  "positionType": "Tipo di posizione",
+  "stampText": "Testo del timbro",
+  "none": "Nessuno"
+}

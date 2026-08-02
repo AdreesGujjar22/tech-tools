@@ -1,0 +1,1 @@
+{"title":"JSON'dan XML'e Dönüştürücü","description":"Geçerli JSON'ı özel kök etiketiyle temiz iç içe XML'e dönüştürün.","rootTag":"Kök öğe","input":"JSON girdisi","output":"XML çıktısı","copy":"XML'i kopyala","invalid":"Geçersiz JSON veya öğe adı."}

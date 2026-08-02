@@ -1,0 +1,11 @@
+{
+  "settings": "Zuschnitt-Einstellungen",
+  "aspectRatio": "Seitenverhältnis",
+  "free": "Frei",
+  "square": "1:1 Quadrat",
+  "interactiveCropArea": "Interaktiver Zuschnittbereich",
+  "previewAlt": "Zuschnittvorschau",
+  "outputDimensions": "Ausgabemaße",
+  "startXY": "Start X, Y",
+  "sizeWH": "Größe B x H"
+}

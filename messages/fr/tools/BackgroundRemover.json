@@ -1,0 +1,15 @@
+{
+  "title": "Suppresseur d'Arrière-Plan",
+  "description": "Importez une image et supprimez l'arrière-plan instantanément grâce à l'IA",
+  "dropImage": "Déposez votre image ici",
+  "orBrowse": "ou cliquez pour parcourir",
+  "chooseImage": "Choisir une Image",
+  "download": "Télécharger",
+  "reprocess": "Retraiter",
+  "processing": "Traitement en cours...",
+  "removeBackground": "Supprimer l'Arrière-Plan",
+  "retry": "Réessayer",
+  "images": "Images ({count})",
+  "processAll": "Tout Traiter",
+  "backgroundRemoved": "Arrière-plan supprimé de {fileName}"
+}

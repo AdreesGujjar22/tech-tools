@@ -1,0 +1,4 @@
+{
+  "conversionTargets": "Destinazioni di conversione",
+  "description": "Esegue l'estrazione completa del testo in tutte le sezioni e lo restituisce in modo nativo nei blocchi di file Word `.docx` standard."
+}

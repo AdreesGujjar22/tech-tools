@@ -1,0 +1,1 @@
+{"title":"Normalizador de correo","description":"Normalice alias de correo específicos del proveedor e inspeccione los detalles del dominio.","input":"Correos, uno por línea","localPart":"Parte local","domain":"Dominio","provider":"Proveedor","disposable":"Desechable","yes":"Sí","no":"No","copy":"Copiar","invalid":"Dirección de correo no válida."}

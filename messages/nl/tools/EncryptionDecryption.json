@@ -1,0 +1,1 @@
+{"title":"AES-versleuteling / ontsleuteling","description":"Versleutel en ontsleutel tekst met AES-GCM of AES-CBC en een PBKDF2-wachtwoordzin.","mode":"Modus","passphrase":"Wachtwoordzin","input":"Invoer","encrypt":"Versleutelen","decrypt":"Ontsleutelen","output":"Uitvoer","copy":"Kopiëren","invalid":"De invoer kan niet worden verwerkt."}

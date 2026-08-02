@@ -55,7 +55,7 @@ export default function Footer() {
                 <Twitter className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="/"
                 className="w-9 h-9 flex items-center justify-center rounded-xl bg-[#E8F0E8] border border-[#C5DCC9] text-[#4A6857] hover:text-[#10A968] hover:border-[#10A968] hover:bg-[#D4E8D8] transition-all duration-200"
                 aria-label="Website"
               >

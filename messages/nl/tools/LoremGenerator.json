@@ -1,0 +1,21 @@
+{
+  "title": "Lorem Ipsum Generator",
+  "description": "Genereer direct Lorem Ipsum vultekst voor ontwerpen, mockups en prototypes.",
+  "premium": "Premium Hulpmiddel",
+  "copied": "Gekopieerd!",
+  "copy": "Kopiëren",
+  "customize": "Lorem-Tekst Aanpassen",
+  "generateType": "Generatietype",
+  "paragraphs": "Paragrafen",
+  "sentences": "Zinnen",
+  "words": "Woorden",
+  "numberOf": "Aantal {type}",
+  "wordCount": "Woorden:",
+  "characterCount": "Tekens:",
+  "generatedText": "Gegenereerde Tekst",
+  "generating": "Lorem Ipsum Wordt Gegenereerd...",
+  "download": "Tekst downloaden",
+  "share": "Link delen",
+  "privacy": "Alle verwerking gebeurt veilig in de browser. Perfect voor mockups, ontwerpen en prototypes.",
+  "copyManual": "Kopieer de tekst handmatig uit het tekstvak"
+}

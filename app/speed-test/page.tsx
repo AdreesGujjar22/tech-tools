@@ -1,11 +1,7 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const SpeedTest = dynamic(
-  () => import("@/components/speed-test/SpeedTest").then((m) => m.SpeedTest),
-  { ssr: false }
-);
+"use client";
+import { SpeedTest } from "@/components/speed-test/SpeedTest";
 
 export default function Page() {
   return <SpeedTest />;

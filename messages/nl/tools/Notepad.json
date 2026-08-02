@@ -1,0 +1,18 @@
+{
+  "placeholder": "Begin hier met het typen van je notities...",
+  "download": "Downloaden",
+  "copy": "Kopiëren",
+  "clear": "Wissen",
+  "newNote": "Nieuwe notitie starten?",
+  "clearNote": "Deze notitie wissen?",
+  "continue": "Doorgaan",
+  "newDescription": "Je huidige notitie gaat verloren. Deze actie kan niet ongedaan worden gemaakt.",
+  "clearDescription": "Je huidige notitie wordt gewist. Deze actie kan niet ongedaan worden gemaakt.",
+  "cancel": "Annuleren",
+  "open": "Openen",
+  "undo": "Ongedaan Maken",
+  "lineColumn": "Regel {line}, Kolom {column}",
+  "counts": "Tekens {characters}, Woorden {words}",
+  "autoSaved": "Automatisch opgeslagen {time}",
+  "copyBlocked": "Kopiëren is geblokkeerd. Selecteer de tekst en gebruik Ctrl+A, daarna Ctrl+C."
+}

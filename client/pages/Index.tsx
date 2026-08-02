@@ -1,3 +1,5 @@
+"use client";
+
 import { useNavigate, Link } from "@/lib/router-compat";
 import Image from "next/image";
 import SEO from "@/components/SEO";
@@ -7,6 +9,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { StaggerList } from "@/components/StaggerList";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/lib/locale";
+import { DASHBOARD_CATEGORIES } from "@/lib/dashboards-config";
 
 const qrItems = [
   {
@@ -318,6 +321,20 @@ export default function Index() {
                 </motion.div>
               </div>
             </section>
+
+            {/* Category dashboards */}
+            <div className="mb-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {DASHBOARD_CATEGORIES.map((dashboard) => {
+                const DashboardIcon = dashboard.icon;
+                return <button key={dashboard.slug} type="button" onClick={() => navigate(`/${dashboard.slug}`)} className="group relative rounded-2xl border border-[#10A968]/30 bg-gradient-to-br from-[#F0F7F0] to-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                  <span className="absolute right-4 top-4 rounded-full bg-[#10A968] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white">Dashboard</span>
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E8F0E8] text-[#10A968]"><DashboardIcon size={25} /></div>
+                  <h3 className="text-lg font-bold text-[#1F3A26] group-hover:text-[#10A968]">{dashboard.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#4A6857]">{dashboard.description}</p>
+                  <span className="mt-4 block text-xs font-bold text-[#10A968]">{dashboard.badgeCount} tools</span>
+                </button>;
+              })}
+            </div>
 
             {/* Items Grid */}
             {filteredItems.length === 0 ? (

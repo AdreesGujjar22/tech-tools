@@ -58,15 +58,11 @@ export default function LayoutWithSidebar({ children }: LayoutWithSidebarProps) 
     {
       label: "Logout",
       icon: <LogOut size={20} />,
-      onClick: () => {
-        // Handle logout
-        console.log("Logout clicked");
-      },
+      onClick: () => {},
     },
   ];
 
   const handleSidebarItemClick = (item: SidebarItem) => {
-    console.log("Sidebar item clicked:", item.label);
     // Navigate to the href or trigger onClick
     if (item.href) {
       // Use your router here
@@ -106,10 +102,7 @@ export default function LayoutWithSidebar({ children }: LayoutWithSidebarProps) 
         label="Ask AI"
         variant="primary"
         position="bottom-right"
-        onClick={() => {
-          console.log("Ask AI button clicked");
-          // Open AI chat modal or navigate to AI page
-        }}
+        onClick={() => {}}
       />
     </div>
   );

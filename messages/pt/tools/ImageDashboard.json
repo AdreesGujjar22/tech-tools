@@ -1,0 +1,10 @@
+{
+  "badge": "Processamento de Imagens 100% no Navegador",
+  "title": "Ferramentas para comprimir, converter e editar imagens em lote",
+  "description": "Desbloqueie recortes, redimensionamento, marcas d'água, filtros, remoção de fundo e conversões ultrarrápidos. Totalmente isolado dentro do seu navegador.",
+  "searchPlaceholder": "Pesquisar ferramentas de imagem (ex.: recortar, fundo, png)...",
+  "allTools": "Todas as Ferramentas",
+  "clear": "Limpar",
+  "noMatches": "Nenhuma ferramenta encontrada",
+  "noMatchesDescription": "Não conseguimos localizar nenhum conversor ou ferramenta que corresponda aos seus parâmetros. Verifique seus termos de busca."
+}
