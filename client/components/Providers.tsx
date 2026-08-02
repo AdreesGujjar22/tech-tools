@@ -1,13 +1,10 @@
 "use client";
 
-"use client";
-
 import React, { Suspense, useState } from "react";
 import dynamic from "next/dynamic";
 import { ThemeProvider } from "@/lib/theme";
 import { AuthProvider } from "@/lib/auth";
 import { LocaleProvider } from "@/lib/locale";
-import Breadcrumbs from "@/components/Breadcrumbs";
 
 const AuthenticatedNavbar = dynamic(() => import("@/components/AuthenticatedNavbar"), {
   ssr: false,
@@ -33,8 +30,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
           <div className="min-h-screen">
             <AuthenticatedNavbar collapsed={sidebarCollapsed} onCollapsedChange={setSidebarCollapsed} />
             <div className={sidebarCollapsed ? "transition-[margin] duration-300 lg:ml-0" : "transition-[margin] duration-300 lg:ml-72"}>
-              <main className="min-h-[calc(100vh-4rem)] pt-16 lg:pt-0">
-                <Breadcrumbs />
+              <main className="min-h-[calc(100vh-4rem)] pt-20 lg:pt-0">
                 <Suspense fallback={<div className="h-[80vh] bg-background" />}>
                   {children}
                 </Suspense>
