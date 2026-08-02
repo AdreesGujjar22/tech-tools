@@ -30,7 +30,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
           <div className="min-h-screen">
             <AuthenticatedNavbar collapsed={sidebarCollapsed} onCollapsedChange={setSidebarCollapsed} />
             <div className={sidebarCollapsed ? "transition-[margin] duration-300 lg:ml-0" : "transition-[margin] duration-300 lg:ml-72"}>
-              <main className="min-h-[calc(100vh-4rem)] pt-16 lg:pt-0">
+              <main className="min-h-[calc(100vh-4rem)] pt-20 lg:pt-0">
                 <Suspense fallback={<div className="h-[80vh] bg-background" />}>
                   {children}
                 </Suspense>
