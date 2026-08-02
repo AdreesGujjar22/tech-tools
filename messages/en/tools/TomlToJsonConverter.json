@@ -1,0 +1,1 @@
+{"title":"TOML to JSON Converter","description":"Parse TOML key-value pairs, tables, arrays, and inline objects into formatted JSON.","input":"TOML input","output":"JSON output","copy":"Copy JSON","invalid":"Invalid TOML syntax."}

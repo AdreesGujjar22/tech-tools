@@ -1,0 +1,1 @@
+{"title":"OTP Code Generator","description":"Generate time-based one-time passwords from a Base32 secret.","secret":"Base32 secret","algorithm":"Algorithm","digits":"Digits","currentCode":"Current code","copy":"Copy code","expiresIn":"Expires in","newSecret":"New secret","invalidSecret":"The secret is not a valid Base32 key."}

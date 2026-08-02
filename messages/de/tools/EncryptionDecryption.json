@@ -1,0 +1,1 @@
+{"title":"AES-Verschlüsselung / Entschlüsselung","description":"Verschlüsseln und entschlüsseln Sie Text mit AES-GCM oder AES-CBC und einer PBKDF2-Passphrase.","mode":"Modus","passphrase":"Passphrase","input":"Eingabe","encrypt":"Verschlüsseln","decrypt":"Entschlüsseln","output":"Ausgabe","copy":"Kopieren","invalid":"Die Eingabe konnte nicht verarbeitet werden."}

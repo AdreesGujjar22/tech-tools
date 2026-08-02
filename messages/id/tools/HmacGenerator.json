@@ -1,0 +1,1 @@
+{"title":"Generator HMAC","description":"Buat kode autentikasi pesan dengan algoritma SHA dan MD5.","message":"Pesan","secret":"Kunci rahasia","algorithm":"Algoritma","encoding":"Pengodean keluaran","generate":"Buat HMAC","copy":"Salin","invalid":"HMAC tidak dapat dibuat."}

@@ -1,0 +1,1 @@
+{"title":"IPv4 Range Expander","description":"Expand IP ranges or CIDR networks into a complete address list.","start":"Start address or CIDR","end":"End address","limit":"Output limit","rangeStart":"Range start","rangeEnd":"Range end","cidr":"CIDR","total":"Total addresses","truncated":"Output is limited to {limit} addresses.","invalid":"Enter valid IPv4 values."}

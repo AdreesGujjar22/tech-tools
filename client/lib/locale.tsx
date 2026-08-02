@@ -22,7 +22,7 @@ function getRouteNamespaces(pathname: string): MessageNamespace[] {
   const namespaces: MessageNamespace[] = ["common"];
   const add = (...names: string[]) => {
     for (const name of names) {
-      if (supportedToolNamespaces.includes(name as (typeof supportedToolNamespaces)[number])) {
+      if (["Base64FileConverter", "IbanValidator", "PercentageCalculator", "DashboardCategories"].includes(name) || supportedToolNamespaces.includes(name as (typeof supportedToolNamespaces)[number])) {
         namespaces.push(name as MessageNamespace);
       }
     }
@@ -38,6 +38,80 @@ function getRouteNamespaces(pathname: string): MessageNamespace[] {
   else if (route === "/color-picker") add("ColorPicker");
   else if (route === "/speed-test") add("SpeedTest");
   else if (route === "/typing-speed") add("TypingSpeed");
+  else if (route === "/uuid-generator") add("UuidGenerator");
+  else if (route === "/hash-text") add("HashText");
+  else if (route === "/token-generator") add("TokenGenerator");
+  else if (route === "/password-strength-analyser") add("PasswordStrengthAnalyser");
+  else if (route === "/base64-string-converter") add("Base64StringConverter");
+  else if (route === "/case-converter") add("CaseConverter");
+  else if (route === "/url-encoder-decoder") add("UrlEncoderDecoder");
+  else if (route === "/json-yaml-converter") add("JsonYamlConverter");
+  else if (route === "/jwt-parser") add("JwtParser");
+  else if (route === "/html-wysiwyg-editor") add("HtmlWysiwygEditor");
+  else if (route === "/user-agent-parser") add("UserAgentParser");
+  else if (route === "/text-diff") add("TextDiff");
+  else if (route === "/ipv4-subnet-calculator") add("Ipv4SubnetCalculator");
+  else if (route === "/crontab-generator") add("CrontabGenerator");
+  else if (route === "/json-formatter-minifier") add("JsonFormatterMinifier");
+  else if (route === "/sql-prettify") add("SqlPrettify");
+  else if (route === "/eta-calculator") add("EtaCalculator");
+  else if (route === "/percentage-calculator") add("PercentageCalculator");
+  else if (route === "/chronometer") add("Chronometer");
+  else if (route === "/iban-validator") add("IbanValidator");
+  else if (route === "/base64-file-converter") add("Base64FileConverter");
+  else if (["/pdf-tools-dashboard", "/image-tools-dashboard", "/crypto-security-dashboard", "/converter-tools-dashboard", "/web-tools-dashboard", "/developer-tools-dashboard", "/network-tools-dashboard", "/text-data-dashboard", "/math-media-dashboard"].includes(route)) add("DashboardCategories");
+  else if (route === "/wifi-qr-code-generator") add("WifiQrCodeGenerator");
+  else if (route === "/svg-placeholder-generator") add("SvgPlaceholderGenerator");
+  else if (route === "/color-converter") add("ColorConverter");
+  else if (route === "/html-entities") add("HtmlEntities");
+  else if (route === "/integer-base-converter") add("IntegerBaseConverter");
+  else if (route === "/roman-numeral-converter") add("RomanNumeralConverter");
+  else if (route === "/text-to-binary") add("TextToBinary");
+  else if (route === "/url-parser") add("UrlParser");
+  else if (route === "/device-information") add("DeviceInformation");
+  else if (route === "/basic-auth-generator") add("BasicAuthGenerator");
+  else if (route === "/og-meta-generator") add("OgMetaGenerator");
+  else if (route === "/bip39-generator") add("Bip39Generator");
+  else if (route === "/bcrypt-generator") add("BcryptGenerator");
+  else if (route === "/text-to-nato-alphabet") add("TextToNatoAlphabet");
+  else if (route === "/text-to-unicode") add("TextToUnicode");
+  else if (route === "/mac-address-lookup") add("MacAddressLookup");
+  else if (route === "/ipv6-ula-generator") add("Ipv6UlaGenerator");
+  else if (route === "/chmod-calculator") add("ChmodCalculator");
+  else if (route === "/random-port-generator") add("RandomPortGenerator");
+  else if (route === "/docker-run-to-docker-compose-converter") add("DockerRunToDockerComposeConverter");
+  else if (route === "/regex-tester") add("RegexTester");
+  else if (route === "/yaml-to-json-toml") add("YamlToJsonToml");
+  else if (route === "/markdown-to-html") add("MarkdownToHtml");
+  else if (route === "/text-statistics") add("TextStatistics");
+  else if (route === "/string-obfuscator") add("StringObfuscator");
+  else if (route === "/numeronym-generator") add("NumeronymGenerator");
+  else if (route === "/phone-parser") add("PhoneParser");
+  else if (route === "/temperature-converter") add("TemperatureConverter");
+  else if (route === "/base64-string-converter") add("Base64StringConverter");
+  else if (route === "/camera-recorder") add("CameraRecorder");
+  else if (route === "/chronometer") add("Chronometer");
+  else if (route === "/toml-to-yaml-converter") add("TomlToYamlConverter");
+  else if (route === "/yaml-prettify") add("YamlPrettify");
+  else if (route === "/email-normalizer") add("EmailNormalizer");
+  else if (route === "/benchmark-builder") add("BenchmarkBuilder");
+  else if (route === "/xml-to-json-converter") add("XmlToJsonConverter");
+  else if (route === "/json-to-xml-converter") add("JsonToXmlConverter");
+  else if (route === "/list-converter") add("ListConverter");
+  else if (route === "/toml-to-json-converter") add("TomlToJsonConverter");
+  else if (route === "/json-to-toml-converter") add("JsonToTomlConverter");
+  else if (route === "/encryption-decryption") add("EncryptionDecryption");
+  else if (route === "/hmac-generator") add("HmacGenerator");
+  else if (route === "/rsa-key-pair-generator") add("RsaKeyPairGenerator");
+  else if (route === "/pdf-signature-checker") add("PdfSignatureChecker");
+  else if (route === "/ipv4-range-expander") add("Ipv4RangeExpander");
+  else if (route === "/xml-formatter") add("XmlFormatter");
+  else if (route === "/outlook-safelink-decoder") add("OutlookSafelinkDecoder");
+  else if (route === "/git-memo") add("GitMemo");
+  else if (route === "/json-diff") add("JsonDiff");
+  else if (route === "/slugify-string") add("SlugifyString");
+  else if (route === "/ascii-art-generator") add("AsciiArtGenerator");
+  else if (route === "/ipv4-address-converter") add("Ipv4AddressConverter");
   else if (route.startsWith("/ilovepdf")) add("PdfDashboard", ...supportedToolNamespaces.filter((name) => ["shared", "Loading", "PdfToPowerpoint", "PdfToWord", "UnlockPdf"].includes(name)));
   else if (route.startsWith("/iloveimg")) add("ImageDashboard", ...supportedToolNamespaces.filter((name) => ["shared", "Loading", "UpscaleImage", "CropImage", "BackgroundRemover", "WatermarkImage", "ImageConverter"].includes(name)));
 

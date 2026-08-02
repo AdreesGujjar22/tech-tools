@@ -1,8 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const About = dynamic(() => import("@/pages/About"), { ssr: false });
+import About from "@/pages/About";
 
 export default function Page() {
   return <About />;

@@ -1,0 +1,1 @@
+{"title":"Integer Base Converter","description":"Convert integers between bases 2 through 36.","input":"Input number","inputBase":"Input base","binary":"Binary (2)","octal":"Octal (8)","decimal":"Decimal (10)","hexadecimal":"Hexadecimal (16)","custom":"Custom base","invalid":"Invalid number or base"}

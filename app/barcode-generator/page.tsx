@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const Generator = dynamic(() => import("@/pages/BarcodeGenerator"), { ssr: false });
+"use client";
+import BarcodeGenerator from "@/pages/BarcodeGenerator";
 
 export default function Page() {
-  return <Generator />;
+  return <BarcodeGenerator />;
 }

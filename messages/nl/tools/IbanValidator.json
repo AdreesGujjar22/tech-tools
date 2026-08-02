@@ -1,0 +1,1 @@
+{"title":"IBAN-validator en parser","description":"Valideer de IBAN-structuur en modulo-97-controlesom en bekijk de bankgegevens.","inputLabel":"IBAN","placeholder":"Voer een IBAN in","valid":"Geldige IBAN","invalid":"Ongeldige IBAN","country":"Landcode","checkDigits":"Controlecijfers","bban":"BBAN","bankIdentifier":"Bankidentificatie","accountDetails":"Rekeninggegevens"}

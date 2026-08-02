@@ -1,0 +1,1 @@
+{"title":"Konverter JSON ke XML","description":"Ubah JSON valid menjadi XML bertingkat dengan tag akar khusus.","rootTag":"Elemen akar","input":"Masukan JSON","output":"Keluaran XML","copy":"Salin XML","invalid":"JSON atau nama elemen tidak valid."}

@@ -1,0 +1,13 @@
+"use client";
+import { useMemo, useState } from "react";
+import SEO from "@/components/SEO";
+import { parseUrl } from "@/lib/web-tools-2";
+import { useTranslations } from "next-intl";
+
+export default function UrlParser() {
+  const t = useTranslations("Tools.UrlParser");
+  const [value, setValue] = useState("https://example.com:8080/path?foo=bar&foo=baz#section");
+  const parsed = useMemo(() => parseUrl(value), [value]);
+  const fields = parsed ? [[t("origin"), parsed.origin], [t("protocol"), parsed.protocol], [t("hostname"), parsed.hostname], [t("port"), parsed.port], [t("pathname"), parsed.pathname], [t("hash"), parsed.hash]] : [];
+  return <main className="min-h-screen px-6 pt-32 pb-20 text-foreground"><SEO title={t("title")} description={t("description")} keywords="URL parser query parameters" /><div className="mx-auto max-w-5xl"><header className="mb-10 text-center"><h1 className="gradient-text text-4xl font-bold">{t("title")}</h1><p className="mt-3 text-[#4A6857]">{t("description")}</p></header><section className="glass-card-dark rounded-[24px] p-8"><label className="block text-sm font-semibold text-[#2D4D35]">{t("inputLabel")}<input value={value} onChange={e => setValue(e.target.value)} className="mt-2 w-full rounded-xl border border-[#E0E0E0] bg-white px-4 py-3 font-mono text-sm text-[#2D4D35]" placeholder={t("placeholder")} /></label>{!parsed && <p className="mt-4 text-sm text-red-600">{t("invalid")}</p>}</section>{parsed && <div className="mt-6 grid gap-6 lg:grid-cols-2"><section className="glass-card-dark rounded-[24px] p-8"><h2 className="mb-4 text-xl font-bold text-[#2D4D35]">{t("components")}</h2><dl className="space-y-3">{fields.map(([label, item]) => <div className="flex justify-between gap-4 border-b border-[#E0E0E0] pb-2" key={label}><dt className="text-[#4A6857]">{label}</dt><dd className="break-all text-right font-mono text-sm text-[#2D4D35]">{item || "—"}</dd></div>)}</dl></section><section className="glass-card-dark rounded-[24px] p-8"><h2 className="mb-4 text-xl font-bold text-[#2D4D35]">{t("query")}</h2>{parsed.query.length ? <div className="overflow-x-auto"><table className="w-full text-left text-sm"><thead><tr className="border-b border-[#E0E0E0] text-[#4A6857]"><th className="pb-2">{t("key")}</th><th className="pb-2">{t("value")}</th></tr></thead><tbody>{parsed.query.map((item, index) => <tr className="border-b border-[#E0E0E0]" key={`${item.key}-${index}`}><td className="py-2 font-mono text-[#2D4D35]">{item.key}</td><td className="py-2 font-mono text-[#2D4D35]">{item.value}</td></tr>)}</tbody></table></div> : <p className="text-[#4A6857]">{t("noQuery")}</p>}</section></div>}</div></main>;
+}

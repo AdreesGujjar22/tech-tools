@@ -1,0 +1,1 @@
+{"title":"Convertisseur TOML vers YAML","description":"Analysez du TOML et formatez les données en YAML propre.","input":"Entrée TOML","output":"Sortie YAML","indent":"Indentation","copy":"Copier le YAML","invalid":"Syntaxe TOML invalide."}

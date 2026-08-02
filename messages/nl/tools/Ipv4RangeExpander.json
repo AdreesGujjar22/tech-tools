@@ -1,0 +1,1 @@
+{"title":"IPv4-bereikuitbreider","description":"Breid IP-bereiken of CIDR-netwerken uit tot een volledige adreslijst.","start":"Startadres of CIDR","end":"Eindadres","limit":"Uitvoerlimiet","rangeStart":"Begin bereik","rangeEnd":"Einde bereik","cidr":"CIDR","total":"Totaal adressen","truncated":"Uitvoer is beperkt tot {limit} adressen.","invalid":"Voer geldige IPv4-waarden in."}

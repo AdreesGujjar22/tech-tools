@@ -1,0 +1,1 @@
+{"title":"Decodificador de Safelinks de Outlook","description":"Extraiga de forma segura la URL original de Microsoft SafeLinks.","input":"URL de Safelink de Outlook","output":"URL de destino original","copy":"Copiar URL","copied":"Copiado","invalid":"URL de SafeLink no válida o no compatible."}

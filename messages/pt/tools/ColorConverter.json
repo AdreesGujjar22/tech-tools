@@ -1,0 +1,1 @@
+{"title":"Color Converter and Picker","description":"Convert colors between HEX, RGB, HSL, HSV, and CMYK with alpha support.","format":"Input format","value":"Color value","hex":"Example: #ff0000","rgb":"Example: rgb(255, 0, 0)","hsl":"Example: hsl(0, 100%, 50%)","hsv":"Example: hsv(0, 100%, 100%)","cmyk":"Example: cmyk(0, 100%, 100%, 0)","invalid":"Invalid color value"}

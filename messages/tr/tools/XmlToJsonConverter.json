@@ -1,0 +1,1 @@
+{"title":"XML'den JSON'a Dönüştürücü","description":"XML öğelerini, özniteliklerini ve metin düğümlerini biçimlendirilmiş JSON'a ayrıştırın.","input":"XML girdisi","output":"JSON çıktısı","copy":"JSON'ı kopyala","invalid":"Geçersiz XML sözdizimi."}

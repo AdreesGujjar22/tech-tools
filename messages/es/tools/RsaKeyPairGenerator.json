@@ -1,0 +1,1 @@
+{"title":"Generador de pares de claves RSA","description":"Genere claves RSA públicas y privadas en formato PEM en el navegador.","length":"Longitud de clave","generate":"Generar par de claves","generating":"Generando...","publicKey":"Clave pública","privateKey":"Clave privada","copy":"Copiar","invalid":"No se pudo generar el par de claves RSA."}

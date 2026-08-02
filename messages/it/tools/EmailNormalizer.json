@@ -1,0 +1,1 @@
+{"title":"Normalizzatore email","description":"Normalizza alias specifici del provider e analizza i dettagli del dominio.","input":"Email, una per riga","localPart":"Parte locale","domain":"Dominio","provider":"Provider","disposable":"Temporanea","yes":"Sì","no":"No","copy":"Copia","invalid":"Indirizzo email non valido."}

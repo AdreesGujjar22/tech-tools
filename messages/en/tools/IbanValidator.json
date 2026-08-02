@@ -1,0 +1,1 @@
+{"title":"IBAN Validator & Parser","description":"Validate IBAN structure and mod-97 checksum, then inspect its banking details.","inputLabel":"IBAN","placeholder":"Enter an IBAN","valid":"Valid IBAN","invalid":"Invalid IBAN","country":"Country code","checkDigits":"Check digits","bban":"BBAN","bankIdentifier":"Bank identifier","accountDetails":"Account details"}

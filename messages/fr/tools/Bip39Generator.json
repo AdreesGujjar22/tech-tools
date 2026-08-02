@@ -1,0 +1,1 @@
+{"title":"BIP39 Passphrase Generator","description":"Create and validate secure BIP39 mnemonic phrases.","wordCount":"Word count","helpText":"Choose a valid BIP39 word count (12 to 24 words).","mnemonic":"Mnemonic phrase","valid":"Valid BIP39 mnemonic","invalid":"Invalid BIP39 mnemonic","generate":"Generate","copy":"Copy","copied":"Copied"}

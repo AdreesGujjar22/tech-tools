@@ -1,0 +1,1 @@
+{"title":"Basic-Auth-Generator","description":"HTTP-Basic-Authentifizierungsheader und htpasswd-Zeile erzeugen.","username":"Benutzername","password":"Passwort","header":"Authorization-Header","htpasswd":"htpasswd-Zeile","copy":"Kopieren"}

@@ -1,0 +1,1 @@
+{"title":"Generatore Basic Auth","description":"Genera un header HTTP Basic e una riga htpasswd.","username":"Nome utente","password":"Password","header":"Header Authorization","htpasswd":"Riga htpasswd","copy":"Copia"}

@@ -1,0 +1,1 @@
+{"title":"Base64 File Converter","description":"Convert files to Base64 data URIs and decode Base64 data into downloadable files.","dropFile":"Drop a file here","browse":"or click to browse","pastePlaceholder":"Paste a Base64 data URI or payload","copy":"Copy","copied":"Copied","download":"Download file","invalid":"Invalid Base64 data."}

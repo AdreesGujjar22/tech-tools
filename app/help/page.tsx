@@ -1,8 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const Help = dynamic(() => import("@/pages/Help"), { ssr: false });
+import Help from "@/pages/Help";
 
 export default function Page() {
   return <Help />;

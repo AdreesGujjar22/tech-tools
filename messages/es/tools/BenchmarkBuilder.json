@@ -1,0 +1,1 @@
+{"title":"Constructor de benchmarks","description":"Ejecute y compare fragmentos JavaScript con medición precisa en el navegador.","iterations":"Iteraciones","add":"Añadir fragmento","run":"Ejecutar benchmarks","opsPerSecond":"ops/seg.","slower":"más lento que el más rápido","invalid":"No se pudo ejecutar el benchmark."}

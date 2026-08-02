@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const Generator = dynamic(() => import("@/pages/LoremIpsumGenerator"), { ssr: false });
+"use client";
+import LoremIpsumGenerator from "@/pages/LoremIpsumGenerator";
 
 export default function Page() {
-  return <Generator />;
+  return <LoremIpsumGenerator />;
 }

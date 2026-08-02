@@ -1,0 +1,1 @@
+{"title":"String Obfuscator","description":"Encode text using hexadecimal, JavaScript character codes, HTML entities, or base64.","input":"Text to obfuscate","hex":"Hex encoding","charCode":"JavaScript String.fromCharCode","html":"HTML entities","base64":"Base64 obfuscated JavaScript","copy":"Copy"}

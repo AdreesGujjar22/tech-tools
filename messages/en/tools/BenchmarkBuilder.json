@@ -1,0 +1,1 @@
+{"title":"Benchmark Builder","description":"Run and compare JavaScript snippets with precise browser timing.","iterations":"Iterations","add":"Add snippet","run":"Run benchmarks","opsPerSecond":"ops/sec","slower":"slower than fastest","invalid":"Unable to run benchmark."}

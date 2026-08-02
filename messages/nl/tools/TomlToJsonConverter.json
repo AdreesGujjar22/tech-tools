@@ -1,0 +1,1 @@
+{"title":"TOML-naar-JSON-converter","description":"Parse TOML-sleutelwaarden, tabellen, arrays en inline-objecten naar geformatteerde JSON.","input":"TOML-invoer","output":"JSON-uitvoer","copy":"JSON kopiëren","invalid":"Ongeldige TOML-syntaxis."}

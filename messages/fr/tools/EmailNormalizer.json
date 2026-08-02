@@ -1,0 +1,1 @@
+{"title":"Normalisateur d'e-mails","description":"Normalisez les alias propres aux fournisseurs et inspectez les détails du domaine.","input":"E-mails, un par ligne","localPart":"Partie locale","domain":"Domaine","provider":"Fournisseur","disposable":"Jetable","yes":"Oui","no":"Non","copy":"Copier","invalid":"Adresse e-mail invalide."}

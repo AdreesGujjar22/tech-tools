@@ -1,0 +1,1 @@
+{"title":"Générateur Basic Auth","description":"Générez un en-tête HTTP Basic et une ligne htpasswd.","username":"Nom d’utilisateur","password":"Mot de passe","header":"En-tête Authorization","htpasswd":"Ligne htpasswd","copy":"Copier"}

@@ -1,0 +1,1 @@
+{"title":"Convertisseur TOML vers JSON","description":"Analysez les clés, tables, tableaux et objets TOML en JSON formaté.","input":"Entrée TOML","output":"Sortie JSON","copy":"Copier le JSON","invalid":"Syntaxe TOML invalide."}

@@ -1,0 +1,1 @@
+{"title":"AES Encryption / Decryption","description":"Encrypt and decrypt text with AES-GCM or AES-CBC using a PBKDF2 passphrase.","mode":"Mode","passphrase":"Passphrase","input":"Input","encrypt":"Encrypt","decrypt":"Decrypt","output":"Output","copy":"Copy","invalid":"Unable to process the input."}

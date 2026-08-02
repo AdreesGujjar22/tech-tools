@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const Generator = dynamic(() => import("@/pages/PasswordGenerator"), { ssr: false });
+"use client";
+import PasswordGenerator from "@/pages/PasswordGenerator";
 
 export default function Page() {
-  return <Generator />;
+  return <PasswordGenerator />;
 }

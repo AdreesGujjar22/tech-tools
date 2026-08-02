@@ -1,0 +1,1 @@
+{"title":"Konverter TOML ke YAML","description":"Uraikan TOML dan format data menjadi YAML yang bersih.","input":"Masukan TOML","output":"Keluaran YAML","indent":"Indentasi","copy":"Salin YAML","invalid":"Sintaks TOML tidak valid."}

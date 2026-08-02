@@ -1,0 +1,1 @@
+{"title":"Email Normalizer","description":"Normalize provider-specific email aliases and inspect domain details.","input":"Emails, one per line","localPart":"Local part","domain":"Domain","provider":"Provider","disposable":"Disposable","yes":"Yes","no":"No","copy":"Copy","invalid":"Invalid email address."}
