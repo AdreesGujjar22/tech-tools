@@ -72,11 +72,78 @@
     "quickLinks": "Links Rápidos",
     "home": "Início",
     "productivityTools": "Ferramentas de Produtividade",
+    "latestBlogInsights": "Últimas Publicações do Blog",
     "pricingPlans": "Planos de Preços",
     "pdfTools": "Ferramentas PDF",
+    "pdfDashboard": "Painel de Ferramentas PDF",
     "imageTools": "Ferramentas de Imagem",
+    "imageDashboard": "Painel de Ferramentas de Imagem",
     "allRightsReserved": "© {year} TechTools. Todos os direitos reservados.",
     "privacyPolicy": "Política de Privacidade",
-    "termsConditions": "Termos & Condições"
+    "termsConditions": "Termos e Condições",
+    "social": {
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "website": "Site"
+    }
+  },
+  "Home": {
+    "badge": "Ferramentas de Nova Geração",
+    "title": "Todas as Suas Ferramentas Tecnológicas Essenciais em Um Só Lugar",
+    "description": "Ferramentas online rápidas, gratuitas e modernas para desenvolvedores, estudantes e criadores. Tudo projetado para velocidade e simplicidade.",
+    "startTools": "Começar",
+    "intro": "Geradores de QR, testes de velocidade, conversores de imagem, seletores de cor e ferramentas para desenvolvedores — tudo no seu navegador, com segurança.",
+    "previewAlt": "Prévia do código QR gerado com TechTools",
+    "encoded": "Criptografado com AES-256",
+    "toolsTitle": "Todas as ferramentas que você precisa para otimizar e dominar",
+    "toolsDescription": "Estas são as ferramentas TechTools disponíveis. Clique em qualquer item para ver detalhes ou opções de exportação.",
+    "searchPlaceholder": "Pesquisar ferramentas (ex.: código QR, seletor de cores)...",
+    "noResults": "Nenhuma ferramenta encontrada para sua busca.",
+    "ctaTitle": "Pronto para mais?",
+    "ctaDescription": "Conte-nos o que você precisa e nós criaremos!",
+    "contactUs": "Fale conosco",
+    "dashboardBadge": "Painel",
+    "toolsCount": "ferramentas",
+    "dashboardCards": {
+      "pdf": { "title": "Painel de Ferramentas PDF", "description": "Gerencie arquivos PDF em um espaço de trabalho dedicado." },
+      "image": { "title": "Painel de Ferramentas de Imagem", "description": "Edite, converta e otimize imagens em um só lugar." },
+      "cryptoSecurity": { "title": "Painel de Criptografia e Segurança", "description": "Proteja, valide, gere hashes e inspecione dados sensíveis." },
+      "converters": { "title": "Painel de Ferramentas de Conversão", "description": "Converta dados, arquivos, formatos e valores rapidamente." },
+      "web": { "title": "Painel de Ferramentas Web", "description": "Inspecione, teste e prepare conteúdo web moderno." },
+      "developer": { "title": "Painel de Ferramentas para Desenvolvedores", "description": "Crie, depure, formate e documente projetos de software." },
+      "network": { "title": "Painel de Ferramentas de Rede", "description": "Trabalhe com endereços, portas, protocolos e conectividade." },
+      "textData": { "title": "Painel de Texto e Dados", "description": "Transforme, compare, gere e analise textos." },
+      "mathMedia": { "title": "Painel de Matemática e Mídia", "description": "Calcule, meça, grave e crie recursos de mídia." }
+    },
+    "toolCards": {
+      "pdfDashboard": "Painel de Ferramentas PDF",
+      "imageDashboard": "Painel de Ferramentas de Imagem",
+      "speedTest": "Teste de Velocidade da Internet",
+      "typingSpeed": "Resultados de Velocidade de Digitação",
+      "colorPicker": "Paleta de Seletor de Cores",
+      "qrGenerator": "Gerador de Código QR",
+      "barcodeGenerator": "Gerador de Código de Barras",
+      "barcodeReader": "Leitor de Código de Barras e QR",
+      "passwordGenerator": "Gerador de Senhas",
+      "loremGenerator": "Gerador de Lorem Ipsum",
+      "emojiPicker": "Seletor e Copiador de Emojis",
+      "notepad": "Bloco de Notas Online"
+    }
+  },
+  "ToolCatalog": {
+    "Pdf": {
+      "mergePdf": { "name": "Unir PDF" },
+      "splitPdf": { "name": "Dividir PDF" },
+      "compressPdf": { "name": "Comprimir PDF" },
+      "pdfToWord": { "name": "PDF para Word" },
+      "wordToPdf": { "name": "Word para PDF" }
+    },
+    "Image": {
+      "compressImage": { "name": "Comprimir Imagem" },
+      "resizeImage": { "name": "Redimensionar Imagem" },
+      "cropImage": { "name": "Recortar Imagem" },
+      "imageToJpg": { "name": "Imagem para JPG" },
+      "removeBackground": { "name": "Remover Fundo" }
+    }
   }
 }

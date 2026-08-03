@@ -44,6 +44,10 @@ export default function Breadcrumbs() {
   const path = stripLocalePrefix(pathname);
   if (path.startsWith("/admin")) return null;
 
+  const BASE_URL = (
+    process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_APP_URL || "https://www.ilovetechtools.com"
+  ).replace(/\/$/, "");
+
   const dashboard = DASHBOARD_CATEGORIES.find((category) => `/${category.slug}` === path);
   const tool = allDashboardTools.find((item) => item.route === path);
   const items = path === "/"
@@ -57,45 +61,45 @@ export default function Breadcrumbs() {
           ]
         : [{ label: formatPath(path.slice(1)), href: path }];
 
+  // Build breadcrumb schema itemListElement
+  const breadcrumbItems: Array<{
+    "@type": string;
+    position: number;
+    name: string;
+    item: string;
+  }> = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: `${BASE_URL}/${locale}`,
+    },
+  ];
+
+  items.forEach((item, index) => {
+    breadcrumbItems.push({
+      "@type": "ListItem",
+      position: index + 2,
+      name: item.label,
+      item: `${BASE_URL}/${locale}${item.href}`,
+    });
+  });
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: breadcrumbItems,
+  };
+
   return (
-    <div className="border-b border-[#C5DCC9] bg-gradient-to-r from-[#F0F7F0] via-white to-white">
-      <nav aria-label="Breadcrumb" className="mx-auto flex max-w-[1280px] items-center gap-4 px-6 py-3 sm:gap-6">
-        <Link to="/" className="shrink-0 transition-opacity hover:opacity-80" aria-label="Tech Tools home">
-          <Image src="/images/web-logo.png" alt="Tech Tools" width={84} height={60} className="h-[72px] w-auto" priority />
-        </Link>
-        <div className="hidden h-7 w-px bg-[#C5DCC9] sm:block" />
-        <div className="flex min-w-0 flex-1 items-center gap-1.5 overflow-x-auto text-xs text-slate-500">
-          <Link to="/" className="inline-flex shrink-0 items-center gap-1.5 transition-colors hover:text-emerald-700">
-            <Home size={13} />
-            <span>Home</span>
-          </Link>
-          {items.map((item, index) => (
-            <span key={`${item.href}-${item.label}`} className="inline-flex shrink-0 items-center gap-1.5">
-              <ChevronRight size={13} className="text-slate-300" />
-              {index === items.length - 1 ? (
-                <span className="font-medium text-slate-700" aria-current="page">{item.label}</span>
-              ) : (
-                <Link to={item.href} className="transition-colors hover:text-emerald-700">{item.label}</Link>
-              )}
-            </span>
-          ))}
-        </div>
-        <label className="relative flex shrink-0 items-center text-[#4A6857]">
-          <Languages size={16} className="pointer-events-none absolute left-3" />
-          <span className="sr-only">Select language</span>
-          <select
-            value={locale}
-            onChange={(event) => setLocale(event.target.value as Locale)}
-            className="h-9 cursor-pointer appearance-none rounded-lg border border-[#C5DCC9] bg-white py-1 pl-9 pr-8 text-xs font-medium text-[#4A6857] outline-none transition-colors hover:border-[#10A968] focus:border-[#10A968] focus:ring-2 focus:ring-[#10A968]/20"
-            aria-label="Select language"
-          >
-            {supportedLocales.map((supportedLocale) => (
-              <option key={supportedLocale} value={supportedLocale}>{localeLabels[supportedLocale]}</option>
-            ))}
-          </select>
-          <ChevronRight size={14} className="pointer-events-none absolute right-2 rotate-90" />
-        </label>
-      </nav>
-    </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        suppressHydrationWarning
+      />
+      <div className="pt-20">
+      </div>
+    </>
   );
 }

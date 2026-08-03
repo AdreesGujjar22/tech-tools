@@ -1,11 +1,9 @@
-import type { MetadataRoute } from "next";
 import { DASHBOARD_CATEGORIES, allDashboardTools } from "@/lib/dashboards-config";
 
 export const revalidate = 3600;
 
 const locales = ["de", "en", "es", "fr", "id", "it", "nl", "pt", "tr"] as const;
-
-const STATIC_PAGES = [
+const staticPages = [
   { path: "/", priority: 1.0, changeFrequency: "daily" as const },
   { path: "/about-us", priority: 0.7, changeFrequency: "monthly" as const },
   { path: "/contact-us", priority: 0.7, changeFrequency: "yearly" as const },
@@ -29,51 +27,55 @@ const STATIC_PAGES = [
   { path: "/blog", priority: 0.8, changeFrequency: "daily" as const },
 ];
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+const escapeXml = (value: string) =>
+  value.replace(/[<>&'\"]/g, (character) => ({
+    "<": "&lt;",
+    ">": "&gt;",
+    "&": "&amp;",
+    "'": "&apos;",
+    "\"": "&quot;",
+  })[character] ?? character);
+
+export function GET() {
   const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.ilovetechtools.com").replace(/\/$/, "");
-  const lastModified = new Date();
+  const lastModified = new Date().toISOString();
+  const uniquePaths = new Map<string, { priority: number; changeFrequency: string }>();
 
-  // Deduplicate all unique routes across dashboard categories, dashboard tools, and static pages
-  const uniquePathsMap = new Map<string, { priority: number; changeFrequency: "daily" | "weekly" | "monthly" | "yearly" }>();
-
-  STATIC_PAGES.forEach((item) => {
-    uniquePathsMap.set(item.path, { priority: item.priority, changeFrequency: item.changeFrequency });
+  staticPages.forEach((page) => uniquePaths.set(page.path, page));
+  DASHBOARD_CATEGORIES.forEach((category) => {
+    uniquePaths.set(`/${category.slug}`, { priority: 0.8, changeFrequency: "weekly" });
   });
-
-  DASHBOARD_CATEGORIES.forEach((cat) => {
-    uniquePathsMap.set(`/${cat.slug}`, { priority: 0.8, changeFrequency: "weekly" });
-  });
-
   allDashboardTools.forEach((tool) => {
-    if (!uniquePathsMap.has(tool.route)) {
-      uniquePathsMap.set(tool.route, { priority: 0.7, changeFrequency: "weekly" });
+    if (!uniquePaths.has(tool.route)) {
+      uniquePaths.set(tool.route, { priority: 0.7, changeFrequency: "weekly" });
     }
   });
 
-  const allEntries: MetadataRoute.Sitemap = [];
-
-  uniquePathsMap.forEach(({ priority, changeFrequency }, path) => {
+  const urls = [...uniquePaths].flatMap(([path, metadata]) => {
     const slug = path === "/" ? "" : path;
+    const alternates = locales
+      .map((locale) => `      <xhtml:link rel="alternate" hreflang="${locale}" href="${escapeXml(`${baseUrl}/${locale}${slug}`)}" />`)
+      .concat(`      <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(`${baseUrl}/en${slug}`)}" />`)
+      .join("\n");
 
-    // Generate language alternates map
-    const languages: Record<string, string> = {};
-    locales.forEach((loc) => {
-      languages[loc] = `${baseUrl}/${loc}${slug}`;
-    });
-    languages["x-default"] = `${baseUrl}/en${slug}`;
+    return locales.map((locale) => `    <url>
+      <loc>${escapeXml(`${baseUrl}/${locale}${slug}`)}</loc>
+      <lastmod>${lastModified}</lastmod>
+      <changefreq>${metadata.changeFrequency}</changefreq>
+      <priority>${metadata.priority}</priority>
+${alternates}
+    </url>`);
+  }).join("\n");
 
-    locales.forEach((loc) => {
-      allEntries.push({
-        url: `${baseUrl}/${loc}${slug}`,
-        lastModified,
-        changeFrequency,
-        priority,
-        alternates: {
-          languages,
-        },
-      });
-    });
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${urls}
+</urlset>`;
+
+  return new Response(xml, {
+    headers: {
+      "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+      "Content-Type": "application/xml; charset=utf-8",
+    },
   });
-
-  return allEntries;
 }

@@ -438,16 +438,7 @@ export default function Navbar({ collapsed, onCollapsedChange }: NavbarProps) {
                 className="h-[60px] w-auto object-contain object-left"
                 priority
               />
-              <p className="mt-0.5 text-[11px] font-medium tracking-wide text-white/90">Handy tools for developers</p>
             </Link>
-            <button
-              type="button"
-              onClick={() => onCollapsedChange(true)}
-              className="grid h-8 w-8 place-items-center rounded-lg text-white/80 transition-colors hover:bg-white/20 hover:text-white"
-              aria-label="Close tools sidebar"
-            >
-              <PanelLeftClose size={18} />
-            </button>
           </div>
         </div>
 
@@ -483,7 +474,6 @@ export default function Navbar({ collapsed, onCollapsedChange }: NavbarProps) {
                 className="h-[60px] w-auto object-contain object-left"
                 priority
               />
-              <p className="mt-0.5 text-[11px] font-medium tracking-wide text-white/90">Handy tools for developers</p>
             </Link>
             <button
               type="button"

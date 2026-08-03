@@ -7,7 +7,6 @@ import { StaggerList } from "@/components/StaggerList";
 import { Badge } from "@/components/ui/Badge";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/lib/locale";
-
 export default function Help() {
   const t = useTranslations("Help");
   const { locale } = useLocale();
@@ -163,7 +162,9 @@ export default function Help() {
             </div>
           </div>
         </div>
-      </main>
+      
+
+    </main>
     </div>
   );
 }

@@ -5,9 +5,12 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Shield, Lock, Eye, Server, RefreshCw } from "lucide-react";
 import { useTranslations } from "next-intl";
+import FaqSection from "@/components/FaqSection";
+import { getFaqsForRoute } from "@/lib/faq-data";
 
 export default function Privacy() {
   const t = useTranslations("Legal.privacy");
+  const faqs = getFaqsForRoute("unknown-slug");
   return (
     <div className="min-h-screen bg-transparent text-foreground">
       <SEO
@@ -67,7 +70,13 @@ export default function Privacy() {
             </section>
           </div>
         </div>
-      </main>
+      
+
+      {/* Frequently Asked Questions */}
+      {faqs && faqs.length > 0 && (
+        <FaqSection items={faqs} title="Frequently Asked Questions" />
+      )}
+    </main>
     </div>
   );
 }
