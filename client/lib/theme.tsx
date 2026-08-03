@@ -16,23 +16,22 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>("light");
 
   useEffect(() => {
-    const storedTheme = window.localStorage.getItem("theme");
-    if (storedTheme === "light" || storedTheme === "dark") {
-      setThemeState(storedTheme);
-      document.documentElement.classList.remove("light", "dark");
-      document.documentElement.classList.add(storedTheme);
-    }
+    window.localStorage.setItem("theme", "light");
+    setThemeState("light");
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add("light");
   }, []);
 
   const setTheme = (newTheme: Theme) => {
-    setThemeState(newTheme);
-    window.localStorage.setItem("theme", newTheme);
+    const nextTheme: Theme = newTheme === "dark" ? "light" : "light";
+    setThemeState(nextTheme);
+    window.localStorage.setItem("theme", nextTheme);
     document.documentElement.classList.remove("light", "dark");
-    document.documentElement.classList.add(newTheme);
+    document.documentElement.classList.add(nextTheme);
   };
 
   const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    setTheme("light");
   };
 
   return (

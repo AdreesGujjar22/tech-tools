@@ -17,6 +17,13 @@ type LocaleContextValue = {
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);
 
+function pascalCaseToolId(toolId: string) {
+  return toolId
+    .split("-")
+    .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
+    .join("");
+}
+
 function getRouteNamespaces(pathname: string): MessageNamespace[] {
   const route = stripLocalePrefix(pathname);
   const namespaces: MessageNamespace[] = ["common"];
@@ -112,8 +119,19 @@ function getRouteNamespaces(pathname: string): MessageNamespace[] {
   else if (route === "/slugify-string") add("SlugifyString");
   else if (route === "/ascii-art-generator") add("AsciiArtGenerator");
   else if (route === "/ipv4-address-converter") add("Ipv4AddressConverter");
-  else if (route.startsWith("/ilovepdf")) add("PdfDashboard", ...supportedToolNamespaces.filter((name) => ["shared", "Loading", "PdfToPowerpoint", "PdfToWord", "UnlockPdf"].includes(name)));
-  else if (route.startsWith("/iloveimg")) add("ImageDashboard", ...supportedToolNamespaces.filter((name) => ["shared", "Loading", "UpscaleImage", "CropImage", "BackgroundRemover", "WatermarkImage", "ImageConverter"].includes(name)));
+  else if (route.startsWith("/ilovepdf")) {
+    const pdfToolId = route.split("/").filter(Boolean).at(-1);
+    const pdfToolNamespace = pdfToolId ? pascalCaseToolId(pdfToolId) : null;
+    add("PdfDashboard", "shared", "Loading");
+    if (pdfToolNamespace) add(pdfToolNamespace);
+  }
+  else if (route.startsWith("/iloveimg")) {
+    const imageToolId = route.split("/").filter(Boolean).at(-1);
+    const imageToolNamespace = imageToolId ? pascalCaseToolId(imageToolId) : null;
+    add("ImageDashboard", "shared", "Loading");
+    if (imageToolNamespace === "RemoveBackground") add("BackgroundRemover");
+    else if (imageToolNamespace) add(imageToolNamespace);
+  }
 
   return [...new Set(namespaces)];
 }

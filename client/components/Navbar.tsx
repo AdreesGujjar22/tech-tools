@@ -9,8 +9,6 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
   Search,
-  Sun,
-  Moon,
   Globe,
   Heart,
   X,
@@ -31,7 +29,6 @@ import { Link, stripLocalePrefix, useLocation } from "@/lib/router-compat";
 import { DASHBOARD_CATEGORIES } from "@/lib/dashboards-config";
 import { cn } from "@/lib/utils";
 import { useLocale } from "@/lib/locale";
-import { useTheme } from "@/lib/theme";
 import SearchModal from "@/components/SearchModal";
 
 type NavbarProps = {
@@ -73,7 +70,6 @@ export default function Navbar({ collapsed, onCollapsedChange }: NavbarProps) {
   const [favoritesCount, setFavoritesCount] = useState(0);
 
   const { locale, setLocale } = useLocale();
-  const { theme, toggleTheme } = useTheme();
 
   // Load favorites count
   useEffect(() => {
@@ -306,12 +302,12 @@ export default function Navbar({ collapsed, onCollapsedChange }: NavbarProps) {
         )}
       >
         {/* Left Controls */}
-        <div className="flex items-center gap-3">
+        <div className="flex min-w-0 items-center gap-2 sm:gap-3">
           {/* Mobile Hamburger */}
           <button
             type="button"
             onClick={() => setMobileOpen(true)}
-            className="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 lg:hidden"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 lg:hidden"
             aria-label="Open navigation sidebar"
           >
             <Menu size={20} />
@@ -321,7 +317,7 @@ export default function Navbar({ collapsed, onCollapsedChange }: NavbarProps) {
           <button
             type="button"
             onClick={() => onCollapsedChange(!collapsed)}
-            className="hidden h-9 w-9 place-items-center rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:border-[#10A968] hover:text-[#10A968] transition-colors lg:grid"
+            className="hidden h-9 w-9 shrink-0 place-items-center rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:border-[#10A968] hover:text-[#10A968] transition-colors lg:grid"
             title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
             aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
@@ -337,15 +333,15 @@ export default function Navbar({ collapsed, onCollapsedChange }: NavbarProps) {
         </div>
 
         {/* Center: Search Trigger Input */}
-        <div className="flex-1 max-w-md mx-4">
+        <div className="mx-2 min-w-0 flex-1 sm:mx-4">
           <button
             type="button"
             onClick={() => setSearchOpen(true)}
-            className="w-full flex items-center justify-between rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/80 px-3.5 py-1.5 text-xs text-slate-500 dark:text-slate-400 hover:border-[#10A968] hover:bg-white dark:hover:bg-slate-800 transition-all shadow-sm group"
+            className="w-full flex items-center justify-between rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/80 px-3 py-1.5 text-xs text-slate-500 dark:text-slate-400 hover:border-[#10A968] hover:bg-white dark:hover:bg-slate-800 transition-all shadow-sm group"
           >
-            <span className="flex items-center gap-2 truncate">
-              <Search size={14} className="text-[#10A968] group-hover:scale-110 transition-transform" />
-              <span className="truncate">Search 90+ developer tools...</span>
+            <span className="flex min-w-0 items-center gap-2">
+              <Search size={14} className="shrink-0 text-[#10A968] group-hover:scale-110 transition-transform" />
+              <span className="truncate">Search 90+ tools...</span>
             </span>
             <span className="hidden sm:inline-flex items-center gap-1 rounded border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-1.5 py-0.5 text-[10px] font-bold text-slate-400">
               ⌘K
@@ -353,8 +349,8 @@ export default function Navbar({ collapsed, onCollapsedChange }: NavbarProps) {
           </button>
         </div>
 
-        {/* Right Actions: Favorites, Language Selector, Theme Switch */}
-        <div className="flex items-center gap-2">
+        {/* Right Actions: Favorites, Language Selector */}
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           {/* Favorites Button */}
           <Link
             to="/tools"
@@ -370,28 +366,19 @@ export default function Navbar({ collapsed, onCollapsedChange }: NavbarProps) {
             )}
           </Link>
 
-          {/* Theme Switcher Toggle */}
-          <button
-            type="button"
-            onClick={toggleTheme}
-            className="grid h-9 w-9 place-items-center rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:text-[#10A968] transition-colors"
-            title={`Switch to ${theme === "light" ? "Dark" : "Light"} theme`}
-            aria-label="Toggle theme"
-          >
-            {theme === "light" ? <Moon size={18} /> : <Sun size={18} className="text-amber-400" />}
-          </button>
+          {/* Theme remains fixed to light mode */}
 
           {/* Language Selector Dropdown */}
           <div className="relative">
             <button
               type="button"
               onClick={() => setLangMenuOpen((prev) => !prev)}
-              className="flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 px-2.5 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:border-[#10A968] transition-colors"
+              className="flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 px-2 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:border-[#10A968] transition-colors"
               aria-label="Select language"
               aria-expanded={langMenuOpen}
             >
               <Globe size={15} className="text-[#10A968]" />
-              <span className="uppercase">{currentLang.code}</span>
+              <span className="hidden uppercase sm:inline">{currentLang.code}</span>
               <ChevronDown size={12} className="text-slate-400" />
             </button>
 

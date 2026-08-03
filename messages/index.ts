@@ -7,16 +7,19 @@ export type Locale = (typeof supportedLocales)[number];
 export const supportedToolNamespaces = [
   "AsciiArtGenerator", "BackgroundRemover", "BarcodeGenerator", "BarcodeReader",
   "Base64FileConverter", "Base64StringConverter", "BasicAuthGenerator", "BenchmarkBuilder",
-  "CameraRecorder", "Chronometer", "ColorPicker", "CropImage", "DashboardCategories",
-  "DeviceInformation", "EmailNormalizer", "EmojiPicker", "EncryptionDecryption", "EtaCalculator",
-  "GitMemo", "HmacGenerator", "IbanValidator", "ImageConverter", "ImageDashboard",
+  "CameraRecorder", "Chronometer", "ColorPicker", "CompressImage", "CompressPdf", "CropImage",
+  "DashboardCategories", "DeviceInformation", "EditPdf", "EmailNormalizer", "EmojiPicker",
+  "EncryptionDecryption", "EtaCalculator", "ExcelToPdf", "GitMemo", "HmacGenerator",
+  "IbanValidator", "ImageConverter", "ImageDashboard", "ImageEditor", "JpgToPdf",
   "Ipv4AddressConverter", "Ipv4RangeExpander", "Ipv4SubnetCalculator", "JsonDiff",
   "JsonToTomlConverter", "JsonToXmlConverter", "ListConverter", "Loading", "LoremGenerator",
-  "Notepad", "OgMetaGenerator", "OutlookSafelinkDecoder", "PasswordGenerator", "PdfDashboard",
-  "PdfSignatureChecker", "PdfToPowerpoint", "PdfToWord", "PercentageCalculator", "QrGenerator",
-  "RsaKeyPairGenerator", "SlugifyString", "SpeedTest", "TemperatureConverter", "TextDiff",
-  "TomlToJsonConverter", "TomlToYamlConverter", "TypingSpeed", "UnlockPdf", "UrlParser",
-  "WatermarkImage", "XmlFormatter", "XmlToJsonConverter", "YamlPrettify", "shared"
+  "MergePdf", "Notepad", "OgMetaGenerator", "OutlookSafelinkDecoder", "PasswordGenerator",
+  "PdfDashboard", "PdfSignatureChecker", "PdfToExcel", "PdfToJpg", "PdfToPowerpoint", "PdfToWord",
+  "PercentageCalculator", "PowerpointToPdf", "ProtectPdf", "QrGenerator", "RepairPdf",
+  "ResizeImage", "RotateImage", "RotatePdf", "RsaKeyPairGenerator", "SlugifyString", "SpeedTest",
+  "SplitPdf", "TemperatureConverter", "TextDiff", "TomlToJsonConverter", "TomlToYamlConverter",
+  "TypingSpeed", "UnlockPdf", "UrlParser", "UpscaleImage", "WatermarkImage", "WordToPdf",
+  "XmlFormatter", "XmlToJsonConverter", "YamlPrettify", "shared"
 ] as const;
 
 export type ToolNamespace = (typeof supportedToolNamespaces)[number] | string;
