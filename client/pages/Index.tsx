@@ -3,155 +3,18 @@
 import { useNavigate, Link } from "@/lib/router-compat";
 import Image from "next/image";
 import SEO from "@/components/SEO";
-import { useState } from "react";
-import { Search, Clock, Eye, Share2, Sparkles, ShieldCheck, ShieldCheck as ShieldIcon, ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
-import { StaggerList } from "@/components/StaggerList";
+import { Sparkles, ShieldCheck, ShieldCheck as ShieldIcon, ArrowRight } from "lucide-react";
+import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
-import { useLocale } from "@/lib/locale";
 import { DASHBOARD_CATEGORIES } from "@/lib/dashboards-config";
 import FaqSection from "@/components/FaqSection";
 import { getFaqsForRoute } from "@/lib/faq-data";
-
-const qrItems = [
-  {
-    id: 1,
-    titleKey: "speedTest",
-    url: "/speed-test",
-    type: "URL",
-
-    preview: "/images/speed-test.png",
-  },
-  {
-    id: 2,
-    titleKey: "typingSpeed",
-    url: "/typing-speed",
-    type: "URL",
-
-    preview: "/images/typing-speed.png",
-  },
-  {
-    id: 3,
-    titleKey: "colorPicker",
-    url: "/color-picker",
-    type: "URL",
-
-    preview: "/images/color-picker.png",
-  },
-  {
-    id: 4,
-    titleKey: "qrGenerator",
-    url: "/qr-generator",
-    type: "URL",
-
-    preview: "/images/qr-code-generation.png",
-  },
-  {
-    id: 7,
-    titleKey: "barcodeGenerator",
-    url: "/barcode-generator",
-    type: "URL",
-
-    preview: "/images/bar-code-generation.png",
-  },
-  {
-    id: 8,
-    titleKey: "barcodeReader",
-    url: "/barcode-reader",
-    type: "URL",
-
-    preview: "/images/qr-code-generation.png",
-  },
-  {
-    id: 9,
-    titleKey: "passwordGenerator",
-    url: "/password-generator",
-    type: "URL",
-
-    preview: "/images/password-generator.png",
-  },
-  {
-    id: 9,
-    titleKey: "loremGenerator",
-    url: "/lorem-ipsum-generator",
-    type: "URL",
-
-    preview: "/images/lorem-ipsum-generator.png",
-  },
-  {
-    id: 10,
-    titleKey: "emojiPicker",
-    url: "/emoji-picker",
-    type: "URL",
-
-    preview: "/images/emoji-picker-copier.png",
-  },
-  {
-    id: 11,
-    titleKey: "notepad",
-    url: "/notepad",
-    type: "URL",
-
-    preview: "/images/online-notepad.png",
-  },
-];
 
 export default function Index() {
   const t = useTranslations("Home");
   const faqs = getFaqsForRoute("unknown-slug");
   const common = useTranslations("Common");
-  const { locale } = useLocale();
-  const [copied, setCopied] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
-
-  const handleShare = async (e: React.MouseEvent<HTMLButtonElement>, title: string, url: string) => {
-    e.stopPropagation();
-    const shareData = {
-      title: title,
-      text: common("messages.checkOutTool"),
-      url: url,
-    };
-
-    if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
-      try {
-        await navigator.share(shareData);
-        return;
-      } catch (error) {
-        if (error instanceof Error && error.name !== "AbortError") {
-          console.error("Error sharing:", error);
-        }
-      }
-    }
-
-    try {
-      await navigator.clipboard.writeText(shareData.url);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      // Fallback: show alert if clipboard fails (e.g., document not focused)
-      if (err instanceof Error && err.name === "NotAllowedError") {
-        alert(common("messages.link", { url: shareData.url }));
-      } else {
-        console.error("Failed to copy link: ", err);
-      }
-    }
-  };
-
-  const currentDate = new Intl.DateTimeFormat(locale === "pt" ? "pt-BR" : locale === "es" ? "es-ES" : "en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  }).format(new Date());
-  const localizedItems = qrItems.map((item) => ({
-    ...item,
-    title: t(`toolCards.${item.titleKey}`),
-    date: currentDate,
-  }));
-  const uniqueItems = Array.from(new Map(localizedItems.map((item) => [item.url, item])).values());
-  const filteredItems = uniqueItems.filter((item) =>
-    item.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   return (
     <div className="min-h-screen bg-transparent text-foreground">
@@ -281,32 +144,6 @@ export default function Index() {
                   {t("toolsDescription")}
                 </motion.p>
 
-                {/* Interactive Search Grid Controls */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.2, duration: 0.3 }}
-                  className="max-w-xl mx-auto flex items-center bg-white border border-[#C5DCC9] rounded-2xl p-1.5 shadow-lg focus-within:border-[#10A968]/40 transition"
-                >
-                  <div className="flex items-center pl-3 text-[#4A6857]">
-                    <Search className="w-5 h-5" />
-                  </div>
-                  <input
-                    type="text"
-                    placeholder={t("searchPlaceholder")}
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full bg-transparent border-0 ring-0 focus:outline-none focus:ring-0 p-3 text-sm text-[#2D4D35] placeholder-[#999B99] font-medium"
-                  />
-                  {searchQuery && (
-                    <button
-                      onClick={() => setSearchQuery("")}
-                      className="p-1 px-2.5 text-xs text-[#4A6857] bg-[#E8F0E8] hover:bg-[#D4E8D8] border border-[#C5DCC9] rounded-xl transition cursor-pointer"
-                    >
-                      {common("actions.clear")}
-                    </button>
-                  )}
-                </motion.div>
               </div>
             </section>
 
@@ -324,43 +161,6 @@ export default function Index() {
               })}
             </div>
 
-            {/* Items Grid */}
-            {filteredItems.length === 0 ? (
-              <div className="premium-card p-12 text-center text-[#4A6857] mb-12 rounded-2xl border border-[#C5DCC9]/40 bg-white">
-                {t("noResults")}
-              </div>
-            ) : (
-              <StaggerList staggerDelay={0.08} className="grid-auto-fit mb-12">
-                {filteredItems.map((item) => (
-                  <div
-                    key={item.url}
-                    className="group relative flex min-h-[190px] cursor-pointer flex-col rounded-2xl border border-[#10A968]/30 bg-gradient-to-br from-[#F0F7F0] to-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
-                    onClick={() => navigate(item.url)}
-                  >
-                    <span className="absolute right-4 top-4 rounded-full bg-[#10A968] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white">Tool</span>
-                    <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E8F0E8] text-[#10A968]"><Eye size={22} /></div>
-                    <h3 className="text-lg font-bold leading-tight text-[#1F3A26] group-hover:text-[#10A968]">{item.title}</h3>
-                    <div className="mt-2 flex items-center gap-1.5 text-[#4A6857]">
-                      <Clock className="h-3.5 w-3.5" />
-                      <span className="text-xs font-semibold">{item.date}</span>
-                    </div>
-                    <div className="mt-auto flex gap-2 pt-4">
-                      <button className="flex-1 rounded-lg bg-[#E8F0E8] py-2 text-xs font-semibold text-[#2D4D35] transition-colors hover:bg-[#D4E8D8]">
-                        {common("actions.view")}
-                      </button>
-                      <button
-                        onClick={(e) => handleShare(e, item.title, item.url)}
-                        className="flex items-center justify-center rounded-lg bg-[#E8F0E8] px-3 py-2 text-[#2D4D35] transition-colors hover:bg-[#D4E8D8]"
-                        aria-label={common("a11y.sharePage")}
-                      >
-                        <Share2 className="h-3.5 w-3.5" />
-                      </button>
-                      {copied && <span className="sr-only">{common("messages.copiedLink")}</span>}
-                    </div>
-                  </div>
-                ))}
-              </StaggerList>
-            )}
 
             {/* CTA */}
             <div className="premium-card p-12 sm:p-16 text-center space-y-6 rounded-2xl border border-[#C5DCC9]/40 bg-white animate-fade-in-scale">
