@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import SEO from "@/components/SEO";
+import FaqSection from "@/components/FaqSection";
+import { getFaqsForRoute } from "@/lib/faq-data";
 import QRCode from "qrcode";
 import { Download, Share2, Copy, Sparkles, RefreshCw, Layers, Sliders, Check, ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -10,6 +12,7 @@ import { useTranslations } from "next-intl";
 export default function Generator() {
   const t = useTranslations("Tools.QrGenerator");
   const common = useTranslations("Common");
+  const faqs = getFaqsForRoute("qr-generator");
   const [text, setText] = useState("https://www.ilovetechtools.com");
   const [qrUrl, setQrUrl] = useState("");
   const [size, setSize] = useState(300);
@@ -80,10 +83,10 @@ export default function Generator() {
         keywords={t("metaKeywords")}
       />
 
-      <main className="pt-32 pb-20 px-6">
-        <div className="max-w-[1280px] mx-auto">
-          {/* Header */}
-          <div className="mb-12 text-center max-w-2xl mx-auto space-y-4">
+      <main className="pt-0 pb-20 px-6">
+        {/* H1 Header Section */}
+        <div className="max-w-[1280px] mx-auto pt-8 pb-12">
+          <div className="text-center max-w-2xl mx-auto space-y-4">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(16,169,104,0.25)] bg-[#F0F7F0]">
               <Sparkles className="w-4 h-4 text-[#10A968]" />
               <span className="text-[#10A968] text-xs font-semibold tracking-wider uppercase">{common("labels.premiumUtility")}</span>
@@ -95,8 +98,11 @@ export default function Generator() {
               {t("description")}
             </p>
           </div>
+        </div>
 
-          {/* Generator Grid */}
+        {/* Tool Interface Section */}
+        <div className="max-w-[1280px] mx-auto mb-20">
+          <h2 className="sr-only">Generator Tool</h2>
           <div className="grid lg:grid-cols-12 gap-8 items-start">
             {/* Left controls panel */}
             <div className="lg:col-span-7 glass-card-dark p-8 rounded-[24px] space-y-6">
@@ -269,6 +275,9 @@ export default function Generator() {
             </div>
           </div>
         </div>
+
+        {/* FAQ Section */}
+        {faqs && faqs.length > 0 && <FaqSection items={faqs} title="Frequently Asked Questions" />}
       </main>
     </div>
   );

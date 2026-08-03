@@ -29,7 +29,7 @@ export default function RelatedToolsGrid({ category, limit = 4 }: RelatedToolsGr
   // Find the category dashboard info for the section heading
   const categoryInfo = DASHBOARD_CATEGORIES.find((cat) => cat.slug === category);
   const categoryName = categoryInfo?.title || category;
-  const categoryRoute = categoryInfo?.route || `/${category}`;
+  const categoryRoute = categoryInfo ? `/${categoryInfo.slug}` : `/${category}`;
 
   return (
     <section className="mx-auto max-w-5xl px-6 py-12">

@@ -2,9 +2,12 @@ import { Link } from "@/lib/router-compat";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useTranslations } from "next-intl";
+import FaqSection from "@/components/FaqSection";
+import { getFaqsForRoute } from "@/lib/faq-data";
 
 export default function NotFound() {
   const t = useTranslations("NotFound");
+  const faqs = getFaqsForRoute("unknown-slug");
   return (
     <div className="min-h-screen bg-transparent text-foreground flex flex-col">
 
@@ -33,7 +36,13 @@ export default function NotFound() {
             </Link>
           </div>
         </div>
-      </main>
+      
+
+      {/* Frequently Asked Questions */}
+      {faqs && faqs.length > 0 && (
+        <FaqSection items={faqs} title="Frequently Asked Questions" />
+      )}
+    </main>
 
     </div>
   );

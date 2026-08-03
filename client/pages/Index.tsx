@@ -10,6 +10,8 @@ import { StaggerList } from "@/components/StaggerList";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/lib/locale";
 import { DASHBOARD_CATEGORIES } from "@/lib/dashboards-config";
+import FaqSection from "@/components/FaqSection";
+import { getFaqsForRoute } from "@/lib/faq-data";
 
 const qrItems = [
   {
@@ -96,6 +98,7 @@ const qrItems = [
 
 export default function Index() {
   const t = useTranslations("Home");
+  const faqs = getFaqsForRoute("unknown-slug");
   const common = useTranslations("Common");
   const { locale } = useLocale();
   const [copied, setCopied] = useState(false);
@@ -312,11 +315,11 @@ export default function Index() {
               {DASHBOARD_CATEGORIES.map((dashboard) => {
                 const DashboardIcon = dashboard.icon;
                 return <button key={dashboard.slug} type="button" onClick={() => navigate(`/${dashboard.slug}`)} className="group relative rounded-2xl border border-[#10A968]/30 bg-gradient-to-br from-[#F0F7F0] to-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-                  <span className="absolute right-4 top-4 rounded-full bg-[#10A968] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white">Dashboard</span>
+                  <span className="absolute right-4 top-4 rounded-full bg-[#10A968] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white">{t("dashboardBadge")}</span>
                   <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E8F0E8] text-[#10A968]"><DashboardIcon size={25} /></div>
-                  <h3 className="text-lg font-bold text-[#1F3A26] group-hover:text-[#10A968]">{dashboard.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#4A6857]">{dashboard.description}</p>
-                  <span className="mt-4 block text-xs font-bold text-[#10A968]">{dashboard.badgeCount} tools</span>
+                  <h3 className="text-lg font-bold text-[#1F3A26] group-hover:text-[#10A968]">{t(`dashboardCards.${dashboard.titleKey}.title`)}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#4A6857]">{t(`dashboardCards.${dashboard.titleKey}.description`)}</p>
+                  <span className="mt-4 block text-xs font-bold text-[#10A968]">{dashboard.badgeCount} {t("toolsCount")}</span>
                 </button>;
               })}
             </div>
@@ -376,7 +379,13 @@ export default function Index() {
               </button>
             </div>
           </div>
-        </main>
+        
+
+      {/* Frequently Asked Questions */}
+      {faqs && faqs.length > 0 && (
+        <FaqSection items={faqs} title="Frequently Asked Questions" />
+      )}
+    </main>
       </section>
     </div>
   );

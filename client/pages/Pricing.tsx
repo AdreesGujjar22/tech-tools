@@ -5,10 +5,13 @@ import { Badge } from "@/components/ui/Badge";
 import { CheckCircle } from "lucide-react";
 import { StaggerList } from "@/components/StaggerList";
 import { useTranslations } from "next-intl";
+import FaqSection from "@/components/FaqSection";
+import { getFaqsForRoute } from "@/lib/faq-data";
 
 export default function Pricing() {
   const navigate = useNavigate();
   const t = useTranslations("Pricing");
+  const faqs = getFaqsForRoute("unknown-slug");
   return (
     <div className="min-h-screen bg-transparent text-foreground">
 
@@ -74,7 +77,13 @@ export default function Pricing() {
             </Button>
           </div>
         </div>
-      </main>
+      
+
+      {/* Frequently Asked Questions */}
+      {faqs && faqs.length > 0 && (
+        <FaqSection items={faqs} title="Frequently Asked Questions" />
+      )}
+    </main>
 
     </div>
   );

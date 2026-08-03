@@ -1,1 +1,48 @@
-{"mainHub":"Hub principal","dashboardBadge":"Dashboard","toolsCount":"ferramentas","matchingTools":"ferramentas correspondentes","searchPlaceholder":"Pesquisar ferramentas neste dashboard...","backToHub":"Voltar ao hub principal","openTool":"Abrir ferramenta","favorite":"Alternar favorito","copyLink":"Copiar link da ferramenta","noMatches":"Nenhuma ferramenta correspondente.","pdf":{"title":"Dashboard de ferramentas PDF","description":"Gerencie arquivos PDF em um espaço de trabalho centralizado."},"image":{"title":"Dashboard de ferramentas de imagem","description":"Edite, converta e otimize imagens em um só lugar."},"cryptoSecurity":{"title":"Dashboard de criptografia e segurança","description":"Proteja, valide, gere hashes e inspecione dados sensíveis."},"converters":{"title":"Dashboard de conversores","description":"Converta dados, arquivos, formatos e valores rapidamente."},"web":{"title":"Dashboard de ferramentas web","description":"Inspecione, teste e prepare conteúdo web moderno."},"developer":{"title":"Dashboard de ferramentas de desenvolvimento","description":"Crie, depure, formate e documente projetos de software."},"network":{"title":"Dashboard de ferramentas de rede","description":"Trabalhe com endereços, portas, protocolos e conectividade."},"textData":{"title":"Dashboard de texto e dados","description":"Transforme, compare, gere e analise texto."},"mathMedia":{"title":"Dashboard de matemática e mídia","description":"Calcule, meça, grave e crie recursos de mídia."}}
+{
+  "dashboardBadge": "Painel",
+  "toolsCount": "ferramentas",
+  "matchingTools": "ferramentas encontradas",
+  "backToHub": "Voltar ao hub",
+  "openTool": "Abrir ferramenta",
+  "favorite": "Adicionar aos favoritos",
+  "copyLink": "Copiar link",
+  "searchPlaceholder": "Pesquisar ferramentas...",
+  "noMatches": "Nenhuma ferramenta encontrada",
+  "noMatchesDescription": "Não encontramos ferramentas que correspondam aos seus termos de busca.",
+  "pdf": {
+    "title": "Painel de Ferramentas PDF",
+    "description": "Gerencie arquivos PDF em um espaço de trabalho dedicado."
+  },
+  "image": {
+    "title": "Painel de Ferramentas de Imagem",
+    "description": "Edite, converta e otimize imagens em um só lugar."
+  },
+  "cryptoSecurity": {
+    "title": "Painel de Criptografia e Segurança",
+    "description": "Proteja, valide, gere hashes e inspecione dados sensíveis."
+  },
+  "converters": {
+    "title": "Painel de Ferramentas de Conversão",
+    "description": "Converta dados, arquivos, formatos e valores rapidamente."
+  },
+  "web": {
+    "title": "Painel de Ferramentas Web",
+    "description": "Inspecione, teste e prepare conteúdo web moderno."
+  },
+  "developer": {
+    "title": "Painel de Ferramentas para Desenvolvedores",
+    "description": "Crie, depure, formate e documente projetos de software."
+  },
+  "network": {
+    "title": "Painel de Ferramentas de Rede",
+    "description": "Trabalhe com endereços, portas, protocolos e conectividade."
+  },
+  "textData": {
+    "title": "Painel de Texto e Dados",
+    "description": "Transforme, compare, gere e analise textos."
+  },
+  "mathMedia": {
+    "title": "Painel de Matemática e Mídia",
+    "description": "Calcule, meça, grave e crie recursos de mídia."
+  }
+}

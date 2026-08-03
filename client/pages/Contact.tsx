@@ -4,9 +4,12 @@ import { Button } from "@/components/ui/Button";
 import { toast } from "sonner";
 import emailjs from "@emailjs/browser";
 import { useTranslations } from "next-intl";
+import FaqSection from "@/components/FaqSection";
+import { getFaqsForRoute } from "@/lib/faq-data";
 
 export default function Contact() {
   const t = useTranslations("Contact");
+  const faqs = getFaqsForRoute("unknown-slug");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -243,6 +246,12 @@ export default function Contact() {
           </div>
         </div>
       </section>
+    
+
+      {/* Frequently Asked Questions */}
+      {faqs && faqs.length > 0 && (
+        <FaqSection items={faqs} title="Frequently Asked Questions" />
+      )}
     </div>
   );
 }

@@ -5,7 +5,6 @@ import { Search, Clock, Eye, Share2, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { StaggerList } from "@/components/StaggerList";
 import { Badge } from "@/components/ui/Badge";
-
 const currentDate = new Intl.DateTimeFormat("en-US", {
   month: "short",
   day: "numeric",
@@ -314,7 +313,9 @@ export default function History() {
             </button>
           </div>
         </div>
-      </main>
+      
+
+    </main>
     </div>
   );
 }

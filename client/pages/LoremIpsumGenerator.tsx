@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import SEO from "@/components/SEO";
 import { Download, Share2, Copy, Sparkles, Sliders, Check } from "lucide-react";
 import { useTranslations } from "next-intl";
+import FaqSection from "@/components/FaqSection";
+import { getFaqsForRoute } from "@/lib/faq-data";
 
 const LOREM_IPSUM_TEXT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
@@ -50,6 +52,7 @@ const generateLoremSentences = (count: number): string => {
 
 export default function LoremIpsumGenerator() {
   const t = useTranslations("Tools.LoremGenerator");
+  const faqs = getFaqsForRoute("unknown-slug");
   const [loremText, setLoremText] = useState("");
   const [type, setType] = useState("paragraphs");
   const [count, setCount] = useState(5);
@@ -259,7 +262,13 @@ export default function LoremIpsumGenerator() {
             </div>
           </div>
         </div>
-      </main>
+      
+
+      {/* Frequently Asked Questions */}
+      {faqs && faqs.length > 0 && (
+        <FaqSection items={faqs} title="Frequently Asked Questions" />
+      )}
+    </main>
     </div>
   );
 }

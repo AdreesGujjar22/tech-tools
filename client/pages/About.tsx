@@ -1,6 +1,8 @@
 import { Link } from "@/lib/router-compat";
 import { StaggerList } from "@/components/StaggerList";
 import { useTranslations } from "next-intl";
+import FaqSection from "@/components/FaqSection";
+import { getFaqsForRoute } from "@/lib/faq-data";
 import {
   Barcode,
   FileText,
@@ -17,6 +19,7 @@ import {
 
 export default function About() {
   const t = useTranslations("About");
+  const faqs = getFaqsForRoute("unknown-slug");
   const common = useTranslations("Common");
   return (
     <div className="min-h-screen bg-transparent text-foreground">
@@ -317,6 +320,12 @@ export default function About() {
           </div>
         </div>
       </section>
+    
+
+      {/* Frequently Asked Questions */}
+      {faqs && faqs.length > 0 && (
+        <FaqSection items={faqs} title="Frequently Asked Questions" />
+      )}
     </div>
   );
 }

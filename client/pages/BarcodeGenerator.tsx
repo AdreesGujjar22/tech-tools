@@ -6,9 +6,12 @@ import JsBarcode from "jsbarcode";
 import { Download, Share2, Copy, Sparkles, RefreshCw, Layers, Sliders, Check, ImageIcon, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useTranslations } from "next-intl";
+import FaqSection from "@/components/FaqSection";
+import { getFaqsForRoute } from "@/lib/faq-data";
 
 export default function BarcodeGenerator() {
   const t = useTranslations("Tools.BarcodeGenerator");
+  const faqs = getFaqsForRoute("barcode-generator");
   const [text, setText] = useState("123456789012");
   const [format, setFormat] = useState("CODE128");
   const [width, setWidth] = useState(2);
@@ -377,7 +380,13 @@ export default function BarcodeGenerator() {
             </div>
           </div>
         </div>
-      </main>
+      
+
+      {/* Frequently Asked Questions */}
+      {faqs && faqs.length > 0 && (
+        <FaqSection items={faqs} title="Frequently Asked Questions" />
+      )}
+    </main>
     </div>
   );
 }
