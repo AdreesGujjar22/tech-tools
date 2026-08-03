@@ -17,6 +17,7 @@ interface SEOProps {
   toolName?: string;
   isDashboard?: boolean;
   isHome?: boolean;
+  imageUrl?: string;
 }
 
 export default function SEO({
@@ -27,6 +28,7 @@ export default function SEO({
   toolName,
   isDashboard = false,
   isHome = false,
+  imageUrl = "/images/web-logo.png",
 }: SEOProps) {
   const location = useLocation();
   const rawPath = location.pathname;
@@ -59,7 +61,7 @@ export default function SEO({
       keywords || "tech tools, pdf tools, image tools, qr generator, typing speed test, internet speed test, color picker, developer utilities";
     metaKeywords.setAttribute("content", keywordList);
 
-    // 4. Update Canonical Link
+    // 4. Update Canonical Link - STRICT CANONICAL TO CURRENT LOCALE
     let canonicalLink = document.querySelector('link[rel="canonical"]');
     if (!canonicalLink) {
       canonicalLink = document.createElement("link");
@@ -68,7 +70,7 @@ export default function SEO({
     }
     canonicalLink.setAttribute("href", canonicalUrl);
 
-    // 5. Update Hreflang Alternates
+    // 5. Update Hreflang Alternates - EACH LOCALE TO ITS OWN URL
     supportedLocales.forEach((loc) => {
       let hreflangLink = document.querySelector(`link[rel="alternate"][hreflang="${loc}"]`);
       if (!hreflangLink) {
@@ -77,10 +79,11 @@ export default function SEO({
         hreflangLink.setAttribute("hreflang", loc);
         document.head.appendChild(hreflangLink);
       }
-      hreflangLink.setAttribute("href", `${BASE_URL}/${loc}${pathWithoutLocale === "/" ? "" : pathWithoutLocale}`);
+      const hreflangUrl = `${BASE_URL}/${loc}${pathWithoutLocale === "/" ? "" : pathWithoutLocale}`;
+      hreflangLink.setAttribute("href", hreflangUrl);
     });
 
-    // x-default hreflang
+    // 6. x-default hreflang pointing to English
     let xDefault = document.querySelector('link[rel="alternate"][hreflang="x-default"]');
     if (!xDefault) {
       xDefault = document.createElement("link");
@@ -89,7 +92,47 @@ export default function SEO({
       document.head.appendChild(xDefault);
     }
     xDefault.setAttribute("href", `${BASE_URL}/en${pathWithoutLocale === "/" ? "" : pathWithoutLocale}`);
-  }, [title, description, keywords, canonicalUrl, pathWithoutLocale]);
+
+    // 7. OpenGraph Meta Tags
+    const ogTags = [
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:url", content: canonicalUrl },
+      { property: "og:type", content: "website" },
+      { property: "og:image", content: imageUrl.startsWith("http") ? imageUrl : `${BASE_URL}${imageUrl}` },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:locale", content: locale.replace("-", "_") },
+    ];
+
+    ogTags.forEach(({ property, content }) => {
+      let tag = document.querySelector(`meta[property="${property}"]`);
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute("property", property);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute("content", content);
+    });
+
+    // 8. Twitter Card Meta Tags
+    const twitterTags = [
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
+      { name: "twitter:image", content: imageUrl.startsWith("http") ? imageUrl : `${BASE_URL}${imageUrl}` },
+    ];
+
+    twitterTags.forEach(({ name, content }) => {
+      let tag = document.querySelector(`meta[name="${name}"]`);
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute("name", name);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute("content", content);
+    });
+  }, [title, description, keywords, canonicalUrl, pathWithoutLocale, imageUrl, locale]);
 
   // JSON-LD Schemas
   const breadcrumbItems = [
@@ -162,17 +205,20 @@ export default function SEO({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        suppressHydrationWarning
       />
       {appSchema && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }}
+          suppressHydrationWarning
         />
       )}
       {websiteSchema && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+          suppressHydrationWarning
         />
       )}
     </>

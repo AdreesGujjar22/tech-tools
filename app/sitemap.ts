@@ -55,7 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   uniquePathsMap.forEach(({ priority, changeFrequency }, path) => {
     const slug = path === "/" ? "" : path;
 
-    // Generate language alternates map
+    // Generate language alternates map with xhtml:link format
     const languages: Record<string, string> = {};
     locales.forEach((loc) => {
       languages[loc] = `${baseUrl}/${loc}${slug}`;

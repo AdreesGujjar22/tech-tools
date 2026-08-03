@@ -41,6 +41,7 @@ export default function FaqSection({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        suppressHydrationWarning
       />
       <div className="mb-8 text-center">
         <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#10A968]/20 bg-[#10A968]/10 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-[#10A968]">
