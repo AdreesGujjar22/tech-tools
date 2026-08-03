@@ -351,7 +351,7 @@ export default function ToolShell({
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 sm:py-10">
       {/* Route Back Header Link */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-8">
         <Link
           to="/iloveimg"
           className="inline-flex items-center gap-2 text-sm text-[#4A6857] hover:text-[#2D4D35] font-medium transition cursor-pointer"
@@ -364,11 +364,11 @@ export default function ToolShell({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Main Work Area Column */}
         <div className="lg:col-span-8 space-y-6">
-          <div className="flex items-start gap-4 rounded-2xl border border-[#C5DCC9] bg-white p-5 shadow-sm">
+          <div className="flex flex-col sm:flex-row items-start gap-4 rounded-2xl border border-[#C5DCC9] bg-white p-4 sm:p-5 shadow-sm">
             <div className="p-3 bg-[#E8F0E8] border border-[#C5DCC9] text-[#10A968] rounded-xl shrink-0">
               {React.createElement(getImageToolIcon(tool.iconName), { className: "w-6 h-6" })}
             </div>
-            <div>
+            <div className="min-w-0">
               <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1F3A26] tracking-tight leading-none mb-2">
                 {catalog(`Image.${toolKey}.name`)}
               </h1>

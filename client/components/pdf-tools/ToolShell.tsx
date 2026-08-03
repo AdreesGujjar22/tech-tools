@@ -75,8 +75,13 @@ export default function ToolShell({
   // Sync / check tool active on startup
   useEffect(() => {
     async function loadStatus() {
-      const active = await checkPdfToolEnabled(toolId);
-      setIsEnabled(active);
+      try {
+        const active = await checkPdfToolEnabled(toolId);
+        setIsEnabled(active);
+      } catch (err) {
+        console.warn("Could not check PDF tool status from Firebase, assuming enabled:", err);
+        setIsEnabled(true);
+      }
     }
     loadStatus();
   }, [toolId]);
@@ -266,12 +271,12 @@ export default function ToolShell({
           <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
           {t("backToAllTools")}
         </Link>
-        <div className="flex items-start gap-4 rounded-2xl border border-[#C5DCC9] bg-white p-5 shadow-sm">
+        <div className="flex flex-col sm:flex-row items-start gap-4 rounded-2xl border border-[#C5DCC9] bg-white p-4 sm:p-5 shadow-sm">
           <div className="p-3.5 bg-[#E8F0E8] border border-[#C5DCC9] rounded-2xl text-[#10A968] shadow-sm shrink-0">
             <ToolIcon className="w-8 h-8" />
           </div>
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight text-[#1F3A26] mb-2">{catalog(`Pdf.${toolKey}.name`)}</h1>
+          <div className="min-w-0">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#1F3A26] mb-2">{catalog(`Pdf.${toolKey}.name`)}</h1>
             <p className="text-[#4A6857] max-w-2xl text-sm md:text-base leading-relaxed">{catalog(`Pdf.${toolKey}.long`)}</p>
           </div>
         </div>
