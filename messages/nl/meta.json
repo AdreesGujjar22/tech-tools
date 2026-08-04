@@ -1,135 +1,135 @@
 {
   "Metadata": {
     "site": {
-      "title": "Tech Tools - Gratis Online PDF-, Afbeeldings- en AI-Tools",
-      "description": "Tech Tools biedt gratis online tools voor PDF, afbeeldingsbewerking, AI-gestuurde hulpmiddelen, bestandsconverters, compressors, generators en productiviteitsoplossingen. Snel, veilig en gebruiksvriendelijk.",
-      "keywords": "pdf tools, afbeelding tools, ai tools, pdf samenvoegen, pdf splitsen, afbeelding comprimeren, afbeeldingsconverter, pdf converter, online tools, gratis tools, productiviteitstools"
+      "title": "Tech Tools - Gratis PDF-, Afbeeldings- & AI-Tools",
+      "description": "Tech Tools biedt 20+ gratis browsergebaseerde PDF-, afbeeldings- en AI-tools om bestanden direct te converteren, comprimeren, genereren en bewerken, zonder account.",
+      "keywords": "gratis online tools, pdf tools, afbeeldingstools, ai tools, pdf samenvoegen, pdf splitsen, pdf comprimeren, afbeelding comprimeren, afbeeldingsconverter"
     },
     "home": {
-      "title": "Moderne Online Productiviteitshulpmiddelen",
-      "description": "Snelle, veilige en moderne online tools voor ontwikkelaars, makers en dagelijkse digitale taken. Inclusief QR-codegenerator, typesnelheidstest, internetsnelheidstest, kleurkiezer en meer.",
-      "keywords": "tools voor ontwikkelaars, qr code scannen, typcursus, internet snelheidstest, code snippet tools, veilige online converter"
+      "title": "Gratis PDF-, Afbeeldings- & Developer-Tools | Tech Tools",
+      "description": "Gratis PDF-, afbeeldings-, developer- en productiviteitstools die volledig in je browser draaien. Converteer bestanden, genereer codes - snel, zonder account.",
+      "keywords": "online productiviteitstools, developer hulpmiddelen, qr code generator, gratis typetest, internet snelheidstest"
     },
     "about": {
-      "title": "Over Ons - Tech Tools",
-      "description": "Maak kennis met Tech Tools, onze missie om gratis online tools voor PDF, afbeeldingen, AI-hulpmiddelen en productiviteitsoplossingen aan te bieden.",
-      "keywords": "over ons, over tech tools, missie, visie"
+      "title": "Over Tech Tools - Ons Verhaal en Onze Missie",
+      "description": "Het verhaal achter Tech Tools en waarom we gratis, browsergebaseerde tools bouwen voor PDF's, afbeeldingen en dagelijkse taken - geen downloads, geen dataverzameling.",
+      "keywords": "over tech tools, onze missie, gratis online tools, wie wij zijn"
     },
     "pricing": {
-      "title": "Prijzen - Tech Tools",
-      "description": "Ontdek onze prijsplannen. De meeste van onze tools zijn volledig gratis, met premiumopties beschikbaar.",
-      "keywords": "prijzen, abonnementen, premium, plannen"
+      "title": "Tech Tools Prijzen - Gratis en Premium Abonnementen",
+      "description": "Zo werken de prijzen van Tech Tools: bijna alle tools blijven voor altijd gratis, met een betaalbaar premium abonnement voor hogere limieten en prioriteitssupport.",
+      "keywords": "tech tools prijzen, gratis abonnement, premium abonnement, betaalde abonnementen, tool prijzen"
     },
     "contact": {
-      "title": "Neem Contact op met TechTools",
-      "description": "Heb je vragen, feedback of hulp nodig? Neem contact op met TechTools en we reageren zo snel mogelijk.",
-      "keywords": "contact, ondersteuning, TechTools"
+      "title": "Contact Tech Tools - Ondersteuning en Feedback",
+      "description": "Vragen, feedback of hulp nodig bij een tool? Neem rechtstreeks contact op met het Tech Tools team - we reageren meestal binnen 24 uur, elke dag.",
+      "keywords": "contact tech tools, tech tools ondersteuning, neem contact op, klantenservice"
     },
     "help": {
-      "title": "Hulp en Veelgestelde Vragen",
-      "description": "Krijg direct hulp, bekijk gebruikershandleidingen, doorzoek veelgestelde vragen en neem contact op met onze technische ondersteuning.",
-      "keywords": "hulp, ondersteuning, gebruikershandleiding, veelgestelde vragen, tech tools hulp"
+      "title": "Helpcentrum & Veelgestelde Vragen - Tech Tools",
+      "description": "Directe antwoorden in het Tech Tools helpcentrum: stapsgewijze handleidingen, veelgestelde vragen en snelle toegang tot support voor elke functie.",
+      "keywords": "tech tools hulp, veelgestelde vragen, helpcentrum, gebruikershandleiding, hoe gebruik je tech tools"
     },
     "privacy": {
-      "title": "Privacybeleid",
-      "description": "Ontdek hoe TechTools gegevens van je lokale browser verzamelt, gebruikt en beschermt.",
-      "keywords": "privacy, voorwaarden, cookies, beveiliging, browseropslag"
+      "title": "Privacybeleid - Je Bestanden Blijven op je Apparaat",
+      "description": "Zo beschermt Tech Tools jouw gegevens: elke tool verwerkt bestanden lokaal in je browser, dus er wordt niets geüpload, opgeslagen of gedeeld met derden.",
+      "keywords": "privacybeleid, gegevensprivacy, browsergebaseerde tools, geen dataopslag, cookiebeleid"
     },
     "terms": {
-      "title": "Algemene Voorwaarden",
-      "description": "Ontdek onze richtlijnen voor digitaal gebruik, serverbeveiliging en nalevingsclausules.",
-      "keywords": "voorwaarden, condities, regels, overeenkomst, licenties"
+      "title": "Algemene Voorwaarden - Tech Tools",
+      "description": "Bekijk de gebruiksvoorwaarden van Tech Tools, met daarin toegestaan gebruik, licentieregels, accountverantwoordelijkheden en voorwaarden voor alle abonnementen.",
+      "keywords": "algemene voorwaarden, servicevoorwaarden, gebruiksbeleid, licentievoorwaarden"
     },
     "qrGenerator": {
-      "title": "QR-Code Generator",
-      "description": "Gratis QR-codegenerator. Maak QR-codes voor URL's, tekst, vCard, WiFi en meer. Direct downloaden en aanpassen.",
-      "keywords": "qr code, qr code generator, qr generator, barcode, code generator"
+      "title": "Gratis QR-Code Generator - Maak eigen Codes Online",
+      "description": "Maak binnen seconden eigen QR-codes voor links, tekst, WiFi en vCards. Kies je kleuren en formaat, exporteer daarna als PNG in hoge resolutie - volledig gratis.",
+      "keywords": "qr code generator, gratis qr code, qr code maken, aangepaste qr code, wifi qr code generator"
     },
     "barcodeGenerator": {
-      "title": "Barcode Generator",
-      "description": "Genereer direct barcodes. Maak CODE128, CODE39, EAN13, UPC en meer. Direct downloaden en aanpassen.",
-      "keywords": "barcode generator, barcode maken, barcode maker, CODE128, EAN13, UPC"
+      "title": "Gratis Barcode Generator - CODE128, EAN13, UPC",
+      "description": "Genereer printklare barcodes in CODE128, CODE39, EAN13, UPC en meer formaten. Volledig aanpasbaar en met één klik te downloaden - ideaal voor producten.",
+      "keywords": "barcode generator, gratis barcode maker, barcode online maken, code128 generator, ean13 generator"
     },
     "barcodeReader": {
-      "title": "Barcode- & QR-Lezer",
-      "description": "Scan QR-codes en barcodes vanaf geüploade afbeeldingen of de camera van je apparaat, veilig in je browser.",
-      "keywords": "qr lezer, barcode scanner, qr afbeelding scannen, barcode scanner met webcam"
+      "title": "Gratis Barcode & QR-Code Scanner Online",
+      "description": "Decodeer QR-codes en barcodes vanuit een geüploade foto of je live webcam. Alles gebeurt lokaal, dus gescande bestanden bereiken nooit een server.",
+      "keywords": "qr code scanner online, barcode scanner online, qr scannen vanuit afbeelding, barcode decoderen"
     },
     "passwordGenerator": {
-      "title": "Wachtwoord Generator",
-      "description": "Genereer direct sterke, willekeurige wachtwoorden. Pas de lengte, tekentypes aan en maak veilige wachtwoorden voor al je accounts.",
-      "keywords": "wachtwoord generator, sterk wachtwoord, willekeurig wachtwoord, wachtwoord maker, veilig wachtwoord"
+      "title": "Sterke Willekeurige Wachtwoordgenerator Online",
+      "description": "Maak sterke, onvoorspelbare wachtwoorden met één klik. Pas lengte en tekencombinatie aan voor logins die écht moeilijk te kraken zijn voor anderen.",
+      "keywords": "wachtwoord generator, sterke wachtwoord generator, willekeurige wachtwoord generator, veilig wachtwoord maken"
     },
     "loremGenerator": {
-      "title": "Lorem Ipsum Generator",
-      "description": "Genereer direct Lorem Ipsum vultekst. Maak paragrafen, zinnen of woorden voor je ontwerpen en projecten.",
-      "keywords": "lorem ipsum generator, vultekst, lorem ipsum, dummytekst, testtekst"
+      "title": "Lorem Ipsum Generator - Gratis Placeholder Tekst",
+      "description": "Genereer Lorem Ipsum placeholder-tekst per alinea, zin of aantal woorden - een snelle manier om mockups en ontwerpen te vullen voor de echte content.",
+      "keywords": "lorem ipsum generator, placeholder tekst generator, dummy tekst, vultekst, lorem ipsum online"
     },
     "emojiPicker": {
-      "title": "Emoji Kiezer & Kopiëerder",
-      "description": "Blader, zoek en kopieer emoji's eenvoudig. Vind de perfecte emoji voor je berichten en posts.",
-      "keywords": "emoji kiezer, emoji kopieren, emoji zoeken, emoji's, smileys"
+      "title": "Emoji Picker & Kopieerder - Zoek en Kopieer Emoji's",
+      "description": "Blader door duizenden emoji's en kopieer er één met één klik. Vind de perfecte emoji voor chats, posts en documenten in seconden - snel en gratis.",
+      "keywords": "emoji picker, emoji kopiëren, emoji zoeken, emoji toetsenbord online, emoji lijst"
     },
     "notepad": {
-      "title": "Online Notitieblok - Tech Tools",
-      "description": "Gratis online notitieblok met automatisch opslaan, bestand downloaden/uploaden en real-time woord-/tekentelling.",
-      "keywords": "notitieblok, online notitieblok, teksteditor, notities maken, online teksteditor"
+      "title": "Gratis Online Kladblok met Automatisch Opslaan",
+      "description": "Een afleidingsvrij online kladblok dat automatisch opslaat terwijl je typt. Upload of download tekstbestanden wanneer je wilt, met live woord- en tekenteller.",
+      "keywords": "online kladblok, gratis teksteditor online, notities app online, kladblok automatisch opslaan"
     },
     "colorPicker": {
-      "title": "Kleurkiezer - Tech Tools",
-      "description": "Gratis online kleurkeuzetool. Haal kleuren uit afbeeldingen, genereer kleurenpaletten en converteer tussen kleurformaten.",
-      "keywords": "kleurkiezer, kleurconverter, kleurenpalet, hex kleur, rgb kleur"
+      "title": "Online Kleurenkiezer - Kleuren Extraheren & Omzetten",
+      "description": "Haal kleuren uit elke afbeelding, maak eigen kleurenpaletten en zet waarden direct om tussen HEX, RGB en HSL - een gratis kleurtool voor ontwerpers.",
+      "keywords": "kleurenkiezer online, afbeelding kleurenkiezer, hex naar rgb converter, kleurenpalet generator"
     },
     "speedTest": {
-      "title": "Snelheidstest - Tech Tools",
-      "description": "Test je internetsnelheid met Tech Tools. Controleer download-, uploadsnelheid en ping in seconden.",
-      "keywords": "snelheidstest, internetsnelheid, verbindingstest, bandbreedtetest, ping"
+      "title": "Gratis Internet Snelheidstest - Down- en Upload",
+      "description": "Meet je echte downloadsnelheid, uploadsnelheid en ping binnen seconden. Aangedreven door het wereldwijde Cloudflare-netwerk voor snelle, nauwkeurige resultaten.",
+      "keywords": "internet snelheidstest, wifi snelheidstest, download snelheidstest, upload snelheidstest, ping test"
     },
     "typingSpeed": {
-      "title": "Typesnelheidstest - Tech Tools",
-      "description": "Test je typesnelheid en verbeter je WPM. Gratis online typetest met nauwkeurigheids- en resultatentracking.",
-      "keywords": "typesnelheid, typetest, wpm, typen, toetsenbordtest"
+      "title": "Gratis Typetest - Meet je Typesnelheid Online (WPM)",
+      "description": "Controleer je typesnelheid en nauwkeurigheid met realtime WPM-tracking. Oefen regelmatig voor snellere, nauwkeurigere typegewoonten - gratis, zonder account.",
+      "keywords": "typesnelheid test, wpm test, typetest online, gratis typetest, toetsenbord snelheidstest"
     },
     "tools": {
-      "title": "Tools - Tech Tools Collectie",
-      "description": "Ontdek al onze gratis online tools, waaronder PDF-, afbeeldings-, AI-hulpmiddelen en productiviteitsoplossingen.",
-      "keywords": "tools, online tools, gratis tools, hulpmiddelen"
+      "title": "Alle Gratis Tools - PDF, Afbeelding & AI op Eén Plek",
+      "description": "De volledige Tech Tools bibliotheek op één plek: converters, compressors, generatoren en AI-tools voor PDF's, afbeeldingen en dagelijkse taken - allemaal gratis.",
+      "keywords": "online tools, gratis tools, alle tools, productiviteitstools, hulpprogramma's"
     },
     "pdf": {
-      "title": "PDF-Tools - Converteren, Samenvoegen, Splitsen & Comprimeren | Tech Tools",
-      "description": "Gratis online PDF-tools. Voeg PDF's samen, splits PDF's, comprimeer PDF's, converteer van/naar PDF, extraheer pagina's, bewerk PDF's en meer.",
-      "keywords": "pdf tools, pdf samenvoegen, pdf splitsen, pdf comprimeren, pdf converter, pdf naar word, word naar pdf, jpg naar pdf"
+      "title": "Gratis PDF-Tools - Samenvoegen, Splitsen, Converteren",
+      "description": "Een complete PDF-toolkit met 20+ gratis functies: samenvoegen, splitsen, comprimeren, converteren naar Word, Excel of JPG, bewerken en beveiligen.",
+      "keywords": "pdf tools, pdf samenvoegen, pdf splitsen, pdf comprimeren online, pdf converter, pdf naar word, word naar pdf"
     },
     "image": {
-      "title": "Afbeeldingstools - Comprimeren, Converteren & Bewerken | Tech Tools",
-      "description": "Gratis online afbeeldingstools. Comprimeer afbeeldingen, converteer formaten (JPG, PNG, WebP), verklein, snijd bij, draai, verwijder de achtergrond en meer.",
-      "keywords": "afbeelding tools, afbeelding comprimeren, afbeeldingsconverter, afbeelding formaat wijzigen, afbeelding bijsnijden, afbeeldingseditor, jpg naar png, png naar jpg"
+      "title": "Gratis Afbeeldingstools - Comprimeren en Converteren",
+      "description": "Comprimeer en converteer afbeeldingen tussen JPG, PNG, WebP en AVIF, en pas formaat, bijsnijden of rotatie vrij aan. Verwijder achtergronden met AI in je browser.",
+      "keywords": "afbeeldingstools, afbeelding comprimeren online, afbeeldingsconverter, afbeelding formaat wijzigen, achtergrond verwijderen online"
     },
     "customization": {
-      "title": "Aanpassing - Tech Tools",
-      "description": "Pas je Tech Tools-ervaring aan. Stel instellingen, thema's en voorkeuren in.",
-      "keywords": "aanpassing, instellingen, voorkeuren, themas"
+      "title": "Personaliseer je Ervaring - Tech Tools Instellingen",
+      "description": "Personaliseer hoe Tech Tools eruitziet en aanvoelt. Wissel tussen licht en donker thema, pas de weergavedichtheid aan en stem voorkeuren af op jouw workflow.",
+      "keywords": "aanpassingsinstellingen, thema-instellingen, tech tools voorkeuren"
     }
   },
   "blog": {
-    "title": "De Vakblog",
-    "description": "Diepgaand onderzoek, tactische handleidingen en structurele ontwerpen om je softwareontwikkeling en visuele workflow te versterken.",
-    "keywords": "blog, artikelen, handleidingen, tutorials, technologieblog"
+    "title": "The Craft Blog - Gidsen, Tactieken & Design-inzichten",
+    "description": "Diepgaande onderzoeken, tactische gidsen en structurele ontwerpanalyses om je softwareontwikkeling en visuele workflow naar een hoger niveau te tillen.",
+    "keywords": "blog, artikelen, gidsen, tutorials, tech tools blog"
   },
   "seo": {
-    "home": "Al Je Essentiële Techtools op Één Plek",
+    "home": "Al je Essentiële Tech Tools op Eén Plek",
     "tools": {
-      "UpscaleImage": "AI Image Upscaler",
-      "BackgroundRemover": "Achtergrondverwijderaar",
+      "UpscaleImage": "AI Afbeelding Upscaler",
+      "BackgroundRemover": "Achtergrond Verwijderaar",
       "QrGenerator": "QR-Code Generator",
       "BarcodeGenerator": "Barcode Generator",
-      "BarcodeReader": "Barcode- & QR-Lezer",
+      "BarcodeReader": "Barcode & QR Lezer",
       "PasswordGenerator": "Wachtwoord Generator",
       "LoremGenerator": "Lorem Ipsum Generator",
-      "EmojiPicker": "Emoji Kiezer & Kopiëerder",
-      "ColorPicker": "Kleurkiezer",
-      "PdfDashboard": "Elke tool die je nodig hebt om PDF's te optimaliseren en te beheersen",
-      "ImageDashboard": "SaaS-tools om afbeeldingen in batch te comprimeren, converteren en bewerken",
+      "EmojiPicker": "Emoji Picker & Kopieerder",
+      "ColorPicker": "Kleurenkiezer",
+      "PdfDashboard": "Alle tools die je nodig hebt om PDF's te optimaliseren en beheersen",
+      "ImageDashboard": "SaaS-tools om afbeeldingen in bulk te comprimeren, converteren en bewerken",
       "SpeedTest": "Snelheidstest"
     }
   }
