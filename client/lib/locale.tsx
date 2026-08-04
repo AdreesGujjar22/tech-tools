@@ -130,8 +130,11 @@ function getRouteNamespaces(pathname: string): MessageNamespace[] {
     const imageToolNamespace = imageToolId ? pascalCaseToolId(imageToolId) : null;
     add("ImageDashboard", "shared", "Loading");
     if (imageToolNamespace === "RemoveBackground") add("BackgroundRemover");
+    else if (["ImageToJpg", "ImageToPng", "ImageToWebp", "ImageToAvif", "JpgToPng", "PngToJpg", "WebpToJpg", "WebpToPng", "GifToJpg", "SvgToPng", "BatchConvert"].includes(imageToolNamespace)) add("ImageConverter");
     else if (imageToolNamespace) add(imageToolNamespace);
   }
+
+  if (/^\/[^/]+$/.test(route)) add(pascalCaseToolId(route.slice(1)));
 
   return [...new Set(namespaces)];
 }

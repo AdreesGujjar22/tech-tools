@@ -65,5 +65,6 @@
   "secureLocalProcessing": "Traitement Local Sécurisé",
   "browserSandbox": "Tout le traitement s'exécute dans le bac à sable de votre navigateur",
   "zeroDataTransmission": "Zéro transmission de données vers un serveur",
-  "worksOffline": "Fonctionne entièrement hors ligne"
+  "worksOffline": "Fonctionne entièrement hors ligne",
+  "downloadFile": "Télécharger le fichier"
 }

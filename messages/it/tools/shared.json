@@ -65,5 +65,6 @@
   "secureLocalProcessing": "Elaborazione Locale Sicura",
   "browserSandbox": "Tutta l'elaborazione viene eseguita nella sandbox del tuo browser",
   "zeroDataTransmission": "Zero trasmissione di dati a qualsiasi server",
-  "worksOffline": "Funziona completamente offline"
+  "worksOffline": "Funziona completamente offline",
+  "downloadFile": "Scarica file"
 }

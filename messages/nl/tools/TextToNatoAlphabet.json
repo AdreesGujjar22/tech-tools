@@ -1,1 +1,12 @@
-{"title":"Text to NATO Alphabet","description":"Convert plain text and NATO phonetic alphabet code in both directions.","delimiter":"Delimiter","delimiterHelp":"Use the same delimiter when decoding NATO words.","encode":"Text to NATO","decode":"NATO to text","copy":"Copy","copied":"Copied","empty":"Nothing to display","swap":"Swap values"}
+{
+  "title": "Tekst naar NATO-alfabet",
+  "description": "Converteer gewone tekst en code uit het NATO-fonetische alfabet in beide richtingen.",
+  "delimiter": "Scheidingsteken",
+  "delimiterHelp": "Gebruik hetzelfde scheidingsteken bij het decoderen van NATO-woorden.",
+  "encode": "Tekst naar NATO",
+  "decode": "NATO naar tekst",
+  "copy": "Kopiëren",
+  "copied": "Gekopieerd",
+  "empty": "Niets om weer te geven",
+  "swap": "Waarden omwisselen"
+}
