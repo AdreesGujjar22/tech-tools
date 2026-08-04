@@ -1,1 +1,12 @@
-{"title":"Text to NATO Alphabet","description":"Convert plain text and NATO phonetic alphabet code in both directions.","delimiter":"Delimiter","delimiterHelp":"Use the same delimiter when decoding NATO words.","encode":"Text to NATO","decode":"NATO to text","copy":"Copy","copied":"Copied","empty":"Nothing to display","swap":"Swap values"}
+{
+  "title": "Teks ke Alfabet NATO",
+  "description": "Konversi teks biasa dan kode alfabet fonetik NATO dalam dua arah.",
+  "delimiter": "Pemisah",
+  "delimiterHelp": "Gunakan pemisah yang sama saat mendekode kata-kata NATO.",
+  "encode": "Teks ke NATO",
+  "decode": "NATO ke teks",
+  "copy": "Salin",
+  "copied": "Disalin",
+  "empty": "Tidak ada yang ditampilkan",
+  "swap": "Tukar nilai"
+}

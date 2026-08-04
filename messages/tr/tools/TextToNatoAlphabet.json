@@ -1,1 +1,12 @@
-{"title":"Text to NATO Alphabet","description":"Convert plain text and NATO phonetic alphabet code in both directions.","delimiter":"Delimiter","delimiterHelp":"Use the same delimiter when decoding NATO words.","encode":"Text to NATO","decode":"NATO to text","copy":"Copy","copied":"Copied","empty":"Nothing to display","swap":"Swap values"}
+{
+  "title": "Metinden NATO Alfabesine",
+  "description": "Düz metin ile NATO fonetik alfabesi kodunu iki yönde dönüştürün.",
+  "delimiter": "Ayraç",
+  "delimiterHelp": "NATO kelimelerinin kodunu çözerken aynı ayracı kullanın.",
+  "encode": "Metinden NATO’ya",
+  "decode": "NATO’dan metne",
+  "copy": "Kopyala",
+  "copied": "Kopyalandı",
+  "empty": "Görüntülenecek bir şey yok",
+  "swap": "Değerleri değiştir"
+}

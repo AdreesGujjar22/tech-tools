@@ -18,7 +18,7 @@ export const supportedToolNamespaces = [
   "PercentageCalculator", "PowerpointToPdf", "ProtectPdf", "QrGenerator", "RepairPdf",
   "ResizeImage", "RotateImage", "RotatePdf", "RsaKeyPairGenerator", "SlugifyString", "SpeedTest",
   "SplitPdf", "TemperatureConverter", "TextDiff", "TomlToJsonConverter", "TomlToYamlConverter",
-  "TypingSpeed", "UnlockPdf", "UrlParser", "UpscaleImage", "WatermarkImage", "WordToPdf",
+  "TextToNatoAlphabet", "TextToUnicode", "TypingSpeed", "UnlockPdf", "UrlParser", "UpscaleImage", "WatermarkImage", "WordToPdf",
   "XmlFormatter", "XmlToJsonConverter", "YamlPrettify", "shared"
 ] as const;
 
