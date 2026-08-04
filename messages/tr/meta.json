@@ -1,34 +1,136 @@
 {
   "Metadata": {
     "site": {
-      "title": "Tech Tools - Ücretsiz Çevrimiçi PDF, Görsel ve Dev Araçları",
-      "description": "Tech Tools, PDF, görsel, dönüştürücü ve geliştirici araçlarını %100 tarayıcınızda ücretsiz sunar.",
-      "keywords": "ücretsiz çevrimiçi araçlar, pdf araçları, görsel araçları, qr kod oluşturucu"
+      "title": "Tech Tools - Ücretsiz PDF, Görsel ve Yapay Zeka Araçları",
+      "description": "Tech Tools, dosyaları anında dönüştürmek, sıkıştırmak, oluşturmak ve düzenlemek için 20+ ücretsiz tarayıcı tabanlı PDF, görsel ve AI aracı sunar - kayıt gerektirmez.",
+      "keywords": "ücretsiz online araçlar, pdf araçları, görsel araçları, ai araçları, pdf birleştir, pdf böl, pdf sıkıştır, görsel sıkıştır, görsel dönüştürücü, pdf dönüştürücü"
     },
     "home": {
-      "title": "Modern Çevrimiçi Üretkenlik Araçları | Tech Tools",
-      "description": "Geliştiriciler ve içerik üreticileri için güvenli tarayıcı içi araçlar.",
-      "keywords": "çevrimiçi araçlar, qr oluşturucu, hız testi, renk seçici"
+      "title": "Ücretsiz PDF, Görsel ve Geliştirici Araçları | Tech Tools",
+      "description": "Tamamen tarayıcınızda çalışan ücretsiz PDF, görsel, geliştirici ve verimlilik araçları. Dosya dönüştürün, kod oluşturun - hızlı, güvenli, kayıt gerektirmez.",
+      "keywords": "online verimlilik araçları, geliştirici araçları, qr kod oluşturucu, ücretsiz yazma testi, internet hız testi"
     },
-    "about": { "title": "Hakkımızda - Tech Tools", "description": "Tech Tools misyonu hakkında bilgi edinin.", "keywords": "hakkımızda tech tools" },
-    "pricing": { "title": "Fiyatlandırma - Tech Tools", "description": "Fiyatlandırma planlarını inceleyin.", "keywords": "fiyatlandırma tech tools" },
-    "contact": { "title": "İletişim - Tech Tools", "description": "Ekibimizle iletişime geçin.", "keywords": "iletisim tech tools" },
-    "help": { "title": "Yardım Merkezi ve SSS - Tech Tools", "description": "Sıkça sorulan sorular ve destek.", "keywords": "yardım tech tools, sss" },
-    "privacy": { "title": "Gizlilik Politikası - Tech Tools", "description": "Gizliliğinizi nasıl koruyoruz.", "keywords": "gizlilik tech tools" },
-    "terms": { "title": "Kullanım Koşulları - Tech Tools", "description": "Hizmet şartları.", "keywords": "kosullar tech tools" },
-    "qrGenerator": { "title": "Ücretsiz QR Kod Oluşturucu", "description": "Ücretsiz ve özel QR kodları oluşturun.", "keywords": "qr kod olusturucu" },
-    "barcodeGenerator": { "title": "Ücretsiz Barkod Oluşturucu", "description": "Farklı formatlarda barkodlar oluşturun.", "keywords": "barkod olusturucu" },
-    "barcodeReader": { "title": "Çevrimiçi Barkod ve QR Okuyucu", "description": "Barkod ve QR kodları tara.", "keywords": "barkod okuyucu online" },
-    "passwordGenerator": { "title": "Güçlü Şifre Oluşturucu", "description": "Rastgele ve güvenli şifreler oluşturun.", "keywords": "sifre olusturucu" },
-    "loremGenerator": { "title": "Ücretsiz Lorem Ipsum Oluşturucu", "description": "Tasarım için dolgu metni oluşturun.", "keywords": "lorem ipsum olusturucu" },
-    "emojiPicker": { "title": "Çevrimiçi Emoji Seçici", "description": "Emojileri arayın ve kopyalayın.", "keywords": "emoji secici" },
-    "notepad": { "title": "Ücretsiz Çevrimiçi Not Defteri", "description": "Otomatik kaydeden metin düzenleyici.", "keywords": "online not defteri" },
-    "colorPicker": { "title": "Çevrimiçi Renk Seçici", "description": "Görsellerden renk seçin ve dönüştürün.", "keywords": "renk secici online" },
-    "speedTest": { "title": "Ücretsiz İnternet Hız Testi", "description": "İndirme, yükleme ve ping hızınızı test edin.", "keywords": "internet hiz testi" },
-    "typingSpeed": { "title": "Çevrimiçi Yazma Hızı Testi", "description": "Dakikadaki kelime sayınızı test edin.", "keywords": "yazma hizi testi" },
-    "tools": { "title": "Tüm Ücretsiz Çevrimiçi Araçlar | Tech Tools", "description": "Tüm araçlarımızı inceleyin.", "keywords": "tum online araclar" },
-    "pdf": { "title": "Ücretsiz PDF Araçları - Birleştir ve Dönüştür", "description": "PDF dosyalarını düzenleyin ve birleştirin.", "keywords": "pdf aracları online" },
-    "image": { "title": "Ücretsiz Görsel Araçları - Sıkıştır ve Dönüştür", "description": "Görselleri sıkıştırın ve dönüştürün.", "keywords": "gorsel aracları online" },
-    "customization": { "title": "Ayarlar - Tech Tools", "description": "Deneyiminizi kişiselleştirin.", "keywords": "ayarlar tech tools" }
+    "about": {
+      "title": "Tech Tools Hakkında - Hikayemiz ve Misyonumuz",
+      "description": "Tech Tools'un arkasındaki hikaye ve neden PDF'ler, görseller ve günlük işler için ücretsiz tarayıcı tabanlı araçlar yaptığımız - indirme yok, veri toplama yok.",
+      "keywords": "tech tools hakkında, misyonumuz, ücretsiz online araçlar, biz kimiz"
+    },
+    "pricing": {
+      "title": "Tech Tools Fiyatlandırma - Ücretsiz ve Premium Planlar",
+      "description": "Tech Tools fiyatlandırması şöyle çalışır: araçların çoğu sonsuza dek ücretsizdir, daha yüksek limitler ve öncelikli destek sunan uygun fiyatlı bir premium plan vardır.",
+      "keywords": "tech tools fiyatlandırma, ücretsiz plan, premium plan, abonelik planları, araç fiyatlandırması"
+    },
+    "contact": {
+      "title": "Tech Tools ile İletişime Geçin - Destek ve Geri Bildirim",
+      "description": "Sorularınız, geri bildiriminiz mi var ya da bir araçla ilgili yardıma mı ihtiyacınız var? Tech Tools ekibiyle doğrudan iletişime geçin - genelde 24 saat içinde yanıt veririz.",
+      "keywords": "tech tools iletişim, tech tools destek, bize ulaşın, müşteri desteği"
+    },
+    "help": {
+      "title": "Yardım Merkezi ve SSS - Tech Tools Destek",
+      "description": "Tech Tools yardım merkezinde anında yanıtlar: adım adım kılavuzlar, sıkça sorulan sorular ve her özellik için hızlı destek erişimi burada sizi bekliyor.",
+      "keywords": "tech tools yardım, sss, destek merkezi, kullanıcı kılavuzu, tech tools nasıl kullanılır"
+    },
+    "privacy": {
+      "title": "Gizlilik Politikası - Dosyalarınız Cihazınızda Kalır",
+      "description": "Tech Tools verilerinizi nasıl korur: her araç dosyaları tarayıcınızda yerel olarak işler, böylece hiçbir şey yüklenmez, saklanmaz veya paylaşılmaz.",
+      "keywords": "gizlilik politikası, veri gizliliği, tarayıcı tabanlı araçlar, veri depolama yok, çerez politikası"
+    },
+    "terms": {
+      "title": "Kullanım Koşulları - Tech Tools Hizmet Sözleşmesi",
+      "description": "Kabul edilebilir kullanım, lisans kuralları, hesap sorumlulukları ve ücretsiz/premium planlar için geçerli koşulları kapsayan Tech Tools kullanım şartlarını inceleyin.",
+      "keywords": "kullanım koşulları, hizmet şartları, kullanım politikası, lisans koşulları"
+    },
+    "qrGenerator": {
+      "title": "Ücretsiz QR Kod Oluşturucu - Özel Kodlar Yaratın",
+      "description": "Linkler, metin, WiFi ve vCard'lar için saniyeler içinde özel QR kodları oluşturun. Renk ve boyut seçin, ardından yüksek çözünürlüklü PNG olarak indirin - tamamen ücretsiz.",
+      "keywords": "qr kod oluşturucu, ücretsiz qr kod, qr kod oluştur, özel qr kod, wifi qr kod oluşturucu"
+    },
+    "barcodeGenerator": {
+      "title": "Ücretsiz Barkod Oluşturucu - CODE128, EAN13, UPC",
+      "description": "CODE128, CODE39, EAN13, UPC ve daha fazla formatta baskıya hazır barkodlar oluşturun. Tamamen özelleştirilebilir ve tek tıkla indirilebilir - ürünler için ideal.",
+      "keywords": "barkod oluşturucu, ücretsiz barkod yapıcı, online barkod oluştur, code128 oluşturucu, ean13 oluşturucu"
+    },
+    "barcodeReader": {
+      "title": "Ücretsiz Barkod ve QR Kod Tarayıcı - Online",
+      "description": "Yüklenen bir fotoğraftan veya canlı web kameranızdan QR kodları ve barkodları çözümleyin. Her şey yerel olarak çalışır, taranan dosyalar hiçbir sunucuya ulaşmaz.",
+      "keywords": "qr kod tarayıcı online, barkod tarayıcı online, görüntüden qr tara, barkod çözümle, webcam qr tarayıcı"
+    },
+    "passwordGenerator": {
+      "title": "Güçlü Rastgele Şifre Oluşturucu - Ücretsiz Araç",
+      "description": "Tek tıkla güçlü, tahmin edilemez şifreler oluşturun. Kırılması gerçekten zor girişler için uzunluk ve karakter karışımını istediğiniz gibi ayarlayın.",
+      "keywords": "şifre oluşturucu, güçlü şifre oluşturucu, rastgele şifre oluşturucu, güvenli şifre yapıcı"
+    },
+    "loremGenerator": {
+      "title": "Lorem Ipsum Oluşturucu - Ücretsiz Dolgu Metni",
+      "description": "Paragraf, cümle veya kelime sayısına göre Lorem Ipsum dolgu metni oluşturun - gerçek içerik hazır olmadan önce mockup ve tasarımları doldurmanın hızlı bir yolu.",
+      "keywords": "lorem ipsum oluşturucu, dolgu metni oluşturucu, sahte metin, dolgu metni, lorem ipsum online"
+    },
+    "emojiPicker": {
+      "title": "Emoji Seçici - Emoji Ara, Önizle ve Kopyala",
+      "description": "Binlerce emoji arasında gezinin ve tek tıkla herhangi birini kopyalayın. Sohbetler, gönderiler ve belgeler için mükemmel emojiyi saniyeler içinde bulun - ücretsiz.",
+      "keywords": "emoji seçici, emoji kopyala, emoji ara, online emoji klavyesi, emoji listesi"
+    },
+    "notepad": {
+      "title": "Ücretsiz Online Not Defteri - Otomatik Kaydetme",
+      "description": "Yazarken otomatik kaydeden, dikkat dağıtmayan bir online not defteri. Metin dosyalarını istediğiniz zaman yükleyin veya indirin, canlı kelime ve karakter sayacıyla.",
+      "keywords": "online not defteri, ücretsiz online metin editörü, online not uygulaması, otomatik kaydeden not defteri"
+    },
+    "colorPicker": {
+      "title": "Online Renk Seçici - Renkleri Çıkarın ve Dönüştürün",
+      "description": "Herhangi bir görselden renk seçin, özel paletler oluşturun ve HEX, RGB ve HSL arasında anında dönüştürün - tasarımcılar için ücretsiz bir renk aracı.",
+      "keywords": "online renk seçici, görsel renk seçici, hex rgb dönüştürücü, renk paleti oluşturucu"
+    },
+    "speedTest": {
+      "title": "Ücretsiz İnternet Hız Testi - İndirme ve Yükleme",
+      "description": "Gerçek indirme hızınızı, yükleme hızınızı ve pingi saniyeler içinde ölçün. Hızlı, doğru sonuçlar için Cloudflare'in küresel ağı tarafından desteklenmektedir.",
+      "keywords": "internet hız testi, wifi hız testi, indirme hız testi, yükleme hız testi, ping testi"
+    },
+    "typingSpeed": {
+      "title": "Ücretsiz Yazma Hızı Testi - WPM Değerinizi Ölçün",
+      "description": "Gerçek zamanlı WPM takibiyle yazma hızınızı ve doğruluğunuzu kontrol edin. Daha hızlı, daha doğru yazma alışkanlıkları için düzenli pratik yapın - hesap gerekmez.",
+      "keywords": "yazma hızı testi, wpm testi, online yazma testi, ücretsiz yazma testi, klavye hız testi"
+    },
+    "tools": {
+      "title": "Tüm Ücretsiz Araçlar - PDF, Görsel ve AI Bir Arada",
+      "description": "Tech Tools'un tam kütüphanesi tek yerde: dönüştürücüler, sıkıştırıcılar, oluşturucular ve PDF'ler, görseller, günlük işler için AI destekli araçlar - hepsi ücretsiz.",
+      "keywords": "online araçlar, ücretsiz araçlar, tüm araçlar, verimlilik araçları, yardımcı araçlar"
+    },
+    "pdf": {
+      "title": "Ücretsiz PDF Araçları - Birleştir, Böl, Dönüştür",
+      "description": "20+ ücretsiz özellikli tam bir PDF araç seti: dosyaları birleştirin, bölün, sıkıştırın, Word, Excel veya JPG'ye dönüştürün, düzenleyin ve şifreyle koruyun.",
+      "keywords": "pdf araçları, pdf birleştir, pdf böl, online pdf sıkıştır, pdf dönüştürücü, pdf word, word pdf, jpg pdf"
+    },
+    "image": {
+      "title": "Ücretsiz Görsel Araçları - Sıkıştır, Dönüştür, Düzenle",
+      "description": "Görselleri JPG, PNG, WebP ve AVIF arasında sıkıştırın ve dönüştürün, ardından serbestçe yeniden boyutlandırın, kırpın veya döndürün. Arka planı AI ile kaldırın.",
+      "keywords": "görsel araçları, online görsel sıkıştır, görsel dönüştürücü, online görsel boyutlandır, online arka plan kaldır"
+    },
+    "customization": {
+      "title": "Deneyiminizi Özelleştirin - Tech Tools Ayarları",
+      "description": "Tech Tools'un görünümünü kişiselleştirin. Açık ve koyu tema arasında geçiş yapın, görüntü yoğunluğunu ayarlayın ve tercihlerinizi çalışma tarzınıza göre ayarlayın.",
+      "keywords": "özelleştirme ayarları, tema ayarları, tech tools tercihleri"
+    }
+  },
+  "blog": {
+    "title": "The Craft Blog - Rehberler, Taktikler ve Tasarım Fikirleri",
+    "description": "Yazılım mühendisliği ve görsel iş akışı becerilerinizi geliştirmek için derinlemesine incelemeler, taktiksel rehberler ve yapısal tasarım analizleri.",
+    "keywords": "blog, makaleler, rehberler, öğreticiler, tech tools blog"
+  },
+  "seo": {
+    "home": "Tüm Temel Teknoloji Araçlarınız Tek Bir Yerde",
+    "tools": {
+      "UpscaleImage": "AI Görsel Büyütücü",
+      "BackgroundRemover": "Arka Plan Kaldırıcı",
+      "QrGenerator": "QR Kod Oluşturucu",
+      "BarcodeGenerator": "Barkod Oluşturucu",
+      "BarcodeReader": "Barkod ve QR Okuyucu",
+      "PasswordGenerator": "Şifre Oluşturucu",
+      "LoremGenerator": "Lorem Ipsum Oluşturucu",
+      "EmojiPicker": "Emoji Seçici ve Kopyalayıcı",
+      "ColorPicker": "Renk Seçici",
+      "PdfDashboard": "PDF'leri optimize etmek ve ustalaşmak için ihtiyacınız olan her araç",
+      "ImageDashboard": "Toplu görsel sıkıştırma, dönüştürme ve düzenleme için SaaS araçları",
+      "SpeedTest": "Hız Testi"
+    }
   }
 }

@@ -1,134 +1,134 @@
 {
   "Metadata": {
     "site": {
-      "title": "Tech Tools - Kostenlose Online-PDF-, Bild- und KI-Tools",
-      "description": "Tech Tools bietet kostenlose Online-Tools für PDF, Bildbearbeitung, KI-gestützte Dienstprogramme, Dateikonverter, Kompressoren, Generatoren und Produktivitätslösungen. Schnell, sicher und einfach zu bedienen.",
-      "keywords": "pdf werkzeuge, bild werkzeuge, ki werkzeuge, pdf zusammenfuegen, pdf teilen, bild komprimieren, bildkonverter, pdf konverter, online werkzeuge, kostenlose werkzeuge, produktivitaetswerkzeuge"
+      "title": "Tech Tools - Kostenlose PDF-, Bild- & KI-Tools (ohne Anmeldung)",
+      "description": "Tech Tools bietet 20+ kostenlose browserbasierte PDF-, Bild- und KI-Tools zum Konvertieren, Komprimieren, Generieren und Bearbeiten - keine Installation, kein Konto, kein Wasserzeichen.",
+      "keywords": "kostenlose online tools, pdf tools, bildtools, ki tools, pdf zusammenfügen, pdf teilen, pdf komprimieren, bild komprimieren, bildkonverter, pdf konverter, jpg zu pdf, pdf zu word, qr code generator, passwort generator"
     },
     "home": {
-      "title": "Moderne Online-Produktivitätswerkzeuge",
-      "description": "Schnelle, sichere und moderne Online-Tools für Entwickler, Kreative und alltägliche digitale Aufgaben. Enthält QR-Code-Generator, Schreibgeschwindigkeitstest, Internet-Speedtest, Farbwähler und mehr.",
-      "keywords": "tools fuer entwickler, qr code scannen, schreibtrainer, internet speedtest, code snippet tools, sicherer online konverter"
+      "title": "Kostenlose PDF-, Bild- & Entwickler-Tools | Tech Tools",
+      "description": "Kostenlose PDF-, Bild-, Entwickler- und Produktivitätstools direkt im Browser. Dateien konvertieren, Codes generieren, Text bearbeiten - schnell, sicher, ohne Anmeldung.",
+      "keywords": "online produktivitätstools, entwickler tools, qr code generator, kostenloser schreibtest, internet geschwindigkeitstest, farbwähler online, code snippet tools"
     },
     "about": {
-      "title": "Über Uns - Tech Tools",
-      "description": "Lerne Tech Tools kennen – unsere Mission, kostenlose Online-Tools für PDF, Bilder, KI-Dienstprogramme und Produktivitätslösungen anzubieten.",
-      "keywords": "ueber uns, ueber tech tools, mission, vision"
+      "title": "Über Tech Tools - Unsere Geschichte & Mission",
+      "description": "Die Geschichte von Tech Tools und warum wir kostenlose, browserbasierte Tools für PDFs, Bilder und Alltagsaufgaben entwickeln - keine Downloads, keine Datensammlung.",
+      "keywords": "über tech tools, unsere mission, kostenlose online tools, wer wir sind"
     },
     "pricing": {
-      "title": "Preise - Tech Tools",
-      "description": "Entdecke unsere Preispläne. Die meisten unserer Tools sind völlig kostenlos, mit verfügbaren Premium-Optionen.",
-      "keywords": "preise, plaene, premium, abonnements"
+      "title": "Tech Tools Preise - Kostenlose & Premium Pläne",
+      "description": "So funktionieren die Preise bei Tech Tools: Die meisten Tools bleiben für immer kostenlos, ein günstiger Premium-Tarif bietet höhere Limits und priorisierten Support.",
+      "keywords": "tech tools preise, kostenloser plan, premium plan, abo pläne, tool preise"
     },
     "contact": {
-      "title": "Kontaktiere TechTools",
-      "description": "Hast du Fragen, Feedback oder brauchst Hilfe? Kontaktiere TechTools und wir antworten so schnell wie möglich.",
-      "keywords": "kontakt, support, TechTools"
+      "title": "Kontakt Tech Tools - Support & Feedback erhalten",
+      "description": "Fragen, Feedback oder Hilfe bei einem Tool? Erreichen Sie das Tech Tools Team direkt - unser Support antwortet in der Regel innerhalb von 24 Stunden, täglich.",
+      "keywords": "tech tools kontakt, tech tools support, kontakt aufnehmen, kundenservice"
     },
     "help": {
-      "title": "Hilfe und Häufig Gestellte Fragen",
-      "description": "Hol dir sofortige Hilfe, sieh dir Benutzerhandbücher an, durchsuche häufig gestellte Fragen und kontaktiere unseren technischen Support.",
-      "keywords": "hilfe, support, benutzerhandbuch, haeufig gestellte fragen, tech tools hilfe"
+      "title": "Hilfe-Center & FAQ - Tech Tools Support",
+      "description": "Sofortige Antworten im Tech Tools Hilfe-Center: Schritt-für-Schritt-Anleitungen, häufig gestellte Fragen und schneller Support-Zugang für jede Funktion.",
+      "keywords": "tech tools hilfe, faq, support center, benutzerhandbuch, anleitung tech tools"
     },
     "privacy": {
-      "title": "Datenschutzrichtlinie",
-      "description": "Erfahre, wie TechTools Daten aus deinem lokalen Browser sammelt, nutzt und schützt.",
-      "keywords": "datenschutz, bedingungen, cookies, sicherheit, browser speicher"
+      "title": "Datenschutz - Ihre Dateien bleiben lokal",
+      "description": "So schützt Tech Tools Ihre Daten: Jedes Tool verarbeitet Dateien lokal in Ihrem Browser, sodass nichts hochgeladen, gespeichert oder weitergegeben wird.",
+      "keywords": "datenschutzerklärung, datenschutz, browserbasierte tools, keine datenspeicherung, cookie richtlinie"
     },
     "terms": {
-      "title": "Allgemeine Geschäftsbedingungen",
-      "description": "Erfahre mehr über unsere Richtlinien zur digitalen Nutzung, Serversicherheit und Compliance-Klauseln.",
-      "keywords": "bedingungen, konditionen, regeln, vereinbarung, lizenzen"
+      "title": "Allgemeine Geschäftsbedingungen - Tech Tools",
+      "description": "Die Nutzungsbedingungen von Tech Tools, einschließlich zulässiger Nutzung, Lizenzregeln, Kontopflichten und Bedingungen für kostenlose und Premium-Tarife.",
+      "keywords": "agb, nutzungsbedingungen, nutzungsrichtlinie, lizenzbedingungen"
     },
     "qrGenerator": {
-      "title": "QR-Code-Generator",
-      "description": "Kostenloser QR-Code-Generator. Erstelle QR-Codes für URLs, Text, vCard, WLAN und mehr. Sofortiger Download und Anpassung.",
-      "keywords": "qr code, qr code generator, qr generator, barcode, code generator"
+      "title": "Kostenloser QR-Code-Generator - Codes erstellen",
+      "description": "Erstellen Sie eigene QR-Codes für Links, Text, WLAN und vCards in Sekunden. Farben und Größe wählen, dann als hochauflösendes PNG exportieren - komplett kostenlos.",
+      "keywords": "qr code generator, kostenloser qr code, qr code erstellen, individueller qr code, wifi qr code, vcard qr code"
     },
     "barcodeGenerator": {
-      "title": "Barcode-Generator",
-      "description": "Erstelle Barcodes sofort. Erzeuge CODE128, CODE39, EAN13, UPC und mehr. Sofortiger Download und Anpassung.",
-      "keywords": "barcode generator, barcode erstellen, barcode ersteller, CODE128, EAN13, UPC"
+      "title": "Kostenloser Barcode-Generator - CODE128, EAN13, UPC",
+      "description": "Erstellen Sie druckfertige Barcodes in CODE128, CODE39, EAN13, UPC und weiteren Formaten. Vollständig anpassbar und mit einem Klick herunterladbar - ideal für Produkte.",
+      "keywords": "barcode generator, kostenloser barcode maker, barcode online erstellen, code128 generator, ean13 generator"
     },
     "barcodeReader": {
-      "title": "Barcode- & QR-Scanner",
-      "description": "Scanne QR-Codes und Barcodes aus hochgeladenen Bildern oder der Kamera deines Geräts, sicher in deinem Browser.",
-      "keywords": "qr scanner, barcode scanner, qr bild scannen, barcode scanner mit kamera"
+      "title": "Kostenloser Barcode- & QR-Code-Scanner Online",
+      "description": "Dekodieren Sie QR-Codes und Barcodes aus einem hochgeladenen Foto oder Ihrer Webcam. Alles läuft lokal ab, sodass gescannte Dateien nie einen Server erreichen.",
+      "keywords": "qr code scanner online, barcode scanner online, qr code aus bild scannen, barcode dekodieren, webcam qr scanner"
     },
     "passwordGenerator": {
-      "title": "Passwort-Generator",
-      "description": "Erstelle sofort starke, zufällige Passwörter. Passe Länge, Zeichentypen an und erstelle sichere Passwörter für alle deine Konten.",
-      "keywords": "passwort generator, starkes passwort, zufaelliges passwort, passwort ersteller, sicheres passwort"
+      "title": "Starker Zufälliger Passwort-Generator Online",
+      "description": "Erstellen Sie starke, unvorhersehbare Passwörter mit einem Klick. Länge und Zeichenmix anpassen, um wirklich sichere Logins zu erstellen, die kaum zu knacken sind.",
+      "keywords": "passwort generator, starker passwort generator, zufälliger passwort generator, sicherer passwort maker"
     },
     "loremGenerator": {
-      "title": "Lorem-Ipsum-Generator",
-      "description": "Erstelle sofort Lorem-Ipsum-Platzhaltertext. Erzeuge Absätze, Sätze oder Wörter für deine Designs und Projekte.",
-      "keywords": "lorem ipsum generator, platzhaltertext, lorem ipsum, blindtext, testtext"
+      "title": "Lorem Ipsum Generator - Kostenloser Platzhaltertext",
+      "description": "Generieren Sie Lorem-Ipsum-Platzhaltertext nach Absatz, Satz oder Wortanzahl - eine schnelle Lösung, um Mockups und Designentwürfe vor dem echten Inhalt zu füllen.",
+      "keywords": "lorem ipsum generator, platzhaltertext generator, dummy text, füll text, lorem ipsum online"
     },
     "emojiPicker": {
-      "title": "Emoji-Auswahl & Kopierer",
-      "description": "Durchsuche, suche und kopiere Emojis ganz einfach. Finde das perfekte Emoji für deine Nachrichten und Beiträge.",
-      "keywords": "emoji auswahl, emoji kopierer, emoji suche, emojis, smileys"
+      "title": "Emoji-Picker & Kopierer - Emojis suchen & kopieren",
+      "description": "Durchsuchen Sie tausende Emojis und kopieren Sie jedes mit einem Klick. Finden Sie das perfekte Emoji für Chats, Beiträge und Dokumente - schnell und kostenlos.",
+      "keywords": "emoji picker, emoji kopieren, emoji suche, emoji tastatur online, emoji liste"
     },
     "notepad": {
-      "title": "Online-Notizblock - Tech Tools",
-      "description": "Kostenloser Online-Notizblock mit automatischem Speichern, Datei-Download/-Upload und Echtzeit-Wort-/Zeichenzählung.",
-      "keywords": "notizblock, online notizblock, texteditor, notizen machen, online texteditor"
+      "title": "Kostenloses Online-Notizbuch mit Auto-Speicherung",
+      "description": "Ein ablenkungsfreies Online-Notizbuch, das automatisch speichert. Laden Sie Textdateien jederzeit hoch oder herunter, mit Live-Wort- und Zeichenzählung.",
+      "keywords": "online notizbuch, kostenloser texteditor online, notizen app online, auto speichern notizbuch"
     },
     "colorPicker": {
-      "title": "Farbwähler - Tech Tools",
-      "description": "Kostenloses Online-Tool zur Farbauswahl. Extrahiere Farben aus Bildern, erstelle Farbpaletten und konvertiere zwischen Farbformaten.",
-      "keywords": "farbwaehler, farbkonverter, farbpalette, hex farbe, rgb farbe"
+      "title": "Online Farbwähler - Farben extrahieren & umwandeln",
+      "description": "Farben aus jedem Bild entnehmen, eigene Paletten erstellen und Werte sofort zwischen HEX, RGB und HSL umwandeln - ein kostenloser Farbhelfer für Designer.",
+      "keywords": "farbwähler online, bild farbwähler, hex zu rgb konverter, farbpalette generator, pipette tool online"
     },
     "speedTest": {
-      "title": "Speedtest - Tech Tools",
-      "description": "Teste deine Internetgeschwindigkeit mit Tech Tools. Überprüfe Download-, Upload-Geschwindigkeit und Ping in Sekunden.",
-      "keywords": "speedtest, internetgeschwindigkeit, verbindungstest, bandbreitentest, ping"
+      "title": "Kostenloser Internet Speedtest - Down- & Upload",
+      "description": "Messen Sie Ihre echte Download-, Upload-Geschwindigkeit und Ping in Sekunden. Angetrieben vom globalen Cloudflare-Netzwerk für schnelle, genaue Ergebnisse.",
+      "keywords": "internet speedtest, wlan speedtest, download geschwindigkeitstest, upload geschwindigkeitstest, ping test"
     },
     "typingSpeed": {
-      "title": "Schreibgeschwindigkeitstest - Tech Tools",
-      "description": "Teste deine Schreibgeschwindigkeit und verbessere deine WPM. Kostenloser Online-Schreibtest mit Genauigkeits- und Ergebnisverfolgung.",
-      "keywords": "schreibgeschwindigkeit, tipptest, wpm, tippen, tastaturtest"
+      "title": "Kostenloser Schreibtest - WPM online messen",
+      "description": "Testen Sie Ihre Schreibgeschwindigkeit und Genauigkeit mit Echtzeit-WPM-Tracking. Regelmäßig üben, um schnellere, präzisere Tippgewohnheiten aufzubauen.",
+      "keywords": "schreibtest, wpm test, tippgeschwindigkeit test online, kostenloser schreibtest, tastatur speedtest"
     },
     "tools": {
-      "title": "Werkzeuge - Tech Tools Sammlung",
-      "description": "Entdecke alle unsere kostenlosen Online-Tools, einschließlich PDF-, Bild-, KI-Dienstprogramme und Produktivitätslösungen.",
-      "keywords": "werkzeuge, online werkzeuge, kostenlose werkzeuge, dienstprogramme"
+      "title": "Alle Tools - PDF, Bild & KI Utilities an einem Ort",
+      "description": "Die komplette Tech Tools Bibliothek an einem Ort: Konverter, Komprimierer, Generatoren und KI-Tools für PDFs, Bilder und Alltagsaufgaben - alles kostenlos.",
+      "keywords": "online tools, kostenlose tools, alle tools, produktivitätstools, dienstprogramme"
     },
     "pdf": {
-      "title": "PDF-Werkzeuge - Konvertieren, Zusammenführen, Teilen & Komprimieren | Tech Tools",
-      "description": "Kostenlose Online-PDF-Tools. Führe PDFs zusammen, teile PDFs, komprimiere PDFs, konvertiere zu/von PDF, extrahiere Seiten, bearbeite PDFs und vieles mehr.",
-      "keywords": "pdf werkzeuge, pdf zusammenfuegen, pdf teilen, pdf komprimieren, pdf konverter, pdf zu word, word zu pdf, jpg zu pdf"
+      "title": "Kostenlose PDF-Tools - Zusammenfügen, Teilen, Konvertieren",
+      "description": "Ein komplettes PDF-Toolkit mit 20+ kostenlosen Funktionen: zusammenfügen, teilen, komprimieren, in Word, Excel oder JPG konvertieren, bearbeiten und schützen.",
+      "keywords": "pdf tools, pdf zusammenfügen, pdf teilen, pdf komprimieren online, pdf konverter, pdf zu word, word zu pdf, jpg zu pdf"
     },
     "image": {
-      "title": "Bild-Werkzeuge - Komprimieren, Konvertieren & Bearbeiten | Tech Tools",
-      "description": "Kostenlose Online-Bild-Tools. Komprimiere Bilder, konvertiere Formate (JPG, PNG, WebP), skaliere, schneide zu, drehe, entferne den Hintergrund und mehr.",
-      "keywords": "bild werkzeuge, bild komprimieren, bildkonverter, bild skalieren, bild zuschneiden, bildeditor, jpg zu png, png zu jpg"
+      "title": "Kostenlose Bildtools - Komprimieren, Konvertieren, Bearbeiten",
+      "description": "Bilder zwischen JPG, PNG, WebP und AVIF komprimieren und konvertieren, dann frei skalieren, zuschneiden oder drehen. Hintergründe mit KI direkt im Browser entfernen.",
+      "keywords": "bildtools, bild komprimieren online, bildkonverter, bild größe ändern online, bild zuschneiden, hintergrund entfernen online"
     },
     "customization": {
-      "title": "Anpassung - Tech Tools",
-      "description": "Passe dein Tech Tools Erlebnis an. Passe Einstellungen, Themen und Präferenzen an.",
-      "keywords": "anpassung, einstellungen, praeferenzen, themen"
+      "title": "Erlebnis anpassen - Tech Tools Einstellungen",
+      "description": "Passen Sie Aussehen und Gefühl von Tech Tools an. Wechseln Sie zwischen hellen und dunklen Themen und stellen Sie Präferenzen für Ihren Arbeitsablauf ein.",
+      "keywords": "anpassungseinstellungen, theme einstellungen, tech tools präferenzen"
     }
   },
   "blog": {
-    "title": "Der Craft-Blog",
-    "description": "Ausführliche Untersuchungen, taktische Leitfäden und strukturelle Designs, um deine Softwareentwicklung und deinen visuellen Workflow zu beflügeln.",
-    "keywords": "blog, artikel, leitfäden, tutorials, tech-tools-blog"
+    "title": "Der Craft Blog - Anleitungen, Taktiken & Design",
+    "description": "Tiefgehende Untersuchungen, taktische Anleitungen und strukturelle Design-Analysen, um Ihre Softwareentwicklungs- und visuellen Fähigkeiten zu schärfen.",
+    "keywords": "blog, artikel, anleitungen, tutorials, tech tools blog"
   },
   "seo": {
-    "home": "Alle Wichtigen Tech-Tools an Einem Ort",
+    "home": "Alle wichtigen Tech-Tools an einem Ort",
     "tools": {
-      "UpscaleImage": "AI Image Upscaler",
+      "UpscaleImage": "KI-Bild-Hochskalierer",
       "BackgroundRemover": "Hintergrundentferner",
       "QrGenerator": "QR-Code-Generator",
       "BarcodeGenerator": "Barcode-Generator",
-      "BarcodeReader": "Barcode- & QR-Scanner",
+      "BarcodeReader": "Barcode- & QR-Leser",
       "PasswordGenerator": "Passwort-Generator",
       "LoremGenerator": "Lorem-Ipsum-Generator",
-      "EmojiPicker": "Emoji-Auswahl & Kopierer",
+      "EmojiPicker": "Emoji-Picker & Kopierer",
       "ColorPicker": "Farbwähler",
-      "PdfDashboard": "Jedes Werkzeug, das du zum Optimieren und Meistern von PDFs brauchst",
+      "PdfDashboard": "Jedes Tool, um PDFs zu optimieren und zu meistern",
       "ImageDashboard": "SaaS-Tools zum Komprimieren, Konvertieren und Bearbeiten von Bildern im Stapel",
       "SpeedTest": "Speedtest"
     }

@@ -2,118 +2,118 @@
   "Metadata": {
     "site": {
       "title": "Tech Tools - Free Online PDF, Image & AI Tools (No Sign-Up)",
-      "description": "Tech Tools offers 20+ free online PDF and image tools, AI-powered utilities, file converters, compressors, and generators. No installs, no sign-up, no watermarks - fast, private, and browser-based.",
+      "description": "Tech Tools offers 20+ free browser-based PDF, image, and AI utilities to convert, compress, generate, and edit files instantly with no installs or watermarks.",
       "keywords": "free online tools, pdf tools, image tools, ai tools, merge pdf, split pdf, compress pdf, compress image, image converter, pdf converter, jpg to pdf, pdf to word, qr code generator, password generator, productivity tools, no sign up tools"
     },
     "home": {
       "title": "Free Online PDF, Image & Developer Tools | Tech Tools",
-      "description": "Free online PDF, image, developer, and productivity tools. Convert, compress, generate, and edit securely in your browser with no sign-up.",
+      "description": "Free PDF, image, developer, and productivity tools that run entirely in your browser. Convert files, generate codes, edit text - fast, secure, no sign-up.",
       "keywords": "online productivity tools, developer utilities, qr code generator, free typing test, internet speed test, color picker online, code snippet tools, secure online converter"
     },
     "about": {
-      "title": "About Tech Tools - Free Online Utilities & Our Mission",
-      "description": "Learn about Tech Tools and our mission: fast, free, browser-based tools for PDF editing, image conversion, AI utilities, and everyday productivity - no downloads required.",
+      "title": "About Tech Tools - Our Story, Mission & Goals Today",
+      "description": "The story behind Tech Tools and why we build free, browser-based utilities for PDFs, images, and daily tasks - no downloads, no data ever collected here.",
       "keywords": "about tech tools, our mission, free online utilities, who we are"
     },
     "pricing": {
-      "title": "Pricing Plans - Free & Premium Tools | Tech Tools",
-      "description": "Compare Tech Tools pricing plans. Most tools are 100% free forever, with affordable premium plans for higher limits, priority support, and advanced customization.",
+      "title": "Tech Tools Pricing - Free & Premium Plans Compared",
+      "description": "How Tech Tools pricing works: most tools stay free forever, while an affordable premium tier unlocks higher limits, priority support, and extra customization.",
       "keywords": "tech tools pricing, free plan, premium plan, subscription plans, tool pricing"
     },
     "contact": {
-      "title": "Contact Us - Tech Tools Support",
-      "description": "Have a question, feedback, or need help? Contact the Tech Tools team directly - we typically reply within 24 hours.",
+      "title": "Contact Tech Tools - Get Support & Feedback Now Fast",
+      "description": "Questions, feedback, or need help with a tool? Reach the Tech Tools team directly - our support staff typically replies within 24 hours, every day of the week.",
       "keywords": "contact tech tools, tech tools support, get in touch, customer support"
     },
     "help": {
-      "title": "Help Center & FAQs - Tech Tools",
-      "description": "Find instant answers in our help center: user guides, frequently asked questions, and direct access to technical support for every Tech Tools feature.",
+      "title": "Help Center & FAQs - Tech Tools Support Center Hub",
+      "description": "Instant answers in the Tech Tools help center: step-by-step guides, frequently asked questions, and quick support access for every feature we offer here.",
       "keywords": "tech tools help, faq, support center, user guide, how to use tech tools"
     },
     "privacy": {
-      "title": "Privacy Policy - Your Data Stays in Your Browser | Tech Tools",
-      "description": "See exactly how Tech Tools handles your data. Our tools process files locally in your browser - nothing is uploaded, stored, or sold.",
+      "title": "Privacy Policy - Your Files Never Leave Your Device",
+      "description": "How Tech Tools protects your data: every tool processes files locally in your browser, so nothing is uploaded, stored on our servers, or shared with anyone.",
       "keywords": "privacy policy, data privacy, browser-based tools, no data storage, cookie policy"
     },
     "terms": {
-      "title": "Terms & Conditions - Tech Tools",
-      "description": "Read the Tech Tools terms of service, including usage guidelines, licensing terms, and service conditions for our free and premium tools.",
+      "title": "Terms & Conditions - Tech Tools User Agreement Page",
+      "description": "The Tech Tools terms of service, covering acceptable use, licensing rules, account responsibilities, and conditions for our free and premium tool tiers.",
       "keywords": "terms and conditions, terms of service, usage policy, licensing terms"
     },
     "qrGenerator": {
-      "title": "Free QR Code Generator - Create Custom QR Codes Online",
-      "description": "Generate free custom QR codes for URLs, text, WiFi, vCards, and more. Choose colors and sizes, then download instantly as a high-resolution PNG - no sign-up needed.",
+      "title": "Free QR Code Generator - Create Custom Codes Online",
+      "description": "Build custom QR codes for links, text, WiFi, and vCards in seconds. Choose your colors and size, then export a high-res PNG instantly - completely free.",
       "keywords": "qr code generator, free qr code, create qr code, custom qr code, qr code maker, wifi qr code, vcard qr code"
     },
     "barcodeGenerator": {
       "title": "Free Barcode Generator - CODE128, EAN13, UPC & More",
-      "description": "Create barcodes instantly in CODE128, CODE39, EAN13, UPC, and other formats. Fully customizable and free to download - perfect for products and inventory.",
+      "description": "Generate print-ready barcodes in CODE128, CODE39, EAN13, UPC, and more. Fully customizable and downloadable in one click - ideal for products and inventory.",
       "keywords": "barcode generator, free barcode maker, create barcode online, CODE128 generator, EAN13 generator, UPC barcode"
     },
     "barcodeReader": {
-      "title": "Barcode & QR Code Scanner Online - Free & Private",
-      "description": "Scan and decode QR codes or barcodes instantly from an uploaded image or your camera - entirely in your browser, with nothing uploaded to a server.",
+      "title": "Free Barcode & QR Code Scanner - Read Codes Instantly",
+      "description": "Decode QR codes and barcodes from an uploaded photo or your live webcam feed. Everything runs locally, so scanned files never reach any outside server.",
       "keywords": "qr code scanner online, barcode scanner online, scan qr code from image, decode barcode, webcam qr scanner"
     },
     "passwordGenerator": {
-      "title": "Strong Random Password Generator - Free & Secure",
-      "description": "Generate strong, random passwords instantly. Customize length and character types to create secure, hard-to-crack passwords for every account.",
+      "title": "Free Strong & Random Password Generator Tool Online",
+      "description": "Create strong, unpredictable passwords in one click. Adjust length and character mix to build secure logins that are genuinely hard for anyone to crack.",
       "keywords": "password generator, strong password generator, random password generator, secure password maker, free password tool"
     },
     "loremGenerator": {
       "title": "Lorem Ipsum Generator - Free Placeholder Text Tool",
-      "description": "Generate Lorem Ipsum placeholder text instantly by paragraphs, sentences, or words - perfect for mockups, wireframes, and design projects.",
+      "description": "Generate Lorem Ipsum placeholder copy by paragraph, sentence, or word count - a quick, reliable way to fill mockups and design layouts before content is ready.",
       "keywords": "lorem ipsum generator, placeholder text generator, dummy text, filler text, lorem ipsum online"
     },
     "emojiPicker": {
-      "title": "Emoji Picker & Copier - Search and Copy Emojis Free",
-      "description": "Browse, search, and copy any emoji in one click. Find the perfect emoji for messages, posts, and documents - fast and free.",
+      "title": "Emoji Picker & Copier - Search, Preview, Copy Emojis",
+      "description": "Search thousands of emojis and copy any one instantly. Find the exact emoji you need for chats, posts, and documents in seconds - no download required.",
       "keywords": "emoji picker, copy emoji, emoji search, emoji keyboard online, emoji list"
     },
     "notepad": {
-      "title": "Free Online Notepad - Auto-Save Text Editor",
-      "description": "A free online notepad with auto-save, file upload/download, and real-time word and character counting - no account needed.",
+      "title": "Free Online Notepad - Auto-Saving Text Editor Tool",
+      "description": "A distraction-free online notepad that auto-saves as you type. Upload or download plain text files anytime, with live word and character counts shown.",
       "keywords": "online notepad, free text editor online, notes app online, auto save notepad, plain text editor"
     },
     "colorPicker": {
-      "title": "Online Color Picker - Extract & Convert Colors Free",
-      "description": "Pick colors from any image, generate color palettes, and convert instantly between HEX, RGB, and HSL - a free online color tool for designers.",
+      "title": "Online Color Picker - Extract, Convert & Save Colors",
+      "description": "Sample colors from any image, build custom palettes, and convert values between HEX, RGB, and HSL instantly - a free color companion built for designers.",
       "keywords": "color picker online, image color picker, hex to rgb converter, color palette generator, eyedropper tool online"
     },
     "speedTest": {
-      "title": "Free Internet Speed Test - Check Download & Upload Speed",
-      "description": "Test your internet speed in seconds. Check download speed, upload speed, and ping powered by Cloudflare's global network - free and accurate.",
+      "title": "Free Internet Speed Test - Download, Upload & Ping",
+      "description": "Measure your real download speed, upload speed, and ping in seconds. Powered by Cloudflare's global network for fast, free, and consistently accurate results.",
       "keywords": "internet speed test, wifi speed test, download speed test, upload speed test, ping test, bandwidth test"
     },
     "typingSpeed": {
-      "title": "Free Typing Speed Test - Check Your WPM Online",
-      "description": "Test your typing speed and accuracy for free. Track your WPM in real time and improve with every attempt - no sign-up required.",
+      "title": "Free Online Typing Speed Test - Measure Your WPM Now",
+      "description": "Check your typing speed and accuracy with real-time WPM tracking as you type. Practice regularly to build faster, more accurate typing habits for free.",
       "keywords": "typing speed test, wpm test, typing test online, free typing test, keyboard speed test"
     },
     "tools": {
-      "title": "All Free Online Tools - PDF, Image & AI Utilities | Tech Tools",
-      "description": "Browse every free Tech Tools utility in one place: PDF tools, image tools, AI-powered utilities, and productivity tools - all free, fast, and browser-based.",
+      "title": "All Free Tools - PDF, Image & AI Utilities in One Hub",
+      "description": "The complete Tech Tools library in one place: converters, compressors, generators, and AI-assisted utilities for PDFs, images, and daily tasks - all free.",
       "keywords": "online tools, free tools, all tools, productivity tools, utility tools"
     },
     "pdf": {
-      "title": "Free PDF Tools - Merge, Split, Compress & Convert PDFs Online",
-      "description": "20+ free PDF tools in your browser: merge PDFs, split PDFs, compress PDFs, convert PDF to Word/Excel/JPG and back, edit and protect PDFs - no upload limits.",
+      "title": "Free PDF Tools - Merge, Split, Compress & Convert Files",
+      "description": "A full PDF toolkit with 20+ free features: merge, split, and compress files, convert to Word, Excel, or JPG, plus edit and password-protect documents.",
       "keywords": "pdf tools, merge pdf, split pdf, compress pdf online, pdf converter, pdf to word, word to pdf, jpg to pdf, pdf to excel, edit pdf online"
     },
     "image": {
-      "title": "Free Image Tools - Compress, Convert, Resize & Edit Images",
-      "description": "Free online image tools: compress images, convert between JPG, PNG, WebP and AVIF, resize, crop, rotate, remove backgrounds with AI, and more - all in your browser.",
+      "title": "Free Image Tools - Compress, Convert, Resize & Edit",
+      "description": "Compress and convert images between JPG, PNG, WebP, and AVIF, then resize, crop, or rotate freely. Remove backgrounds with AI right in your browser today.",
       "keywords": "image tools, compress image online, image converter, resize image online, crop image, remove background online, jpg to png, png to jpg, webp converter"
     },
     "customization": {
-      "title": "Customize Your Experience - Tech Tools Settings",
-      "description": "Personalize your Tech Tools experience - adjust themes, display settings, and preferences to match how you work.",
+      "title": "Customize Your Experience - Tech Tools Settings Page",
+      "description": "Personalize how Tech Tools looks and feels. Switch between light and dark themes, adjust display density, and fine-tune preferences to fit your workflow.",
       "keywords": "customization settings, theme settings, tech tools preferences"
     }
   },
   "blog": {
-    "title": "The Craft Blog",
-    "description": "In-depth investigations, tactical guides, and structural designs to supercharge your software engineering and visual workflow.",
+    "title": "The Craft Blog - Guides, Tactics & Design Insights",
+    "description": "In-depth investigations, tactical guides, and structural design breakdowns to sharpen your software engineering skills and everyday visual workflow process.",
     "keywords": "blog, articles, guides, tutorials, tech tools blog"
   },
   "seo": {
