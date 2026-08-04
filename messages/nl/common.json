@@ -156,6 +156,19 @@
     "ctaTitle": "Klaar voor meer?",
     "ctaDescription": "Laat ons weten waar je naar op zoek bent, en we bouwen het!",
     "contactUs": "Neem Contact op",
+    "dashboardBadge": "Dashboard",
+    "toolsCount": "tools",
+    "dashboardCards": {
+      "pdf": { "title": "PDF-toolsdashboard", "description": "Beheer PDF-bestanden in één overzichtelijke werkruimte." },
+      "image": { "title": "Afbeeldingstoolsdashboard", "description": "Bewerk, converteer en optimaliseer afbeeldingen op één plek." },
+      "cryptoSecurity": { "title": "Crypto- en beveiligingsdashboard", "description": "Bescherm, valideer, hash en inspecteer gevoelige gegevens." },
+      "converters": { "title": "Converterdashboard", "description": "Converteer gegevens, bestanden, indelingen en waarden snel." },
+      "web": { "title": "Webtoolsdashboard", "description": "Inspecteer, test en bereid moderne webcontent voor." },
+      "developer": { "title": "Dashboard voor ontwikkelaars", "description": "Bouw, debug, formatteer en documenteer softwareprojecten." },
+      "network": { "title": "Netwerkdashboard", "description": "Werk met adressen, poorten, protocollen en verbindingen." },
+      "textData": { "title": "Dashboard voor tekst en gegevens", "description": "Transformeer, vergelijk, genereer en analyseer tekst." },
+      "mathMedia": { "title": "Dashboard voor wiskunde en media", "description": "Bereken, meet, neem op en maak media-items." }
+    },
     "toolCards": {
       "pdfDashboard": "PDF-Tools Dashboard",
       "imageDashboard": "Afbeeldingstools Dashboard",

@@ -70,6 +70,29 @@
       "toggleSidebar": "Kenar çubuğunu değiştir"
     }
   },
+  "Routes": {
+    "home": "/",
+    "about": "/about-us",
+    "tools": "/tools",
+    "blog": "/blog",
+    "pricing": "/pricing",
+    "help": "/help",
+    "contact": "/contact-us",
+    "privacy": "/privacy-policy",
+    "terms": "/terms-and-conditions",
+    "pdf": "/ilovepdf",
+    "image": "/iloveimg",
+    "qrGenerator": "/qr-generator",
+    "barcodeGenerator": "/barcode-generator",
+    "barcodeReader": "/barcode-reader",
+    "passwordGenerator": "/password-generator",
+    "loremGenerator": "/lorem-ipsum-generator",
+    "emojiPicker": "/emoji-picker",
+    "notepad": "/notepad",
+    "colorPicker": "/color-picker",
+    "speedTest": "/speed-test",
+    "typingSpeed": "/typing-speed"
+  },
   "Navbar": {
     "links": {
       "about": "Hakkımızda",
@@ -91,7 +114,12 @@
     "imageTools": "Görsel Araçları",
     "allRightsReserved": "© {year} TechTools. Tüm hakları saklıdır.",
     "privacyPolicy": "Gizlilik Politikası",
-    "termsConditions": "Kullanım Koşulları"
+    "termsConditions": "Kullanım Koşulları",
+    "social": {
+      "github": "GitHub",
+      "twitter": "Twitter",
+      "website": "Web Sitesi"
+    }
   },
   "Home": {
     "meta": {
@@ -113,6 +141,19 @@
     "ctaTitle": "Daha fazlasına hazır mısınız?",
     "ctaDescription": "Aradığınız özelliği bize bildirin, sizin için geliştirelim!",
     "contactUs": "Bize Ulaşın",
+    "dashboardBadge": "Panel",
+    "toolsCount": "araç",
+    "dashboardCards": {
+      "pdf": { "title": "PDF Araçları Paneli", "description": "PDF dosyalarınızı tek bir çalışma alanında yönetin." },
+      "image": { "title": "Görsel Araçları Paneli", "description": "Görselleri tek bir yerde düzenleyin, dönüştürün ve optimize edin." },
+      "cryptoSecurity": { "title": "Kripto ve Güvenlik Paneli", "description": "Hassas verileri koruyun, doğrulayın, özetleyin ve inceleyin." },
+      "converters": { "title": "Dönüştürücü Araçları Paneli", "description": "Verileri, dosyaları, biçimleri ve değerleri hızla dönüştürün." },
+      "web": { "title": "Web Araçları Paneli", "description": "Modern web içeriğini inceleyin, test edin ve hazırlayın." },
+      "developer": { "title": "Geliştirici Paneli", "description": "Yazılım projeleri oluşturun, hata ayıklayın, biçimlendirin ve belgeleyin." },
+      "network": { "title": "Ağ Paneli", "description": "Adresler, bağlantı noktaları, protokoller ve bağlantılarla çalışın." },
+      "textData": { "title": "Metin ve Veri Paneli", "description": "Metni dönüştürün, karşılaştırın, oluşturun ve analiz edin." },
+      "mathMedia": { "title": "Matematik ve Medya Paneli", "description": "Hesaplayın, ölçün, kaydedin ve medya içerikleri oluşturun." }
+    },
     "toolCards": {
       "pdfDashboard": "PDF Araçları Paneli",
       "imageDashboard": "Görsel Araçları Paneli",
@@ -126,6 +167,22 @@
       "loremGenerator": "Lorem Ipsum Oluşturucu",
       "emojiPicker": "Emoji Seçici ve Kopyalayıcı",
       "notepad": "Çevrimiçi Not Defteri"
+    }
+  },
+  "ToolCatalog": {
+    "Pdf": {
+      "mergePdf": { "name": "PDF Birleştir" },
+      "splitPdf": { "name": "PDF Böl" },
+      "compressPdf": { "name": "PDF Sıkıştır" },
+      "pdfToWord": { "name": "PDF'den Word'e" },
+      "wordToPdf": { "name": "Word'den PDF'e" }
+    },
+    "Image": {
+      "compressImage": { "name": "Görseli Sıkıştır" },
+      "resizeImage": { "name": "Görseli Yeniden Boyutlandır" },
+      "cropImage": { "name": "Görseli Kırp" },
+      "imageToJpg": { "name": "Görselden JPG'ye" },
+      "removeBackground": { "name": "Arka Planı Kaldır" }
     }
   }
 }

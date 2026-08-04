@@ -156,6 +156,19 @@
     "ctaTitle": "Pronto per altro?",
     "ctaDescription": "Dicci cosa stai cercando e lo creeremo!",
     "contactUs": "Contattaci",
+    "dashboardBadge": "Dashboard",
+    "toolsCount": "strumenti",
+    "dashboardCards": {
+      "pdf": { "title": "Dashboard Strumenti PDF", "description": "Gestisci i file PDF in uno spazio di lavoro dedicato." },
+      "image": { "title": "Dashboard Strumenti Immagine", "description": "Modifica, converti e ottimizza le immagini in un unico posto." },
+      "cryptoSecurity": { "title": "Dashboard Crittografia e Sicurezza", "description": "Proteggi, valida, crea hash e controlla i dati sensibili." },
+      "converters": { "title": "Dashboard Convertitori", "description": "Converti rapidamente dati, file, formati e valori." },
+      "web": { "title": "Dashboard Strumenti Web", "description": "Ispeziona, testa e prepara contenuti web moderni." },
+      "developer": { "title": "Dashboard per Sviluppatori", "description": "Crea, esegui il debug, formatta e documenta progetti software." },
+      "network": { "title": "Dashboard Rete", "description": "Lavora con indirizzi, porte, protocolli e connettività." },
+      "textData": { "title": "Dashboard Testo e Dati", "description": "Trasforma, confronta, genera e analizza il testo." },
+      "mathMedia": { "title": "Dashboard Matematica e Media", "description": "Calcola, misura, registra e crea contenuti multimediali." }
+    },
     "toolCards": {
       "pdfDashboard": "Dashboard Strumenti PDF",
       "imageDashboard": "Dashboard Strumenti Immagine",

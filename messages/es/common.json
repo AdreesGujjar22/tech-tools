@@ -156,6 +156,19 @@
     "ctaTitle": "¿Quieres más?",
     "ctaDescription": "Cuéntanos qué necesitas y lo crearemos.",
     "contactUs": "Contáctanos",
+    "dashboardBadge": "Panel",
+    "toolsCount": "herramientas",
+    "dashboardCards": {
+      "pdf": { "title": "Panel de Herramientas PDF", "description": "Gestiona archivos PDF en un espacio de trabajo centralizado." },
+      "image": { "title": "Panel de Herramientas de Imagen", "description": "Edita, convierte y optimiza imágenes en un solo lugar." },
+      "cryptoSecurity": { "title": "Panel de Criptografía y Seguridad", "description": "Protege, valida, genera hashes e inspecciona datos sensibles." },
+      "converters": { "title": "Panel de Conversores", "description": "Convierte datos, archivos, formatos y valores rápidamente." },
+      "web": { "title": "Panel de Herramientas Web", "description": "Inspecciona, prueba y prepara contenido web moderno." },
+      "developer": { "title": "Panel para Desarrolladores", "description": "Crea, depura, formatea y documenta proyectos de software." },
+      "network": { "title": "Panel de Redes", "description": "Trabaja con direcciones, puertos, protocolos y conectividad." },
+      "textData": { "title": "Panel de Texto y Datos", "description": "Transforma, compara, genera y analiza texto." },
+      "mathMedia": { "title": "Panel de Matemáticas y Multimedia", "description": "Calcula, mide, graba y crea recursos multimedia." }
+    },
     "toolCards": {
       "pdfDashboard": "Panel de Herramientas PDF",
       "imageDashboard": "Panel de Herramientas de Imagen",

@@ -156,6 +156,19 @@
     "ctaTitle": "Bereit für mehr?",
     "ctaDescription": "Sag uns, wonach du suchst, und wir bauen es!",
     "contactUs": "Kontaktiere uns",
+    "dashboardBadge": "Dashboard",
+    "toolsCount": "Tools",
+    "dashboardCards": {
+      "pdf": { "title": "PDF-Tools-Dashboard", "description": "Verwalte PDF-Dateien in einem übersichtlichen Arbeitsbereich." },
+      "image": { "title": "Bild-Tools-Dashboard", "description": "Bearbeite, konvertiere und optimiere Bilder an einem Ort." },
+      "cryptoSecurity": { "title": "Krypto- und Sicherheits-Dashboard", "description": "Schütze, validiere, hashe und prüfe sensible Daten." },
+      "converters": { "title": "Konverter-Dashboard", "description": "Konvertiere Daten, Dateien, Formate und Werte schnell." },
+      "web": { "title": "Web-Tools-Dashboard", "description": "Prüfe, teste und bereite moderne Webinhalte vor." },
+      "developer": { "title": "Entwickler-Dashboard", "description": "Erstelle, debugge, formatiere und dokumentiere Softwareprojekte." },
+      "network": { "title": "Netzwerk-Dashboard", "description": "Arbeite mit Adressen, Ports, Protokollen und Verbindungen." },
+      "textData": { "title": "Text- und Daten-Dashboard", "description": "Transformiere, vergleiche, generiere und analysiere Text." },
+      "mathMedia": { "title": "Mathematik- und Medien-Dashboard", "description": "Berechne, messe, nimm auf und erstelle Medieninhalte." }
+    },
     "toolCards": {
       "pdfDashboard": "PDF-Werkzeuge-Dashboard",
       "imageDashboard": "Bild-Werkzeuge-Dashboard",

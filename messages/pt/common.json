@@ -56,6 +56,29 @@
       "success": "Sucesso!"
     }
   },
+  "Routes": {
+    "home": "/",
+    "about": "/about-us",
+    "tools": "/tools",
+    "blog": "/blog",
+    "pricing": "/pricing",
+    "help": "/help",
+    "contact": "/contact-us",
+    "privacy": "/privacy-policy",
+    "terms": "/terms-and-conditions",
+    "pdf": "/ilovepdf",
+    "image": "/iloveimg",
+    "qrGenerator": "/qr-generator",
+    "barcodeGenerator": "/barcode-generator",
+    "barcodeReader": "/barcode-reader",
+    "passwordGenerator": "/password-generator",
+    "loremGenerator": "/lorem-ipsum-generator",
+    "emojiPicker": "/emoji-picker",
+    "notepad": "/notepad",
+    "colorPicker": "/color-picker",
+    "speedTest": "/speed-test",
+    "typingSpeed": "/typing-speed"
+  },
   "Navbar": {
     "links": {
       "about": "Sobre Nós",
@@ -88,6 +111,11 @@
     }
   },
   "Home": {
+    "meta": {
+      "title": "Utilitários Modernos de Produtividade Online | Tech Tools",
+      "description": "Ferramentas rápidas e seguras no navegador para desenvolvedores e criadores.",
+      "keywords": "utilitários online, gerador qr, teste de velocidade, seletor de cores"
+    },
     "badge": "Ferramentas de Nova Geração",
     "title": "Todas as Suas Ferramentas Tecnológicas Essenciais em Um Só Lugar",
     "description": "Ferramentas online rápidas, gratuitas e modernas para desenvolvedores, estudantes e criadores. Tudo projetado para velocidade e simplicidade.",

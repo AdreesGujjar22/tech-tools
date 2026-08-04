@@ -27,20 +27,43 @@ export type MessageNamespace = 'common' | 'meta' | ToolNamespace | 'DashboardCat
 
 type Messages = AbstractIntlMessages;
 
+function mergeMessages(fallback: Record<string, any>, localized: Record<string, any>): Record<string, any> {
+  const merged: Record<string, any> = { ...fallback, ...localized };
+  for (const [key, value] of Object.entries(fallback)) {
+    const localizedValue = localized[key];
+    if (
+      value && typeof value === "object" && !Array.isArray(value) &&
+      localizedValue && typeof localizedValue === "object" && !Array.isArray(localizedValue)
+    ) {
+      merged[key] = mergeMessages(value as Record<string, any>, localizedValue as Record<string, any>);
+    }
+  }
+  return merged;
+}
+
 export async function loadMessages(locale: Locale, namespaces: readonly MessageNamespace[] = ['common', 'meta']): Promise<Messages> {
   const selected: readonly MessageNamespace[] = namespaces.length ? namespaces : ['common'];
   const loaded = await Promise.all(selected.map(async (namespace) => {
     try {
       if (namespace === 'common') {
-        const mod = await import(`./${locale}/common.json`);
-        return [namespace, mod.default as AbstractIntlMessages] as const;
+        const [fallback, localized] = await Promise.all([
+          import('./en/common.json'),
+          import(`./${locale}/common.json`),
+        ]);
+        return [namespace, mergeMessages(fallback.default, localized.default)] as const;
       }
       if (namespace === 'meta') {
-        const mod = await import(`./${locale}/meta.json`);
-        return [namespace, mod.default as AbstractIntlMessages] as const;
+        const [fallback, localized] = await Promise.all([
+          import('./en/meta.json'),
+          import(`./${locale}/meta.json`),
+        ]);
+        return [namespace, mergeMessages(fallback.default, localized.default)] as const;
       }
-      const mod = await import(`./${locale}/tools/${namespace}.json`);
-      return [namespace, mod.default as AbstractIntlMessages] as const;
+      const [fallback, localized] = await Promise.all([
+        import(`./en/tools/${namespace}.json`),
+        import(`./${locale}/tools/${namespace}.json`),
+      ]);
+      return [namespace, mergeMessages(fallback.default, localized.default)] as const;
     } catch (e) {
       return [namespace, {} as AbstractIntlMessages] as const;
     }

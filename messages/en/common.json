@@ -138,24 +138,37 @@
   },
   "Home": {
     "meta": {
-      "title": "Modern Online Productivity Utilities",
-      "description": "Fast, secure, and modern online tools for developers, creators, and daily digital workloads. Includes QR generation, typing speed test, internet speed test, color selector and more.",
-      "keywords": "developer utilities, scan qr code, typing tutor, internet speed test, code snippet tools, secure online converter"
+      "title": "Free Online PDF, Image & Developer Tools | Tech Tools",
+      "description": "Free online PDF, image, developer, and productivity tools. Convert, compress, generate, and edit securely in your browser with no sign-up.",
+      "keywords": "free online tools, pdf tools, image tools, developer utilities, browser tools, no sign-up tools"
     },
     "badge": "Next-Gen Tools",
     "title": "All Your Essential Tech Tools in One Place",
-    "description": "Fast, free, and modern online tools for developers, students, creators. Everything designed for speed and simplicity.",
+    "description": "Fast, free, and modern online tools for developers, students, and creators. Everything is designed for speed and simplicity.",
     "startTools": "Start Tools",
-    "intro": "QR generators, speed tests, image converters, color pickers, developer tools — all in your browser, securely.",
+    "intro": "QR generators, speed tests, image converters, color pickers, and developer tools — all securely in your browser.",
     "previewAlt": "QR Code preview generated with TechTools",
     "encoded": "AES-256 Encoded",
     "toolsTitle": "Every tool you need to optimize and master",
-    "toolsDescription": "These are the following Tech tools we have. Click on any item to view details or export options.",
+    "toolsDescription": "Explore free PDF, image, developer, and productivity tools built for fast, secure browser-based work.",
     "searchPlaceholder": "Search tools (e.g., QR code, color picker)...",
     "noResults": "No tools matching your search criteria were found.",
     "ctaTitle": "Ready for more?",
     "ctaDescription": "Let us know what you're looking for, and we'll build it!",
     "contactUs": "Contact us",
+    "dashboardBadge": "Dashboard",
+    "toolsCount": "tools",
+    "dashboardCards": {
+      "pdf": { "title": "PDF Tools Dashboard", "description": "Manage PDF files from one focused workspace." },
+      "image": { "title": "Image Tools Dashboard", "description": "Edit, convert, and optimize images in one place." },
+      "cryptoSecurity": { "title": "Crypto & Security Dashboard", "description": "Protect, validate, hash, and inspect sensitive data." },
+      "converters": { "title": "Converter Tools Dashboard", "description": "Convert data, files, formats, and values quickly." },
+      "web": { "title": "Web Tools Dashboard", "description": "Inspect, test, and prepare modern web content." },
+      "developer": { "title": "Developer Tools Dashboard", "description": "Build, debug, format, and document software projects." },
+      "network": { "title": "Network Tools Dashboard", "description": "Work with addresses, ports, protocols, and connectivity." },
+      "textData": { "title": "Text & Data Dashboard", "description": "Transform, compare, generate, and analyze text." },
+      "mathMedia": { "title": "Math & Media Dashboard", "description": "Calculate, measure, record, and create media assets." }
+    },
     "toolCards": {
       "pdfDashboard": "PDF Tools Dashboard",
       "imageDashboard": "Image Tools Dashboard",
