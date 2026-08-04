@@ -65,5 +65,6 @@
   "secureLocalProcessing": "Veilige Lokale Verwerking",
   "browserSandbox": "Alle verwerking vindt plaats in de sandbox van je browser",
   "zeroDataTransmission": "Nul gegevensoverdracht naar enige server",
-  "worksOffline": "Werkt volledig offline"
+  "worksOffline": "Werkt volledig offline",
+  "downloadFile": "Bestand downloaden"
 }

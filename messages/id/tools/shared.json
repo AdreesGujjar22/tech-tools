@@ -65,5 +65,6 @@
   "secureLocalProcessing": "Pemrosesan Lokal Aman",
   "browserSandbox": "Semua pemrosesan berjalan di sandbox browser Anda",
   "zeroDataTransmission": "Nol transmisi data ke server mana pun",
-  "worksOffline": "Berfungsi sepenuhnya offline"
+  "worksOffline": "Berfungsi sepenuhnya offline",
+  "downloadFile": "Unduh File"
 }

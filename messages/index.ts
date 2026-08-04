@@ -6,20 +6,20 @@ export type Locale = (typeof supportedLocales)[number];
 
 export const supportedToolNamespaces = [
   "AsciiArtGenerator", "BackgroundRemover", "BarcodeGenerator", "BarcodeReader",
-  "Base64FileConverter", "Base64StringConverter", "BasicAuthGenerator", "BenchmarkBuilder",
-  "CameraRecorder", "Chronometer", "ColorPicker", "CompressImage", "CompressPdf", "CropImage",
-  "DashboardCategories", "DeviceInformation", "EditPdf", "EmailNormalizer", "EmojiPicker",
+  "Base64FileConverter", "Base64StringConverter", "BasicAuthGenerator", "BenchmarkBuilder", "BcryptGenerator", "Bip39Generator",
+  "CameraRecorder", "CaseConverter", "ChmodCalculator", "Chronometer", "ColorConverter", "ColorPicker", "CompressImage", "CompressPdf", "CropImage", "CrontabGenerator", "DockerRunToDockerComposeConverter",
+  "DashboardCategories", "DeviceInformation", "EditPdf", "EmailNormalizer", "EmojiPicker", "HashText", "HtmlEntities", "HtmlWysiwygEditor", "HttpStatusCodes",
   "EncryptionDecryption", "EtaCalculator", "ExcelToPdf", "GitMemo", "HmacGenerator",
   "IbanValidator", "ImageConverter", "ImageDashboard", "ImageEditor", "JpgToPdf",
   "Ipv4AddressConverter", "Ipv4RangeExpander", "Ipv4SubnetCalculator", "JsonDiff",
-  "JsonToTomlConverter", "JsonToXmlConverter", "ListConverter", "Loading", "LoremGenerator",
-  "MergePdf", "Notepad", "OgMetaGenerator", "OutlookSafelinkDecoder", "PasswordGenerator",
+  "JsonToTomlConverter", "JsonToXmlConverter", "JsonYamlConverter", "JsonFormatterMinifier", "IntegerBaseConverter", "Ipv6UlaGenerator", "JwtParser", "KeycodeInfo", "ListConverter", "Loading", "LoremGenerator",
+  "MacAddressLookup", "MarkdownToHtml", "MergePdf", "MimeTypes", "Notepad", "NumeronymGenerator", "OgMetaGenerator", "OtpGenerator", "OutlookSafelinkDecoder", "PasswordGenerator", "PasswordStrengthAnalyser",
   "PdfDashboard", "PdfSignatureChecker", "PdfToExcel", "PdfToJpg", "PdfToPowerpoint", "PdfToWord",
-  "PercentageCalculator", "PowerpointToPdf", "ProtectPdf", "QrGenerator", "RepairPdf",
+  "PercentageCalculator", "PhoneParser", "PowerpointToPdf", "ProtectPdf", "QrGenerator", "RandomPortGenerator", "RegexTester", "RepairPdf", "RomanNumeralConverter",
   "ResizeImage", "RotateImage", "RotatePdf", "RsaKeyPairGenerator", "SlugifyString", "SpeedTest",
-  "SplitPdf", "TemperatureConverter", "TextDiff", "TomlToJsonConverter", "TomlToYamlConverter",
-  "TextToNatoAlphabet", "TextToUnicode", "TypingSpeed", "UnlockPdf", "UrlParser", "UpscaleImage", "WatermarkImage", "WordToPdf",
-  "XmlFormatter", "XmlToJsonConverter", "YamlPrettify", "shared"
+  "SplitPdf", "SqlPrettify", "StringObfuscator", "SvgPlaceholderGenerator", "TemperatureConverter", "TextDiff", "TextStatistics", "TextToBinary", "TomlToJsonConverter", "TomlToYamlConverter", "TokenGenerator",
+  "TextToNatoAlphabet", "TextToUnicode", "TypingSpeed", "UnlockPdf", "UrlEncoderDecoder", "UrlParser", "UpscaleImage", "UserAgentParser", "UuidGenerator", "WatermarkImage", "WifiQrCodeGenerator", "WordToPdf",
+  "XmlFormatter", "XmlToJsonConverter", "YamlPrettify", "YamlToJsonToml", "shared"
 ] as const;
 
 export type ToolNamespace = (typeof supportedToolNamespaces)[number] | string;

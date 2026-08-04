@@ -65,5 +65,6 @@
   "secureLocalProcessing": "Güvenli Yerel İşleme",
   "browserSandbox": "Tüm işlemler tarayıcınızın korumalı alanında çalışır",
   "zeroDataTransmission": "Herhangi bir sunucuya sıfır veri iletimi",
-  "worksOffline": "Tamamen çevrimdışı çalışır"
+  "worksOffline": "Tamamen çevrimdışı çalışır",
+  "downloadFile": "Dosyayı indir"
 }
