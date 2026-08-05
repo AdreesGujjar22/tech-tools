@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { readFile } from "node:fs/promises";
 import { publicRoutes } from "../messages";
 
 const baseUrl = (
@@ -51,10 +52,16 @@ async function getPublishedBlogSlugs() {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const routes = Object.values(publicRoutes).map((path) => ({
-    url: `${baseUrl}${path === "/" ? "/" : path}`,
+  const staticSitemap = await readFile(new URL("../public/sitemap.xml", import.meta.url), "utf8").catch(() => "");
+  const staticUrls = [...staticSitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+  const routeUrls = [...new Set([
+    ...staticUrls,
+    ...Object.values(publicRoutes).map((path) => `${baseUrl}${path === "/" ? "/" : path}`),
+  ])];
+  const routes = routeUrls.map((url) => ({
+    url,
     changeFrequency: "weekly" as const,
-    priority: path === "/" ? 0.8 : 0.6,
+    priority: url === `${baseUrl}/` ? 0.8 : 0.6,
   }));
 
   const blogSlugs = await getPublishedBlogSlugs();
@@ -64,5 +71,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...routes, ...blogs];
+  return [...routes, ...blogs.filter((blog) => !routeUrls.includes(blog.url))];
 }
