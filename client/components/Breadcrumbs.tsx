@@ -4,21 +4,6 @@ import Image from "next/image";
 import { ChevronRight, Home, Languages } from "lucide-react";
 import { Link, stripLocalePrefix, useLocation } from "@/lib/router-compat";
 import { allDashboardTools, DASHBOARD_CATEGORIES } from "@/lib/dashboards-config";
-import { useLocale } from "@/lib/locale";
-import { supportedLocales, type Locale } from "../../messages";
-
-const localeLabels: Record<Locale, string> = {
-  en: "English",
-  de: "Deutsch",
-  es: "Español",
-  fr: "Français",
-  id: "Bahasa Indonesia",
-  it: "Italiano",
-  nl: "Nederlands",
-  pt: "Português",
-  tr: "Türkçe",
-};
-
 const categoryNames: Record<string, string> = {
   "pdf-tools-dashboard": "PDF Tools",
   "image-tools-dashboard": "Images & Videos",
@@ -40,7 +25,6 @@ function formatPath(path: string) {
 
 export default function Breadcrumbs() {
   const { pathname } = useLocation();
-  const { locale, setLocale } = useLocale();
   const path = stripLocalePrefix(pathname);
   if (path.startsWith("/admin")) return null;
 
@@ -72,7 +56,7 @@ export default function Breadcrumbs() {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: `${BASE_URL}/${locale}`,
+      item: `${BASE_URL}/`,
     },
   ];
 
@@ -81,7 +65,7 @@ export default function Breadcrumbs() {
       "@type": "ListItem",
       position: index + 2,
       name: item.label,
-      item: `${BASE_URL}/${locale}${item.href}`,
+      item: `${BASE_URL}${item.href}`,
     });
   });
 

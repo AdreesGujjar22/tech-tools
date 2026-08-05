@@ -1,27 +1,26 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 
 const locales = ["de", "en", "es", "fr", "id", "it", "nl", "pt", "tr"];
+const localeCookie = "techtools-locale";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-
-  const pathnameSegments = pathname.split("/");
-  const firstSegment = pathnameSegments[1];
+  const firstSegment = pathname.split("/")[1];
 
   if (locales.includes(firstSegment)) {
-    const locale = firstSegment;
-    const restOfPath = pathnameSegments.slice(2).join("/");
-    const targetPath = restOfPath ? `/${restOfPath}` : "/";
+    const restOfPath = pathname.split("/").slice(2).join("/");
+    const target = request.nextUrl.clone();
+    target.pathname = restOfPath ? `/${restOfPath}` : "/";
 
-    const response = NextResponse.rewrite(new URL(targetPath, request.url));
-    response.headers.set("x-locale", locale);
+    const response = NextResponse.redirect(target);
+    response.cookies.set(localeCookie, firstSegment, { path: "/", maxAge: 60 * 60 * 24 * 365 });
     return response;
   }
 
-  const response = NextResponse.next();
-  response.headers.set("x-locale", "en");
-  return response;
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-locale", request.cookies.get(localeCookie)?.value || "en");
+
+  return NextResponse.next({ request: { headers: requestHeaders } });
 }
 
 export const config = {

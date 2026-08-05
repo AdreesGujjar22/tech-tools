@@ -16,11 +16,8 @@ export function stripLocalePrefix(pathname: string) {
   return pathname.replace(/^\/(?:de|en|es|fr|id|it|nl|pt|tr)(?=\/|$)/, "") || "/";
 }
 
-export function withLocalePath(to: string, locale: RouteLocale) {
-  if (!to.startsWith("/") || to.startsWith("//") || to.startsWith("/admin") || to.startsWith("/api") || /^\/(?:de|en|es|fr|id|it|nl|pt|tr)(?:\/|$)/.test(to)) {
-    return to;
-  }
-  return `/${locale}${to === "/" ? "" : to}`;
+export function withLocalePath(to: string, _locale: RouteLocale) {
+  return stripLocalePrefix(to);
 }
 
 export interface LinkProps extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {

@@ -1,9 +1,9 @@
 "use client";
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { defaultLocale, loadMessages, supportedLocales, supportedToolNamespaces, type Locale, type MessageNamespace } from "../../messages";
-import { stripLocalePrefix, withLocalePath, type RouteLocale } from "./router-compat";
+import { stripLocalePrefix } from "./router-compat";
 import { NextIntlClientProvider } from "next-intl";
 import enCommon from "../../messages/en/common.json";
 import enMeta from "../../messages/en/meta.json";
@@ -140,7 +140,6 @@ function getRouteNamespaces(pathname: string): MessageNamespace[] {
 }
 
 export function LocaleProvider({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
   const pathname = usePathname() || "/";
   const isAdminPath = pathname === "/admin" || pathname.startsWith("/admin/");
   const [locale, setLocaleState] = useState<Locale>(() => {
@@ -178,10 +177,7 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
     const savedLocale = saved as Locale;
     setLocaleState(savedLocale);
     document.documentElement.lang = savedLocale;
-    if (savedLocale !== (pathname.split("/")[1] as RouteLocale)) {
-      router.replace(withLocalePath(stripLocalePrefix(pathname), savedLocale));
-    }
-  }, [isAdminPath, pathname, router]);
+  }, [isAdminPath, pathname]);
 
   const value = useMemo(() => ({
     locale,
@@ -189,9 +185,8 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
       window.localStorage.setItem("techtools-locale", nextLocale);
       setLocaleState(nextLocale);
       document.documentElement.lang = nextLocale;
-      if (!isAdminPath) router.replace(withLocalePath(stripLocalePrefix(pathname), nextLocale));
     },
-  }), [isAdminPath, locale, pathname, router]);
+  }), [isAdminPath, locale, pathname]);
 
   return (
     <LocaleContext.Provider value={value}>
