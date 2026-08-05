@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const locale = await getRequestLocale();
   const loaded = await loadMessages(locale, ["meta"]);
-  const blog = (loaded.Metadata as Record<string, { title: string; description: string; keywords: string }>).blog;
+  const blog = (loaded as Record<string, { title: string; description: string; keywords: string }>).blog;
   const alternates = await getLocalizedAlternates(`/blog/${slug}`);
   const title = blog.title;
   const description = blog.description;

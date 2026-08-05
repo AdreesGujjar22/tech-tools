@@ -53,14 +53,23 @@ export default function BlogArchive() {
         let fetchedTags: Tag[] = [];
 
         const blogSnap = await getDocs(blogsQuery);
-          blogSnap.forEach((docSnap) => {
+        const blogDocs = [...blogSnap.docs].sort((a, b) => {
+          const aCreatedAt = (a.data() as any).createdAt;
+          const bCreatedAt = (b.data() as any).createdAt;
+          const aTimestamp = aCreatedAt?.toMillis?.() ?? new Date(aCreatedAt || 0).getTime();
+          const bTimestamp = bCreatedAt?.toMillis?.() ?? new Date(bCreatedAt || 0).getTime();
+
+          return bTimestamp - aTimestamp;
+        });
+
+        blogDocs.forEach((docSnap) => {
             const data = docSnap.data() as any;
             fetchedBlogs.push({
               id: docSnap.id,
               title: data.title || "",
               slug: data.slug || "",
               content: data.content || "",
-              status: data.status || "published",
+              status: data.status || "draft",
               excerpt: data.excerpt || "",
               category: data.category || "General",
               tags: data.tags || [],
@@ -87,11 +96,6 @@ export default function BlogArchive() {
           fetchedTags.push({ id: d.id, name: data.name, slug: data.name });
         });
 
-        if (!isAdmin) {
-          fetchedBlogs.sort(
-            (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-          );
-        }
 
         setBlogs(fetchedBlogs);
         setCategories(fetchedCats.length > 0 ? fetchedCats : [
