@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { ChevronRight, Home, Languages } from "lucide-react";
+import { ChevronRight, Home } from "lucide-react";
 import { Link, stripLocalePrefix, useLocation } from "@/lib/router-compat";
 import { allDashboardTools, DASHBOARD_CATEGORIES } from "@/lib/dashboards-config";
 const categoryNames: Record<string, string> = {
@@ -82,8 +81,34 @@ export default function Breadcrumbs() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         suppressHydrationWarning
       />
-      <div className="pt-20">
-      </div>
+      <nav
+        aria-label="Breadcrumb"
+        className="border-b border-slate-200/80 bg-white/70 px-4 pb-3 pt-16 backdrop-blur-sm dark:border-slate-800/80 dark:bg-slate-900/70 sm:px-6"
+      >
+        <ol className="mx-auto flex max-w-7xl items-center gap-2 overflow-x-auto whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">
+          <li>
+            <Link
+              to="/"
+              aria-label="Home"
+              className="inline-flex items-center rounded-md p-1.5 transition-colors hover:bg-emerald-50 hover:text-[#10A968] dark:hover:bg-emerald-950/40"
+            >
+              <Home size={16} aria-hidden="true" />
+            </Link>
+          </li>
+          {items.map((item) => (
+            <li key={`${item.href}-${item.label}`} className="flex items-center gap-2">
+              <ChevronRight size={14} aria-hidden="true" className="shrink-0 text-slate-400" />
+              <Link
+                to={item.href}
+                aria-current={item.href === path ? "page" : undefined}
+                className="rounded-md px-1.5 py-1 transition-colors hover:text-[#10A968]"
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ol>
+      </nav>
     </>
   );
 }
