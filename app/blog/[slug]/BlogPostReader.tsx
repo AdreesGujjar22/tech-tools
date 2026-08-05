@@ -27,8 +27,13 @@ export function BlogPostReader({ slug }: { slug: string }) {
         setLoading(true);
         let foundPost: Blog | null = null;
 
+        if (!db) {
+          setPost(null);
+          return;
+        }
+
         const blogsRef = collection(db, "blogs");
-          const q = query(blogsRef, where("slug", "==", slug), limit(1));
+        const q = query(blogsRef, where("slug", "==", slug), limit(1));
           const snap = await getDocs(q);
 
           if (!snap.empty) {
@@ -45,7 +50,7 @@ export function BlogPostReader({ slug }: { slug: string }) {
               title: data.title || "",
               slug: data.slug || "",
               content: data.content || "",
-              status: data.status || "published",
+              status: data.status || "draft",
               excerpt: data.excerpt || "",
               category: data.category || "General",
               tags: data.tags || [],

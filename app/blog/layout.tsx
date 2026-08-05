@@ -6,7 +6,7 @@ import { loadMessages } from "../../messages";
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getRequestLocale();
   const loaded = await loadMessages(locale, ["meta"]);
-  const blog = (loaded.Metadata as Record<string, { title: string; description: string; keywords: string }>).blog;
+  const blog = (loaded as Record<string, { title: string; description: string; keywords: string }>).blog;
   const title = blog.title;
   const description = blog.description;
 
