@@ -25,6 +25,8 @@ export default function BlogArchive() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedTag, setSelectedTag] = useState("All");
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 6;
 
   useEffect(() => {
     async function fetchBlogData() {
@@ -140,6 +142,19 @@ export default function BlogArchive() {
   const uniqueTags = ["All", ...Array.from(new Set(blogs.flatMap(b => b.tags || [])))];
 
   const featuredPost = filteredBlogs.find(b => b.status === "published");
+  const postsForGrid = featuredPost && search === "" && selectedCategory === "All" && selectedTag === "All"
+    ? filteredBlogs.filter((post) => post.id !== featuredPost.id)
+    : filteredBlogs;
+  const totalPages = Math.max(1, Math.ceil(postsForGrid.length / pageSize));
+  const paginatedBlogs = postsForGrid.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, selectedCategory, selectedTag]);
+
+  useEffect(() => {
+    if (currentPage > totalPages) setCurrentPage(totalPages);
+  }, [currentPage, totalPages]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#F0F7F0] via-white to-transparent text-[#2D4D35] pt-32 pb-24 px-6 md:px-12">
@@ -336,7 +351,7 @@ export default function BlogArchive() {
               </h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-grid">
-                {filteredBlogs.map((post) => (
+                {paginatedBlogs.map((post) => (
                   <motion.article
                     key={post.id}
                     layout
@@ -416,6 +431,30 @@ export default function BlogArchive() {
                   </motion.article>
                 ))}
               </div>
+
+              {totalPages > 1 && (
+                <div className="mt-10 flex items-center justify-center gap-2" aria-label="Blog pagination">
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
+                    disabled={currentPage === 1}
+                    className="px-4 py-2 rounded-lg border border-[#C5DCC9] text-sm font-semibold text-[#4A6857] disabled:opacity-40 disabled:cursor-not-allowed hover:border-[#10A968] transition-colors"
+                  >
+                    Previous
+                  </button>
+                  <span className="px-4 text-sm font-mono text-[#4A6857]">
+                    {currentPage} / {totalPages}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
+                    disabled={currentPage === totalPages}
+                    className="px-4 py-2 rounded-lg border border-[#C5DCC9] text-sm font-semibold text-[#4A6857] disabled:opacity-40 disabled:cursor-not-allowed hover:border-[#10A968] transition-colors"
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
             </div>
 
           </div>

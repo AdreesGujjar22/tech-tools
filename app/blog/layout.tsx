@@ -6,7 +6,11 @@ import { loadMessages } from "../../messages";
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getRequestLocale();
   const loaded = await loadMessages(locale, ["meta"]);
-  const blog = (loaded as Record<string, { title: string; description: string; keywords: string }>).blog;
+  const blog = ((loaded as Record<string, { title: string; description: string; keywords: string }>).blog ?? {
+    title: "The Craft Blog - Guides, Tactics & Design Insights",
+    description: "In-depth investigations, tactical guides, and structural design breakdowns.",
+    keywords: "blog, articles, guides, tutorials, tech tools blog",
+  });
   const title = blog.title;
   const description = blog.description;
 

@@ -20,11 +20,12 @@ export async function getRequestLocale(): Promise<MetadataLocale> {
 export async function getLocalizedAlternates(routePath: string) {
   const locale = await getRequestLocale();
   const slug = routePath === "/" ? "" : routePath;
-  const localizedUrls = Object.fromEntries(
-    supportedLocales.map((supportedLocale) => [supportedLocale, `${BASE_URL}/${supportedLocale}${slug}`]),
+  const canonical = `${BASE_URL}${slug || "/"}`;
+  const languages = Object.fromEntries(
+    supportedLocales.map((supportedLocale) => [supportedLocale, canonical]),
   );
 
-  return { canonical: localizedUrls[locale], languages: { ...localizedUrls, "x-default": localizedUrls.en } };
+  return { canonical, languages: { ...languages, "x-default": canonical } };
 }
 
 export async function buildPageMetadata(routePath: string, metadataKey: MetadataKey) {

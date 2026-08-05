@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { useLocation, stripLocalePrefix } from "@/lib/router-compat";
+import { useLocale } from "@/lib/locale";
 
 const BASE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_APP_URL || "https://www.ilovetechtools.com"
@@ -31,11 +32,10 @@ export default function SEO({
   imageUrl = "/images/web-logo.png",
 }: SEOProps) {
   const location = useLocation();
+  const { locale } = useLocale();
   const rawPath = location.pathname;
   const pathWithoutLocale = stripLocalePrefix(rawPath);
-  const locale = supportedLocales.find((l) => rawPath.startsWith(`/${l}`)) || "en";
-
-  const canonicalUrl = `${BASE_URL}/${locale}${pathWithoutLocale === "/" ? "" : pathWithoutLocale}`;
+  const canonicalUrl = `${BASE_URL}${pathWithoutLocale === "/" ? "/" : pathWithoutLocale}`;
 
   useEffect(() => {
     // 1. Update Document Title
@@ -79,7 +79,7 @@ export default function SEO({
         hreflangLink.setAttribute("hreflang", loc);
         document.head.appendChild(hreflangLink);
       }
-      const hreflangUrl = `${BASE_URL}/${loc}${pathWithoutLocale === "/" ? "" : pathWithoutLocale}`;
+      const hreflangUrl = canonicalUrl;
       hreflangLink.setAttribute("href", hreflangUrl);
     });
 
@@ -91,7 +91,7 @@ export default function SEO({
       xDefault.setAttribute("hreflang", "x-default");
       document.head.appendChild(xDefault);
     }
-    xDefault.setAttribute("href", `${BASE_URL}/en${pathWithoutLocale === "/" ? "" : pathWithoutLocale}`);
+    xDefault.setAttribute("href", canonicalUrl);
 
     // 7. OpenGraph Meta Tags
     const ogTags = [
@@ -140,7 +140,7 @@ export default function SEO({
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: `${BASE_URL}/${locale}`,
+      item: `${BASE_URL}/`,
     },
   ];
 
@@ -149,7 +149,7 @@ export default function SEO({
       "@type": "ListItem",
       position: 2,
       name: categoryName,
-      item: `${BASE_URL}/${locale}${pathWithoutLocale}`,
+      item: `${BASE_URL}${pathWithoutLocale}`,
     });
   }
 
@@ -158,7 +158,7 @@ export default function SEO({
       "@type": "ListItem",
       position: 3,
       name: toolName,
-      item: `${BASE_URL}/${locale}${pathWithoutLocale}`,
+      item: `${BASE_URL}${pathWithoutLocale}`,
     });
   }
 
@@ -188,13 +188,13 @@ export default function SEO({
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "ILoveTechTools",
-    url: `${BASE_URL}/${locale}`,
+    url: `${BASE_URL}/`,
     description: description,
     potentialAction: {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: `${BASE_URL}/${locale}/tools?search={search_term_string}`,
+        urlTemplate: `${BASE_URL}/tools?search={search_term_string}`,
       },
       "query-input": "required name=search_term_string",
     },

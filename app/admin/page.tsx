@@ -119,6 +119,10 @@ export default function AdminPage() {
     id: string;
     label: string;
   } | null>(null);
+  const [articlesPage, setArticlesPage] = useState(1);
+  const articlesPageSize = 6;
+  const articlesTotalPages = Math.max(1, Math.ceil(articles.length / articlesPageSize));
+  const paginatedArticles = articles.slice((articlesPage - 1) * articlesPageSize, articlesPage * articlesPageSize);
 
   // Populate data on login
   useEffect(() => {
@@ -126,6 +130,14 @@ export default function AdminPage() {
       fetchCmsData();
     }
   }, [user, isAdmin]);
+
+  useEffect(() => {
+    setArticlesPage(1);
+  }, [articles.length]);
+
+  useEffect(() => {
+    if (articlesPage > articlesTotalPages) setArticlesPage(articlesTotalPages);
+  }, [articlesPage, articlesTotalPages]);
 
   // Live Auto Slug Generation
   useEffect(() => {
@@ -679,8 +691,9 @@ export default function AdminPage() {
                   <div className="premium-card overflow-hidden">
                     <div className="overflow-x-auto">
                       <table className="w-full text-left border-collapse bg-background">
-                      <thead>
+                      <thead className="hidden">
                         <tr className="border-b border-border bg-muted/30 font-mono text-[10px] text-muted-foreground tracking-widest uppercase">
+                          <th className="py-4 px-6 font-normal">#</th>
                           <th className="py-4 px-6 font-normal">State</th>
                           <th className="py-4 px-6 font-normal">Title</th>
                           <th className="py-4 px-6 font-normal">Category</th>
@@ -689,12 +702,13 @@ export default function AdminPage() {
                           <th className="py-4 px-6 font-normal text-right">Actions</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-border">
-                        {articles.map((item) => (
-                          <tr key={item.id} className="hover:bg-muted/30 transition-colors text-sm text-foreground">
-                            
+                      <tbody className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 p-6">
+                        {paginatedArticles.map((item, index) => (
+                          <tr key={item.id} className="block rounded-2xl border border-border bg-card overflow-hidden hover:border-primary/40 transition-colors text-sm text-foreground">
+                            <td className="block px-5 pt-4 font-mono text-xs text-muted-foreground">{(articlesPage - 1) * articlesPageSize + index + 1}</td>
+
                             {/* State Column */}
-                            <td className="py-4 px-6">
+                            <td className="block px-5 pt-3">
                               <button
                                 onClick={() => handlePostStatusToggle(item)}
                                 className={`px-2.5 py-1 rounded inline-flex items-center gap-1 text-[10px] uppercase font-bold tracking-wider font-mono cursor-pointer ${
@@ -717,28 +731,33 @@ export default function AdminPage() {
                             </td>
 
                             {/* Title Column */}
-                            <td className="py-4 px-6 font-bold text-foreground max-w-xs truncate">
-                              {item.title}
+                            <td className="block px-5 pt-3 font-bold text-foreground max-w-xs">
+                              <div className="flex items-center gap-3">
+                                <div className="w-16 h-12 rounded-lg overflow-hidden bg-muted shrink-0 flex items-center justify-center">
+                                  {item.featuredImage ? <img src={item.featuredImage} alt="" className="w-full h-full object-cover" loading="lazy" /> : <FileText size={16} className="text-muted-foreground/50" />}
+                                </div>
+                                <span className="truncate">{item.title}</span>
+                              </div>
                             </td>
 
                             {/* Category */}
-                            <td className="py-4 px-6 font-mono text-xs">
+                            <td className="block px-5 pt-3 font-mono text-xs">
                               {item.category}
                             </td>
 
                             {/* Custom Date formatting */}
-                            <td className="py-4 px-6 font-mono text-xs text-muted-foreground/80">
+                            <td className="block px-5 pt-3 font-mono text-xs text-muted-foreground/80">
                               {item.createdAt}
                             </td>
 
                             {/* SEO Slug */}
-                            <td className="py-4 px-6 text-muted-foreground/80 text-xs">
+                            <td className="block px-5 pt-3 text-muted-foreground/80 text-xs">
                               <span className="font-mono text-primary">/blog/</span>
                               <span className="underline">{item.slug}</span>
                             </td>
 
                             {/* Actions Column */}
-                            <td className="py-4 px-6 text-right">
+                            <td className="block px-5 py-5 text-right border-t border-border mt-4">
                               <div className="inline-flex gap-2.5 justify-end">
                                 <Link
                                   to={`/blog/${item.slug}`}
@@ -769,6 +788,13 @@ export default function AdminPage() {
                       </tbody>
                       </table>
                     </div>
+                    {articlesTotalPages > 1 && (
+                      <div className="p-5 flex items-center justify-center gap-2" aria-label="Admin blog pagination">
+                        <button type="button" onClick={() => setArticlesPage((page) => Math.max(1, page - 1))} disabled={articlesPage === 1} className="px-4 py-2 rounded-lg border border-border text-sm text-muted-foreground disabled:opacity-40">Previous</button>
+                        <span className="px-4 text-sm font-mono text-muted-foreground">{articlesPage} / {articlesTotalPages}</span>
+                        <button type="button" onClick={() => setArticlesPage((page) => Math.min(articlesTotalPages, page + 1))} disabled={articlesPage === articlesTotalPages} className="px-4 py-2 rounded-lg border border-border text-sm text-muted-foreground disabled:opacity-40">Next</button>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
