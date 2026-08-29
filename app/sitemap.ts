@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { readFile } from "node:fs/promises";
-import { publicRoutes } from "../messages";
+import { publicRoutes, supportedLocales } from "../messages";
 
 const baseUrl = (
   process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_APP_URL || "https://www.ilovetechtools.com"
@@ -54,22 +54,43 @@ async function getPublishedBlogSlugs() {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticSitemap = await readFile(new URL("../public/sitemap.xml", import.meta.url), "utf8").catch(() => "");
   const staticUrls = [...staticSitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+  
+  // Generate localized routes for all public routes
+  const localizedRouteUrls: string[] = [];
+  for (const locale of supportedLocales) {
+    for (const path of Object.values(publicRoutes)) {
+      if (path === "/") {
+        localizedRouteUrls.push(`${baseUrl}/${locale}/`);
+      } else {
+        localizedRouteUrls.push(`${baseUrl}/${locale}${path}`);
+      }
+    }
+  }
+  
   const routeUrls = [...new Set([
     ...staticUrls,
-    ...Object.values(publicRoutes).map((path) => `${baseUrl}${path === "/" ? "/" : path}`),
+    ...localizedRouteUrls,
   ])];
+  
   const routes = routeUrls.map((url) => ({
     url,
     changeFrequency: "weekly" as const,
-    priority: url === `${baseUrl}/` ? 0.8 : 0.6,
+    priority: url === `${baseUrl}/` ? 0.8 : url.endsWith("/") && url.split("/").length === 4 ? 0.7 : 0.6,
   }));
 
   const blogSlugs = await getPublishedBlogSlugs();
-  const blogs = blogSlugs.map((slug) => ({
-    url: `${baseUrl}/blog/${encodeURIComponent(slug)}`,
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }));
+  const blogs: MetadataRoute.Sitemap = [];
+  
+  // Generate localized blog URLs for each locale
+  for (const locale of supportedLocales) {
+    for (const slug of blogSlugs) {
+      blogs.push({
+        url: `${baseUrl}/${locale}/blog/${encodeURIComponent(slug)}`,
+        changeFrequency: "weekly" as const,
+        priority: 0.7,
+      });
+    }
+  }
 
   return [...routes, ...blogs.filter((blog) => !routeUrls.includes(blog.url))];
 }
