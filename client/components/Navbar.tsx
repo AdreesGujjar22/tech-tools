@@ -398,10 +398,10 @@ export default function Navbar({ collapsed, onCollapsedChange }: NavbarProps) {
                       onClick={() => {
                         setLocale(lang.code as any);
                         setLangMenuOpen(false);
-                        // Change URL to new locale while preserving the current route
+                        // Navigate to the same path without locale prefix
+                        // The middleware will use the updated locale cookie
                         const pathWithoutLocale = stripLocalePrefix(pathname);
-                        const newPath = `/${lang.code}${pathWithoutLocale}`;
-                        router.push(newPath);
+                        router.push(pathWithoutLocale);
                       }}
                       className={cn(
                         "w-full flex items-center justify-between rounded-xl px-2.5 py-1.5 text-xs font-medium transition-colors",
