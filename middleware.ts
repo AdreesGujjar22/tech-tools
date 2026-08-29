@@ -1,26 +1,30 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 const locales = ["de", "en", "es", "fr", "id", "it", "nl", "pt", "tr"];
+const defaultLocale = "en";
 const localeCookie = "techtools-locale";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const firstSegment = pathname.split("/")[1];
 
-  if (locales.includes(firstSegment)) {
-    const restOfPath = pathname.split("/").slice(2).join("/");
-    const target = request.nextUrl.clone();
-    target.pathname = restOfPath ? `/${restOfPath}` : "/";
+  let locale = defaultLocale;
 
-    const response = NextResponse.redirect(target);
-    response.cookies.set(localeCookie, firstSegment, { path: "/", maxAge: 60 * 60 * 24 * 365 });
-    return response;
+  // Check if URL has a locale prefix - if so, use it
+  if (locales.includes(firstSegment)) {
+    locale = firstSegment;
+  } else {
+    // Otherwise, use cookie or default
+    locale = request.cookies.get(localeCookie)?.value || defaultLocale;
   }
 
   const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-locale", request.cookies.get(localeCookie)?.value || "en");
+  requestHeaders.set("x-locale", locale);
 
-  return NextResponse.next({ request: { headers: requestHeaders } });
+  const response = NextResponse.next({ request: { headers: requestHeaders } });
+  response.cookies.set(localeCookie, locale, { path: "/", maxAge: 60 * 60 * 24 * 365 });
+
+  return response;
 }
 
 export const config = {

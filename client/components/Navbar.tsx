@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import {
   ChevronDown,
@@ -62,6 +63,8 @@ const LANGUAGES = [
 
 export default function Navbar({ collapsed, onCollapsedChange }: NavbarProps) {
   const location = useLocation();
+  const router = useRouter();
+  const pathname = usePathname();
   const currentPath = stripLocalePrefix(location.pathname);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -395,6 +398,10 @@ export default function Navbar({ collapsed, onCollapsedChange }: NavbarProps) {
                       onClick={() => {
                         setLocale(lang.code as any);
                         setLangMenuOpen(false);
+                        // Change URL to new locale while preserving the current route
+                        const pathWithoutLocale = stripLocalePrefix(pathname);
+                        const newPath = `/${lang.code}${pathWithoutLocale}`;
+                        router.push(newPath);
                       }}
                       className={cn(
                         "w-full flex items-center justify-between rounded-xl px-2.5 py-1.5 text-xs font-medium transition-colors",

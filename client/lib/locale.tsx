@@ -157,6 +157,17 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
   const [loadedKey, setLoadedKey] = useState<string | null>(null);
   const messageKey = `${locale}:${pathname}`;
 
+  // Sync locale state with URL changes
+  useEffect(() => {
+    if (isAdminPath) return;
+    const pathLocale = pathname.split("/")[1] as Locale;
+    if (supportedLocales.includes(pathLocale) && pathLocale !== locale) {
+      setLocaleState(pathLocale);
+      window.localStorage.setItem("techtools-locale", pathLocale);
+      document.documentElement.lang = pathLocale;
+    }
+  }, [pathname, isAdminPath, locale]);
+
   useEffect(() => {
     let active = true;
     setLoadedKey(null);
@@ -175,9 +186,11 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
     const saved = window.localStorage.getItem("techtools-locale");
     if (!saved || !supportedLocales.includes(saved as Locale)) return;
     const savedLocale = saved as Locale;
-    setLocaleState(savedLocale);
-    document.documentElement.lang = savedLocale;
-  }, [isAdminPath, pathname]);
+    if (savedLocale !== locale) {
+      setLocaleState(savedLocale);
+      document.documentElement.lang = savedLocale;
+    }
+  }, [isAdminPath, locale]);
 
   const value = useMemo(() => ({
     locale,
@@ -186,7 +199,7 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
       setLocaleState(nextLocale);
       document.documentElement.lang = nextLocale;
     },
-  }), [isAdminPath, locale, pathname]);
+  }), [locale]);
 
   return (
     <LocaleContext.Provider value={value}>
