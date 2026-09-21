@@ -20,12 +20,13 @@ export async function getRequestLocale(): Promise<MetadataLocale> {
 export async function getLocalizedAlternates(routePath: string) {
   const locale = await getRequestLocale();
   const slug = routePath === "/" ? "" : routePath;
-  const canonical = `${BASE_URL}${slug || "/"}`;
+  const urlForLocale = (l: string) => `${BASE_URL}/${l}${slug || "/"}`;
+  const canonical = urlForLocale(locale);
   const languages = Object.fromEntries(
-    supportedLocales.map((supportedLocale) => [supportedLocale, canonical]),
+    supportedLocales.map((supportedLocale) => [supportedLocale, urlForLocale(supportedLocale)]),
   );
 
-  return { canonical, languages: { ...languages, "x-default": canonical } };
+  return { canonical, languages: { ...languages, "x-default": urlForLocale("en") } };
 }
 
 export async function buildPageMetadata(routePath: string, metadataKey: MetadataKey) {
@@ -57,5 +58,66 @@ export async function buildPageMetadata(routePath: string, metadataKey: Metadata
       images: [{ url: "/images/web-logo.png", width: 1200, height: 630, alt: pageData.title }],
     },
     twitter: { card: "summary_large_image" as const, title: pageData.title, description: pageData.description, images: ["/images/web-logo.png"] },
+  };
+}
+
+const SITE_NAME = "Tech Tools";
+
+function withSiteName(title: string) {
+  return title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+}
+
+type ToolCopy = {
+  title?: string;
+  description?: string;
+  metaDescription?: string;
+  metaKeywords?: string;
+};
+
+/**
+ * Build metadata for a tool page from its own translated namespace,
+ * so every tool gets a unique localized title/description without
+ * duplicating copy in meta.json.
+ */
+export async function buildToolMetadata(
+  routePath: string,
+  namespace: string,
+  subKey?: string,
+) {
+  const locale = await getRequestLocale();
+  const loaded = await loadMessages(locale, [namespace as never]);
+  const root = (loaded as Record<string, unknown>)[namespace] as Record<string, unknown> | undefined;
+  const node = (subKey ? (root?.[subKey] as ToolCopy | undefined) : (root as ToolCopy | undefined)) ?? {};
+
+  const fallback = await loadMessages(locale, ["meta"]);
+  const site = ((fallback.Metadata as Record<string, PageMetadata>) ?? {}).site;
+
+  const title = withSiteName(node.title ?? site.title);
+  const description = node.metaDescription ?? node.description ?? site.description;
+  const keywords = node.metaKeywords ?? site.keywords;
+  const alternates = await getLocalizedAlternates(routePath);
+
+  return {
+    title,
+    description,
+    keywords,
+    alternates,
+    robots: {
+      index: true,
+      follow: true,
+      maxSnippet: -1,
+      maxImagePreview: "large" as const,
+      maxVideoPreview: -1,
+    },
+    openGraph: {
+      title,
+      description,
+      type: "website" as const,
+      url: alternates.canonical,
+      locale: openGraphLocales[locale],
+      alternateLocale: Object.values(openGraphLocales).filter((value) => value !== openGraphLocales[locale]),
+      images: [{ url: "/images/web-logo.png", width: 1200, height: 630, alt: title }],
+    },
+    twitter: { card: "summary_large_image" as const, title, description, images: ["/images/web-logo.png"] },
   };
 }
