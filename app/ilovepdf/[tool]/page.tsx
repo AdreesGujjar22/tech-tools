@@ -1,6 +1,8 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { PDF_TOOLS } from "@/components/pdf-tools/toolsData";
+import type { Metadata } from "next";
+import { buildCatalogToolMetadata } from "@/lib/server-locale";
 
 const toolLoaders = {
   "merge-pdf": () => import("@/components/pdf-tools/MergePdf"),
@@ -23,6 +25,13 @@ const toolLoaders = {
 
 interface ToolPageProps {
   params: Promise<{ tool: string }>;
+}
+
+export async function generateMetadata({ params }: ToolPageProps): Promise<Metadata> {
+  const { tool } = await params;
+  if (!PDF_TOOLS.some((item) => item.id === tool)) return {};
+  const key = tool.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+  return buildCatalogToolMetadata(`/ilovepdf/${tool}`, "Pdf", key);
 }
 
 export default async function ToolPage({ params }: ToolPageProps) {

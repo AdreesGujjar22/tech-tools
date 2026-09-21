@@ -11,6 +11,6 @@ export default function HashText() { const t = useTranslations("Tools.HashText")
 
       {/* Frequently Asked Questions */}
       {faqs && faqs.length > 0 && (
-        <FaqSection items={faqs} title="Frequently Asked Questions" />
+        <FaqSection items={faqs} />
       )}
     </main>; }

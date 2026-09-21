@@ -159,15 +159,42 @@
     "dashboardBadge": "Tableau de bord",
     "toolsCount": "outils",
     "dashboardCards": {
-      "pdf": { "title": "Tableau de bord des outils PDF", "description": "Gérez vos fichiers PDF dans un espace de travail dédié." },
-      "image": { "title": "Tableau de bord des outils image", "description": "Modifiez, convertissez et optimisez vos images au même endroit." },
-      "cryptoSecurity": { "title": "Tableau de bord crypto et sécurité", "description": "Protégez, validez, hachez et inspectez les données sensibles." },
-      "converters": { "title": "Tableau de bord des convertisseurs", "description": "Convertissez rapidement des données, fichiers, formats et valeurs." },
-      "web": { "title": "Tableau de bord des outils web", "description": "Inspectez, testez et préparez du contenu web moderne." },
-      "developer": { "title": "Tableau de bord développeur", "description": "Créez, déboguez, formatez et documentez vos projets logiciels." },
-      "network": { "title": "Tableau de bord réseau", "description": "Travaillez avec les adresses, ports, protocoles et connexions." },
-      "textData": { "title": "Tableau de bord texte et données", "description": "Transformez, comparez, générez et analysez du texte." },
-      "mathMedia": { "title": "Tableau de bord mathématiques et médias", "description": "Calculez, mesurez, enregistrez et créez des contenus multimédias." }
+      "pdf": {
+        "title": "Tableau de bord des outils PDF",
+        "description": "Gérez vos fichiers PDF dans un espace de travail dédié."
+      },
+      "image": {
+        "title": "Tableau de bord des outils image",
+        "description": "Modifiez, convertissez et optimisez vos images au même endroit."
+      },
+      "cryptoSecurity": {
+        "title": "Tableau de bord crypto et sécurité",
+        "description": "Protégez, validez, hachez et inspectez les données sensibles."
+      },
+      "converters": {
+        "title": "Tableau de bord des convertisseurs",
+        "description": "Convertissez rapidement des données, fichiers, formats et valeurs."
+      },
+      "web": {
+        "title": "Tableau de bord des outils web",
+        "description": "Inspectez, testez et préparez du contenu web moderne."
+      },
+      "developer": {
+        "title": "Tableau de bord développeur",
+        "description": "Créez, déboguez, formatez et documentez vos projets logiciels."
+      },
+      "network": {
+        "title": "Tableau de bord réseau",
+        "description": "Travaillez avec les adresses, ports, protocoles et connexions."
+      },
+      "textData": {
+        "title": "Tableau de bord texte et données",
+        "description": "Transformez, comparez, générez et analysez du texte."
+      },
+      "mathMedia": {
+        "title": "Tableau de bord mathématiques et médias",
+        "description": "Calculez, mesurez, enregistrez et créez des contenus multimédias."
+      }
     },
     "toolCards": {
       "pdfDashboard": "Tableau de Bord des Outils PDF",
@@ -656,5 +683,14 @@
         "long": "Dessinez, griffonnez, ajoutez des zones de texte, des filtres (sépia, monochrome, inverser), ajustez les curseurs de couleur, redimensionnez, recadrez et ajoutez des filigranes dans un espace de travail unifié."
       }
     }
+  },
+  "SharedSeo": {
+    "faqTitle": "Questions fréquentes",
+    "faqSubtitle": "Tout ce que vous devez savoir sur la confidentialité, la sécurité et les performances.",
+    "faqBadge": "Centre d’aide",
+    "relatedTools": "Outils associés",
+    "exploreMore": "Découvrez plus d’outils dans",
+    "quickAccess": "Accès rapide à cet outil",
+    "visitTool": "Ouvrir l’outil"
   }
 }

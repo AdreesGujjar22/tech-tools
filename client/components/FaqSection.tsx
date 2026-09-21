@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown, HelpCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export interface FaqItem {
   question: string;
@@ -15,11 +16,14 @@ interface FaqSectionProps {
 }
 
 export default function FaqSection({
-  title = "Frequently Asked Questions",
-  subtitle = "Everything you need to know about privacy, security, and performance.",
+  title,
+  subtitle,
   items,
 }: FaqSectionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const t = useTranslations("SharedSeo");
+  const resolvedTitle = title || t("faqTitle");
+  const resolvedSubtitle = subtitle === undefined ? t("faqSubtitle") : subtitle;
 
   if (!items || items.length === 0) return null;
 
@@ -46,14 +50,14 @@ export default function FaqSection({
       <div className="mb-8 text-center">
         <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#10A968]/20 bg-[#10A968]/10 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-[#10A968]">
           <HelpCircle size={15} />
-          <span>FAQ Engine</span>
+          <span>{t("faqBadge")}</span>
         </div>
         <h2 className="text-3xl font-extrabold tracking-tight text-[#1F3A26] sm:text-4xl">
-          {title}
+          {resolvedTitle}
         </h2>
-        {subtitle && (
+        {resolvedSubtitle && (
           <p className="mt-2 text-sm text-[#4A6857] max-w-xl mx-auto">
-            {subtitle}
+            {resolvedSubtitle}
           </p>
         )}
       </div>

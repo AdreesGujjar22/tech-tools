@@ -13,6 +13,6 @@ export default function CameraRecorder() { const t = useTranslations("Tools.Came
 
       {/* Frequently Asked Questions */}
       {faqs && faqs.length > 0 && (
-        <FaqSection items={faqs} title="Frequently Asked Questions" />
+        <FaqSection items={faqs} />
       )}
     </main>; }

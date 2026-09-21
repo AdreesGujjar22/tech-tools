@@ -70,7 +70,7 @@ export default function Terms() {
 
       {/* Frequently Asked Questions */}
       {faqs && faqs.length > 0 && (
-        <FaqSection items={faqs} title="Frequently Asked Questions" />
+        <FaqSection items={faqs} />
       )}
     </main>
     </div>

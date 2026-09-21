@@ -159,15 +159,42 @@
     "dashboardBadge": "Dashboard",
     "toolsCount": "tools",
     "dashboardCards": {
-      "pdf": { "title": "PDF Tools Dashboard", "description": "Manage PDF files from one focused workspace." },
-      "image": { "title": "Image Tools Dashboard", "description": "Edit, convert, and optimize images in one place." },
-      "cryptoSecurity": { "title": "Crypto & Security Dashboard", "description": "Protect, validate, hash, and inspect sensitive data." },
-      "converters": { "title": "Converter Tools Dashboard", "description": "Convert data, files, formats, and values quickly." },
-      "web": { "title": "Web Tools Dashboard", "description": "Inspect, test, and prepare modern web content." },
-      "developer": { "title": "Developer Tools Dashboard", "description": "Build, debug, format, and document software projects." },
-      "network": { "title": "Network Tools Dashboard", "description": "Work with addresses, ports, protocols, and connectivity." },
-      "textData": { "title": "Text & Data Dashboard", "description": "Transform, compare, generate, and analyze text." },
-      "mathMedia": { "title": "Math & Media Dashboard", "description": "Calculate, measure, record, and create media assets." }
+      "pdf": {
+        "title": "PDF Tools Dashboard",
+        "description": "Manage PDF files from one focused workspace."
+      },
+      "image": {
+        "title": "Image Tools Dashboard",
+        "description": "Edit, convert, and optimize images in one place."
+      },
+      "cryptoSecurity": {
+        "title": "Crypto & Security Dashboard",
+        "description": "Protect, validate, hash, and inspect sensitive data."
+      },
+      "converters": {
+        "title": "Converter Tools Dashboard",
+        "description": "Convert data, files, formats, and values quickly."
+      },
+      "web": {
+        "title": "Web Tools Dashboard",
+        "description": "Inspect, test, and prepare modern web content."
+      },
+      "developer": {
+        "title": "Developer Tools Dashboard",
+        "description": "Build, debug, format, and document software projects."
+      },
+      "network": {
+        "title": "Network Tools Dashboard",
+        "description": "Work with addresses, ports, protocols, and connectivity."
+      },
+      "textData": {
+        "title": "Text & Data Dashboard",
+        "description": "Transform, compare, generate, and analyze text."
+      },
+      "mathMedia": {
+        "title": "Math & Media Dashboard",
+        "description": "Calculate, measure, record, and create media assets."
+      }
     },
     "toolCards": {
       "pdfDashboard": "PDF Tools Dashboard",
@@ -656,5 +683,14 @@
         "long": "Draw, doodle, add text boxes, filters (sepia, monochrome, invert), adjust color sliders, scale, crop, and watermarks in a unified workspace."
       }
     }
+  },
+  "SharedSeo": {
+    "faqTitle": "Frequently Asked Questions",
+    "faqSubtitle": "Everything you need to know about privacy, security, and performance.",
+    "faqBadge": "Help Center",
+    "relatedTools": "Related Tools",
+    "exploreMore": "Explore more tools in",
+    "quickAccess": "Quick access to this tool",
+    "visitTool": "Visit Tool"
   }
 }

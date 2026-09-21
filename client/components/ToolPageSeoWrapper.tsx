@@ -19,10 +19,6 @@ interface ToolPageSeoWrapperProps {
   };
 }
 
-const BASE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_APP_URL || "https://www.ilovetechtools.com"
-).replace(/\/$/, "");
-
 export default function ToolPageSeoWrapper({
   children,
   title,
@@ -32,34 +28,10 @@ export default function ToolPageSeoWrapper({
   includeBreadcrumbs = true,
   includeFaq = true,
   includeRelatedTools = true,
-  schemaProps = {},
+  schemaProps: _schemaProps = {},
 }: ToolPageSeoWrapperProps) {
-  const { toolName = title, applicationCategory = "DeveloperApplication", operatingSystem = "All" } = schemaProps;
-
-  const softwareAppSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: toolName,
-    description: toolDescription,
-    url: `${BASE_URL}`,
-    applicationCategory: applicationCategory,
-    operatingSystem: operatingSystem,
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-  };
-
   return (
     <div>
-      {/* Inject SoftwareApplication Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }}
-        suppressHydrationWarning
-      />
-
       {/* Breadcrumbs with Schema */}
       {includeBreadcrumbs && <Breadcrumbs />}
 
@@ -87,7 +59,6 @@ export default function ToolPageSeoWrapper({
         {/* FAQ Section with H2 heading */}
         {includeFaq && faqItems && faqItems.length > 0 && (
           <FaqSection
-            title="Frequently Asked Questions"
             items={faqItems}
           />
         )}

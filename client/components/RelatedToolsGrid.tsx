@@ -1,9 +1,9 @@
 "use client";
 
 import { Link } from "@/lib/router-compat";
-import { useLocale } from "@/lib/locale";
 import { allDashboardTools, DASHBOARD_CATEGORIES } from "@/lib/dashboards-config";
 import { ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface RelatedToolsGridProps {
   category: string;
@@ -11,7 +11,7 @@ interface RelatedToolsGridProps {
 }
 
 export default function RelatedToolsGrid({ category, limit = 4 }: RelatedToolsGridProps) {
-  const { locale } = useLocale();
+  const t = useTranslations("SharedSeo");
 
   // Find tools in the specified category
   const toolsInCategory = allDashboardTools.filter(
@@ -35,10 +35,10 @@ export default function RelatedToolsGrid({ category, limit = 4 }: RelatedToolsGr
     <section className="mx-auto max-w-5xl px-6 py-12">
       <div className="mb-8">
         <h2 className="text-3xl font-extrabold tracking-tight text-[#1F3A26] sm:text-4xl mb-2">
-          Related Tools
+          {t("relatedTools")}
         </h2>
         <p className="text-[#4A6857]">
-          Explore more tools in{" "}
+          {t("exploreMore")} {" "}
           <Link
             to={categoryRoute}
             className="text-[#10A968] font-semibold hover:underline"
@@ -60,10 +60,10 @@ export default function RelatedToolsGrid({ category, limit = 4 }: RelatedToolsGr
                 {tool.title}
               </h3>
               <p className="text-sm text-[#4A6857] flex-grow mb-4">
-                {tool.description || "Quick access to this tool"}
+                {tool.description || t("quickAccess")}
               </p>
               <div className="flex items-center text-[#10A968] font-medium text-sm">
-                <span>Visit Tool</span>
+                <span>{t("visitTool")}</span>
                 <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>

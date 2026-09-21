@@ -144,15 +144,42 @@
     "dashboardBadge": "Panel",
     "toolsCount": "araç",
     "dashboardCards": {
-      "pdf": { "title": "PDF Araçları Paneli", "description": "PDF dosyalarınızı tek bir çalışma alanında yönetin." },
-      "image": { "title": "Görsel Araçları Paneli", "description": "Görselleri tek bir yerde düzenleyin, dönüştürün ve optimize edin." },
-      "cryptoSecurity": { "title": "Kripto ve Güvenlik Paneli", "description": "Hassas verileri koruyun, doğrulayın, özetleyin ve inceleyin." },
-      "converters": { "title": "Dönüştürücü Araçları Paneli", "description": "Verileri, dosyaları, biçimleri ve değerleri hızla dönüştürün." },
-      "web": { "title": "Web Araçları Paneli", "description": "Modern web içeriğini inceleyin, test edin ve hazırlayın." },
-      "developer": { "title": "Geliştirici Paneli", "description": "Yazılım projeleri oluşturun, hata ayıklayın, biçimlendirin ve belgeleyin." },
-      "network": { "title": "Ağ Paneli", "description": "Adresler, bağlantı noktaları, protokoller ve bağlantılarla çalışın." },
-      "textData": { "title": "Metin ve Veri Paneli", "description": "Metni dönüştürün, karşılaştırın, oluşturun ve analiz edin." },
-      "mathMedia": { "title": "Matematik ve Medya Paneli", "description": "Hesaplayın, ölçün, kaydedin ve medya içerikleri oluşturun." }
+      "pdf": {
+        "title": "PDF Araçları Paneli",
+        "description": "PDF dosyalarınızı tek bir çalışma alanında yönetin."
+      },
+      "image": {
+        "title": "Görsel Araçları Paneli",
+        "description": "Görselleri tek bir yerde düzenleyin, dönüştürün ve optimize edin."
+      },
+      "cryptoSecurity": {
+        "title": "Kripto ve Güvenlik Paneli",
+        "description": "Hassas verileri koruyun, doğrulayın, özetleyin ve inceleyin."
+      },
+      "converters": {
+        "title": "Dönüştürücü Araçları Paneli",
+        "description": "Verileri, dosyaları, biçimleri ve değerleri hızla dönüştürün."
+      },
+      "web": {
+        "title": "Web Araçları Paneli",
+        "description": "Modern web içeriğini inceleyin, test edin ve hazırlayın."
+      },
+      "developer": {
+        "title": "Geliştirici Paneli",
+        "description": "Yazılım projeleri oluşturun, hata ayıklayın, biçimlendirin ve belgeleyin."
+      },
+      "network": {
+        "title": "Ağ Paneli",
+        "description": "Adresler, bağlantı noktaları, protokoller ve bağlantılarla çalışın."
+      },
+      "textData": {
+        "title": "Metin ve Veri Paneli",
+        "description": "Metni dönüştürün, karşılaştırın, oluşturun ve analiz edin."
+      },
+      "mathMedia": {
+        "title": "Matematik ve Medya Paneli",
+        "description": "Hesaplayın, ölçün, kaydedin ve medya içerikleri oluşturun."
+      }
     },
     "toolCards": {
       "pdfDashboard": "PDF Araçları Paneli",
@@ -171,18 +198,47 @@
   },
   "ToolCatalog": {
     "Pdf": {
-      "mergePdf": { "name": "PDF Birleştir" },
-      "splitPdf": { "name": "PDF Böl" },
-      "compressPdf": { "name": "PDF Sıkıştır" },
-      "pdfToWord": { "name": "PDF'den Word'e" },
-      "wordToPdf": { "name": "Word'den PDF'e" }
+      "mergePdf": {
+        "name": "PDF Birleştir"
+      },
+      "splitPdf": {
+        "name": "PDF Böl"
+      },
+      "compressPdf": {
+        "name": "PDF Sıkıştır"
+      },
+      "pdfToWord": {
+        "name": "PDF'den Word'e"
+      },
+      "wordToPdf": {
+        "name": "Word'den PDF'e"
+      }
     },
     "Image": {
-      "compressImage": { "name": "Görseli Sıkıştır" },
-      "resizeImage": { "name": "Görseli Yeniden Boyutlandır" },
-      "cropImage": { "name": "Görseli Kırp" },
-      "imageToJpg": { "name": "Görselden JPG'ye" },
-      "removeBackground": { "name": "Arka Planı Kaldır" }
+      "compressImage": {
+        "name": "Görseli Sıkıştır"
+      },
+      "resizeImage": {
+        "name": "Görseli Yeniden Boyutlandır"
+      },
+      "cropImage": {
+        "name": "Görseli Kırp"
+      },
+      "imageToJpg": {
+        "name": "Görselden JPG'ye"
+      },
+      "removeBackground": {
+        "name": "Arka Planı Kaldır"
+      }
     }
+  },
+  "SharedSeo": {
+    "faqTitle": "Sık Sorulan Sorular",
+    "faqSubtitle": "Gizlilik, güvenlik ve performans hakkında bilmeniz gereken her şey.",
+    "faqBadge": "Yardım Merkezi",
+    "relatedTools": "İlgili Araçlar",
+    "exploreMore": "Daha fazla aracı keşfedin:",
+    "quickAccess": "Bu araca hızlı erişim",
+    "visitTool": "Aracı Aç"
   }
 }

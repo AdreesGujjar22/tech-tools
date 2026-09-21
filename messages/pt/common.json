@@ -133,15 +133,42 @@
     "dashboardBadge": "Painel",
     "toolsCount": "ferramentas",
     "dashboardCards": {
-      "pdf": { "title": "Painel de Ferramentas PDF", "description": "Gerencie arquivos PDF em um espaço de trabalho dedicado." },
-      "image": { "title": "Painel de Ferramentas de Imagem", "description": "Edite, converta e otimize imagens em um só lugar." },
-      "cryptoSecurity": { "title": "Painel de Criptografia e Segurança", "description": "Proteja, valide, gere hashes e inspecione dados sensíveis." },
-      "converters": { "title": "Painel de Ferramentas de Conversão", "description": "Converta dados, arquivos, formatos e valores rapidamente." },
-      "web": { "title": "Painel de Ferramentas Web", "description": "Inspecione, teste e prepare conteúdo web moderno." },
-      "developer": { "title": "Painel de Ferramentas para Desenvolvedores", "description": "Crie, depure, formate e documente projetos de software." },
-      "network": { "title": "Painel de Ferramentas de Rede", "description": "Trabalhe com endereços, portas, protocolos e conectividade." },
-      "textData": { "title": "Painel de Texto e Dados", "description": "Transforme, compare, gere e analise textos." },
-      "mathMedia": { "title": "Painel de Matemática e Mídia", "description": "Calcule, meça, grave e crie recursos de mídia." }
+      "pdf": {
+        "title": "Painel de Ferramentas PDF",
+        "description": "Gerencie arquivos PDF em um espaço de trabalho dedicado."
+      },
+      "image": {
+        "title": "Painel de Ferramentas de Imagem",
+        "description": "Edite, converta e otimize imagens em um só lugar."
+      },
+      "cryptoSecurity": {
+        "title": "Painel de Criptografia e Segurança",
+        "description": "Proteja, valide, gere hashes e inspecione dados sensíveis."
+      },
+      "converters": {
+        "title": "Painel de Ferramentas de Conversão",
+        "description": "Converta dados, arquivos, formatos e valores rapidamente."
+      },
+      "web": {
+        "title": "Painel de Ferramentas Web",
+        "description": "Inspecione, teste e prepare conteúdo web moderno."
+      },
+      "developer": {
+        "title": "Painel de Ferramentas para Desenvolvedores",
+        "description": "Crie, depure, formate e documente projetos de software."
+      },
+      "network": {
+        "title": "Painel de Ferramentas de Rede",
+        "description": "Trabalhe com endereços, portas, protocolos e conectividade."
+      },
+      "textData": {
+        "title": "Painel de Texto e Dados",
+        "description": "Transforme, compare, gere e analise textos."
+      },
+      "mathMedia": {
+        "title": "Painel de Matemática e Mídia",
+        "description": "Calcule, meça, grave e crie recursos de mídia."
+      }
     },
     "toolCards": {
       "pdfDashboard": "Painel de Ferramentas PDF",
@@ -160,18 +187,47 @@
   },
   "ToolCatalog": {
     "Pdf": {
-      "mergePdf": { "name": "Unir PDF" },
-      "splitPdf": { "name": "Dividir PDF" },
-      "compressPdf": { "name": "Comprimir PDF" },
-      "pdfToWord": { "name": "PDF para Word" },
-      "wordToPdf": { "name": "Word para PDF" }
+      "mergePdf": {
+        "name": "Unir PDF"
+      },
+      "splitPdf": {
+        "name": "Dividir PDF"
+      },
+      "compressPdf": {
+        "name": "Comprimir PDF"
+      },
+      "pdfToWord": {
+        "name": "PDF para Word"
+      },
+      "wordToPdf": {
+        "name": "Word para PDF"
+      }
     },
     "Image": {
-      "compressImage": { "name": "Comprimir Imagem" },
-      "resizeImage": { "name": "Redimensionar Imagem" },
-      "cropImage": { "name": "Recortar Imagem" },
-      "imageToJpg": { "name": "Imagem para JPG" },
-      "removeBackground": { "name": "Remover Fundo" }
+      "compressImage": {
+        "name": "Comprimir Imagem"
+      },
+      "resizeImage": {
+        "name": "Redimensionar Imagem"
+      },
+      "cropImage": {
+        "name": "Recortar Imagem"
+      },
+      "imageToJpg": {
+        "name": "Imagem para JPG"
+      },
+      "removeBackground": {
+        "name": "Remover Fundo"
+      }
     }
+  },
+  "SharedSeo": {
+    "faqTitle": "Perguntas frequentes",
+    "faqSubtitle": "Tudo o que você precisa saber sobre privacidade, segurança e desempenho.",
+    "faqBadge": "Central de ajuda",
+    "relatedTools": "Ferramentas relacionadas",
+    "exploreMore": "Explore mais ferramentas em",
+    "quickAccess": "Acesso rápido a esta ferramenta",
+    "visitTool": "Abrir ferramenta"
   }
 }

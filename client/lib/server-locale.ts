@@ -150,3 +150,23 @@ export async function buildToolMetadata(
     twitter: { card: "summary_large_image" as const, title, description, images: ["/images/og-default.png"] },
   };
 }
+
+export async function buildCatalogToolMetadata(
+  routePath: string,
+  family: "Pdf" | "Image",
+  toolKey: string,
+) {
+  const locale = await getRequestLocale();
+  const loaded = await loadMessages(locale, ["common"]);
+  const catalog = (loaded.ToolCatalog as Record<string, any>)?.[family]?.[toolKey] ?? {};
+  const name = catalog.name ?? toolKey.replace(/([A-Z])/g, " $1").trim();
+  const description = catalog.long ?? catalog.short ?? `Use the free online ${name} tool securely in your browser.`;
+  const alternates = await getLocalizedAlternates(routePath);
+  const title = withSiteName(name);
+  return {
+    title, description, keywords: `${name}, ${name} online, free ${name.toLowerCase()}, Tech Tools`, alternates,
+    robots: { index: true, follow: true, "max-snippet": -1, "max-image-preview": "large" as const, "max-video-preview": -1 },
+    openGraph: { title, description, type: "website" as const, url: alternates.canonical, locale: openGraphLocales[locale], images: [{ url: "/images/og-default.png", width: 1200, height: 630, alt: title }] },
+    twitter: { card: "summary_large_image" as const, title, description, images: ["/images/og-default.png"] },
+  };
+}

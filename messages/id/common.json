@@ -159,15 +159,42 @@
     "dashboardBadge": "Dasbor",
     "toolsCount": "alat",
     "dashboardCards": {
-      "pdf": { "title": "Dasbor Alat PDF", "description": "Kelola file PDF dalam satu ruang kerja khusus." },
-      "image": { "title": "Dasbor Alat Gambar", "description": "Edit, konversi, dan optimalkan gambar di satu tempat." },
-      "cryptoSecurity": { "title": "Dasbor Kripto dan Keamanan", "description": "Lindungi, validasi, hash, dan periksa data sensitif." },
-      "converters": { "title": "Dasbor Konverter", "description": "Konversi data, file, format, dan nilai dengan cepat." },
-      "web": { "title": "Dasbor Alat Web", "description": "Periksa, uji, dan siapkan konten web modern." },
-      "developer": { "title": "Dasbor Pengembang", "description": "Bangun, debug, format, dan dokumentasikan proyek perangkat lunak." },
-      "network": { "title": "Dasbor Jaringan", "description": "Gunakan alamat, port, protokol, dan konektivitas." },
-      "textData": { "title": "Dasbor Teks dan Data", "description": "Ubah, bandingkan, buat, dan analisis teks." },
-      "mathMedia": { "title": "Dasbor Matematika dan Media", "description": "Hitung, ukur, rekam, dan buat aset media." }
+      "pdf": {
+        "title": "Dasbor Alat PDF",
+        "description": "Kelola file PDF dalam satu ruang kerja khusus."
+      },
+      "image": {
+        "title": "Dasbor Alat Gambar",
+        "description": "Edit, konversi, dan optimalkan gambar di satu tempat."
+      },
+      "cryptoSecurity": {
+        "title": "Dasbor Kripto dan Keamanan",
+        "description": "Lindungi, validasi, hash, dan periksa data sensitif."
+      },
+      "converters": {
+        "title": "Dasbor Konverter",
+        "description": "Konversi data, file, format, dan nilai dengan cepat."
+      },
+      "web": {
+        "title": "Dasbor Alat Web",
+        "description": "Periksa, uji, dan siapkan konten web modern."
+      },
+      "developer": {
+        "title": "Dasbor Pengembang",
+        "description": "Bangun, debug, format, dan dokumentasikan proyek perangkat lunak."
+      },
+      "network": {
+        "title": "Dasbor Jaringan",
+        "description": "Gunakan alamat, port, protokol, dan konektivitas."
+      },
+      "textData": {
+        "title": "Dasbor Teks dan Data",
+        "description": "Ubah, bandingkan, buat, dan analisis teks."
+      },
+      "mathMedia": {
+        "title": "Dasbor Matematika dan Media",
+        "description": "Hitung, ukur, rekam, dan buat aset media."
+      }
     },
     "toolCards": {
       "pdfDashboard": "Dasbor Alat PDF",
@@ -656,5 +683,14 @@
         "long": "Gambar, coret-coret, tambahkan kotak teks, filter (sepia, monokrom, balikkan), sesuaikan penggeser warna, skalakan, potong, dan tambahkan watermark dalam satu ruang kerja terpadu."
       }
     }
+  },
+  "SharedSeo": {
+    "faqTitle": "Pertanyaan Umum",
+    "faqSubtitle": "Semua yang perlu Anda ketahui tentang privasi, keamanan, dan performa.",
+    "faqBadge": "Pusat Bantuan",
+    "relatedTools": "Alat Terkait",
+    "exploreMore": "Jelajahi alat lainnya di",
+    "quickAccess": "Akses cepat ke alat ini",
+    "visitTool": "Buka Alat"
   }
 }

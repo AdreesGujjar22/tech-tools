@@ -10,6 +10,6 @@ export default function CrontabGenerator() { const t = useTranslations("Tools.Cr
 
       {/* Frequently Asked Questions */}
       {faqs && faqs.length > 0 && (
-        <FaqSection items={faqs} title="Frequently Asked Questions" />
+        <FaqSection items={faqs} />
       )}
     </main>; }

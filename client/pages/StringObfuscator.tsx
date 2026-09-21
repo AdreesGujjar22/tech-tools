@@ -11,6 +11,6 @@ export default function StringObfuscator() { const t = useTranslations("Tools.St
 
       {/* Frequently Asked Questions */}
       {faqs && faqs.length > 0 && (
-        <FaqSection items={faqs} title="Frequently Asked Questions" />
+        <FaqSection items={faqs} />
       )}
     </main>; }

@@ -159,15 +159,42 @@
     "dashboardBadge": "Dashboard",
     "toolsCount": "tools",
     "dashboardCards": {
-      "pdf": { "title": "PDF-toolsdashboard", "description": "Beheer PDF-bestanden in één overzichtelijke werkruimte." },
-      "image": { "title": "Afbeeldingstoolsdashboard", "description": "Bewerk, converteer en optimaliseer afbeeldingen op één plek." },
-      "cryptoSecurity": { "title": "Crypto- en beveiligingsdashboard", "description": "Bescherm, valideer, hash en inspecteer gevoelige gegevens." },
-      "converters": { "title": "Converterdashboard", "description": "Converteer gegevens, bestanden, indelingen en waarden snel." },
-      "web": { "title": "Webtoolsdashboard", "description": "Inspecteer, test en bereid moderne webcontent voor." },
-      "developer": { "title": "Dashboard voor ontwikkelaars", "description": "Bouw, debug, formatteer en documenteer softwareprojecten." },
-      "network": { "title": "Netwerkdashboard", "description": "Werk met adressen, poorten, protocollen en verbindingen." },
-      "textData": { "title": "Dashboard voor tekst en gegevens", "description": "Transformeer, vergelijk, genereer en analyseer tekst." },
-      "mathMedia": { "title": "Dashboard voor wiskunde en media", "description": "Bereken, meet, neem op en maak media-items." }
+      "pdf": {
+        "title": "PDF-toolsdashboard",
+        "description": "Beheer PDF-bestanden in één overzichtelijke werkruimte."
+      },
+      "image": {
+        "title": "Afbeeldingstoolsdashboard",
+        "description": "Bewerk, converteer en optimaliseer afbeeldingen op één plek."
+      },
+      "cryptoSecurity": {
+        "title": "Crypto- en beveiligingsdashboard",
+        "description": "Bescherm, valideer, hash en inspecteer gevoelige gegevens."
+      },
+      "converters": {
+        "title": "Converterdashboard",
+        "description": "Converteer gegevens, bestanden, indelingen en waarden snel."
+      },
+      "web": {
+        "title": "Webtoolsdashboard",
+        "description": "Inspecteer, test en bereid moderne webcontent voor."
+      },
+      "developer": {
+        "title": "Dashboard voor ontwikkelaars",
+        "description": "Bouw, debug, formatteer en documenteer softwareprojecten."
+      },
+      "network": {
+        "title": "Netwerkdashboard",
+        "description": "Werk met adressen, poorten, protocollen en verbindingen."
+      },
+      "textData": {
+        "title": "Dashboard voor tekst en gegevens",
+        "description": "Transformeer, vergelijk, genereer en analyseer tekst."
+      },
+      "mathMedia": {
+        "title": "Dashboard voor wiskunde en media",
+        "description": "Bereken, meet, neem op en maak media-items."
+      }
     },
     "toolCards": {
       "pdfDashboard": "PDF-Tools Dashboard",
@@ -656,5 +683,14 @@
         "long": "Teken, krabbel, voeg tekstvakken toe, filters (sepia, monochroom, omkeren), pas kleurschuifregelaars aan, schaal, snijd bij en voeg watermerken toe in één uniforme werkruimte."
       }
     }
+  },
+  "SharedSeo": {
+    "faqTitle": "Veelgestelde vragen",
+    "faqSubtitle": "Alles wat je moet weten over privacy, beveiliging en prestaties.",
+    "faqBadge": "Helpcentrum",
+    "relatedTools": "Gerelateerde tools",
+    "exploreMore": "Ontdek meer tools in",
+    "quickAccess": "Snelle toegang tot deze tool",
+    "visitTool": "Tool openen"
   }
 }

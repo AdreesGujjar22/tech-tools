@@ -13,6 +13,6 @@ export default function EmailNormalizer() { const t = useTranslations("Tools.Ema
 
       {/* Frequently Asked Questions */}
       {faqs && faqs.length > 0 && (
-        <FaqSection items={faqs} title="Frequently Asked Questions" />
+        <FaqSection items={faqs} />
       )}
     </main>; }

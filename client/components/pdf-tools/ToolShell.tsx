@@ -99,7 +99,7 @@ export default function ToolShell({
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-6">
         <AlertTriangle className="w-16 h-16 text-red-500 mb-4" />
-        <h1 className="text-2xl font-semibold mb-2 text-[#1F3A26]">{t("toolNotFound")}</h1>
+        <h2 className="text-2xl font-semibold mb-2 text-[#1F3A26]">{t("toolNotFound")}</h2>
         <p className="text-[#4A6857] mb-6">{t("pdfToolMissing")}</p>
         <Link to="/ilovepdf" className="px-6 py-2 bg-[#10A968] text-white rounded-lg hover:bg-[#0d8f56] transition">
           {t("returnToHub")}
@@ -112,7 +112,7 @@ export default function ToolShell({
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-6">
         <AlertTriangle className="w-16 h-16 text-amber-500 mb-4 animate-bounce" />
-        <h1 className="text-2xl font-bold tracking-tight text-[#1F3A26] mb-2">{t("temporarilyOffline")}</h1>
+        <h2 className="text-2xl font-bold tracking-tight text-[#1F3A26] mb-2">{t("temporarilyOffline")}</h2>
         <p className="text-[#4A6857] max-w-md mb-6 leading-relaxed">
           {t("disabled", { toolName: catalog(`Pdf.${toolKey}.name`) })}
         </p>
@@ -315,9 +315,9 @@ export default function ToolShell({
               <div className="absolute inset-0 bg-[#10A968]/10 blur-xl rounded-full" />
             </div>
 
-            <h3 className="text-xl font-semibold text-[#1F3A26] mb-2 text-center">
+            <h2 className="text-xl font-semibold text-[#1F3A26] mb-2 text-center">
               {t("dragFiles")}
-            </h3>
+            </h2>
 
             <p className="text-[#4A6857] text-sm mb-6 text-center max-w-md leading-relaxed">
               {t("acceptingFiles", { extensions: allowedExtensions.join(", "), maxSize: formatSize(50 * 1024 * 1024) })}
@@ -346,9 +346,9 @@ export default function ToolShell({
             {/* Left side: Uploaded file List */}
             <div className="lg:col-span-2 space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="font-semibold text-[#1F3A26] flex items-center gap-2 text-lg">
+                <h2 className="font-semibold text-[#1F3A26] flex items-center gap-2 text-lg">
                   {t("loadedFiles", { count: files.length })}
-                </h3>
+                </h2>
                 {allowMultiple && files.length < maxFiles && (
                   <button
                     onClick={handleManualSelect}
@@ -400,7 +400,7 @@ export default function ToolShell({
             <div className="bg-white border border-[#C5DCC9] rounded-3xl p-6 flex flex-col justify-between shadow-sm">
               <div className="space-y-6">
                 <div className="border-b border-[#C5DCC9] pb-4">
-                  <h3 className="font-semibold text-[#1F3A26] text-md tracking-tight">{configTitle}</h3>
+                  <h2 className="font-semibold text-[#1F3A26] text-md tracking-tight">{configTitle}</h2>
                 </div>
 
                 {renderConfig ? (
@@ -442,7 +442,7 @@ export default function ToolShell({
           >
             <div className="flex flex-col items-center justify-center p-8">
               <Loader2 className="w-14 h-14 text-[#10A968] animate-spin mb-6" />
-              <h3 className="text-xl font-bold text-[#1F3A26] mb-2">{t("processingDocument")}</h3>
+              <h2 className="text-xl font-bold text-[#1F3A26] mb-2">{t("processingDocument")}</h2>
               <p className="text-[#4A6857] text-sm max-w-sm mb-6 leading-relaxed">
                 {progressMsg || t("assemblingDocument")}
               </p>
@@ -478,7 +478,7 @@ export default function ToolShell({
                 <div className="absolute inset-0 bg-[#10A968]/10 blur-xl rounded-full" />
               </div>
 
-              <h3 className="text-2xl font-bold text-[#1F3A26] mb-2">{t("pdfReady")}</h3>
+              <h2 className="text-2xl font-bold text-[#1F3A26] mb-2">{t("pdfReady")}</h2>
               <p className="text-[#4A6857] text-sm max-w-sm mb-8 leading-relaxed">
                 {t("pdfReadyDescription")}
               </p>

@@ -10,6 +10,6 @@ export default function TextStatistics() { const t = useTranslations("Tools.Text
 
       {/* Frequently Asked Questions */}
       {faqs && faqs.length > 0 && (
-        <FaqSection items={faqs} title="Frequently Asked Questions" />
+        <FaqSection items={faqs} />
       )}
     </main>; }

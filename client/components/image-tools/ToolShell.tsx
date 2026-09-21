@@ -125,7 +125,7 @@ export default function ToolShell({
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-6">
         <AlertTriangle className="w-16 h-16 text-[#10A968] mb-4 animate-bounce" />
-        <h1 className="text-2xl font-bold tracking-tight text-[#1F3A26] mb-2">{t("toolNotFound")}</h1>
+        <h2 className="text-2xl font-bold tracking-tight text-[#1F3A26] mb-2">{t("toolNotFound")}</h2>
         <p className="text-[#4A6857] mb-6 max-w-sm">{t("imageToolMissing")}</p>
         <Link to="/iloveimg" className="px-6 py-2 bg-[#10A968] hover:bg-[#0d8f56] text-white rounded-xl font-semibold transition cursor-pointer">
           {t("returnToHub")}
@@ -138,7 +138,7 @@ export default function ToolShell({
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-6">
         <AlertTriangle className="w-16 h-16 text-amber-500 mb-4 animate-bounce" />
-        <h1 className="text-2xl font-bold tracking-tight text-[#1F3A26] mb-2">{t("temporarilyOffline")}</h1>
+        <h2 className="text-2xl font-bold tracking-tight text-[#1F3A26] mb-2">{t("temporarilyOffline")}</h2>
         <p className="text-[#4A6857] max-w-sm mb-6 leading-relaxed text-sm">
           {t("disabled", { toolName: catalog(`Image.${toolKey}.name`) })}
         </p>
@@ -411,9 +411,9 @@ export default function ToolShell({
                 </div>
 
                 <div className="space-y-3 relative z-10 max-w-sm">
-                  <h3 className="text-[#1F3A26] font-bold text-lg group-hover:text-[#10A968] transition">
+                  <h2 className="text-[#1F3A26] font-bold text-lg group-hover:text-[#10A968] transition">
                     {allowMultiple ? t("dragImages") : t("dragImage")}
-                  </h3>
+                  </h2>
                   <p className="text-[#4A6857] text-sm leading-relaxed group-hover:text-[#2D4D35] transition">
                     {t("orBrowse")} <span className="text-[#10A968] font-semibold cursor-pointer hover:text-[#0d8f56]">{t("browse")}</span> {t("yourFiles")}
                   </p>
@@ -508,10 +508,10 @@ export default function ToolShell({
                 {/* For smaller screen layouts, settings can be placed under as well */}
                 <div className="lg:hidden">
                   <div className="bg-white border border-[#C5DCC9] rounded-2xl p-6 space-y-6 shadow-sm">
-                    <h3 className="font-bold text-lg text-[#1F3A26] border-b border-[#C5DCC9] pb-3 flex items-center gap-2">
+                    <h2 className="font-bold text-lg text-[#1F3A26] border-b border-[#C5DCC9] pb-3 flex items-center gap-2">
                       <Settings2 className="w-5 h-5" />
                       {configTitle}
-                    </h3>
+                    </h2>
                     {renderConfig && renderConfig(files, config, setConfig)}
                     <button
                     onClick={handleProcessSubmit}
@@ -540,7 +540,7 @@ export default function ToolShell({
                 </div>
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <Zap className="w-5 h-5 text-[#10A968]" />
-                  <h3 className="text-[#1F3A26] font-extrabold text-xl">{t("processingImages")}</h3>
+                  <h2 className="text-[#1F3A26] font-extrabold text-xl">{t("processingImages")}</h2>
                 </div>
                 <p className="text-[#4A6857] text-sm mb-8 max-w-sm mx-auto font-medium line-clamp-2">
                   {progressMsg}
@@ -583,7 +583,7 @@ export default function ToolShell({
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-[#1F3A26] font-extrabold text-2xl">{t("allDone")}</h3>
+                    <h2 className="text-[#1F3A26] font-extrabold text-2xl">{t("allDone")}</h2>
                     <p className="text-[#10A968] text-sm mt-2 font-medium">
                       {t("optimizedReady", { count: processedResults.length })}
                     </p>
@@ -682,10 +682,10 @@ export default function ToolShell({
         <div className="lg:col-span-4 space-y-6">
           {/* Main Desktop Configuration Box */}
           <div className="hidden lg:block bg-white border border-[#C5DCC9] rounded-3xl p-6 shadow-sm leading-relaxed">
-            <h3 className="font-extrabold text-[#1F3A26] text-base mb-4 pb-3 border-b border-[#C5DCC9] flex items-center gap-2">
+            <h2 className="font-extrabold text-[#1F3A26] text-base mb-4 pb-3 border-b border-[#C5DCC9] flex items-center gap-2">
               <span className="w-1.5 h-1.5 bg-indigo-505 rounded-full" />
               {configTitle}
-            </h3>
+            </h2>
             
             <AnimatePresence mode="wait">
               {stage === "select" && (

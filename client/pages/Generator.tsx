@@ -277,7 +277,7 @@ export default function Generator() {
         </div>
 
         {/* FAQ Section */}
-        {faqs && faqs.length > 0 && <FaqSection items={faqs} title="Frequently Asked Questions" />}
+        {faqs && faqs.length > 0 && <FaqSection items={faqs} />}
       </main>
     </div>
   );

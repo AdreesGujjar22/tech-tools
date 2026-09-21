@@ -10,6 +10,6 @@ export default function RomanNumeralConverter() { const t = useTranslations("Too
 
       {/* Frequently Asked Questions */}
       {faqs && faqs.length > 0 && (
-        <FaqSection items={faqs} title="Frequently Asked Questions" />
+        <FaqSection items={faqs} />
       )}
     </main>; }

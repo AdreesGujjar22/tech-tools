@@ -1,6 +1,8 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { IMAGE_TOOLS } from "@/components/image-tools/toolsData";
+import type { Metadata } from "next";
+import { buildCatalogToolMetadata } from "@/lib/server-locale";
 
 const toolLoaders = {
   "compress-image": () => import("@/components/image-tools/CompressImage"),
@@ -40,6 +42,13 @@ const converterProps = {
 
 interface ToolPageProps {
   params: Promise<{ tool: string }>;
+}
+
+export async function generateMetadata({ params }: ToolPageProps): Promise<Metadata> {
+  const { tool } = await params;
+  if (!IMAGE_TOOLS.some((item) => item.id === tool)) return {};
+  const key = tool.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+  return buildCatalogToolMetadata(`/iloveimg/${tool}`, "Image", key);
 }
 
 export default async function ToolPage({ params }: ToolPageProps) {
