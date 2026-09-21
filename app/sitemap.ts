@@ -1,20 +1,21 @@
 import type { MetadataRoute } from "next";
-import { readFile } from "node:fs/promises";
 import { publicRoutes, supportedLocales } from "../messages";
 
 const baseUrl = (
   process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_APP_URL || "https://www.ilovetechtools.com"
 ).replace(/\/$/, "");
 
-function stringValue(value: { stringValue?: string } | undefined) {
-  return value?.stringValue || "";
+function stringValue(value: { stringValue?: string; timestampValue?: string } | undefined) {
+  return value?.stringValue || value?.timestampValue || "";
 }
 
-async function getPublishedBlogSlugs() {
+type BlogEntry = { slug: string; updatedAt?: string };
+
+async function getPublishedBlogs(): Promise<BlogEntry[]> {
   const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
   if (!projectId) return [];
 
-  const slugs: string[] = [];
+  const blogs: BlogEntry[] = [];
   let pageToken = "";
 
   do {
@@ -25,13 +26,15 @@ async function getPublishedBlogSlugs() {
     if (pageToken) url.searchParams.set("pageToken", pageToken);
 
     const response = await fetch(url, { next: { revalidate: 300 } });
-    if (!response.ok) return slugs;
+    if (!response.ok) return blogs;
 
     const data = (await response.json()) as {
       documents?: Array<{
+        updateTime?: string;
         fields?: {
           slug?: { stringValue?: string };
           status?: { stringValue?: string };
+          updatedAt?: { stringValue?: string; timestampValue?: string };
         };
       }>;
       nextPageToken?: string;
@@ -41,56 +44,67 @@ async function getPublishedBlogSlugs() {
       const fields = document.fields;
       if (stringValue(fields?.status) === "published") {
         const slug = stringValue(fields?.slug);
-        if (slug) slugs.push(slug);
+        if (slug) blogs.push({ slug, updatedAt: stringValue(fields?.updatedAt) || document.updateTime });
       }
     }
 
     pageToken = data.nextPageToken || "";
   } while (pageToken);
 
-  return slugs;
+  return blogs;
 }
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticSitemap = await readFile(new URL("../public/sitemap.xml", import.meta.url), "utf8").catch(() => "");
-  const staticUrls = [...staticSitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  
-  // Generate localized routes for all public routes
-  const localizedRouteUrls: string[] = [];
-  for (const locale of supportedLocales) {
-    for (const path of Object.values(publicRoutes)) {
-      if (path === "/") {
-        localizedRouteUrls.push(`${baseUrl}/${locale}/`);
-      } else {
-        localizedRouteUrls.push(`${baseUrl}/${locale}${path}`);
-      }
-    }
-  }
-  
-  const routeUrls = [...new Set([
-    ...staticUrls,
-    ...localizedRouteUrls,
-  ])];
-  
-  const routes = routeUrls.map((url) => ({
-    url,
-    changeFrequency: "weekly" as const,
-    priority: url === `${baseUrl}/` ? 0.8 : url.endsWith("/") && url.split("/").length === 4 ? 0.7 : 0.6,
-  }));
+function localeUrl(locale: string, path: string) {
+  return path === "/" ? `${baseUrl}/${locale}/` : `${baseUrl}/${locale}${path}`;
+}
 
-  const blogSlugs = await getPublishedBlogSlugs();
-  const blogs: MetadataRoute.Sitemap = [];
-  
-  // Generate localized blog URLs for each locale
-  for (const locale of supportedLocales) {
-    for (const slug of blogSlugs) {
-      blogs.push({
-        url: `${baseUrl}/${locale}/blog/${encodeURIComponent(slug)}`,
-        changeFrequency: "weekly" as const,
-        priority: 0.7,
+/**
+ * One generated sitemap for the whole site.
+ *
+ * The old public/sitemap.xml shadowed this route (files in /public win over
+ * app routes), so the generated URLs - including every blog post - were never
+ * served to Google. The static file has been removed and each entry now ships
+ * hreflang alternates plus a lastModified date.
+ */
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const paths = Array.from(new Set(Object.values(publicRoutes) as string[]));
+  const now = new Date();
+
+  const languagesFor = (path: string) =>
+    Object.fromEntries(supportedLocales.map((locale) => [locale, localeUrl(locale, path)]));
+
+  const routes: MetadataRoute.Sitemap = [];
+  for (const path of paths) {
+    for (const locale of supportedLocales) {
+      routes.push({
+        url: localeUrl(locale, path),
+        lastModified: now,
+        changeFrequency: path === "/" ? "daily" : "weekly",
+        priority: path === "/" ? 1 : 0.7,
+        alternates: { languages: { ...languagesFor(path), "x-default": localeUrl("en", path) } },
       });
     }
   }
 
-  return [...routes, ...blogs.filter((blog) => !routeUrls.includes(blog.url))];
+  const blogs = await getPublishedBlogs();
+  const blogEntries: MetadataRoute.Sitemap = [];
+  for (const blog of blogs) {
+    const path = `/blog/${encodeURIComponent(blog.slug)}`;
+    for (const locale of supportedLocales) {
+      blogEntries.push({
+        url: localeUrl(locale, path),
+        lastModified: blog.updatedAt ? new Date(blog.updatedAt) : now,
+        changeFrequency: "weekly",
+        priority: 0.6,
+        alternates: { languages: { ...languagesFor(path), "x-default": localeUrl("en", path) } },
+      });
+    }
+  }
+
+  const seen = new Set<string>();
+  return [...routes, ...blogEntries].filter((entry) => {
+    if (seen.has(entry.url)) return false;
+    seen.add(entry.url);
+    return true;
+  });
 }

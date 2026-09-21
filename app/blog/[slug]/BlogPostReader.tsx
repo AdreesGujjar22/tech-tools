@@ -14,11 +14,13 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import DOMPurify from "isomorphic-dompurify";
 
-export function BlogPostReader({ slug }: { slug: string }) {
+export function BlogPostReader({ slug, initialPost = null }: { slug: string; initialPost?: Blog | null }) {
   const navigate = useNavigate();
   const { user, isAdmin, loading: authLoading } = useAuth();
-  const [post, setPost] = useState<Blog | null>(null);
-  const [loading, setLoading] = useState(true);
+  // initialPost comes from the server, so the article HTML is present on first
+  // paint for both readers and crawlers.
+  const [post, setPost] = useState<Blog | null>(initialPost);
+  const [loading, setLoading] = useState(!initialPost);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -73,10 +75,11 @@ export function BlogPostReader({ slug }: { slug: string }) {
       }
     }
 
-    if (slug) {
+    // Skip the client fetch when the server already supplied the post.
+    if (slug && !initialPost) {
       fetchPost();
     }
-  }, [slug]);
+  }, [slug, initialPost]);
 
   const copyLink = async () => {
     try {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
+import { headers } from "next/headers";
 import "@/global.css";
 import Providers from "@/components/Providers";
 import { loadMessages } from "../messages";
@@ -62,7 +63,7 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       images: [
         {
-          url: "/images/web-logo.png",
+          url: "/images/og-default.png",
           width: 1200,
           height: 630,
           alt: "Tech Tools Logo",
@@ -74,7 +75,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: siteMetadata.title,
       description: siteMetadata.description,
-      images: ["/images/web-logo.png"],
+      images: ["/images/og-default.png"],
     },
   };
 }
@@ -101,13 +102,57 @@ export default async function RootLayout({
       url: BASE_URL,
       logo: `${BASE_URL}/images/web-logo.png`,
     },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${BASE_URL}/${locale}/tools?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
+
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Tech Tools",
+    url: BASE_URL,
+    logo: `${BASE_URL}/images/web-logo.png`,
+    description: siteMetadata.description,
+  };
+
+  // Breadcrumb trail built from the current path, so every deep page ships
+  // structured data Google can use in search results.
+  const pathname = (await headers()).get("x-pathname") || "/";
+  const crumbs = pathname.split("/").filter(Boolean);
+  const breadcrumbSchema = crumbs.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `${BASE_URL}/${locale}/` },
+          ...crumbs.map((segment, index) => ({
+            "@type": "ListItem",
+            position: index + 2,
+            name: segment.replace(/-/g, " ").replace(/\b\w/g, (character) => character.toUpperCase()),
+            item: `${BASE_URL}/${locale}/${crumbs.slice(0, index + 1).join("/")}`,
+          })),
+        ],
+      }
+    : null;
 
   return (
     <html lang={locale} suppressHydrationWarning className={`${jakarta.variable} bg-background`}>
       <head>
         <link rel="icon" type="image/png" href="/images/fav-icon.png" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+        {breadcrumbSchema ? (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+          />
+        ) : null}
         <script
           dangerouslySetInnerHTML={{
             __html: `

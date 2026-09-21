@@ -44,9 +44,9 @@ export async function buildPageMetadata(routePath: string, metadataKey: Metadata
     robots: {
       index: true,
       follow: true,
-      maxSnippet: -1,
-      maxImagePreview: "large" as const,
-      maxVideoPreview: -1,
+      "max-snippet": -1,
+      "max-image-preview": "large" as const,
+      "max-video-preview": -1,
     },
     openGraph: {
       title: pageData.title,
@@ -55,9 +55,9 @@ export async function buildPageMetadata(routePath: string, metadataKey: Metadata
       url: alternates.canonical,
       locale: openGraphLocales[locale],
       alternateLocale: Object.values(openGraphLocales).filter((value) => value !== openGraphLocales[locale]),
-      images: [{ url: "/images/web-logo.png", width: 1200, height: 630, alt: pageData.title }],
+      images: [{ url: "/images/og-default.png", width: 1200, height: 630, alt: pageData.title }],
     },
-    twitter: { card: "summary_large_image" as const, title: pageData.title, description: pageData.description, images: ["/images/web-logo.png"] },
+    twitter: { card: "summary_large_image" as const, title: pageData.title, description: pageData.description, images: ["/images/og-default.png"] },
   };
 }
 
@@ -86,15 +86,44 @@ export async function buildToolMetadata(
 ) {
   const locale = await getRequestLocale();
   const loaded = await loadMessages(locale, [namespace as never]);
-  const root = (loaded as Record<string, unknown>)[namespace] as Record<string, unknown> | undefined;
+  // loadMessages nests tool namespaces under `Tools`. Reading the namespace at
+  // the top level always returned undefined, so every one of the 100+ tool
+  // pages fell back to the identical site title and description - the main
+  // duplicate-metadata problem on the site. Look in `Tools` first.
+  const tools = (loaded as Record<string, unknown>).Tools as Record<string, unknown> | undefined;
+  let root = (tools?.[namespace] ?? (loaded as Record<string, unknown>)[namespace]) as
+    | Record<string, unknown>
+    | undefined;
+
+  // Last-resort direct read of the translation file, so a tool never falls back
+  // to the generic site title/description.
+  if (!root) {
+    root =
+      (await import(`../../messages/${locale}/tools/${namespace}.json`)
+        .then((module) => module.default as Record<string, unknown>)
+        .catch(() =>
+          import(`../../messages/en/tools/${namespace}.json`)
+            .then((module) => module.default as Record<string, unknown>)
+            .catch(() => undefined),
+        )) ?? undefined;
+  }
   const node = (subKey ? (root?.[subKey] as ToolCopy | undefined) : (root as ToolCopy | undefined)) ?? {};
 
   const fallback = await loadMessages(locale, ["meta"]);
   const site = ((fallback.Metadata as Record<string, PageMetadata>) ?? {}).site;
 
   const title = withSiteName(node.title ?? site.title);
-  const description = node.metaDescription ?? node.description ?? site.description;
-  const keywords = node.metaKeywords ?? site.keywords;
+  const baseDescription = node.metaDescription ?? node.description ?? site.description;
+  // Keep every tool description unique and long enough to be a useful snippet.
+  const description =
+    node.title && baseDescription.length < 110
+      ? `${baseDescription} Free ${node.title.toLowerCase()} tool - no sign-up, no upload, runs right in your browser.`
+      : baseDescription;
+  const keywords =
+    node.metaKeywords ??
+    (node.title
+      ? [node.title, `${node.title} online`, `free ${node.title.toLowerCase()}`, "online tools", "tech tools"].join(", ")
+      : site.keywords);
   const alternates = await getLocalizedAlternates(routePath);
 
   return {
@@ -105,9 +134,9 @@ export async function buildToolMetadata(
     robots: {
       index: true,
       follow: true,
-      maxSnippet: -1,
-      maxImagePreview: "large" as const,
-      maxVideoPreview: -1,
+      "max-snippet": -1,
+      "max-image-preview": "large" as const,
+      "max-video-preview": -1,
     },
     openGraph: {
       title,
@@ -116,8 +145,8 @@ export async function buildToolMetadata(
       url: alternates.canonical,
       locale: openGraphLocales[locale],
       alternateLocale: Object.values(openGraphLocales).filter((value) => value !== openGraphLocales[locale]),
-      images: [{ url: "/images/web-logo.png", width: 1200, height: 630, alt: title }],
+      images: [{ url: "/images/og-default.png", width: 1200, height: 630, alt: title }],
     },
-    twitter: { card: "summary_large_image" as const, title, description, images: ["/images/web-logo.png"] },
+    twitter: { card: "summary_large_image" as const, title, description, images: ["/images/og-default.png"] },
   };
 }

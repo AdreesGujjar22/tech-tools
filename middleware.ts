@@ -10,21 +10,32 @@ export function middleware(request: NextRequest) {
   const firstSegment = segments[0];
 
   let locale = defaultLocale;
+  let hasLocalePrefix = false;
 
-  // Check if URL has a locale prefix - if so, use it and rewrite
   if (locales.includes(firstSegment)) {
+    hasLocalePrefix = true;
     locale = firstSegment;
-    // Rewrite the URL to remove the locale prefix
-    // /de/about-us → /about-us
     const pathWithoutLocale = "/" + segments.slice(1).join("/");
     request.nextUrl.pathname = pathWithoutLocale || "/";
-  } else {
-    // Otherwise, use cookie or default
-    locale = request.cookies.get(localeCookie)?.value || defaultLocale;
+  }
+
+  // Un-prefixed URLs (/hash-text) duplicate the canonical /en/hash-text.
+  // Redirect crawlers and users to the canonical locale URL so Google indexes
+  // one address per page instead of two. Crawlers carry no cookie, so they
+  // always land on /en/... ; a visitor's saved locale is still honoured.
+  // Set NEXT_PUBLIC_CANONICAL_REDIRECT="false" to keep the old behaviour.
+  if (!hasLocalePrefix && process.env.NEXT_PUBLIC_CANONICAL_REDIRECT !== "false") {
+    const cookieLocale = request.cookies.get(localeCookie)?.value;
+    const target = locales.includes(cookieLocale || "") ? (cookieLocale as string) : defaultLocale;
+    const redirectUrl = new URL(request.nextUrl);
+    redirectUrl.pathname = `/${target}${pathname === "/" ? "/" : pathname}`;
+    return NextResponse.redirect(redirectUrl, 308);
   }
 
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-locale", locale);
+  // Exposed so the root layout can build breadcrumb structured data.
+  requestHeaders.set("x-pathname", request.nextUrl.pathname);
 
   const response = NextResponse.rewrite(request.nextUrl, { request: { headers: requestHeaders } });
   response.cookies.set(localeCookie, locale, { path: "/", maxAge: 60 * 60 * 24 * 365 });
